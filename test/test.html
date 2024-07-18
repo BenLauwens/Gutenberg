@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="”en”">
+  <head>
+    <meta charset="utf-8" />
+    <title>TITLE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+    <link rel="stylesheet" href="oreilly.css" />
+    <!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
+    <!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
+    <!--script>
+class handlers extends Paged.Handler {
+constructor(chunker, polisher, caller) {
+super(chunker, polisher, caller);
+}
+
+beforeParsed(content) {
+renderMathInElement(content, {
+delimiters: [
+{ left: "\\\\(", right: "\\\\)", display: false },
+{ left: "\\\\[", right: "\\\\]", display: true },
+],
+throwOnError: false,
+output: "mathml",
+});
+content.querySelectorAll("pre code").forEach((el) => {
+hljs.highlightElement(el);
+});
+}
+
+afterRendered(pages) {
+const element = document.getElementById("tag");
+element.scrollIntoViewIfNeeded();
+}
+}
+
+Paged.registerHandlers(handlers);
+</script-->
+
+    <script>
+      MathJax = {
+        loader: { load: ["input/tex", "ui/menu", "[tex]/color"] },
+        tex: { packages: { "[+]": ["color"] } },
+        startup: {
+          pageReady() {
+            MathJax.startup.document.menu.menu
+              .findID("Accessibility", "AssistiveMml")
+              .disable();
+            //MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+          },
+        },
+        tex: {
+          inlineMath: [
+            // start/end delimiter pairs for in-line math
+            ["\\(", "\\)"],
+          ],
+          displayMath: [["\\[", "\\]"]],
+        },
+        options: {
+          renderActions: {
+            assistiveMml: [], // disable assistive mathml
+            typeset: [
+              150,
+              (doc) => {
+                for (math of doc.math) {
+                  MathJax.config.renderMathML(math, doc);
+                }
+              },
+              (math, doc) => MathJax.config.renderMathML(math, doc),
+            ],
+          },
+          menuOptions: {
+            settings: {
+              assistiveMml: false,
+            },
+          },
+        },
+        renderMathML(math, doc) {
+          math.typesetRoot = document.createElement("mjx-container");
+          math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+          math.display && math.typesetRoot.setAttribute("display", "block");
+        },
+      };
+    </script>
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"
+    ></script>
+    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+    <script>
+      class handlers extends Paged.Handler {
+        constructor(chunker, polisher, caller) {
+          super(chunker, polisher, caller);
+        }
+
+        beforeParsed(content) {
+          content
+            .querySelectorAll('div[data-type="equation"]')
+            .forEach((el) => {
+              console.log(el.innerHTML.slice(3, -3));
+              el.innerHTML = MathJax.tex2mml(
+                el.innerHTML
+                  .slice(3, -3)
+                  .replaceAll("&lt;", "<")
+                  .replaceAll("&gt;", ">")
+                  .replaceAll("&amp;", "&")
+              );
+            });
+          content.querySelectorAll("foreignObject").forEach((el) => {
+            console.log(el.innerHTML.slice(3, -3));
+            el.innerHTML = MathJax.tex2mml(
+              el.innerHTML
+                .slice(3, -3)
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+                .replaceAll("&amp;", "&"),
+              { display: false }
+            );
+          });
+          content.querySelectorAll('span[data-type="tex"]').forEach((el) => {
+            console.log(el.innerHTML.slice(2, -2));
+            console.log(MathJax.tex2mml(el.innerHTML.slice(2, -2)), {
+              display: false,
+            });
+            const math = document
+              .createRange()
+              .createContextualFragment(
+                MathJax.tex2mml(
+                  el.innerHTML
+                    .slice(2, -2)
+                    .replaceAll("&lt;", "<")
+                    .replaceAll("&gt;", ">")
+                    .replaceAll("&amp;", "&"),
+                  { display: false }
+                )
+              ).firstElementChild;
+            console.log(math);
+            el.replaceWith(math);
+          });
+          content.querySelectorAll("pre code").forEach((el) => {
+            hljs.highlightElement(el);
+          });
+        }
+
+        afterRendered(pages) {
+          const element = document.getElementById("tag");
+          //element.scrollIntoViewIfNeeded();
+        }
+      }
+
+      Paged.registerHandlers(handlers);
+    </script>
+  </head>
+  <body data-type="BODY-TYPE">
+    <p>
+      <span data-type="tex">\(\require{color}E=mc^2\)</span>
+    </p>
+    <div data-type="equation">
+      \[ \left|x\right|=\begin{cases} \hphantom{-}x&\textrm{if } x\ge0\\
+      -x&\textrm{if }x&lt;0 \end{cases} \]
+    </div>
+  </body>
+</html>

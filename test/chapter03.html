@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="utf-8">
+<title>chapter03</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="oreilly.css" />
+<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
+<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
+<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+<!--script>
+class handlers extends Paged.Handler {
+    constructor(chunker, polisher, caller) {
+        super(chunker, polisher, caller);
+    }
+
+    beforeParsed(content) {
+        renderMathInElement(content, {
+            delimiters: [
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true },
+            ],
+            throwOnError: false,
+            output: "mathml",
+        });
+        content.querySelectorAll("pre code").forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    }
+
+    afterRendered(pages) {
+        const element = document.getElementById("tag");
+        element.scrollIntoViewIfNeeded();
+    }
+}
+
+Paged.registerHandlers(handlers);
+</script-->
+<script>
+MathJax = {
+    startup: {
+        pageReady() {
+            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
+            //MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+        }
+    },
+    tex: {
+        inlineMath: [              // start/end delimiter pairs for in-line math
+            ['\(', '\)']
+        ],
+        displayMath: [
+            ['\[', '\]']
+        ]
+    },
+    options: {
+        renderActions: {
+            assistiveMml: [],  // disable assistive mathml
+            typeset: [150,
+                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
+                (math, doc) => MathJax.config.renderMathML(math, doc)
+            ]
+        },
+        menuOptions: {
+            settings: {
+                assistiveMml: false
+            }
+        }
+    },
+    renderMathML(math, doc) {
+        math.typesetRoot = document.createElement('mjx-container');
+        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+        math.display && math.typesetRoot.setAttribute('display', 'block');
+    }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+
+<script>
+class handlers extends Paged.Handler {
+    constructor(chunker, polisher, caller) {
+        super(chunker, polisher, caller);
+    }
+
+    beforeParsed(content) {
+        content.querySelectorAll('div[data-type="equation"]').forEach((el) => {
+            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true });
+            el.classList.remove("math-tex");
+        });
+        content.querySelectorAll('foreignObject').forEach((el) => {
+            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false });
+        });
+        content.querySelectorAll('span[data-type="tex"]').forEach((el) => {
+            const math = document.createRange().createContextualFragment(
+                MathJax.tex2mml(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false })
+            ).firstElementChild;
+            el.replaceWith(math);
+        });
+        content.querySelectorAll("pre code").forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    }
+
+    afterRendered(pages) {
+        const element = document.getElementById("tag");
+        element.scrollIntoView();
+    }
+}
+
+Paged.registerHandlers(handlers);
+</script>
+</head>
+<body data-type="article">
+<section data-type="chapter">
+<h1 id=chapter_1>Limits and Continuity</h1>
+<p>Calculus was created to describe how quantities change:</p>
+<ul>
+<li>
+<p><i>differentiation</i>, for finding the rate of change of a given function, and</p>
+</li>
+<li>
+<p><i>integration</i>, for finding a function having a given rate of change.</p>
+</li>
+</ul>
+<p>Both of these procedure are based on the fundamental concept of <i>limit</i> of a function.</p>
+<p>In this chapter we will introduce the limit concept and develop some of its properties, including the nice behaviour of some functions that is called <i>continuity</i>.</p>
+<section data-type="sect1">
+<h1 id=section1_2>Average and Instantaneous Velocity</h1>
+<p>The position of a moving object is a function of time. The average velocity of the object over a time interval is found by dividing the change in the object’s position by the length of the time interval.</p>
+<div data-type="example">
+<h1 id="example_3"></h1>
+<p>The average velocity of a falling rock.</p>
+<p>Physical experiments show that if a rock is dropped from rest near the surface of the earth, in the first <span class="math-tex" data-type="tex">\(t\,\left[\mathrm{s}\right]\)</span> if will fall a distance</p>
+<div class="math-tex" data-type="equation">
+\[
+y = \frac{gt^2}{2}\,\left[\mathrm{s}\right]\,,
+\]
+</div>
+<p>with <span class="math-tex" data-type="tex">\(g\approx 9.8\)</span> a constant representing the combined action of the gravition (from mass distribution within earth) and centrifugal forces (from the earth’s rotation).</p>
+<ol>
+<li>
+<p>What is the average velocity of the falling rock during the first <span class="math-tex" data-type="tex">\(2\,\left[\mathrm{s}\right]\)</span> (time interval <span class="math-tex" data-type="tex">\(\left[0,2\right]\)</span>)?</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\Delta y}{\Delta t}=\frac{g}{2}\frac{t_2^2-t_1^2}{t_2-t_1}=\frac{g}{2}\frac{2^2-0^2}{2-0}=9.8\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]\,.
+\]
+</div>
+</li>
+<li>
+<p>What is the average velocity of the falling rock in the time interval <span class="math-tex" data-type="tex">\(\left[1,2\right]\)</span>?</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\Delta y}{\Delta t}=\frac{g}{2}\frac{t_2^2-t_1^2}{t_2-t_1}=\frac{g}{2}\frac{2^2-1^2}{2-1}=14.7\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]\,.
+\]
+</div>
+</li>
+</ol>
+</div>
+<p>The instantaneous velocity of the object at the instant <span class="math-tex" data-type="tex">\(t\)</span> can be estimated by evaluating the average velocity in a small time interval containing <span class="math-tex" data-type="tex">\(t\)</span>.</p>
+<div data-type="example">
+<h1 id="example_4"></h1>
+<p>How fast is the rock of the previous example falling</p>
+<ol>
+<li>
+<p>at time <span class="math-tex" data-type="tex">\(t=1\,\left[\mathrm{s}\right]\)</span>?</p>
+<table>
+<thead>
+<tr>
+<td style="text-align:center">Time interval</td>
+<td style="text-align:center">Average velocity</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[1,1.1\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(10.29\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[1,1.01\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(9.849\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[1,1.001\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(9.805\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[1,1.0001\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(9.801\)</span></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>at time <span class="math-tex" data-type="tex">\(t=2\,\left[\mathrm{s}\right]\)</span>?</p>
+<table>
+<thead>
+<tr>
+<td style="text-align:center">Time interval</td>
+<td style="text-align:center">Average velocity</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[2,2.1\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(20.09\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[2,2.01\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(19.65\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[2,2.001\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(19.60\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[2,2.0001\right]\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(19.60\)</span></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</div>
+<p>In the second example the average velocity of the falling rock over the time interval <span class="math-tex" data-type="tex">\(\left[t,t+h\right]\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\Delta y}{\Delta t}=\frac{g}{2}\frac{\left(t+h\right)^2-t^2}{\left(t+h\right)-t}=\frac{g}{2}\frac{2th+h^2}{h}
+\]
+</div>
+<p>We examined the values of this average velocity for time intervals whose lengths <span class="math-tex" data-type="tex">\(h\)</span> became smaller and smaller. We were finding the <i>limit of the average velocity as <span class="math-tex" data-type="tex">\(h\)</span> tends to zero</i>. This is expressed symbolically in the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to0}\frac{\Delta y}{\Delta t}=\frac{g}{2}\frac{2th+h^2}{h}\,.
+\]
+</div>
+<p>We can’t find the limit of the fraction by just substituting <span class="math-tex" data-type="tex">\(h=0\)</span> because that would involve dividing by zero. However, we can calculate the limit by first performing som algebraic simplifications on the expression:</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to0}\frac{\Delta y}{\Delta t}=\frac{g}{2}\left(2t+h\right)\,.
+\]
+</div>
+<p>The final form no longer involves divison by <span class="math-tex" data-type="tex">\(h\)</span>. It approaches <span class="math-tex" data-type="tex">\(gt + \frac{g}{2}0=gt\)</span>. In particular, at <span class="math-tex" data-type="tex">\(t=1\,\left[\mathrm{s}\right]\)</span> and <span class="math-tex" data-type="tex">\(t=2\,\left[\mathrm{s}\right]\)</span>, the instantaneous velocities are <span class="math-tex" data-type="tex">\(v_1=9.8\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]\)</span> and <span class="math-tex" data-type="tex">\(v_2=19.6\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]\)</span>, respectively.</p>
+</section>
+<section data-type="sect1">
+<h1 id=section1_5>The Area of a Circle</h1>
+<p>All circles are similar geometric figures; they all have the same shape and differ only in size. The ratio of the circumference <span class="math-tex" data-type="tex">\(C\)</span> to the diameter <span class="math-tex" data-type="tex">\(2r\)</span> has the same value for all circles. The number <span class="math-tex" data-type="tex">\(\uppi\)</span> is defined to be this common ratio:</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{C}{2r}=\uppi \quad\textrm{or}\quad C=2\uppi r\,.
+\]
+</div>
+<p>We were taught that the area <span class="math-tex" data-type="tex">\(A\)</span> of a circle is this same number <span class="math-tex" data-type="tex">\(\uppi\)</span> times the square of the radius:</p>
+<div class="math-tex" data-type="equation">
+\[
+A=\uppi r^2\,.
+\]
+</div>
+<p>Can we deduce this area formula from the formula for the circumference?</p>
+<p>The answer to this question lies in regarding the circle as a “limit” of regular polygons, which are in turn made up of triangles.</p>
+<p>Suppose a regular polygon having <span class="math-tex" data-type="tex">\(n\)</span> sides is inscribed in a circle of radius <span class="math-tex" data-type="tex">\(r\)</span>.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="302">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<circle cx="151" cy="151" r="150" fill="none" stroke="red" stroke-width="1"/>
+<line x1="301.0" y1="151.0" x2="265.9066664678467" y2="247.41814145298088" stroke="green" stroke-width="1"/>
+<line x1="265.9066664678467" y1="247.41814145298088" x2="177.04722665003956" y2="298.72116295183116" stroke="green" stroke-width="1"/>
+<line x1="177.04722665003956" y1="298.72116295183116" x2="76.00000000000003" y2="280.9038105676658" stroke="green" stroke-width="1"/>
+<line x1="76.00000000000003" y1="280.9038105676658" x2="10.046106882113747" y2="202.30302149885034" stroke="green" stroke-width="1"/>
+<line x1="10.046106882113747" y1="202.30302149885034" x2="10.046106882113747" y2="99.6969785011497" stroke="green" stroke-width="1"/>
+<line x1="10.046106882113747" y1="99.6969785011497" x2="75.99999999999993" y2="21.096189432334228" stroke="green" stroke-width="1"/>
+<line x1="75.99999999999993" y1="21.096189432334228" x2="177.0472266500395" y2="3.278837048168782" stroke="green" stroke-width="1"/>
+<line x1="177.0472266500395" y1="3.278837048168782" x2="265.90666646784666" y2="54.58185854701907" stroke="green" stroke-width="1"/>
+<line x1="265.90666646784666" y1="54.58185854701907" x2="301.0" y2="150.99999999999997" stroke="green" stroke-width="1"/>
+<line x1="151" y1="151" x2="301.0" y2="151.0" stroke="black" stroke-width="1"/>
+<line x1="151" y1="151" x2="265.90666646784666" y2="54.58185854701907" stroke="black" stroke-width="1"/>
+<line x1="151" y1="151" x2="283.45333323392333" y2="102.79092927350953" stroke="black" stroke-width="1" stroke-dasharray="3"/>
+<foreignObject x="137" y="142.0" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="219.0" y="151" width="14" height="18">
+\(r\)
+</foreignObject>
+<foreignObject x="305" y="142.0" width="14" height="18">
+\(A\)
+</foreignObject>
+<foreignObject x="269.40666646784666" y="41.08185854701907" width="14" height="18">
+\(B\)
+</foreignObject>
+<foreignObject x="262.45333323392333" y="89.29092927350953" width="14" height="18">
+\(M\)
+</foreignObject>
+<path d="M 226 151 A 75 75 0 0 0 222.97694655894313, 127.09848925057484" stroke="black" fill="none" marker-end="url(#arrow)"/>
+<foreignObject x="229.78462024097664" y="123.63838853394651" width="14" height="36">
+\(\frac{\uppi }{n}\)
+</foreignObject>
+</svg>
+<figcaption>A regular polygon (green) of <span class="math-tex" data-type="tex">\(n\)</span> sides inscribed in a red circle. Here <span class="math-tex" data-type="tex">\(n=9\)</span>.</figcaption></figure>
+<p>The perimeter <span class="math-tex" data-type="tex">\(P_n\)</span> and the area <span class="math-tex" data-type="tex">\(A_n\)</span> of the polygon are, respectively, less than the circumference <span class="math-tex" data-type="tex">\(C\)</span> and the area <span class="math-tex" data-type="tex">\(A\)</span> of the circle, but if <span class="math-tex" data-type="tex">\(n\)</span> is large <span class="math-tex" data-type="tex">\(P_n\)</span> is close to <span class="math-tex" data-type="tex">\(C\)</span> and <span class="math-tex" data-type="tex">\(A_n\)</span> is close to <span class="math-tex" data-type="tex">\(A\)</span>. We could expect <span class="math-tex" data-type="tex">\(P_n\)</span> to approach the limit <span class="math-tex" data-type="tex">\(C\)</span> and <span class="math-tex" data-type="tex">\(A_n\)</span> to approach the limit <span class="math-tex" data-type="tex">\(A\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity.</p>
+<p>Since the total angle around the point <span class="math-tex" data-type="tex">\(O\)</span> is <span class="math-tex" data-type="tex">\(2\uppi\)</span> radians, <span class="math-tex" data-type="tex">\(\angle AOB\)</span> is <span class="math-tex" data-type="tex">\(\frac{2\uppi }{n}\)</span> radians. If <span class="math-tex" data-type="tex">\(M\)</span> is the midpoint of <span class="math-tex" data-type="tex">\(AB\)</span>, then <span class="math-tex" data-type="tex">\(O\)</span> bisects <span class="math-tex" data-type="tex">\(\angle AOB\)</span>. We can write the length of <span class="math-tex" data-type="tex">\(AB\)</span> and the area of <span class="math-tex" data-type="tex">\(\triangle OAB\)</span> in terms of the radius:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left|AB\right|=&2\left|AM\right|=2r\sin\frac{\uppi}{n}\\
+\triangle OAB=&\frac{1}{2}\left|AB\right|\left|OM\right|=r^2\sin\frac{\uppi}{n}\cos\frac{\uppi}{n}
+\end{aligned}
+\]
+</div>
+<p>The perimeter <span class="math-tex" data-type="tex">\(P_n\)</span> and area <span class="math-tex" data-type="tex">\(A_n\)</span> of the polygon are <span class="math-tex" data-type="tex">\(n\)</span>times these expressions:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+P_n=&2rn\sin\frac{\uppi}{n}\\
+A_n=&r^2n\sin\frac{\uppi}{n}\cos\frac{\uppi}{n}
+\end{aligned}
+\]
+</div>
+<p>Solving the first equation for <span class="math-tex" data-type="tex">\(rn\sin\frac{\uppi}{n}=\frac{P_n}{2}\)</span> and substituting into the second equation, we get</p>
+<div class="math-tex" data-type="equation">
+\[
+A_n = \frac{1}{2}P_nr\cos\frac{\uppi}{n}
+\]
+</div>
+<p>Now <span class="math-tex" data-type="tex">\(\angle AOM=\frac{\uppi}{n}\)</span> approaches <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, so its cosine, <span class="math-tex" data-type="tex">\(\cos\frac{\uppi}{n}=\frac{\left|OM\right|}{\left|OA\right|}\)</span>, approaches <span class="math-tex" data-type="tex">\(1\)</span>. Since <span class="math-tex" data-type="tex">\(P_n\)</span> approaches <span class="math-tex" data-type="tex">\(C=2\uppi r\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, the expression for <span class="math-tex" data-type="tex">\(A_n\)</span> approaches <span class="math-tex" data-type="tex">\(\frac{1}{2}\left(2\uppi r\right)r\left(1\right)=\uppi r^2\)</span>, which must therefore be the area of the circle.</p>
+</section>
+<section data-type="sect1">
+<h1 id=section1_6>Limits of Functions</h1>
+<p>In order to speak meaningfully about rate of change, tangent lines, and areas bounded by curves, we have to investigate the process of finding limits. Let us look at some examples.</p>
+<div data-type="example">
+<h1 id="example_7"></h1>
+<p>Describe the behaviour of the function <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{x^2-1}{x-1}\)</span> near <span class="math-tex" data-type="tex">\(x=1\)</span>.</p>
+<p>Note that <span class="math-tex" data-type="tex">\(f(x)\)</span> is defined for all real numbers <span class="math-tex" data-type="tex">\(x\)</span> except <span class="math-tex" data-type="tex">\(x=1\)</span>. (We can’t divide by zero.) For any <span class="math-tex" data-type="tex">\(x\ne1\)</span> we can simplify the expression for <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> by factoring the numerator and cancelling common factors:</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for }x\ne1\,.
+\]
+</div>
+<p>The graph of <span class="math-tex" data-type="tex">\(f\)</span> is the line <span class="math-tex" data-type="tex">\(y=x+1\)</span> with one point removed, namely, the point <span class="math-tex" data-type="tex">\(\left(1,2\right)\)</span>.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="240">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<foreignObject x="64" y="200" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="264" y="180" width="14" height="18">
+\(x\)
+</foreignObject>
+<foreignObject x="82" y="-2" width="14" height="18">
+\(y\)
+</foreignObject>
+<line x1="0" y1="200" x2="277" y2="200" stroke="black" marker-end="url(#arrow)"/>
+<line x1="120" y1="197" x2="120" y2="203" stroke="black"/>
+<foreignObject x="113.0" y="200" width="14" height="18">
+\(1\)
+</foreignObject>
+<line x1="80" y1="240" x2="80" y2="3" stroke="black" marker-end="url(#arrow)"/>
+<line x1="77" y1="120" x2="83" y2="120" stroke="black"/>
+<foreignObject x="66" y="111.0" width="14" height="18">
+\(2\)
+</foreignObject>
+<polyline points="1.4210854715202004e-14, 240.0 0.4000000000000057, 239.6 0.8000000000000114, 239.2 1.200000000000017, 238.79999999999998 1.6000000000000085, 238.39999999999998 2.000000000000014, 238.0 2.4000000000000057, 237.6 2.8000000000000114, 237.2 3.200000000000017, 236.79999999999998 3.6000000000000085, 236.39999999999998 4.000000000000014, 236.0 4.400000000000006, 235.6 4.800000000000011, 235.2 5.200000000000017, 234.79999999999998 5.6000000000000085, 234.39999999999998 6.0, 234.0 6.400000000000006, 233.6 6.800000000000011, 233.2 7.200000000000003, 232.8 7.6000000000000085, 232.4 8.0, 232.0 8.400000000000006, 231.6 8.800000000000011, 231.2 9.200000000000003, 230.8 9.600000000000009, 230.4 10.000000000000014, 230.0 10.400000000000006, 229.6 10.800000000000011, 229.2 11.200000000000017, 228.79999999999998 11.600000000000009, 228.39999999999998 12.000000000000014, 228.0 12.400000000000006, 227.6 12.800000000000011, 227.2 13.200000000000017, 226.79999999999998 13.600000000000009, 226.39999999999998 14.000000000000014, 226.0 14.400000000000006, 225.6 14.800000000000011, 225.2 15.200000000000017, 224.79999999999998 15.600000000000009, 224.39999999999998 16.000000000000014, 224.0 16.400000000000006, 223.6 16.800000000000004, 223.2 17.200000000000003, 222.8 17.60000000000001, 222.39999999999998 18.000000000000007, 222.0 18.400000000000006, 221.6 18.80000000000001, 221.2 19.20000000000001, 220.8 19.60000000000001, 220.4 20.000000000000007, 220.0 20.400000000000006, 219.6 20.80000000000001, 219.2 21.20000000000001, 218.79999999999998 21.60000000000001, 218.39999999999998 22.000000000000014, 218.0 22.400000000000013, 217.6 22.80000000000001, 217.2 23.200000000000003, 216.8 23.60000000000001, 216.39999999999998 24.0, 216.0 24.400000000000013, 215.6 24.800000000000004, 215.2 25.200000000000017, 214.79999999999998 25.60000000000001, 214.4 26.000000000000014, 214.0 26.400000000000006, 213.6 26.80000000000001, 213.2 27.200000000000003, 212.79999999999998 27.600000000000016, 212.39999999999998 28.000000000000007, 212.0 28.400000000000006, 211.6 28.80000000000001, 211.2 29.20000000000001, 210.79999999999998 29.60000000000001, 210.39999999999998 30.000000000000007, 210.0 30.400000000000006, 209.6 30.80000000000001, 209.2 31.20000000000001, 208.79999999999998 31.60000000000001, 208.39999999999998 32.000000000000014, 208.0 32.40000000000001, 207.6 32.80000000000001, 207.2 33.20000000000001, 206.79999999999998 33.60000000000001, 206.39999999999998 34.0, 206.0 34.40000000000001, 205.6 34.800000000000004, 205.2 35.20000000000002, 204.79999999999998 35.60000000000001, 204.4 36.000000000000014, 204.0 36.400000000000006, 203.6 36.80000000000001, 203.2 37.2, 202.79999999999998 37.600000000000016, 202.39999999999998 38.00000000000001, 202.0 38.400000000000006, 201.6 38.80000000000001, 201.2 39.20000000000001, 200.79999999999998 39.60000000000001, 200.39999999999998 40.00000000000001, 200.0 40.400000000000006, 199.6 40.80000000000001, 199.2 41.20000000000001, 198.79999999999998 41.60000000000001, 198.39999999999998 42.000000000000014, 198.0 42.40000000000001, 197.6 42.80000000000001, 197.2 43.20000000000001, 196.79999999999998 43.60000000000001, 196.39999999999998 44.000000000000014, 196.0 44.40000000000001, 195.6 44.80000000000001, 195.2 45.20000000000002, 194.79999999999998 45.600000000000016, 194.39999999999998 46.000000000000014, 193.99999999999997 46.400000000000006, 193.6 46.800000000000004, 193.2 47.2, 192.79999999999998 47.60000000000001, 192.4 48.00000000000001, 192.0 48.400000000000006, 191.6 48.80000000000001, 191.2 49.20000000000001, 190.79999999999998 49.60000000000001, 190.39999999999998 50.00000000000001, 190.0 50.400000000000006, 189.6 50.80000000000001, 189.2 51.20000000000001, 188.79999999999998 51.60000000000001, 188.39999999999998 52.000000000000014, 188.0 52.40000000000001, 187.6 52.80000000000001, 187.2 53.20000000000001, 186.79999999999998 53.60000000000001, 186.39999999999998 54.000000000000014, 186.0 54.40000000000001, 185.6 54.80000000000001, 185.2 55.20000000000002, 184.79999999999998 55.600000000000016, 184.39999999999998 56.000000000000014, 184.0 56.400000000000006, 183.6 56.800000000000004, 183.2 57.2, 182.79999999999998 57.60000000000001, 182.4 58.00000000000001, 182.0 58.400000000000006, 181.6 58.80000000000001, 181.2 59.20000000000001, 180.79999999999998 59.60000000000001, 180.39999999999998 60.00000000000001, 180.0 60.400000000000006, 179.6 60.80000000000001, 179.2 61.20000000000001, 178.79999999999998 61.60000000000001, 178.39999999999998 62.000000000000014, 178.0 62.40000000000001, 177.6 62.80000000000001, 177.2 63.20000000000001, 176.79999999999998 63.60000000000001, 176.39999999999998 64.00000000000001, 176.0 64.4, 175.6 64.80000000000001, 175.2 65.20000000000002, 174.79999999999998 65.60000000000001, 174.39999999999998 66.00000000000001, 174.0 66.40000000000002, 173.6 66.80000000000001, 173.2 67.2, 172.79999999999998 67.60000000000001, 172.39999999999998 68.0, 172.0 68.4, 171.6 68.80000000000001, 171.2 69.2, 170.79999999999998 69.60000000000001, 170.39999999999998 70.00000000000001, 170.0 70.4, 169.6 70.80000000000001, 169.2 71.20000000000002, 168.79999999999998 71.60000000000001, 168.39999999999998 72.00000000000001, 168.0 72.4, 167.6 72.80000000000001, 167.2 73.20000000000002, 166.79999999999998 73.60000000000001, 166.39999999999998 74.00000000000001, 166.0 74.4, 165.6 74.80000000000001, 165.2 75.20000000000002, 164.79999999999998 75.60000000000001, 164.39999999999998 76.00000000000001, 164.0 76.40000000000002, 163.6 76.80000000000001, 163.2 77.2, 162.8 77.60000000000001, 162.39999999999998 78.0, 162.0 78.4, 161.6 78.80000000000001, 161.2 79.2, 160.79999999999998 79.60000000000001, 160.39999999999998 80.00000000000001, 160.0 80.40000000000002, 159.59999999999997 80.80000000000001, 159.2 81.20000000000002, 158.79999999999998 81.60000000000001, 158.39999999999998 82.0, 158.0 82.4, 157.6 82.8, 157.2 83.20000000000002, 156.79999999999998 83.60000000000001, 156.4 84.00000000000001, 156.0 84.4, 155.6 84.80000000000001, 155.2 85.2, 154.8 85.60000000000001, 154.39999999999998 86.0, 154.0 86.40000000000002, 153.6 86.80000000000001, 153.2 87.20000000000002, 152.79999999999998 87.60000000000001, 152.39999999999998 88.00000000000001, 152.0 88.4, 151.6 88.80000000000001, 151.2 89.2, 150.79999999999998 89.60000000000002, 150.39999999999998 90.00000000000001, 150.0 90.40000000000002, 149.59999999999997 90.80000000000001, 149.2 91.20000000000002, 148.79999999999998 91.60000000000001, 148.39999999999998 92.00000000000001, 147.99999999999997 92.4, 147.6 92.8, 147.2 93.20000000000002, 146.79999999999998 93.60000000000001, 146.4 94.00000000000001, 146.0 94.4, 145.6 94.80000000000001, 145.2 95.2, 144.8 95.60000000000001, 144.39999999999998 96.0, 144.0 96.4, 143.6 96.80000000000001, 143.2 97.20000000000002, 142.79999999999998 97.60000000000001, 142.4 98.00000000000001, 142.0 98.4, 141.6 98.80000000000001, 141.2 99.20000000000002, 140.79999999999998 99.60000000000002, 140.39999999999998 100.0, 140.0 100.40000000000002, 139.59999999999997 100.80000000000001, 139.2 101.20000000000002, 138.79999999999998 101.60000000000001, 138.39999999999998 102.00000000000003, 137.99999999999997 102.4, 137.6 102.80000000000001, 137.2 103.20000000000002, 136.79999999999998 103.6, 136.4 104.00000000000001, 135.99999999999997 104.4, 135.6 104.80000000000001, 135.2 105.2, 134.8 105.60000000000002, 134.39999999999998 106.0, 134.0 106.4, 133.59999999999997 106.80000000000001, 133.2 107.20000000000002, 132.8 107.60000000000001, 132.39999999999998 108.00000000000001, 132.0 108.4, 131.59999999999997 108.80000000000001, 131.2 109.20000000000002, 130.79999999999998 109.60000000000002, 130.39999999999998 110.0, 130.0 110.40000000000002, 129.59999999999997 110.80000000000001, 129.2 111.20000000000002, 128.79999999999998 111.60000000000001, 128.4 112.00000000000003, 127.99999999999999 112.4, 127.6 112.80000000000001, 127.2 113.20000000000002, 126.8 113.6, 126.39999999999999 114.00000000000001, 125.99999999999997 114.4, 125.6 114.80000000000001, 125.19999999999999 115.2, 124.8 115.60000000000002, 124.39999999999998 116.0, 124.00000000000001 116.4, 123.59999999999997 116.80000000000001, 123.19999999999999 117.20000000000002, 122.79999999999995 117.60000000000001, 122.39999999999996 118.00000000000001, 121.99999999999997 118.4, 121.59999999999994 118.80000000000001, 121.20000000000003 119.20000000000002, 120.79999999999993 119.60000000000002, 120.39999999999998 120.0, 120.0 120.40000000000002, 119.60000000000007 120.80000000000001, 119.2000000000001 121.20000000000002, 118.79999999999984 121.60000000000001, 118.39999999999996 122.00000000000003, 118.00000000000006 122.4, 117.59999999999998 122.80000000000001, 117.19999999999996 123.20000000000002, 116.80000000000004 123.6, 116.4 124.00000000000001, 116.00000000000001 124.4, 115.60000000000001 124.80000000000001, 115.20000000000003 125.2, 114.79999999999997 125.60000000000002, 114.39999999999999 126.0, 114.00000000000003 126.4, 113.6 126.80000000000001, 113.19999999999996 127.20000000000002, 112.79999999999998 127.60000000000001, 112.4 128.0, 111.99999999999996 128.4, 111.6 128.8, 111.19999999999997 129.20000000000002, 110.79999999999998 129.60000000000002, 110.39999999999995 130.0, 109.99999999999999 130.40000000000003, 109.59999999999997 130.8, 109.19999999999999 131.20000000000002, 108.79999999999998 131.60000000000002, 108.4 132.00000000000003, 107.99999999999997 132.4, 107.6 132.8, 107.19999999999999 133.20000000000002, 106.79999999999998 133.6, 106.39999999999999 134.0, 105.99999999999997 134.4, 105.6 134.8, 105.19999999999997 135.2, 104.80000000000001 135.60000000000002, 104.39999999999998 136.0, 103.99999999999999 136.4, 103.59999999999998 136.8, 103.2 137.20000000000002, 102.8 137.60000000000002, 102.4 138.0, 101.99999999999996 138.4, 101.59999999999998 138.8, 101.19999999999999 139.20000000000002, 100.79999999999998 139.60000000000002, 100.39999999999999 140.0, 99.99999999999999 140.40000000000003, 99.6 140.8, 99.19999999999999 141.20000000000002, 98.79999999999998 141.60000000000002, 98.39999999999998 142.00000000000003, 97.99999999999997 142.4, 97.6 142.8, 97.19999999999999 143.20000000000002, 96.8 143.6, 96.4 144.0, 96.0 144.4, 95.60000000000001 144.8, 95.19999999999999 145.2, 94.80000000000001 145.60000000000002, 94.39999999999998 146.0, 93.99999999999999 146.40000000000003, 93.6 146.8, 93.2 147.20000000000002, 92.79999999999998 147.60000000000002, 92.4 148.0, 91.99999999999997 148.4, 91.6 148.8, 91.19999999999997 149.2, 90.8 149.60000000000002, 90.39999999999999 150.0, 89.99999999999999 150.40000000000003, 89.59999999999997 150.8, 89.2 151.20000000000002, 88.79999999999997 151.60000000000002, 88.4 152.0, 87.99999999999999 152.4, 87.6 152.8, 87.19999999999997 153.20000000000002, 86.8 153.60000000000002, 86.4 154.0, 85.99999999999997 154.4, 85.6 154.8, 85.19999999999999 155.2, 84.79999999999998 155.60000000000002, 84.39999999999999 156.0, 84.0 156.40000000000003, 83.6 156.8, 83.19999999999999 157.20000000000002, 82.79999999999998 157.60000000000002, 82.39999999999998 158.0, 82.0 158.4, 81.6 158.8, 81.19999999999997 159.2, 80.8 159.60000000000002, 80.39999999999998 160.0, 80.0 160.39999999999998, 79.60000000000002 160.8, 79.19999999999999 161.20000000000002, 78.80000000000001 161.6, 78.4 162.0, 77.99999999999999 162.40000000000003, 77.59999999999997 162.8, 77.19999999999999 163.2, 76.8 163.6, 76.4 164.0, 76.00000000000001 164.4, 75.6 164.8, 75.19999999999999 165.2, 74.80000000000003 165.6, 74.40000000000003 166.0, 73.99999999999999 166.4, 73.6 166.8, 73.2 167.2, 72.80000000000001 167.60000000000002, 72.39999999999998 168.0, 72.0 168.4, 71.6 168.79999999999998, 71.20000000000002 169.20000000000002, 70.79999999999998 169.60000000000002, 70.39999999999998 170.0, 70.0 170.39999999999998, 69.60000000000002 170.8, 69.19999999999996 171.20000000000002, 68.79999999999998 171.6, 68.4 172.0, 68.0 172.40000000000003, 67.59999999999997 172.8, 67.19999999999999 173.2, 66.80000000000001 173.6, 66.4 174.00000000000003, 65.99999999999997 174.4, 65.6 174.8, 65.19999999999999 175.2, 64.80000000000001 175.6, 64.4 176.0, 64.0 176.4, 63.599999999999994 176.8, 63.19999999999999 177.2, 62.80000000000001 177.60000000000002, 62.400000000000006 178.0, 61.99999999999997 178.4, 61.599999999999994 178.79999999999998, 61.20000000000002 179.20000000000002, 60.79999999999998 179.60000000000002, 60.39999999999998 180.0, 60.0 180.39999999999998, 59.60000000000002 180.8, 59.19999999999999 181.20000000000002, 58.79999999999998 181.6, 58.400000000000006 182.0, 58.0 182.40000000000003, 57.599999999999966 182.8, 57.19999999999999 183.2, 56.80000000000001 183.6, 56.400000000000006 184.00000000000003, 55.99999999999997 184.4, 55.599999999999994 184.8, 55.19999999999999 185.2, 54.80000000000001 185.6, 54.400000000000006 186.0, 54.0 186.4, 53.599999999999994 186.8, 53.19999999999999 187.2, 52.80000000000001 187.60000000000002, 52.39999999999998 188.0, 52.0 188.4, 51.599999999999994 188.79999999999998, 51.20000000000002 189.20000000000002, 50.79999999999998 189.60000000000002, 50.39999999999998 190.0, 50.0 190.39999999999998, 49.60000000000002 190.8, 49.19999999999999 191.20000000000002, 48.79999999999998 191.6, 48.400000000000006 192.0, 48.0 192.40000000000003, 47.599999999999966 192.8, 47.19999999999999 193.2, 46.80000000000001 193.6, 46.39999999999998 194.00000000000003, 46.0 194.4, 45.599999999999966 194.8, 45.19999999999999 195.2, 44.80000000000001 195.6, 44.400000000000006 196.0, 44.0 196.4, 43.599999999999966 196.8, 43.20000000000002 197.2, 42.80000000000004 197.60000000000002, 42.39999999999998 198.0, 42.0 198.4, 41.599999999999994 198.79999999999998, 41.20000000000002 199.20000000000002, 40.799999999999955 199.60000000000002, 40.39999999999998 200.0, 40.0 200.39999999999998, 39.60000000000002 200.8, 39.19999999999999 201.20000000000002, 38.79999999999998 201.6, 38.400000000000006 202.0, 38.0 202.40000000000003, 37.599999999999966 202.8, 37.19999999999999 203.2, 36.80000000000001 203.6, 36.400000000000006 204.00000000000003, 35.99999999999997 204.4, 35.599999999999994 204.8, 35.19999999999999 205.2, 34.80000000000001 205.6, 34.400000000000006 206.0, 34.0 206.4, 33.599999999999994 206.8, 33.19999999999999 207.2, 32.80000000000001 207.60000000000002, 32.39999999999998 208.0, 32.0 208.4, 31.599999999999994 208.79999999999998, 31.200000000000017 209.20000000000002, 30.799999999999983 209.60000000000002, 30.399999999999977 210.0, 30.0 210.39999999999998, 29.600000000000023 210.8, 29.19999999999999 211.20000000000002, 28.799999999999983 211.6, 28.400000000000006 212.0, 28.0 212.40000000000003, 27.599999999999966 212.8, 27.19999999999999 213.2, 26.80000000000001 213.6, 26.400000000000006 214.00000000000003, 25.99999999999997 214.4, 25.599999999999994 214.8, 25.19999999999999 215.2, 24.80000000000001 215.6, 24.400000000000006 216.0, 24.0 216.4, 23.599999999999994 216.8, 23.19999999999999 217.2, 22.80000000000001 217.60000000000002, 22.399999999999977 218.0, 22.0 218.4, 21.599999999999994 218.79999999999998, 21.200000000000017 219.20000000000002, 20.799999999999983 219.60000000000002, 20.399999999999977 220.0, 20.0 220.39999999999998, 19.600000000000023 220.8, 19.19999999999999 221.20000000000002, 18.799999999999983 221.6, 18.400000000000006 222.0, 18.0 222.40000000000003, 17.599999999999966 222.8, 17.19999999999999 223.2, 16.80000000000001 223.6, 16.400000000000006 224.00000000000003, 15.999999999999972 224.4, 15.599999999999994 224.8, 15.199999999999989 225.2, 14.800000000000011 225.6, 14.400000000000006 226.0, 14.0 226.4, 13.599999999999994 226.8, 13.199999999999989 227.2, 12.800000000000011 227.60000000000002, 12.399999999999977 228.0, 12.0 228.4, 11.599999999999994 228.79999999999998, 11.200000000000017 229.20000000000002, 10.799999999999983 229.60000000000002, 10.399999999999977 230.0, 10.0 230.39999999999998, 9.600000000000023 230.8, 9.199999999999989 231.20000000000002, 8.799999999999983 231.6, 8.400000000000006 232.0, 8.0 232.40000000000003, 7.599999999999966 232.8, 7.199999999999989 233.2, 6.800000000000011 233.6, 6.400000000000006 234.00000000000003, 5.999999999999972 234.4, 5.599999999999994 234.8, 5.199999999999989 235.2, 4.800000000000011 235.6, 4.400000000000006 236.0, 4.0 236.4, 3.5999999999999943 236.8, 3.1999999999999886 237.2, 2.8000000000000114 237.60000000000002, 2.3999999999999773 238.0, 2.0 238.4, 1.5999999999999943 238.79999999999998, 1.200000000000017 239.20000000000002, 0.799999999999983 239.60000000000002, 0.39999999999997726 240.0, 0.0 240.39999999999998, -0.39999999999997726 240.8, -0.8000000000000114 241.20000000000002, -1.2000000000000455 241.6, -1.5999999999999943 242.0, -2.0 242.40000000000003, -2.400000000000034 242.8, -2.8000000000000114 243.2, -3.1999999999999886 243.6, -3.5999999999999943 244.00000000000003, -4.000000000000057 244.4, -4.400000000000006 244.8, -4.7999999999999545 245.2, -5.199999999999989 245.60000000000002, -5.600000000000023 246.0, -6.0 246.4, -6.400000000000006 246.8, -6.800000000000011 247.2, -7.199999999999989 247.60000000000002, -7.600000000000023 248.0, -8.0 248.4, -8.400000000000006 248.79999999999998, -8.799999999999983 249.20000000000002, -9.200000000000017 249.60000000000002, -9.600000000000023 250.0, -10.0 250.39999999999998, -10.399999999999977 250.8, -10.800000000000011 251.20000000000002, -11.199999999999989 251.6, -11.599999999999994 252.0, -12.0 252.40000000000003, -12.400000000000034 252.8, -12.800000000000011 253.2, -13.19999999999996 253.6, -13.599999999999994 254.00000000000003, -14.0 254.4, -14.400000000000006 254.8, -14.800000000000011 255.2, -15.199999999999989 255.60000000000002, -15.600000000000023 256.0, -16.0 256.4, -16.400000000000006 256.8, -16.80000000000001 257.2, -17.19999999999999 257.6, -17.600000000000023 258.0, -18.0 258.4, -18.400000000000006 258.79999999999995, -18.799999999999983 259.20000000000005, -19.200000000000017 259.6, -19.600000000000023 260.0, -20.0 260.4, -20.399999999999977 260.8, -20.800000000000068 261.20000000000005, -21.200000000000017 261.6, -21.599999999999994 262.0, -22.0 262.40000000000003, -22.400000000000034 262.8, -22.80000000000001 263.2, -23.19999999999999 263.6, -23.599999999999994 264.0, -24.00000000000003 264.4, -24.400000000000006 264.8, -24.80000000000001 265.2, -25.19999999999999 265.6, -25.600000000000023 266.0, -26.0 266.4, -26.400000000000006 266.8, -26.80000000000001 267.2, -27.19999999999999 267.6, -27.599999999999966 268.0, -28.000000000000057 268.4, -28.400000000000006 268.79999999999995, -28.799999999999983 269.20000000000005, -29.200000000000017 269.6, -29.600000000000023 270.0, -30.0 270.4, -30.399999999999977 270.8, -30.80000000000001 271.20000000000005, -31.200000000000017 271.6, -31.599999999999994 272.0, -32.0 272.40000000000003, -32.400000000000034 272.8, -32.80000000000001 273.2, -33.19999999999999 273.6, -33.599999999999994 274.0, -34.00000000000003 274.4, -34.400000000000006 274.8, -34.80000000000001 275.2, -35.19999999999999 275.6, -35.60000000000002 276.0, -36.0 276.4, -36.400000000000006 276.8, -36.80000000000001 277.2, -37.19999999999999 277.6, -37.60000000000002 278.0, -38.0 278.4, -38.400000000000006 278.79999999999995, -38.79999999999998 279.20000000000005, -39.20000000000002 279.6, -39.60000000000002 280.0, -40.0" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+<circle cx="120" cy="120" r="3" fill="hsl(39, 100%, 90%)" stroke="red"/>
+</svg>
+<figcaption>The graph of <span class="math-tex" data-type="tex">\(\left(x\right)=\frac{x^2-1}{x-1}\)</span>.</figcaption></figure>
+<p>This removed point is shown as a <i>hole</i> in the graph. Even though <span class="math-tex" data-type="tex">\(\left(1\right)\)</span> is not defined, it is clear that we can make the value of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> <i>as close as we want</i> to <span class="math-tex" data-type="tex">\(2\)</span> by choosing <span class="math-tex" data-type="tex">\(x\)</span> <i>close enough</i> to <span class="math-tex" data-type="tex">\(1\)</span>. Therefore, we say <span class="math-tex" data-type="tex">\(f\)</span> approaches the limit <span class="math-tex" data-type="tex">\(2\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(1\)</span>. We write this as</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to1}f\left(x\right)=\lim_{x\to1}\frac{x^2-1}{x-1}=2\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1 id="example_8"></h1>
+<p>What happens to the function <span class="math-tex" data-type="tex">\(g\left(x\right)=\left(1+x^2\right)^\frac{1}{x^2}\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> approaches zero?</p>
+<p>Note that <span class="math-tex" data-type="tex">\(g\)</span> is not defined at <span class="math-tex" data-type="tex">\(x=0\)</span>. In fact, for the moment it does not appear to be defined for any <span class="math-tex" data-type="tex">\(x\)</span> whose square <span class="math-tex" data-type="tex">\(x^2\)</span> is not a rational number. Let us ignore for now the problem of deciding what <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> means if <span class="math-tex" data-type="tex">\(x^2\)</span> is irrational and consider only rational values of <span class="math-tex" data-type="tex">\(x\)</span>. There is no obvious way to simplify the expression for <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> as we did in previous example. However, we can use a scientific calculator to obtain approximate values of <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> for some rational values of <span class="math-tex" data-type="tex">\(x\)</span> approaching <span class="math-tex" data-type="tex">\(0\)</span>.</p>
+<table>
+<thead>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(x\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(g\left(x\right)\)</span></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\pm 0.1\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(2.704813829\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\pm 0.01\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(2.718145927\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\pm 0.001\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(2.718280469\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\pm 0.0001\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(2.718281815\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\pm 0.00001\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(1.000000000\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Except the last value in the table, the values of <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> seem to be approaching a certain number, <span class="math-tex" data-type="tex">\(2.71828\dots\)</span>, as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(0\)</span>. We will see in Chapter 5 that</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to 0}g\left(x\right)=\lim_{x\to 0}\left(1+x^2\right)^\frac{1}{x^2}=ℯ=2.718281828459045\dots\,.
+\]
+</div>
+<p>Observe that the last entry in the table appears to be wrong. It is because the calculator or MATLAB can only represent a finite number of numbers. The calculator was unable to distinguish <span class="math-tex" data-type="tex">\(1+\left(0.00001\right)^2=1.0000000001\)</span> from <span class="math-tex" data-type="tex">\(1\)</span>, and it therefore calculated <span class="math-tex" data-type="tex">\(1^{10000000000}=1\)</span>. See the course of MATLAB.</p>
+</div>
+<p>The examples and the previous sections suggest the following informal definition of limit.</p>
+<div data-type="definition">
+<h1 id="definition_9">&nbsp;(informal)</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is defined for all <span class="math-tex" data-type="tex">\(x\)</span> near <span class="math-tex" data-type="tex">\(a\)</span>, except possibly at <span class="math-tex" data-type="tex">\(a\)</span> itself, and if we can ensure that <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is as close as we want to <span class="math-tex" data-type="tex">\(L\)</span> by taking <span class="math-tex" data-type="tex">\(x\)</span> close enough to <span class="math-tex" data-type="tex">\(a\)</span>, but not equal to <span class="math-tex" data-type="tex">\(a\)</span>, we say that the function <span class="math-tex" data-type="tex">\(f\)</span> approaches the <i>limit</i> <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}f\left(x\right)=L
+\]
+</div>
+</div>
+<p>This definition is informal because phrases such as <i>close as we want</i> and <i>close enough</i> are imprecise; their meaning depends on the context. If we want to prove results about limits a more precise definition is needed. This precise definition is based on the idea of controlling the input <span class="math-tex" data-type="tex">\(x\)</span> of a function <span class="math-tex" data-type="tex">\(f\)</span> so that the output <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> will lie in a specific interval.</p>
+<div data-type="example">
+<h1 id="example_10"></h1>
+<p>The area of a circular disk of radius <span class="math-tex" data-type="tex">\(r\,\left[\mathrm{cm}\right]\)</span> is <span class="math-tex" data-type="tex">\(A=\uppi r^2\,\left[\mathrm{cm}^2\right]\)</span>. A machinist is required to manufacture a circular metal disk having area <span class="math-tex" data-type="tex">\(400\uppi\,\left[\mathrm{cm}^2\right]\)</span> within an error tolerance of <span class="math-tex" data-type="tex">\(\pm 5\,\left[\mathrm{cm}^2\right]\)</span>. How close to <span class="math-tex" data-type="tex">\(20\,\left[\mathrm{cm}\right]\)</span> must the machinist control the radius of the disk to achieve this?</p>
+<p>The machinist wants <span class="math-tex" data-type="tex">\(\left|\uppi r^2-400\uppi\right|<5\)</span>, that is,</p>
+<div class="math-tex" data-type="equation">
+\[
+400\uppi-5<\uppi r^2<400\uppi+5
+\]
+</div>
+<p>or, equivalently,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+    \sqrt{400-\frac{5}{\uppi}}<&r<\sqrt{400+\frac{5}{\uppi}}\\
+    19.96017<&r<20.03975\,.
+\end{aligned}
+\]
+</div>
+<p>Thus, the machinist needs <span class="math-tex" data-type="tex">\(\left|r-20\right|<0.03975\)</span>.</p>
+</div>
+<p>When we say that <span class="math-tex" data-type="tex">\(f\)</span> has limit <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, we are really saying that we can ensure that the error <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|\)</span> will be less than <i>any</i> allowed tolerance, no matter how small, by taking <span class="math-tex" data-type="tex">\(x\)</span> <i>close enough</i> to <span class="math-tex" data-type="tex">\(a\)</span> (but not equal to <span class="math-tex" data-type="tex">\(a\)</span>). It is traditional to use <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, the Greek letter “epsilon”, for the size of the allowable <i>error</i> and <span class="math-tex" data-type="tex">\(\delta\)</span>, the Greek letter “delta” for the difference <span class="math-tex" data-type="tex">\(\left|x-a\right|\)</span> that measures how close <span class="math-tex" data-type="tex">\(x\)</span> must be to <span class="math-tex" data-type="tex">\(a\)</span> to ensure that the error is within that tolerance.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="180.0">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<foreignObject x="24" y="160" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="224" y="140" width="14" height="18">
+\(x\)
+</foreignObject>
+<foreignObject x="42" y="-2" width="14" height="18">
+\(y\)
+</foreignObject>
+<line x1="0" y1="160" x2="237" y2="160" stroke="black" marker-end="url(#arrow)"/>
+<line x1="120" y1="157" x2="120" y2="163" stroke="black"/>
+<foreignObject x="99.0" y="160" width="42" height="18">
+\(a-\delta\)
+</foreignObject>
+<line x1="160" y1="157" x2="160" y2="163" stroke="black"/>
+<foreignObject x="153.0" y="160" width="14" height="18">
+\(a\)
+</foreignObject>
+<line x1="200" y1="157" x2="200" y2="163" stroke="black"/>
+<foreignObject x="179.0" y="160" width="42" height="18">
+\(a+\delta\)
+</foreignObject>
+<line x1="40" y1="180.0" x2="40" y2="3" stroke="black" marker-end="url(#arrow)"/>
+<line x1="37" y1="40" x2="43" y2="40" stroke="black"/>
+<foreignObject x="-2" y="31.0" width="42" height="18">
+\(L-\varepsilon\)
+</foreignObject>
+<line x1="37" y1="80" x2="43" y2="80" stroke="black"/>
+<foreignObject x="26" y="71.0" width="14" height="18">
+\(L\)
+</foreignObject>
+<line x1="37" y1="120" x2="43" y2="120" stroke="black"/>
+<foreignObject x="-2" y="111.0" width="42" height="18">
+\(L+\varepsilon\)
+</foreignObject>
+<line x1="160" y1="160" x2="160" y2="80" stroke-dasharray="3" stroke="black"/>
+<line x1="40" y1="80" x2="160" y2="80" stroke-dasharray="3" stroke="black"/>
+<polyline points="0.0, 131.66010488516724 0.3999999999999986, 131.9299546229543 0.7999999999999972, 132.19780436074143 1.2000000000000028, 132.4636540985285 1.6000000000000014, 132.72750383631558 2.0, 132.98935357410267 2.4000000000000057, 133.24920331188974 2.799999999999997, 133.5070530496768 3.1999999999999957, 133.7629027874639 3.6000000000000014, 134.01675252525098 4.0, 134.26860226303808 4.399999999999999, 134.51845200082514 4.799999999999997, 134.76630173861224 5.200000000000003, 135.0121514763993 5.600000000000001, 135.2560012141864 6.0, 135.49785095197348 6.399999999999999, 135.73770068976057 6.800000000000004, 135.97555042754763 7.200000000000003, 136.21140016533474 7.599999999999994, 136.4452499031218 8.0, 136.6770996409089 8.399999999999999, 136.90694937869597 8.799999999999997, 137.13479911648304 9.2, 137.36064885427012 9.600000000000001, 137.58449859205723 10.0, 137.8063483298443 10.399999999999999, 138.02619806763136 10.8, 138.24404780541846 11.200000000000003, 138.45989754320556 11.600000000000001, 138.67374728099261 12.0, 138.8855970187797 12.400000000000002, 139.0954467565668 12.799999999999997, 139.30329649435387 13.2, 139.50914623214095 13.599999999999998, 139.71299596992804 14.0, 139.91484570771513 14.399999999999999, 140.1146954455022 14.8, 140.31254518328927 15.2, 140.50839492107636 15.600000000000001, 140.70224465886344 16.0, 140.89409439665053 16.400000000000002, 141.08394413443762 16.8, 141.2717938722247 17.200000000000003, 141.45764361001176 17.599999999999998, 141.64149334779884 18.0, 141.82334308558595 18.4, 142.003192823373 18.799999999999997, 142.1810425611601 19.2, 142.35689229894717 19.6, 142.53074203673427 20.0, 142.70259177452135 20.4, 142.87244151230843 20.8, 143.0402912500955 21.200000000000003, 143.20614098788258 21.599999999999998, 143.36999072566968 22.0, 143.53184046345675 22.4, 143.69169020124383 22.8, 143.8495399390309 23.2, 144.005389676818 23.6, 144.15923941460508 24.0, 144.31108915239216 24.4, 144.46093889017925 24.8, 144.60878862796633 25.2, 144.7546383657534 25.6, 144.8984881035405 26.0, 145.04033784132758 26.4, 145.18018757911466 26.799999999999997, 145.31803731690172 27.2, 145.45388705468883 27.6, 145.5877367924759 28.0, 145.71958653026297 28.4, 145.84943626805006 28.799999999999997, 145.97728600583713 29.2, 146.10313574362422 29.6, 146.2269854814113 30.0, 146.34883521919838 30.4, 146.46868495698547 30.799999999999997, 146.58653469477255 31.2, 146.70238443255963 31.6, 146.81623417034672 32.0, 146.9280839081338 32.4, 147.03793364592087 32.8, 147.14578338370796 33.2, 147.25163312149505 33.6, 147.35548285928212 34.0, 147.4573325970692 34.4, 147.5571823348563 34.8, 147.65503207264337 35.2, 147.75088181043046 35.6, 147.84473154821754 36.0, 147.9365812860046 36.4, 148.0264310237917 36.8, 148.11428076157878 37.2, 148.20013049936586 37.6, 148.28398023715295 38.0, 148.36582997494003 38.4, 148.4456797127271 38.8, 148.5235294505142 39.2, 148.59937918830127 39.6, 148.67322892608837 40.0, 148.74507866387543 40.4, 148.8149284016625 40.8, 148.8827781394496 41.2, 148.94862787723667 41.6, 149.01247761502376 42.0, 149.07432735281085 42.4, 149.13417709059792 42.8, 149.192026828385 43.2, 149.2478765661721 43.6, 149.30172630395919 44.0, 149.35357604174627 44.4, 149.40342577953334 44.8, 149.45127551732043 45.2, 149.4971252551075 45.6, 149.54097499289458 46.0, 149.58282473068166 46.4, 149.62267446846874 46.8, 149.66052420625581 47.2, 149.6963739440429 47.6, 149.73022368182998 48.0, 149.76207341961708 48.4, 149.79192315740414 48.8, 149.81977289519125 49.2, 149.84562263297832 49.6, 149.8694723707654 50.0, 149.8913221085525 50.4, 149.91117184633956 50.8, 149.92902158412664 51.2, 149.94487132191372 51.6, 149.95872105970082 52.0, 149.97057079748788 52.4, 149.98042053527496 52.8, 149.98827027306206 53.2, 149.99412001084914 53.6, 149.99796974863622 54.0, 149.9998194864233 54.4, 149.99966922421038 54.8, 149.99751896199746 55.2, 149.99336869978455 55.6, 149.98721843757164 56.0, 149.97906817535872 56.4, 149.9689179131458 56.8, 149.95676765093287 57.2, 149.94261738871995 57.6, 149.92646712650705 58.0, 149.9083168642941 58.400000000000006, 149.8881666020812 58.8, 149.86601633986828 59.2, 149.84186607765537 59.6, 149.81571581544245 60.0, 149.78756555322954 60.4, 149.7574152910166 60.8, 149.7252650288037 61.2, 149.69111476659077 61.6, 149.65496450437786 62.0, 149.61681424216493 62.400000000000006, 149.57666397995203 62.8, 149.53451371773912 63.2, 149.4903634555262 63.599999999999994, 149.44421319331326 64.0, 149.39606293110035 64.4, 149.34591266888742 64.8, 149.29376240667452 65.2, 149.2396121444616 65.6, 149.18346188224868 66.0, 149.12531162003575 66.4, 149.06516135782283 66.8, 149.0030110956099 67.2, 148.938860833397 67.6, 148.8727105711841 68.0, 148.80456030897116 68.4, 148.73441004675826 68.8, 148.66225978454534 69.2, 148.58810952233242 69.6, 148.51195926011948 70.0, 148.43380899790657 70.4, 148.35365873569367 70.8, 148.27150847348074 71.2, 148.18735821126782 71.6, 148.1012079490549 72.0, 148.013057686842 72.4, 147.92290742462907 72.8, 147.83075716241615 73.19999999999999, 147.73660690020324 73.6, 147.64045663799033 74.0, 147.5423063757774 74.4, 147.44215611356447 74.8, 147.34000585135155 75.2, 147.23585558913865 75.6, 147.12970532692572 76.0, 147.0215550647128 76.4, 146.91140480249987 76.80000000000001, 146.79925454028697 77.2, 146.68510427807405 77.6, 146.56895401586112 78.0, 146.45080375364822 78.4, 146.3306534914353 78.8, 146.20850322922237 79.2, 146.08435296700947 79.6, 145.95820270479655 80.0, 145.83005244258362 80.4, 145.6999021803707 80.8, 145.5677519181578 81.2, 145.43360165594487 81.6, 145.29745139373196 82.0, 145.15930113151904 82.4, 145.01915086930612 82.80000000000001, 144.87700060709318 83.2, 144.73285034488026 83.6, 144.58670008266736 84.0, 144.43854982045445 84.4, 144.2883995582415 84.80000000000001, 144.1362492960286 85.19999999999999, 143.9820990338157 85.6, 143.82594877160278 86.0, 143.66779850938985 86.4, 143.50764824717695 86.8, 143.34549798496403 87.19999999999999, 143.1813477227511 87.6, 143.01519746053816 88.0, 142.84704719832527 88.4, 142.67689693611234 88.8, 142.50474667389943 89.2, 142.3305964116865 89.6, 142.15444614947359 90.0, 141.97629588726068 90.4, 141.79614562504776 90.8, 141.61399536283483 91.2, 141.42984510062192 91.6, 141.243694838409 92.0, 141.05554457619607 92.4, 140.86539431398316 92.80000000000001, 140.67324405177024 93.2, 140.47909378955734 93.6, 140.2829435273444 94.0, 140.08479326513148 94.4, 139.88464300291855 94.80000000000001, 139.68249274070564 95.19999999999999, 139.47834247849272 95.6, 139.27219221627982 96.0, 139.0640419540669 96.4, 138.853891691854 96.8, 138.64174142964106 97.19999999999999, 138.42759116742815 97.6, 138.21144090521523 98.0, 137.9932906430023 98.4, 137.77314038078939 98.8, 137.55099011857646 99.2, 137.32683985636356 99.6, 137.10068959415065 100.0, 136.8725393319377 100.4, 136.6423890697248 100.8, 136.4102388075119 101.2, 136.17608854529897 101.6, 135.93993828308604 102.0, 135.70178802087312 102.4, 135.4616377586602 102.80000000000001, 135.2194874964473 103.2, 134.97533723423436 103.6, 134.72918697202144 104.0, 134.48103670980854 104.4, 134.23088644759562 104.80000000000001, 133.9787361853827 105.19999999999999, 133.72458592316977 105.6, 133.46843566095686 106.0, 133.21028539874393 106.39999999999999, 132.95013513653103 106.8, 132.68798487431812 107.2, 132.4238346121052 107.6, 132.15768434989226 108.0, 131.88953408767935 108.4, 131.61938382546643 108.8, 131.34723356325352 109.2, 131.07308330104058 109.6, 130.7969330388277 110.0, 130.51878277661476 110.4, 130.23863251440184 110.8, 129.95648225218892 111.2, 129.67233198997602 111.6, 129.38618172776307 112.0, 129.09803146555018 112.4, 128.80788120333725 112.8, 128.51573094112433 113.2, 128.2215806789114 113.60000000000001, 127.9254304166985 114.0, 127.62728015448558 114.4, 127.32712989227267 114.80000000000001, 127.02497963005973 115.19999999999999, 126.72082936784682 115.6, 126.41467910563391 116.0, 126.10652884342099 116.39999999999999, 125.79637858120807 116.8, 125.48422831899515 117.2, 125.17007805678224 117.6, 124.85392779456932 118.0, 124.5357775323564 118.4, 124.21562727014347 118.8, 123.89347700793056 119.2, 123.56932674571765 119.6, 123.24317648350473 120.0, 122.91502622129181 120.39999999999999, 122.5848759590789 120.8, 122.25272569686597 121.19999999999999, 121.91857543465306 121.6, 121.58242517244014 122.0, 121.24427491022723 122.4, 120.90412464801429 122.8, 120.56197438580139 123.2, 120.21782412358846 123.6, 119.87167386137556 124.0, 119.52352359916262 124.39999999999999, 119.17337333694971 124.80000000000001, 118.82122307473679 125.19999999999999, 118.46707281252387 125.60000000000001, 118.11092255031096 126.0, 117.75277228809804 126.4, 117.39262202588512 126.8, 117.03047176367221 127.2, 116.66632150145928 127.6, 116.30017123924637 128.0, 115.93202097703343 128.4, 115.56187071482053 128.8, 115.1897204526076 129.2, 114.8155701903947 129.60000000000002, 114.43941992818176 130.0, 114.06126966596887 130.39999999999998, 113.68111940375596 130.8, 113.29896914154303 131.2, 112.91481887933011 131.6, 112.52866861711718 132.0, 112.14051835490426 132.4, 111.75036809269133 132.8, 111.35821783047844 133.2, 110.9640675682655 133.6, 110.56791730605259 134.0, 110.16976704383967 134.39999999999998, 109.76961678162675 134.8, 109.36746651941382 135.2, 108.96331625720093 135.60000000000002, 108.557165994988 136.0, 108.1490157327751 136.4, 107.73886547056216 136.8, 107.32671520834926 137.2, 106.91256494613631 137.6, 106.4964146839234 138.0, 106.07826442171049 138.4, 105.65811415949757 138.8, 105.23596389728465 139.2, 104.81181363507174 139.60000000000002, 104.3856633728588 140.0, 103.95751311064589 140.39999999999998, 103.527362848433 140.8, 103.09521258622007 141.2, 102.66106232400716 141.6, 102.22491206179423 142.0, 101.78676179958131 142.4, 101.34661153736839 142.8, 100.90446127515548 143.2, 100.46031101294255 143.6, 100.01416075072964 144.0, 99.56601048851671 144.39999999999998, 99.11586022630381 144.8, 98.66370996409088 145.2, 98.20955970187796 145.60000000000002, 97.75340943966503 146.0, 97.29525917745212 146.4, 96.8351089152392 146.8, 96.3729586530263 147.2, 95.90880839081336 147.6, 95.44265812860046 148.0, 94.97450786638753 148.4, 94.50435760417461 148.8, 94.0322073419617 149.2, 93.55805707974878 149.60000000000002, 93.08190681753585 150.0, 92.60375655532295 150.39999999999998, 92.12360629311004 150.8, 91.6414560308971 151.2, 91.1573057686842 151.6, 90.67115550647128 152.0, 90.18300524425837 152.4, 89.69285498204543 152.8, 89.20070471983253 153.2, 88.7065544576196 153.6, 88.21040419540668 154.0, 87.71225393319376 154.39999999999998, 87.21210367098085 154.8, 86.70995340876792 155.2, 86.20580314655501 155.60000000000002, 85.69965288434209 156.0, 85.19150262212918 156.4, 84.68135235991625 156.8, 84.16920209770335 157.2, 83.65505183549041 157.6, 83.13890157327751 158.0, 82.62075131106458 158.4, 82.10060104885167 158.8, 81.57845078663874 159.2, 81.05430052442583 159.60000000000002, 80.5281502622129 160.0, 80.0 160.39999999999998, 79.46984973778709 160.8, 78.93769947557416 161.2, 78.40354921336126 161.6, 77.86739895114832 162.0, 77.32924868893541 162.4, 76.78909842672248 162.8, 76.24694816450958 163.2, 75.70279790229664 163.6, 75.15664764008375 164.0, 74.6084973778708 164.39999999999998, 74.0583471156579 164.8, 73.50619685344498 165.2, 72.95204659123208 165.60000000000002, 72.39589632901914 166.0, 71.83774606680622 166.4, 71.27759580459329 166.8, 70.71544554238038 167.2, 70.15129528016746 167.6, 69.58514501795456 168.0, 69.01699475574162 168.4, 68.44684449352872 168.8, 67.87469423131577 169.2, 67.30054396910288 169.60000000000002, 66.72439370688994 170.0, 66.14624344467703 170.39999999999998, 65.56609318246414 170.8, 64.9839429202512 171.2, 64.3997926580383 171.6, 63.81364239582537 172.0, 63.22549213361245 172.4, 62.63534187139953 172.79999999999998, 62.04319160918661 173.2, 61.44904134697369 173.6, 60.852891084760785 174.0, 60.25474082254786 174.4, 59.65459056033495 174.8, 59.05244029812202 175.2, 58.44829003590911 175.6, 57.842139773696175 176.0, 57.23398951148327 176.4, 56.62383924927035 176.8, 56.01168898705744 177.20000000000002, 55.39753872484451 177.6, 54.78138846263161 178.0, 54.16323820041866 178.4, 53.54308793820577 178.8, 52.92093767599283 179.2, 52.296787413779924 179.60000000000002, 51.67063715156699 180.0, 51.04248688935408 180.39999999999998, 50.41233662714119 180.8, 49.780186364928255 181.2, 49.14603610271534 181.6, 48.509885840502406 182.0, 47.8717355782895 182.4, 47.231585316076576 182.79999999999998, 46.58943505386367 183.2, 45.94528479165075 183.6, 45.29913452943782 184.0, 44.6509842672249 184.4, 44.000834005011995 184.8, 43.34868374279907 185.2, 42.69453348058616 185.6, 42.03838321837323 186.0, 41.38023295616031 186.4, 40.720082693947376 186.8, 40.057932431734486 187.20000000000002, 39.39378216952156 187.6, 38.72763190730865 188.0, 38.059481645095715 188.4, 37.389331382882816 188.8, 36.71718112066986 189.2, 36.04303085845697 189.60000000000002, 35.36688059624403 190.0, 34.688730334031135 190.39999999999998, 34.00858007181823 190.8, 33.32642980960529 191.2, 32.64227954739239 191.6, 31.956129285179458 192.0, 31.267979022966557 192.4, 30.57782876075362 192.79999999999998, 29.8856784985407 193.2, 29.19152823632777 193.6, 28.495377974114888 194.0, 27.79722771190194 194.4, 27.09707744968904 194.8, 26.394927187476128 195.2, 25.690776925263208 195.6, 24.98462666305028 196.0, 24.276476400837367 196.4, 23.56632613862442 196.8, 22.854175876411517 197.20000000000002, 22.140025614198578 197.6, 21.423875351985686 198.0, 20.705725089772756 198.4, 19.985574827559873 198.8, 19.263424565346924 199.2, 18.53927430313402 199.60000000000002, 17.813124040921082 200.0, 17.08497377870819 200.39999999999998, 16.35482351649526 200.79999999999998, 15.622673254282375 201.20000000000002, 14.888522992069426 201.6, 14.152372729856495 202.0, 13.414222467643583 202.39999999999998, 12.674072205430718 202.8, 11.93192194321773 203.2, 11.187771681004818 203.6, 10.441621418791925 204.0, 9.693471156579022 204.4, 8.943320894366053 204.8, 8.19117063215316 205.2, 7.437020369940257 205.6, 6.680870107727344 206.0, 5.9227198455143935 206.4, 5.16256958330149 206.8, 4.400419321088577 207.2, 3.6362690588756834 207.60000000000002, 2.8701187966626946 208.0, 2.10196853444981 208.4, 1.3318182722369158 208.79999999999998, 0.5596680100240121 209.20000000000002, -0.21448225218898642 209.60000000000002, -0.9906325144018524 210.0, -1.7687827766147848 210.39999999999998, -2.54893303882767 210.79999999999998, -3.3310833010405645 211.20000000000002, -4.1152335632535255 211.6, -4.901383825466468 212.0, -5.6895340876793625 212.39999999999998, -6.4796843498922385 212.8, -7.271834612105238 213.2, -8.065984874318133 213.6, -8.862135136531037 214.0, -9.660285398743952 214.4, -10.460435660956904 214.8, -11.262585923169809 215.2, -12.066736185382723 215.6, -12.87288644759559 216.0, -13.68103670980858 216.4, -14.491186972021495 216.8, -15.303337234234391 217.2, -16.117487496447296 217.60000000000002, -16.933637758660268 218.0, -17.751788020873136 218.4, -18.57193828308607 218.79999999999998, -19.394088545298928 219.20000000000002, -20.21823880751191 219.60000000000002, -21.044389069724843 220.0, -21.87253933193773 220.39999999999998, -22.702689594150627 220.79999999999998, -23.534839856363533 221.20000000000002, -24.368990118576505 221.6, -25.205140380789402 222.0, -26.043290643002308 222.39999999999998, -26.883440905215224 222.8, -27.725591167428206 223.2, -28.569741429641084 223.6, -29.41589169185397 224.0, -30.26404195406687 224.4, -31.11419221627986 224.8, -31.96634247849275 225.2, -32.820492740705674 225.6, -33.67664300291858 226.0, -34.534793265131555 226.4, -35.394943527344424 226.8, -36.25709378955733 227.2, -37.12124405177022 227.60000000000002, -37.9873943139832 228.0, -38.85554457619611 228.4, -39.725694838409 228.79999999999998, -40.597845100621896 229.20000000000002, -41.47199536283489 229.60000000000002, -42.34814562504778 230.0, -43.226295887260704 230.39999999999998, -44.106446149473584 230.79999999999998, -44.98859641168647 231.20000000000002, -45.87274667389946 231.6, -46.758896936112365 232.0, -47.647047198325254 232.39999999999998, -48.53719746053815 232.8, -49.42934772275112 233.2, -50.323497984964035 233.6, -51.219648247176934 234.0, -52.117798509389814 234.4, -53.01794877160279 234.8, -53.92009903381569 235.2, -54.8242492960286 235.6, -55.730399558241515 236.0, -56.6385498204545 236.4, -57.54870008266738 236.8, -58.46085034488027 237.2, -59.37500060709317 237.60000000000002, -60.291150869306165 238.0, -61.209301131519055 238.4, -62.12945139373198 238.79999999999998, -63.051601655944864 239.20000000000002, -63.97575191815781 239.60000000000002, -64.90190218037074 240.0, -65.83005244258362" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+<circle cx="160" cy="80" r="3" fill="white" stroke="red"/>
+<rect x="120" y="0" width="80" height="160" fill="hsla(189, 100%, 50%, 10%)"/>
+<rect x="40" y="40" width="160" height="80" fill="hsla(180, 100%, 25%, 10%)"/>
+<foreignObject x="32.0" y="124.0" width="70" height="18" color="red">
+\(y=f\left(x\right)\)
+</foreignObject>
+</svg>
+<figcaption>If <span class="math-tex" data-type="tex">\(x\ne a\)</span> and <span class="math-tex" data-type="tex">\(\left|x-a\right|<\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|<\varepsilon\)</span>.</figcaption></figure>
+<p>If <span class="math-tex" data-type="tex">\(\varepsilon\)</span> is any strict positive number, <i>no matter how small</i>, we must be able to ensure that <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|<\varepsilon\)</span> by restricting <span class="math-tex" data-type="tex">\(x\)</span> to be <i>close enough</i> to (but not equal to) <span class="math-tex" data-type="tex">\(a\)</span>. How close is close enough? It is sufficient that the distance <span class="math-tex" data-type="tex">\(\left|x-a\right|\)</span> from <span class="math-tex" data-type="tex">\(x\)</span> to <span class="math-tex" data-type="tex">\(a\)</span> be less than a positive number <span class="math-tex" data-type="tex">\(\delta\)</span> that depends on <span class="math-tex" data-type="tex">\(\varepsilon\)</span>.</p>
+<div data-type="definition">
+<h1 id="definition_11">&nbsp;(formal)</h1>
+<p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> approaches the limit <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}f\left(x\right)=L
+\]
+</div>
+<p>if the following condition is satisfied:</p>
+<div class="math-tex" data-type="equation">
+\[
+\forall\varepsilon>0,\exists\delta\left(\varepsilon\right)>0:0<\left|x-a\right|<\delta\implies x\in X \wedge \left|f\left(x\right)-L\right|<\varepsilon\,.
+\]
+</div>
+</div>
+<p>Note the possible dependency of <span class="math-tex" data-type="tex">\(\delta\)</span> on <span class="math-tex" data-type="tex">\(\varepsilon\)</span> and the fact that <span class="math-tex" data-type="tex">\(x\)</span> belongs to the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
+<p>The formal definition of limit does not tell you how to find the limit of a function, but it does enable you to verify that a suspected limit is correct.</p>
+<div data-type="example">
+<h1 id="example_12"></h1>
+<p>Verify that:</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}x=a\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. We must find <span class="math-tex" data-type="tex">\(\delta>0\)</span> so that</p>
+<div class="math-tex" data-type="equation">
+\[
+0<\left|x-a\right|<\delta\implies\left|x-a\right|<\varepsilon\,.
+\]
+</div>
+<p>Clearly, we can take <span class="math-tex" data-type="tex">\(\delta=\varepsilon\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{x\to a}x=a\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{c\to a}x=c\)</span> (<span class="math-tex" data-type="tex">\(c\)</span> is a constant).</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. We must find <span class="math-tex" data-type="tex">\(\delta>0\)</span> so that</p>
+<div class="math-tex" data-type="equation">
+\[
+0<\left|x-a\right|<\delta\implies\left|c-c\right|<\varepsilon\,.
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(c-c=0\)</span>, we can use any positive number for <span class="math-tex" data-type="tex">\(\delta\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{c\to a}x=c\)</span>.</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to 2}x^2=4\)</span>.</p>
+<p>Here <span class="math-tex" data-type="tex">\(a=2\)</span> and <span class="math-tex" data-type="tex">\(L=4\)</span>. Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. We must find <span class="math-tex" data-type="tex">\(\delta>0\)</span> so that</p>
+<div class="math-tex" data-type="equation">
+\[
+0<\left|x-2\right|<\delta\implies\left|x^2-4\right|<\varepsilon\,.
+\]
+</div>
+<p>Now,</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|x^2-4\right|=\left|\left(x+2\right)\left(x-2\right)\right|=\left|x+2\right|\left|x-2\right|\,.
+\]
+</div>
+<p>We want the expression above to be less than <span class="math-tex" data-type="tex">\(\varepsilon\)</span>. We can make the factor <span class="math-tex" data-type="tex">\(\left|x-2\right|\)</span> as small as we wish by choosing <span class="math-tex" data-type="tex">\(\delta\)</span> properly, but we need to control the factor <span class="math-tex" data-type="tex">\(\left|x+2\right|\)</span> so that it does not become too large.</p>
+<p>If we first assume <span class="math-tex" data-type="tex">\(\delta\le1\)</span> and require that <span class="math-tex" data-type="tex">\(\left|x-2\right|<\delta\)</span>, then we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|x-2\right|&lt;1 \implies 1&lt;x&lt;3 \implies 3&lt;x+2&lt;5 \implies \left|x+2\right|&lt;5
+\]
+</div>
+<p>Hence,</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|f\left(x\right)-4\right|&lt;5\left|x-2\right|\quad\textrm{if}\quad\left|x-2\right|&lt;\delta\le1\,.
+\]
+</div>
+<p>But <span class="math-tex" data-type="tex">\(5\left|x-2\right|&lt;\varepsilon\)</span> if <span class="math-tex" data-type="tex">\(\left|x-2\right|&lt;\frac{\varepsilon}{5}\)</span>. Therefore, if we take <span class="math-tex" data-type="tex">\(\delta=\min\left\lbrace1,\frac{\varepsilon}{5}\right\rbrace\)</span>, the <i>minimum</i> of the two numbers <span class="math-tex" data-type="tex">\(1\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{5}\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|f\left(x-4\right)\right|&lt;5\left|x-2\right|&lt;5\times\frac{\varepsilon}{5}=\varepsilon\quad\textrm{if}\quad\left|x-2\right|&lt;\delta\,.
+\]
+</div>
+<p>This proves that <span class="math-tex" data-type="tex">\(\lim_{x\to 2}x^2=4\)</span>.</p>
+</li>
+</ol>
+</div>
+<p>We do not usually rely on the formal definition of limit to verify specific limits such as those in the last example. Rather, we appeal to general theorems about limits in particular the theorems of the next section.</p>
+<p>If a function has a limit at a point, this limit is <i>unique</i>.</p>
+<div data-type="theorem">
+<h1 id="theorem_13"></h1>
+<p>If <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=M\)</span>, then <span class="math-tex" data-type="tex">\(L=M\)</span>.</p>
+</div>
+<div data-type="proof">
+<h1 id="proof_14">&nbsp;(by contradiction)</h1>
+<p>Suppose <span class="math-tex" data-type="tex">\(L\ne M\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon = \frac{\left|L-M\right|}{2}&gt;0\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta_1 > 0\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0<\left|x-a\right|<\delta_1\implies\left|f\left(x\right)-L\right|<\varepsilon
+\]
+</div>
+<p>and since <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=M\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta_2>0\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0<\left|x-a\right|<\delta_2\implies\left|f\left(x\right)-M\right|<\varepsilon\,.
+\]
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\delta=\min\left\lbrace\delta_1,\delta_2\right\rbrace\)</span>. If <span class="math-tex" data-type="tex">\(0&lt;\left|x-a\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_1\)</span>, so <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|&lt;\varepsilon\)</span>, and <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_2\)</span>, so <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-M\right|&lt;\varepsilon\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left|L-M\right|=&\left|L-f\left(x\right)+f\left(x\right)-M\right|\\\le&\left|L-f\left(x\right)\right|+\left|f\left(x\right)-M\right|\\<&2\varepsilon=2\frac{\left|L-M\right|}{2}=\left|L-M\right|
+\end{aligned}
+\]
+</div>
+<p>by the triangle inequality.</p>
+<p>This is a contradiction, so <span class="math-tex" data-type="tex">\(L=M\)</span>.</p>
+</div>
+<p>Although a function <span class="math-tex" data-type="tex">\(f\)</span> can only have one limit at any particular point, it is, nevertheless, useful to be able to describe the behaviour of functions that approach different numbers a <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span> from one side or the other.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="255" height="155">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<foreignObject x="109" y="80" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="239" y="60" width="14" height="18">
+\(x\)
+</foreignObject>
+<foreignObject x="127" y="-2" width="14" height="18">
+\(y\)
+</foreignObject>
+<line x1="0" y1="80" x2="252" y2="80" stroke="black" marker-end="url(#arrow)"/>
+<line x1="25" y1="77" x2="25" y2="83" stroke="black"/>
+<foreignObject x="11.0" y="80" width="28" height="18">
+\(-2\)
+</foreignObject>
+<line x1="75" y1="77" x2="75" y2="83" stroke="black"/>
+<foreignObject x="61.0" y="80" width="28" height="18">
+\(-1\)
+</foreignObject>
+<line x1="175" y1="77" x2="175" y2="83" stroke="black"/>
+<foreignObject x="168.0" y="80" width="14" height="18">
+\(1\)
+</foreignObject>
+<line x1="225" y1="77" x2="225" y2="83" stroke="black"/>
+<foreignObject x="218.0" y="80" width="14" height="18">
+\(2\)
+</foreignObject>
+<line x1="125" y1="155" x2="125" y2="3" stroke="black" marker-end="url(#arrow)"/>
+<line x1="122" y1="130" x2="128" y2="130" stroke="black"/>
+<foreignObject x="97" y="121.0" width="28" height="18">
+\(-1\)
+</foreignObject>
+<line x1="122" y1="30" x2="128" y2="30" stroke="black"/>
+<foreignObject x="111" y="21.0" width="14" height="18">
+\(1\)
+</foreignObject>
+<polyline points="-25, 130 25, 130 75, 130 125, 130" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+<polyline points="125, 30 175, 30 225, 30 275, 30" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+<circle cx="125" cy="130" r="3" stroke="red" fill="white"/>
+<circle cx="125" cy="30" r="3" stroke="red" fill="white"/>
+</svg>
+<figcaption><span class="math-tex" data-type="tex">\(\newcommand{\sgn}{\operatorname{sgn}}\lim_{x\to0^-}\sgn x=-1\)</span> and <span class="math-tex" data-type="tex">\(\lim_{x\to0^+}\sgn x=1\)</span>.</figcaption></figure>
+<div data-type="definition">
+<h1 id="definition_15"></h1>
+<p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> has <i>right limit</i> <span class="math-tex" data-type="tex">\(L\)</span> at <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a^+}f\left(x\right)=L\,,
+\]
+</div>
+<p>if the following condition is satisfied:</p>
+<div class="math-tex" data-type="equation">
+\[
+\forall \varepsilon>0,\exists\delta\left(\varepsilon\right)>0:a&lt;x&lt;a+\delta\implies x\in X \wedge \left|f\left(x\right)-L\right|&lt;\varepsilon\,.
+\]
+</div>
+<p>Similarly, we say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> has <i>left limit</i> <span class="math-tex" data-type="tex">\(L\)</span> at <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a^-}f\left(x\right)=L\,,
+\]
+</div>
+<p>if the following condition is satisfied:</p>
+<div class="math-tex" data-type="equation">
+\[
+\forall \varepsilon>0,\exists\delta\left(\varepsilon\right)>0:a-\delta&lt;x&lt;a\implies x\in X \wedge \left|f\left(x\right)-L\right|&lt;\varepsilon\,.
+\]
+</div>
+</div>
+<p>Note again the dependency of <span class="math-tex" data-type="tex">\(\delta\)</span> on <span class="math-tex" data-type="tex">\(\varepsilon\)</span> and the fact that <span class="math-tex" data-type="tex">\(x\)</span> belongs to the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
+<div data-type="example">
+<h1 id="example_16"></h1>
+<p>Show that <span class="math-tex" data-type="tex">\(\lim_{x\to0^+}\sqrt x=0\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. If <span class="math-tex" data-type="tex">\(x>0\)</span>, then <span class="math-tex" data-type="tex">\(\left|\sqrt x-0\right|=\sqrt x\)</span>. We can ensure that <span class="math-tex" data-type="tex">\(\sqrt x<\varepsilon\)</span> by requiring <span class="math-tex" data-type="tex">\(x<\varepsilon^2\)</span>. Thus, we can take <span class="math-tex" data-type="tex">\(\delta=\varepsilon^2\)</span> and the condition of the definition will be satisfied:</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;x&lt;\delta=\varepsilon^2\implies\left|\sqrt x-0\right|<\varepsilon\,.
+\]
+</div>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\lim_{x\to0^+}\sqrt x=0\)</span>.</p>
+</div>
+<p>The existence of different right and left limits of a function at a point excludes the existence of a limit at that point.</p>
+<div data-type="theorem">
+<h1 id="theorem_17"></h1>
+<p>A function <span class="math-tex" data-type="tex">\(f\)</span> has limit <span class="math-tex" data-type="tex">\(L\)</span> at <span class="math-tex" data-type="tex">\(x=a\)</span> if and only if it has both left and right limits there and these one-sided limits are both equal to <span class="math-tex" data-type="tex">\(L\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}f\left(x\right)=L\iff\lim_{x\to a^-}f\left(x\right)=\lim_{x\to a^+}f\left(x\right)=L\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1 id="example_18"></h1>
+<p>What one-sided limits does <span class="math-tex" data-type="tex">\(g\left(x\right)=\sqrt{1-x^2}\)</span> have at <span class="math-tex" data-type="tex">\(x=-1\)</span> and <span class="math-tex" data-type="tex">\(x=1\)</span>?</p>
+<p>The domain of <span class="math-tex" data-type="tex">\(g\)</span> is <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>, so <span class="math-tex" data-type="tex">\(g\)</span> is defined only to the right of <span class="math-tex" data-type="tex">\(x=-1\)</span> and only to the left of <span class="math-tex" data-type="tex">\(x=1\)</span>.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="255" height="150">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<foreignObject x="109" y="130" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="239" y="110" width="14" height="18">
+\(x\)
+</foreignObject>
+<foreignObject x="127" y="-2" width="14" height="18">
+\(y\)
+</foreignObject>
+<line x1="0" y1="130" x2="252" y2="130" stroke="black" marker-end="url(#arrow)"/>
+<line x1="25" y1="127" x2="25" y2="133" stroke="black"/>
+<foreignObject x="11.0" y="130" width="28" height="18">
+\(-1\)
+</foreignObject>
+<line x1="225" y1="127" x2="225" y2="133" stroke="black"/>
+<foreignObject x="218.0" y="130" width="14" height="18">
+\(1\)
+</foreignObject>
+<line x1="125" y1="150" x2="125" y2="3" stroke="black" marker-end="url(#arrow)"/>
+<line x1="122" y1="30" x2="128" y2="30" stroke="black"/>
+<foreignObject x="111" y="21.0" width="14" height="18">
+\(1\)
+</foreignObject>
+<polyline points="25.0, 130.0 26.0, 115.8932640203341 27.0, 110.10025125786758 28.0, 105.68950843771356 29.0, 102.0 30.0, 98.775010008008 31.0, 95.88255578153603 32.0, 93.2440481010218 33.0, 90.80816411546915 34.0, 88.53917511674425 35.0, 86.41101056459327 36.0, 84.40394753928801 37.0, 82.50263165184833 38.0, 80.6948278575158 39.0, 78.9705967113077 40.0, 77.3217312357363 41.0, 75.74136013499785 42.0, 74.22366093046264 43.0, 72.76364791498325 44.0, 71.35701235441701 45.0, 70.00000000000001 46.0, 68.68931577612267 47.0, 67.42204861135194 48.0, 66.19561143620291 49.0, 65.00769276291231 50.0, 63.85621722338523 51.0, 62.73931311679905 52.0, 61.655285500632885 53.0, 60.60259370841011 54.0, 59.57983243416699 55.0, 58.585715714571506 56.0, 57.61906328320971 57.0, 56.67878888070658 58.0, 55.76389018813015 59.0, 54.873440116028206 60.0, 54.00657923214669 61.0, 53.1625091508058 62.0, 52.3404867385843 63.0, 51.539819016267884 64.0, 50.759858657369875 65.0, 50.0 66.0, 49.25967550226218 67.0, 48.538352582334795 68.0, 47.83553079341411 69.0, 47.150739291168094 70.0, 46.483534557549675 71.0, 45.83349834999676 72.0, 45.20023584938458 73.0, 44.58337398374951 74.0, 43.982559907888444 75.0, 43.39745962155614 76.0, 42.82775671120996 77.0, 42.273151202154764 78.0, 41.733358509570564 79.0, 41.20810847830754 80.0, 40.69714450254125 81.0, 40.200222717425405 82.0, 39.717111255786676 83.0, 39.247589563692586 84.0, 38.79144776941145 85.0, 38.34848610088321 86.0, 37.91851434734559 87.0, 37.501351361222575 88.0, 37.09682459678787 89.0, 36.70476968247519 90.0, 36.32503002402403 91.0, 35.95745643593003 92.0, 35.60190679891886 93.0, 35.25824574138392 94.0, 34.92634434292536 95.0, 34.606079858305435 96.0, 34.29733546029138 97.0, 34.0 98.0, 33.71396778348377 99.0, 33.439138363413505 100.0, 33.17541634481458 101.0, 32.92271120390723 102.0, 32.68093711918512 103.0, 32.45001281394241 104.0, 32.229861409528525 105.0, 32.02041028867288 106.0, 31.82159096827857 107.0, 31.633338981136504 108.0, 31.455593766058954 109.0, 31.288298565975467 110.0, 31.13140033357405 111.0, 30.984849644107484 112.0, 30.848600615019052 113.0, 30.722610832073144 114.0, 30.60684128170591 115.0, 30.501256289338002 116.0, 30.405823463417292 117.0, 30.320513644983095 118.0, 30.245300862565884 119.0, 30.180162292257762 120.0, 30.12507822280911 121.0, 30.080032025625627 122.0, 30.04501012955882 123.0, 30.020002000400098 124.0, 30.005000125006248 125.0, 30.0 126.0, 30.005000125006248 127.0, 30.020002000400098 128.0, 30.04501012955882 129.0, 30.080032025625627 130.0, 30.12507822280911 131.0, 30.180162292257762 132.0, 30.245300862565884 133.0, 30.320513644983095 134.0, 30.405823463417292 135.0, 30.501256289338002 136.0, 30.60684128170591 137.0, 30.722610832073144 138.0, 30.848600615019052 139.0, 30.984849644107484 140.0, 31.13140033357405 141.0, 31.288298565975467 142.0, 31.455593766058954 143.0, 31.633338981136504 144.0, 31.82159096827857 145.0, 32.02041028867288 146.0, 32.229861409528525 147.0, 32.45001281394241 148.0, 32.68093711918512 149.0, 32.92271120390723 150.0, 33.17541634481458 151.0, 33.439138363413505 152.0, 33.71396778348377 153.0, 34.0 154.0, 34.29733546029138 155.0, 34.606079858305435 156.0, 34.92634434292536 157.0, 35.25824574138392 158.0, 35.60190679891886 159.0, 35.95745643593003 160.0, 36.32503002402403 161.0, 36.70476968247519 162.0, 37.09682459678787 163.0, 37.501351361222575 164.0, 37.91851434734559 165.0, 38.34848610088321 166.0, 38.79144776941145 167.0, 39.247589563692586 168.0, 39.717111255786676 169.0, 40.200222717425405 170.0, 40.69714450254125 171.0, 41.20810847830754 172.0, 41.733358509570564 173.0, 42.273151202154764 174.0, 42.82775671120996 175.0, 43.39745962155614 176.0, 43.982559907888444 177.0, 44.58337398374951 178.0, 45.20023584938458 179.0, 45.83349834999676 180.0, 46.483534557549675 181.0, 47.150739291168094 182.0, 47.83553079341411 183.0, 48.538352582334795 184.0, 49.25967550226218 185.0, 50.0 186.0, 50.759858657369875 187.0, 51.539819016267884 188.0, 52.3404867385843 189.0, 53.1625091508058 190.0, 54.00657923214669 191.0, 54.873440116028206 192.0, 55.76389018813015 193.0, 56.67878888070658 194.0, 57.61906328320971 195.0, 58.585715714571506 196.0, 59.57983243416699 197.0, 60.60259370841011 198.0, 61.655285500632885 199.0, 62.73931311679905 200.0, 63.85621722338523 201.0, 65.00769276291231 202.0, 66.19561143620291 203.0, 67.42204861135194 204.0, 68.68931577612267 205.0, 70.00000000000001 206.0, 71.35701235441701 207.0, 72.76364791498325 208.0, 74.22366093046264 209.0, 75.74136013499785 210.0, 77.3217312357363 211.0, 78.9705967113077 212.0, 80.6948278575158 213.0, 82.50263165184833 214.0, 84.40394753928801 215.0, 86.41101056459327 216.0, 88.53917511674425 217.0, 90.80816411546915 218.0, 93.2440481010218 219.0, 95.88255578153603 220.0, 98.775010008008 221.0, 102.0 222.0, 105.68950843771356 223.0, 110.10025125786758 224.0, 115.8932640203341 225.0, 130.0" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+<circle cx="25" cy="130.0" r="3" fill="red" stroke="red"/>
+<circle cx="225" cy="130.0" r="3" fill="red" stroke="red"/>
+</svg>
+<figcaption><span class="math-tex" data-type="tex">\(\sqrt{1-x^2}\)</span> has right limit 0 at -1 and left limit 0 at 1.</figcaption></figure>
+<p>As can be seen in the figure,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to-1^+}g\left(x\right)=0\quad\textrm{and}\quad\lim_{x\to1^-}g\left(x\right)=0
+\]
+</div>
+<p><span class="math-tex" data-type="tex">\(g\)</span> has no left limit or limit at <span class="math-tex" data-type="tex">\(x=-1\)</span>, no right limit or limit at <span class="math-tex" data-type="tex">\(x=1\)</span>.</p>
+</div>
+</section>
+<section data-type="sect1">
+<h1 id=section1_19>Rules and Theorems about Limits</h1>
+<p>The following rules make it easy to calculate limits and one-sided limits of many kinds of functions when we know some elementary limits.</p>
+<div data-type="theorem">
+<h1 id="theorem_20">&nbsp;(Limit Rules)</h1>
+<p>If <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span>, <span class="math-tex" data-type="tex">\(\lim_{x\to a}g\left(x\right)=M\)</span> and <span class="math-tex" data-type="tex">\(k\)</span> is a constant, then</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}\left(f\left(x\right)+g\left(x\right)\right)=L+M\)</span> (limit of a sum)</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}\left(f\left(x\right)-g\left(x\right)\right)=L-M\)</span> (limit of a difference)</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)g\left(x\right)=LM\)</span> (limit of a product)</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}kf\left(x\right)=kL\)</span> (limit of a multiple)</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}\frac{f\left(x\right)}{g\left(x\right)}=\frac{L}{M}\textrm{ if }M\ne0\)</span> (limit of quotient)</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(m\in ℤ\)</span> and <span class="math-tex" data-type="tex">\(n\in ℕ_0\)</span>, then <span class="math-tex" data-type="tex">\(\lim_{x\to a}\left(f\left(x\right)\right)^\frac{m}{n}=L^\frac{m}{n}\)</span>, provided <span class="math-tex" data-type="tex">\(L>0\)</span> if <span class="math-tex" data-type="tex">\(n\)</span> is even and <span class="math-tex" data-type="tex">\(L\ne0\)</span> if <span class="math-tex" data-type="tex">\(m &lt;0\)</span>. (limit of a power)</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\)</span> on an interval containing <span class="math-tex" data-type="tex">\(a\)</span> in its interior, then <span class="math-tex" data-type="tex">\(L\le M\)</span>. (order is preserved)</p>
+</li>
+</ol>
+</div>
+<p>Rules 1—6 are also valid for one-sided limits. So is rule 7, under the assumption that <span class="math-tex" data-type="tex">\(f\left(x\right)\le\left(x\right)\)</span> on an open interval extending from <span class="math-tex" data-type="tex">\(a\)</span> in the appropriate direction.</p>
+<div data-type="proof">
+<h1 id="proof_21">&nbsp;(limit of a sum)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon > 0\)</span> be given.</p>
+<p>We want to find a strict positive number <span class="math-tex" data-type="tex">\(\delta\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta\implies\left|\left(f\left(x\right)+g\left(x\right)\right)-\left(L+M\right)\right|&lt;\varepsilon
+\]
+</div>
+<p>Observe that</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left|\left(f\left(x\right)+g\left(x\right)\right)-\left(L+M\right)\right|=&\left|\left(f\left(x\right)-L\right)+\left(g\left(x\right)-M\right)\right|\\
+\le&\left|f\left(x\right)-L\right|+\left|g\left(x\right)-M\right|
+\end{aligned}
+\]
+</div>
+<p>by the triangle inequality.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{2}\)</span> is a strict positive number, there exists a number <span class="math-tex" data-type="tex">\(\delta_1\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta_1\implies\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{2}\,.
+\]
+</div>
+<p>Similarly, since <span class="math-tex" data-type="tex">\(\lim_{x\to a}g\left(x\right)=M\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{2}\)</span> is a strict positive number, there exists a number <span class="math-tex" data-type="tex">\(\delta_2\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta_2\implies\left|g\left(x\right)-M\right|&lt;\frac{\varepsilon}{2}\,.
+\]
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\delta=\min\left\lbrace\delta_1,\delta_2\right\rbrace\)</span>. If <span class="math-tex" data-type="tex">\(0&lt;\left|x-a\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_1\)</span>, so <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{2}\)</span>, and <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_2\)</span>, so <span class="math-tex" data-type="tex">\(\left|g\left(x\right)-M\right|&lt;\frac{\varepsilon}{2}\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|\left(f\left(x\right)+g\left(x\right)\right)-\left(L+M\right)\right|\le\left|f\left(x\right)-L\right|+\left|g\left(x\right)-M\right|&lt;\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\,.
+\]
+</div>
+<p>This shows that <span class="math-tex" data-type="tex">\(\lim_{x\to a}\left(f\left(x\right)+g\left(x\right)\right)=L+M\)</span>.</p>
+</div>
+<div data-type="example">
+<h1 id="example_22"></h1>
+<p>Find <span class="math-tex" data-type="tex">\(\lim_{x\to a}\frac{x^2+x+4}{x^3-2x^2+7}\)</span>.</p>
+<p>The expression <span class="math-tex" data-type="tex">\(\frac{x^2+x+4}{x^3-2x^2+7}\)</span> is formed by combining the basic functions <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(c\)</span> (constant) using addition, subtraction, multiplication, and division. The previous theorem assures us that the limit of such a combination is the same combination of the limits <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(c\)</span> of the basic functions, provided the denominator does not have limit zero. Thus,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}\frac{x^2+x+4}{x^3-2x^2+7}=\frac{a^2+a+4}{a^3-2a^2+7}\quad\textrm{provided }a^3-2a^2+7\ne0
+\]
+</div>
+</div>
+<p>The result of the example can be generalized as a direct corollary.</p>
+<div data-type="corollary">
+<h1 id="corollary_23"></h1>
+<p>If <span class="math-tex" data-type="tex">\(a\in ℝ\)</span> and</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(P\left(x\right)\)</span> is a polynomial, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}P\left(x\right)=P\left(a\right)
+\]
+</div>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(P\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> are polynomials and <span class="math-tex" data-type="tex">\(Q\left(a\right)\ne 0\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}\frac{P\left(x\right)}{Q\left(x\right)}=\frac{P\left(a\right)}{Q\left(a\right)}\,.
+\]
+</div>
+</li>
+</ol>
+</div>
+<p>The following theorem will enable us to calculate some very important limits in subsequent chapters. It is called the <i>squeeze theorem</i> because it refers to a function <span class="math-tex" data-type="tex">\(g\)</span> whose values are squeezed between the values of two other functions that have the same limit <span class="math-tex" data-type="tex">\(L\)</span> at a point <span class="math-tex" data-type="tex">\(a\)</span>. Being trapped between the values of two functions that approach <span class="math-tex" data-type="tex">\(L\)</span>, the values of <span class="math-tex" data-type="tex">\(g\)</span> must also approach <span class="math-tex" data-type="tex">\(L\)</span>.</p>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="180.0">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<foreignObject x="24" y="160" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="224" y="140" width="14" height="18">
+\(x\)
+</foreignObject>
+<foreignObject x="42" y="-2" width="14" height="18">
+\(y\)
+</foreignObject>
+<line x1="0" y1="160" x2="237" y2="160" stroke="black" marker-end="url(#arrow)"/>
+<line x1="160" y1="157" x2="160" y2="163" stroke="black"/>
+<foreignObject x="153.0" y="160" width="14" height="18">
+\(a\)
+</foreignObject>
+<line x1="40" y1="180.0" x2="40" y2="3" stroke="black" marker-end="url(#arrow)"/>
+<line x1="37" y1="80" x2="43" y2="80" stroke="black"/>
+<foreignObject x="26" y="71.0" width="14" height="18">
+\(L\)
+</foreignObject>
+<line x1="160" y1="160" x2="160" y2="80" stroke-dasharray="3" stroke="black"/>
+<line x1="40" y1="80" x2="160" y2="80" stroke-dasharray="3" stroke="black"/>
+<polyline points="0.0, -112.0 0.3999999999999986, -111.0412 0.7999999999999972, -110.08479999999997 1.2000000000000028, -109.13079999999997 1.6000000000000014, -108.17919999999998 2.0, -107.23000000000002 2.4000000000000057, -106.28319999999997 2.799999999999997, -105.33879999999999 3.1999999999999957, -104.39679999999998 3.6000000000000014, -103.4572 4.0, -102.51999999999998 4.399999999999999, -101.58519999999999 4.799999999999997, -100.65279999999996 5.200000000000003, -99.7228 5.600000000000001, -98.79520000000002 6.0, -97.87 6.399999999999999, -96.94720000000001 6.800000000000004, -96.02679999999998 7.200000000000003, -95.1088 7.599999999999994, -94.19319999999999 8.0, -93.28 8.399999999999999, -92.3692 8.799999999999997, -91.4608 9.2, -90.5548 9.600000000000001, -89.65119999999999 10.0, -88.75 10.399999999999999, -87.85120000000003 10.8, -86.9548 11.200000000000003, -86.06079999999997 11.600000000000001, -85.16919999999999 12.0, -84.28 12.400000000000002, -83.39319999999998 12.799999999999997, -82.50879999999998 13.2, -81.62679999999997 13.599999999999998, -80.74720000000002 14.0, -79.86999999999998 14.399999999999999, -78.99520000000001 14.8, -78.12280000000001 15.2, -77.25279999999998 15.600000000000001, -76.3852 16.0, -75.51999999999998 16.400000000000002, -74.65719999999999 16.8, -73.79680000000002 17.200000000000003, -72.93879999999999 17.599999999999998, -72.0832 18.0, -71.22999999999996 18.4, -70.3792 18.799999999999997, -69.5308 19.2, -68.6848 19.6, -67.84119999999999 20.0, -67.0 20.4, -66.16120000000001 20.8, -65.32479999999998 21.200000000000003, -64.49079999999998 21.599999999999998, -63.65920000000003 22.0, -62.83000000000001 22.4, -62.00319999999999 22.8, -61.178799999999995 23.2, -60.35679999999999 23.6, -59.53720000000004 24.0, -58.72 24.4, -57.90520000000001 24.8, -57.09280000000001 25.2, -56.28280000000004 25.6, -55.47519999999997 26.0, -54.66999999999999 26.4, -53.86719999999997 26.799999999999997, -53.0668 27.2, -52.2688 27.6, -51.47320000000002 28.0, -50.67999999999998 28.4, -49.88920000000002 28.799999999999997, -49.10079999999999 29.2, -48.31479999999999 29.6, -47.531199999999984 30.0, -46.74999999999997 30.4, -45.97120000000004 30.799999999999997, -45.194800000000015 31.2, -44.420800000000014 31.6, -43.64919999999998 32.0, -42.88000000000005 32.4, -42.113200000000006 32.8, -41.34880000000004 33.2, -40.58679999999998 33.6, -39.827200000000005 34.0, -39.069999999999965 34.4, -38.315199999999976 34.8, -37.56279999999998 35.2, -36.81280000000001 35.6, -36.06519999999995 36.0, -35.32000000000005 36.4, -34.577200000000005 36.8, -33.83679999999998 37.2, -33.09879999999998 37.6, -32.363200000000006 38.0, -31.629999999999967 38.4, -30.899200000000008 38.8, -30.170799999999986 39.2, -29.444799999999987 39.6, -28.721199999999953 40.0, -27.99999999999997 40.4, -27.281200000000013 40.8, -26.56480000000002 41.2, -25.85080000000002 41.6, -25.139199999999988 42.0, -24.42999999999998 42.4, -23.72319999999999 42.8, -23.0188 43.2, -22.316799999999972 43.6, -21.617200000000025 44.0, -20.919999999999987 44.4, -20.2252 44.8, -19.53280000000001 45.2, -18.84280000000001 45.6, -18.15519999999998 46.0, -17.47 46.4, -16.787199999999984 46.8, -16.10680000000002 47.2, -15.428799999999967 47.6, -14.753199999999993 48.0, -14.079999999999984 48.4, -13.409199999999998 48.8, -12.740799999999979 49.2, -12.07480000000001 49.6, -11.41119999999998 50.0, -10.75 50.4, -10.091200000000015 50.8, -9.434799999999996 51.2, -8.78079999999997 51.6, -8.129199999999969 52.0, -7.480000000000018 52.4, -6.833199999999977 52.8, -6.188800000000015 53.2, -5.546799999999962 53.6, -4.907199999999989 54.0, -4.269999999999982 54.4, -3.6351999999999975 54.8, -3.0028000000000077 55.2, -2.372799999999984 55.6, -1.7452000000000112 56.0, -1.1200000000000045 56.4, -0.49720000000002074 56.8, 0.12319999999999709 57.2, 0.7411999999999921 57.6, 1.356800000000021 58.0, 1.9699999999999989 58.400000000000006, 2.5808000000000106 58.8, 3.189199999999971 59.2, 3.795199999999994 59.6, 4.398800000000023 60.0, 5.0 60.4, 5.598799999999983 60.8, 6.1952 61.2, 6.789200000000022 61.6, 7.380799999999994 62.0, 7.969999999999999 62.400000000000006, 8.55680000000001 62.8, 9.141199999999998 63.2, 9.723199999999991 63.599999999999994, 10.30279999999999 64.0, 10.879999999999995 64.4, 11.454799999999977 64.8, 12.027199999999993 65.2, 12.597199999999987 65.6, 13.164800000000014 66.0, 13.72999999999999 66.4, 14.292800000000028 66.8, 14.853199999999987 67.2, 15.411200000000008 67.6, 15.966799999999978 68.0, 16.52000000000001 68.4, 17.07079999999999 68.8, 17.619200000000006 69.2, 18.1652 69.6, 18.708800000000025 70.0, 19.25 70.4, 19.78880000000001 70.8, 20.325199999999995 71.2, 20.859200000000016 71.6, 21.390800000000013 72.0, 21.920000000000016 72.4, 22.446799999999996 72.8, 22.97120000000001 73.19999999999999, 23.4932 73.6, 24.0128 74.0, 24.53 74.4, 25.04480000000001 74.8, 25.557200000000023 75.2, 26.067199999999985 75.6, 26.574799999999982 76.0, 27.080000000000013 76.4, 27.58280000000002 76.80000000000001, 28.083199999999977 77.2, 28.581199999999995 77.6, 29.07679999999999 78.0, 29.569999999999993 78.4, 30.0608 78.8, 30.549199999999985 79.2, 31.035200000000003 79.6, 31.518800000000027 80.0, 32.0 80.4, 32.47880000000001 80.8, 32.95519999999999 81.2, 33.429199999999994 81.6, 33.900800000000004 82.0, 34.370000000000005 82.4, 34.8368 82.80000000000001, 35.301199999999994 83.2, 35.76319999999998 83.6, 36.22280000000001 84.0, 36.67999999999999 84.4, 37.13480000000001 84.80000000000001, 37.587199999999996 85.19999999999999, 38.037199999999984 85.6, 38.48479999999998 86.0, 38.93000000000001 86.4, 39.37280000000001 86.8, 39.813199999999995 87.19999999999999, 40.2512 87.6, 40.686800000000005 88.0, 41.120000000000005 88.4, 41.550799999999995 88.8, 41.97919999999999 89.2, 42.40520000000001 89.6, 42.8288 90.0, 43.25 90.4, 43.668800000000005 90.8, 44.085199999999986 91.2, 44.4992 91.6, 44.910799999999995 92.0, 45.31999999999999 92.4, 45.7268 92.80000000000001, 46.13120000000001 93.2, 46.53320000000001 93.6, 46.9328 94.0, 47.33000000000001 94.4, 47.724800000000016 94.80000000000001, 48.11720000000001 95.19999999999999, 48.50719999999998 95.6, 48.89479999999999 96.0, 49.27999999999999 96.4, 49.66279999999999 96.8, 50.0432 97.19999999999999, 50.4212 97.6, 50.79679999999999 98.0, 51.16999999999999 98.4, 51.540800000000004 98.8, 51.9092 99.2, 52.2752 99.6, 52.6388 100.0, 53.0 100.4, 53.3588 100.8, 53.71520000000001 101.2, 54.069199999999995 101.6, 54.420800000000014 102.0, 54.77000000000001 102.4, 55.1168 102.80000000000001, 55.461200000000005 103.2, 55.803200000000004 103.6, 56.14280000000001 104.0, 56.47999999999999 104.4, 56.814800000000005 104.80000000000001, 57.1472 105.19999999999999, 57.477199999999996 105.6, 57.8048 106.0, 58.129999999999995 106.39999999999999, 58.452799999999996 106.8, 58.7732 107.2, 59.0912 107.6, 59.406800000000004 108.0, 59.72 108.4, 60.0308 108.8, 60.339200000000005 109.2, 60.6452 109.6, 60.948800000000006 110.0, 61.25 110.4, 61.5488 110.8, 61.845200000000006 111.2, 62.1392 111.6, 62.430800000000005 112.0, 62.72 112.4, 63.0068 112.8, 63.2912 113.2, 63.5732 113.60000000000001, 63.8528 114.0, 64.13 114.4, 64.40480000000001 114.80000000000001, 64.6772 115.19999999999999, 64.9472 115.6, 65.2148 116.0, 65.48 116.39999999999999, 65.7428 116.8, 66.00319999999999 117.2, 66.2612 117.6, 66.51679999999999 118.0, 66.77 118.4, 67.02080000000001 118.8, 67.2692 119.2, 67.5152 119.6, 67.75880000000001 120.0, 68.0 120.39999999999999, 68.2388 120.8, 68.4752 121.19999999999999, 68.7092 121.6, 68.94080000000001 122.0, 69.17 122.4, 69.39679999999998 122.8, 69.62119999999999 123.2, 69.8432 123.6, 70.06280000000001 124.0, 70.28 124.39999999999999, 70.4948 124.80000000000001, 70.7072 125.19999999999999, 70.91720000000001 125.60000000000001, 71.1248 126.0, 71.32999999999998 126.4, 71.53280000000001 126.8, 71.73320000000001 127.2, 71.9312 127.6, 72.1268 128.0, 72.32000000000001 128.4, 72.5108 128.8, 72.6992 129.2, 72.8852 129.60000000000002, 73.0688 130.0, 73.25 130.39999999999998, 73.4288 130.8, 73.6052 131.2, 73.7792 131.6, 73.9508 132.0, 74.11999999999999 132.4, 74.2868 132.8, 74.4512 133.2, 74.6132 133.6, 74.7728 134.0, 74.93 134.39999999999998, 75.0848 134.8, 75.2372 135.2, 75.38719999999999 135.60000000000002, 75.5348 136.0, 75.67999999999999 136.4, 75.8228 136.8, 75.9632 137.2, 76.1012 137.6, 76.2368 138.0, 76.37 138.4, 76.5008 138.8, 76.6292 139.2, 76.7552 139.60000000000002, 76.8788 140.0, 77.0 140.39999999999998, 77.1188 140.8, 77.2352 141.2, 77.3492 141.6, 77.46079999999999 142.0, 77.57 142.4, 77.6768 142.8, 77.7812 143.2, 77.8832 143.6, 77.9828 144.0, 78.08 144.39999999999998, 78.1748 144.8, 78.2672 145.2, 78.3572 145.60000000000002, 78.44480000000001 146.0, 78.53 146.4, 78.61280000000001 146.8, 78.6932 147.2, 78.7712 147.6, 78.8468 148.0, 78.91999999999999 148.4, 78.9908 148.8, 79.0592 149.2, 79.1252 149.60000000000002, 79.1888 150.0, 79.25 150.39999999999998, 79.3088 150.8, 79.3652 151.2, 79.41919999999999 151.6, 79.4708 152.0, 79.52 152.4, 79.5668 152.8, 79.6112 153.2, 79.6532 153.6, 79.69279999999999 154.0, 79.73 154.39999999999998, 79.76480000000001 154.8, 79.7972 155.2, 79.8272 155.60000000000002, 79.85480000000001 156.0, 79.88 156.4, 79.9028 156.8, 79.9232 157.2, 79.94120000000001 157.6, 79.9568 158.0, 79.97 158.4, 79.9808 158.8, 79.9892 159.2, 79.99520000000001 159.60000000000002, 79.99879999999999 160.0, 80.0 160.39999999999998, 79.99879999999999 160.8, 79.99520000000001 161.2, 79.9892 161.6, 79.9808 162.0, 79.97 162.4, 79.9568 162.8, 79.94120000000001 163.2, 79.9232 163.6, 79.9028 164.0, 79.88 164.39999999999998, 79.85480000000001 164.8, 79.8272 165.2, 79.7972 165.60000000000002, 79.76480000000001 166.0, 79.73 166.4, 79.69279999999999 166.8, 79.6532 167.2, 79.6112 167.6, 79.5668 168.0, 79.52 168.4, 79.4708 168.8, 79.41919999999999 169.2, 79.3652 169.60000000000002, 79.3088 170.0, 79.25 170.39999999999998, 79.1888 170.8, 79.1252 171.2, 79.0592 171.6, 78.9908 172.0, 78.91999999999999 172.4, 78.8468 172.79999999999998, 78.7712 173.2, 78.6932 173.6, 78.61280000000001 174.0, 78.53 174.4, 78.44480000000001 174.8, 78.3572 175.2, 78.2672 175.6, 78.1748 176.0, 78.08 176.4, 77.9828 176.8, 77.8832 177.20000000000002, 77.7812 177.6, 77.6768 178.0, 77.57 178.4, 77.46079999999999 178.8, 77.3492 179.2, 77.2352 179.60000000000002, 77.1188 180.0, 77.0 180.39999999999998, 76.8788 180.8, 76.7552 181.2, 76.6292 181.6, 76.5008 182.0, 76.37 182.4, 76.2368 182.79999999999998, 76.1012 183.2, 75.9632 183.6, 75.8228 184.0, 75.67999999999999 184.4, 75.5348 184.8, 75.38719999999999 185.2, 75.2372 185.6, 75.0848 186.0, 74.93 186.4, 74.7728 186.8, 74.6132 187.20000000000002, 74.4512 187.6, 74.2868 188.0, 74.11999999999999 188.4, 73.9508 188.8, 73.7792 189.2, 73.6052 189.60000000000002, 73.4288 190.0, 73.25 190.39999999999998, 73.0688 190.8, 72.8852 191.2, 72.6992 191.6, 72.5108 192.0, 72.32000000000001 192.4, 72.1268 192.79999999999998, 71.9312 193.2, 71.73320000000001 193.6, 71.53280000000001 194.0, 71.32999999999998 194.4, 71.1248 194.8, 70.91720000000001 195.2, 70.7072 195.6, 70.4948 196.0, 70.28 196.4, 70.06280000000001 196.8, 69.8432 197.20000000000002, 69.62119999999999 197.6, 69.39679999999998 198.0, 69.17 198.4, 68.94080000000001 198.8, 68.7092 199.2, 68.4752 199.60000000000002, 68.2388 200.0, 68.0 200.39999999999998, 67.75880000000001 200.79999999999998, 67.51520000000001 201.20000000000002, 67.2692 201.6, 67.02080000000001 202.0, 66.77 202.39999999999998, 66.5168 202.8, 66.26119999999999 203.2, 66.00319999999999 203.6, 65.7428 204.0, 65.48000000000002 204.4, 65.21479999999998 204.8, 64.9472 205.2, 64.6772 205.6, 64.40480000000001 206.0, 64.12999999999998 206.4, 63.8528 206.8, 63.5732 207.2, 63.29120000000002 207.60000000000002, 63.006799999999984 208.0, 62.72 208.4, 62.430800000000005 208.79999999999998, 62.1392 209.20000000000002, 61.84519999999999 209.60000000000002, 61.548799999999986 210.0, 61.25 210.39999999999998, 60.948800000000006 210.79999999999998, 60.64520000000002 211.20000000000002, 60.33919999999998 211.6, 60.0308 212.0, 59.72000000000001 212.39999999999998, 59.406800000000004 212.8, 59.0912 213.2, 58.7732 213.6, 58.45280000000001 214.0, 58.13000000000001 214.4, 57.804799999999986 214.8, 57.477199999999996 215.2, 57.1472 215.6, 56.814800000000005 216.0, 56.47999999999999 216.4, 56.142799999999994 216.8, 55.803200000000004 217.2, 55.46120000000002 217.60000000000002, 55.116799999999984 218.0, 54.77000000000001 218.4, 54.420800000000014 218.79999999999998, 54.06920000000001 219.20000000000002, 53.71519999999998 219.60000000000002, 53.3588 220.0, 53.0 220.39999999999998, 52.6388 220.79999999999998, 52.27520000000001 221.20000000000002, 51.909199999999984 221.6, 51.540800000000004 222.0, 51.170000000000016 222.39999999999998, 50.79680000000002 222.8, 50.421199999999985 223.2, 50.0432 223.6, 49.662800000000004 224.0, 49.28 224.4, 48.89479999999999 224.8, 48.50719999999998 225.2, 48.11720000000001 225.6, 47.724800000000016 226.0, 47.329999999999984 226.4, 46.9328 226.8, 46.53320000000001 227.2, 46.13120000000002 227.60000000000002, 45.72679999999998 228.0, 45.31999999999999 228.4, 44.910799999999995 228.79999999999998, 44.4992 229.20000000000002, 44.085199999999986 229.60000000000002, 43.668799999999976 230.0, 43.25 230.39999999999998, 42.8288 230.79999999999998, 42.40520000000002 231.20000000000002, 41.97919999999999 231.6, 41.550799999999995 232.0, 41.12000000000002 232.39999999999998, 40.68680000000002 232.8, 40.2512 233.2, 39.813199999999995 233.6, 39.37280000000001 234.0, 38.93000000000001 234.4, 38.48479999999998 234.8, 38.037199999999984 235.2, 37.587199999999996 235.6, 37.13480000000001 236.0, 36.67999999999999 236.4, 36.22280000000001 236.8, 35.76319999999998 237.2, 35.301199999999994 237.60000000000002, 34.83679999999998 238.0, 34.36999999999999 238.4, 33.900800000000004 238.79999999999998, 33.42920000000001 239.20000000000002, 32.95519999999998 239.60000000000002, 32.47879999999998 240.0, 32.0" fill="none" stroke="green" stroke-width="1" stroke-dasharray=""/>
+<polyline points="0.0, 146.14574483454447 0.3999999999999986, 146.4471535109952 0.7999999999999972, 146.74591749413406 1.2000000000000028, 147.0420069078117 1.6000000000000014, 147.33539214333345 2.0, 147.6260438624203 2.4000000000000057, 147.91393300014255 2.799999999999997, 148.19903076782632 3.1999999999999957, 148.48130865593242 3.6000000000000014, 148.76073843690725 4.0, 149.03729216800562 4.399999999999999, 149.31094219408482 4.799999999999997, 149.58166115037034 5.200000000000003, 149.8494219651921 5.600000000000001, 150.1141978626918 6.0, 150.37596236550033 6.399999999999999, 150.6346892973855 6.800000000000004, 150.89035278586974 7.200000000000003, 151.1429272648173 7.599999999999994, 151.3923874769907 8.0, 151.63870847657668 8.399999999999999, 151.88186563168045 8.799999999999997, 152.12183462678922 9.2, 152.35859146520343 9.600000000000001, 152.5921124714365 10.0, 152.82237429358244 10.399999999999999, 153.0493539056509 10.8, 153.2730286098698 11.200000000000003, 153.4933760389552 11.600000000000001, 153.71037415834775 12.0, 153.92400126841633 12.400000000000002, 154.134236006628 12.799999999999997, 154.34105734968406 13.2, 154.54444461562264 13.599999999999998, 154.7443774658866 14.0, 154.94083590735752 14.399999999999999, 155.13380029435496 14.8, 155.32325133060104 15.2, 155.50917007115 15.600000000000001, 155.69153792428273 16.0, 155.87033665336588 16.400000000000002, 156.04554837867553 16.8, 156.21715557918517 17.200000000000003, 156.3851410943178 17.599999999999998, 156.54948812566178 18.0, 156.71018023865105 18.4, 156.86720136420814 18.799999999999997, 157.02053580035138 19.2, 157.17016821376492 19.6, 157.31608364133214 20.0, 157.45826749163186 20.4, 157.59670554639752 20.8, 157.73138396193903 21.200000000000003, 157.86228927052707 21.599999999999998, 157.98940838173985 22.0, 158.1127285837722 22.4, 158.23223754470666 22.8, 158.34792331374675 23.2, 158.45977432241196 23.6, 158.56777938569462 24.0, 158.67192770317845 24.4, 158.77220886011844 24.8, 158.8686128284825 25.2, 158.9611299679541 25.6, 159.0497510268964 26.0, 159.13446714327736 26.4, 159.21526984555595 26.799999999999997, 159.29215105352927 27.2, 159.36510307914057 27.6, 159.43411862724813 28.0, 159.49919079635458 28.4, 159.56031307929732 28.799999999999997, 159.61747936389892 29.2, 159.6706839335786 29.6, 159.7199214679237 30.0, 159.76518704322186 30.4, 159.8064761329532 30.799999999999997, 159.84378460824323 31.2, 159.87710873827547 31.6, 159.9064451906647 32.0, 159.9317910317901 32.4, 159.95314372708876 32.8, 159.97050114130883 33.2, 159.98386153872343 33.6, 159.99322358330394 34.0, 159.99858633885367 34.4, 159.9999492691016 34.8, 159.99731223775575 35.2, 159.99067550851714 35.6, 159.98003974505312 36.0, 159.9654060109312 36.4, 159.94677576951256 36.8, 159.92415088380582 37.2, 159.89753361628075 37.6, 159.86692662864186 38.0, 159.83233298156244 38.4, 159.79375613437838 38.8, 159.7511999447422 39.2, 159.70466866823747 39.6, 159.65416695795304 40.0, 159.59969986401782 40.4, 159.54127283309583 40.8, 159.4788917078415 41.2, 159.41256272631534 41.6, 159.34229252136026 42.0, 159.26808811993817 42.4, 159.18995694242736 42.8, 159.10790680188052 43.2, 159.0219459032433 43.6, 158.93208284253396 44.0, 158.8383266059836 44.4, 158.74068656913786 44.8, 158.63917249591898 45.2, 158.53379453764973 45.6, 158.42456323203808 46.0, 158.3114895021236 46.4, 158.19458465518505 46.8, 158.0738603816097 47.2, 157.94932875372427 47.6, 157.82100222458783 48.0, 157.68889362674634 48.4, 157.55301617094943 48.8, 157.41338344482955 49.2, 157.27000941154287 49.6, 157.1229084083733 50.0, 156.97209514529854 50.4, 156.81758470351923 50.8, 156.65939253395078 51.2, 156.4975344556783 51.6, 156.3320266543748 52.0, 156.16288568068245 52.4, 155.99012844855764 52.8, 155.8137722335797 53.2, 155.63383467122307 53.6, 155.45033375509408 54.0, 155.26328783513145 54.4, 155.07271561577127 54.8, 154.87863615407667 55.2, 154.6810688578321 55.6, 154.48003348360254 56.0, 154.2755501347579 56.4, 154.06763925946262 56.8, 153.85632164863102 57.2, 153.64161843384807 57.6, 153.4235510852563 58.0, 153.20214140940888 58.400000000000006, 152.97741154708888 58.8, 152.74938397109528 59.2, 152.5180814839956 59.6, 152.28352721584585 60.0, 152.04574462187736 60.4, 151.80475748015138 60.8, 151.56058988918124 61.2, 151.3132662655226 61.6, 151.06281134133172 62.0, 150.8092501618923 62.400000000000006, 150.55260808311095 62.8, 150.29291076898176 63.2, 150.03018418901965 63.599999999999994, 149.7644546156637 64.0, 149.49574862164982 64.4, 149.22409307735347 64.8, 148.94951514810273 65.2, 148.6720422914617 65.6, 148.3917022544848 66.0, 148.10852307094217 66.4, 147.8225330585161 66.8, 147.53376081596954 67.2, 147.2422352202861 67.6, 146.94798542378243 68.0, 146.65104085119296 68.4, 146.3514311967275 68.8, 146.04918642110184 69.2, 145.74433674854163 69.6, 145.4369126637601 70.0, 145.12694490890956 70.4, 144.81446448050718 70.8, 144.4995026263354 71.2, 144.18209084231717 71.6, 143.8622608693664 72.0, 143.54004469021385 72.4, 143.21547452620888 72.8, 142.88858283409746 73.19999999999999, 142.5594023027764 73.6, 142.2279658500245 74.0, 141.89430661921085 74.4, 141.55845797598045 74.8, 141.2204535049178 75.2, 140.88032700618828 75.6, 140.53811249215838 76.0, 140.19384418399432 76.4, 139.84755650823996 76.80000000000001, 139.49928409337437 77.2, 139.14906176634878 77.6, 138.7969245491041 78.0, 138.4429076550685 78.4, 138.08704648563648 78.8, 137.72937662662838 79.2, 137.36993384473203 79.6, 137.00875408392608 80.0, 136.64587346188569 80.4, 136.28132826637062 80.8, 135.91515495159663 81.2, 135.54739013459007 81.6, 135.1780705915262 82.0, 134.80723325405148 82.4, 134.4349152055907 82.80000000000001, 134.0611536776384 83.2, 133.68598604603594 83.6, 133.3094498272338 84.0, 132.93158267454015 84.4, 132.55242237435527 84.80000000000001, 132.17200684239333 85.19999999999999, 131.79037411989043 85.6, 131.40756236980084 86.0, 131.02360987298053 86.4, 130.63855502435922 86.8, 130.2524363291009 87.19999999999999, 129.86529239875335 87.6, 129.477161947387 88.0, 129.0880837877235 88.4, 128.69809682725457 88.8, 128.30724006435136 89.2, 127.91555258436436 89.6, 127.5230735557152 90.0, 127.12984222597967 90.4, 126.73589791796309 90.8, 126.3412800257679 91.2, 125.94602801085455 91.6, 125.5501813980951 92.0, 125.15377977182098 92.4, 124.75686277186449 92.80000000000001, 124.35947008959485 93.2, 123.96164146394912 93.6, 123.56341667745836 94.0, 123.16483555226935 94.4, 122.76593794616247 94.80000000000001, 122.36676374856592 95.19999999999999, 121.96735287656682 95.6, 121.56774527091952 96.0, 121.16798089205156 96.4, 120.7680997160677 96.8, 120.36814173075234 97.19999999999999, 119.96814693157067 97.6, 119.56815531766931 98.0, 119.1682068878763 98.4, 118.76834163670136 98.8, 118.36859955033636 99.2, 117.96902060265683 99.6, 117.56964475122456 100.0, 117.17051193329189 100.4, 116.77166206180797 100.8, 116.3731350214276 101.2, 115.97497066452273 101.6, 115.57720880719722 102.0, 115.17988922530535 102.4, 114.78305165047418 102.80000000000001, 114.38673576613053 103.2, 113.99098120353257 103.6, 113.59582753780674 104.0, 113.20131428399037 104.4, 112.80748089308003 104.80000000000001, 112.41436674808662 105.19999999999999, 112.0220111600971 105.6, 111.63045336434323 106.0, 111.23973251627834 106.39999999999999, 110.84988768766164 106.8, 110.46095786265107 107.2, 110.07298193390508 107.6, 109.68599869869323 108.0, 109.3000468550165 108.4, 108.9151649977377 108.8, 108.53139161472178 109.2, 108.14876508298724 109.6, 107.76732366486843 110.0, 107.38710550418926 110.4, 107.00814862244896 110.8, 106.63049091501989 111.2, 106.25417014735811 111.6, 105.87922395122678 112.0, 105.50568982093306 112.4, 105.13360510957868 112.8, 104.76300702532473 113.2, 104.3939326276708 113.60000000000001, 104.02641882374908 114.0, 103.6605023646337 114.4, 103.29621984166567 114.80000000000001, 102.9336076827937 115.19999999999999, 102.57270214893151 115.6, 102.21353933033173 116.0, 101.85615514297692 116.39999999999999, 101.50058532498797 116.8, 101.14686543305041 117.2, 100.79503083885864 117.6, 100.4451167255789 118.0, 100.09715808433091 118.4, 99.75118971068886 118.8, 99.40724620120179 119.2, 99.06536194993402 119.6, 98.72557114502578 120.0, 98.3879077652744 120.39999999999999, 98.0524055767365 120.8, 97.71909812935131 121.19999999999999, 97.38801875358584 121.6, 97.05920055710173 122.0, 96.73267642144467 122.4, 96.40847899875607 122.8, 96.08664070850807 123.2, 95.76719373426148 123.6, 95.45017002044754 124.0, 95.13560126917342 124.39999999999999, 94.82351893705213 124.80000000000001, 94.51395423205679 125.19999999999999, 94.20693811039996 125.60000000000001, 93.90250127343792 126.0, 93.60067416460072 126.4, 93.30148696634767 126.8, 93.00496959714933 127.2, 92.71115170849545 127.6, 92.42006268193012 128.0, 92.13173162611338 128.4, 91.84618737391055 128.8, 91.5634584795089 129.2, 91.28357321556226 129.60000000000002, 91.00655957036379 130.0, 90.73244524504716 130.39999999999998, 90.46125765081649 130.8, 90.19302390620518 131.2, 89.92777083436421 131.6, 89.66552496037967 132.0, 89.40631250862047 132.4, 89.15015940011573 132.8, 88.89709124996288 133.2, 88.64713336476603 133.6, 88.4003107401054 134.0, 88.15664805803776 134.39999999999998, 87.9161696846283 134.8, 87.67889966751392 135.2, 87.44486173349864 135.60000000000002, 87.2140792861808 136.0, 86.98657540361287 136.4, 86.76237283599346 136.8, 86.54149400339251 137.2, 86.32396099350925 137.6, 86.10979555946335 138.0, 85.89901911761977 138.4, 85.69165274544703 138.8, 85.48771717940954 139.2, 85.287232812894 139.60000000000002, 85.09021969416995 140.0, 84.89669752438509 140.39999999999998, 84.70668565559514 140.8, 84.52020308882864 141.2, 84.33726847218685 141.6, 84.15790009897898 142.0, 83.98211590589293 142.4, 83.80993347120146 142.8, 83.6413700130046 143.2, 83.47644238750767 143.6, 83.3151670873358 144.0, 83.15756023988459 144.39999999999998, 83.00363760570748 144.8, 82.85341457693958 145.2, 82.70690617575863 145.60000000000002, 82.56412705288261 146.0, 82.42509148610483 146.4, 82.28981337886614 146.8, 82.15830625886453 147.2, 82.03058327670236 147.6, 81.90665720457146 148.0, 81.78654043497575 148.4, 81.67024497949211 148.8, 81.55778246756915 149.2, 81.44916414536438 149.60000000000002, 81.34440087461947 150.0, 81.24350313157422 150.39999999999998, 81.14648100591882 150.8, 81.05334419978502 151.2, 80.96410202677578 151.6, 80.87876341103407 152.0, 80.79733688635034 152.4, 80.71983059530919 152.8, 80.64625228847515 153.2, 80.57660932361757 153.6, 80.51090866497492 154.0, 80.4491568825583 154.39999999999998, 80.39136015149451 154.8, 80.33752425140848 155.2, 80.28765456584536 155.60000000000002, 80.24175608173212 156.0, 80.19983338887897 156.4, 80.16189067952024 156.8, 80.12793174789523 157.2, 80.09795998986881 157.6, 80.07197840259182 158.0, 80.04998958420134 158.4, 80.03199573356088 158.8, 80.0179986500405 159.2, 80.00799973333689 159.60000000000002, 80.00199998333339 160.0, 80.0 160.39999999999998, 80.00199998333339 160.8, 80.00799973333689 161.2, 80.0179986500405 161.6, 80.03199573356088 162.0, 80.04998958420134 162.4, 80.07197840259182 162.8, 80.09795998986881 163.2, 80.12793174789523 163.6, 80.16189067952024 164.0, 80.19983338887897 164.39999999999998, 80.24175608173212 164.8, 80.28765456584536 165.2, 80.33752425140848 165.60000000000002, 80.39136015149451 166.0, 80.4491568825583 166.4, 80.51090866497492 166.8, 80.57660932361757 167.2, 80.64625228847515 167.6, 80.71983059530919 168.0, 80.79733688635034 168.4, 80.87876341103407 168.8, 80.96410202677578 169.2, 81.05334419978502 169.60000000000002, 81.14648100591882 170.0, 81.24350313157422 170.39999999999998, 81.34440087461947 170.8, 81.44916414536438 171.2, 81.55778246756915 171.6, 81.67024497949211 172.0, 81.78654043497575 172.4, 81.90665720457146 172.79999999999998, 82.03058327670236 173.2, 82.15830625886453 173.6, 82.28981337886614 174.0, 82.42509148610483 174.4, 82.56412705288261 174.8, 82.70690617575863 175.2, 82.85341457693958 175.6, 83.00363760570748 176.0, 83.15756023988459 176.4, 83.3151670873358 176.8, 83.47644238750767 177.20000000000002, 83.6413700130046 177.6, 83.80993347120146 178.0, 83.98211590589293 178.4, 84.15790009897898 178.8, 84.33726847218685 179.2, 84.52020308882864 179.60000000000002, 84.70668565559514 180.0, 84.89669752438509 180.39999999999998, 85.09021969416995 180.8, 85.287232812894 181.2, 85.48771717940954 181.6, 85.69165274544703 182.0, 85.89901911761977 182.4, 86.10979555946335 182.79999999999998, 86.32396099350925 183.2, 86.54149400339251 183.6, 86.76237283599346 184.0, 86.98657540361287 184.4, 87.2140792861808 184.8, 87.44486173349864 185.2, 87.67889966751392 185.6, 87.9161696846283 186.0, 88.15664805803776 186.4, 88.4003107401054 186.8, 88.64713336476603 187.20000000000002, 88.89709124996288 187.6, 89.15015940011573 188.0, 89.40631250862047 188.4, 89.66552496037967 188.8, 89.92777083436421 189.2, 90.19302390620518 189.60000000000002, 90.46125765081649 190.0, 90.73244524504716 190.39999999999998, 91.00655957036379 190.8, 91.28357321556226 191.2, 91.5634584795089 191.6, 91.84618737391055 192.0, 92.13173162611338 192.4, 92.42006268193012 192.79999999999998, 92.71115170849545 193.2, 93.00496959714933 193.6, 93.30148696634767 194.0, 93.60067416460072 194.4, 93.90250127343792 194.8, 94.20693811039996 195.2, 94.51395423205679 195.6, 94.82351893705213 196.0, 95.13560126917342 196.4, 95.45017002044754 196.8, 95.76719373426148 197.20000000000002, 96.08664070850807 197.6, 96.40847899875607 198.0, 96.73267642144467 198.4, 97.05920055710173 198.8, 97.38801875358584 199.2, 97.71909812935131 199.60000000000002, 98.0524055767365 200.0, 98.3879077652744 200.39999999999998, 98.72557114502577 200.79999999999998, 99.065361949934 201.20000000000002, 99.40724620120179 201.6, 99.75118971068886 202.0, 100.09715808433091 202.39999999999998, 100.44511672557888 202.8, 100.79503083885865 203.2, 101.14686543305041 203.6, 101.50058532498795 204.0, 101.85615514297689 204.4, 102.21353933033174 204.8, 102.57270214893151 205.2, 102.9336076827937 205.6, 103.29621984166566 206.0, 103.66050236463371 206.4, 104.02641882374908 206.8, 104.3939326276708 207.2, 104.76300702532471 207.60000000000002, 105.1336051095787 208.0, 105.50568982093307 208.4, 105.87922395122678 208.79999999999998, 106.25417014735811 209.20000000000002, 106.6304909150199 209.60000000000002, 107.00814862244896 210.0, 107.38710550418926 210.39999999999998, 107.76732366486841 210.79999999999998, 108.14876508298724 211.20000000000002, 108.53139161472178 211.6, 108.9151649977377 212.0, 109.30004685501649 212.39999999999998, 109.6859986986932 212.8, 110.0729819339051 213.2, 110.46095786265107 213.6, 110.84988768766162 214.0, 111.23973251627832 214.4, 111.63045336434324 214.8, 112.0220111600971 215.2, 112.41436674808662 215.6, 112.80748089308001 216.0, 113.20131428399037 216.4, 113.59582753780676 216.8, 113.99098120353257 217.2, 114.38673576613053 217.60000000000002, 114.78305165047419 218.0, 115.17988922530535 218.4, 115.57720880719722 218.79999999999998, 115.97497066452271 219.20000000000002, 116.37313502142763 219.60000000000002, 116.77166206180799 220.0, 117.17051193329189 220.39999999999998, 117.56964475122456 220.79999999999998, 117.96902060265681 221.20000000000002, 118.36859955033637 221.6, 118.76834163670136 222.0, 119.1682068878763 222.39999999999998, 119.5681553176693 222.8, 119.96814693157069 223.2, 120.36814173075234 223.6, 120.7680997160677 224.0, 121.16798089205153 224.4, 121.56774527091952 224.8, 121.96735287656682 225.2, 122.36676374856592 225.6, 122.76593794616247 226.0, 123.16483555226938 226.4, 123.56341667745838 226.8, 123.96164146394912 227.2, 124.35947008959484 227.60000000000002, 124.7568627718645 228.0, 125.153779771821 228.4, 125.5501813980951 228.79999999999998, 125.94602801085453 229.20000000000002, 126.34128002576793 229.60000000000002, 126.73589791796309 230.0, 127.12984222597967 230.39999999999998, 127.5230735557152 230.79999999999998, 127.91555258436435 231.20000000000002, 128.30724006435136 231.6, 128.69809682725457 232.0, 129.08808378772346 232.39999999999998, 129.47716194738697 232.8, 129.86529239875335 233.2, 130.2524363291009 233.6, 130.63855502435922 234.0, 131.0236098729805 234.4, 131.40756236980084 234.8, 131.79037411989043 235.2, 132.17200684239333 235.6, 132.55242237435527 236.0, 132.93158267454015 236.4, 133.3094498272338 236.8, 133.68598604603594 237.2, 134.0611536776384 237.60000000000002, 134.4349152055907 238.0, 134.80723325405148 238.4, 135.1780705915262 238.79999999999998, 135.54739013459007 239.20000000000002, 135.91515495159666 239.60000000000002, 136.28132826637062 240.0, 136.64587346188569" fill="none" stroke="RoyalBlue" stroke-width="1" stroke-dasharray=""/>
+<polyline points="0.0, 144.0 0.3999999999999986, 143.68040000000002 0.7999999999999972, 143.3616 1.2000000000000028, 143.0436 1.6000000000000014, 142.7264 2.0, 142.41 2.4000000000000057, 142.0944 2.799999999999997, 141.77960000000002 3.1999999999999957, 141.4656 3.6000000000000014, 141.1524 4.0, 140.84 4.399999999999999, 140.5284 4.799999999999997, 140.2176 5.200000000000003, 139.9076 5.600000000000001, 139.5984 6.0, 139.29000000000002 6.399999999999999, 138.9824 6.800000000000004, 138.6756 7.200000000000003, 138.3696 7.599999999999994, 138.0644 8.0, 137.76 8.399999999999999, 137.4564 8.799999999999997, 137.1536 9.2, 136.8516 9.600000000000001, 136.5504 10.0, 136.25 10.399999999999999, 135.9504 10.8, 135.6516 11.200000000000003, 135.3536 11.600000000000001, 135.0564 12.0, 134.76000000000002 12.400000000000002, 134.4644 12.799999999999997, 134.1696 13.2, 133.87560000000002 13.599999999999998, 133.5824 14.0, 133.29000000000002 14.399999999999999, 132.9984 14.8, 132.7076 15.2, 132.4176 15.600000000000001, 132.1284 16.0, 131.84 16.400000000000002, 131.5524 16.8, 131.2656 17.200000000000003, 130.9796 17.599999999999998, 130.6944 18.0, 130.41 18.4, 130.12640000000002 18.799999999999997, 129.8436 19.2, 129.5616 19.6, 129.2804 20.0, 129.0 20.4, 128.7204 20.8, 128.4416 21.200000000000003, 128.1636 21.599999999999998, 127.88640000000001 22.0, 127.61000000000001 22.4, 127.3344 22.8, 127.0596 23.2, 126.7856 23.6, 126.51240000000001 24.0, 126.24 24.4, 125.9684 24.8, 125.6976 25.2, 125.42760000000001 25.6, 125.1584 26.0, 124.89 26.4, 124.6224 26.799999999999997, 124.35560000000001 27.2, 124.08959999999999 27.6, 123.82440000000001 28.0, 123.56 28.4, 123.2964 28.799999999999997, 123.0336 29.2, 122.7716 29.6, 122.5104 30.0, 122.25 30.4, 121.99040000000001 30.799999999999997, 121.7316 31.2, 121.4736 31.6, 121.2164 32.0, 120.96000000000001 32.4, 120.7044 32.8, 120.4496 33.2, 120.1956 33.6, 119.94240000000002 34.0, 119.69 34.4, 119.4384 34.8, 119.1876 35.2, 118.9376 35.6, 118.6884 36.0, 118.44000000000001 36.4, 118.1924 36.8, 117.94560000000001 37.2, 117.69959999999999 37.6, 117.4544 38.0, 117.21000000000001 38.4, 116.96640000000001 38.8, 116.72359999999999 39.2, 116.48160000000001 39.6, 116.2404 40.0, 116.0 40.4, 115.7604 40.8, 115.5216 41.2, 115.2836 41.6, 115.0464 42.0, 114.81 42.4, 114.5744 42.8, 114.3396 43.2, 114.10560000000001 43.6, 113.8724 44.0, 113.64000000000001 44.4, 113.4084 44.8, 113.1776 45.2, 112.9476 45.6, 112.71839999999999 46.0, 112.49000000000001 46.4, 112.26240000000001 46.8, 112.0356 47.2, 111.80959999999999 47.6, 111.5844 48.0, 111.35999999999999 48.4, 111.13640000000001 48.8, 110.9136 49.2, 110.6916 49.6, 110.47039999999998 50.0, 110.25 50.4, 110.0304 50.8, 109.8116 51.2, 109.59360000000001 51.6, 109.3764 52.0, 109.16 52.4, 108.9444 52.8, 108.7296 53.2, 108.5156 53.6, 108.3024 54.0, 108.09 54.4, 107.87840000000001 54.8, 107.6676 55.2, 107.45760000000001 55.6, 107.2484 56.0, 107.04 56.4, 106.83239999999999 56.8, 106.6256 57.2, 106.41959999999999 57.6, 106.2144 58.0, 106.00999999999999 58.400000000000006, 105.80640000000001 58.8, 105.60360000000001 59.2, 105.4016 59.6, 105.2004 60.0, 105.0 60.4, 104.80040000000001 60.8, 104.6016 61.2, 104.4036 61.6, 104.2064 62.0, 104.01 62.400000000000006, 103.81439999999999 62.8, 103.61959999999999 63.2, 103.4256 63.599999999999994, 103.2324 64.0, 103.04 64.4, 102.84840000000001 64.8, 102.6576 65.2, 102.4676 65.6, 102.2784 66.0, 102.09 66.4, 101.9024 66.8, 101.7156 67.2, 101.5296 67.6, 101.3444 68.0, 101.16 68.4, 100.9764 68.8, 100.79360000000001 69.2, 100.61160000000001 69.6, 100.43039999999999 70.0, 100.25 70.4, 100.0704 70.8, 99.8916 71.2, 99.7136 71.6, 99.5364 72.0, 99.36 72.4, 99.18440000000001 72.8, 99.0096 73.19999999999999, 98.8356 73.6, 98.6624 74.0, 98.49000000000001 74.4, 98.3184 74.8, 98.1476 75.2, 97.9776 75.6, 97.80839999999999 76.0, 97.64 76.4, 97.4724 76.80000000000001, 97.3056 77.2, 97.1396 77.6, 96.9744 78.0, 96.81 78.4, 96.6464 78.8, 96.4836 79.2, 96.32159999999999 79.6, 96.1604 80.0, 96.0 80.4, 95.8404 80.8, 95.6816 81.2, 95.5236 81.6, 95.3664 82.0, 95.21 82.4, 95.0544 82.80000000000001, 94.89959999999999 83.2, 94.7456 83.6, 94.5924 84.0, 94.44 84.4, 94.2884 84.80000000000001, 94.13759999999999 85.19999999999999, 93.9876 85.6, 93.83840000000001 86.0, 93.69 86.4, 93.5424 86.8, 93.3956 87.19999999999999, 93.2496 87.6, 93.1044 88.0, 92.96000000000001 88.4, 92.8164 88.8, 92.6736 89.2, 92.5316 89.6, 92.3904 90.0, 92.25 90.4, 92.1104 90.8, 91.9716 91.2, 91.8336 91.6, 91.6964 92.0, 91.56 92.4, 91.42439999999999 92.80000000000001, 91.28960000000001 93.2, 91.1556 93.6, 91.0224 94.0, 90.89 94.4, 90.7584 94.80000000000001, 90.6276 95.19999999999999, 90.4976 95.6, 90.3684 96.0, 90.24 96.4, 90.1124 96.8, 89.9856 97.19999999999999, 89.8596 97.6, 89.7344 98.0, 89.61 98.4, 89.4864 98.8, 89.3636 99.2, 89.2416 99.6, 89.1204 100.0, 89.0 100.4, 88.88040000000001 100.8, 88.7616 101.2, 88.64359999999999 101.6, 88.5264 102.0, 88.41 102.4, 88.2944 102.80000000000001, 88.17960000000001 103.2, 88.0656 103.6, 87.9524 104.0, 87.84 104.4, 87.72840000000001 104.80000000000001, 87.6176 105.19999999999999, 87.5076 105.6, 87.3984 106.0, 87.29 106.39999999999999, 87.1824 106.8, 87.0756 107.2, 86.9696 107.6, 86.8644 108.0, 86.76 108.4, 86.65639999999999 108.8, 86.5536 109.2, 86.4516 109.6, 86.35040000000001 110.0, 86.25 110.4, 86.1504 110.8, 86.0516 111.2, 85.95360000000001 111.6, 85.8564 112.0, 85.75999999999999 112.4, 85.6644 112.8, 85.56960000000001 113.2, 85.4756 113.60000000000001, 85.3824 114.0, 85.28999999999999 114.4, 85.1984 114.80000000000001, 85.10759999999999 115.19999999999999, 85.0176 115.6, 84.9284 116.0, 84.84 116.39999999999999, 84.75240000000001 116.8, 84.6656 117.2, 84.5796 117.6, 84.4944 118.0, 84.41 118.4, 84.3264 118.8, 84.2436 119.2, 84.16159999999999 119.6, 84.0804 120.0, 84.0 120.39999999999999, 83.9204 120.8, 83.8416 121.19999999999999, 83.7636 121.6, 83.6864 122.0, 83.61 122.4, 83.5344 122.8, 83.4596 123.2, 83.3856 123.6, 83.3124 124.0, 83.24 124.39999999999999, 83.1684 124.80000000000001, 83.0976 125.19999999999999, 83.0276 125.60000000000001, 82.9584 126.0, 82.89 126.4, 82.8224 126.8, 82.7556 127.2, 82.6896 127.6, 82.6244 128.0, 82.56 128.4, 82.49640000000001 128.8, 82.4336 129.2, 82.3716 129.60000000000002, 82.3104 130.0, 82.25 130.39999999999998, 82.1904 130.8, 82.1316 131.2, 82.0736 131.6, 82.0164 132.0, 81.96 132.4, 81.9044 132.8, 81.84960000000001 133.2, 81.79560000000001 133.6, 81.7424 134.0, 81.69 134.39999999999998, 81.6384 134.8, 81.5876 135.2, 81.5376 135.60000000000002, 81.4884 136.0, 81.44 136.4, 81.3924 136.8, 81.3456 137.2, 81.2996 137.6, 81.2544 138.0, 81.21 138.4, 81.16640000000001 138.8, 81.1236 139.2, 81.0816 139.60000000000002, 81.04039999999999 140.0, 81.0 140.39999999999998, 80.9604 140.8, 80.9216 141.2, 80.8836 141.6, 80.8464 142.0, 80.81 142.4, 80.7744 142.8, 80.73960000000001 143.2, 80.7056 143.6, 80.6724 144.0, 80.64 144.39999999999998, 80.6084 144.8, 80.5776 145.2, 80.5476 145.60000000000002, 80.5184 146.0, 80.49000000000001 146.4, 80.4624 146.8, 80.43560000000001 147.2, 80.4096 147.6, 80.3844 148.0, 80.36 148.4, 80.3364 148.8, 80.31360000000001 149.2, 80.2916 149.60000000000002, 80.2704 150.0, 80.25 150.39999999999998, 80.2304 150.8, 80.2116 151.2, 80.1936 151.6, 80.1764 152.0, 80.16 152.4, 80.14439999999999 152.8, 80.1296 153.2, 80.1156 153.6, 80.10239999999999 154.0, 80.09 154.39999999999998, 80.0784 154.8, 80.0676 155.2, 80.05760000000001 155.60000000000002, 80.0484 156.0, 80.04 156.4, 80.0324 156.8, 80.0256 157.2, 80.0196 157.6, 80.0144 158.0, 80.01 158.4, 80.0064 158.8, 80.00359999999999 159.2, 80.0016 159.60000000000002, 80.0004 160.0, 80.0 160.39999999999998, 80.0004 160.8, 80.0016 161.2, 80.00359999999999 161.6, 80.0064 162.0, 80.01 162.4, 80.0144 162.8, 80.0196 163.2, 80.0256 163.6, 80.0324 164.0, 80.04 164.39999999999998, 80.0484 164.8, 80.05760000000001 165.2, 80.0676 165.60000000000002, 80.0784 166.0, 80.09 166.4, 80.10239999999999 166.8, 80.1156 167.2, 80.1296 167.6, 80.14439999999999 168.0, 80.16 168.4, 80.1764 168.8, 80.1936 169.2, 80.2116 169.60000000000002, 80.2304 170.0, 80.25 170.39999999999998, 80.2704 170.8, 80.2916 171.2, 80.31360000000001 171.6, 80.3364 172.0, 80.36 172.4, 80.3844 172.79999999999998, 80.4096 173.2, 80.43560000000001 173.6, 80.4624 174.0, 80.49000000000001 174.4, 80.5184 174.8, 80.5476 175.2, 80.5776 175.6, 80.6084 176.0, 80.64 176.4, 80.6724 176.8, 80.7056 177.20000000000002, 80.73960000000001 177.6, 80.7744 178.0, 80.81 178.4, 80.8464 178.8, 80.8836 179.2, 80.9216 179.60000000000002, 80.9604 180.0, 81.0 180.39999999999998, 81.04039999999999 180.8, 81.0816 181.2, 81.1236 181.6, 81.16640000000001 182.0, 81.21 182.4, 81.2544 182.79999999999998, 81.2996 183.2, 81.3456 183.6, 81.3924 184.0, 81.44 184.4, 81.4884 184.8, 81.5376 185.2, 81.5876 185.6, 81.6384 186.0, 81.69 186.4, 81.7424 186.8, 81.79560000000001 187.20000000000002, 81.84960000000001 187.6, 81.9044 188.0, 81.96 188.4, 82.0164 188.8, 82.0736 189.2, 82.1316 189.60000000000002, 82.1904 190.0, 82.25 190.39999999999998, 82.3104 190.8, 82.3716 191.2, 82.4336 191.6, 82.49640000000001 192.0, 82.56 192.4, 82.6244 192.79999999999998, 82.6896 193.2, 82.7556 193.6, 82.8224 194.0, 82.89 194.4, 82.9584 194.8, 83.0276 195.2, 83.0976 195.6, 83.1684 196.0, 83.24 196.4, 83.3124 196.8, 83.3856 197.20000000000002, 83.4596 197.6, 83.5344 198.0, 83.61 198.4, 83.6864 198.8, 83.7636 199.2, 83.8416 199.60000000000002, 83.9204 200.0, 84.0 200.39999999999998, 84.0804 200.79999999999998, 84.16159999999999 201.20000000000002, 84.2436 201.6, 84.3264 202.0, 84.41 202.39999999999998, 84.4944 202.8, 84.5796 203.2, 84.6656 203.6, 84.7524 204.0, 84.84 204.4, 84.9284 204.8, 85.0176 205.2, 85.10759999999999 205.6, 85.19839999999999 206.0, 85.28999999999999 206.4, 85.3824 206.8, 85.4756 207.2, 85.56960000000001 207.60000000000002, 85.6644 208.0, 85.76 208.4, 85.8564 208.79999999999998, 85.9536 209.20000000000002, 86.05160000000001 209.60000000000002, 86.1504 210.0, 86.25 210.39999999999998, 86.35040000000001 210.79999999999998, 86.4516 211.20000000000002, 86.5536 211.6, 86.65639999999999 212.0, 86.76 212.39999999999998, 86.86439999999999 212.8, 86.96960000000001 213.2, 87.0756 213.6, 87.1824 214.0, 87.28999999999999 214.4, 87.3984 214.8, 87.5076 215.2, 87.6176 215.6, 87.7284 216.0, 87.84 216.4, 87.9524 216.8, 88.0656 217.2, 88.1796 217.60000000000002, 88.29440000000001 218.0, 88.41 218.4, 88.5264 218.79999999999998, 88.64359999999999 219.20000000000002, 88.7616 219.60000000000002, 88.88040000000001 220.0, 89.0 220.39999999999998, 89.1204 220.79999999999998, 89.24159999999999 221.20000000000002, 89.3636 221.6, 89.4864 222.0, 89.61 222.39999999999998, 89.7344 222.8, 89.8596 223.2, 89.9856 223.6, 90.1124 224.0, 90.24 224.4, 90.36840000000001 224.8, 90.4976 225.2, 90.6276 225.6, 90.7584 226.0, 90.89 226.4, 91.0224 226.8, 91.1556 227.2, 91.2896 227.60000000000002, 91.4244 228.0, 91.56 228.4, 91.6964 228.79999999999998, 91.83359999999999 229.20000000000002, 91.9716 229.60000000000002, 92.1104 230.0, 92.25 230.39999999999998, 92.3904 230.79999999999998, 92.5316 231.20000000000002, 92.6736 231.6, 92.8164 232.0, 92.96 232.39999999999998, 93.1044 232.8, 93.24960000000002 233.2, 93.3956 233.6, 93.5424 234.0, 93.69 234.4, 93.83840000000001 234.8, 93.9876 235.2, 94.13759999999999 235.6, 94.2884 236.0, 94.44000000000001 236.4, 94.5924 236.8, 94.7456 237.2, 94.89959999999999 237.60000000000002, 95.05440000000002 238.0, 95.21000000000001 238.4, 95.3664 238.79999999999998, 95.5236 239.20000000000002, 95.6816 239.60000000000002, 95.8404 240.0, 96.0" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+<circle cx="160" cy="80" r="3" fill="white" stroke="red"/>
+<foreignObject x="40" y="76.0" width="70" height="18" color="red">
+\(y=g\left(x\right)\)
+</foreignObject>
+<foreignObject x="40" y="48.0" width="70" height="18" color="green">
+\(y=f\left(x\right)\)
+</foreignObject>
+<foreignObject x="40" y="104.0" width="70" height="18" color="RoyalBlue">
+\(y=h\left(x\right)\)
+</foreignObject>
+</svg>
+<figcaption>The graph of <span class="math-tex" data-type="tex">\(g\)</span> is squeezed between those of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(h\)</span>.</figcaption></figure>
+<div data-type="theorem">
+<h1 id="theorem_24"></h1>
+<p>If <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\le h\left(x\right)\)</span> holds for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(a\)</span>, except possibly at <span class="math-tex" data-type="tex">\(x=a\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}f\left(x\right)=\lim_{x\to a}h\left(x\right)=L\,,
+\]
+</div>
+<p>then,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}g\left(x\right)=L\,.
+\]
+</div>
+</div>
+<p>Similar statements hold for one-sided limits.</p>
+<div data-type="proof">
+<h1 id="proof_25"></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon > 0\)</span> be given.</p>
+<p>We want to find a strict positive number <span class="math-tex" data-type="tex">\(\delta\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta\implies\left|g\left(x\right)-L\right|&lt;\varepsilon
+\]
+</div>
+<p>Observe that</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left|g\left(x\right)-L\right|=&\left|g\left(x\right)-f\left(x\right)+f\left(x\right)-L\right|\\
+\le&\left|g\left(x\right)-f\left(x\right)\right|+\left|f\left(x\right)-L\right|\\
+\le&\left|h\left(x\right)-f\left(x\right)\right|+\left|f\left(x\right)-L\right|=\left|h\left(x\right)-L+L-f\left(x\right)\right|+\left|f\left(x\right)-L\right|\\
+\le&\left|h\left(x\right)-L\right|+\left|L-f\left(x\right)\right|+\left|f\left(x\right)-L\right|
+\end{aligned}\\
+\]
+</div>
+<p>by the triangle inequality and the squeezing of <span class="math-tex" data-type="tex">\(g\)</span> between <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(h\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{3}\)</span> is a strict positive number, there exists a number <span class="math-tex" data-type="tex">\(\delta_1\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta_1\implies\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\,.
+\]
+</div>
+<p>Similarly, since <span class="math-tex" data-type="tex">\(\lim_{x\to a}h\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{3}\)</span> is a strict positive number, there exists a number <span class="math-tex" data-type="tex">\(\delta_2\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta_2\implies\left|h\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\,.
+\]
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\delta=\min\left\lbrace\delta_1,\delta_2\right\rbrace\)</span>. If <span class="math-tex" data-type="tex">\(0&lt;\left|x-a\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_1\)</span>, so <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\)</span>, and <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_2\)</span>, so <span class="math-tex" data-type="tex">\(\left|h\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|g\left(x\right)-L\right|\le\left|h\left(x\right)-L\right|+\left|L-f\left(x\right)\right|+\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon\,.
+\]
+</div>
+<p>This shows that <span class="math-tex" data-type="tex">\(\lim_{x\to a}g\left(x\right)=L\)</span>.</p>
+</div>
+<div data-type="example">
+<h1 id="example_26"></h1>
+<p>Show that if <span class="math-tex" data-type="tex">\(\lim_{x\to a}\left|f\left(x\right)\right|=0\)</span>, then <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=0\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(-\left|f\left(x\right)\right|\le f\left(x\right)\le\left|f\left(x\right)\right|\)</span>, and <span class="math-tex" data-type="tex">\(-\left|f\left(x\right)\right|\)</span> and <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\)</span> both have limit <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, so does <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> by the squeeze theorem.</p>
+</div>
+</section>
+<section data-type="sect1">
+<h1 id=section1_27>Limits at Infinity and Infinite Limits</h1>
+<p>We will extend the concept of limit to allow for two situations not covered by the definitions of limit and one-sided limit in the previous section:</p>
+<ol>
+<li>
+<p><i>limits at infinity</i>, where <span class="math-tex" data-type="tex">\(x\)</span> becomes arbitrarly large, positive or negative;</p>
+</li>
+<li>
+<p><i>infinite limits</i>, which are not real limits at all but provide usefull symbolism for describing the behaviour of functions whose values become arbitrarily large, positive or negative.</p>
+</li>
+</ol>
+<section data-type="sect2">
+<h2 id=section2_28>Limits at Infinity</h2>
+<div data-type="example">
+<h1 id="example_29"></h1>
+<p>How behaves the function</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)=\frac{x}{\sqrt{x^2+1}}
+\]
+</div>
+<p>whose graph is shown in the next figure and for which some values are given in the following table for values of <span class="math-tex" data-type="tex">\(x\)</span> that becomes arbitrarly large, positive and negative?</p>
+<table>
+<thead>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(x\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{x}{\sqrt{x^2+1}}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(x\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{x}{\sqrt{x^2+1}}\)</span></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-1000\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-0.9999995\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(1\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(0.7071068\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-100\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-0.9999500\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(10\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(0.9950372\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-10\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-0.9950372\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(100\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(0.9999500\)</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-1\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(-0.7071068\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(1000\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(0.9999995\)</span></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="140.0">
+<defs>
+<marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+<path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
+</marker>
+</defs>
+<foreignObject x="224" y="80" width="14" height="18">
+\(O\)
+</foreignObject>
+<foreignObject x="464" y="60" width="14" height="18">
+\(x\)
+</foreignObject>
+<foreignObject x="242" y="-2" width="14" height="18">
+\(y\)
+</foreignObject>
+<line x1="0" y1="80" x2="477" y2="80" stroke="black" marker-end="url(#arrow)"/>
+<line x1="240" y1="140.0" x2="240" y2="3" stroke="black" marker-end="url(#arrow)"/>
+<line x1="237" y1="40" x2="243" y2="40" stroke="black"/>
+<foreignObject x="226" y="31.0" width="14" height="18">
+\(1\)
+</foreignObject>
+<line x1="237" y1="120" x2="243" y2="120" stroke="black"/>
+<foreignObject x="212" y="111.0" width="28" height="18">
+\(-1\)
+</foreignObject>
+<line x1="240" y1="40" x2="480" y2="40" stroke-dasharray="3" stroke="black"/>
+<line x1="0" y1="120" x2="240" y2="120" stroke-dasharray="3" stroke="black"/>
+<polyline points="0.0, 119.45575695328574 0.39999999999997726, 119.45397533450657 0.799999999999983, 119.4521850135143 1.200000000000017, 119.45038593394136 1.5999999999999943, 119.44857803896633 2.0, 119.44676127130955 2.3999999999999773, 119.44493557322879 2.8000000000000114, 119.44310088651471 3.1999999999999886, 119.44125715248646 3.5999999999999943, 119.439404311987 4.0, 119.43754230537854 4.400000000000006, 119.43567107253796 4.800000000000011, 119.43379055285195 5.199999999999989, 119.43190068521238 5.599999999999994, 119.43000140801138 6.0, 119.42809265913651 6.400000000000006, 119.42617437596589 6.800000000000011, 119.42424649536306 7.199999999999989, 119.42230895367214 7.600000000000023, 119.42036168671254 8.0, 119.41840462977392 8.400000000000006, 119.41643771761095 8.799999999999983, 119.41446088443803 9.200000000000017, 119.41247406392392 9.600000000000023, 119.41047718918648 10.0, 119.40847019278698 10.399999999999977, 119.4064530067248 10.799999999999983, 119.40442556243173 11.200000000000017, 119.40238779076634 11.599999999999994, 119.40033962200829 12.0, 119.39828098585255 12.399999999999977, 119.39621181140353 12.800000000000011, 119.39413202716915 13.199999999999989, 119.39204156105492 13.599999999999994, 119.38994034035787 14.0, 119.38782829176033 14.400000000000006, 119.3857053413239 14.800000000000011, 119.38357141448307 15.199999999999989, 119.38142643603892 15.599999999999994, 119.37927033015268 16.0, 119.37710302033928 16.400000000000006, 119.37492442946075 16.80000000000001, 119.3727344797196 17.19999999999999, 119.37053309265208 17.600000000000023, 119.36832018912142 18.0, 119.3660956893109 18.400000000000006, 119.36385951271691 18.799999999999983, 119.36161157814193 19.200000000000017, 119.35935180368735 19.600000000000023, 119.35708010674628 20.0, 119.35479640399629 20.399999999999977, 119.35250061139199 20.799999999999983, 119.35019264415752 21.200000000000017, 119.34787241677907 21.599999999999994, 119.34553984299714 22.0, 119.34319483579887 22.399999999999977, 119.34083730741015 22.80000000000001, 119.3384671692877 23.19999999999999, 119.33608433211106 23.599999999999994, 119.33368870577439 24.0, 119.3312801993784 24.400000000000006, 119.32885872122185 24.80000000000001, 119.32642417879323 25.19999999999999, 119.3239764787622 25.599999999999994, 119.32151552697096 26.0, 119.31904122842553 26.400000000000006, 119.31655348728688 26.80000000000001, 119.31405220686199 27.19999999999999, 119.31153728959481 27.600000000000023, 119.30900863705702 28.0, 119.30646614993884 28.400000000000006, 119.30390972803954 28.799999999999983, 119.30133927025801 29.200000000000017, 119.29875467458302 29.600000000000023, 119.29615583808359 30.0, 119.29354265689899 30.399999999999977, 119.29091502622884 30.799999999999983, 119.28827284032297 31.200000000000017, 119.28561599247112 31.599999999999994, 119.28294437499262 32.0, 119.2802578792259 32.39999999999998, 119.27755639551775 32.80000000000001, 119.27483981321268 33.19999999999999, 119.27210802064195 33.599999999999994, 119.26936090511253 34.0, 119.26659835289591 34.400000000000006, 119.26382024921682 34.80000000000001, 119.26102647824172 35.19999999999999, 119.25821692306721 35.599999999999994, 119.25539146570824 36.0, 119.25254998708628 36.400000000000006, 119.24969236701722 36.80000000000001, 119.24681848419908 37.19999999999999, 119.24392821619975 37.60000000000002, 119.24102143944447 38.0, 119.238098029203 38.400000000000006, 119.23515785957696 38.79999999999998, 119.23220080348665 39.20000000000002, 119.229226732658 39.60000000000002, 119.22623551760913 40.0, 119.22322702763681 40.39999999999998, 119.22020113080286 40.79999999999998, 119.2171576939202 41.20000000000002, 119.21409658253879 41.599999999999994, 119.2110176609314 42.0, 119.20792079207922 42.39999999999998, 119.20480583765713 42.80000000000001, 119.20167265801909 43.19999999999999, 119.19852111218295 43.599999999999994, 119.19535105781534 44.0, 119.19216235121627 44.400000000000006, 119.18895484730355 44.80000000000001, 119.18572839959691 45.19999999999999, 119.1824828602021 45.599999999999994, 119.17921807979454 46.0, 119.175933907603 46.400000000000006, 119.17263019139283 46.80000000000001, 119.16930677744918 47.19999999999999, 119.16596351055982 47.60000000000002, 119.16260023399788 48.0, 119.1592167895042 48.400000000000006, 119.15581301726961 48.79999999999998, 119.15238875591683 49.20000000000002, 119.14894384248225 49.60000000000002, 119.14547811239737 50.0, 119.14199139946996 50.39999999999998, 119.13848353586519 50.79999999999998, 119.13495435208621 51.20000000000002, 119.13140367695463 51.599999999999994, 119.12783133759075 52.0, 119.12423715939342 52.39999999999998, 119.12062096601973 52.80000000000001, 119.11698257936435 53.19999999999999, 119.11332181953861 53.599999999999994, 119.10963850484936 54.0, 119.10593245177738 54.400000000000006, 119.10220347495564 54.80000000000001, 119.09845138714724 55.19999999999999, 119.09467599922296 55.599999999999994, 119.09087712013863 56.0, 119.08705455691204 56.400000000000006, 119.08320811459964 56.80000000000001, 119.07933759627292 57.19999999999999, 119.07544280299433 57.60000000000002, 119.07152353379304 58.0, 119.06757958564027 58.400000000000006, 119.06361075342423 58.79999999999998, 119.05961682992483 59.20000000000002, 119.05559760578795 59.60000000000002, 119.0515528694993 60.0, 119.04748240735812 60.39999999999998, 119.0433860034502 60.79999999999998, 119.03926343962085 61.20000000000002, 119.03511449544722 61.599999999999994, 119.03093894821035 62.0, 119.02673657286684 62.39999999999998, 119.02250714202003 62.80000000000001, 119.01825042589087 63.19999999999999, 119.01396619228834 63.599999999999994, 119.00965420657937 64.0, 119.00531423165839 64.4, 119.00094602791654 64.80000000000001, 118.99654935321026 65.19999999999999, 118.9921239628295 65.6, 118.98766960946554 66.0, 118.98318604317826 66.4, 118.97867301136294 66.80000000000001, 118.97413025871663 67.19999999999999, 118.96955752720396 67.60000000000002, 118.96495455602258 68.0, 118.96032108156786 68.4, 118.95565683739741 68.79999999999998, 118.95096155419472 69.20000000000002, 118.94623495973258 69.60000000000002, 118.94147677883572 70.0, 118.93668673334304 70.39999999999998, 118.93186454206926 70.79999999999998, 118.927009920766 71.20000000000002, 118.92212258208221 71.6, 118.91720223552416 72.0, 118.91224858741467 72.39999999999998, 118.9072613408519 72.80000000000001, 118.90224019566737 73.19999999999999, 118.89718484838346 73.6, 118.89209499217023 74.0, 118.88697031680162 74.4, 118.88181050861094 74.80000000000001, 118.87661525044575 75.19999999999999, 118.87138422162204 75.6, 118.86611709787766 76.0, 118.86081355132518 76.4, 118.85547325040389 76.80000000000001, 118.85009585983116 77.19999999999999, 118.84468104055304 77.60000000000002, 118.83922844969408 78.0, 118.83373774050645 78.4, 118.82820856231815 78.79999999999998, 118.82264056048066 79.20000000000002, 118.8170333763155 79.60000000000002, 118.8113866470602 80.0, 118.80570000581328 80.39999999999998, 118.7999730814785 80.80000000000001, 118.79420549870821 81.19999999999999, 118.78839687784577 81.6, 118.78254683486706 82.0, 118.77665498132131 82.4, 118.77072092427065 82.79999999999998, 118.76474426622902 83.19999999999999, 118.75872460509994 83.6, 118.75266153411343 84.0, 118.7465546417618 84.4, 118.74040351173461 84.80000000000001, 118.73420772285243 85.19999999999999, 118.72796684899973 85.6, 118.72168045905643 86.0, 118.71534811682876 86.4, 118.70896938097871 86.80000000000001, 118.70254380495243 87.20000000000002, 118.69607093690757 87.6, 118.68955031963944 88.0, 118.68298149050585 88.4, 118.67636398135102 88.80000000000001, 118.66969731842791 89.19999999999999, 118.66298102231968 89.60000000000002, 118.65621460785962 90.0, 118.64939758404985 90.39999999999998, 118.64252945397878 90.80000000000001, 118.63560971473714 91.19999999999999, 118.62863785733276 91.6, 118.62161336660377 92.0, 118.61453572113065 92.4, 118.60740439314664 92.79999999999998, 118.60021884844672 93.19999999999999, 118.5929785462952 93.6, 118.58568293933172 94.0, 118.57833147347563 94.4, 118.57092358782901 94.80000000000001, 118.56345871457786 95.19999999999999, 118.55593627889179 95.6, 118.54835569882201 96.0, 118.54071638519761 96.4, 118.53301774152027 96.80000000000001, 118.52525916385687 97.20000000000002, 118.51744004073072 97.6, 118.50955975301068 98.0, 118.50161767379855 98.4, 118.49361316831457 98.80000000000001, 118.48554559378091 99.19999999999999, 118.47741429930335 99.60000000000002, 118.46921862575081 100.0, 118.46095790563292 100.39999999999998, 118.45263146297555 100.80000000000001, 118.44423861319413 101.19999999999999, 118.4357786629649 101.6, 118.42725091009405 102.0, 118.4186546433843 102.4, 118.40998914249965 102.79999999999998, 118.4012536778275 103.19999999999999, 118.39244751033847 103.6, 118.3835698914439 104.0, 118.37462006285082 104.4, 118.36559725641445 104.80000000000001, 118.35650069398812 105.19999999999999, 118.34732958727065 105.6, 118.33808313765105 106.0, 118.32876053605052 106.4, 118.3193609627617 106.80000000000001, 118.30988358728517 107.20000000000002, 118.300327568163 107.6, 118.2906920528095 108.0, 118.28097617733894 108.4, 118.27117906639023 108.80000000000001, 118.26129983294857 109.19999999999999, 118.25133757816394 109.60000000000002, 118.24129139116638 110.0, 118.231160348878 110.39999999999998, 118.2209435158217 110.80000000000001, 118.21063994392641 111.19999999999999, 118.20024867232902 111.6, 118.1897687271726 112.0, 118.17919912140118 112.4, 118.1685388545508 112.8, 118.15778691253675 113.2, 118.14694226743717 113.6, 118.13600387727261 114.0, 118.1249706857817 114.39999999999999, 118.11384162219274 114.80000000000001, 118.10261560099117 115.19999999999999, 118.09129152168293 115.60000000000001, 118.07986826855341 116.0, 118.06834471042202 116.4, 118.0567197003925 116.8, 118.04499207559843 117.2, 118.03316065694418 117.6, 118.02122424884132 118.0, 118.0091816389399 118.4, 117.9970315978551 118.80000000000001, 117.98477287888855 119.2, 117.97240421774485 119.60000000000001, 117.95992433224268 120.0, 117.94733192202055 120.39999999999999, 117.93462566823732 120.8, 117.92180423326694 121.19999999999999, 117.90886626038768 121.6, 117.8958103734656 122.0, 117.88263517663195 122.4, 117.8693392539549 122.8, 117.8559211691048 123.2, 117.84237946501341 123.6, 117.82871266352663 124.0, 117.81491926505089 124.39999999999999, 117.80099774819267 124.80000000000001, 117.78694656939146 125.19999999999999, 117.77276416254568 125.60000000000001, 117.75844893863163 126.0, 117.74399928531523 126.4, 117.72941356655632 126.8, 117.71469012220567 127.2, 117.69982726759413 127.6, 117.68482329311422 128.0, 117.6696764637935 128.4, 117.65438501886005 128.8, 117.63894717129955 129.2, 117.62336110740392 129.60000000000002, 117.60762498631132 130.0, 117.59173693953747 130.39999999999998, 117.57569507049779 130.8, 117.55949745402044 131.2, 117.54314213585025 131.6, 117.52662713214261 132.0, 117.50995042894814 132.4, 117.49310998168706 132.8, 117.47610371461354 133.2, 117.45892952026975 133.6, 117.44158525892927 134.0, 117.42406875802968 134.39999999999998, 117.40637781159435 134.8, 117.3885101796427 135.2, 117.37046358758927 135.60000000000002, 117.35223572563095 136.0, 117.33382424812238 136.4, 117.31522677293901 136.8, 117.29644088082799 137.2, 117.27746411474602 137.6, 117.25829397918477 138.0, 117.23892793948252 138.4, 117.21936342112284 138.8, 117.19959780901911 139.2, 117.17962844678534 139.60000000000002, 117.15945263599254 140.0, 117.13906763541038 140.39999999999998, 117.11847066023418 140.8, 117.0976588812965 141.2, 117.07662942426337 141.6, 117.0553793688146 142.0, 117.03390574780795 142.4, 117.01220554642688 142.8, 116.9902757013115 143.2, 116.96811309967235 143.6, 116.94571457838667 144.0, 116.92307692307692 144.39999999999998, 116.90019686717108 144.8, 116.87707109094436 145.2, 116.85369622054199 145.60000000000002, 116.83006882698282 146.0, 116.80618542514313 146.4, 116.7820424727204 146.8, 116.75763636917661 147.2, 116.73296345466078 147.6, 116.70802000891007 148.0, 116.6828022501294 148.4, 116.65730633384871 148.8, 116.63152835175796 149.2, 116.605464330519 149.60000000000002, 116.57911023055402 150.0, 116.55246194481029 150.39999999999998, 116.52551529750045 150.8, 116.49826604281813 151.2, 116.47070986362829 151.6, 116.44284237013183 152.0, 116.41465909850419 152.4, 116.38615550950703 152.8, 116.35732698707301 153.2, 116.32816883686274 153.6, 116.29867628479364 154.0, 116.26884447554028 154.39999999999998, 116.23866847100535 154.8, 116.20814324876108 155.2, 116.1772637004604 155.60000000000002, 116.14602463021757 156.0, 116.11442075295722 156.4, 116.08244669273195 156.8, 116.05009698100744 157.2, 116.01736605491479 157.6, 115.9842482554694 158.0, 115.95073782575598 158.4, 115.91682890907919 158.8, 115.88251554707905 159.2, 115.84779167781099 159.60000000000002, 115.81265113378974 160.0, 115.77708763999664 160.4, 115.7410948118497 160.8, 115.70466615313609 161.2, 115.66779505390623 161.6, 115.63047478832932 162.0, 115.59269851250947 162.4, 115.55445926226214 162.8, 115.51574995085016 163.2, 115.47656336667919 163.60000000000002, 115.43689217095167 164.0, 115.3967288952793 164.4, 115.35606593925314 164.8, 115.31489556797118 165.2, 115.27320990952292 165.6, 115.23100095243029 166.0, 115.18826054304509 166.39999999999998, 115.14498038290186 166.8, 115.10115202602663 167.2, 115.05676687620041 167.6, 115.01181618417809 168.0, 114.96629104486152 168.4, 114.92018239442736 168.8, 114.87348100740918 169.2, 114.82617749373361 169.6, 114.77826229571073 170.0, 114.72972568497838 170.4, 114.6805577594007 170.8, 114.63074843992082 171.2, 114.58028746736771 171.6, 114.5291643992177 172.0, 114.47736860631078 172.4, 114.42488926952196 172.8, 114.37171537638827 173.2, 114.31783571769184 173.60000000000002, 114.26323888399965 174.0, 114.20791326216072 174.4, 114.15184703176143 174.8, 114.09502816154011 175.2, 114.0374444057616 175.6, 113.97908330055324 176.0, 113.91993216020352 176.4, 113.85997807342454 176.8, 113.79920789958038 177.2, 113.73760826488258 177.6, 113.67516555855495 178.0, 113.61186592896976 178.4, 113.54769527975748 178.8, 113.48263926589246 179.2, 113.4166832897576 179.6, 113.34981249719038 180.0, 113.28201177351374 180.4, 113.21326573955506 180.8, 113.14355874765681 181.2, 113.07287487768293 181.6, 113.00119793302494 182.0, 112.92851143661224 182.4, 112.85479862693182 182.8, 112.78004245406177 183.2, 112.70422557572476 183.6, 112.62733035336711 184.0, 112.5493388482694 184.4, 112.47023281769566 184.8, 112.38999371108807 185.2, 112.30860266631447 185.6, 112.22604050597698 186.0, 112.14228773378983 186.4, 112.05732453103562 186.8, 111.97113075310939 187.2, 111.88368592616041 187.6, 111.79496924384253 188.0, 111.70495956418401 188.4, 111.61363540658895 188.8, 111.52097494898254 189.2, 111.42695602511324 189.6, 111.33155612202609 190.0, 111.23475237772121 190.4, 111.13652157901318 190.8, 111.0368401596071 191.2, 110.9356841984085 191.6, 110.83302941808452 192.0, 110.72885118389503 192.4, 110.62312450281331 192.8, 110.51582402295624 193.2, 110.4069240333457 193.6, 110.29639846402307 194.0, 110.18422088654019 194.4, 110.070364514851 194.8, 109.95480220662895 195.2, 109.83750646503658 195.6, 109.71844944097444 196.0, 109.59760293583776 196.4, 109.47493840481044 196.8, 109.35042696072678 197.2, 109.22403937853258 197.6, 109.0957461003785 198.0, 108.9655172413793 198.4, 108.83332259607424 198.8, 108.69913164562419 199.2, 108.56291356578315 199.6, 108.42463723568166 200.0, 108.2842712474619 200.4, 108.14178391680421 200.8, 107.99714329438629 201.2, 107.85031717831713 201.6, 107.70127312758854 202.0, 107.54997847658773 202.4, 107.39640035071547 202.8, 107.24050568315478 203.2, 107.08226123283534 203.6, 106.9216336036398 204.0, 106.75858926489798 204.4, 106.5930945732152 204.8, 106.425115795681 205.2, 106.25461913450448 205.6, 106.0815707531219 206.0, 105.90593680382162 206.4, 105.72768345693093 206.8, 105.54677693160812 207.2, 105.36318352828187 207.6, 105.17686966277867 208.0, 104.98780190217697 208.4, 104.79594700242481 208.8, 104.6012719477551 209.2, 104.4037439919299 209.6, 104.20333070134231 210.0, 104.0 210.4, 103.79372021641178 210.8, 103.58446013239326 211.2, 103.37218903380304 211.6, 103.15687676321586 212.0, 102.93849377453313 212.4, 102.71701118952492 212.8, 102.49240085629117 213.2, 102.26463540962192 213.6, 102.03368833322955 214.0, 101.79953402381656 214.4, 101.5621478569347 214.8, 101.32150625458095 215.2, 101.077586754467 215.6, 100.83036808088731 216.0, 100.57983021710106 216.4, 100.32595447913144 216.8, 100.06872359087384 217.2, 99.80812176039267 217.6, 99.54413475727372 218.0, 99.27674999088623 218.4, 99.00595658939537 218.8, 98.73174547935284 219.2, 98.45410946567958 219.6, 98.1730433118405 220.0, 97.88854381999832 220.4, 97.60060991091933 220.8, 97.30924270339085 221.2, 97.01444559289686 221.6, 96.71622432928578 222.0, 96.41458709315191 222.4, 96.10954457064068 222.8, 95.80111002637662 223.2, 95.48929937420367 223.6, 95.17413124541775 224.0, 94.85562705416415 224.4, 94.53381105966577 224.8, 94.20871042494291 225.2, 93.88035527168218 225.6, 93.54877873090966 226.0, 93.21401698912425 226.4, 92.8761093295481 226.8, 92.53509816815607 227.2, 92.19102908415135 227.6, 91.84395084456322 228.0, 91.49391542265381 228.4, 91.14097800983329 228.8, 90.78519702079883 229.2, 90.42663409163058 229.6, 90.06535407059803 230.0, 89.70142500145332 230.4, 89.33491809901297 230.8, 88.96590771685707 231.2, 88.5944713070048 231.6, 88.22068937145656 232.0, 87.84464540552736 232.4, 87.46642583293081 232.8, 87.0861199326106 233.2, 86.70381975735476 233.6, 86.31962004426691 234.0, 85.93361811720979 234.4, 85.54591378137624 234.8, 85.15660921018484 235.2, 84.76580882473722 235.6, 84.3736191661159 236.0, 83.98014876083995 236.4, 83.58550797983563 236.8, 83.1898088913156 237.2, 82.79316510799656 237.6, 82.39569162911786 238.0, 81.99750467775569 238.4, 81.59872153395486 238.8, 81.19946036422684 239.2, 80.799840047984 239.6, 80.39998000149987 240.0, 80.0 240.4, 79.60001999850013 240.8, 79.200159952016 241.2, 78.80053963577316 241.6, 78.40127846604514 242.0, 78.00249532224431 242.4, 77.60430837088214 242.8, 77.20683489200344 243.2, 76.8101911086844 243.6, 76.41449202016437 244.0, 76.01985123916005 244.4, 75.6263808338841 244.8, 75.23419117526278 245.2, 74.84339078981516 245.6, 74.45408621862376 246.0, 74.06638188279021 246.4, 73.68037995573309 246.8, 73.29618024264524 247.2, 72.9138800673894 247.6, 72.53357416706919 248.0, 72.15535459447264 248.4, 71.77931062854344 248.8, 71.4055286929952 249.2, 71.03409228314293 249.6, 70.66508190098703 250.0, 70.29857499854668 250.4, 69.93464592940197 250.8, 69.57336590836942 251.2, 69.21480297920117 251.6, 68.85902199016671 252.0, 68.50608457734619 252.4, 68.15604915543678 252.8, 67.80897091584865 253.2, 67.46490183184393 253.6, 67.1238906704519 254.0, 66.78598301087575 254.4, 66.45122126909034 254.8, 66.11964472831782 255.2, 65.79128957505709 255.6, 65.46618894033423 256.0, 65.14437294583585 256.4, 64.82586875458225 256.8, 64.51070062579633 257.2, 64.19888997362338 257.6, 63.89045542935932 258.0, 63.58541290684809 258.4, 63.28377567071423 258.8, 62.985554407103145 259.2, 62.69075729660915 259.6, 62.39939008908067 260.0, 62.11145618000168 260.4, 61.8269566881595 260.8, 61.54589053432042 261.2, 61.26825452064716 261.6, 60.99404341060464 262.0, 60.72325000911376 262.4, 60.455865242726276 262.8, 60.191878239607334 263.2, 59.93127640912616 263.6, 59.67404552086856 264.0, 59.42016978289894 264.4, 59.16963191911269 264.8, 58.922413245532994 265.2, 58.67849374541905 265.6, 58.43785214306531 266.0, 58.20046597618344 266.4, 57.96631166677045 266.8, 57.73536459037808 267.2, 57.50759914370883 267.6, 57.282988810475075 268.0, 57.06150622546687 268.4, 56.84312323678414 268.8, 56.62781096619696 269.2, 56.41553986760674 269.6, 56.206279783588215 270.0, 56.0 270.4, 55.79666929865768 270.8, 55.5962560080701 271.2, 55.39872805224491 271.6, 55.20405299757519 272.0, 55.01219809782303 272.4, 54.82313033722133 272.8, 54.63681647171813 273.2, 54.45322306839188 273.6, 54.27231654306907 274.0, 54.09406319617838 274.4, 53.918429246878105 274.8, 53.74538086549553 275.2, 53.57488420431901 275.6, 53.4069054267848 276.0, 53.241410735102015 276.4, 53.0783663963602 276.8, 52.917738767164664 277.2, 52.75949431684522 277.6, 52.60359964928453 278.0, 52.450021523412275 278.4, 52.298726872411464 278.8, 52.14968282168287 279.2, 52.002856705613716 279.6, 51.858216083195785 280.0, 51.7157287525381 280.4, 51.57536276431834 280.8, 51.43708643421685 281.2, 51.30086835437581 281.6, 51.16667740392576 282.0, 51.03448275862069 282.4, 50.904253899621494 282.8, 50.77596062146741 283.2, 50.64957303927322 283.6, 50.52506159518956 284.0, 50.40239706416225 284.4, 50.28155055902556 284.8, 50.16249353496342 285.2, 50.04519779337105 285.6, 49.92963548514901 286.0, 49.81577911345981 286.4, 49.70360153597693 286.8, 49.5930759666543 287.2, 49.48417597704376 287.6, 49.376875497186695 288.0, 49.27114881610497 288.4, 49.166970581915486 288.8, 49.0643158015915 289.2, 48.963159840392905 289.6, 48.86347842098682 290.0, 48.765247622278785 290.4, 48.668443877973914 290.8, 48.57304397488676 291.2, 48.479025051017466 291.6, 48.386364593411045 292.0, 48.295040435816 292.4, 48.20503075615747 292.8, 48.11631407383959 293.2, 48.02886924689061 293.6, 47.942675468964374 294.0, 47.85771226621017 294.4, 47.77395949402302 294.8, 47.69139733368552 295.2, 47.61000628891193 295.6, 47.52976718230434 296.0, 47.45066115173061 296.4, 47.37266964663288 296.8, 47.29577442427523 297.2, 47.219957545938236 297.6, 47.145201373068176 298.0, 47.07148856338775 298.4, 46.99880206697507 298.8, 46.927125122317065 299.2, 46.856441252343195 299.6, 46.786734260444945 300.0, 46.71798822648625 300.4, 46.650187502809615 300.8, 46.58331671024239 301.2, 46.51736073410754 301.6, 46.45230472024252 302.0, 46.38813407103023 302.4, 46.32483444144505 302.8, 46.26239173511742 303.2, 46.20079210041961 303.6, 46.14002192657545 304.0, 46.080067839796484 304.4, 46.02091669944675 304.8, 45.962555594238395 305.2, 45.904971838459886 305.6, 45.84815296823856 306.0, 45.792086737839284 306.4, 45.73676111600035 306.8, 45.682164282308165 307.2, 45.628284623611734 307.6, 45.575110730478045 308.0, 45.522631393689224 308.4, 45.470835600782294 308.8, 45.41971253263229 309.2, 45.36925156007918 309.6, 45.319442240599294 310.0, 45.27027431502163 310.4, 45.221737704289275 310.8, 45.17382250626638 311.2, 45.12651899259082 311.6, 45.07981760557264 312.0, 45.033708955138486 312.4, 44.98818381582191 312.8, 44.94323312379959 313.2, 44.89884797397338 313.6, 44.85501961709814 314.0, 44.81173945695492 314.4, 44.76899904756971 314.8, 44.72679009047708 315.2, 44.685104432028815 315.6, 44.643934060746865 316.0, 44.603271104720704 316.4, 44.563107829048334 316.8, 44.52343663332082 317.2, 44.484250049149836 317.6, 44.44554073773786 318.0, 44.40730148749053 318.4, 44.36952521167068 318.8, 44.33220494609377 319.2, 44.29533384686391 319.6, 44.258905188150294 320.0, 44.22291236000336 320.4, 44.18734886621026 320.8, 44.15220832218902 321.2, 44.11748445292095 321.6, 44.08317109092081 322.0, 44.04926217424402 322.4, 44.01575174453061 322.8, 43.98263394508521 323.2, 43.94990301899255 323.6, 43.91755330726805 324.0, 43.885579247042784 324.4, 43.85397536978244 324.8, 43.8227362995396 325.2, 43.79185675123893 325.6, 43.761331528994646 326.0, 43.731155524459716 326.4, 43.70132371520636 326.8, 43.67183116313726 327.2, 43.642673012926984 327.6, 43.61384449049296 328.0, 43.58534090149581 328.4, 43.55715762986817 328.8, 43.52929013637172 329.2, 43.50173395718188 329.6, 43.47448470249955 330.0, 43.44753805518971 330.4, 43.42088976944598 330.8, 43.394535669481 331.2, 43.36847164824203 331.6, 43.342693666151284 332.0, 43.3171977498706 332.4, 43.291979991089924 332.8, 43.267036545339224 333.2, 43.24236363082339 333.6, 43.2179575272796 334.0, 43.193814574856866 334.4, 43.169931173017176 334.8, 43.14630377945801 335.2, 43.122928909055645 335.6, 43.09980313282892 336.0, 43.07692307692308 336.4, 43.05428542161333 336.8, 43.03188690032765 337.2, 43.009724298688496 337.6, 42.98779445357312 338.0, 42.96609425219206 338.4, 42.9446206311854 338.8, 42.92337057573663 339.2, 42.902341118703504 339.6, 42.88152933976583 340.0, 42.86093236458962 340.4, 42.84054736400746 340.8, 42.820371553214656 341.2, 42.8004021909809 341.6, 42.780636578877164 342.0, 42.76107206051747 342.4, 42.74170602081523 342.8, 42.722535885253976 343.2, 42.70355911917202 343.6, 42.68477322706098 344.0, 42.66617575187762 344.4, 42.647764274369045 344.8, 42.62953641241073 345.2, 42.611489820357306 345.6, 42.593622188405654 346.0, 42.575931241970316 346.4, 42.558414741070735 346.8, 42.541070479730244 347.2, 42.523896285386456 347.6, 42.506890018312944 348.0, 42.490049571051856 348.4, 42.47337286785739 348.8, 42.45685786414976 349.2, 42.440502545979555 349.6, 42.42430492950221 350.0, 42.408263060462524 350.4, 42.39237501368867 350.8, 42.376638892596084 351.2, 42.361052828700444 351.6, 42.345614981139946 352.0, 42.33032353620651 352.4, 42.31517670688578 352.8, 42.30017273240587 353.2, 42.28530987779434 353.6, 42.27058643344368 354.0, 42.25600071468477 354.4, 42.24155106136836 354.8, 42.22723583745432 355.2, 42.21305343060855 355.6, 42.19900225180733 356.0, 42.18508073494912 356.4, 42.17128733647337 356.8, 42.15762053498659 357.2, 42.1440788308952 357.6, 42.1306607460451 358.0, 42.11736482336805 358.4, 42.10418962653441 358.8, 42.09113373961232 359.2, 42.07819576673306 359.6, 42.06537433176268 360.0, 42.05266807797945 360.4, 42.04007566775733 360.8, 42.02759578225515 361.2, 42.01522712111145 361.6, 42.0029684021449 362.0, 41.99081836106009 362.4, 41.978775751158686 362.8, 41.966839343055824 363.2, 41.95500792440158 363.6, 41.94328029960749 364.0, 41.93165528957797 364.4, 41.92013173144659 364.8, 41.90870847831706 365.2, 41.89738439900883 365.6, 41.88615837780726 366.0, 41.875029314218295 366.4, 41.863996122727386 366.8, 41.85305773256283 367.2, 41.84221308746325 367.6, 41.831461145449204 368.0, 41.82080087859881 368.4, 41.810231272827394 368.8, 41.79975132767098 369.2, 41.78936005607359 369.6, 41.7790564841783 370.0, 41.768839651122 370.4, 41.75870860883362 370.8, 41.74866242183606 371.2, 41.738700167051434 371.6, 41.72882093360977 372.0, 41.71902382266106 372.4, 41.709307947190496 372.79999999999995, 41.699672431837 373.2, 41.69011641271483 373.6, 41.680639037238294 374.0, 41.671239463949476 374.4, 41.661916862348946 374.8, 41.65267041272935 375.2, 41.64349930601188 375.6, 41.634402743585554 376.0, 41.62537993714918 376.4, 41.6164301085561 376.8, 41.60755248966153 377.20000000000005, 41.598746322172495 377.6, 41.59001085750034 378.0, 41.5813453566157 378.4, 41.572749089905955 378.8, 41.564221337035086 379.2, 41.55576138680588 379.6, 41.54736853702445 380.0, 41.539042094367076 380.4, 41.53078137424919 380.8, 41.522585700696645 381.2, 41.51445440621909 381.6, 41.50638683168544 382.0, 41.49838232620145 382.4, 41.49044024698932 382.79999999999995, 41.48255995926928 383.2, 41.47474083614313 383.6, 41.46698225847973 384.0, 41.45928361480238 384.4, 41.451644301178 384.8, 41.44406372110821 385.2, 41.43654128542214 385.6, 41.42907641217098 386.0, 41.421668526524364 386.4, 41.41431706066829 386.8, 41.4070214537048 387.20000000000005, 41.399781151553285 387.6, 41.39259560685336 388.0, 41.38546427886935 388.4, 41.37838663339623 388.8, 41.371362142667245 389.2, 41.36439028526286 389.6, 41.35747054602122 390.0, 41.35060241595015 390.4, 41.34378539214038 390.8, 41.33701897768031 391.2, 41.33030268157209 391.6, 41.32363601864899 392.0, 41.31701850949415 392.4, 41.31044968036057 392.79999999999995, 41.303929063092426 393.2, 41.29745619504758 393.6, 41.29103061902129 394.0, 41.284651883171236 394.4, 41.27831954094357 394.8, 41.27203315100028 395.2, 41.26579227714756 395.6, 41.25959648826539 396.0, 41.2534453582382 396.4, 41.24733846588657 396.8, 41.24127539490006 397.20000000000005, 41.235255733770984 397.6, 41.22927907572935 398.0, 41.223345018678685 398.4, 41.21745316513294 398.8, 41.21160312215424 399.2, 41.205794501291784 399.6, 41.200026918521495 400.0, 41.19429999418672 400.4, 41.188613352939804 400.79999999999995, 41.18296662368449 401.20000000000005, 41.177359439519336 401.6, 41.17179143768185 402.0, 41.16626225949356 402.4, 41.160771550305924 402.8, 41.15531895944696 403.2, 41.149904140168836 403.6, 41.14452674959611 404.0, 41.13918644867481 404.4, 41.13388290212234 404.8, 41.12861577837796 405.2, 41.12338474955424 405.6, 41.11818949138906 406.0, 41.11302968319838 406.4, 41.107905007829764 406.8, 41.10281515161654 407.2, 41.097759804332625 407.6, 41.0927386591481 408.0, 41.08775141258533 408.4, 41.08279776447584 408.79999999999995, 41.07787741791779 409.20000000000005, 41.072990079234 409.6, 41.06813545793073 410.0, 41.063313266656955 410.4, 41.05852322116428 410.79999999999995, 41.05376504026742 411.20000000000005, 41.04903844580527 411.6, 41.044343162602594 412.0, 41.03967891843214 412.4, 41.03504544397743 412.8, 41.03044247279604 413.2, 41.02586974128337 413.6, 41.02132698863706 414.0, 41.016813956821736 414.4, 41.01233039053446 414.8, 41.007876037170504 415.2, 41.003450646789744 415.6, 40.99905397208346 416.0, 40.99468576834161 416.4, 40.99034579342064 416.8, 40.98603380771166 417.2, 40.981749574109124 417.6, 40.977492857979975 418.0, 40.97326342713317 418.4, 40.96906105178965 418.79999999999995, 40.96488550455278 419.20000000000005, 40.96073656037915 419.6, 40.956613996549805 420.0, 40.95251759264188 420.4, 40.948447130500696 420.79999999999995, 40.94440239421205 421.20000000000005, 40.94038317007516 421.6, 40.936389246575764 422.0, 40.932420414359726 422.4, 40.92847646620696 422.8, 40.924557197005676 423.2, 40.920662403727086 423.6, 40.91679188540036 424.0, 40.91294544308796 424.4, 40.909122879861364 424.8, 40.90532400077704 425.2, 40.90154861285277 425.6, 40.89779652504436 426.0, 40.89406754822262 426.4, 40.890361495150636 426.8, 40.88667818046138 427.2, 40.88301742063565 427.6, 40.87937903398027 428.0, 40.87576284060658 428.4, 40.87216866240925 428.79999999999995, 40.86859632304537 429.20000000000005, 40.86504564791379 429.6, 40.8615164641348 430.0, 40.85800860053004 430.4, 40.85452188760264 430.79999999999995, 40.851056157517746 431.20000000000005, 40.84761124408316 431.6, 40.84418698273039 432.0, 40.8407832104958 432.4, 40.83739976600212 432.8, 40.83403648944018 433.2, 40.83069322255083 433.6, 40.82736980860717 434.0, 40.824066092397004 434.4, 40.820781920205455 434.8, 40.8175171397979 435.2, 40.81427160040308 435.6, 40.81104515269645 436.0, 40.80783764878373 436.4, 40.80464894218466 436.8, 40.801478887817055 437.2, 40.79832734198091 437.6, 40.79519416234287 438.0, 40.792079207920786 438.4, 40.788982339068596 438.79999999999995, 40.785903417461206 439.20000000000005, 40.78284230607979 439.6, 40.77979886919714 440.0, 40.77677297236319 440.4, 40.773764482390874 440.79999999999995, 40.770773267341994 441.20000000000005, 40.767799196513344 441.6, 40.76484214042305 442.0, 40.761901970797 442.4, 40.75897856055554 442.8, 40.756071783800245 443.2, 40.753181515800925 443.6, 40.75030763298278 444.0, 40.74745001291372 444.4, 40.74460853429176 444.8, 40.7417830769328 445.2, 40.73897352175828 445.6, 40.73617975078318 446.0, 40.73340164710409 446.4, 40.730639094887465 446.8, 40.72789197935804 447.2, 40.72516018678731 447.6, 40.72244360448225 448.0, 40.71974212077411 448.4, 40.717055625007376 448.79999999999995, 40.71438400752888 449.20000000000005, 40.71172715967703 449.6, 40.709084973771155 450.0, 40.70645734310101 450.4, 40.70384416191641 450.79999999999995, 40.70124532541697 451.20000000000005, 40.69866072974199 451.6, 40.69609027196045 452.0, 40.693533850061165 452.4, 40.69099136294299 452.8, 40.6884627104052 453.2, 40.685947793138006 453.6, 40.68344651271312 454.0, 40.680958771574474 454.4, 40.678484473029044 454.8, 40.6760235212378 455.2, 40.67357582120677 455.6, 40.671141278778144 456.0, 40.668719800621595 456.4, 40.6663112942256 456.8, 40.66391566788895 457.2, 40.6615328307123 457.6, 40.659162692589845 458.0, 40.656805164201124 458.4, 40.65446015700286 458.79999999999995, 40.65212758322093 459.20000000000005, 40.649807355842476 459.6, 40.64749938860801 460.0, 40.645203596003704 460.4, 40.64291989325372 460.79999999999995, 40.640648196312654 461.20000000000005, 40.63838842185807 461.6, 40.63614048728308 462.0, 40.6339043106891 462.4, 40.63167981087857 462.8, 40.62946690734792 463.2, 40.6272655202804 463.6, 40.62507557053925 464.0, 40.62289697966072 464.4, 40.620729669847314 464.8, 40.61857356396108 465.2, 40.61642858551692 465.6, 40.614294658676094 466.0, 40.61217170823967 466.4, 40.61005965964214 466.8, 40.607958438945076 467.2, 40.60586797283085 467.6, 40.603788188596475 468.0, 40.60171901414744 468.4, 40.599660377991704 468.79999999999995, 40.59761220923366 469.20000000000005, 40.59557443756828 469.6, 40.593546993275204 470.0, 40.59152980721302 470.4, 40.58952281081353 470.79999999999995, 40.58752593607607 471.20000000000005, 40.58553911556197 471.6, 40.58356228238905 472.0, 40.58159537022608 472.4, 40.57963831328746 472.8, 40.57769104632786 473.2, 40.57575350463693 473.6, 40.573825624034114 474.0, 40.57190734086349 474.4, 40.56999859198863 474.8, 40.568099314787624 475.2, 40.56620944714805 475.6, 40.56432892746204 476.0, 40.56245769462145 476.4, 40.560595688013 476.8, 40.558742847513535 477.2, 40.55689911348528 477.6, 40.55506442677121 478.0, 40.55323872869045 478.4, 40.55142196103367 478.79999999999995, 40.54961406605864 479.20000000000005, 40.547814986485704 479.6, 40.546024665493434 480.0, 40.54424304671425" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
+</svg>
+<figcaption>The graph of <span class="math-tex" data-type="tex">\(\frac{x}{\sqrt{x^2+1}}\)</span>.</figcaption></figure>
+<p>The values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> seem to approach <span class="math-tex" data-type="tex">\(1\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> takes on larger and larger positive values, and <span class="math-tex" data-type="tex">\(-1\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> takes on negative values that get larger and larger in absolute value. We express this behaviour by writing</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}\lim_{x\to\infty}f\left(x\right)=1\quad & \textrm{“}f\left(x\right)\textrm{ approaches }1\textrm{ as }x\textrm{ approaches infinity.”}\\
+\lim_{x\to-\infty}f\left(x\right)=-1\quad & \textrm{“}f\left(x\right)\textrm{ approaches }-1\textrm{ as }x\textrm{ approaches negative infinity.”}
+\end{aligned}
+\]
+</div>
+<p>The graph of <span class="math-tex" data-type="tex">\(f\)</span> conveys this limiting behaviour by approaching the horizontal lines <span class="math-tex" data-type="tex">\(y=1\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> moves far to the right and <span class="math-tex" data-type="tex">\(y=-1\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> moves far to the left. These lines are called *horizontal asymptotes`` of the graph. In general, if a curve approaches a straight line as it recedes very far away from the origin, that line is called an <i>asymptote</i> of the curve.</p>
+</div>
+<p>This example suggest the following definition of a limit at infinity.</p>
+<div data-type="definition">
+<h1 id="definition_30"></h1>
+<p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> approaches the limit <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to infinity, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to\infty}f\left(x\right)=L\,,
+\]
+</div>
+<p>if the following condition is satisfied:</p>
+<div class="math-tex" data-type="equation">
+\[
+\forall \varepsilon>0,\exists R\left(\varepsilon\right):x&gt;R\implies x\in X \wedge \left|f\left(x\right)-L\right|&lt;\varepsilon\,.
+\]
+</div>
+<p>Similarly, we say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> approaches the limit <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to negative infinity, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to-\infty}f\left(x\right)=L\,,
+\]
+</div>
+<p>if the following condition is satisfied:</p>
+<div class="math-tex" data-type="equation">
+\[
+\forall \varepsilon>0,\exists R\left(\varepsilon\right):x&lt;R\implies x\in X \wedge \left|f\left(x\right)-L\right|&lt;\varepsilon\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1 id="example_31"></h1>
+<p>Show that <span class="math-tex" data-type="tex">\(\lim_{x\to\infty}\frac{1}{x}=0\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon\)</span> be a given positive number. For <span class="math-tex" data-type="tex">\(x&gt;0\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|\frac{1}{x}-0\right|=\left|\frac{1}{x}\right|=\frac{1}{x}&lt;\quad\textrm{provided}\quad x&gt;\frac{1}{\varepsilon}\,.
+\]
+</div>
+<p>Therefore, the condition of the definition is satisfied with <span class="math-tex" data-type="tex">\(R=\frac{1}{\varepsilon}\)</span>. We have shown that <span class="math-tex" data-type="tex">\(\lim_{x\to\infty}\frac{1}{x}=0\)</span>.</p>
+</div>
+<p>The rules and theorems of previous section have suitable counterparts for limits at infinity.</p>
+<div data-type="example">
+<h1 id="example_32"></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\lim_{x\to\infty}f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(\lim_{x\to-\infty}f\left(x\right)\)</span> for <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{x}{\sqrt{x^2+1}}\)</span>.</p>
+<p>Rewrite the expression for <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> as follows:</p>
+<div class="math-tex" data-type="equation">
+\[
+\newcommand{\sgn}{\operatorname{sgn}}
+\begin{aligned}
+f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\right)}}\\
+=&\frac{x}{\sqrt{x^2}\sqrt{1+\frac{1}{x^2}}}=\frac{x}{\left|x\right|\sqrt{1+\frac{1}{x^2}}}\\
+=&\frac{\sgn x}{\sqrt{1+\frac{1}{x^2}}}\,.
+\end{aligned}
+\]
+</div>
+<p>The factor <span class="math-tex" data-type="tex">\(\sqrt{1+\frac{1}{x^2}}\)</span> approaches <span class="math-tex" data-type="tex">\(1\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> approaches <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>, so <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> must have the same limits as <span class="math-tex" data-type="tex">\(x\to\pm\infty\)</span> as does <span class="math-tex" data-type="tex">\(\newcommand{\sgn}{\operatorname{sgn}}\sgn x\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to\infty}f\left(x\right)=1\quad\textrm{and}\quad\lim_{x\to-\infty}f\left(x\right)=-1
+\]
+</div>
+</div>
+<p>The only polynomials that have limits at infinity are constant ones. The situation is more interesting for rational functions. The following examples show how to render such a function in a form where its limits at infinity (if they exist) are apparent. The way to do this is to *divide the numerator and the denominator by the highest power of <span class="math-tex" data-type="tex">\(x\)</span> in the denominator.</p>
+<div data-type="example">
+<h1 id="example_33"></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}\)</span>.</p>
+<p>Divide the numerator and the denominator by <span class="math-tex" data-type="tex">\(x^2\)</span>, the highest power of <span class="math-tex" data-type="tex">\(x\)</span> appearing in the denominator:</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}=\lim_{x\to\infty}\frac{2-\frac{1}{x}+\frac{3}{x^2}}{3+\frac{5}{x^2}}=\frac{2-0+0}{3+0}=\frac{2}{3}\,.
+\]
+</div>
+</div>
+<p>The technique used in the previous example can also be applied to more general kinds of functions.</p>
+<div data-type="example">
+<h1 id="example_34"></h1>
+<p>Find <span class="math-tex" data-type="tex">\(\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)\)</span>.</p>
+<p>We can rationalize the expression by multiplying the numerator and the denominator (which is <span class="math-tex" data-type="tex">\(1\)</span>) by the conjugate expression <span class="math-tex" data-type="tex">\(\sqrt{x^2+x}+x\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)=&\frac{\left(\sqrt{x^2+x}-x\right)\left(\sqrt{x^2+x}+x\right)}{\left(\sqrt{x^2+x}+x\right)}=\frac{x^2+x-x^2}{\left(\sqrt{x^2\left(1+\frac{1}{x}\right)}+x\right)}\\
+=&\frac{x}{\left(x\sqrt{1+\frac{1}{x}}+x\right)}=\frac{1}{\left(\sqrt{1+\frac{1}{x}}+1\right)}=\frac{1}{2}\,.
+\end{aligned}
+\]
+</div>
+</div>
+</section>
+<section data-type="sect2">
+<h2 id=section2_35>Infinite Limits</h2>
+<p>A function whose values grow arbitrarily large can sometimes said to have an infinite limite. Since infinity is not a number, infinite limits are not really limits at all, but they provide a way of describing the behaviour of functions that grow arbitrarily large positive of negative.</p>
+<div data-type="example">
+<h1 id="example_36"></h1>
+<p>Describe the behaviour of the function <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{1}{x^2}\)</span> near <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
+</div>
+<section data-type="sect1">
+<h1 id=section1_37>Continuity Defined</h1>
+<section data-type="sect1">
+<h1 id=section1_38>Continuous Functions</h1>
+<section data-type="sect1">
+<h1 id=section1_39>The Intermediate Value Theorem</h1>
+<section data-type="sect1">
+<h1 id=section1_40>The Extreme Value Theorem</h1>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section><div id="tag"></div>
+
+</body>
+</html>

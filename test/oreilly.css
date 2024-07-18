@@ -1,0 +1,652 @@
+.hljs {
+    background: #fefefe;
+    color: #545454;
+}
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+    color: #696969;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+    color: #d91e18;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+    color: #aa5d00;
+}
+
+/* Yellow */
+.hljs-attribute {
+    color: #aa5d00;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+    color: #008000;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+    color: #007faa;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+    color: #7928a1;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
+}
+
+@media screen {
+
+    .hljs-addition,
+    .hljs-attribute,
+    .hljs-built_in,
+    .hljs-bullet,
+    .hljs-comment,
+    .hljs-link,
+    .hljs-literal,
+    .hljs-meta,
+    .hljs-number,
+    .hljs-params,
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-type,
+    .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+@page {
+    size: A4;
+    margin-bottom: 2.5cm;
+    margin-top: 2cm;
+
+    @footnote {
+        float: bottom;
+    }
+}
+
+@page :blank {
+    border-bottom: none;
+
+    @bottom-left {
+        content: none;
+    }
+
+    @bottom-right {
+        content: none;
+    }
+}
+
+@page :first {
+    @bottom-center {
+        font-family: "STIX Two Text";
+        font-size: 9pt;
+        font-weight: 450;
+        content: counter(page);
+        vertical-align: top;
+        border-style: none;
+    }
+
+    @bottom-left {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+
+    @bottom-right {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+}
+
+@page :left {
+    margin-left: 3cm;
+    margin-right: 2cm;
+
+    @bottom-left {
+        font-family: "STIX Two Text";
+        font-size: 9pt;
+        font-weight: 450;
+        content: counter(page);
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+    }
+
+    @bottom-right {
+        font-family: "STIX Two Text";
+        font-size: 9pt;
+        font-weight: 450;
+        font-style: italic;
+        content: "Chapter " counter(chapternumber) ": " string(chaptertitle);
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+    }
+}
+
+@page :right {
+    margin-left: 2cm;
+    margin-right: 3cm;
+
+    @bottom-left {
+        font-family: "STIX Two Text";
+        font-size: 9pt;
+        font-weight: 450;
+        font-style: italic;
+        content: counter(chapternumber) "–" counter(sect1number) "　" string(sect1title);
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+    }
+
+    @bottom-right {
+        font-family: "STIX Two Text";
+        font-size: 9pt;
+        font-weight: 450;
+        content: counter(page);
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+    }
+}
+
+div.pagedjs_footnote_content {
+    position: relative;
+    padding-top: 3px;
+}
+
+div.pagedjs_footnote_content:before {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4cm;
+    height: 1px;
+    content: "";
+    border-top: 0.5px solid black;
+}
+
+.pagebreak {
+    break-before: page;
+}
+
+math {
+    font-family: "STIX Two Math";
+}
+
+math[display="block"] {
+    break-inside: avoid;
+}
+
+svg math {
+    font-size: 9pt;
+}
+
+body {
+    hyphens: auto;
+    font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
+    font-family: "STIX Two Text";
+    font-size: 11pt;
+    font-weight: normal;
+    counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "STIX Two Text";
+    font-style: italic;
+    font-weight: 450;
+}
+
+section {
+    orphans: 4;
+    widows: 3;
+}
+
+section[data-type="chapter"] {
+    counter-increment: chapternumber;
+    counter-reset: sect1number equationnumber figurenumber;
+}
+
+section[data-type="chapter"]>h1 {
+    string-set: chaptertitle content();
+    font-size: 24pt;
+    font-variant: small-caps;
+    text-align: center;
+    margin-bottom: 150px;
+}
+
+section[data-type="chapter"]>h1:before {
+    margin-top: 50px;
+    content: "CHAPTER " counter(chapternumber);
+    text-align: center;
+    font-size: 16pt;
+    font-style: normal;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 0.5px;
+    display: block;
+}
+
+section[data-type="sect1"] {
+    counter-increment: sect1number;
+}
+
+section[data-type="sect1"]>h1 {
+    string-set: sect1title content();
+    font-size: 16pt;
+    margin-top: 18px;
+    margin-bottom: 16px;
+}
+
+section[data-type="sect1"]>h1:before {
+    content: counter(chapternumber) "–" counter(sect1number);
+    margin-right: 12px
+}
+
+h2 {
+    font-size: 14pt;
+    margin-top: 16px;
+    margin-bottom: 14px;
+}
+
+h3 {
+    font-size: 12pt;
+}
+
+h4 {
+    font-size: 11pt;
+}
+
+h5 {
+    font-size: 9pt;
+}
+
+p {
+    text-align: justify;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    break-inside: avoid;
+    hyphens: auto;
+    orphans: 4;
+    widows: 2;
+}
+
+p+ol,
+p+ul,
+p+table,
+p+div[data-type="equation"] {
+    break-before: avoid;
+}
+
+section>h1,
+section>h2,
+section>h3,
+section>h4,
+section>h5 {
+    break-after: avoid;
+}
+
+section ol,
+ul {
+    margin: 0;
+}
+
+ol,
+ul,
+li {
+    break-inside: avoid;
+}
+
+code {
+    font-family: "JuliaMono";
+    font-size: 9pt;
+}
+
+div[data-type="theorem"]>h1:before {
+    content: "Theorem " counter(theoremnumber);
+}
+
+div[data-type="lemma"]>h1:before {
+    content: "Lemma " counter(theoremnumber);
+}
+
+div[data-type="corollary"]>h1:before {
+    content: "Corollary " counter(theoremnumber);
+}
+
+div[data-type="definition"]>h1:before {
+    content: "Definition " counter(definitionnumber);
+}
+
+div[data-type="axiom"]>h1:before {
+    content: "Axiom " counter(axiomnumber);
+}
+
+div[data-type="example"]>h1:before {
+    content: "Example";
+}
+
+div[data-type="exercise"]>h1:before {
+    content: "Exercise";
+}
+
+div[data-type="proof"]>h1:before {
+    content: "Proof";
+}
+
+div[data-type="template"]>h1:before {
+    content: "Template " counter(templatenumber);
+}
+
+div[data-type="theorem"]>h1:after,
+div[data-type="lemma"]>h1:after,
+div[data-type="corollary"]>h1:after,
+div[data-type="definition"]>h1:after,
+div[data-type="axiom"]>h1:after,
+div[data-type="example"]>h1:after,
+div[data-type="exercise"]>h1:after,
+div[data-type="proof"]>h1:after,
+div[data-type="template"]>h1:after {
+    content: ".";
+}
+
+div[data-type="theorem"]>h1,
+div[data-type="lemma"]>h1,
+div[data-type="corollary"]>h1,
+div[data-type="definition"]>h1,
+div[data-type="axiom"]>h1,
+div[data-type="example"]>h1,
+div[data-type="exercise"]>h1,
+div[data-type="proof"]>h1,
+div[data-type="template"]>h1 {
+    font-family: "STIX Two Text";
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    margin-right: 6px;
+    display: inline;
+}
+
+div[data-type="theorem"],
+div[data-type="lemma"],
+div[data-type="corollary"],
+div[data-type="theorem"]>h1,
+div[data-type="lemma"]>h1,
+div[data-type="corollary"]>h1 {
+    font-style: italic;
+}
+
+div[data-type="theorem"],
+div[data-type="lemma"],
+div[data-type="corollary"],
+div[data-type="definition"],
+div[data-type="axiom"],
+div[data-type="theorem"]>h1,
+div[data-type="lemma"]>h1,
+div[data-type="corollary"]>h1,
+div[data-type="definition"]>h1,
+div[data-type="axiom"]>h1 {
+    font-size: 11pt;
+}
+
+div[data-type="example"],
+div[data-type="exercise"],
+div[data-type="proof"],
+div[data-type="template"],
+div[data-type="example"]>h1,
+div[data-type="exercise"]>h1,
+div[data-type="proof"]>h1,
+div[data-type="template"]>h1 {
+    font-size: 10pt
+}
+
+div[data-type="theorem"],
+div[data-type="lemma"],
+div[data-type="corollary"],
+div[data-type="definition"],
+div[data-type="axiom"],
+div[data-type="example"],
+div[data-type="exercise"],
+div[data-type="proof"],
+div[data-type="template"] {
+    border-left-style: solid;
+    border-left-width: 6px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    margin-right: 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-top: 3px;
+    orphans: 4;
+    widows: 3;
+    break-inside: avoid;
+}
+
+div[data-type="theorem"],
+div[data-type="lemma"],
+div[data-type="corollary"] {
+    counter-increment: theoremnumber;
+    background-color: hsla(189, 100%, 50%, 10%);
+    border-left-color: hsla(189, 100%, 50%, 80%);
+    font-size: 11pt;
+    font-style: italic;
+}
+
+div[data-type="definition"] {
+    counter-increment: definitionnumber;
+    background-color: hsla(180, 100%, 25%, 10%);
+    border-left-color: hsla(180, 100%, 25%, 80%);
+    font-size: 11pt;
+}
+
+div[data-type="axiom"] {
+    counter-increment: axiomnumber;
+    background-color: hsla(300, 100%, 25%, 10%);
+    border-left-color: hsla(300, 100%, 25%, 80%);
+    font-size: 11pt;
+}
+
+div[data-type="example"] {
+    background-color: hsla(39, 100%, 50%, 10%);
+    border-left-color: hsla(39, 100%, 50%, 80%);
+    font-size: 10pt;
+}
+
+div[data-type="exercise"] {
+    background-color: hsla(60, 100%, 50%, 10%);
+    border-left-color: hsla(60, 100%, 50%, 80%);
+    font-size: 10pt;
+}
+
+div[data-type="proof"] {
+    background-color: hsla(0, 100%, 0%, 10%);
+    border-left-color: hsla(0, 100%, 0%, 80%);
+    font-size: 10pt;
+}
+
+div[data-type="template"] {
+    counter-increment: templatenumber;
+    background-color: hsla(300, 76%, 72%, 10%);
+    border-left-color: hsla(300, 76%, 72%, 80%);
+    font-size: 10pt;
+}
+
+div[data-type="theorem"]>p:first-of-type,
+div[data-type="lemma"]>p:first-of-type,
+div[data-type="corollary"]>p:first-of-type,
+div[data-type="definition"]>p:first-of-type,
+div[data-type="axiom"]>p:first-of-type,
+div[data-type="example"]>p:first-of-type,
+div[data-type="exercise"]>p:first-of-type,
+div[data-type="proof"]>p:first-of-type,
+div[data-type="template"]>p:first-of-type {
+    /*margin-top: 3px;*/
+    display: inline-block;
+    margin: 0;
+}
+
+div[data-type="theorem"] p:last-of-type,
+div[data-type="lemma"] p:last-of-type,
+div[data-type="corollary"] p:last-of-type,
+div[data-type="definition"] p:last-of-type,
+div[data-type="axiom"] p:last-of-type,
+div[data-type="example"] p:last-of-type,
+div[data-type="exercise"] p:last-of-type,
+div[data-type="proof"] p:last-of-type,
+div[data-type="template"] p:last-of-type,
+div[data-type="theorem"] div[data-type="equation"]:last-of-type,
+div[data-type="lemma"] div[data-type="equation"]:last-of-type,
+div[data-type="corollary"] div[data-type="equation"]:last-of-type,
+div[data-type="definition"] div[data-type="equation"]:last-of-type,
+div[data-type="axiom"] div[data-type="equation"]:last-of-type,
+div[data-type="example"] div[data-type="equation"]:last-of-type,
+div[data-type="exercise"] div[data-type="equation"]:last-of-type,
+div[data-type="proof"] div[data-type="equation"]:last-of-type,
+div[data-type="template"] div[data-type="equation"]:last-of-type {
+    margin-bottom: 0;
+}
+
+div[data-type="equation"] {
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 6px;
+}
+
+div[data-type="equation"][id] {
+    counter-increment: equationnumber;
+    position: relative;
+}
+
+div[data-type="equation"][id]:after {
+    content: "(" counter(equationnumber) ")";
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+span[data-type="footnote"] {
+    float: footnote;
+    font-size: 9pt;
+    text-align: justify;
+}
+
+::footnote-call {
+    content: counter(footnote);
+    font-size: 9pt;
+    line-height: 0;
+}
+
+::footnote-marker {
+    content: counter(footnote);
+    font-size: 9pt;
+    vertical-align: baseline;
+    font-variant-position: super;
+}
+
+table {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    page-break-inside: avoid;
+    font-size: 10pt;
+}
+
+thead,
+tbody {
+    margin: 0;
+    border-bottom: 0.5px solid black;
+}
+
+tr {
+    border-width: 0;
+    margin: 0;
+}
+
+thead {
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0;
+    border-top: 0.5px solid black;
+}
+
+th,
+td {
+    padding: 1px 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+table p {
+    /* table body text */
+    text-indent: 0;
+    margin: 0;
+}
+
+figure {
+    margin: 0;
+    margin-top: 6px;
+    text-align: center;
+    counter-increment: figurenumber;
+    break-inside: avoid;
+}
+
+figcaption {
+    font-size: 10pt;
+    font-style: italic;
+    text-align: center;
+    break-before: avoid;
+}
+
+figcaption:before {
+    content: "Figure " counter(chapternumber) "–" counter(figurenumber) ": ";
+}
