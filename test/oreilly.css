@@ -230,6 +230,7 @@ body {
     font-size: 11pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;
+    line-height: 150%;
 }
 
 h1,
@@ -259,6 +260,7 @@ section[data-type="chapter"]>h1 {
     font-variant: small-caps;
     text-align: center;
     margin-bottom: 150px;
+    line-height: 125%;
 }
 
 section[data-type="chapter"]>h1:before {

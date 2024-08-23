@@ -21,16 +21,16 @@ end
 const font_y = 18
 const font_x = 14
 
-function axis_xy(width::Number, height::Number, Ox::Number, Oy::Number, scale::Number, axis_x, axis_y; xs=nothing, ys=nothing, xl=nothing, yl=nothing, xh=nothing, yh=nothing)
+function axis_xy(width::Number, height::Number, Ox::Number, Oy::Number, scale::Number, axis_x, axis_y; xs=nothing, ys=nothing, xl=nothing, yl=nothing, xh=nothing, yh=nothing, shift_x=0, shift_y=0)
 	defs() do
 		marker(id="arrow", markerWidth="6", markerHeight="6", refX="3", refY="3", orient="auto") do
 			path(d="M 0 0 L 6 3 L 0 6 z", fill="black" )
 		end
 	end
 	latex("O", x=Ox-font_x-2, y=Oy, width=font_x, height=font_y)
-	latex("x", x=width-font_x-2, y=Oy-font_y-2, width=font_x, height=font_y)
-	latex("y", x=Ox+2, y=0-2, width=font_x, height=font_y)
-	line(x1=0, y1=Oy, x2=width-3, y2=Oy, stroke="black", marker_end="url(#arrow)")
+	latex("x", x=shift_x+width-font_x-2, y=Oy-font_y-2, width=font_x, height=font_y)
+	latex("y", x=Ox+2, y=shift_y-2, width=font_x, height=font_y)
+	line(x1=shift_x, y1=Oy, x2=shift_x+width-3, y2=Oy, stroke="black", marker_end="url(#arrow)")
 	for (nr, n) in enumerate(axis_x)
 		line(x1=Ox+scale*n, y1=Oy-3, x2=Ox+scale*n, y2=Oy+3, stroke="black")
 		txt = if xs===nothing "$n" else "$(xs[nr])" end
@@ -38,17 +38,17 @@ function axis_xy(width::Number, height::Number, Ox::Number, Oy::Number, scale::N
 		h = if xh===nothing 1 else xh[nr] end
 		latex(txt, x=Ox+scale*n-font_x*len/2, y=Oy, width=font_x*len, height=font_y*h)
 	end
-	line(x1=Ox, y1=height, x2=Ox, y2=3, stroke="black", marker_end="url(#arrow)")
+	line(x1=Ox, y1=height, x2=Ox, y2=shift_y+3, stroke="black", marker_end="url(#arrow)")
 	for (nr, n) in enumerate(axis_y)
 		line(x1=Ox-3, y1=Oy-scale*n, x2=Ox+3, y2=Oy-scale*n, stroke="black")
 		txt = if ys===nothing "$n" else "$(ys[nr])" end
 		len = if yl===nothing length(txt) else yl[nr] end
-		h = if xh===nothing 1 else xh[nr] end
+		h = if yh===nothing 1 else xh[nr] end
 		latex(txt, x=Ox-font_x*len, y=Oy-scale*n-font_y/2, width=font_x*len, height=font_y*h)
 	end
 end
 
-function plot_xy(f::Function, xs, xdots, Ox::Integer, Oy::Integer, scale::Integer; color::String="red", dashed::String="", width::Number=1)
+function plot_xy(f::Function, xs, xdots, Ox::Number, Oy::Number, scale::Number; color::String="red", dashed::String="", width::Number=1)
 	points = String[]
 	for x in xs
 		y = f(x)
@@ -137,7 +137,7 @@ We can't find the limit of the fraction by just substituting ``h=0`` because tha
 \lim_{h\to0}\frac{\Delta y}{\Delta t}=\frac{g}{2}\left(2t+h\right)\,.
 ```
 
-The final form no longer involves divison by ``h``. It approaches ``gt + \frac{g}{2}0=gt``. In particular, at ``t=1\,\left[\mathrm{s}\right]`` and ``t=2\,\left[\mathrm{s}\right]``, the instantaneous velocities are ``v_1=9.8\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]`` and ``v_2=19.6\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]``, respectively.
+The final form no longer involves division by ``h``. It approaches ``gt + \frac{g}{2}0=gt``. In particular, at ``t=1\,\left[\mathrm{s}\right]`` and ``t=2\,\left[\mathrm{s}\right]``, the instantaneous velocities are ``v_1=9.8\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]`` and ``v_2=19.6\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]``, respectively.
 
 ## The Area of a Circle
 
@@ -218,7 +218,7 @@ A_n = \frac{1}{2}P_nr\cos\frac{\uppi}{n}
 
 Now ``\angle AOM=\frac{\uppi}{n}`` approaches ``0`` as ``n`` tends to infinity, so its cosine, ``\cos\frac{\uppi}{n}=\frac{\left|OM\right|}{\left|OA\right|}``, approaches ``1``. Since ``P_n`` approaches ``C=2\uppi r`` as ``n`` tends to infinity, the expression for ``A_n`` approaches ``\frac{1}{2}\left(2\uppi r\right)r\left(1\right)=\uppi r^2``, which must therefore be the area of the circle.
 
-## Limits of Functions
+## Limits Defined
 
 In order to speak meaningfully about rate of change, tangent lines, and areas bounded by curves, we have to investigate the process of finding limits. Let us look at some examples.
 
@@ -705,8 +705,6 @@ We will extend the concept of limit to allow for two situations not covered by t
 1. *limits at infinity*, where ``x`` becomes arbitrarly large, positive or negative;
 2. *infinite limits*, which are not real limits at all but provide usefull symbolism for describing the behaviour of functions whose values become arbitrarily large, positive or negative.
 
-### Limits at Infinity
-
 !!! example
     How behaves the function
 
@@ -776,12 +774,12 @@ This example suggest the following definition of a limit at infinity.
     ```
 
 !!! example
-    Show that ``\lim_{x\to\infty}\frac{1}{x}=0``.
+    Show that ``\displaystyle\lim_{x\to\infty}\frac{1}{x}=0``.
 
     Let ``\varepsilon`` be a given positive number. For ``x&gt;0``, we have
 
     ```math
-    \left|\frac{1}{x}-0\right|=\left|\frac{1}{x}\right|=\frac{1}{x}&lt;\quad\textrm{provided}\quad x&gt;\frac{1}{\varepsilon}\,.
+    \left|\frac{1}{x}-0\right|=\left|\frac{1}{x}\right|=\frac{1}{x}&lt;\varepsilon\quad\textrm{provided}\quad x&gt;\frac{1}{\varepsilon}\,.
     ```
 
     Therefore, the condition of the definition is satisfied with ``R=\frac{1}{\varepsilon}``. We have shown that ``\lim_{x\to\infty}\frac{1}{x}=0``.
@@ -789,7 +787,7 @@ This example suggest the following definition of a limit at infinity.
 The rules and theorems of previous section have suitable counterparts for limits at infinity.
 
 !!! example
-    Evaluate ``\lim_{x\to\infty}f\left(x\right)`` and ``\lim_{x\to-\infty}f\left(x\right)`` for ``f\left(x\right)=\frac{x}{\sqrt{x^2+1}}``.
+    Evaluate ``\displaystyle\lim_{x\to\infty}f\left(x\right)`` and ``\displaystyle\lim_{x\to-\infty}f\left(x\right)`` for ``\displaystyle f\left(x\right)=\frac{x}{\sqrt{x^2+1}}``.
 
     Rewrite the expression for ``f\left(x\right)`` as follows:
 
@@ -811,7 +809,7 @@ The rules and theorems of previous section have suitable counterparts for limits
 The only polynomials that have limits at infinity are constant ones. The situation is more interesting for rational functions. The following examples show how to render such a function in a form where its limits at infinity (if they exist) are apparent. The way to do this is to *divide the numerator and the denominator by the highest power of ``x`` in the denominator.
 
 !!! example
-    Evaluate ``\lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}``.
+    Evaluate ``\displaystyle\lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}``.
 
     Divide the numerator and the denominator by ``x^2``, the highest power of ``x`` appearing in the denominator:
 
@@ -822,7 +820,7 @@ The only polynomials that have limits at infinity are constant ones. The situati
 The technique used in the previous example can also be applied to more general kinds of functions.
 
 !!! example
-    Find ``\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)``.
+    Find ``\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)``.
 
     We can rationalize the expression by multiplying the numerator and the denominator (which is ``1``) by the conjugate expression ``\sqrt{x^2+x}+x``.
 
@@ -833,20 +831,444 @@ The technique used in the previous example can also be applied to more general k
     \end{aligned}
     ```
 
-### Infinite Limits
-
 A function whose values grow arbitrarily large can sometimes said to have an infinite limite. Since infinity is not a number, infinite limits are not really limits at all, but they provide a way of describing the behaviour of functions that grow arbitrarily large positive of negative.
 
 !!! example
-    Describe the behaviour of the function ``f\left(x\right)=\frac{1}{x^2}`` near ``x=0``.
+    Describe the behaviour of the function ``\displaystyle f\left(x\right)=\frac{1}{x^2}`` near ``x=0``.
 
+    {cell=chap display=false output=false}
+    ```julia
+    Figure("", """The graph of <span class="math-tex" data-type="tex">\\(\\frac{1}{x^2}\\)</span>.""") do
+        scale = 60
+        Drawing(width=6scale, height=3.5scale) do
+            xmid = 3scale
+            ymid = 3scale
+            axis_xy(6scale,3.5scale,xmid,ymid,scale,tuple(),tuple())
+            plot_xy(x->1/36x^2, -3:0.01:0, tuple(), xmid, ymid, scale, width=1)
+            plot_xy(x->1/36x^2, 3:-0.01:0, tuple(), xmid, ymid, scale, width=1)
+        end
+    end
+    ```
+
+    As ``x`` approaches ``0`` from either side, the values of ``f\left(x\right)`` are positive and grow larger and larger, so the limit of ``f\left(x\right)`` as ``x`` approaches ``0`` *does not exist*. it is nevertheless convenient to describe the behaviour of ``f`` near ``0`` by saying that ``f\left(x\right)`` approaches ``\infty`` as ``x`` tends to zero. We write
+
+    ```math
+    \lim_{x\to 0}f\left(x\right)=\lim_{x\to 0}\frac{1}{x^2}=\infty\,.
+    ```
+
+    Note that in writing this we are *not* saying that ``\lim_{x\to 0}\frac{1}{x^2}`` *exists*. Rather, we are saying that the limit *does not exist because ``\frac{1}{x^2}`` *becomes arbitrarily large near* ``x=0``. Observe how the graph of ``f`` approaches the ``y``-axis as ``x`` tends to ``0``. the ``y``-axis is a **vertical asymptote** of the graph.
+
+!!! definition
+    We say that ``f:X\mapsto Y`` approaches infinity as ``x`` tends to ``a`` and write
     
+    ```math
+    \lim_{x\to a}f\left(x\right)=\infty\,.
+    ```
+    
+    if the following condition is satisfied:
 
+    ```math
+    \forall B&gt;0,\exists\delta\left(B\right)&gt;0:0&lt;\left|x-a\right|&lt;\delta\implies x\in X\wedge f\left(x\right)&gt;B\,.
+    ```
+
+!!! example
+    Verify that ``\displaystyle\lim_{x\to 0}\frac{1}{x^2}=\infty``.
+
+    Let ``B`` be any positive number. We have
+
+    ```math
+    \frac{1}{x^2}&gt; B\quad\textrm{provided that}\quad x^2&lt;\frac{1}{B}\,.
+    ```
+
+    If ``\delta =\frac{1}{\sqrt{B}}``, then
+
+    ```math
+    0&lt;\left|x\right|&lt;\delta\quad\implies\quad x^2&lt;\delta^2=\frac{1}{B}\quad\implies\quad\frac{1}{x^2}&gt;B\,.
+    ```
+
+    Therefore, ``\lim_{x\to 0}\frac{1}{x^2}=\infty``.
+
+!!! example
+
+    Describe the behaviour of the function ``f\left(x\right)=\frac{1}{x}`` near ``x=0``.
+
+    {cell=chap display=false output=false}
+    ```julia
+    Figure("", """The graph of <span class="math-tex" data-type="tex">\\(\\frac{1}{x}\\)</span>.""") do
+        scale = 40
+        Drawing(width=8scale, height=8scale) do
+            xmid = 4scale
+            ymid = 4scale
+            axis_xy(8scale,8scale,xmid,ymid,scale,(-1, 1),(-1, 1))
+            plot_xy(x->1/x, -4:0.01:0, tuple(), xmid, ymid, scale, width=1)
+            plot_xy(x->1/x, 4:-0.01:0, tuple(), xmid, ymid, scale, width=1)
+        end
+    end
+    ```
+
+    As ``x`` approaches ``0`` from the right, the values of ``f\left(x\right)`` become larger and larger positive numbers, and we say that ``f`` has right-hand limit infinity at ``x=0``:
+
+    ```math
+    \lim_{x\to0^+}f\left(x\right)=\infty
+    ```
+
+    Similarly, the values of ``f\left(x\right)`` become larger and larger negative numbers as ``x`` approaches ``0`` from the left, so ``f`` has left-hand limit ``-\infty`` at ``x=0``:
+
+    ```math
+    \lim_{x\to0^-}f\left(x\right)=-\infty
+    ```
+
+    These statements do not say that the one-sided limits *exist*; they do not exist because ``\infty`` and ``-\infty`` are not numbers. Since the one-sided limits are not equal even as infinite symbols, all we can say about the two-sided ``\lim_{x\to0}f\left(x\right)`` is that it does not exist.
+
+We can now say a bit more about the limits at infinity and negative infinity of a rational function whose nuberator has higher degree than the denominator. Earlier we said that such a limit *does not exist*. This is true, but we can assign ``\infty`` or ``-\infty`` to such limits, as the following example shows.
+
+!!! example
+    Evaluate ``\displaystyle\lim_{x\to\infty}\frac{x^3+1}{x^2+1}``.
+
+    Divide the numerator and the denominator by ``x^2``, the largest power of the denominator:
+
+    ```math
+    \lim_{x\to\infty}\frac{x^3+1}{x^2+1}=\lim_{x\to\infty}\frac{x+\frac{1}{x^2}}{1+\frac{1}{x^2}}=\frac{\displaystyle\lim_{x\to\infty}x+\frac{1}{x^2}}{1}=\infty\,.
+    ```
+
+A polynomial ``Q\left(x\right)`` of degree ``n&gt;0`` can have at most ``n`` *zeros*; that is, there are at most ``n`` different real numbers ``r`` for which ``Q\left(r\right)=0``. If ``Q\left(r\right)`` is the denominator of a rational function ``\displaystyle R\left(x\right)=\frac{P\left(x\right)}{Q\left(x\right)}``, that function will be defined for all ``x`` except those finitely many zeros of ``Q``. At each of those zeros, ``R\left(x\right)`` may have limits, infinite limits, or one-sided infinite limits. Here are some examples.
+
+!!! example
+
+    1. ``\displaystyle\lim_{x\to 2}\frac{\left(x- 2\right)^2}{x^2-4}=\lim_{x\to 2}\frac{\left(x- 2\right)^2}{\left(x-2\right)\left(x+2\right)}=\lim_{x\to 2}\frac{x-2}{x+2}=0``.
+
+    2. ``\displaystyle\lim_{x\to 2}\frac{x- 2}{x^2-4}=\lim_{x\to 2}\frac{x- 2}{\left(x-2\right)\left(x+2\right)}=\lim_{x\to 2}\frac{1}{x+2}=\frac{1}{4}``.
+
+    3. ``\displaystyle\lim_{x\to 2^+}\frac{x- 3}{x^2-4}=\lim_{x\to 2^+}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}=-\infty``.
+
+    4. ``\displaystyle\lim_{x\to 2^-}\frac{x- 3}{x^2-4}=\lim_{x\to 2^-}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}=\infty``.
+
+    4. ``\displaystyle\lim_{x\to 2}\frac{x- 3}{x^2-4}=\lim_{x\to 2}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}`` does not exist.
+
+    5. ``\displaystyle\lim_{x\to 2}\frac{2-x}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{-\left(x-2\right)}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{1}{\left(x-2\right)^2}=-\infty``.
 
 ## Continuity Defined
 
+When a car is driven along a highway, its distance from its starting point depends on time in a *continuous* way, changing by small amounts over short intervals of time. But not all quantities change in this way. When the car is parked in a parking lot where the rate is quoted as "€2,00 per hour or portion," the parking charges remain at €2,00 for the first hour and then suddenly jump to €4,00 as soon as the first hour has passed. The function relating parking charges to parking time will be called *discontinuous* at each hour.
+
+Most functions that we encounter have domains that are intervals, or unions of separate intervals. A point ``P`` in the domain of such a function is called an *interior point* of the domain if it belongs to some open interval contained in the domain. If it is not an interior point, then ``P`` is called an *endpoint* of the domain. For example, the domain of the function ``f\left(x\right)=\sqrt{4-x^2}`` is the closed interval ``\left[-2,2\right]``, which consists of interior points in the interval ``\left]-2,2\right[``, a left endpoint ``-2``, and a right endpoint ``2``. The domain of the function ``g\left(x\right)=\frac{1}{x}`` is the union of open intervals ``\left]-\infty, 0\right[\cup\left]0,\infty\right[`` and consists entirely of interior points. Note that although ``0`` is an endpoint of each of those intervals, it does not belong to the domain of ``g`` and so is not an endpoint of that domain.
+
+!!! definition "Continuity of a function at a point"
+
+    A function ``f``, defined on an open interval containing the point ``c``, an interior point, is said to be continuous at the point ``c`` if
+
+    ```math
+    \lim_{x\to c}f\left(x\right)=f\left(c\right)\,;
+    ```
+
+    that is,
+
+    ```math
+    \forall \varepsilon&gt;0,\exists\delta\left(\varepsilon\right)&gt;0:\left|x-c\right|&lt;\delta\implies\left|f\left(x\right)-f\left(c\right)\right|&lt;\epsilon\,.
+    ```
+
+    If either ``\lim_{x\to c}f\left(x\right)`` fails to exist or it exists but is not equal to ``f\left(c\right)``, then we will say that ``f`` is discontinuous at ``c``.
+
+In graphical terms, ``f`` is continuous at an interior point ``c`` of its domain if its graph has no break in it at the point ``\left(c,f\left(x\right)\right)``; in other words, if you can draw the graph through that point without lifting your pen from the paper.
+ 
+{cell=chap display=false output=false}
+```julia
+Figure("", """<span class="math-tex" data-type="tex">\\(f\\left(x\\right)\\)</span> is continuous at <span class="math-tex" data-type="tex">\\(c\\)</span>; <span class="math-tex" data-type="tex">\\(\\displaystyle\\lim_{x\\to c}g\\left(x\\right)\\neq g\\left(c\\right)\\)</span>; <span class="math-tex" data-type="tex">\\(\\displaystyle\\lim_{x\\to c}h\\left(x\\right)\\)</span> does not exist</span>.""") do
+    scale = 70
+    Drawing(width=8.5scale, height=2.5scale) do
+        xmid = 0.5scale
+        ymid = 2scale
+        axis_xy(2.5scale,2.5scale,xmid,ymid,scale,(1,),tuple(),xs=("c",))
+        plot_xy(x->0.3x^2+0.1, -0.5:0.01:2, (1,), xmid, ymid, scale, width=1)
+        latex("y=f\\left(x\\right)", x=xmid+scale-2font_x, y=0, width=4*font_x, height=font_y)
+        xmid = 3.5scale
+        axis_xy(2.5scale,2.5scale,xmid,ymid,scale,(1,),tuple(),xs=("c",),shift_x=3scale)
+        plot_xy(x->0.3x^2+0.1, -0.5:0.01:2, tuple(), xmid, ymid, scale, width=1)
+        latex("y=g\\left(x\\right)", x=xmid+scale-2font_x, y=0, width=4font_x, height=font_y)
+        circle(cx=xmid+scale, cy=ymid-scale*0.4, r=3, fill="white", stroke="red")
+        circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="red", stroke="red")
+        xmid = 6.5scale
+        axis_xy(2.5scale,2.5scale,xmid,ymid,scale,(1,),tuple(),xs=("c",),shift_x=6scale)
+        plot_xy(x->0.3x^2+0.1, -0.5:0.01:1, tuple(), xmid, ymid, scale, width=1)
+        plot_xy(x->-2(x-1.5)^2+1.5, 1:0.01:2, (1,), xmid, ymid, scale, width=1)
+        latex("y=h\\left(x\\right)", x=xmid+scale-2font_x, y=0, width=4font_x, height=font_y)
+        circle(cx=xmid+scale, cy=ymid-scale*0.4, r=3, fill="white", stroke="red")
+    end
+end
+```
+
+Although a function cannot have a limit at an endpoint of its domain, it can still have a one-sided limit there. We extend the definition of continuity to provide for such situations.
+
+!!! definition
+    We say that ``f`` is *right continuous* at ``c`` if ``\displaystyle\lim_{x\to c^+}f\left(x\right)=f\left(x\right)``.
+
+    We say that ``f`` is *left continuous* at ``c`` if ``\displaystyle\lim_{x\to c^-}f\left(x\right)=f\left(x\right)``.
+
+!!! example
+    The Heaviside function ``H\left(x\right)`` is continuous at every number ``x`` except ``0``. It is right continuous at ``0`` but is not left continuous or continuous there.
+
+    {cell=chap display=false output=false}
+    ```julia
+    Figure("", """The Heaviside function""") do
+        scale = 50
+        Drawing(width=3scale, height=2scale) do
+            xmid = 1.5scale
+            ymid = 1.5scale
+            axis_xy(3scale,2scale,xmid,ymid,scale,tuple(),(1,))
+            plot_xy(x->0, -1.5:0.01:0, tuple(), xmid, ymid, scale, width=1)
+            plot_xy(x->1, 0:0.01:1.5, tuple(0,), xmid, ymid, scale, width=1)
+            circle(cx=xmid, cy=ymid, r=3, fill="white", stroke="red")
+        end
+    end
+    ```
+
+The relationship between continuity and one-sided continuity is summarized in the following theorem.
+
+!!! theorem
+    Function ``f`` is continuous at ``c`` if and only if it is both right continuous and left continuous at ``c``.
+
+We have defined the concept of continuity at a point. Of greater importance is the concept of continuity on an interval.
+
+!!! definition "Continuity of a function on an interval"
+    A function ``f`` is continuous on an interval if it is continuous at every point of that interval. In the case of an endpoint of a closed interval, ``f`` need only be continuous on one side. Thus, ``f`` is continuous on the interval ``\left[a,b\right]`` if
+
+    ```math
+    \lim_{x\to t}f\left(x\right)=f\left(t\right)\,\quad\forall t:a&lt;t&lt;b\,,
+    ```
+
+    and
+
+    ```math
+    \lim_{x\to a^+}f\left(x\right)=f\left(a\right)\quad\textrm{and}\quad\lim_{x\to b^-}f\left(x\right)=f\left(b\right)\,.
+    ```
+
+These concepts are illustrated in following figure.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", """<span class="math-tex" data-type="tex">\\(f\\left(x\\right)\\)</span> is continuous on the intervals <span class="math-tex" data-type="tex">\\(\\left[a,b\\right],\\,\\left]b,c\\right[,\\,\\left[c,d\\right],\\,\\left]d,e\\right]\\)</span>.""") do
+    scale = 80
+    Drawing(width=5.5scale, height=2scale) do
+        xmid = 0.5scale
+        ymid = 1.5scale
+        axis_xy(5.5scale,2scale,xmid,ymid,scale,(0.5, 1.5, 2.5, 3.5, 4.5),tuple(), xs=("a","b","c","d","e"))
+        plot_xy(x->-(x-1.25)^2+1, 0.5:0.01:1.5, (0.5, 1.5), xmid, ymid, scale, width=1)
+        plot_xy(x->-0.5(x-1.5)^2+1.25, 1.5:0.01:2.5, tuple(), xmid, ymid, scale, width=1)
+        circle(cx=xmid+1.5scale, cy=ymid-1.25scale, r=3, fill="white", stroke="red")
+        circle(cx=xmid+2.5scale, cy=ymid-0.75scale, r=3, fill="white", stroke="red")
+        plot_xy(x->x-2.25, 2.5:0.01:3.5, (2.5, 3.5), xmid, ymid, scale, width=1)
+        plot_xy(x->-0.25(x-2.25)+1, 3.5:0.01:4.5, (4.5,), xmid, ymid, scale, width=1)
+        circle(cx=xmid+3.5scale, cy=ymid-(-0.25*1.25+1)scale, r=3, fill="white", stroke="red")
+    end
+end
+```
+
 ## Continuous Functions
 
-## The Intermediate Value Theorem
+!!! definition "Continuous function"
+    We say that ``f`` is a *continuous function* if ``f`` is continuous at every point of its domain.
 
-## The Extreme Value Theorem
+!!! example
+    The function ``f\left(x\right)=\sqrt{x}`` is a continuous function. Its domain is ``\left[0,\infty\right[``. It is continuous at the left endpoint ``0`` because it is right continuous there. Also, ``f`` is continuous at every number ``c&gt;0`` since ``\lim_{x\to c}\sqrt x=\sqrt c``.
+
+!!! example
+    The function ``g\left(x\right)=\frac{1}{x}`` is also a continuous function. This may seem wrong to you at first glance because its graph is broken at ``x=0``. However, the number ``0`` is not in the domain of ``g``, so we will prefer to say that ``g`` is undefined rather than discontinuous there.
+
+The following functions are continuous wherever they are defined:
+1. all polynomials;
+2. all rational functions;
+3. all rational powers ``x^\frac{m}{n}=\sqrt[n]{x^m}``;
+4. the sine, cosine, tangent, secant, cosecant, and cotangent functions; and
+5. the absolute value function ``\left|x\right|``.
+
+Corollary 4 of this chapter assures us that every polynomial is continuous everywhere on the real line, and every rational function is continuous everywhere on its domain (which consists of all real numbers except the finitely many where its denominator is zero). If ``m`` and ``n`` are integers and ``n \neq 0``, the rational power function ``x^\frac{m}{n}`` is defined for all positive numbers ``x``, and also for all negative numbers ``x`` if ``n`` is odd. The domain includes ``0`` if and only if ``\frac{m}{n} \ge 0``.
+
+The following theorems show that if we combine continuous functions in various ways, the results will be continuous.
+
+!!! theorem
+    If ``f`` and ``g`` are continuous at the point ``c``, then so are ``f+g``, ``f-g``, ``fg``, and, if ``g\left(c\right)\neq0``, ``\displaystyle\frac{f}{g}``.
+
+!!! proof
+    This is just a restatement of various rules for combining limits; for example,
+    ```math
+    \lim_{x\to c}f\left(x\right)g\left(x\right)=\left(\lim_{x\to c}f\left(x\right)\right)\left(\lim_{x\to c}g\left(x\right)\right)=f\left(c\right)g\left(c\right)\,.
+    ```
+
+!!! theorem
+    If ``f`` is a continuous function at the point ``L`` and if ``\displaystyle\lim_{x\to c}g\left(x\right)=L``, then we have
+    ```math
+    \lim_{x\to c}f\left(g\left(x\right)\right)=f\left(L\right)=f\left(\lim_{x\to c}g\left(x\right)\right)\,.
+    ```
+
+!!! proof
+    Let ``\varepsilon >0`` be given.
+
+    Since ``f`` is continuous at ``L``, there exists ``\kappa&gt;0`` such that ``\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon`` whenever ``\left|g\left(x\right)\right|&lt;\kappa``.
+
+    Since ``\lim_{x\to c}g\left(x\right)=L``, there exists ``\delta>0`` such that if ``0&lt;\left|x-c\right|&lt;\delta``, then ``\left|g\left(x\right)-L\right|&lt;\kappa``.
+
+    Hence, if ``0&lt;\left|x-c\right|&lt;\delta``, then ``\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon``, and ``\lim_{x\to c}f\left(g\left(x\right)\right)=f\left(L\right)``.
+
+## Continuous Extensions and Removable Discontinuities
+
+As we have seen a rational function may have a limit even at a point where its denominator is zero. If ``f\left(c\right)`` is not defined, but ``\lim_{x\to c}f\left(x\right)=L`` exists, we can define a new function ``F\left(x\right)`` by
+```math
+    F\left(x\right)=\begin{cases}
+    f\left(x\right)&\textrm{if }x\textrm{ is in the domain of }f\\
+    L&\textrm{if }x=c\,.
+    \end{cases}
+```
+
+``F\left(x\right)`` is continuous at ``x=c``. It is called the *continuous extension* of ``f\left(x\right)`` to ``x=c``. For rational functions, continuous extensions are usually found by cancelling common factors.
+
+!!! example
+    Show that ``f\left(x\right)=\frac{x^2-x}{x^2-1}`` has a continuous extension to ``x=1``, and find that extension.
+
+    Although ``f\left(1\right)`` is not defined, if ``x\neq 1`` we have
+    ```math
+    f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\left(x-1\right)}=\frac{x}{x+1}\,.
+    ```
+
+    The function ``\displaystyle F\left(x\right)=\frac{x}{x+1}`` is equal to ``f\left(x\right)`` for ``x\neq 1`` but is also continuous at ``x=1``, having there the value ``\frac{1}{2}``. The continuous extension of ``f\left(x\right)`` to ``x=1`` is ``F\left(x\right)``. It has the same graph as ``f\left(x\right)`` except with no hole at ``\left(1,\frac{1}{2}\right)``.
+
+If a function ``f`` is undefined or discontinuous at a point ``c`` but can be (re)defined at that single point so that it becomes continuous there, then we say that ``f`` has a removable discontinuity at ``c``. The function ``f`` in the above example has a removable discontinuity at ``x=1``. To remove it, define ``f\left(1\right)=\frac{1}{2}``.
+
+!!! example
+    The function ``\displaystyle g\left(x\right)=\begin{cases}x&\textrm{if}\ x\neq2\\1&\textrm{if }x=2\end{cases}`` has a removable discontinuity at ``x=2``. To remove it, redefine ``g\left(2\right)=2``.
+
+## The Intermediate-Value Theorem
+
+Continuous functions that are defined on closed, finite intervals have special properties that make them particularly useful in mathematics and its applications. We will discuss two of these properties here. Although they may appear obvious, these properties are much more subtle than the results about limits stated earlier in this chapter; their proofs require a careful study of the implications of the completeness property of the real numbers and are based on the Nested Intervals theorem.
+
+The first property of a continuous function defined on a closed, finite interval is that the function takes on all real values between any two of its values. This property is called the intermediate-value property.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", """The continuous function <span class="math-tex" data-type="tex">\\(f\\)</span> takes on the value <span class="math-tex" data-type="tex">\\(s\\)</span> at some point <span class="math-tex" data-type="tex">\\(c\\)</span> between <span class="math-tex" data-type="tex">\\(a\\)</span> and <span class="math-tex" data-type="tex">\\(b\\)</span>.""") do
+    scale = 60
+    Drawing(width=5scale, height=4.5scale) do
+        xmid = 1scale
+        ymid = 4scale
+        f = x->sin(4*x-2)+(x-0.5)+0.5
+        x = 2.075
+        ymin = f(0.5)
+        y = f(x)
+        ymax = f(3.5)
+        axis_xy(4.5scale,4.5scale,xmid,ymid,scale,(0.5, x, 3.5),(ymin,y,ymax), xs=("a","c","b"), ys=("f\\left(a\\right)", "s", "f\\left(b\\right)"), yl=(3, 1.5, 3), shift_x=0.5scale)
+        plot_xy(f, 0.5:0.01:3.5, (0.5, 3.5), xmid, ymid, scale, width=1)
+        circle(cx=xmid+x*scale, cy=ymid-y*scale, r=3, fill="RoyalBlue", stroke="RoyalBlue")
+        line(x1=xmid, y1=ymid-y*scale, x2=xmid+3.5*scale, y2=ymid-y*scale, stroke="RoyalBlue")
+        line(x1=xmid+x*scale, y1=ymid, x2=xmid+x*scale, y2=ymid-y*scale, stroke="RoyalBlue")
+        line(x1=xmid, y1=ymid-ymin*scale, x2=xmid+0.5*scale, y2=ymid-ymin*scale, stroke="black", stroke_dasharray = "3")
+        line(x1=xmid+0.5*scale, y1=ymid, x2=xmid+0.5*scale, y2=ymid-ymin*scale, stroke="black", stroke_dasharray = "3")
+        line(x1=xmid, y1=ymid-ymax*scale, x2=xmid+3.5*scale, y2=ymid-ymax*scale, stroke="black", stroke_dasharray = "3")
+        line(x1=xmid+3.5*scale, y1=ymid, x2=xmid+3.5*scale, y2=ymid-ymax*scale, stroke="black", stroke_dasharray = "3")
+    end
+end
+```
+
+The figure shows a typical situation. The points ``\left(a, f\left(a\right)\right)`` and ``\left(b, f\left(b\right)\right)`` are on opposite sides of the horizontal line ``y=s``. Being unbroken, the graph ``y=f\left(x\right)`` must cross this line in order to go from one point to the other. In the figure, it crosses the line only once, at ``x=c``. If the line ``y=s`` were somewhat lower or higher, there might have been three crossings and three possible values for ``c``.
+
+We need the following lemma to prove the intermediate-value property.
+
+!!! lemma "Aura theorem"
+    Let ``f`` be continuous at ``c``.
+
+    1. If ``f\left(x\right)&gt;0``, then ``f\left(x\right)&gt;0`` for all ``x`` in some open interval containing ``c``.
+    2. If ``f\left(x\right)&lt;0``, then ``f\left(x\right)&lt;0`` for all ``x`` in some open interval containing ``c``.
+
+!!! proof
+    Let ``f\left(c\right)&gt;0``.
+
+    Then, corresponding to ``\displaystyle\varepsilon = \frac{f\left(c\right)}{2}&gt;0`` there exists a corresponding ``\delta&gt;0`` such that ``\left|x-c\right|&lt;\delta`` implies
+    ```math
+    \left|f\left(x\right)-f\left(c\right)\right|&lt;\frac{f\left(c\right)}{2} \iff -\frac{f\left(c\right)}{2}&lt;f\left(x\right)-f\left(c\right)&lt;\frac{f\left(c\right)}{2} \iff 0&lt;\frac{f\left(c\right)}{2}&lt;f\left(x\right)&lt;\frac{3f\left(c\right)}{2}\,.
+    ```
+    Hence, ``f\left(x\right)&gt;0`` for all ``x\in\left]c-\delta,c+\delta\right[``.
+
+!!! exercise
+    Prove the second part of the Aura theorem.
+
+We will first prove a special case from which the general case follows easily.
+
+!!! theorem "Bolzano's theorem"
+    Let ``f`` be a continuous function defined on ``\left[a,b\right]``. If ``f\left(a\right)&lt;0`` and ``f\left(b\right)&gt;0``, then there exists ``c\in\left]a,b\right[`` such that ``f\left(c\right)=0``.
+
+!!! proof "by contradiction"
+    Let ``I_0=\left[a_0, b_0\right]=\left[a,b\right]``. 
+    
+    If ``f\left(\frac{a_0+b_0}{2}\right)=0``, we are done. Otherwise, ``f`` changes sign on either ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]``.
+
+    Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` changes sign and repeat.
+
+    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=c``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+
+    Suppose ``f\left(c\right)&gt;0``. By the Aura theorem, ``f`` must be positive on an open interval containing ``c``. Since ``c=\sup\left\{a_n\right\}``, by the Capture theorem this open interval must contain some ``a_m``. But ``f\left(a_m\right)&lt;0`` which is a contradiction.
+
+    Suppose ``f\left(c\right)&lt;0``. By the Aura theorem, ``f`` must be negative on an open interval containing ``c``. Since ``c=\inf\left\{b_n\right\}``, by the Capture theorem this open interval must contain some ``b_m``. But ``f\left(b_m\right)&gt;0`` which is a contradiction.
+
+    Hence, ``f\left(c\right)=0``.
+
+If ``f\left(a\right)&gt;0`` and ``f\left(b\right)&lt;0``, then ``g=-f`` satisfies the hypotheses of Bolzano's theorem and therefore ``g\left(c\right)=-f\left(c\right)=0`` for some ``c\in\left]a,b\right[``, and hence ``f\left(c\right)=0``.
+
+!!! theorem "Intermediate-value theorem"
+    If ``f`` is continuous on the interval ``\left[a,b\right]`` and if ``s`` is a number between ``f\left(a\right)`` and ``f\left(b\right)``, then there exists a number ``c\in\left]a,b\right[`` such that ``f(c)=s``.
+
+!!! proof
+    Let ``s`` be a number between ``f\left(a\right)`` and ``f\left(b\right)``.
+
+    The function ``g\left(x\right)=f\left(x\right)-s`` is continuous and satifies the hypotheses of Bolzano's theorem, so there exists some ``c\in\left]a,b\right[`` such that ``g\left(c\right)=f\left(c\right)-s=0``.
+
+    Hence, ``f\left(c\right)=s``.
+
+!!! example
+    Show that the equation ``x^3-x-1=0`` has a solution in the interval ``\left[1,2\right]``.
+
+    The function ``f\left(x\right)=x^3-x-1`` is a polynomial and is therefore continuous everywhere.
+
+    Now ``f\left(1\right)=-1`` and ``f\left(2\right)=5``. Since ``0`` lies between ``-1`` and ``5``, the Intermediate-value theorem assures us that there must be a number ``c\in\left[1,2\right]`` such that ``f\left(c\right)=0``.
+
+One method for finding a zero of a function that is continuous and changes sign on an interval involves bisecting the interval many times, each time determining which half of the previous interval must contain the root, because the function has opposite signs at the two ends of that half.
+
+!!! example
+    Solve the equation ``x^3-x-1=0`` correct to ``3`` decimal places by successive bisection.
+
+    {cell=chap display=false output=false}
+    ```julia
+    let a = 1, b = 2, f = x->x^3-x-1, io = IOBuffer()
+        write(io, "<table>\n")
+        write(io, """<thead><th><span class="math-tex" data-type="tex">\\(i\\)</span></th><th><span class="math-tex" data-type="tex">\\(a_i\\)</span></th><th><span class="math-tex" data-type="tex">\\(b_i\\)</span></th><th><span class="math-tex" data-type="tex">\\(\\displaystyle\\frac{a_i+b_i}{2}\\)</span></th><th><span class="math-tex" data-type="tex">\\(\\displaystyle f\\left(\\frac{a_i+b_i}{2}\\right)\\)</span></th></thead>\n""")
+        for i in 0:11
+            m = 0.5(a+b)
+            fm = f(m)
+            write(io, """<tr><td><span class="math-tex" data-type="tex">\\(""" * string(i) * 
+            """\\)</span></td><td><span class="math-tex" data-type="tex">\\(""" * string(a) * 
+            """\\)</span></td><td><span class="math-tex" data-type="tex">\\(""" * string(b) * 
+            """\\)</span></td><td><span class="math-tex" data-type="tex">\\(""" * string(m) * 
+            """\\)</span></td><td style="text-align: center"><span class="math-tex" data-type="tex">\\(""" * string(round(fm, digits=4)) *
+            """\\)</span></td></tr>\n""")
+            if fm < 0
+                a = m
+            else
+                b = m
+            end
+        end
+        write(io, "</table>\n")
+        String(take!(io))
+    end
+    ```
+
+    The root is ``1.325`` rounded to ``3`` decimal places.
+
+This method is slow. For example, if the original interval has length ``1``, it will take ``11`` bisections to cut down to an interval of length less than ``0.0005`` (because ``2^{11}&gt;2000=\frac{1}{0.0005}``, and thus to ensure that we have found the root correct to ``3`` decimal places.
+
+In chapter 5, calculus will provide us with much faster methods of solving equations such as the one in the example above. 
+
+## The Extreme-Value Theorem
+
+
+## Connected Graphs 
+
+By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value ``m`` and its maximum value ``M`` , so its range is also a closed interval, ``\left[m,M\right]``.
+
+This is the reason why the graph of a function that is continuous on an interval cannot have any breaks. It must be *connected*, a single, unbroken curve with no jumps.
