@@ -60,6 +60,56 @@ function plot_xy(f::Function, xs, xdots, Ox::Number, Oy::Number, scale::Number; 
 		circle(cx=Ox+scale*x, cy=Oy-scale*y, r=3, fill=color, stroke=color)
 	end
 end
+
+function table(f::Function)
+    io = IOBuffer()
+    write(io, "<table>\n")
+    f(io)
+    write(io, "</table>\n")
+    String(take!(io))
+end
+
+function thead(io::IOBuffer, header; latex::Bool=false, align=:left)
+    write(io, "<thead>")
+    for (nr, element) in enumerate(header)
+        style = if align isa Symbol
+            string(align)
+        else
+            string(align[nr])
+        end
+        write(io, """<th style="text-align: $style">""")
+        if latex
+            write(io, tex(element))
+        else
+            write(io, element)
+        end
+        write(io, "</th>")
+    end
+    write(io, "</thead>\n")
+end
+
+function trow(io::IOBuffer, row; latex::Bool=false, align=:left)
+    write(io, "<tr>")
+    for (nr, element) in enumerate(row)
+        style = if align isa Symbol
+            string(align)
+        else
+            string(align[nr])
+        end
+        write(io, """<td style="text-align: $style">""")
+        if latex
+            write(io, tex(element))
+        else
+            write(io, element)
+        end
+        write(io, "</td>")
+    end
+    write(io, "</tr>\n")
+end
+
+function tex(str::String)
+    """<span class="math-tex" data-type="tex">\\(""" * str * """\\)</span>"""
+end
 ```
 
 Calculus was created to describe how quantities change:
@@ -104,20 +154,31 @@ The instantaneous velocity of the object at the instant ``t`` can be estimated b
     How fast is the rock of the previous example falling 
     1. at time ``t=1\,\left[\mathrm{s}\right]``?
 
-       | Time interval | Average velocity |
-       |:-------------:|:----------------:|
-       |``\left[1,1.1\right]`` |``10.29`` |
-       |``\left[1,1.01\right]`` |``9.849`` |
-       |``\left[1,1.001\right]`` |``9.805`` |
-       |``\left[1,1.0001\right]`` |``9.801`` |
+       {cell=chap display=false output=false}
+       ```julia
+        table() do io
+            f = (x1, x2)->4.9(x2+x1)
+            thead(io, ("Time Interval", "Average Velocity"), align=:center)
+            for (x1, x2) in ((1, 1.1), (1, 1.01), (1, 1.001), (1, 1.0001))
+                fx = f(x1, x2)
+                trow(io, ("\\left[" * string(x1) * "," * string(x2) * "\\right]", string(round(fx, digits=4))), latex=true, align=:center)
+            end
+        end
+       ```
+
     2. at time ``t=2\,\left[\mathrm{s}\right]``?
 
-       | Time interval | Average velocity |
-       |:-------------:|:----------------:|
-       |``\left[2,2.1\right]`` |``20.09`` |
-       |``\left[2,2.01\right]`` |``19.65`` |
-       |``\left[2,2.001\right]`` |``19.60`` |
-       |``\left[2,2.0001\right]`` |``19.60`` |
+       {cell=chap display=false output=false}
+       ```julia
+        table() do io
+            f = (x1, x2)->4.9(x2+x1)
+            thead(io, ("Time Interval", "Average Velocity"), align=:center)
+            for (x1, x2) in ((2, 2.1), (2, 2.01), (2, 2.001), (2, 2.0001))
+                fx = f(x1, x2)
+                trow(io, ("\\left[" * string(x1) * "," * string(x2) * "\\right]", string(round(fx, digits=4))), latex=true, align=:center)
+            end
+        end
+       ```
 
 In the second example the average velocity of the falling rock over the time interval ``\left[t,t+h\right]`` is
 
@@ -235,7 +296,7 @@ In order to speak meaningfully about rate of change, tangent lines, and areas bo
 
     {cell=chap display=false output=false}
     ```julia
-    Figure("", """The graph of <span class="math-tex" data-type="tex">\\(\\left(x\\right)=\\frac{x^2-1}{x-1}\\)</span>.""") do
+    Figure("", """The graph of """ * tex("""f\\left(x\\right)=\\frac{x^2-1}{x-1}""") * ".") do
         scale = 40
         Drawing(width=7scale, height=6scale) do
             xmid = 2scale
@@ -258,21 +319,23 @@ In order to speak meaningfully about rate of change, tangent lines, and areas bo
 
     Note that ``g`` is not defined at ``x=0``. In fact, for the moment it does not appear to be defined for any ``x`` whose square ``x^2`` is not a rational number. Let us ignore for now the problem of deciding what ``g\left(x\right)`` means if ``x^2`` is irrational and consider only rational values of ``x``. There is no obvious way to simplify the expression for ``g\left(x\right)`` as we did in previous example. However, we can use a scientific calculator to obtain approximate values of ``g\left(x\right)`` for some rational values of ``x`` approaching ``0``.
 
-    |``x``|``g\left(x\right)``|
-    |:---:|:-----------------:|
-    |``\pm 0.1``|``2.704813829``|
-    |``\pm 0.01``|``2.718145927``|
-    |``\pm 0.001``|``2.718280469``|
-    |``\pm 0.0001``|``2.718281815``|
-    |``\pm 0.00001``|``1.000000000``|
+    {cell=chap display=false output=false}
+    ```julia
+    table() do io
+        g = x->(1+x^2)^(1/x^2)
+        thead(io, ("x", "g\\left(x\\right)"), latex=true, align=:center)
+        for x in (0.1, 0.01, 0.001, 0.0001)
+            gx = g(x)
+            trow(io, ("\\pm " * string(x), string(round(gx, digits=9))), latex=true)
+        end
+    end
+    ```
 
     Except the last value in the table, the values of ``g\left(x\right)`` seem to be approaching a certain number, ``2.71828\dots``, as ``x`` tends to ``0``. We will see in Chapter 5 that
 
     ```math
     \lim_{x\to 0}g\left(x\right)=\lim_{x\to 0}\left(1+x^2\right)^\frac{1}{x^2}=ℯ=2.718281828459045\dots\,.
     ```
-
-    Observe that the last entry in the table appears to be wrong. It is because the calculator or MATLAB can only represent a finite number of numbers. The calculator was unable to distinguish ``1+\left(0.00001\right)^2=1.0000000001`` from ``1``, and it therefore calculated ``1^{10000000000}=1``. See the course of MATLAB.
 
 The examples and the previous sections suggest the following informal definition of limit.
 
@@ -309,7 +372,7 @@ When we say that ``f`` has limit ``L`` as ``x`` tends to ``a``, we are really sa
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", """If <span class="math-tex" data-type="tex">\\(x\\ne a\\)</span> and <span class="math-tex" data-type="tex">\\(\\left|x-a\\right|<\\delta\\)</span>, then <span class="math-tex" data-type="tex">\\(\\left|f\\left(x\\right)-L\\right|<\\varepsilon\\)</span>.""") do
+Figure("", "If " * tex("x\\ne a") * " and " * tex("\\left|x-a\\right|&lt;\\delta") * ", then " * tex("\\left|f\\left(x\\right)-L\\right|&lt;\\varepsilon" * ".")) do
     scale = 40
     Drawing(width=6scale, height=4.5scale) do
         xmid = 1scale
@@ -444,7 +507,7 @@ Although a function ``f`` can only have one limit at any particular point, it is
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", """<span class="math-tex" data-type="tex">\\(\\newcommand{\\sgn}{\\operatorname{sgn}}\\lim_{x\\to0^-}\\sgn x=-1\\)</span> and <span class="math-tex" data-type="tex">\\(\\lim_{x\\to0^+}\\sgn x=1\\)</span>.""") do
+Figure("", tex("\\newcommand{\\sgn}{\\operatorname{sgn}}\\lim_{x\\to0^-}\\sgn x=-1") * " and " * tex("\\lim_{x\\to0^+}\\sgn x=1") * ".") do
 	Drawing(width=255, height=155) do
 		xmid = 125
 		ymid = 80
@@ -512,7 +575,7 @@ The existence of different right and left limits of a function at a point exclud
 
     {cell=chap display=false output=false}
     ```julia
-    Figure("", """<span class="math-tex" data-type="tex">\\(\\sqrt{1-x^2}\\)</span> has right limit 0 at -1 and left limit 0 at 1.""") do
+    Figure("", tex("\\sqrt{1-x^2}") * """ has right limit 0 at -1 and left limit 0 at 1.""") do
         Drawing(width=255, height=150) do
             xmid = 125
             ymid = 130
@@ -618,7 +681,7 @@ The following theorem will enable us to calculate some very important limits in 
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", """The graph of <span class="math-tex" data-type="tex">\\(g\\)</span> is squeezed between those of <span class="math-tex" data-type="tex">\\(f\\)</span> and <span class="math-tex" data-type="tex">\\(h\\)</span>.""") do
+Figure("", "The graph of " * tex("g") * " is squeezed between those of " * tex("f") * " and " * tex("h") * ".") do
     scale = 40
     Drawing(width=6scale, height=4.5scale) do
         xmid = 1scale
@@ -714,16 +777,22 @@ We will extend the concept of limit to allow for two situations not covered by t
 
     whose graph is shown in the next figure and for which some values are given in the following table for values of ``x`` that becomes arbitrarly large, positive and negative?
 
-    |``x``|``f\left(x\right)=\frac{x}{\sqrt{x^2+1}}``|``x``|``f\left(x\right)=\frac{x}{\sqrt{x^2+1}}``|
-    |:---:|:----------------------------------------:|:---:|:----------------------------------------:|
-    |``-1000``|``-0.9999995``|``1``|``0.7071068``|
-    |``-100``|``-0.9999500``|``10``|``0.9950372``|
-    |``-10``|``-0.9950372``|``100``|``0.9999500``|
-    |``-1``|``-0.7071068``|``1000``|``0.9999995``|
+    {cell=chap display=false output=false}
+    ```julia
+    table() do io
+        g = x->x/sqrt(x^2+1)
+        thead(io, ("x", "f\\left(x\\right)=\\frac{x}{\\sqrt{x^2+1}}", "x", "f\\left(x\\right)=\\frac{x}{\\sqrt{x^2+1}}"), latex=true, align=:center)
+        for (x1, x2) in ((-1000, 1), (-100, 10), (-10, 100), (1, 1000))
+            gx1 = g(x1)
+            gx2 = g(x2)
+            trow(io, (string(x1), string(round(gx1, digits=9)), string(x2), string(round(gx2, digits=9))), latex=true, align=:center)
+        end
+    end
+    ```
 
     {cell=chap display=false output=false}
     ```julia
-    Figure("", """The graph of <span class="math-tex" data-type="tex">\\(\\frac{x}{\\sqrt{x^2+1}}\\)</span>.""") do
+    Figure("", "The graph of " * tex("\\frac{x}{\\sqrt{x^2+1}}") * ".") do
         scale = 40
         Drawing(width=12scale, height=3.5scale) do
             xmid = 6scale
@@ -838,7 +907,7 @@ A function whose values grow arbitrarily large can sometimes said to have an inf
 
     {cell=chap display=false output=false}
     ```julia
-    Figure("", """The graph of <span class="math-tex" data-type="tex">\\(\\frac{1}{x^2}\\)</span>.""") do
+    Figure("", "The graph of " * tex("\\displaystyle\\frac{1}{x^2}") * ".") do
         scale = 60
         Drawing(width=6scale, height=3.5scale) do
             xmid = 3scale
@@ -894,7 +963,7 @@ A function whose values grow arbitrarily large can sometimes said to have an inf
 
     {cell=chap display=false output=false}
     ```julia
-    Figure("", """The graph of <span class="math-tex" data-type="tex">\\(\\frac{1}{x}\\)</span>.""") do
+    Figure("", "The graph of " * tex("\\displaystyle\\frac{1}{x}") * ".") do
         scale = 40
         Drawing(width=8scale, height=8scale) do
             xmid = 4scale
@@ -964,7 +1033,7 @@ Most functions that we encounter have domains that are intervals, or unions of s
     that is,
 
     ```math
-    \forall \varepsilon&gt;0,\exists\delta\left(\varepsilon\right)&gt;0:\left|x-c\right|&lt;\delta\implies\left|f\left(x\right)-f\left(c\right)\right|&lt;\epsilon\,.
+    \forall \varepsilon&gt;0,\exists\delta\left(\varepsilon\right)&gt;0:\left|x-c\right|&lt;\delta\implies\left|f\left(x\right)-f\left(c\right)\right|&lt;\varepsilon\,.
     ```
 
     If either ``\lim_{x\to c}f\left(x\right)`` fails to exist or it exists but is not equal to ``f\left(c\right)``, then we will say that ``f`` is discontinuous at ``c``.
@@ -973,7 +1042,7 @@ In graphical terms, ``f`` is continuous at an interior point ``c`` of its domain
  
 {cell=chap display=false output=false}
 ```julia
-Figure("", """<span class="math-tex" data-type="tex">\\(f\\left(x\\right)\\)</span> is continuous at <span class="math-tex" data-type="tex">\\(c\\)</span>; <span class="math-tex" data-type="tex">\\(\\displaystyle\\lim_{x\\to c}g\\left(x\\right)\\neq g\\left(c\\right)\\)</span>; <span class="math-tex" data-type="tex">\\(\\displaystyle\\lim_{x\\to c}h\\left(x\\right)\\)</span> does not exist</span>.""") do
+Figure("", tex("f") * " is continuous at " * tex("c") * "; " * tex("\\displaystyle\\lim_{x\\to c}g\\left(x\\right)\\neq g\\left(c\\right)") * "; " * tex("\\displaystyle\\lim_{x\\to c}h\\left(x\\right)") * " does not exist.") do
     scale = 70
     Drawing(width=8.5scale, height=2.5scale) do
         xmid = 0.5scale
@@ -1046,7 +1115,7 @@ These concepts are illustrated in following figure.
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", """<span class="math-tex" data-type="tex">\\(f\\left(x\\right)\\)</span> is continuous on the intervals <span class="math-tex" data-type="tex">\\(\\left[a,b\\right],\\,\\left]b,c\\right[,\\,\\left[c,d\\right],\\,\\left]d,e\\right]\\)</span>.""") do
+Figure("", tex("f") * " is continuous on the intervals " * tex("\\left[a,b\\right],\\,\\left]b,c\\right[,\\,\\left[c,d\\right],\\,\\left]d,e\\right]") * ".") do
     scale = 80
     Drawing(width=5.5scale, height=2scale) do
         xmid = 0.5scale
@@ -1144,7 +1213,7 @@ The first property of a continuous function defined on a closed, finite interval
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", """The continuous function <span class="math-tex" data-type="tex">\\(f\\)</span> takes on the value <span class="math-tex" data-type="tex">\\(s\\)</span> at some point <span class="math-tex" data-type="tex">\\(c\\)</span> between <span class="math-tex" data-type="tex">\\(a\\)</span> and <span class="math-tex" data-type="tex">\\(b\\)</span>.""") do
+Figure("", "The continuous function " * tex("f") * " takes on the value " * tex("s") * " at some point " * tex("c") * " between " * tex("a") * " and " * tex("b") * ".") do
     scale = 60
     Drawing(width=5scale, height=4.5scale) do
         xmid = 1scale
@@ -1197,11 +1266,11 @@ We will first prove a special case from which the general case follows easily.
 !!! proof "by contradiction"
     Let ``I_0=\left[a_0, b_0\right]=\left[a,b\right]``. 
     
-    If ``f\left(\frac{a_0+b_0}{2}\right)=0``, we are done. Otherwise, ``f`` changes sign on either ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]``.
+    If ``\displaystyle f\left(\frac{a_0+b_0}{2}\right)=0``, we are done. Otherwise, ``f`` changes sign on either ``\displaystyle\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\displaystyle\left[\frac{a_0+b_0}{2},b_0\right]``.
 
     Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` changes sign and repeat.
 
-    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=c``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
     Suppose ``f\left(c\right)&gt;0``. By the Aura theorem, ``f`` must be positive on an open interval containing ``c``. Since ``c=\sup\left\{a_n\right\}``, by the Capture theorem this open interval must contain some ``a_m``. But ``f\left(a_m\right)&lt;0`` which is a contradiction.
 
@@ -1212,7 +1281,7 @@ We will first prove a special case from which the general case follows easily.
 If ``f\left(a\right)&gt;0`` and ``f\left(b\right)&lt;0``, then ``g=-f`` satisfies the hypotheses of Bolzano's theorem and therefore ``g\left(c\right)=-f\left(c\right)=0`` for some ``c\in\left]a,b\right[``, and hence ``f\left(c\right)=0``.
 
 !!! theorem "Intermediate-value theorem"
-    If ``f`` is continuous on the interval ``\left[a,b\right]`` and if ``s`` is a number between ``f\left(a\right)`` and ``f\left(b\right)``, then there exists a number ``c\in\left]a,b\right[`` such that ``f(c)=s``.
+    If ``f`` is continuous on the interval ``\left[a,b\right]`` and if ``s`` is a number between ``f\left(a\right)`` and ``f\left(b\right)``, then there exists a number ``c\in\left]a,b\right[`` such that ``f\left(c\right)=s``.
 
 !!! proof
     Let ``s`` be a number between ``f\left(a\right)`` and ``f\left(b\right)``.
@@ -1235,26 +1304,21 @@ One method for finding a zero of a function that is continuous and changes sign 
 
     {cell=chap display=false output=false}
     ```julia
-    let a = 1, b = 2, f = x->x^3-x-1, io = IOBuffer()
-        write(io, "<table>\n")
-        write(io, """<thead><th><span class="math-tex" data-type="tex">\\(i\\)</span></th><th><span class="math-tex" data-type="tex">\\(a_i\\)</span></th><th><span class="math-tex" data-type="tex">\\(b_i\\)</span></th><th><span class="math-tex" data-type="tex">\\(\\displaystyle\\frac{a_i+b_i}{2}\\)</span></th><th><span class="math-tex" data-type="tex">\\(\\displaystyle f\\left(\\frac{a_i+b_i}{2}\\right)\\)</span></th></thead>\n""")
+    table() do io
+        a = 1
+        b = 2
+        f = x->x^3-x-1
+        thead(io, ("i", "a_i", "B_i", "\\displaystyle\\frac{a_i+b_i}{2}", "\\displaystyle f\\left(\\frac{a_i+b_i}{2}\\right)"), latex=true)
         for i in 0:11
             m = 0.5(a+b)
             fm = f(m)
-            write(io, """<tr><td><span class="math-tex" data-type="tex">\\(""" * string(i) * 
-            """\\)</span></td><td><span class="math-tex" data-type="tex">\\(""" * string(a) * 
-            """\\)</span></td><td><span class="math-tex" data-type="tex">\\(""" * string(b) * 
-            """\\)</span></td><td><span class="math-tex" data-type="tex">\\(""" * string(m) * 
-            """\\)</span></td><td style="text-align: center"><span class="math-tex" data-type="tex">\\(""" * string(round(fm, digits=4)) *
-            """\\)</span></td></tr>\n""")
+            trow(io, (string(i), string(a), string(b), string(m), string(round(fm, digits=4))), latex= true, align=(:left, :left, :left, :left, :center))
             if fm < 0
                 a = m
             else
                 b = m
             end
         end
-        write(io, "</table>\n")
-        String(take!(io))
     end
     ```
 
@@ -1266,8 +1330,112 @@ In chapter 5, calculus will provide us with much faster methods of solving equat
 
 ## The Extreme-Value Theorem
 
+The second of the properties states that a function ``f`` that is continuous on a closed, finite interval ``\left[a,b\right]`` must have an absolute maximum value and an absolute minimum value. This means that the values of ``f\left(x\right)`` at all points of the interval lie between the values of ``f\left(x\right)`` at two particular points in the interval; the graph of ``f`` has a highest point and a lowest point.
 
-## Connected Graphs 
+To prove the extreme-value theorem, we will first show that a continuous function on a closed interval is bounded; that is, there exists a constant ``K`` such that ``\left|f\left(x\right)\right|\le K`` if ``a\le x\le b``.
+
+We need the following lemma to prove the boundness property.
+
+!!! lemma
+    If ``f`` is continuous at ``a``, then ``f`` is bounded on some open interval containing ``a``.
+
+!!! proof
+    Since ``f`` is continuous at ``a``, corresponding to ``\varepsilon =1&gt;0``, there exists ``\delta>0`` such that ``\left|x-a\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(a\right)\right|&lt;1``.
+
+    That is, ``x\in\left]a-\delta,a+\delta\right[`` implies ``f\left(a\right)-1&lt;f\left(x\right)&lt;f\left(a\right)+1``, which shows that ``f`` is bounded on the open interval ``\left]a-\delta,a+\delta\right[``.
+
+As we have seen in the proof of the intermediate-value theorem, when our nested intervals ``I_n=\left[a_n,b_n\right]`` arise from the bisection procedure the capture theorem implies that any open interval containing ``c`` (where ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``) necessarily contains an ``a_k`` and a ``b_l``. Something stronger is actually true: any open interval containing ``c`` actually contains an entire interval ``I_N``, for some ``N``.
+
+To see this, note that there are tree possibilities:
+- if ``k=l``, then the open interval contains ``I_k``;
+- if ``k&lt; l``, then the open interval contains ``a_k\le a_{k+1}\le \dots a_l\le b_l``, so the open interval contains ``I_l``;
+- if  if ``k&gt; l``, then the open interval contains ``a_k\le b_k\le \dots \le \dots b_{l+1}\le b_l``, so the open interval contains ``I_k``.
+
+!!! theorem "Boundness theorem"
+    If ``f`` is continous on ``\left[a,b\right]``, then ``f`` is bounded on ``\left[a,b\right]``.
+
+!!! proof "by contradiction"
+    Let ``I_0=\left[a_0, b_0\right]=\left[a,b\right]``.
+
+    Suppose ``f`` is continuous on ``\left[a,b\right]`` but not bounded. Then ``f`` is either unbounded on ``\displaystyle \left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\displaystyle \left[\frac{a_0+b_0}{2},b_0\right]`` (since, otherwise, ``f`` would be bounded on their union and hence on all ``I_0``).
+
+    Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` is unbounded and repeat.
+
+    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+
+    Since ``f`` is continuous at ``c``, ``f`` is bounded on some open interval containing ``c``. However, as we have seen, such an open interval contains one of the intervals ``I_N``, which is a contradiction since ``f`` is unbounded on each ``I_n``.
+
+    Hence, ``f`` is bounded on ``\left[a,b\right]``.
+
+Finally, we can prove the Extreme-value theorem.
+
+!!! theorem "Extreme-value theorem"
+    A continuous function on ``\left[a,b\right]`` attains both an absolute maximum and an absolute minimum on ``\left[a,b\right]``.
+
+!!! proof "by contradiction"
+    We prove ``f`` has a maximum on ``\left[a,b\right]``.
+
+    Since ``f`` is continuous on ``\left[a,b\right]``, by the Boundness theorem ``f`` is bounded on ``\left[a,b\right]``.
+
+    Since ``f`` is bounded, its image set is a nonempty subset of ``ℝ`` which is bounded above, so by the Completeness axiom it has a least upper bound.
+
+    Let ``M=\sup f\left(\left[a,b\right]\right)``. By definition of ``M``, ``f\left(x\right)\le M`` for all ``x\in\left[a,b\right]``.
+
+    Suppose that ``f\left(x\right)&lt; M`` for all ``x\in\left[a,b\right]``.
+
+    Then ``\displaystyle g\left(x\right)=\frac{1}{M-f\left(x\right)}`` is continuous on ``\left[a,b\right]`` and hence bounded on ``\left[a,b\right]`` by the Boundness theorem.
+
+    So, there exists ``K>0`` such that ``\displaystyle\frac{1}{M-f\left(x\right)}\le K`` for all ``x\in\left[a,b\right]``.
+
+    It follows that ``\displaystyle f\left(x\right)\le M-\frac{1}{K}`` for all ``x\in\left[a,b\right]``, which says that ``\displaystyle M-\frac{1}{K}`` is an upper bound for ``f\left(\left[a,b\right]\right)``.
+
+    Since ``K>0``, ``\displaystyle M-\frac{1}{K}&lt; M``. This contradicts the fact that ``M=\sup f\left(\left[a,b\right]\right)``.
+
+    Hence, there must exist ``c\in\left[a,b\right]`` such that ``f\left(c\right)=M``.
+
+To see that ``f`` has a minimum on ``\left[a,b\right]``, just note that ``h=-f`` is continuous on ``\left[a,b\right]`` and therefore has a maximum of ``\left[a,b\right]``.
+
+!!! exercise
+    Complete the proof that a continuous function ``f`` on a closed interval ``\left[a,b\right]`` attains its absolute minimum.
+
+The conclusion of the Extreme-value theorem may fail if the function ``f`` is not continuous or if the interval is not closed.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", """<div style="text-align: justify"><ul><li>""" * tex("\\displaystyle f_1\\left(x\\right)=\\frac{1}{x}") * " is continuous on the open interval " * tex("\\left]0,1\\right[") * ". It is not bounded and has neither a maximum nor a mnimum value.</li><li>" * tex("f_2\\left(x\\right)=x") * " is continuous on the open interval" * tex("\\left]0,1\\right[") * ". It is bounded but neither has a maximum nor a minimum value.</li><li>" * tex("\\displaystyle f_3") * " is defined on the closed interval " * tex("\\left[0,1\\right]") * " but is discontinuous at the endpoint " * tex("x=1") * ". It has a minimum value but no maximum value.</li><li>" * tex("\\displaystyle f_4") * " is discontinuous at an interior point of its domain, the closed interval" * tex("\\left[0,1\\right]") * ". It is bounded but has neither maximum nor minimum values.</li></ul></div>") do
+    scale = 60
+    Drawing(width=10scale, height=2.75scale) do
+        xmid = 0.5scale
+        ymid = 2.25scale
+        axis_xy(2scale,2.75scale,xmid,ymid,scale,(1,),tuple())
+        plot_xy(x->1/x, 0.1:0.01:1, tuple(), xmid, ymid, scale, width=1)
+        latex("y=f_1\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4*font_x, height=font_y+2)
+        circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="white", stroke="red")
+        xmid = 3scale
+        axis_xy(2scale,2.75scale,xmid,ymid,scale,(1,),tuple(),shift_x=2.5scale)
+        plot_xy(x->x, 0:0.01:1, tuple(), xmid, ymid, scale, width=1)
+        latex("y=f_2\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4font_x, height=font_y+2)
+        circle(cx=xmid, cy=ymid, r=3, fill="white", stroke="red")
+        circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="white", stroke="red")
+        xmid = 5.5scale
+        axis_xy(2scale,2.75scale,xmid,ymid,scale,(1,),tuple(),shift_x=5scale)
+        plot_xy(x->x, 0:0.01:1, (0, ), xmid, ymid, scale, width=1)
+        latex("y=f_3\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4font_x, height=font_y+2)
+        circle(cx=xmid+scale, cy=ymid, r=3, fill="red", stroke="red")
+        circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="white", stroke="red")
+        xmid = 8scale
+        axis_xy(2scale,2.75scale,xmid,ymid,scale,(0.5, 1,),tuple(),shift_x=7.5scale)
+        plot_xy(x->1+2x, 0:0.01:0.5, (0,), xmid, ymid, scale, width=1)
+        plot_xy(x->2x-1, 0.5:0.01:1, (1,), xmid, ymid, scale, width=1)
+        latex("y=f_4\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4font_x, height=font_y+2)
+        circle(cx=xmid+0.5scale, cy=ymid-2scale, r=3, fill="white", stroke="red")
+        circle(cx=xmid+0.5scale, cy=ymid, r=3, fill="white", stroke="red")
+        circle(cx=xmid+0.5scale, cy=ymid-scale, r=3, fill="red", stroke="red")
+    end
+end
+```
+
+The Intermediate-value theorem and the Extreme-value theorem are examples of what mathematicians call *existence theorems*. Such theorems assert that something exists without telling you how to find it.
 
 By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value ``m`` and its maximum value ``M`` , so its range is also a closed interval, ``\left[m,M\right]``.
 

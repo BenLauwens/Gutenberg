@@ -40,8 +40,6 @@ Paged.registerHandlers(handlers);
 </script-->
 <script>
 MathJax = {
-    loader: { load: ["input/tex", "ui/menu", "[tex]/color"] },
-    tex: { packages: { "[+]": ["color"] } },
     startup: {
         pageReady() {
             MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
@@ -78,7 +76,7 @@ MathJax = {
 };
 </script>
 
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
 
 <script>
 class handlers extends Paged.Handler {
