@@ -87,7 +87,7 @@ class handlers extends Paged.Handler {
         let tocElementNbr = 0
         const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1']
         for (let i = 0; i < selectors.length; i++) {
-            let matches = document.querySelectorAll(selectors[i])
+            let matches = content.querySelectorAll(selectors[i])
             matches.forEach((element) => {
                 element.classList.add('toc-element')
                 element.setAttribute('data-toc-level', i + 1)
@@ -98,9 +98,9 @@ class handlers extends Paged.Handler {
         }
         let level = 0;
         let toc = document.createElement('div')
-        let matches = document.querySelectorAll('.toc-element')
+        let entry = toc
+        let matches = content.querySelectorAll('.toc-element')
         matches.forEach((element) => {
-            console.log(element.textContent)
             if (element.dataset.tocLevel > level) {
                 level++
                 entry = document.createElement('ol')
@@ -122,7 +122,7 @@ class handlers extends Paged.Handler {
             toc = toc.parentElement
             level--
         }
-        let nav = document.querySelector('nav[data-type="toc"]')
+        let nav = content.querySelector('nav[data-type="toc"]')
         if (!nav) {
             console.warn('no nav found')
         } else {

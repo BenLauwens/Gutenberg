@@ -90,6 +90,10 @@
     }
 }
 
+body[data-type="article"] nav {
+    display: hidden;
+}
+
 @page {
     size: A4;
     margin-bottom: 2.5cm;
