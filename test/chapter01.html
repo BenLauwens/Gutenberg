@@ -7,37 +7,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="oreilly.css" />
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
-<!--script>
-class handlers extends Paged.Handler {
-    constructor(chunker, polisher, caller) {
-        super(chunker, polisher, caller);
-    }
-
-    beforeParsed(content) {
-        renderMathInElement(content, {
-            delimiters: [
-            { left: "\\(", right: "\\)", display: false },
-            { left: "\\[", right: "\\]", display: true },
-            ],
-            throwOnError: false,
-            output: "mathml",
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
-            hljs.highlightElement(el);
-        });
-    }
-
-    afterRendered(pages) {
-        const element = document.getElementById("tag");
-        element.scrollIntoViewIfNeeded();
-    }
-}
-
-Paged.registerHandlers(handlers);
-</script-->
 <script>
 MathJax = {
     startup: {
@@ -101,6 +71,50 @@ class handlers extends Paged.Handler {
         content.querySelectorAll("pre code").forEach((el) => {
             hljs.highlightElement(el);
         });
+        let tocElementNbr = 0
+        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1']
+        for (let i = 0; i < selectors.length; i++) {
+            let matches = document.querySelectorAll(selectors[i])
+            matches.forEach((element) => {
+                element.classList.add('toc-element')
+                element.setAttribute('data-toc-level', i + 1)
+                if (element.id == '') {
+                    element.id = 'toc-element-' + tocElementNbr++
+                }
+            })
+        }
+        let level = 0;
+        let toc = document.createElement('div')
+        let matches = document.querySelectorAll('.toc-element')
+        matches.forEach((element) => {
+            console.log(element.textContent)
+            if (element.dataset.tocLevel > level) {
+                level++
+                entry = document.createElement('ol')
+                toc.appendChild(entry)
+                toc = entry
+                
+            } else if (element.dataset.tocLevel < level) {
+                toc = toc.parentElement
+                level--
+                entry = document.createElement('li')
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+                toc.appendChild(entry)
+            }
+                entry = document.createElement('li')
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+                toc.appendChild(entry)
+        })
+        while (level > 1) {
+            toc = toc.parentElement
+            level--
+        }
+        let nav = document.querySelector('nav[data-type="toc"]')
+        if (!nav) {
+            console.warn('no nav found')
+        } else {
+            nav.appendChild(toc)
+        }
     }
 
     afterRendered(pages) {
@@ -113,12 +127,13 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="article">
+<nav data-type="toc"></nav>
 <div id="tag"></div>
 <section data-type="chapter">
-<h1 id=chapter_1>Preliminaries</h1>
+<h1 id="chapter_1">Preliminaries</h1>
 <p>This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.</p>
 <section data-type="sect1">
-<h1 id=section1_2>Propositions</h1>
+<h1 id="section1_2">Propositions</h1>
 <div data-type="definition">
 <h1 id="definition_3"></h1>
 <p>A <i>proposition</i> is a declarative sentence which is true <span class="math-tex" data-type="tex">\(T\)</span> or false <span class="math-tex" data-type="tex">\(F,\)</span> but not both.</p>
@@ -142,7 +157,7 @@ Paged.registerHandlers(handlers);
 <p>The fundamental property of a compound proposition is that its truth value is completely determined by the truth values of its subpropositions together with the way in which they are connected to form the compound proposition.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_5>Connectives</h1>
+<h1 id="section1_5">Connectives</h1>
 <p>Any two propositions <span class="math-tex" data-type="tex">\(𝒫\)</span> and <span class="math-tex" data-type="tex">\(𝒬\)</span> can be combined by the word “and” to form a compound proposition called the <i>conjunction</i> of <span class="math-tex" data-type="tex">\(𝒫\)</span> and <span class="math-tex" data-type="tex">\(𝒬\)</span>, denoted <span class="math-tex" data-type="tex">\(𝒫\wedge 𝒬\)</span> and read “<span class="math-tex" data-type="tex">\(𝒫\)</span> and <span class="math-tex" data-type="tex">\(𝒬\)</span>”. If <span class="math-tex" data-type="tex">\(𝒫\)</span> and <span class="math-tex" data-type="tex">\(𝒬\)</span> are true, then <span class="math-tex" data-type="tex">\(𝒫\wedge 𝒬\)</span> is true; otherwise <span class="math-tex" data-type="tex">\(𝒫\wedge 𝒬\)</span> is false. The truth value of <span class="math-tex" data-type="tex">\(𝒫\wedge 𝒬\)</span> may be defined equivalently by the following truth table:</p>
 <table>
 <thead>
@@ -316,7 +331,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_11>Logical Equivalence</h1>
+<h1 id="section1_11">Logical Equivalence</h1>
 <p>The propositions <span class="math-tex" data-type="tex">\(𝒫\)</span> and <span class="math-tex" data-type="tex">\(𝒬\)</span> are said to be <i>logically equivalent</i>, denoted by <span class="math-tex" data-type="tex">\(𝒫\equiv 𝒬\)</span> if they have identical truth tables.</p>
 <div data-type="example">
 <h1 id="example_12"></h1>
@@ -427,7 +442,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_15>Conditional Propositions</h1>
+<h1 id="section1_15">Conditional Propositions</h1>
 <p>Many statements are of the form “If <span class="math-tex" data-type="tex">\(𝒫\)</span> then <span class="math-tex" data-type="tex">\(𝒬\)</span>”. Such statements are called <i>conditional propositions</i>, and are denoted by <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>. The conditional <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is frequently read “<span class="math-tex" data-type="tex">\(𝒫\)</span> implies <span class="math-tex" data-type="tex">\(𝒬\)</span>”, or “<span class="math-tex" data-type="tex">\(𝒫\)</span> only if <span class="math-tex" data-type="tex">\(𝒬\)</span>”.</p>
 <div data-type="example">
 <h1 id="example_16"></h1>
@@ -532,7 +547,7 @@ Paged.registerHandlers(handlers);
 </ul>
 </section>
 <section data-type="sect1">
-<h1 id=section1_18>Sets</h1>
+<h1 id="section1_18">Sets</h1>
 <div data-type="definition">
 <h1 id="definition_19"></h1>
 <p>A <i>set</i> is a collection of objects called <i>elements</i> of the set.</p>
@@ -564,7 +579,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_22>Set Operations</h1>
+<h1 id="section1_22">Set Operations</h1>
 <p>The set of all elements which belong to <span class="math-tex" data-type="tex">\(A\)</span> or <span class="math-tex" data-type="tex">\(B\)</span> is called the <i>union</i> of <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> and is denoted by <span class="math-tex" data-type="tex">\(A\cup B\)</span>.</p>
 <p>The set of all elements which belong to <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> is called the <i>intersection</i> of <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> and is denoted by <span class="math-tex" data-type="tex">\(A\cap B\)</span>. Two sets <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> such that <span class="math-tex" data-type="tex">\(A\cap B=\emptyset\)</span> are called <i>disjoint sets</i>.</p>
 <p>The set consisting of all elements of <span class="math-tex" data-type="tex">\(A\)</span> which do not belong to <span class="math-tex" data-type="tex">\(B\)</span> is called the <i>difference</i> of <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> denoted by <span class="math-tex" data-type="tex">\(A\setminus B\)</span>.</p>
@@ -665,12 +680,12 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_27>Cartesian Product</h1>
+<h1 id="section1_27">Cartesian Product</h1>
 <p>The set of all <i>ordered pairs</i> of elements <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> where <span class="math-tex" data-type="tex">\(x\in A\)</span> and <span class="math-tex" data-type="tex">\(y\in B\)</span> is called the <i>Cartesian product</i> or <i>product set</i> of <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> and is denoted by <span class="math-tex" data-type="tex">\(A\times B\)</span>. In general, <span class="math-tex" data-type="tex">\(A\times B\not= B\times A\)</span>.</p>
 <p>The notion of Cartesian product can be generalized to ordered tuples of element <span class="math-tex" data-type="tex">\(\left(x,y,z,\ldots\right)\)</span>.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_28>Functions</h1>
+<h1 id="section1_28">Functions</h1>
 <div data-type="definition">
 <h1 id="definition_29"></h1>
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span> from a set <span class="math-tex" data-type="tex">\(X\)</span> to a set <span class="math-tex" data-type="tex">\(Y\)</span>, often written <span class="math-tex" data-type="tex">\(f:X\to Y\)</span>, is a rule which assigns to each <span class="math-tex" data-type="tex">\(x\in X\)</span> a unique element <span class="math-tex" data-type="tex">\(y\in Y\)</span>.</p>
@@ -683,7 +698,7 @@ Paged.registerHandlers(handlers);
 <p>If a function <span class="math-tex" data-type="tex">\(f:X\to Y\)</span> is both surjective and injective, we say there is a one to one correspondence between <span class="math-tex" data-type="tex">\(X\)</span> and <span class="math-tex" data-type="tex">\(Y\)</span> and call <span class="math-tex" data-type="tex">\(f\)</span> a <i>bijective</i> function. Given any element <span class="math-tex" data-type="tex">\(y\in Y\)</span>, there will be only one element <span class="math-tex" data-type="tex">\(f^{-1} \left(y\right)\)</span> in <span class="math-tex" data-type="tex">\(X\)</span>. In such case <span class="math-tex" data-type="tex">\(f^{-1}\)</span> will define a function from <span class="math-tex" data-type="tex">\(Y\)</span> to <span class="math-tex" data-type="tex">\(X\)</span> called the <i>inverse function</i>.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_30>Cardinal Numbers</h1>
+<h1 id="section1_30">Cardinal Numbers</h1>
 <p>Two sets <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> are called <i>equivalent</i> and we write <span class="math-tex" data-type="tex">\(A\sim B\)</span> if there exists a one to one correspondence between <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span>.</p>
 <div data-type="theorem">
 <h1 id="theorem_31"></h1>
@@ -722,7 +737,7 @@ Paged.registerHandlers(handlers);
 <p>The cardinal number of a set <span class="math-tex" data-type="tex">\(S\)</span> is denoted by <span class="math-tex" data-type="tex">\(\#S\)</span>.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_34>Propositional Functions and Quantifiers</h1>
+<h1 id="section1_34">Propositional Functions and Quantifiers</h1>
 <p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a given set. A <i>propositional function</i> defined on <span class="math-tex" data-type="tex">\(A\)</span> is a function <span class="math-tex" data-type="tex">\(A\to \lbrace T,F\rbrace :𝒫\left(x\right)\)</span> which has the property that <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true or false for each <span class="math-tex" data-type="tex">\(a\in A\)</span>. That is, <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> becomes a proposition (with a truth value) whenever any element <span class="math-tex" data-type="tex">\(a\in A\)</span> is substituted for the variable <span class="math-tex" data-type="tex">\(x.\)</span> The set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of all elements of <span class="math-tex" data-type="tex">\(a\in A\)</span> for which <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true is called the <i>truth set</i> of <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span>.</p>
 <div data-type="example">
 <h1 id="example_35"></h1>
@@ -880,10 +895,10 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_43>Proofs</h1>
+<h1 id="section1_43">Proofs</h1>
 <p>Many proofs can be written by following a simple <i>template</i> that suggests guidelines to follow when writing the proof.</p>
 <section data-type="sect2">
-<h2 id=section2_44>Direct Proof</h2>
+<h2 id="section2_44">Direct Proof</h2>
 <p>To proof <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>, we can proceed by looking at the truth table. The table shows that if <span class="math-tex" data-type="tex">\(𝒫\)</span> is false, the statement <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is automatically true. This means that if we are concerned with showing <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is true, we don’t have to worry about the situations where <span class="math-tex" data-type="tex">\(𝒫\)</span> is false  because the statement <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> will be automatically true in those cases. But we must be very careful about the situations where <span class="math-tex" data-type="tex">\(𝒫\)</span> is true. We must show that the condition of <span class="math-tex" data-type="tex">\(𝒫\)</span> being true forces <span class="math-tex" data-type="tex">\(𝒬\)</span> to be true also.</p>
 <div data-type="template">
 <h1 id="template_45">&nbsp;(direct proof)</h1>
@@ -943,7 +958,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect2">
-<h2 id=section2_51>Proof by Contraposition</h2>
+<h2 id="section2_51">Proof by Contraposition</h2>
 <p>Sometimes a direct proof of <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is very hard. The proposition <span class="math-tex" data-type="tex">\(\lnot 𝒬\implies \lnot 𝒫\)</span> is logically equivalent to <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>. This is called the <i>contraposition</i> of the initial proposition.</p>
 <div data-type="exercise">
 <h1 id="exercise_52"></h1>
@@ -970,7 +985,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect2">
-<h2 id=section2_56>Proof by Contradiction</h2>
+<h2 id="section2_56">Proof by Contradiction</h2>
 <p>A proof by <i>contradiction</i> is not limited to proving just conditional statements—it can be used to prove any kind of statement whatsoever. The basic idea is to assume that the statement we want to prove is false, and then show that this assumption leads to nonsense. We are then led to conclude that we were wrong to assume the statement was false, so the statement must be true.</p>
 <div data-type="exercise">
 <h1 id="exercise_57"></h1>
@@ -1017,7 +1032,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect2">
-<h2 id=section2_64>If-and-only-if Proof</h2>
+<h2 id="section2_64">If-and-only-if Proof</h2>
 <p>Some propositions have the form <span class="math-tex" data-type="tex">\(𝒫\iff 𝒬\)</span>. We know that this is logically equivalent to <span class="math-tex" data-type="tex">\(\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)\)</span>. So to prove “<span class="math-tex" data-type="tex">\(𝒫\)</span> if and only if <span class="math-tex" data-type="tex">\(𝒬\)</span>” we must prove  <b>two</b> conditional statements. Recall that <span class="math-tex" data-type="tex">\(𝒬\implies 𝒫\)</span> is called the  <i>converse</i> of <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>. Thus we need to prove both <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> and its converse. These are both conditional statements, so we may prove them with either direct, contrapositive or contradiction proof.</p>
 <div data-type="example">
 <h1 id="example_65"></h1>
@@ -1037,7 +1052,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect2">
-<h2 id=section2_67>Existence Proof</h2>
+<h2 id="section2_67">Existence Proof</h2>
 <p>Up until this point, we have dealt with proving conditional statements or with statements that can be expressed with two or more conditional statements. Generally, these conditional statements have form <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\implies 𝒬\left(x\right)\)</span>(Possibly with more than one variable). We saw that this can be interpreted as a universally quantified statement <span class="math-tex" data-type="tex">\(\forall x:𝒫\left(x\right)\implies 𝒬\left(x\right)\)</span>.</p>
 <p>But how would we prove an  <i>existentially</i> quantified statement? What technique would we employ to prove a theorem of the form <span class="math-tex" data-type="tex">\(\exists x:𝒫\left(x\right)\)</span>. This statement asserts that there exists some specific object <span class="math-tex" data-type="tex">\(x\)</span> for which <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> is true. To prove <span class="math-tex" data-type="tex">\(\exists x:𝒫\left(x\right)\)</span> is true, all we would have to do is find and display an  <i>example</i> of a specific <span class="math-tex" data-type="tex">\(x\)</span> that makes <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> true.</p>
 <div data-type="example">
@@ -1052,7 +1067,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect2">
-<h2 id=section2_70>Counterexamples</h2>
+<h2 id="section2_70">Counterexamples</h2>
 <p>How to disprove a universally quantified statement such as <span class="math-tex" data-type="tex">\(\forall x:𝒫\left(x\right)\)</span>? To disprove this statement, we must prove its negation. Its negation is <span class="math-tex" data-type="tex">\(\lnot\left(\forall x:𝒫\left(x\right)\implies 𝒬\left(x\right)\right)\equiv \exists x:\lnot\left(𝒫\left(x\right)\implies 𝒬\left(x\right)\right)\)</span>. The negation is an existence statement. To prove the negation is true, we just need to produce an example of an <span class="math-tex" data-type="tex">\(x\)</span> that makes <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> false.</p>
 <div data-type="example">
 <h1 id="example_71"></h1>
@@ -1064,7 +1079,7 @@ Paged.registerHandlers(handlers);
 </div>
 </section>
 <section data-type="sect2">
-<h2 id=section2_73>Proof by Induction</h2>
+<h2 id="section2_73">Proof by Induction</h2>
 <p>Suppose the variable <span class="math-tex" data-type="tex">\(n\)</span> represents any natural number, and there is a propositional function <span class="math-tex" data-type="tex">\(𝒫\left(n\right)\)</span> that includes this variable as an argument. <i>Mathematical induction</i> is a proof technique that uses the axiom of induction to show that <span class="math-tex" data-type="tex">\(𝒫\left(n\right)\)</span> is true for all <span class="math-tex" data-type="tex">\(n\)</span> greater than or equal to some base value <span class="math-tex" data-type="tex">\(b\in ℕ\)</span>.</p>
 <div data-type="template">
 <h1 id="template_74">&nbsp;(proof by induction)</h1>

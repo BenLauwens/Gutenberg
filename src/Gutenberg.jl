@@ -20,37 +20,7 @@ const TEMPLATE = """<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="oreilly.css" />
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
-<!--script>
-class handlers extends Paged.Handler {
-    constructor(chunker, polisher, caller) {
-        super(chunker, polisher, caller);
-    }
-
-    beforeParsed(content) {
-        renderMathInElement(content, {
-            delimiters: [
-            { left: "\\\\(", right: "\\\\)", display: false },
-            { left: "\\\\[", right: "\\\\]", display: true },
-            ],
-            throwOnError: false,
-            output: "mathml",
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
-            hljs.highlightElement(el);
-        });
-    }
-
-    afterRendered(pages) {
-        const element = document.getElementById("tag");
-        element.scrollIntoViewIfNeeded();
-    }
-}
-
-Paged.registerHandlers(handlers);
-</script-->
 <script>
 MathJax = {
     startup: {
@@ -114,6 +84,50 @@ class handlers extends Paged.Handler {
         content.querySelectorAll("pre code").forEach((el) => {
             hljs.highlightElement(el);
         });
+        let tocElementNbr = 0
+        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1']
+        for (let i = 0; i < selectors.length; i++) {
+            let matches = document.querySelectorAll(selectors[i])
+            matches.forEach((element) => {
+                element.classList.add('toc-element')
+                element.setAttribute('data-toc-level', i + 1)
+                if (element.id == '') {
+                    element.id = 'toc-element-' + tocElementNbr++
+                }
+            })
+        }
+        let level = 0;
+        let toc = document.createElement('div')
+        let matches = document.querySelectorAll('.toc-element')
+        matches.forEach((element) => {
+            console.log(element.textContent)
+            if (element.dataset.tocLevel > level) {
+                level++
+                entry = document.createElement('ol')
+                toc.appendChild(entry)
+                toc = entry
+                
+            } else if (element.dataset.tocLevel < level) {
+                toc = toc.parentElement
+                level--
+                entry = document.createElement('li')
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+                toc.appendChild(entry)
+            }
+                entry = document.createElement('li')
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+                toc.appendChild(entry)
+        })
+        while (level > 1) {
+            toc = toc.parentElement
+            level--
+        }
+        let nav = document.querySelector('nav[data-type="toc"]')
+        if (!nav) {
+            console.warn('no nav found')
+        } else {
+            nav.appendChild(toc)
+        }
     }
 
     afterRendered(pages) {
@@ -126,6 +140,7 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="BODY-TYPE">
+<nav data-type="toc"></nav>
 BODY
 </body>
 </html>
@@ -193,7 +208,6 @@ function _html(buf::Vector{String}, type::CommonMark.Heading, entering::Bool, _:
     else
         "h$(type.level-1)"
     end
-    println(attributes)
     if entering
         ID[] += 1
         if type.level === level
