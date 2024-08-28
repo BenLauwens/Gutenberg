@@ -193,6 +193,7 @@ function _html(buf::Vector{String}, type::CommonMark.Heading, entering::Bool, _:
     else
         "h$(type.level-1)"
     end
+    println(attributes)
     if entering
         ID[] += 1
         if type.level === level
@@ -201,10 +202,10 @@ function _html(buf::Vector{String}, type::CommonMark.Heading, entering::Bool, _:
         end
         id = if type.level === 1
             push!(buf, """<section data-type="$(attributes["data-type"])">""")
-            get(attributes, "id", "chapter_$(ID[])")
+            get(attributes, "id", "\"chapter_$(ID[])\"")
         else
             push!(buf, """<section data-type="sect$(type.level-1)">""")
-            get(attributes, "id", "section$(type.level-1)_$(ID[])")
+            get(attributes, "id", "\"section$(type.level-1)_$(ID[])\"")
         end
         level += 1
         push!(buf, """<$tag id=$id>""")
