@@ -1,169 +1,72 @@
 <!DOCTYPE html>
-<html lang="”en”">
-  <head>
-    <meta charset="utf-8" />
-    <title>TITLE</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
-    <link rel="stylesheet" href="oreilly.css" />
-    <!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
-    <!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
-    <!--script>
-class handlers extends Paged.Handler {
-constructor(chunker, polisher, caller) {
-super(chunker, polisher, caller);
-}
+<html>
 
-beforeParsed(content) {
-renderMathInElement(content, {
-delimiters: [
-{ left: "\\\\(", right: "\\\\)", display: false },
-{ left: "\\\\[", right: "\\\\]", display: true },
-],
-throwOnError: false,
-output: "mathml",
-});
-content.querySelectorAll("pre code").forEach((el) => {
-hljs.highlightElement(el);
-});
-}
-
-afterRendered(pages) {
-const element = document.getElementById("tag");
-element.scrollIntoViewIfNeeded();
-}
-}
-
-Paged.registerHandlers(handlers);
-</script-->
-
-    <script>
-      MathJax = {
-        loader: { load: ["input/tex", "ui/menu", "[tex]/color"] },
-        tex: { packages: { "[+]": ["color"] } },
-        startup: {
-          pageReady() {
-            MathJax.startup.document.menu.menu
-              .findID("Accessibility", "AssistiveMml")
-              .disable();
-            //MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-          },
-        },
-        tex: {
-          inlineMath: [
-            // start/end delimiter pairs for in-line math
-            ["\\(", "\\)"],
-          ],
-          displayMath: [["\\[", "\\]"]],
-        },
-        options: {
-          renderActions: {
-            assistiveMml: [], // disable assistive mathml
-            typeset: [
-              150,
-              (doc) => {
-                for (math of doc.math) {
-                  MathJax.config.renderMathML(math, doc);
-                }
-              },
-              (math, doc) => MathJax.config.renderMathML(math, doc),
-            ],
-          },
-          menuOptions: {
-            settings: {
-              assistiveMml: false,
-            },
-          },
-        },
-        renderMathML(math, doc) {
-          math.typesetRoot = document.createElement("mjx-container");
-          math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-          math.display && math.typesetRoot.setAttribute("display", "block");
-        },
-      };
-    </script>
-    <script
-      type="text/javascript"
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"
-    ></script>
-    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
-    <script>
-      class handlers extends Paged.Handler {
-        constructor(chunker, polisher, caller) {
-          super(chunker, polisher, caller);
+<body>
+  <nav data-type="toc"></nav>
+  <section data-type="chapter">
+    <h1>First title</h1>
+    <p>First paragraph</p>
+    <section data-type="sect1">
+      <h1>First Subtitle</h1>
+    </section>
+    <section data-type="sect1">
+      <h1>Second Subtitle</h1>
+    </section>
+  </section>
+  <section data-type="chapter">
+    <h1>Second title</h1>
+    <p>Second paragraph</p>
+  </section>
+  <script>
+    let tocElementNbr = 0
+    const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1']
+    for (let i = 0; i < selectors.length; i++) {
+      let matches = document.querySelectorAll(selectors[i])
+      matches.forEach(function (element) {
+        element.classList.add('toc-element')
+        element.setAttribute('data-toc-level', i + 1)
+        if (element.id == '') {
+          element.id = 'toc-element-' + tocElementNbr++
         }
+      })
+    }
+    let level = 0;
+    let toc = document.createElement('div')
+    matches = document.querySelectorAll('.toc-element')
+    matches.forEach(function (element) {
+      console.log(element.textContent)
+      if (element.dataset.tocLevel > level) {
+        level++
+        entry = document.createElement('ol')
+        toc.appendChild(entry)
+        toc = entry
+        entry = document.createElement('li')
+        entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+        toc.appendChild(entry)
+      } else if (element.dataset.tocLevel == level) {
+        entry = document.createElement('li')
+        entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+        toc.appendChild(entry)
+      } else {
+        toc = toc.parentElement
+        level--
+        entry = document.createElement('li')
+        entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+        toc.appendChild(entry)
 
-        beforeParsed(content) {
-          content
-            .querySelectorAll('div[data-type="equation"]')
-            .forEach((el) => {
-              console.log(el.innerHTML.slice(3, -3));
-              el.innerHTML = MathJax.tex2mml(
-                el.innerHTML
-                  .slice(3, -3)
-                  .replaceAll("&lt;", "<")
-                  .replaceAll("&gt;", ">")
-                  .replaceAll("&amp;", "&")
-              );
-            });
-          content.querySelectorAll("foreignObject").forEach((el) => {
-            console.log(el.innerHTML.slice(3, -3));
-            el.innerHTML = MathJax.tex2mml(
-              el.innerHTML
-                .slice(3, -3)
-                .replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-                .replaceAll("&amp;", "&"),
-              { display: false }
-            );
-          });
-          content.querySelectorAll('span[data-type="tex"]').forEach((el) => {
-            console.log(el.innerHTML.slice(2, -2));
-            console.log(MathJax.tex2mml(el.innerHTML.slice(2, -2)), {
-              display: false,
-            });
-            const math = document
-              .createRange()
-              .createContextualFragment(
-                MathJax.tex2mml(
-                  el.innerHTML
-                    .slice(2, -2)
-                    .replaceAll("&lt;", "<")
-                    .replaceAll("&gt;", ">")
-                    .replaceAll("&amp;", "&"),
-                  { display: false }
-                )
-              ).firstElementChild;
-            console.log(math);
-            el.replaceWith(math);
-          });
-          content.querySelectorAll("pre code").forEach((el) => {
-            hljs.highlightElement(el);
-          });
-        }
-
-        afterRendered(pages) {
-          const element = document.getElementById("tag");
-          //element.scrollIntoViewIfNeeded();
-        }
       }
+    })
+    while (level > 1) {
+      toc = toc.parentElement
+      level--
+    }
+    let nav = document.querySelector('nav')
+    if (!nav) {
+      console.warn('couldn’t start the toc')
+    } else {
+      nav.appendChild(toc)
+    }
+  </script>
+</body>
 
-      Paged.registerHandlers(handlers);
-    </script>
-  </head>
-  <body data-type="BODY-TYPE">
-    <p>
-      <span data-type="tex">\(\require{color}E=mc^2\)</span>
-    </p>
-    <div data-type="equation">
-      \[ \left|x\right|=\begin{cases} \hphantom{-}x&\textrm{if } x\ge0\\
-      -x&\textrm{if }x&lt;0 \end{cases} \]
-    </div>
-  </body>
 </html>
