@@ -90,8 +90,8 @@
     }
 }
 
-body[data-type="article"] nav {
-    display: hidden;
+body[data-type="article"] nav[data-type="toc"] {
+    display: none;
 }
 
 @page {

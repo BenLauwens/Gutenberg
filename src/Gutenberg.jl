@@ -9,8 +9,6 @@ export topdf, tohtml, watch_and_tohtml
 
 const TIMEOUT = 1000
 
-const ID = Ref(0)
-
 const TEMPLATE = """<!DOCTYPE html>
 <html lang=”en”>
 <head>
@@ -84,49 +82,48 @@ class handlers extends Paged.Handler {
         content.querySelectorAll("pre code").forEach((el) => {
             hljs.highlightElement(el);
         });
-        let tocElementNbr = 0
-        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1']
+        let tocElementNbr = 0;
+        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
         for (let i = 0; i < selectors.length; i++) {
-            let matches = content.querySelectorAll(selectors[i])
+            let matches = content.querySelectorAll(selectors[i]);
             matches.forEach((element) => {
-                element.classList.add('toc-element')
-                element.setAttribute('data-toc-level', i + 1)
+                element.classList.add('toc-element');
+                element.setAttribute('data-toc-level', i + 1);
                 if (element.id == '') {
-                    element.id = 'toc-element-' + tocElementNbr++
+                    element.id = 'toc-element-' + tocElementNbr++;
                 }
             })
         }
         let level = 0;
-        let toc = document.createElement('div')
-        let entry = toc
-        let matches = content.querySelectorAll('.toc-element')
+        let toc = document.createElement('div');
+        let entry = toc;
+        let matches = content.querySelectorAll('.toc-element');
         matches.forEach((element) => {
             if (element.dataset.tocLevel > level) {
-                level++
-                entry = document.createElement('ol')
-                toc.appendChild(entry)
-                toc = entry
-                
+                level++;
+                entry = document.createElement('ol');
+                toc.appendChild(entry);
+                toc = entry;
             } else if (element.dataset.tocLevel < level) {
-                toc = toc.parentElement
-                level--
-                entry = document.createElement('li')
-                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
-                toc.appendChild(entry)
+                toc = toc.parentElement;
+                level--;
+                entry = document.createElement('li');
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>';
+                toc.appendChild(entry);
             }
-                entry = document.createElement('li')
-                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
-                toc.appendChild(entry)
+            entry = document.createElement('li');
+            entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>';
+            toc.appendChild(entry);
         })
         while (level > 1) {
-            toc = toc.parentElement
-            level--
+            toc = toc.parentElement;
+            level--;
         }
-        let nav = content.querySelector('nav[data-type="toc"]')
+        let nav = content.querySelector('nav[data-type="toc"]');
         if (!nav) {
-            console.warn('no nav found')
+            console.warn('no nav found');
         } else {
-            nav.appendChild(toc)
+            nav.appendChild(toc);
         }
     }
 
@@ -209,20 +206,21 @@ function _html(buf::Vector{String}, type::CommonMark.Heading, entering::Bool, _:
         "h$(type.level-1)"
     end
     if entering
-        ID[] += 1
         if type.level === level
             level -= 1
             push!(buf, "</section>")
         end
-        id = if type.level === 1
+        if type.level === 1
             push!(buf, """<section data-type="$(attributes["data-type"])">""")
-            get(attributes, "id", "\"chapter_$(ID[])\"")
         else
             push!(buf, """<section data-type="sect$(type.level-1)">""")
-            get(attributes, "id", "\"section$(type.level-1)_$(ID[])\"")
         end
         level += 1
-        push!(buf, """<$tag id=$id>""")
+        if haskey(attributes, "id")
+            push!(buf, """<$tag id=$(attributes["id"])>""")
+        else
+            push!(buf, """<$tag>""")
+        end
     else
         buf[end] *= "</$tag>"
     end
@@ -248,13 +246,19 @@ end
 
 function _html(buf::Vector{String}, type::CommonMark.Admonition, entering::Bool, _::String, attributes::Dict{String,Any}, level::Int64)
     if entering
-        ID[] += 1
-        id = get(attributes, "id", "$(type.category)_$(ID[])")
         push!(buf, """<div data-type="$(type.category)">""")
         if lowercase(type.category) !== lowercase(type.title)
-            push!(buf, """<h1 id="$id">&nbsp;(""" * type.title * ")</h1>")
+            if haskey(attributes, "id")
+                push!(buf, """<h1 id="$(attributes["id"])">&nbsp;(""" * type.title * ")</h1>")
+            else
+                push!(buf, """<h1>&nbsp;(""" * type.title * ")</h1>")
+            end
         else
-            push!(buf, """<h1 id="$id"></h1>""")
+            if haskey(attributes, "id")
+                push!(buf, """<h1 id="$(attributes["id"])"></h1>""")
+            else
+                push!(buf, """<h1></h1>""")
+            end
         end
     else
         push!(buf, "</div>")
@@ -431,7 +435,6 @@ end
 
 function tohtml(file::String)
     ast = open(PARSER, file)
-    ID[] = 0
     buf = String[]
     level = 0
     for (node, entering) in ast

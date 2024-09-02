@@ -7,37 +7,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="oreilly.css" />
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
-<!--script>
-class handlers extends Paged.Handler {
-    constructor(chunker, polisher, caller) {
-        super(chunker, polisher, caller);
-    }
-
-    beforeParsed(content) {
-        renderMathInElement(content, {
-            delimiters: [
-            { left: "\\(", right: "\\)", display: false },
-            { left: "\\[", right: "\\]", display: true },
-            ],
-            throwOnError: false,
-            output: "mathml",
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
-            hljs.highlightElement(el);
-        });
-    }
-
-    afterRendered(pages) {
-        const element = document.getElementById("tag");
-        element.scrollIntoViewIfNeeded();
-    }
-}
-
-Paged.registerHandlers(handlers);
-</script-->
 <script>
 MathJax = {
     startup: {
@@ -101,6 +71,50 @@ class handlers extends Paged.Handler {
         content.querySelectorAll("pre code").forEach((el) => {
             hljs.highlightElement(el);
         });
+        let tocElementNbr = 0
+        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1']
+        for (let i = 0; i < selectors.length; i++) {
+            let matches = content.querySelectorAll(selectors[i])
+            matches.forEach((element) => {
+                element.classList.add('toc-element')
+                element.setAttribute('data-toc-level', i + 1)
+                if (element.id == '') {
+                    element.id = 'toc-element-' + tocElementNbr++
+                }
+            })
+        }
+        let level = 0;
+        let toc = document.createElement('div')
+        let entry = toc
+        let matches = content.querySelectorAll('.toc-element')
+        matches.forEach((element) => {
+            if (element.dataset.tocLevel > level) {
+                level++
+                entry = document.createElement('ol')
+                toc.appendChild(entry)
+                toc = entry
+                
+            } else if (element.dataset.tocLevel < level) {
+                toc = toc.parentElement
+                level--
+                entry = document.createElement('li')
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+                toc.appendChild(entry)
+            }
+                entry = document.createElement('li')
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>'
+                toc.appendChild(entry)
+        })
+        while (level > 1) {
+            toc = toc.parentElement
+            level--
+        }
+        let nav = content.querySelector('nav[data-type="toc"]')
+        if (!nav) {
+            console.warn('no nav found')
+        } else {
+            nav.appendChild(toc)
+        }
     }
 
     afterRendered(pages) {
@@ -113,8 +127,10 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="article">
+<nav data-type="toc"></nav>
+<div id="tag"></div>
 <section data-type="chapter">
-<h1 id=chapter_1>Limits and Continuity</h1>
+<h1>Limits and Continuity</h1>
 <p>Calculus was created to describe how quantities change:</p>
 <ul>
 <li>
@@ -127,10 +143,10 @@ Paged.registerHandlers(handlers);
 <p>Both of these procedure are based on the fundamental concept of <i>limit</i> of a function.</p>
 <p>In this chapter we will introduce the limit concept and develop some of its properties, including the nice behaviour of some functions that is called <i>continuity</i>.</p>
 <section data-type="sect1">
-<h1 id=section1_2>Average and Instantaneous Velocity</h1>
+<h1>Average and Instantaneous Velocity</h1>
 <p>The position of a moving object is a function of time. The average velocity of the object over a time interval is found by dividing the change in the object’s position by the length of the time interval.</p>
 <div data-type="example">
-<h1 id="example_3"></h1>
+<h1></h1>
 <p>The average velocity of a falling rock.</p>
 <p>Physical experiments show that if a rock is dropped from rest near the surface of the earth, in the first <span class="math-tex" data-type="tex">\(t\,\left[\mathrm{s}\right]\)</span> if will fall a distance</p>
 <div class="math-tex" data-type="equation">
@@ -160,7 +176,7 @@ y = \frac{gt^2}{2}\,\left[\mathrm{s}\right]\,,
 </div>
 <p>The instantaneous velocity of the object at the instant <span class="math-tex" data-type="tex">\(t\)</span> can be estimated by evaluating the average velocity in a small time interval containing <span class="math-tex" data-type="tex">\(t\)</span>.</p>
 <div data-type="example">
-<h1 id="example_4"></h1>
+<h1></h1>
 <p>How fast is the rock of the previous example falling</p>
 <ol>
 <li>
@@ -212,7 +228,7 @@ y = \frac{gt^2}{2}\,\left[\mathrm{s}\right]\,,
 <p>The final form no longer involves division by <span class="math-tex" data-type="tex">\(h\)</span>. It approaches <span class="math-tex" data-type="tex">\(gt + \frac{g}{2}0=gt\)</span>. In particular, at <span class="math-tex" data-type="tex">\(t=1\,\left[\mathrm{s}\right]\)</span> and <span class="math-tex" data-type="tex">\(t=2\,\left[\mathrm{s}\right]\)</span>, the instantaneous velocities are <span class="math-tex" data-type="tex">\(v_1=9.8\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]\)</span> and <span class="math-tex" data-type="tex">\(v_2=19.6\,\left[\frac{\mathrm{m}}{\mathrm{s}}\right]\)</span>, respectively.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_5>The Area of a Circle</h1>
+<h1>The Area of a Circle</h1>
 <p>All circles are similar geometric figures; they all have the same shape and differ only in size. The ratio of the circumference <span class="math-tex" data-type="tex">\(C\)</span> to the diameter <span class="math-tex" data-type="tex">\(2r\)</span> has the same value for all circles. The number <span class="math-tex" data-type="tex">\(\uppi\)</span> is defined to be this common ratio:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -297,10 +313,10 @@ A_n = \frac{1}{2}P_nr\cos\frac{\uppi}{n}
 <p>Now <span class="math-tex" data-type="tex">\(\angle AOM=\frac{\uppi}{n}\)</span> approaches <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, so its cosine, <span class="math-tex" data-type="tex">\(\cos\frac{\uppi}{n}=\frac{\left|OM\right|}{\left|OA\right|}\)</span>, approaches <span class="math-tex" data-type="tex">\(1\)</span>. Since <span class="math-tex" data-type="tex">\(P_n\)</span> approaches <span class="math-tex" data-type="tex">\(C=2\uppi r\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, the expression for <span class="math-tex" data-type="tex">\(A_n\)</span> approaches <span class="math-tex" data-type="tex">\(\frac{1}{2}\left(2\uppi r\right)r\left(1\right)=\uppi r^2\)</span>, which must therefore be the area of the circle.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_6>Limits Defined</h1>
+<h1>Limits Defined</h1>
 <p>In order to speak meaningfully about rate of change, tangent lines, and areas bounded by curves, we have to investigate the process of finding limits. Let us look at some examples.</p>
 <div data-type="example">
-<h1 id="example_7"></h1>
+<h1></h1>
 <p>Describe the behaviour of the function <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{x^2-1}{x-1}\)</span> near <span class="math-tex" data-type="tex">\(x=1\)</span>.</p>
 <p>Note that <span class="math-tex" data-type="tex">\(f(x)\)</span> is defined for all real numbers <span class="math-tex" data-type="tex">\(x\)</span> except <span class="math-tex" data-type="tex">\(x=1\)</span>. (We can’t divide by zero.) For any <span class="math-tex" data-type="tex">\(x\ne1\)</span> we can simplify the expression for <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> by factoring the numerator and cancelling common factors:</p>
 <div class="math-tex" data-type="equation">
@@ -347,7 +363,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 </div>
 <div data-type="example">
-<h1 id="example_8"></h1>
+<h1></h1>
 <p>What happens to the function <span class="math-tex" data-type="tex">\(g\left(x\right)=\left(1+x^2\right)^\frac{1}{x^2}\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> approaches zero?</p>
 <p>Note that <span class="math-tex" data-type="tex">\(g\)</span> is not defined at <span class="math-tex" data-type="tex">\(x=0\)</span>. In fact, for the moment it does not appear to be defined for any <span class="math-tex" data-type="tex">\(x\)</span> whose square <span class="math-tex" data-type="tex">\(x^2\)</span> is not a rational number. Let us ignore for now the problem of deciding what <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> means if <span class="math-tex" data-type="tex">\(x^2\)</span> is irrational and consider only rational values of <span class="math-tex" data-type="tex">\(x\)</span>. There is no obvious way to simplify the expression for <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> as we did in previous example. However, we can use a scientific calculator to obtain approximate values of <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> for some rational values of <span class="math-tex" data-type="tex">\(x\)</span> approaching <span class="math-tex" data-type="tex">\(0\)</span>.</p>
 <div data-type="programresult">
@@ -369,7 +385,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>The examples and the previous sections suggest the following informal definition of limit.</p>
 <div data-type="definition">
-<h1 id="definition_9">&nbsp;(informal)</h1>
+<h1>&nbsp;(informal)</h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is defined for all <span class="math-tex" data-type="tex">\(x\)</span> near <span class="math-tex" data-type="tex">\(a\)</span>, except possibly at <span class="math-tex" data-type="tex">\(a\)</span> itself, and if we can ensure that <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is as close as we want to <span class="math-tex" data-type="tex">\(L\)</span> by taking <span class="math-tex" data-type="tex">\(x\)</span> close enough to <span class="math-tex" data-type="tex">\(a\)</span>, but not equal to <span class="math-tex" data-type="tex">\(a\)</span>, we say that the function <span class="math-tex" data-type="tex">\(f\)</span> approaches the <i>limit</i> <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -379,7 +395,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>This definition is informal because phrases such as <i>close as we want</i> and <i>close enough</i> are imprecise; their meaning depends on the context. If we want to prove results about limits a more precise definition is needed. This precise definition is based on the idea of controlling the input <span class="math-tex" data-type="tex">\(x\)</span> of a function <span class="math-tex" data-type="tex">\(f\)</span> so that the output <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> will lie in a specific interval.</p>
 <div data-type="example">
-<h1 id="example_10"></h1>
+<h1></h1>
 <p>The area of a circular disk of radius <span class="math-tex" data-type="tex">\(r\,\left[\mathrm{cm}\right]\)</span> is <span class="math-tex" data-type="tex">\(A=\uppi r^2\,\left[\mathrm{cm}^2\right]\)</span>. A machinist is required to manufacture a circular metal disk having area <span class="math-tex" data-type="tex">\(400\uppi\,\left[\mathrm{cm}^2\right]\)</span> within an error tolerance of <span class="math-tex" data-type="tex">\(\pm 5\,\left[\mathrm{cm}^2\right]\)</span>. How close to <span class="math-tex" data-type="tex">\(20\,\left[\mathrm{cm}\right]\)</span> must the machinist control the radius of the disk to achieve this?</p>
 <p>The machinist wants <span class="math-tex" data-type="tex">\(\left|\uppi r^2-400\uppi\right|<5\)</span>, that is,</p>
 <div class="math-tex" data-type="equation">
@@ -454,7 +470,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <figcaption>If <span class="math-tex" data-type="tex">\(x\ne a\)</span> and <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|&lt;\varepsilon.\)</span></figcaption></figure>
 <p>If <span class="math-tex" data-type="tex">\(\varepsilon\)</span> is any strict positive number, <i>no matter how small</i>, we must be able to ensure that <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|<\varepsilon\)</span> by restricting <span class="math-tex" data-type="tex">\(x\)</span> to be <i>close enough</i> to (but not equal to) <span class="math-tex" data-type="tex">\(a\)</span>. How close is close enough? It is sufficient that the distance <span class="math-tex" data-type="tex">\(\left|x-a\right|\)</span> from <span class="math-tex" data-type="tex">\(x\)</span> to <span class="math-tex" data-type="tex">\(a\)</span> be less than a positive number <span class="math-tex" data-type="tex">\(\delta\)</span> that depends on <span class="math-tex" data-type="tex">\(\varepsilon\)</span>.</p>
 <div data-type="definition">
-<h1 id="definition_11">&nbsp;(formal)</h1>
+<h1>&nbsp;(formal)</h1>
 <p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> approaches the limit <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -471,7 +487,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>Note the possible dependency of <span class="math-tex" data-type="tex">\(\delta\)</span> on <span class="math-tex" data-type="tex">\(\varepsilon\)</span> and the fact that <span class="math-tex" data-type="tex">\(x\)</span> belongs to the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 <p>The formal definition of limit does not tell you how to find the limit of a function, but it does enable you to verify that a suspected limit is correct.</p>
 <div data-type="example">
-<h1 id="example_12"></h1>
+<h1></h1>
 <p>Verify that:</p>
 <ol>
 <li>
@@ -534,11 +550,11 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>We do not usually rely on the formal definition of limit to verify specific limits such as those in the last example. Rather, we appeal to general theorems about limits in particular the theorems of the next section.</p>
 <p>If a function has a limit at a point, this limit is <i>unique</i>.</p>
 <div data-type="theorem">
-<h1 id="theorem_13"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=M\)</span>, then <span class="math-tex" data-type="tex">\(L=M\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_14">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>Suppose <span class="math-tex" data-type="tex">\(L\ne M\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon = \frac{\left|L-M\right|}{2}&gt;0\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta_1 > 0\)</span> such that</p>
@@ -614,7 +630,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </svg>
 <figcaption><span class="math-tex" data-type="tex">\(\newcommand{\sgn}{\operatorname{sgn}}\lim_{x\to0^-}\sgn x=-1\)</span> and <span class="math-tex" data-type="tex">\(\lim_{x\to0^+}\sgn x=1\)</span>.</figcaption></figure>
 <div data-type="definition">
-<h1 id="definition_15"></h1>
+<h1></h1>
 <p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> has <i>right limit</i> <span class="math-tex" data-type="tex">\(L\)</span> at <span class="math-tex" data-type="tex">\(a\)</span>, and we write</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -642,7 +658,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>Note again the dependency of <span class="math-tex" data-type="tex">\(\delta\)</span> on <span class="math-tex" data-type="tex">\(\varepsilon\)</span> and the fact that <span class="math-tex" data-type="tex">\(x\)</span> belongs to the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 <div data-type="example">
-<h1 id="example_16"></h1>
+<h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(\lim_{x\to0^+}\sqrt x=0\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. If <span class="math-tex" data-type="tex">\(x>0\)</span>, then <span class="math-tex" data-type="tex">\(\left|\sqrt x-0\right|=\sqrt x\)</span>. We can ensure that <span class="math-tex" data-type="tex">\(\sqrt x<\varepsilon\)</span> by requiring <span class="math-tex" data-type="tex">\(x<\varepsilon^2\)</span>. Thus, we can take <span class="math-tex" data-type="tex">\(\delta=\varepsilon^2\)</span> and the condition of the definition will be satisfied:</p>
 <div class="math-tex" data-type="equation">
@@ -654,7 +670,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>The existence of different right and left limits of a function at a point excludes the existence of a limit at that point.</p>
 <div data-type="theorem">
-<h1 id="theorem_17"></h1>
+<h1></h1>
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span> has limit <span class="math-tex" data-type="tex">\(L\)</span> at <span class="math-tex" data-type="tex">\(x=a\)</span> if and only if it has both left and right limits there and these one-sided limits are both equal to <span class="math-tex" data-type="tex">\(L\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -663,7 +679,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 </div>
 <div data-type="example">
-<h1 id="example_18"></h1>
+<h1></h1>
 <p>What one-sided limits does <span class="math-tex" data-type="tex">\(g\left(x\right)=\sqrt{1-x^2}\)</span> have at <span class="math-tex" data-type="tex">\(x=-1\)</span> and <span class="math-tex" data-type="tex">\(x=1\)</span>?</p>
 <p>The domain of <span class="math-tex" data-type="tex">\(g\)</span> is <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>, so <span class="math-tex" data-type="tex">\(g\)</span> is defined only to the right of <span class="math-tex" data-type="tex">\(x=-1\)</span> and only to the left of <span class="math-tex" data-type="tex">\(x=1\)</span>.</p>
 <figure>
@@ -711,10 +727,10 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_19>Rules and Theorems about Limits</h1>
+<h1>Rules and Theorems about Limits</h1>
 <p>The following rules make it easy to calculate limits and one-sided limits of many kinds of functions when we know some elementary limits.</p>
 <div data-type="theorem">
-<h1 id="theorem_20">&nbsp;(Limit Rules)</h1>
+<h1>&nbsp;(Limit Rules)</h1>
 <p>If <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span>, <span class="math-tex" data-type="tex">\(\lim_{x\to a}g\left(x\right)=M\)</span> and <span class="math-tex" data-type="tex">\(k\)</span> is a constant, then</p>
 <ol>
 <li>
@@ -742,7 +758,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>Rules 1—6 are also valid for one-sided limits. So is rule 7, under the assumption that <span class="math-tex" data-type="tex">\(f\left(x\right)\le\left(x\right)\)</span> on an open interval extending from <span class="math-tex" data-type="tex">\(a\)</span> in the appropriate direction.</p>
 <div data-type="proof">
-<h1 id="proof_21">&nbsp;(limit of a sum)</h1>
+<h1>&nbsp;(limit of a sum)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon > 0\)</span> be given.</p>
 <p>We want to find a strict positive number <span class="math-tex" data-type="tex">\(\delta\)</span> such that</p>
 <div class="math-tex" data-type="equation">
@@ -781,7 +797,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>This shows that <span class="math-tex" data-type="tex">\(\lim_{x\to a}\left(f\left(x\right)+g\left(x\right)\right)=L+M\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_22"></h1>
+<h1></h1>
 <p>Find <span class="math-tex" data-type="tex">\(\lim_{x\to a}\frac{x^2+x+4}{x^3-2x^2+7}\)</span>.</p>
 <p>The expression <span class="math-tex" data-type="tex">\(\frac{x^2+x+4}{x^3-2x^2+7}\)</span> is formed by combining the basic functions <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(c\)</span> (constant) using addition, subtraction, multiplication, and division. The previous theorem assures us that the limit of such a combination is the same combination of the limits <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(c\)</span> of the basic functions, provided the denominator does not have limit zero. Thus,</p>
 <div class="math-tex" data-type="equation">
@@ -792,7 +808,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>The result of the example can be generalized as a direct corollary.</p>
 <div data-type="corollary">
-<h1 id="corollary_23"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(a\in ℝ\)</span> and</p>
 <ol>
 <li>
@@ -858,7 +874,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </svg>
 <figcaption>The graph of <span class="math-tex" data-type="tex">\(g\)</span> is squeezed between those of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(h\)</span>.</figcaption></figure>
 <div data-type="theorem">
-<h1 id="theorem_24"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\le h\left(x\right)\)</span> holds for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(a\)</span>, except possibly at <span class="math-tex" data-type="tex">\(x=a\)</span>, and</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -874,7 +890,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </div>
 <p>Similar statements hold for one-sided limits.</p>
 <div data-type="proof">
-<h1 id="proof_25"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon > 0\)</span> be given.</p>
 <p>We want to find a strict positive number <span class="math-tex" data-type="tex">\(\delta\)</span> such that</p>
 <div class="math-tex" data-type="equation">
@@ -915,13 +931,13 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>This shows that <span class="math-tex" data-type="tex">\(\lim_{x\to a}g\left(x\right)=L\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_26"></h1>
+<h1></h1>
 <p>Show that if <span class="math-tex" data-type="tex">\(\lim_{x\to a}\left|f\left(x\right)\right|=0\)</span>, then <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=0\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(-\left|f\left(x\right)\right|\le f\left(x\right)\le\left|f\left(x\right)\right|\)</span>, and <span class="math-tex" data-type="tex">\(-\left|f\left(x\right)\right|\)</span> and <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\)</span> both have limit <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span>, so does <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> by the squeeze theorem.</p>
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_27>Limits at Infinity and Infinite Limits</h1>
+<h1>Limits at Infinity and Infinite Limits</h1>
 <p>We will extend the concept of limit to allow for two situations not covered by the definitions of limit and one-sided limit in the previous section:</p>
 <ol>
 <li>
@@ -932,7 +948,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 </li>
 </ol>
 <div data-type="example">
-<h1 id="example_28"></h1>
+<h1></h1>
 <p>How behaves the function</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -993,7 +1009,7 @@ f\left(x\right)=\frac{x}{\sqrt{x^2+1}}
 </div>
 <p>This example suggest the following definition of a limit at infinity.</p>
 <div data-type="definition">
-<h1 id="definition_29"></h1>
+<h1></h1>
 <p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> approaches the limit <span class="math-tex" data-type="tex">\(L\)</span> as <span class="math-tex" data-type="tex">\(x\)</span> tends to infinity, and we write</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1020,7 +1036,7 @@ f\left(x\right)=\frac{x}{\sqrt{x^2+1}}
 </div>
 </div>
 <div data-type="example">
-<h1 id="example_30"></h1>
+<h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to\infty}\frac{1}{x}=0\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon\)</span> be a given positive number. For <span class="math-tex" data-type="tex">\(x&gt;0\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
@@ -1032,7 +1048,7 @@ f\left(x\right)=\frac{x}{\sqrt{x^2+1}}
 </div>
 <p>The rules and theorems of previous section have suitable counterparts for limits at infinity.</p>
 <div data-type="example">
-<h1 id="example_31"></h1>
+<h1></h1>
 <p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to\infty}f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to-\infty}f\left(x\right)\)</span> for <span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)=\frac{x}{\sqrt{x^2+1}}\)</span>.</p>
 <p>Rewrite the expression for <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> as follows:</p>
 <div class="math-tex" data-type="equation">
@@ -1054,7 +1070,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p>The only polynomials that have limits at infinity are constant ones. The situation is more interesting for rational functions. The following examples show how to render such a function in a form where its limits at infinity (if they exist) are apparent. The way to do this is to *divide the numerator and the denominator by the highest power of <span class="math-tex" data-type="tex">\(x\)</span> in the denominator.</p>
 <div data-type="example">
-<h1 id="example_32"></h1>
+<h1></h1>
 <p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}\)</span>.</p>
 <p>Divide the numerator and the denominator by <span class="math-tex" data-type="tex">\(x^2\)</span>, the highest power of <span class="math-tex" data-type="tex">\(x\)</span> appearing in the denominator:</p>
 <div class="math-tex" data-type="equation">
@@ -1065,7 +1081,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p>The technique used in the previous example can also be applied to more general kinds of functions.</p>
 <div data-type="example">
-<h1 id="example_33"></h1>
+<h1></h1>
 <p>Find <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)\)</span>.</p>
 <p>We can rationalize the expression by multiplying the numerator and the denominator (which is <span class="math-tex" data-type="tex">\(1\)</span>) by the conjugate expression <span class="math-tex" data-type="tex">\(\sqrt{x^2+x}+x\)</span>.</p>
 <div class="math-tex" data-type="equation">
@@ -1079,7 +1095,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p>A function whose values grow arbitrarily large can sometimes said to have an infinite limite. Since infinity is not a number, infinite limits are not really limits at all, but they provide a way of describing the behaviour of functions that grow arbitrarily large positive of negative.</p>
 <div data-type="example">
-<h1 id="example_34"></h1>
+<h1></h1>
 <p>Describe the behaviour of the function <span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)=\frac{1}{x^2}\)</span> near <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="210.0">
@@ -1112,7 +1128,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 <p>Note that in writing this we are <i>not</i> saying that <span class="math-tex" data-type="tex">\(\lim_{x\to 0}\frac{1}{x^2}\)</span> <i>exists</i>. Rather, we are saying that the limit *does not exist because <span class="math-tex" data-type="tex">\(\frac{1}{x^2}\)</span> <i>becomes arbitrarily large near</i> <span class="math-tex" data-type="tex">\(x=0\)</span>. Observe how the graph of <span class="math-tex" data-type="tex">\(f\)</span> approaches the <span class="math-tex" data-type="tex">\(y\)</span>-axis as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(0\)</span>. the <span class="math-tex" data-type="tex">\(y\)</span>-axis is a <b>vertical asymptote</b> of the graph.</p>
 </div>
 <div data-type="definition">
-<h1 id="definition_35"></h1>
+<h1></h1>
 <p>We say that <span class="math-tex" data-type="tex">\(f:X\mapsto Y\)</span> approaches infinity as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(a\)</span> and write</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1127,7 +1143,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 </div>
 <div data-type="example">
-<h1 id="example_36"></h1>
+<h1></h1>
 <p>Verify that <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to 0}\frac{1}{x^2}=\infty\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(B\)</span> be any positive number. We have</p>
 <div class="math-tex" data-type="equation">
@@ -1144,7 +1160,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 <p>Therefore, <span class="math-tex" data-type="tex">\(\lim_{x\to 0}\frac{1}{x^2}=\infty\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_37"></h1>
+<h1></h1>
 <p>Describe the behaviour of the function <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{1}{x}\)</span> near <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="320">
@@ -1200,7 +1216,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p>We can now say a bit more about the limits at infinity and negative infinity of a rational function whose nuberator has higher degree than the denominator. Earlier we said that such a limit <i>does not exist</i>. This is true, but we can assign <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span> to such limits, as the following example shows.</p>
 <div data-type="example">
-<h1 id="example_38"></h1>
+<h1></h1>
 <p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to\infty}\frac{x^3+1}{x^2+1}\)</span>.</p>
 <p>Divide the numerator and the denominator by <span class="math-tex" data-type="tex">\(x^2\)</span>, the largest power of the denominator:</p>
 <div class="math-tex" data-type="equation">
@@ -1211,7 +1227,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p>A polynomial <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> of degree <span class="math-tex" data-type="tex">\(n&gt;0\)</span> can have at most <span class="math-tex" data-type="tex">\(n\)</span> <i>zeros</i>; that is, there are at most <span class="math-tex" data-type="tex">\(n\)</span> different real numbers <span class="math-tex" data-type="tex">\(r\)</span> for which <span class="math-tex" data-type="tex">\(Q\left(r\right)=0\)</span>. If <span class="math-tex" data-type="tex">\(Q\left(r\right)\)</span> is the denominator of a rational function <span class="math-tex" data-type="tex">\(\displaystyle R\left(x\right)=\frac{P\left(x\right)}{Q\left(x\right)}\)</span>, that function will be defined for all <span class="math-tex" data-type="tex">\(x\)</span> except those finitely many zeros of <span class="math-tex" data-type="tex">\(Q\)</span>. At each of those zeros, <span class="math-tex" data-type="tex">\(R\left(x\right)\)</span> may have limits, infinite limits, or one-sided infinite limits. Here are some examples.</p>
 <div data-type="example">
-<h1 id="example_39"></h1>
+<h1></h1>
 <ol>
 <li>
 <p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to 2}\frac{\left(x- 2\right)^2}{x^2-4}=\lim_{x\to 2}\frac{\left(x- 2\right)^2}{\left(x-2\right)\left(x+2\right)}=\lim_{x\to 2}\frac{x-2}{x+2}=0\)</span>.</p>
@@ -1235,11 +1251,11 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_40>Continuity Defined</h1>
+<h1>Continuity Defined</h1>
 <p>When a car is driven along a highway, its distance from its starting point depends on time in a <i>continuous</i> way, changing by small amounts over short intervals of time. But not all quantities change in this way. When the car is parked in a parking lot where the rate is quoted as “€2,00 per hour or portion,” the parking charges remain at €2,00 for the first hour and then suddenly jump to €4,00 as soon as the first hour has passed. The function relating parking charges to parking time will be called <i>discontinuous</i> at each hour.</p>
 <p>Most functions that we encounter have domains that are intervals, or unions of separate intervals. A point <span class="math-tex" data-type="tex">\(P\)</span> in the domain of such a function is called an <i>interior point</i> of the domain if it belongs to some open interval contained in the domain. If it is not an interior point, then <span class="math-tex" data-type="tex">\(P\)</span> is called an <i>endpoint</i> of the domain. For example, the domain of the function <span class="math-tex" data-type="tex">\(f\left(x\right)=\sqrt{4-x^2}\)</span> is the closed interval <span class="math-tex" data-type="tex">\(\left[-2,2\right]\)</span>, which consists of interior points in the interval <span class="math-tex" data-type="tex">\(\left]-2,2\right[\)</span>, a left endpoint <span class="math-tex" data-type="tex">\(-2\)</span>, and a right endpoint <span class="math-tex" data-type="tex">\(2\)</span>. The domain of the function <span class="math-tex" data-type="tex">\(g\left(x\right)=\frac{1}{x}\)</span> is the union of open intervals <span class="math-tex" data-type="tex">\(\left]-\infty, 0\right[\cup\left]0,\infty\right[\)</span> and consists entirely of interior points. Note that although <span class="math-tex" data-type="tex">\(0\)</span> is an endpoint of each of those intervals, it does not belong to the domain of <span class="math-tex" data-type="tex">\(g\)</span> and so is not an endpoint of that domain.</p>
 <div data-type="definition">
-<h1 id="definition_41">&nbsp;(Continuity of a function at a point)</h1>
+<h1>&nbsp;(Continuity of a function at a point)</h1>
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span>, defined on an open interval containing the point <span class="math-tex" data-type="tex">\(c\)</span>, an interior point, is said to be continuous at the point <span class="math-tex" data-type="tex">\(c\)</span> if</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1339,12 +1355,12 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 <figcaption><span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(c\)</span>; <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to c}g\left(x\right)\neq g\left(c\right)\)</span>; <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to c}h\left(x\right)\)</span> does not exist.</figcaption></figure>
 <p>Although a function cannot have a limit at an endpoint of its domain, it can still have a one-sided limit there. We extend the definition of continuity to provide for such situations.</p>
 <div data-type="definition">
-<h1 id="definition_42"></h1>
+<h1></h1>
 <p>We say that <span class="math-tex" data-type="tex">\(f\)</span> is <i>right continuous</i> at <span class="math-tex" data-type="tex">\(c\)</span> if <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to c^+}f\left(x\right)=f\left(x\right)\)</span>.</p>
 <p>We say that <span class="math-tex" data-type="tex">\(f\)</span> is <i>left continuous</i> at <span class="math-tex" data-type="tex">\(c\)</span> if <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to c^-}f\left(x\right)=f\left(x\right)\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_43"></h1>
+<h1></h1>
 <p>The Heaviside function <span class="math-tex" data-type="tex">\(H\left(x\right)\)</span> is continuous at every number <span class="math-tex" data-type="tex">\(x\)</span> except <span class="math-tex" data-type="tex">\(0\)</span>. It is right continuous at <span class="math-tex" data-type="tex">\(0\)</span> but is not left continuous or continuous there.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="150" height="100">
@@ -1377,12 +1393,12 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p>The relationship between continuity and one-sided continuity is summarized in the following theorem.</p>
 <div data-type="theorem">
-<h1 id="theorem_44"></h1>
+<h1></h1>
 <p>Function <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(c\)</span> if and only if it is both right continuous and left continuous at <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 </div>
 <p>We have defined the concept of continuity at a point. Of greater importance is the concept of continuity on an interval.</p>
 <div data-type="definition">
-<h1 id="definition_45">&nbsp;(Continuity of a function on an interval)</h1>
+<h1>&nbsp;(Continuity of a function on an interval)</h1>
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span> is continuous on an interval if it is continuous at every point of that interval. In the case of an endpoint of a closed interval, <span class="math-tex" data-type="tex">\(f\)</span> need only be continuous on one side. Thus, <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> if</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1451,17 +1467,17 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 <figcaption><span class="math-tex" data-type="tex">\(f\)</span> is continuous on the intervals <span class="math-tex" data-type="tex">\(\left[a,b\right],\,\left]b,c\right[,\,\left[c,d\right],\,\left]d,e\right]\)</span>.</figcaption></figure>
 </section>
 <section data-type="sect1">
-<h1 id=section1_46>Continuous Functions</h1>
+<h1>Continuous Functions</h1>
 <div data-type="definition">
-<h1 id="definition_47">&nbsp;(Continuous function)</h1>
+<h1>&nbsp;(Continuous function)</h1>
 <p>We say that <span class="math-tex" data-type="tex">\(f\)</span> is a <i>continuous function</i> if <span class="math-tex" data-type="tex">\(f\)</span> is continuous at every point of its domain.</p>
 </div>
 <div data-type="example">
-<h1 id="example_48"></h1>
+<h1></h1>
 <p>The function <span class="math-tex" data-type="tex">\(f\left(x\right)=\sqrt{x}\)</span> is a continuous function. Its domain is <span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span>. It is continuous at the left endpoint <span class="math-tex" data-type="tex">\(0\)</span> because it is right continuous there. Also, <span class="math-tex" data-type="tex">\(f\)</span> is continuous at every number <span class="math-tex" data-type="tex">\(c&gt;0\)</span> since <span class="math-tex" data-type="tex">\(\lim_{x\to c}\sqrt x=\sqrt c\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_49"></h1>
+<h1></h1>
 <p>The function <span class="math-tex" data-type="tex">\(g\left(x\right)=\frac{1}{x}\)</span> is also a continuous function. This may seem wrong to you at first glance because its graph is broken at <span class="math-tex" data-type="tex">\(x=0\)</span>. However, the number <span class="math-tex" data-type="tex">\(0\)</span> is not in the domain of <span class="math-tex" data-type="tex">\(g\)</span>, so we will prefer to say that <span class="math-tex" data-type="tex">\(g\)</span> is undefined rather than discontinuous there.</p>
 </div>
 <p>The following functions are continuous wherever they are defined:</p>
@@ -1485,11 +1501,11 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 <p>Corollary 4 of this chapter assures us that every polynomial is continuous everywhere on the real line, and every rational function is continuous everywhere on its domain (which consists of all real numbers except the finitely many where its denominator is zero). If <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span> are integers and <span class="math-tex" data-type="tex">\(n \neq 0\)</span>, the rational power function <span class="math-tex" data-type="tex">\(x^\frac{m}{n}\)</span> is defined for all positive numbers <span class="math-tex" data-type="tex">\(x\)</span>, and also for all negative numbers <span class="math-tex" data-type="tex">\(x\)</span> if <span class="math-tex" data-type="tex">\(n\)</span> is odd. The domain includes <span class="math-tex" data-type="tex">\(0\)</span> if and only if <span class="math-tex" data-type="tex">\(\frac{m}{n} \ge 0\)</span>.</p>
 <p>The following theorems show that if we combine continuous functions in various ways, the results will be continuous.</p>
 <div data-type="theorem">
-<h1 id="theorem_50"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are continuous at the point <span class="math-tex" data-type="tex">\(c\)</span>, then so are <span class="math-tex" data-type="tex">\(f+g\)</span>, <span class="math-tex" data-type="tex">\(f-g\)</span>, <span class="math-tex" data-type="tex">\(fg\)</span>, and, if <span class="math-tex" data-type="tex">\(g\left(c\right)\neq0\)</span>, <span class="math-tex" data-type="tex">\(\displaystyle\frac{f}{g}\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_51"></h1>
+<h1></h1>
 <p>This is just a restatement of various rules for combining limits; for example,</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1498,7 +1514,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 </div>
 <div data-type="theorem">
-<h1 id="theorem_52"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is a continuous function at the point <span class="math-tex" data-type="tex">\(L\)</span> and if <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to c}g\left(x\right)=L\)</span>, then we have</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1507,7 +1523,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 </div>
 <div data-type="proof">
-<h1 id="proof_53"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon >0\)</span> be given.</p>
 <p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(L\)</span>, there exists <span class="math-tex" data-type="tex">\(\kappa&gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon\)</span> whenever <span class="math-tex" data-type="tex">\(\left|g\left(x\right)\right|&lt;\kappa\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to c}g\left(x\right)=L\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta>0\)</span> such that if <span class="math-tex" data-type="tex">\(0&lt;\left|x-c\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|g\left(x\right)-L\right|&lt;\kappa\)</span>.</p>
@@ -1515,7 +1531,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_54>Continuous Extensions and Removable Discontinuities</h1>
+<h1>Continuous Extensions and Removable Discontinuities</h1>
 <p>As we have seen a rational function may have a limit even at a point where its denominator is zero. If <span class="math-tex" data-type="tex">\(f\left(c\right)\)</span> is not defined, but <span class="math-tex" data-type="tex">\(\lim_{x\to c}f\left(x\right)=L\)</span> exists, we can define a new function <span class="math-tex" data-type="tex">\(F\left(x\right)\)</span> by</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1527,7 +1543,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 </div>
 <p><span class="math-tex" data-type="tex">\(F\left(x\right)\)</span> is continuous at <span class="math-tex" data-type="tex">\(x=c\)</span>. It is called the <i>continuous extension</i> of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> to <span class="math-tex" data-type="tex">\(x=c\)</span>. For rational functions, continuous extensions are usually found by cancelling common factors.</p>
 <div data-type="example">
-<h1 id="example_55"></h1>
+<h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{x^2-x}{x^2-1}\)</span> has a continuous extension to <span class="math-tex" data-type="tex">\(x=1\)</span>, and find that extension.</p>
 <p>Although <span class="math-tex" data-type="tex">\(f\left(1\right)\)</span> is not defined, if <span class="math-tex" data-type="tex">\(x\neq 1\)</span> we have</p>
 <div class="math-tex" data-type="equation">
@@ -1539,12 +1555,12 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 </div>
 <p>If a function <span class="math-tex" data-type="tex">\(f\)</span> is undefined or discontinuous at a point <span class="math-tex" data-type="tex">\(c\)</span> but can be (re)defined at that single point so that it becomes continuous there, then we say that <span class="math-tex" data-type="tex">\(f\)</span> has a removable discontinuity at <span class="math-tex" data-type="tex">\(c\)</span>. The function <span class="math-tex" data-type="tex">\(f\)</span> in the above example has a removable discontinuity at <span class="math-tex" data-type="tex">\(x=1\)</span>. To remove it, define <span class="math-tex" data-type="tex">\(f\left(1\right)=\frac{1}{2}\)</span>.</p>
 <div data-type="example">
-<h1 id="example_56"></h1>
+<h1></h1>
 <p>The function <span class="math-tex" data-type="tex">\(\displaystyle g\left(x\right)=\begin{cases}x&\textrm{if}\ x\neq2\\1&\textrm{if }x=2\end{cases}\)</span> has a removable discontinuity at <span class="math-tex" data-type="tex">\(x=2\)</span>. To remove it, redefine <span class="math-tex" data-type="tex">\(g\left(2\right)=2\)</span>.</p>
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_57>The Intermediate-Value Theorem</h1>
+<h1>The Intermediate-Value Theorem</h1>
 <p>Continuous functions that are defined on closed, finite intervals have special properties that make them particularly useful in mathematics and its applications. We will discuss two of these properties here. Although they may appear obvious, these properties are much more subtle than the results about limits stated earlier in this chapter; their proofs require a careful study of the implications of the completeness property of the real numbers and are based on the Nested Intervals theorem.</p>
 <p>The first property of a continuous function defined on a closed, finite interval is that the function takes on all real values between any two of its values. This property is called the intermediate-value property.</p>
 <figure>
@@ -1604,7 +1620,7 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>The figure shows a typical situation. The points <span class="math-tex" data-type="tex">\(\left(a, f\left(a\right)\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(b, f\left(b\right)\right)\)</span> are on opposite sides of the horizontal line <span class="math-tex" data-type="tex">\(y=s\)</span>. Being unbroken, the graph <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> must cross this line in order to go from one point to the other. In the figure, it crosses the line only once, at <span class="math-tex" data-type="tex">\(x=c\)</span>. If the line <span class="math-tex" data-type="tex">\(y=s\)</span> were somewhat lower or higher, there might have been three crossings and three possible values for <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 <p>We need the following lemma to prove the intermediate-value property.</p>
 <div data-type="lemma">
-<h1 id="lemma_58">&nbsp;(Aura theorem)</h1>
+<h1>&nbsp;(Aura theorem)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(f\)</span> be continuous at <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 <ol>
 <li>
@@ -1616,7 +1632,7 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 </ol>
 </div>
 <div data-type="proof">
-<h1 id="proof_59"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(f\left(c\right)&gt;0\)</span>.</p>
 <p>Then, corresponding to <span class="math-tex" data-type="tex">\(\displaystyle\varepsilon = \frac{f\left(c\right)}{2}&gt;0\)</span> there exists a corresponding <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-c\right|&lt;\delta\)</span> implies</p>
 <div class="math-tex" data-type="equation">
@@ -1627,16 +1643,16 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>Hence, <span class="math-tex" data-type="tex">\(f\left(x\right)&gt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left]c-\delta,c+\delta\right[\)</span>.</p>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_60"></h1>
+<h1></h1>
 <p>Prove the second part of the Aura theorem.</p>
 </div>
 <p>We will first prove a special case from which the general case follows easily.</p>
 <div data-type="theorem">
-<h1 id="theorem_61">&nbsp;(Bolzano's theorem)</h1>
+<h1>&nbsp;(Bolzano's theorem)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(f\)</span> be a continuous function defined on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. If <span class="math-tex" data-type="tex">\(f\left(a\right)&lt;0\)</span> and <span class="math-tex" data-type="tex">\(f\left(b\right)&gt;0\)</span>, then there exists <span class="math-tex" data-type="tex">\(c\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(f\left(c\right)=0\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_62">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]=\left[a,b\right]\)</span>.</p>
 <p>If <span class="math-tex" data-type="tex">\(\displaystyle f\left(\frac{a_0+b_0}{2}\right)=0\)</span>, we are done. Otherwise, <span class="math-tex" data-type="tex">\(f\)</span> changes sign on either <span class="math-tex" data-type="tex">\(\displaystyle\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\displaystyle\left[\frac{a_0+b_0}{2},b_0\right]\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(I_1=\left[a_1, b_1\right]\)</span> be the subinterval on which <span class="math-tex" data-type="tex">\(f\)</span> changes sign and repeat.</p>
@@ -1647,24 +1663,24 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 </div>
 <p>If <span class="math-tex" data-type="tex">\(f\left(a\right)&gt;0\)</span> and <span class="math-tex" data-type="tex">\(f\left(b\right)&lt;0\)</span>, then <span class="math-tex" data-type="tex">\(g=-f\)</span> satisfies the hypotheses of Bolzano’s theorem and therefore <span class="math-tex" data-type="tex">\(g\left(c\right)=-f\left(c\right)=0\)</span> for some <span class="math-tex" data-type="tex">\(c\in\left]a,b\right[\)</span>, and hence <span class="math-tex" data-type="tex">\(f\left(c\right)=0\)</span>.</p>
 <div data-type="theorem">
-<h1 id="theorem_63">&nbsp;(Intermediate-value theorem)</h1>
+<h1>&nbsp;(Intermediate-value theorem)</h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and if <span class="math-tex" data-type="tex">\(s\)</span> is a number between <span class="math-tex" data-type="tex">\(f\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f\left(b\right)\)</span>, then there exists a number <span class="math-tex" data-type="tex">\(c\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(f\left(c\right)=s\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_64"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(s\)</span> be a number between <span class="math-tex" data-type="tex">\(f\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f\left(b\right)\)</span>.</p>
 <p>The function <span class="math-tex" data-type="tex">\(g\left(x\right)=f\left(x\right)-s\)</span> is continuous and satifies the hypotheses of Bolzano’s theorem, so there exists some <span class="math-tex" data-type="tex">\(c\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\left(c\right)=f\left(c\right)-s=0\)</span>.</p>
 <p>Hence, <span class="math-tex" data-type="tex">\(f\left(c\right)=s\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_65"></h1>
+<h1></h1>
 <p>Show that the equation <span class="math-tex" data-type="tex">\(x^3-x-1=0\)</span> has a solution in the interval <span class="math-tex" data-type="tex">\(\left[1,2\right]\)</span>.</p>
 <p>The function <span class="math-tex" data-type="tex">\(f\left(x\right)=x^3-x-1\)</span> is a polynomial and is therefore continuous everywhere.</p>
 <p>Now <span class="math-tex" data-type="tex">\(f\left(1\right)=-1\)</span> and <span class="math-tex" data-type="tex">\(f\left(2\right)=5\)</span>. Since <span class="math-tex" data-type="tex">\(0\)</span> lies between <span class="math-tex" data-type="tex">\(-1\)</span> and <span class="math-tex" data-type="tex">\(5\)</span>, the Intermediate-value theorem assures us that there must be a number <span class="math-tex" data-type="tex">\(c\in\left[1,2\right]\)</span> such that <span class="math-tex" data-type="tex">\(f\left(c\right)=0\)</span>.</p>
 </div>
 <p>One method for finding a zero of a function that is continuous and changes sign on an interval involves bisecting the interval many times, each time determining which half of the previous interval must contain the root, because the function has opposite signs at the two ends of that half.</p>
 <div data-type="example">
-<h1 id="example_66"></h1>
+<h1></h1>
 <p>Solve the equation <span class="math-tex" data-type="tex">\(x^3-x-1=0\)</span> correct to <span class="math-tex" data-type="tex">\(3\)</span> decimal places by successive bisection.</p>
 <div data-type="programresult">
 <table>
@@ -1690,16 +1706,16 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>In chapter 5, calculus will provide us with much faster methods of solving equations such as the one in the example above.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_67>The Extreme-Value Theorem</h1>
+<h1>The Extreme-Value Theorem</h1>
 <p>The second of the properties states that a function <span class="math-tex" data-type="tex">\(f\)</span> that is continuous on a closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> must have an absolute maximum value and an absolute minimum value. This means that the values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> at all points of the interval lie between the values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> at two particular points in the interval; the graph of <span class="math-tex" data-type="tex">\(f\)</span> has a highest point and a lowest point.</p>
 <p>To prove the extreme-value theorem, we will first show that a continuous function on a closed interval is bounded; that is, there exists a constant <span class="math-tex" data-type="tex">\(K\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\le K\)</span> if <span class="math-tex" data-type="tex">\(a\le x\le b\)</span>.</p>
 <p>We need the following lemma to prove the boundness property.</p>
 <div data-type="lemma">
-<h1 id="lemma_68"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(a\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on some open interval containing <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_69"></h1>
+<h1></h1>
 <p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(a\)</span>, corresponding to <span class="math-tex" data-type="tex">\(\varepsilon =1&gt;0\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta>0\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta\)</span> implies <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(a\right)\right|&lt;1\)</span>.</p>
 <p>That is, <span class="math-tex" data-type="tex">\(x\in\left]a-\delta,a+\delta\right[\)</span> implies <span class="math-tex" data-type="tex">\(f\left(a\right)-1&lt;f\left(x\right)&lt;f\left(a\right)+1\)</span>, which shows that <span class="math-tex" data-type="tex">\(f\)</span> is bounded on the open interval <span class="math-tex" data-type="tex">\(\left]a-\delta,a+\delta\right[\)</span>.</p>
 </div>
@@ -1717,11 +1733,11 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 </li>
 </ul>
 <div data-type="theorem">
-<h1 id="theorem_70">&nbsp;(Boundness theorem)</h1>
+<h1>&nbsp;(Boundness theorem)</h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is continous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_71">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]=\left[a,b\right]\)</span>.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> but not bounded. Then <span class="math-tex" data-type="tex">\(f\)</span> is either unbounded on <span class="math-tex" data-type="tex">\(\displaystyle \left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\displaystyle \left[\frac{a_0+b_0}{2},b_0\right]\)</span> (since, otherwise, <span class="math-tex" data-type="tex">\(f\)</span> would be bounded on their union and hence on all <span class="math-tex" data-type="tex">\(I_0\)</span>).</p>
 <p>Let <span class="math-tex" data-type="tex">\(I_1=\left[a_1, b_1\right]\)</span> be the subinterval on which <span class="math-tex" data-type="tex">\(f\)</span> is unbounded and repeat.</p>
@@ -1731,11 +1747,11 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 </div>
 <p>Finally, we can prove the Extreme-value theorem.</p>
 <div data-type="theorem">
-<h1 id="theorem_72">&nbsp;(Extreme-value theorem)</h1>
+<h1>&nbsp;(Extreme-value theorem)</h1>
 <p>A continuous function on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> attains both an absolute maximum and an absolute minimum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_73">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>We prove <span class="math-tex" data-type="tex">\(f\)</span> has a maximum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, by the Boundness theorem <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(f\)</span> is bounded, its image set is a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span> which is bounded above, so by the Completeness axiom it has a least upper bound.</p>
@@ -1749,7 +1765,7 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 </div>
 <p>To see that <span class="math-tex" data-type="tex">\(f\)</span> has a minimum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, just note that <span class="math-tex" data-type="tex">\(h=-f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and therefore has a maximum of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 <div data-type="exercise">
-<h1 id="exercise_74"></h1>
+<h1></h1>
 <p>Complete the proof that a continuous function <span class="math-tex" data-type="tex">\(f\)</span> on a closed interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> attains its absolute minimum.</p>
 </div>
 <p>The conclusion of the Extreme-value theorem may fail if the function <span class="math-tex" data-type="tex">\(f\)</span> is not continuous or if the interval is not closed.</p>
@@ -1873,7 +1889,6 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value <span class="math-tex" data-type="tex">\(m\)</span> and its maximum value <span class="math-tex" data-type="tex">\(M\)</span> , so its range is also a closed interval, <span class="math-tex" data-type="tex">\(\left[m,M\right]\)</span>.</p>
 <p>This is the reason why the graph of a function that is continuous on an interval cannot have any breaks. It must be <i>connected</i>, a single, unbroken curve with no jumps.</p>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

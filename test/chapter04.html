@@ -7,37 +7,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="oreilly.css" />
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
-<!--script>
-class handlers extends Paged.Handler {
-    constructor(chunker, polisher, caller) {
-        super(chunker, polisher, caller);
-    }
-
-    beforeParsed(content) {
-        renderMathInElement(content, {
-            delimiters: [
-            { left: "\\(", right: "\\)", display: false },
-            { left: "\\[", right: "\\]", display: true },
-            ],
-            throwOnError: false,
-            output: "mathml",
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
-            hljs.highlightElement(el);
-        });
-    }
-
-    afterRendered(pages) {
-        const element = document.getElementById("tag");
-        element.scrollIntoViewIfNeeded();
-    }
-}
-
-Paged.registerHandlers(handlers);
-</script-->
 <script>
 MathJax = {
     startup: {
@@ -101,6 +71,49 @@ class handlers extends Paged.Handler {
         content.querySelectorAll("pre code").forEach((el) => {
             hljs.highlightElement(el);
         });
+        let tocElementNbr = 0;
+        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
+        for (let i = 0; i < selectors.length; i++) {
+            let matches = content.querySelectorAll(selectors[i]);
+            matches.forEach((element) => {
+                element.classList.add('toc-element');
+                element.setAttribute('data-toc-level', i + 1);
+                if (element.id == '') {
+                    element.id = 'toc-element-' + tocElementNbr++;
+                }
+            })
+        }
+        let level = 0;
+        let toc = document.createElement('div');
+        let entry = toc;
+        let matches = content.querySelectorAll('.toc-element');
+        matches.forEach((element) => {
+            if (element.dataset.tocLevel > level) {
+                level++;
+                entry = document.createElement('ol');
+                toc.appendChild(entry);
+                toc = entry;
+            } else if (element.dataset.tocLevel < level) {
+                toc = toc.parentElement;
+                level--;
+                entry = document.createElement('li');
+                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>';
+                toc.appendChild(entry);
+            }
+            entry = document.createElement('li');
+            entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>';
+            toc.appendChild(entry);
+        })
+        while (level > 1) {
+            toc = toc.parentElement;
+            level--;
+        }
+        let nav = content.querySelector('nav[data-type="toc"]');
+        if (!nav) {
+            console.warn('no nav found');
+        } else {
+            nav.appendChild(toc);
+        }
     }
 
     afterRendered(pages) {
@@ -113,45 +126,47 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="article">
+<nav data-type="toc"></nav>
+<div id="tag"></div>
 <section data-type="chapter">
-<h1 id="chapter_1">Differentiation</h1>
+<h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
 <section data-type="sect1">
-<h1 id="section1_2">Tangent Lines and their Slopes</h1>
+<h1>Tangent Lines and their Slopes</h1>
 <p>This section deals with the problem of finding a straight line <span class="math-tex" data-type="tex">\(L\)</span> that is tangent to a curve <span class="math-tex" data-type="tex">\(C\)</span> at a point <span class="math-tex" data-type="tex">\(P\)</span>. As is often the case in mathematics, the most important step in the solution of such a fundamental problem is making a suitable definition.</p>
 <p>For simplicity, and to avoid certain problems best postponed until later, we will not deal with the most general kinds of curves now, but only with those that are the graphs of continuous functions. Let <span class="math-tex" data-type="tex">\(C\)</span> be the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> and let <span class="math-tex" data-type="tex">\(P\)</span> be the point <span class="math-tex" data-type="tex">\(\left(x_0,y_0\right)\)</span> on <span class="math-tex" data-type="tex">\(C\)</span>, so that <span class="math-tex" data-type="tex">\(y_0=f\left(x_0\right)\)</span>. We assume that <span class="math-tex" data-type="tex">\(P\)</span> is not an endpoint of <span class="math-tex" data-type="tex">\(C\)</span>. Therefore, <span class="math-tex" data-type="tex">\(C\)</span> extends some distance on both sides of <span class="math-tex" data-type="tex">\(P\)</span>.</p>
 <p>What do we mean when we say that the line <span class="math-tex" data-type="tex">\(L\)</span> is tangent to <span class="math-tex" data-type="tex">\(C\)</span> at <span class="math-tex" data-type="tex">\(P\)</span>?</p>
 <p>A reasonable definition of tangency can be stated in terms of limits. If <span class="math-tex" data-type="tex">\(Q\)</span> is a point on <span class="math-tex" data-type="tex">\(C\)</span> different from <span class="math-tex" data-type="tex">\(P\)</span>, then the line through <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(Q\)</span> is called a secant line to the curve. This line rotates around <span class="math-tex" data-type="tex">\(P\)</span> as <span class="math-tex" data-type="tex">\(Q\)</span> moves along the curve. If <span class="math-tex" data-type="tex">\(L\)</span> is a line through <span class="math-tex" data-type="tex">\(P\)</span> whose slope is the limit of the slopes of these secant lines <span class="math-tex" data-type="tex">\(PQ\)</span> as <span class="math-tex" data-type="tex">\(Q\)</span> approaches <span class="math-tex" data-type="tex">\(P\)</span> along <span class="math-tex" data-type="tex">\(C\)</span>, then we will say that <span class="math-tex" data-type="tex">\(L\)</span> is tangent to <span class="math-tex" data-type="tex">\(C\)</span> at <span class="math-tex" data-type="tex">\(P\)</span>.</p>
 </section>
 <section data-type="sect1">
-<h1 id="section1_3">The Derivative</h1>
+<h1>The Derivative</h1>
 </section>
 <section data-type="sect1">
-<h1 id="section1_4">Differentiation Rules</h1>
+<h1>Differentiation Rules</h1>
 <section data-type="sect2">
-<h2 id="section2_5">Derivatives of Inverse Functions</h2>
+<h2>Derivatives of Inverse Functions</h2>
 <section data-type="sect1">
-<h1 id="section1_6">Derivatives of Trigonometric Functions</h1>
+<h1>Derivatives of Trigonometric Functions</h1>
 <section data-type="sect1">
-<h1 id="section1_7">Higher Order Derivatives</h1>
+<h1>Higher Order Derivatives</h1>
 <section data-type="sect1">
-<h1 id="section1_8">Implicit Differentiation</h1>
+<h1>Implicit Differentiation</h1>
 <section data-type="sect1">
-<h1 id="section1_9">The Mean-Value Theorem</h1>
+<h1>The Mean-Value Theorem</h1>
 <section data-type="sect1">
-<h1 id="section1_10">Indeterminate Forms</h1>
+<h1>Indeterminate Forms</h1>
 <section data-type="sect1">
-<h1 id="section1_11">Extreme Values</h1>
+<h1>Extreme Values</h1>
 <section data-type="sect1">
-<h1 id="section1_12">Concavity and Inflections</h1>
+<h1>Concavity and Inflections</h1>
 <section data-type="sect1">
-<h1 id="section1_13">Sketching the Graph of a Function</h1>
+<h1>Sketching the Graph of a Function</h1>
 <section data-type="sect1">
-<h1 id="section1_14">Linear Approximations</h1>
+<h1>Linear Approximations</h1>
 <section data-type="sect1">
-<h1 id="section1_15">Taylor Polynomials</h1>
+<h1>Taylor Polynomials</h1>
 <section data-type="sect1">
-<h1 id="section1_16">Antiderivatives</h1>
+<h1>Antiderivatives</h1>
 </section>
 </section>
 </section>
@@ -165,7 +180,6 @@ Paged.registerHandlers(handlers);
 </section>
 </section>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>
