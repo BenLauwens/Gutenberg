@@ -66,22 +66,22 @@ class handlers extends Paged.Handler {
     }
 
     beforeParsed(content) {
-        content.querySelectorAll('div[data-type="equation"]').forEach((el) => {
+        for (let el of content.querySelectorAll('div[data-type="equation"]')) {
             el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true });
             el.classList.remove("math-tex");
-        });
-        content.querySelectorAll('foreignObject').forEach((el) => {
+        }
+        for (let el of content.querySelectorAll('foreignObject')) {
             el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false });
-        });
-        content.querySelectorAll('span[data-type="tex"]').forEach((el) => {
+        }
+        for (let el of content.querySelectorAll('span[data-type="tex"]')) {
             const math = document.createRange().createContextualFragment(
                 MathJax.tex2mml(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false })
             ).firstElementChild;
             el.replaceWith(math);
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
+        }
+        for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);
-        });
+        }
         let tocElementNbr = 0;
         const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
         for (let i = 0; i < selectors.length; i++) {
@@ -96,39 +96,39 @@ class handlers extends Paged.Handler {
         }
         let level = 0;
         let toc = document.createElement('div');
+        toc.appendChild(document.createElement('div'));
         let entry = toc;
-        let matches = content.querySelectorAll('.toc-element');
-        matches.forEach((element) => {
-            if (element.dataset.tocLevel > level) {
+        for (let el of content.querySelectorAll('.toc-element')) {
+            if (el.dataset.tocLevel > level) {
                 level++;
                 entry = document.createElement('ol');
-                toc.appendChild(entry);
+                toc.lastChild.appendChild(entry);
                 toc = entry;
-            } else if (element.dataset.tocLevel < level) {
-                toc = toc.parentElement;
+            } else if (el.dataset.tocLevel < level) {
+                toc = toc.parentElement.parentElement;
                 level--;
-                entry = document.createElement('li');
-                entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>';
-                toc.appendChild(entry);
             }
             entry = document.createElement('li');
-            entry.innerHTML = '<a href= "#' + element.id + '" >' + element.innerHTML + '</a>';
+            entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
             toc.appendChild(entry);
-        })
+        }
         while (level > 1) {
-            toc = toc.parentElement;
+            toc = toc.parentElement.parentElement;
             level--;
         }
         let nav = content.querySelector('nav[data-type="toc"]');
         if (!nav) {
             console.warn('no nav found');
         } else {
+            let title = document.createElement('h1');
+            title.innerHTML = 'Table of Contents';
+            nav.appendChild(title);
             nav.appendChild(toc);
         }
     }
 
     afterRendered(pages) {
-        const element = document.getElementById("tag");
+        const element = document.getElementById('tag');
         element.scrollIntoView();
     }
 }

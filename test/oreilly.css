@@ -91,7 +91,7 @@
 }
 
 body[data-type="article"] nav[data-type="toc"] {
-    display: none;
+    display: block;  /*none;*/
 }
 
 @page {
