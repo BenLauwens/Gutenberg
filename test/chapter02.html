@@ -7,37 +7,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="oreilly.css" />
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script-->
-<!--script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script-->
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
-<!--script>
-class handlers extends Paged.Handler {
-    constructor(chunker, polisher, caller) {
-        super(chunker, polisher, caller);
-    }
-
-    beforeParsed(content) {
-        renderMathInElement(content, {
-            delimiters: [
-            { left: "\\(", right: "\\)", display: false },
-            { left: "\\[", right: "\\]", display: true },
-            ],
-            throwOnError: false,
-            output: "mathml",
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
-            hljs.highlightElement(el);
-        });
-    }
-
-    afterRendered(pages) {
-        const element = document.getElementById("tag");
-        element.scrollIntoViewIfNeeded();
-    }
-}
-
-Paged.registerHandlers(handlers);
-</script-->
 <script>
 MathJax = {
     startup: {
@@ -85,26 +55,68 @@ class handlers extends Paged.Handler {
     }
 
     beforeParsed(content) {
-        content.querySelectorAll('div[data-type="equation"]').forEach((el) => {
+        for (let el of content.querySelectorAll('div[data-type="equation"]')) {
             el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true });
             el.classList.remove("math-tex");
-        });
-        content.querySelectorAll('foreignObject').forEach((el) => {
+        }
+        for (let el of content.querySelectorAll('foreignObject')) {
             el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false });
-        });
-        content.querySelectorAll('span[data-type="tex"]').forEach((el) => {
+        }
+        for (let el of content.querySelectorAll('span[data-type="tex"]')) {
             const math = document.createRange().createContextualFragment(
                 MathJax.tex2mml(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false })
             ).firstElementChild;
             el.replaceWith(math);
-        });
-        content.querySelectorAll("pre code").forEach((el) => {
+        }
+        for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);
-        });
+        }
+        let tocElementNbr = 0;
+        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
+        for (let i = 0; i < selectors.length; i++) {
+            for (let el of content.querySelectorAll(selectors[i])) {
+                el.classList.add('toc-element');
+                el.setAttribute('data-toc-level', i + 1);
+                if (el.id == '') {
+                    el.id = 'toc-element-' + tocElementNbr++;
+                }
+            }
+        }
+        let level = 0;
+        let toc = document.createElement('div');
+        toc.appendChild(document.createElement('div'));
+        let entry = toc;
+        for (let el of content.querySelectorAll('.toc-element')) {
+            if (el.dataset.tocLevel > level) {
+                level++;
+                entry = document.createElement('ol');
+                toc.lastChild.appendChild(entry);
+                toc = entry;
+            } else if (el.dataset.tocLevel < level) {
+                toc = toc.parentElement.parentElement;
+                level--;
+            }
+            entry = document.createElement('li');
+            entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
+            toc.appendChild(entry);
+        }
+        while (level > 1) {
+            toc = toc.parentElement.parentElement;
+            level--;
+        }
+        let nav = content.querySelector('nav[data-type="toc"]');
+        if (!nav) {
+            console.warn('no nav found');
+        } else {
+            let title = document.createElement('h1');
+            title.innerHTML = 'Table of Contents';
+            nav.appendChild(title);
+            nav.appendChild(toc);
+        }
     }
 
     afterRendered(pages) {
-        const element = document.getElementById("tag");
+        const element = document.getElementById('tag');
         element.scrollIntoView();
     }
 }
@@ -113,22 +125,23 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="article">
+<nav data-type="toc"></nav>
 <div id="tag"></div>
 <section data-type="chapter">
-<h1 id=chapter_1>Real Numbers and Functions</h1>
+<h1>Real Numbers and Functions</h1>
 <p>In this chapter, the real numbers are formally defined and some basic real functions are explored.</p>
 <section data-type="sect1">
-<h1 id=section1_2>Natural Numbers and Extensions</h1>
+<h1>Natural Numbers and Extensions</h1>
 <p>The axioms of Peano define the <i>natural numbers</i>, denoted by <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
 <p>To close the set of numbers under the subtraction operation, the natural numbers are extended with the negative integers to form the set of <i>integers</i>, denoted by <span class="math-tex" data-type="tex">\(ℤ\)</span>.</p>
 <p>To close the set of numbers under the division operation, numbers that can be expressed as an irreducible fraction <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span>, where <span class="math-tex" data-type="tex">\(m\in ℤ\)</span> and <span class="math-tex" data-type="tex">\(n\in ℤ\setminus \{0, 1\}\)</span> are added to the integers to form the set of <i>rational numbers</i>, denoted by <span class="math-tex" data-type="tex">\(ℚ\)</span>.</p>
 <p>This definition comes with the understanding that the two rational numbers <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span> and <span class="math-tex" data-type="tex">\(\frac{a}{b}\)</span> are equal whenever <span class="math-tex" data-type="tex">\(mb=na\)</span>.</p>
 </section>
 <section data-type="sect1">
-<h1 id=section1_3>Algebraic Properties of Rational Numbers</h1>
+<h1>Algebraic Properties of Rational Numbers</h1>
 <p>The set of rational number is more than a set of fractions with integers for numerators and denominators. It also comes with the two binary operations of <i>addition</i> and <i>multiplication</i>.</p>
 <div data-type="axiom">
-<h1 id="axiom_4">&nbsp;(Algebraic properties)</h1>
+<h1>&nbsp;(Algebraic properties)</h1>
 <p>A set <span class="math-tex" data-type="tex">\(𝔽\)</span> together with the binary operations of addition and multiplication form a <i>field</i> if <span class="math-tex" data-type="tex">\(𝔽\)</span> contains two elements <span class="math-tex" data-type="tex">\(0\)</span> and <span class="math-tex" data-type="tex">\(1\)</span> with <span class="math-tex" data-type="tex">\(0\ne1\)</span> such that <span class="math-tex" data-type="tex">\(\forall a,b,c\in 𝔽\)</span>:</p>
 <ol>
 <li>
@@ -151,7 +164,7 @@ Paged.registerHandlers(handlers);
 <p>Notice that the rational numbers do satisfy the field axioms.</p>
 <p>Following properties can be derived from the algebraic properties.</p>
 <div data-type="theorem">
-<h1 id="theorem_5"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(a,b,c\in ℚ\)</span>.</p>
 <ol>
 <li>
@@ -172,11 +185,11 @@ Paged.registerHandlers(handlers);
 </ol>
 </div>
 <div data-type="example">
-<h1 id="example_6"></h1>
+<h1></h1>
 <p>Proof the second property.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_7"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(a\in ℚ\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(0\)</span> is the additive identity, <span class="math-tex" data-type="tex">\(0=0+0\)</span>. Then <span class="math-tex" data-type="tex">\(a\cdot 0=a\cdot\left(0+0\right)\)</span>. By the distributive property, <span class="math-tex" data-type="tex">\(a\cdot 0=a\cdot 0+a\cdot 0\)</span>. By adding <span class="math-tex" data-type="tex">\(-a\cdot 0\)</span> to each side of this equality, one gets</p>
 <div class="math-tex" data-type="equation">
@@ -187,7 +200,7 @@ Paged.registerHandlers(handlers);
 <p>Therefore, <span class="math-tex" data-type="tex">\(a\cdot 0 = 0\)</span></p>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_8"></h1>
+<h1></h1>
 <p>Proof the other properties.</p>
 </div>
 <p>The associative property allows to write in an unambiguous way <span class="math-tex" data-type="tex">\(a+b+c\)</span> and <span class="math-tex" data-type="tex">\(abc\)</span>. More generally, the sum of <span class="math-tex" data-type="tex">\(a_1,a_2,\dots,a_n\in ℚ\)</span> is unambiguously defined. To present this sum concisely, we use the <i>sigma notation</i>:</p>
@@ -228,10 +241,10 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 </section>
 <section data-type="sect1">
-<h1 id=section1_9>Order Properties of Rational Numbers</h1>
+<h1>Order Properties of Rational Numbers</h1>
 <p>Rational numbers are not only determined by the operations of addition and multiplication, they are also <i>ordered</i> in a way that is compatible with addition and multiplication.</p>
 <div data-type="axiom">
-<h1 id="axiom_10">&nbsp;(Order properties)</h1>
+<h1>&nbsp;(Order properties)</h1>
 <p>A field <span class="math-tex" data-type="tex">\(𝔽\)</span> is an <i>ordered field</i> with total order relation <span class="math-tex" data-type="tex">\(\le\)</span> if <span class="math-tex" data-type="tex">\(\forall a,b,c\in 𝔽:\)</span></p>
 <ol>
 <li>
@@ -261,7 +274,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>We say that <span class="math-tex" data-type="tex">\(a\)</span> is <i>positive</i> if <span class="math-tex" data-type="tex">\(0\le a\)</span> and <i>negative</i> if <span class="math-tex" data-type="tex">\(a\le 0\)</span>. The <i>strict order relation</i> <span class="math-tex" data-type="tex">\(a &lt; b\)</span> means that <span class="math-tex" data-type="tex">\(a\le b\)</span> and <span class="math-tex" data-type="tex">\(a \ne b\)</span>.</p>
 <p>Following properties can be derived from the order properties.</p>
 <div data-type="theorem">
-<h1 id="theorem_11"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(a,b,c\in ℚ\)</span>.</p>
 <ol>
 <li>
@@ -288,11 +301,11 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </ol>
 </div>
 <div data-type="example">
-<h1 id="example_12"></h1>
+<h1></h1>
 <p>Proof the fifth property.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_13">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>By the totality property is <span class="math-tex" data-type="tex">\(0\le1 \vee 1\le0\)</span>. Suppose <span class="math-tex" data-type="tex">\(1\le0\)</span>.</p>
 <p>By the compatibility of the addition is <span class="math-tex" data-type="tex">\(0=1+\left(-1\right)\le0+\left(-1\right)=-1\)</span>.</p>
 <p>By the compatibility of the multiplication is <span class="math-tex" data-type="tex">\(0=0\cdot\left(-1\right)\le-1\cdot\left(-1\right)=1\)</span>.</p>
@@ -300,11 +313,11 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>Therefore, <span class="math-tex" data-type="tex">\(0\le 1\)</span> and <span class="math-tex" data-type="tex">\(0\ne 1\)</span>, that is, <span class="math-tex" data-type="tex">\(0 &lt; 1\)</span>.</p>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_14"></h1>
+<h1></h1>
 <p>Proof the other properties.</p>
 </div>
 <section data-type="sect2">
-<h2 id=section2_15>Decimal Expansions</h2>
+<h2>Decimal Expansions</h2>
 <p>The rational numbers have a <i>decimal expansion</i> that is either:</p>
 <ol>
 <li>
@@ -315,7 +328,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </li>
 </ol>
 <div data-type="example">
-<h1 id="example_16"></h1>
+<h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(1.\overline{32}\)</span> and <span class="math-tex" data-type="tex">\(.3\overline{405}\)</span> are rational numbers by expressing them as a quotient of two irreducible integers.</p>
 <ol>
 <li>
@@ -339,7 +352,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </ol>
 </div>
 <section data-type="sect1">
-<h1 id=section1_17>Not all Numbers are Rational</h1>
+<h1>Not all Numbers are Rational</h1>
 <p>Geometrically, we represent the integers as points on a horizontal line by defining a starting point (the number <span class="math-tex" data-type="tex">\(0\)</span>) and a unit distance (between two consecutive integers). The unit distance can be further subdivided to represent rational numbers such as <span class="math-tex" data-type="tex">\(\frac{1}{n}\)</span> with <span class="math-tex" data-type="tex">\(n\inℕ_0\)</span>. In this way we can uniquely represent each rational number on the <i>number line</i>.</p>
 <p>Although the rational numbers have a rich structure, there are limitations. Not every point on the number line corresponds to a rational number, eg., we can indicate the number <span class="math-tex" data-type="tex">\(\sqrt 2\)</span> using a simple geometric construction, based on the <i>Pythagorean theorem</i>, as a single point between the numbers <span class="math-tex" data-type="tex">\(1\)</span> and <span class="math-tex" data-type="tex">\(2\)</span> but it is not a rational number.</p>
 <figure>
@@ -417,32 +430,32 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </svg>
 <figcaption>The real line.</figcaption></figure>
 <div data-type="theorem">
-<h1 id="theorem_18"></h1>
+<h1></h1>
 <p><span class="math-tex" data-type="tex">\(\sqrt 2 \notin ℚ\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_19">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>Suppose <span class="math-tex" data-type="tex">\(\sqrt 2\in ℚ\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(\sqrt 2\)</span> as a rational number can be represented by an irreducible fraction <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span>, we have <span class="math-tex" data-type="tex">\(\frac{m^2}{n^2}=\left(\sqrt 2\right)^2=2\)</span>, that is, <span class="math-tex" data-type="tex">\(m^2=2n^2\)</span>. Consequently, <span class="math-tex" data-type="tex">\(m^2\)</span> is even and so is <span class="math-tex" data-type="tex">\(m\)</span> (see previous chapter). Then <span class="math-tex" data-type="tex">\(m^2=\left(2k\right)^2=4k^2=2n^2\)</span> or <span class="math-tex" data-type="tex">\(n^2=2k^2\)</span>, that is, <span class="math-tex" data-type="tex">\(n^2\)</span> is even and so is <span class="math-tex" data-type="tex">\(n\)</span>.</p>
 <p>Both <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span> are even contradicts that <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span> is an irreducible fraction. We supposed wrongly that <span class="math-tex" data-type="tex">\(\sqrt 2\in ℚ\)</span>.</p>
 <p>Therefore, <span class="math-tex" data-type="tex">\(\sqrt 2 \notin ℚ\)</span>.</p>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_20"></h1>
+<h1></h1>
 <p>Proof <span class="math-tex" data-type="tex">\(\sqrt 3 \notin ℚ\)</span>. What goes wrong if you try to proof <span class="math-tex" data-type="tex">\(\sqrt 4 \notin ℚ\)</span>?</p>
 <p>Hint: If a prime number divides the square of an integer, it also divides the integer itself.</p>
 </div>
 <section data-type="sect1">
-<h1 id=section1_21>Completeness of the Real Numbers</h1>
+<h1>Completeness of the Real Numbers</h1>
 <p>To express that there are no holes in the <i>real line</i>, that is, the line is <i>complete</i>, another axiom is needed.</p>
 <div data-type="definition">
-<h1 id="definition_22"></h1>
+<h1></h1>
 <p>A number <span class="math-tex" data-type="tex">\(u\)</span> of an ordered field <span class="math-tex" data-type="tex">\(𝔽\)</span> is said to be an <i>upper bound</i> for a nonempty set <span class="math-tex" data-type="tex">\(S\subset𝔽\)</span> if <span class="math-tex" data-type="tex">\(\forall x\in S: x\le u\)</span>.</p>
 <p>The number <span class="math-tex" data-type="tex">\(u^\star\)</span> is called the <i>least upper bound</i> or <i>supremum</i> of <span class="math-tex" data-type="tex">\(S\)</span> if <span class="math-tex" data-type="tex">\(u^\star\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(u^\star \le u\)</span> for every upper bound <span class="math-tex" data-type="tex">\(u\)</span> of <span class="math-tex" data-type="tex">\(S\)</span>. The supremum of <span class="math-tex" data-type="tex">\(S\)</span> is denoted <span class="math-tex" data-type="tex">\(\sup S\)</span>.</p>
 <p>Similarly, <span class="math-tex" data-type="tex">\(l\)</span> is a <i>lower bound</i> for <span class="math-tex" data-type="tex">\(S\)</span> if <span class="math-tex" data-type="tex">\(\forall x\in S: l\le x\)</span>. The number <span class="math-tex" data-type="tex">\(l^\star\)</span> is called the <i>greatest lower bound</i> or <i>infimum</i> of <span class="math-tex" data-type="tex">\(S\)</span> if <span class="math-tex" data-type="tex">\(l^\star\)</span> is a lower bound for <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(l \le l^\star\)</span> for every lower bound <span class="math-tex" data-type="tex">\(l\)</span> of <span class="math-tex" data-type="tex">\(S\)</span>. The infimum of <span class="math-tex" data-type="tex">\(S\)</span> is denoted <span class="math-tex" data-type="tex">\(\inf S\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_23"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(a&gt;0\)</span>. Show that <span class="math-tex" data-type="tex">\(\sup aS=a\sup S\)</span>.</p>
 <ol>
 <li>
@@ -454,23 +467,23 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </ol>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_24"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(a&gt;0\)</span>. Show that <span class="math-tex" data-type="tex">\(\inf aS=a\inf S\)</span>.</p>
 </div>
 <p>If a set has a maximum (minimum) then this maximum (minimum) is also the supremum (infimum). If this is not the case, the supremum (infimum), not belonging to the set, are the next-best thing.</p>
 <div data-type="axiom">
-<h1 id="axiom_25">&nbsp;(Completeness)</h1>
+<h1>&nbsp;(Completeness)</h1>
 <p>A nonempty set of real number that has an upper bound must have a least upper bound.</p>
 <p>Equivalently, a nonempty set of real numbers having a lower bound must have a greatest lower bound.</p>
 </div>
 <p>We stress that this is an axiom to be assumed without proof. It cannot be deduced from the algebraic and order properties. These properties are shared by the rational numbers, a set that is not complete.</p>
 <p>The completeness axiom has massive consequences.</p>
 <div data-type="lemma">
-<h1 id="lemma_26"></h1>
+<h1></h1>
 <p>The set of natural numbers is not bounded above or <span class="math-tex" data-type="tex">\(\forall r\in ℝ,\exists n\in ℕ:r&gt;n\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_27">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>Suppose that there is an <span class="math-tex" data-type="tex">\(r\in ℝ\)</span> such that <span class="math-tex" data-type="tex">\(\forall n\in ℕ:r&gt;n\)</span>.</p>
 <p>Then the set <span class="math-tex" data-type="tex">\(ℕ\)</span> is a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span> with an upper bound, so by the completeness axiom, <span class="math-tex" data-type="tex">\(ℕ\)</span> has a least upper bound <span class="math-tex" data-type="tex">\(M\)</span>.</p>
 <p>Then <span class="math-tex" data-type="tex">\(M-1&lt;M\)</span>, so <span class="math-tex" data-type="tex">\(M-1\)</span> is not an upper bound for <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
@@ -481,12 +494,12 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 <p>The Archimedean principle expresses geometrically that any line segment, no matter how long, may be covered by a finite number of line segments of a given positive length, no matter how small. This is a fundamental property of the real line.</p>
 <div data-type="theorem">
-<h1 id="theorem_28">&nbsp;(Archimedean Principle)</h1>
+<h1>&nbsp;(Archimedean Principle)</h1>
 <p><span class="math-tex" data-type="tex">\(\forall a\in ℝ^+_0,\forall b\in ℝ,\exists n\in ℕ:na&gt;b\)</span>.</p>
 </div>
 <p>This principle is a direct consequence of the previous lemma, just replace <span class="math-tex" data-type="tex">\(r\)</span> by <span class="math-tex" data-type="tex">\(\frac{b}{a}\)</span>.</p>
 <div data-type="example">
-<h1 id="example_29"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(S=\left\{\frac{1}{2^n}\mid n\in ℕ\right\}=\left\{1, \frac{1}{2},\frac{1}{4}, \ldots\right\}\)</span>. Show that <span class="math-tex" data-type="tex">\(\inf S=0\)</span>.</p>
 <ol>
 <li>
@@ -498,10 +511,10 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </ol>
 </div>
 <section data-type="sect1">
-<h1 id=section1_30>Absolute Values</h1>
+<h1>Absolute Values</h1>
 <p>The concepts that separates the area of mathematics known as analysis (the fundaments of calculus) from other branches such as algebra, set theory, … is the idea of <i>distance</i>. In the real numbers, one can measure distance by using the <i>absolute value</i>.</p>
 <div data-type="definition">
-<h1 id="definition_31"></h1>
+<h1></h1>
 <p>The absolute value of a real number <span class="math-tex" data-type="tex">\(x\)</span>, denoted by <span class="math-tex" data-type="tex">\(\left|x\right|\)</span>, is defined by the formula</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -515,7 +528,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>Geometrically, <span class="math-tex" data-type="tex">\(\left|x\right|\)</span> represents the (nonnegative) distance from <span class="math-tex" data-type="tex">\(x\)</span>  to <span class="math-tex" data-type="tex">\(0\)</span> on the real line. <span class="math-tex" data-type="tex">\(\left|x-y\right|\)</span> represents the (nonnegative) distance between the points <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(y\)</span> on the real line, since this distance is the same as that from the point <span class="math-tex" data-type="tex">\(x-y\)</span> to <span class="math-tex" data-type="tex">\(0\)</span>.</p>
 <p>The absolute value has the following properties.</p>
 <div data-type="theorem">
-<h1 id="theorem_32"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(a, b\in ℝ\)</span></p>
 <ul>
 <li>
@@ -530,7 +543,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </ul>
 </div>
 <div data-type="proof">
-<h1 id="proof_33"></h1>
+<h1></h1>
 <p>The first two of these properties can be checked by considering the cases where either <span class="math-tex" data-type="tex">\(a\)</span> or <span class="math-tex" data-type="tex">\(b\)</span> is either positive or negative. The third property follows from the first two.</p>
 <p>Let <span class="math-tex" data-type="tex">\(a, b\in ℝ\)</span>.</p>
 <div class="math-tex" data-type="equation">
@@ -545,14 +558,14 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 <p>The notion of an absolute value will be generalized by a <i>metric</i> in the setting of a <i>metric space</i><span data-type="footnote">A metric space is an ordered pair <span class="math-tex" data-type="tex">\(\left(M, d\right)\)</span> where <span class="math-tex" data-type="tex">\(M\)</span> is a set and <span class="math-tex" data-type="tex">\(d\)</span> is a metric on <span class="math-tex" data-type="tex">\(M\)</span>, i.e., a function <span class="math-tex" data-type="tex">\(d:M\times M\to ℝ\)</span> satisfying the following axioms for all points <span class="math-tex" data-type="tex">\(x,y,z\in M\)</span>:<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x, x\right)=0\)</span> and <span class="math-tex" data-type="tex">\(x\ne y\Rightarrow d\left(x, y\right) > 0\)</span> (<i>positivity</i>)<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x,y\right)=d\left(y,x\right)\)</span> (<i>symmetry</i>)<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x,z\right)\le d\left(x,y\right)+d\left(y,z\right)\)</span> (<i>triangle inequality</i>)</span>.</p>
 <section data-type="sect1">
-<h1 id=section1_34>Intervals</h1>
+<h1>Intervals</h1>
 <div data-type="definition">
-<h1 id="definition_35"></h1>
+<h1></h1>
 <p>An <i>interval</i> is a subset of the real numbers that contains all real numbers lying between any two numbers of the subset.</p>
 </div>
 <p>The notion of an interval will be generalized by a <i>connected set</i> in the setting of a metric space.</p>
 <div data-type="example">
-<h1 id="example_36"></h1>
+<h1></h1>
 <p>The set of real numbers <span class="math-tex" data-type="tex">\(x\)</span> such that <span class="math-tex" data-type="tex">\(x&gt;6\)</span> is an interval, but the set of real numbers <span class="math-tex" data-type="tex">\(y\)</span> such that <span class="math-tex" data-type="tex">\(y\ne0\)</span> is not an interval.</p>
 </div>
 <p>If <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span> are real numbers and <span class="math-tex" data-type="tex">\(a&lt;b\)</span> we often refer to</p>
@@ -573,7 +586,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>In a figure, hollow dots indicate endpoints of intervals that are not included in the intervals, and solid dots indicate endpoints that are included. The endpoints of an interval are also called <i>boundary points</i>.</p>
 <p>The already defined intervals are <i>finite intervals</i>, that is, each of them has finite length <span class="math-tex" data-type="tex">\(b-a\)</span>. Intervals can also have infinite length, in which case they are called <i>infinite intervals</i>. Note that the whole real line <span class="math-tex" data-type="tex">\(ℝ\)</span> is an interval, denoted by <span class="math-tex" data-type="tex">\(\left]-\infty, \infty\right[\)</span>. The symbol <span class="math-tex" data-type="tex">\(\infty\)</span> (“infinity”) does <b>not</b> denote a real number.</p>
 <div data-type="theorem">
-<h1 id="theorem_37">&nbsp;(Theorem of Nested intervals)</h1>
+<h1>&nbsp;(Theorem of Nested intervals)</h1>
 <p>If <span class="math-tex" data-type="tex">\(\forall n\in ℕ\)</span>, we have a closed interval</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -606,7 +619,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </div>
 </div>
 <div data-type="proof">
-<h1 id="proof_38"></h1>
+<h1></h1>
 <p>We split the proof in four parts.</p>
 <ul>
 <li>
@@ -642,11 +655,11 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </div>
 <p>A direct corollary of the nested intervals theorem is the uncountability of the real numbers.</p>
 <div data-type="corollary">
-<h1 id="corollary_39">&nbsp;(The real numbers are not countable)</h1>
+<h1>&nbsp;(The real numbers are not countable)</h1>
 <p>There is no surjection <span class="math-tex" data-type="tex">\(f:ℕ\rightarrowℝ\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_40"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(f:ℕ\rightarrowℝ\)</span> be a function.</p>
 <p>For each <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, let <span class="math-tex" data-type="tex">\(f\left(n\right)=x_n\)</span></p>
 <p>Choose a closed interval <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> not containing <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
@@ -658,7 +671,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </div>
 <p>The cardinal number of the set of real numbers is called the <i>continuum</i>, denoted by <span class="math-tex" data-type="tex">\(\# ℝ=𝔠=ℵ_1=2^{ℵ_0}&gt;ℵ_0\)</span>.</p>
 <section data-type="sect1">
-<h1 id=section1_41>Bisection Method</h1>
+<h1>Bisection Method</h1>
 <p>When we have to find an element in a sorted array, we apply intuitively a <i>binary search algorithm</i>, eg. looking up a name in an alphabetically ordered list.</p>
 <ol>
 <li>
@@ -675,7 +688,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </ol>
 <p>The same methodology can be used to prove some important theorems in calculus. We call such a procedure, the <i>bisection method</i>.</p>
 <div data-type="template">
-<h1 id="template_42">&nbsp;(Proof by bisection)</h1>
+<h1>&nbsp;(Proof by bisection)</h1>
 <p>Begin with a closed interval <span class="math-tex" data-type="tex">\(I_0=\left[a_0,b_0\right]\)</span>.</p>
 <p>STEP 1: Bisect <span class="math-tex" data-type="tex">\(I_0\)</span> to obtain two closed intervals <span class="math-tex" data-type="tex">\(\left[a_0, \frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2}, b_0\right]\)</span>.</p>
 <p>STEP 2: Select one of the two subintervals above, and call it <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
@@ -699,26 +712,26 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>Let’s prove by the bisection method that there is a rational between any two reals.</p>
 <p>We need following lemma.</p>
 <div data-type="lemma">
-<h1 id="lemma_43">&nbsp;(Capture theorem)</h1>
+<h1>&nbsp;(Capture theorem)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span>. If <span class="math-tex" data-type="tex">\(A\)</span> is bounded above, then any open interval containing <span class="math-tex" data-type="tex">\(\sup A\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
 <p>Similarly, if <span class="math-tex" data-type="tex">\(A\)</span> is bounded below, than any open interval containing <span class="math-tex" data-type="tex">\(\inf A\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_44">&nbsp;(by contradiction)</h1>
+<h1>&nbsp;(by contradiction)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(\left]x,y\right[\)</span> be an open interval such that <span class="math-tex" data-type="tex">\(x&lt;\sup A&lt;y\)</span>.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(\left]x,y\right[\)</span> doesn’t contain an element of <span class="math-tex" data-type="tex">\(A\)</span>. So <span class="math-tex" data-type="tex">\(x\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(A\)</span> which is a contradiction since <span class="math-tex" data-type="tex">\(x&lt;\sup A\)</span>.</p>
 <p>Therefore, <span class="math-tex" data-type="tex">\(\left]x,y\right[\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_45"></h1>
+<h1></h1>
 <p>Prove the second statement.</p>
 </div>
 <div data-type="theorem">
-<h1 id="theorem_46">&nbsp;(The rational numbers are dense in the real numbers)</h1>
+<h1>&nbsp;(The rational numbers are dense in the real numbers)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(x\in ℝ\)</span> and <span class="math-tex" data-type="tex">\(\varepsilon\in ℝ^+\)</span>. The interval <span class="math-tex" data-type="tex">\(\left]x-\varepsilon,x+\varepsilon\right[\)</span> contains a rational number.</p>
 </div>
 <div data-type="proof">
-<h1 id="proof_47">&nbsp;(by bisection)</h1>
+<h1>&nbsp;(by bisection)</h1>
 <p>If <span class="math-tex" data-type="tex">\(x\)</span> is rational we are done, so let <span class="math-tex" data-type="tex">\(x\)</span> be irrational.</p>
 <p>Let <span class="math-tex" data-type="tex">\(b_0\)</span> be the smallest integer greater than <span class="math-tex" data-type="tex">\(x\)</span>, and let <span class="math-tex" data-type="tex">\(a_0=b_0-1\)</span>.</p>
 <p>Then <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints. It follows that <span class="math-tex" data-type="tex">\(x\)</span> is contained in either <span class="math-tex" data-type="tex">\(\left]a_0, \frac{a_0+b_0}{2}\right[\)</span> or <span class="math-tex" data-type="tex">\(\left]\frac{a_0+b_0}{2}, b_0\right[\)</span>. Let <span class="math-tex" data-type="tex">\(I_1\)</span> be the closed subinterval containing <span class="math-tex" data-type="tex">\(x\)</span>.</p>
@@ -728,10 +741,10 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </div>
 <p>The practical use of this theorem is the possibility to approximate with a given tolerance a real number by a rational number, eg. in computer science <i>floating point</i> values are rational approximations of real numbers.</p>
 <section data-type="sect1">
-<h1 id=section1_48>Functions, Cartesian Plane and Graphs</h1>
+<h1>Functions, Cartesian Plane and Graphs</h1>
 <p>Remember the definition of a function.</p>
 <div data-type="definition">
-<h1 id="definition_49"></h1>
+<h1></h1>
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span> from a set <span class="math-tex" data-type="tex">\(X\)</span> to a set <span class="math-tex" data-type="tex">\(Y\)</span>, often written <span class="math-tex" data-type="tex">\(f:X\to Y\)</span>, is a rule which assigns to each <span class="math-tex" data-type="tex">\(x\in X\)</span> a unique element <span class="math-tex" data-type="tex">\(f\left(x\right)=y\in Y\)</span>.</p>
 </div>
 <p>In this course, we will only consider functions having <span class="math-tex" data-type="tex">\(X\subset ℝ\)</span> and <span class="math-tex" data-type="tex">\(Y\subset ℝ\)</span>.</p>
@@ -751,12 +764,12 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>A function is not properly defined until its domain is specified. For instance the function <span class="math-tex" data-type="tex">\(f\left(x\right)=x^2\)</span> defined for all real numbers <span class="math-tex" data-type="tex">\(x\ge 0\)</span> is different from the function <span class="math-tex" data-type="tex">\(g\left(x\right)=x^2\)</span> defined for all real numbers <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 <p>When a function <span class="math-tex" data-type="tex">\(f\)</span> is defined without specifying its domain, we assume that the domain consists of all real numbers <span class="math-tex" data-type="tex">\(x\)</span> for which the value <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> of the function is a real number.</p>
 <div data-type="example">
-<h1 id="example_50"></h1>
+<h1></h1>
 <p>The domain of <span class="math-tex" data-type="tex">\(f:x\mapsto\sqrt x\)</span> is the interval <span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span> since negative numbers do not have a real square root. Note that the <i>square root function</i> <span class="math-tex" data-type="tex">\(\sqrt x\)</span> always denotes the positive square root of <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 </div>
 <p>Functions can be represented in the <i>Cartesian plane</i>.</p>
 <div data-type="definition">
-<h1 id="definition_51"></h1>
+<h1></h1>
 <p>A <i>Cartesian coordinate system</i> in a plane is a coordinate system that specifies each point uniquely by a pair of real numbers called coordinates, which are the signed distances to the point from two fixed perpendicular oriented lines, called <i>coordinate axes</i> of the system. The point where they meet is called the <i>origin</i> denoted by <span class="math-tex" data-type="tex">\(O\)</span> and has <span class="math-tex" data-type="tex">\((0, 0)\)</span> as coordinates.</p>
 </div>
 <figure>
@@ -850,12 +863,12 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </svg>
 <figcaption>The Cartesian Plane.</figcaption></figure>
 <div data-type="definition">
-<h1 id="definition_52"></h1>
+<h1></h1>
 <p>The <i>graph of a function</i> <span class="math-tex" data-type="tex">\(f\)</span> consists of those points in the Cartesian plane whose coordinates <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> are pairs of input-output values for <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 </div>
 <p>Thus, <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> lies on the graph of <span class="math-tex" data-type="tex">\(f\)</span> provided <span class="math-tex" data-type="tex">\(x\)</span> is in the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>.</p>
 <div data-type="example">
-<h1 id="example_53"></h1>
+<h1></h1>
 <p>Graph the function <span class="math-tex" data-type="tex">\(f\left(x\right)=x^2\)</span>.</p>
 <p>Make a table of <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> pairs that satisfy <span class="math-tex" data-type="tex">\(y = x^2\)</span>. Now plot the points and join them with a smooth curve.</p>
 </div>
@@ -919,7 +932,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <figcaption>The graph of <span class="math-tex" data-type="tex">\(y = x^2\)</span></figcaption></figure>
 <p>Not every curve you can draw is the graph of a function. A function <span class="math-tex" data-type="tex">\(f\)</span> can have only one value <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for each <span class="math-tex" data-type="tex">\(x\)</span> is its domain, so no vertical line can intersect the graph of a function at more than one point.</p>
 <div data-type="example">
-<h1 id="example_54"></h1>
+<h1></h1>
 <p>The circle <span class="math-tex" data-type="tex">\(x^2+y^2=1\)</span> cannot be the graph of a function since some vertical lines intersect it twice. It is, however, the union of the graphs of two functions, namely,</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -969,11 +982,11 @@ y=\sqrt{1-x^2}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=-\sqrt{1-x^2}\,,
 </svg>
 <figcaption>The circle <span class="math-tex" data-type="tex">\(x^2+y^2=1\)</span> is not the graph of a function.</figcaption></figure>
 <section data-type="sect1">
-<h1 id=section1_55>Combining Functions</h1>
+<h1>Combining Functions</h1>
 <p>Functions can be combined in a variety of ways to produce new functions.</p>
 <p>Like numbers, functions can be added, subtracted, multiplied, and divided (except when the denominator is zero) to produce new functions.</p>
 <div data-type="definition">
-<h1 id="definition_56"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are functions, then for every <span class="math-tex" data-type="tex">\(x\)</span> that belongs to the domains of both <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> we define functions <span class="math-tex" data-type="tex">\(f+g\)</span>, <span class="math-tex" data-type="tex">\(f-g\)</span>, <span class="math-tex" data-type="tex">\(fg\)</span>, and <span class="math-tex" data-type="tex">\(\frac{f}{g}\)</span> by the formulas:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -987,7 +1000,7 @@ y=\sqrt{1-x^2}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=-\sqrt{1-x^2}\,,
 </div>
 </div>
 <div data-type="example">
-<h1 id="example_57"></h1>
+<h1></h1>
 <p>Draw the graphs of <span class="math-tex" data-type="tex">\(f\left(x\right)=x^2\)</span>, <span class="math-tex" data-type="tex">\(g\left(x\right)=x-1\)</span> and their sum <span class="math-tex" data-type="tex">\(\left(f+g\right)(x)=x^2+x+1\)</span>. Observe that the height of the graph of <span class="math-tex" data-type="tex">\(f+g\)</span> at any point <span class="math-tex" data-type="tex">\(x\)</span> is the sum of the heights of the graphs of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> at that point.</p>
 </div>
 <figure>
@@ -1050,7 +1063,7 @@ y=\sqrt{1-x^2}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=-\sqrt{1-x^2}\,,
 </svg>
 <figcaption><span class="math-tex" data-type="tex">\(\left(f+g\right)(x)=f\left(x\right)+g\left(x\right)\)</span>.</figcaption></figure>
 <div data-type="example">
-<h1 id="example_58"></h1>
+<h1></h1>
 <p>The functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are defined by the formulas</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1112,7 +1125,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 </div>
 <p>There is another method, called <i>composition</i>, by which two functions can be combined to form a new function</p>
 <div data-type="definition">
-<h1 id="definition_59"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are two functions, the <i>composite function</i> <span class="math-tex" data-type="tex">\(f\circ g\)</span> is defined by</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1123,7 +1136,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 </div>
 <p>In calculating <span class="math-tex" data-type="tex">\(\left(f\circ g\right)\left(x\right)=f\left(g\left(x\right)\right)\)</span>, we first calculate <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> and then calculate <span class="math-tex" data-type="tex">\(f\)</span> of the result.</p>
 <div data-type="example">
-<h1 id="example_60"></h1>
+<h1></h1>
 <p>Given <span class="math-tex" data-type="tex">\(f\left(x\right)=\sqrt x\)</span> and <span class="math-tex" data-type="tex">\(g\left(x\right)=x+1\)</span> calculate the following composite functions <span class="math-tex" data-type="tex">\(\left(f\circ g\right)\)</span>, <span class="math-tex" data-type="tex">\(\left(g\circ f\right)\)</span>, <span class="math-tex" data-type="tex">\(\left(f\circ f\right)\)</span>, and <span class="math-tex" data-type="tex">\(\left(g\circ g\right)\)</span>, and specify the domain of each.</p>
 <table>
 <thead>
@@ -1179,7 +1192,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 \]
 </div>
 <div data-type="example">
-<h1 id="example_61"></h1>
+<h1></h1>
 <p>The <i>signum function</i> is defined as follows:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1242,10 +1255,10 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 <figcaption>The signum function.</figcaption></figure>
 <p>Note how we use a hollow dot in the graphs to indicate which endpoints do not lie on various parts of the graph. Similarly, we use a solid dot to indicate which endpoint do lie on various parts of the graph.</p>
 <section data-type="sect1">
-<h1 id=section1_62>Inverse Functions</h1>
+<h1>Inverse Functions</h1>
 <p>Remember a function <span class="math-tex" data-type="tex">\(f\)</span> is bijective if <span class="math-tex" data-type="tex">\(f\left(x_1\right)\ne f\left(x_2\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x_1\)</span> and <span class="math-tex" data-type="tex">\(x_2\)</span> belong to the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(x_1\ne x_2\)</span>. So, not only a vertical line intersects the graph of the function in one point, also a horizontal line intersects the graph at only one point.</p>
 <div data-type="definition">
-<h1 id="definition_63"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is a bijective function, then it has an inverse <span class="math-tex" data-type="tex">\(f^{-1}\)</span>. The value of <span class="math-tex" data-type="tex">\(f^{-1}\left(x\right)\)</span> is the unique member <span class="math-tex" data-type="tex">\(y\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> for which <span class="math-tex" data-type="tex">\(f\left(y\right)=x\)</span>. Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1275,7 +1288,7 @@ y=f^{-1}\left(x\right) \iff x=f\left(y\right)\,.
 </li>
 </ol>
 <div data-type="example">
-<h1 id="example_64"></h1>
+<h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(g\left(x\right)=\sqrt{2x+1}\)</span> is invertible and find its inverse.</p>
 <p>If <span class="math-tex" data-type="tex">\(g(x_1)=g(x_2)\)</span> then <span class="math-tex" data-type="tex">\(\sqrt{2x_1+1}=\sqrt{2x_2+1}\)</span>. Squaring both sides we get <span class="math-tex" data-type="tex">\(2x_1+1=2x_2+1\)</span>, which implies <span class="math-tex" data-type="tex">\(x_1=x_2\)</span>. Thus <span class="math-tex" data-type="tex">\(g\)</span> is bijective and invertible.</p>
 <p>Let <span class="math-tex" data-type="tex">\(y=g^{-1}\left(x\right)\)</span> then <span class="math-tex" data-type="tex">\(x=g\left(y\right)=\sqrt{2y+1}\)</span>. It follows that <span class="math-tex" data-type="tex">\(x\ge 0\)</span> and <span class="math-tex" data-type="tex">\(x^2 = 2y+1\)</span>. Therefore, <span class="math-tex" data-type="tex">\(y=\frac{x^2-1}{2}\)</span> and</p>
@@ -1334,7 +1347,7 @@ g^{-1}\left(x\right)=\frac{x^2-1}{2}\quad\textrm{for }x\ge0\,.
 <figcaption>The graphs of <span class="math-tex" data-type="tex">\(g\)</span> in red and its inverse in blue.</figcaption></figure>
 <p>Many important functions are not bijective on their whole domain. It is possible to define an inverse for such a function, but we have to restrict the domain of the function artificially so that the restricted function is bijective.</p>
 <div data-type="example">
-<h1 id="example_65"></h1>
+<h1></h1>
 <p>Consider the function <span class="math-tex" data-type="tex">\(f\left(x\right)=x^2\)</span>. Unrestricted, its domain is the whole real line and it is not bijective since <span class="math-tex" data-type="tex">\(f\left(-a\right)=f\left(a\right)\)</span> for any <span class="math-tex" data-type="tex">\(a\)</span>. Let us define a new function <span class="math-tex" data-type="tex">\(F\left(x\right)\)</span> equal to <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> but having a smaller domain, so that it is bijective:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1397,10 +1410,10 @@ F:\left[0,\infty[\to\right[0,\infty[:x\mapsto\sqrt x\,.
 </svg>
 <figcaption>The graphs of <span class="math-tex" data-type="tex">\(F\)</span> in red and its inverse in blue.</figcaption></figure>
 <section data-type="sect1">
-<h1 id=section1_66>Polynomial and Rational Functions</h1>
+<h1>Polynomial and Rational Functions</h1>
 <p>Among the easiest functions to deal with in calculus are <i>polynomials</i>.</p>
 <div data-type="definition">
-<h1 id="definition_67"></h1>
+<h1></h1>
 <p>A polynomial is a function <span class="math-tex" data-type="tex">\(P\)</span> whose value at <span class="math-tex" data-type="tex">\(x\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1412,7 +1425,7 @@ P\left(x\right)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_2x^2+a_1x+a_0\,,
 <p>Polynomials play a role in the study of functions somewhat analogous to the role played by integers in the study of numbers.</p>
 <p>The following definition is analogous to the definition of a rational number as the quotient of two integers.</p>
 <div data-type="definition">
-<h1 id="definition_68"></h1>
+<h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(P\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> are two polynomials and <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> is not the zero polynomial the the function</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1422,7 +1435,7 @@ R\left(x\right)=\frac{P\left(x\right)}{Q\left(x\right)}
 <p>is called a <i>rational function</i>. By the domain convention, the domain of <span class="math-tex" data-type="tex">\(R\left(x\right)\)</span> consists of all real numbers <span class="math-tex" data-type="tex">\(x\)</span> except those for which <span class="math-tex" data-type="tex">\(Q\left(x\right)=0\)</span>.</p>
 </div>
 <div data-type="example">
-<h1 id="example_69"></h1>
+<h1></h1>
 <div class="math-tex" data-type="equation">
 \[
 R\left(x\right)=\frac{2x^3-3x^2+3x+4}{x^2+1}\textrm{ with domain }ℝ\,.
@@ -1436,7 +1449,7 @@ S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm
 </div>
 <p>If the numerator and the denominator of a rational function have a common factor, that factro can be cancelled out just as with integers. However, the resulting simpler rational function may not have the same domain as the orginal one, so it should be regarded as a different rational function even though it is equal to the orginal one at all points of the original domain.</p>
 <div data-type="example">
-<h1 id="example_70"></h1>
+<h1></h1>
 <div class="math-tex" data-type="equation">
 \[
 \frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\left(x-1\right)}=\frac{x}{x+1}\ \ \ \textrm{only if }x\ne\pm 1
@@ -1445,7 +1458,7 @@ S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm
 <p>even though <span class="math-tex" data-type="tex">\(x=1\)</span> is in the domain of <span class="math-tex" data-type="tex">\(\frac{x}{x+1}\)</span>.</p>
 </div>
 <section data-type="sect1">
-<h1 id=section1_71>Trigonometric Functions</h1>
+<h1>Trigonometric Functions</h1>
 <p>Most students first encounter the quantities <span class="math-tex" data-type="tex">\(\cos t\)</span> and <span class="math-tex" data-type="tex">\(\sin t\)</span> as ratios of sides in a right-angled triangle having <span class="math-tex" data-type="tex">\(t\)</span> as one of the acute angles. If the sides of the triangle are labelled “<span class="math-tex" data-type="tex">\(\textrm{hyp}\)</span>” for hypotenuse, “<span class="math-tex" data-type="tex">\(\textrm{adj}\)</span>” for the side adjacant to angle <span class="math-tex" data-type="tex">\(t\)</span>, and “<span class="math-tex" data-type="tex">\(\textrm{opp}\)</span>” for the side opposite angle <span class="math-tex" data-type="tex">\(t\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1551,12 +1564,12 @@ S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm
 </svg>
 <figcaption>Definition of cosine and sine.</figcaption></figure>
 <div data-type="definition">
-<h1 id="definition_72"></h1>
+<h1></h1>
 <p>The <i>radian measure</i> of <span class="math-tex" data-type="tex">\(\angle AOP_t\)</span> is <span class="math-tex" data-type="tex">\(t\)</span> radians.</p>
 </div>
 <p>In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle <span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span> we mean <span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span> radians (which is <span class="math-tex" data-type="tex">\(60°\)</span>), not <span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span> degrees.</p>
 <div data-type="example">
-<h1 id="example_73"></h1>
+<h1></h1>
 <p><i>Arc length</i> and <i>sector area</i>.</p>
 <p>An arc of a circle of radius <span class="math-tex" data-type="tex">\(r\)</span> subtends an angle <span class="math-tex" data-type="tex">\(t\)</span> at the centre of the circle. Find the length <span class="math-tex" data-type="tex">\(s\)</span> of the arc and the area <span class="math-tex" data-type="tex">\(A\)</span> of the sector lying between the arc and the centre of the circle.</p>
 <p>The length <span class="math-tex" data-type="tex">\(s\)</span> of the arc is the same fraction of the circumference <span class="math-tex" data-type="tex">\(2\uppi r\)</span> of the circle that the angle <span class="math-tex" data-type="tex">\(t\)</span> is to a complete revolution <span class="math-tex" data-type="tex">\(2\uppi\)</span> radians. Thus,</p>
@@ -1574,13 +1587,13 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 </div>
 <p>Using the procedure described above, we can find the point <span class="math-tex" data-type="tex">\(P_t\)</span> corresponding to any real number <span class="math-tex" data-type="tex">\(t\)</span>.</p>
 <div data-type="definition">
-<h1 id="definition_74"></h1>
+<h1></h1>
 <p>For any real <span class="math-tex" data-type="tex">\(t\)</span>, the <i>cosine</i> of <span class="math-tex" data-type="tex">\(t\)</span> denoted by <span class="math-tex" data-type="tex">\(\cos t\)</span> and the <i>sine</i> of <span class="math-tex" data-type="tex">\(t\)</span> denoted by <span class="math-tex" data-type="tex">\(\sin t\)</span> are the <span class="math-tex" data-type="tex">\(x\)</span>- and the <span class="math-tex" data-type="tex">\(y\)</span>-coordinates of the point <span class="math-tex" data-type="tex">\(P_t\)</span>.</p>
 </div>
 <p>Because they are defined this way, cosine and sine are often called the <i>circular functions</i>. Note that these definitions agree with the ones given earlier for an acute angle.</p>
 <p>Many important properties of <span class="math-tex" data-type="tex">\(\cos t\)</span> and <span class="math-tex" data-type="tex">\(\sin t\)</span> follow from the fact that they are coordinates of the point <span class="math-tex" data-type="tex">\(P_t\)</span> on the circle <span class="math-tex" data-type="tex">\(C\)</span> with equation <span class="math-tex" data-type="tex">\(x^2+y^2=1\)</span>.</p>
 <div data-type="theorem">
-<h1 id="theorem_75"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(t\inℝ\)</span>.</p>
 <ol>
 <li>
@@ -1707,7 +1720,7 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <figcaption>The graph of the cosine function in red and the sine function in blue.</figcaption></figure>
 <p>The following formulas enable us to determine the cosine and sine of a sum or difference of two angles in terms of the cosines and sines of those angles.</p>
 <div data-type="theorem">
-<h1 id="theorem_76"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(s,t\inℝ\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1721,7 +1734,7 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 </div>
 </div>
 <div data-type="proof">
-<h1 id="proof_77"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(s,t\inℝ\)</span> and consider the points</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1749,12 +1762,12 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <p>Since <span class="math-tex" data-type="tex">\(\cos^2x+\sin^2x=1\)</span>, this reduces to <span class="math-tex" data-type="tex">\(\cos\left(s-t\right)=\cos s\cos t+\sin s\sin t\)</span>.</p>
 </div>
 <div data-type="exercise">
-<h1 id="exercise_78"></h1>
+<h1></h1>
 <p>Proof the other formulas using the even/odd behavior of the cosine and sine functions and the complementary angles relations.</p>
 </div>
 <p>From the addition formulas, we obtain as special cases certain useful formulas called <i>double-angle formulas</i>.</p>
 <div data-type="corollary">
-<h1 id="corollary_79"></h1>
+<h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(t\inℝ\)</span>.</p>
 <ol>
 <li>
@@ -1774,7 +1787,7 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <p>which are sometimes calles the <i>half-angle formulas</i>.</p>
 <p>There are four other trigonometric functions, each defined in terms of cosine and sine.</p>
 <div data-type="definition">
-<h1 id="definition_80"></h1>
+<h1></h1>
 <div class="math-tex" data-type="equation">
 \[
 \tan:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textit{(tangent)}

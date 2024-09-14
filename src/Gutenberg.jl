@@ -17,7 +17,7 @@ const TEMPLATE = """<!DOCTYPE html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
-<link rel="stylesheet" href="oreilly.css" />
+<link rel="stylesheet" href="rma.css" />
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 MathJax = {
@@ -85,14 +85,13 @@ class handlers extends Paged.Handler {
         let tocElementNbr = 0;
         const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
         for (let i = 0; i < selectors.length; i++) {
-            let matches = content.querySelectorAll(selectors[i]);
-            matches.forEach((element) => {
-                element.classList.add('toc-element');
-                element.setAttribute('data-toc-level', i + 1);
-                if (element.id == '') {
-                    element.id = 'toc-element-' + tocElementNbr++;
+            for (let el of content.querySelectorAll(selectors[i])) {
+                el.classList.add('toc-element');
+                el.setAttribute('data-toc-level', i + 1);
+                if (el.id == '') {
+                    el.id = 'toc-element-' + tocElementNbr++;
                 }
-            })
+            }
         }
         let level = 0;
         let toc = document.createElement('div');
@@ -120,16 +119,15 @@ class handlers extends Paged.Handler {
         if (!nav) {
             console.warn('no nav found');
         } else {
-            let title = document.createElement('h1');
-            title.innerHTML = 'Table of Contents';
-            nav.appendChild(title);
             nav.appendChild(toc);
         }
     }
 
     afterRendered(pages) {
         const element = document.getElementById('tag');
-        element.scrollIntoView();
+        if (element) {
+            element.scrollIntoView();
+        }
     }
 }
 
@@ -137,7 +135,6 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="BODY-TYPE">
-<nav data-type="toc"></nav>
 BODY
 </body>
 </html>
@@ -161,6 +158,7 @@ enable!(PARSER, TableRule())
 enable!(PARSER, RawContentRule())
 enable!(PARSER, AttributeRule())
 enable!(PARSER, CitationRule())
+enable!(PARSER, FrontMatterRule(toml=TOML.parse))
 
 function ismarkdown(file::String)
     _, ext = splitext(file)
@@ -169,6 +167,19 @@ end
 
 function _html(buf::Vector{String}, type::Any, entering::Bool, str::String, attributes::Dict{String,Any}, level::Int64)
     println(string(entering) * " " * string(type) * string(" ") * string(str) * " " * string(attributes))
+    return level
+end
+
+function _html(_::Vector{String}, _::CommonMark.FrontMatter, _::Bool, _::String, _::Dict{String,Any}, level::Int64)
+    return level
+end
+
+function _html(buf::Vector{String}, _::CommonMark.HtmlBlock, entering::Bool, str::String, _::Dict{String,Any}, level::Int64)
+    if entering
+        for line in split(str, "\n")
+            push!(buf, strip(line))
+        end
+    end
     return level
 end
 
@@ -433,14 +444,32 @@ function _html(buf::Vector{String}, _::CommonMark.Text, entering::Bool, str::Str
     return level
 end
 
-function tohtml(file::String)
+function _tohtml(file::String)
     ast = open(PARSER, file)
     buf = String[]
     level = 0
     for (node, entering) in ast
         level = _html(buf, node.t, entering, node.literal, node.meta, level)
     end
-    return buf, nothing
+    return buf
+end
+
+function tohtml(file::String)
+    if !ismarkdown(file)
+        error(file, " is not a md file!")
+    end
+    path, _ = splitdir(file)
+    ast = open(PARSER, file)
+    meta = frontmatter(ast)
+    body = ""
+    pushfirst!(meta["files"], file)
+    for file in meta["files"]
+        body *= join(_tohtml(joinpath(path, file)), "\n") * "\n"
+    end
+    html = replace(TEMPLATE, "TITLE" => meta["title"], "BODY-TYPE" => "book", "BODY" => body)
+    open(joinpath(path, meta["output"]), "w") do out
+        write(out, html)
+    end
 end
 
 function watch_and_tohtml(file::String)
@@ -452,7 +481,7 @@ function watch_and_tohtml(file::String)
     prev = String[]
     while true
         body = ""
-        next, _ = tohtml(file)
+        next = _tohtml(file)
         for (i, str) in enumerate(next)
             if i > length(prev) || str !== prev[i]
                 body *= join(next[1:i-1], "\n")

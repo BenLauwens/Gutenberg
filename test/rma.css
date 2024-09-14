@@ -91,17 +91,24 @@
 }
 
 body[data-type="article"] nav[data-type="toc"] {
-    display: block;  /*none;*/
+    display: none;
 }
 
 @page {
     size: A4;
-    margin-bottom: 2.5cm;
-    margin-top: 2cm;
 
     @footnote {
         float: bottom;
     }
+}
+
+@page:first {
+    border-bottom: none;
+    @bottom-left { content: none }
+    @bottom-right { content: none }
+    margin: 2cm;
+    margin-left: 2.5cm;
+    margin-right: 2.5cm;
 }
 
 @page :blank {
@@ -116,37 +123,20 @@ body[data-type="article"] nav[data-type="toc"] {
     }
 }
 
-@page :first {
-    @bottom-center {
-        font-family: "STIX Two Text";
-        font-size: 9pt;
-        font-weight: 450;
-        content: counter(page);
-        vertical-align: top;
-        border-style: none;
-    }
-
-    @bottom-left {
-        vertical-align: top;
-        border-style: none;
-        content: "";
-    }
-
-    @bottom-right {
-        vertical-align: top;
-        border-style: none;
-        content: "";
-    }
-}
-
-@page :left {
+@page left {
     margin-left: 3cm;
     margin-right: 2cm;
+}
+
+@page right {
+    margin-left: 2cm;
+    margin-right: 3cm;
+}
+
+@page Chapter:left {
 
     @bottom-left {
-        font-family: "STIX Two Text";
         font-size: 9pt;
-        font-weight: 450;
         content: counter(page);
         vertical-align: top;
         border-top-style: solid;
@@ -155,9 +145,7 @@ body[data-type="article"] nav[data-type="toc"] {
     }
 
     @bottom-right {
-        font-family: "STIX Two Text";
         font-size: 9pt;
-        font-weight: 450;
         font-style: italic;
         content: "Chapter " counter(chapternumber) ": " string(chaptertitle);
         vertical-align: top;
@@ -165,18 +153,22 @@ body[data-type="article"] nav[data-type="toc"] {
         border-top-color: black;
         border-top-width: 0.5px;
     }
+
+    @bottom-center {
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+        content: "";
+    }
 }
 
-@page :right {
-    margin-left: 2cm;
-    margin-right: 3cm;
+@page Chapter:right {
 
     @bottom-left {
-        font-family: "STIX Two Text";
         font-size: 9pt;
-        font-weight: 450;
         font-style: italic;
-        content: counter(chapternumber) "–" counter(sect1number) "　" string(sect1title);
+        content: counter(sect1number) ". " string(sect1title);
         vertical-align: top;
         border-top-style: solid;
         border-top-color: black;
@@ -184,15 +176,229 @@ body[data-type="article"] nav[data-type="toc"] {
     }
 
     @bottom-right {
-        font-family: "STIX Two Text";
         font-size: 9pt;
-        font-weight: 450;
         content: counter(page);
         vertical-align: top;
         border-top-style: solid;
         border-top-color: black;
         border-top-width: 0.5px;
     }
+
+    @bottom-center {
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+        content: "";
+    }
+}
+
+@page Chapter:first {
+    @bottom-center {
+        font-size: 9pt;
+        content: counter(page);
+        vertical-align: top;
+        border-style: none;
+    }
+
+    @bottom-left {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+
+    @bottom-right {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+}
+
+@page Nav:left {
+    @bottom-left {
+        font-size: 9pt;
+        content: counter(page, lower-roman);
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+    }
+
+    @bottom-right {
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+        content: "";
+    }
+
+    @bottom-center {
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+        content: "";
+    }
+}
+
+@page Nav:right {
+    @bottom-right { 
+	    font-size: 9pt;
+        content: counter(page, lower-roman);
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+    }
+
+    @bottom-left {
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+        content: "";
+    }
+
+    @bottom-center {
+        vertical-align: top;
+        border-top-style: solid;
+        border-top-color: black;
+        border-top-width: 0.5px;
+        content: "";
+    }
+}
+
+@page Nav:first {
+    @bottom-center {
+        font-size: 9pt;
+        content: counter(page, lower-roman);
+        vertical-align: top;
+        border-style: none;
+    }
+
+    @bottom-left {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+
+    @bottom-right {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+}
+
+section[data-type="titlepage"] {
+    margin-top: 35px;
+    position: relative;
+}
+
+p[data-type="academy"] {
+    font-size: 24pt;
+    text-align: center;
+    line-height: 125%;
+    position: absolute;
+    bottom: 715px;
+    left: 230px;
+}
+
+p[data-type="year"] {
+    font-size : 36pt;
+    text-align: center;
+    position: absolute;
+    bottom: 40px;
+    min-width: 100%;
+}
+
+p[data-type="course"] {
+    font-size : 14pt;
+    position: absolute;
+    bottom: -20px;
+}
+
+section[data-type="titlepage"] h1 {
+    font-size: 28pt;
+    text-align: center;
+    position: absolute;
+    bottom: 440px;
+    min-width: 100%;
+}
+
+p[data-type="author"] {
+    font-size : 14pt;
+    text-align: center;
+    position: absolute;
+    bottom: 200px;
+    min-width: 100%;
+}
+
+nav {
+    page: Nav;
+    page-break-before: right;
+    counter-reset: page 1;
+}
+
+nav>h1 {
+    font-size: 24pt;
+    font-variant: small-caps;
+    text-align: center;
+    margin-bottom: 150px;
+    line-height: 125%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ol,
+nav ul,
+nav li {
+    break-inside: auto;
+}
+
+nav > ol {
+    counter-reset: navnumber;
+    padding-left: 30px;
+}
+
+nav > ol > li::before {
+    font-size: 12pt;
+    font-weight: 600;
+    content: counter(navnumber) ".";
+    position: absolute;
+    display: block;
+    left: 0;
+}
+
+nav > ol > li {
+    margin-bottom: 10px;
+    font-size: 12pt;
+    font-weight: 600;
+    list-style: none;
+    counter-increment: navnumber;
+}
+
+nav > ol > li > ol{
+    margin: 0;
+    padding: 0;
+}
+
+nav > ol > li > ol > li{
+    font-size: 11pt;
+    font-weight: normal;
+    list-style: none;
+}
+
+nav > ol > li > a::after {
+    content: target-counter(attr(href), page); 
+    float: right;
+}
+
+nav > ol > li > ol > li> a::after {
+    content: target-counter(attr(href), page);
+    float: right;
 }
 
 div.pagedjs_footnote_content {
@@ -216,7 +422,8 @@ div.pagedjs_footnote_content:before {
 }
 
 math {
-    font-family: "STIX Two Math";
+    font-family: "Minion Math", "STIX Two Math", "OldStandard-Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math";
+
 }
 
 math[display="block"] {
@@ -224,17 +431,17 @@ math[display="block"] {
 }
 
 svg math {
-    font-size: 9pt;
+    font-size: 10pt;
 }
 
 body {
     hyphens: auto;
     font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
-    font-family: "STIX Two Text";
+    font-family: "Minion Pro", "STIX Two Text", "Old Standard","Cambria", "Noto Sans SemiCondensed", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic";
     font-size: 11pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;
-    line-height: 150%;
+    line-height: 125%;
 }
 
 h1,
@@ -243,9 +450,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "STIX Two Text";
     font-style: italic;
-    font-weight: 450;
+    font-display: 
+    font-weight: 600;
 }
 
 section {
@@ -253,7 +460,13 @@ section {
     widows: 3;
 }
 
+section[data-type="chapter"]:first-of-type {
+    counter-reset: page 1;
+}
+
 section[data-type="chapter"] {
+    page: Chapter;
+    page-break-before: right;
     counter-increment: chapternumber;
     counter-reset: sect1number equationnumber figurenumber;
 }
@@ -271,8 +484,9 @@ section[data-type="chapter"]>h1:before {
     margin-top: 50px;
     content: "CHAPTER " counter(chapternumber);
     text-align: center;
-    font-size: 16pt;
+    font-size: 14pt;
     font-style: normal;
+    font-variant: normal;
     border-bottom-style: solid;
     border-bottom-color: black;
     border-bottom-width: 0.5px;
@@ -285,7 +499,7 @@ section[data-type="sect1"] {
 
 section[data-type="sect1"]>h1 {
     string-set: sect1title content();
-    font-size: 16pt;
+    font-size: 14pt;
     margin-top: 18px;
     margin-bottom: 16px;
 }
@@ -296,13 +510,13 @@ section[data-type="sect1"]>h1:before {
 }
 
 h2 {
-    font-size: 14pt;
+    font-size: 13pt;
     margin-top: 16px;
     margin-bottom: 14px;
 }
 
 h3 {
-    font-size: 12pt;
+    font-size: 13pt;
 }
 
 h4 {
@@ -310,7 +524,7 @@ h4 {
 }
 
 h5 {
-    font-size: 9pt;
+    font-size: 10pt;
 }
 
 p {
@@ -351,7 +565,7 @@ li {
 
 code {
     font-family: "JuliaMono";
-    font-size: 9pt;
+    font-size: 10pt;
 }
 
 div[data-type="theorem"]>h1:before {
@@ -411,8 +625,7 @@ div[data-type="example"]>h1,
 div[data-type="exercise"]>h1,
 div[data-type="proof"]>h1,
 div[data-type="template"]>h1 {
-    font-family: "STIX Two Text";
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
     margin: 0;
     margin-right: 6px;
@@ -580,19 +793,19 @@ div[data-type="equation"][id]:after {
 
 span[data-type="footnote"] {
     float: footnote;
-    font-size: 9pt;
+    font-size: 10pt;
     text-align: justify;
 }
 
 ::footnote-call {
     content: counter(footnote);
-    font-size: 9pt;
+    font-size: 10pt;
     line-height: 0;
 }
 
 ::footnote-marker {
     content: counter(footnote);
-    font-size: 9pt;
+    font-size: 10pt;
     vertical-align: baseline;
     font-variant-position: super;
 }
@@ -619,7 +832,7 @@ tr {
 }
 
 thead {
-    font-weight: bold;
+    font-weight: 600;
     text-align: left;
     margin-top: 0;
     border-top: 0.5px solid black;
