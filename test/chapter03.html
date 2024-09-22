@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
-<link rel="stylesheet" href="oreilly.css" />
+<link rel="stylesheet" href="rma.css" />
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 MathJax = {
@@ -71,53 +71,52 @@ class handlers extends Paged.Handler {
         for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);
         }
-        let tocElementNbr = 0;
-        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
-        for (let i = 0; i < selectors.length; i++) {
-            for (let el of content.querySelectorAll(selectors[i])) {
-                el.classList.add('toc-element');
-                el.setAttribute('data-toc-level', i + 1);
-                if (el.id == '') {
-                    el.id = 'toc-element-' + tocElementNbr++;
-                }
-            }
-        }
-        let level = 0;
-        let toc = document.createElement('div');
-        toc.appendChild(document.createElement('div'));
-        let entry = toc;
-        for (let el of content.querySelectorAll('.toc-element')) {
-            if (el.dataset.tocLevel > level) {
-                level++;
-                entry = document.createElement('ol');
-                toc.lastChild.appendChild(entry);
-                toc = entry;
-            } else if (el.dataset.tocLevel < level) {
-                toc = toc.parentElement.parentElement;
-                level--;
-            }
-            entry = document.createElement('li');
-            entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
-            toc.appendChild(entry);
-        }
-        while (level > 1) {
-            toc = toc.parentElement.parentElement;
-            level--;
-        }
         let nav = content.querySelector('nav[data-type="toc"]');
         if (!nav) {
             console.warn('no nav found');
         } else {
-            let title = document.createElement('h1');
-            title.innerHTML = 'Table of Contents';
-            nav.appendChild(title);
+            let tocElementNbr = 0;
+            const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
+            for (let i = 0; i < selectors.length; i++) {
+                for (let el of content.querySelectorAll(selectors[i])) {
+                    el.classList.add('toc-element');
+                    el.setAttribute('data-toc-level', i + 1);
+                    if (el.id == '') {
+                        el.id = 'toc-element-' + tocElementNbr++;
+                    }
+                }
+            }
+            let level = 0;
+            let toc = document.createElement('div');
+            toc.appendChild(document.createElement('div'));
+            let entry = toc;
+            for (let el of content.querySelectorAll('.toc-element')) {
+                if (el.dataset.tocLevel > level) {
+                    level++;
+                    entry = document.createElement('ol');
+                    toc.lastChild.appendChild(entry);
+                    toc = entry;
+                } else if (el.dataset.tocLevel < level) {
+                    toc = toc.parentElement.parentElement;
+                    level--;
+                }
+                entry = document.createElement('li');
+                entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
+                toc.appendChild(entry);
+            }
+            while (level > 1) {
+                toc = toc.parentElement.parentElement;
+                level--;
+            }
             nav.appendChild(toc);
         }
     }
 
     afterRendered(pages) {
         const element = document.getElementById('tag');
-        element.scrollIntoView();
+        if (element) {
+            element.scrollIntoView();
+        }
     }
 }
 
@@ -125,7 +124,6 @@ Paged.registerHandlers(handlers);
 </script>
 </head>
 <body data-type="article">
-<nav data-type="toc"></nav>
 <div id="tag"></div>
 <section data-type="chapter">
 <h1>Limits and Continuity</h1>

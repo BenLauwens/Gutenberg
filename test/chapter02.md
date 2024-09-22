@@ -21,16 +21,16 @@ end
 const font_y = 18
 const font_x = 14
 
-function axis_xy(width::Integer, height::Integer, Ox::Integer, Oy::Integer, scale::Number, axis_x, axis_y; xs=nothing, ys=nothing, xl=nothing, yl=nothing, xh=nothing, yh=nothing)
+function axis_xy(width::Number, height::Number, Ox::Number, Oy::Number, scale::Number, axis_x, axis_y; xs=nothing, ys=nothing, xl=nothing, yl=nothing, xh=nothing, yh=nothing, shift_x=0, shift_y=0)
 	defs() do
 		marker(id="arrow", markerWidth="6", markerHeight="6", refX="3", refY="3", orient="auto") do
 			path(d="M 0 0 L 6 3 L 0 6 z", fill="black" )
 		end
 	end
 	latex("O", x=Ox-font_x-2, y=Oy, width=font_x, height=font_y)
-	latex("x", x=width-font_x-2, y=Oy-font_y-2, width=font_x, height=font_y)
-	latex("y", x=Ox+2, y=0-2, width=font_x, height=font_y)
-	line(x1=0, y1=Oy, x2=width-3, y2=Oy, stroke="black", marker_end="url(#arrow)")
+	latex("x", x=shift_x+width-font_x-2, y=Oy-font_y-2, width=font_x, height=font_y)
+	latex("y", x=Ox+2, y=shift_y-2, width=font_x, height=font_y)
+	line(x1=shift_x, y1=Oy, x2=shift_x+width-3, y2=Oy, stroke="black", marker_end="url(#arrow)")
 	for (nr, n) in enumerate(axis_x)
 		line(x1=Ox+scale*n, y1=Oy-3, x2=Ox+scale*n, y2=Oy+3, stroke="black")
 		txt = if xs===nothing "$n" else "$(xs[nr])" end
@@ -38,12 +38,12 @@ function axis_xy(width::Integer, height::Integer, Ox::Integer, Oy::Integer, scal
 		h = if xh===nothing 1 else xh[nr] end
 		latex(txt, x=Ox+scale*n-font_x*len/2, y=Oy, width=font_x*len, height=font_y*h)
 	end
-	line(x1=Ox, y1=height, x2=Ox, y2=3, stroke="black", marker_end="url(#arrow)")
+	line(x1=Ox, y1=shift_y+height, x2=Ox, y2=shift_y+3, stroke="black", marker_end="url(#arrow)")
 	for (nr, n) in enumerate(axis_y)
 		line(x1=Ox-3, y1=Oy-scale*n, x2=Ox+3, y2=Oy-scale*n, stroke="black")
 		txt = if ys===nothing "$n" else "$(ys[nr])" end
 		len = if yl===nothing length(txt) else yl[nr] end
-		h = if xh===nothing 1 else xh[nr] end
+		h = if yh===nothing 1 else xh[nr] end
 		latex(txt, x=Ox-font_x*len, y=Oy-scale*n-font_y/2, width=font_x*len, height=font_y*h)
 	end
 end

@@ -23,7 +23,7 @@ const font_x = 14
 
 function axis_xy(width::Number, height::Number, Ox::Number, Oy::Number, scale::Number, axis_x, axis_y; xs=nothing, ys=nothing, xl=nothing, yl=nothing, xh=nothing, yh=nothing, shift_x=0, shift_y=0)
 	defs() do
-		marker(id="arrow", markerWidth="6", markerHeight="6", refX="3", refY="3", orient="auto") do
+		marker(id="arrow", markerWidth="6", markerHeight="6", refX="3", refY="3", orient="auto-start-reverse") do
 			path(d="M 0 0 L 6 3 L 0 6 z", fill="black" )
 		end
 	end
@@ -192,6 +192,8 @@ This expression is called the *Newton quotient* or *difference quotient* for ``f
 	```
 	Accordingly, the equation of the tangent line at ``\left(1,1\right)`` is ``y=2\left(x-1\right)+1``, or ``y=2x-1``.
 
+### Vertical Tangent Lines
+
 This definition deals only with tangents that have finite slopes and are, therefore, not vertical. It is also possible for the graph of a function to have a *vertical* tangent line.
 
 !!! example
@@ -226,7 +228,7 @@ We extend the definition of tangent line to allow for vertical tangents as follo
 	```math
 	\lim_{h\to 0} \frac{f\left(x_0+h\right)-f\left(x_0\right)}{h}=\infty\quad\textrm{or}\quad\lim_{h\to 0} \frac{f\left(x_0+h\right)-f\left(x_0\right)}{h}=-\infty
 	```
-	then the vertical line ``x=x0`` is tangent to the graph ``y=f\left(x\right)`` at ``P``. If the limit of the Newton quotient fails to exist in any other way than by being ``\infty`` or ``-\infty``, the graph ``y=f\left(x\right)`` has no tangent line at ``P``.
+	then the vertical line ``x=x_0`` is tangent to the graph ``y=f\left(x\right)`` at ``P``. If the limit of the Newton quotient fails to exist in any other way than by being ``\infty`` or ``-\infty``, the graph ``y=f\left(x\right)`` has no tangent line at ``P``.
 
 !!! example
 	Does the graph of ``y=\left|x\right|`` have a tangent line at ``x=0``?
@@ -260,6 +262,8 @@ Curves have tangents only at points where they are smooth.
 	&=\lim_{h\to 0}\frac{-h}{2h\left(-4+3h\right)}=\lim_{h\to 0}\frac{-1}{2h\left(-4+3h\right)}=\frac{1}{8}
 	\end{aligned}
 	```
+
+### Normals
 
 If a curve ``C`` has a tangent line ``L`` at point ``P``, then the straight line ``N`` through ``P`` perpendicular to ``L`` is called the *normal* to ``C`` at ``P``. If ``L`` is horizontal, then ``N`` is vertical; if ``L`` is vertical, then ``N`` is horizontal. If ``L`` is neither horizontal nor vertical, then the slope of ``N`` is the negative reciprocal of the slope of ``L``; that is,
 
@@ -310,6 +314,7 @@ If a curve ``C`` has a tangent line ``L`` at point ``P``, then the straight line
 	y=-4\left(x-4\right)+2\quad\textrm{or}\quad 4x+y-18=0
 	```
 
+{.pagebreak}
 ## The Derivative
 
 A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of ``y=f\left(x\right)`` at the point ``x`` is itself a function of ``x``. At any point ``x`` where the graph has a finite slope, we say that ``f`` is *differentiable*, and we call the slope the *derivative* of ``f``: The derivative is therefore the limit of the Newton quotient.
@@ -450,6 +455,8 @@ The three derivative formulas calculated in this example are special cases of th
 	\end{cases}=\frac{x}{\left|x\right|}=\operatorname{sgn}x
 	```
 
+### Notation
+
 Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If ``y=\left(x\right)``, we can use the dependent variable ``y`` to represent the function, and we can denote the derivative of the function with respect to ``x`` in any of the following ways:
 
 ```math
@@ -468,7 +475,7 @@ The symbol ``\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5p
 
 The notation ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` are called Leibniz notations for the derivative; Newton used notations similar to the prime ``y\prime`` notations we use here.
 
-The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}, can be written in the form ``\frac{\Delta y}{\Delta x}``, where ``\Delta y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
+The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, can be written in the form ``\frac{\Delta y}{\Delta x}``, where ``\Delta y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
 
 ```math
 \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}.
@@ -511,6 +518,59 @@ The Newton quotient ``\frac{\Delta y}{\Delta x}`` is actually the quotient of tw
 
 For example, if ``y=x^2``, we can write ``\mathrm{d}\kern-0.5pt y=2x\,\mathrm{d}\kern-0.5pt x`` to mean the same thing as ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=2x``. Similarly, if ``f\left(x\right)=\frac{1}{x}``, we can write ``\mathrm{d}\kern-0.5pt y=-\frac{1}{x^2}\,\mathrm{d}\kern-0.5pt x`` as the equivalent differential form of the assertion that ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{x^2}``. This *differential notation* is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.
 
+### Approximation by Differentials
+
+If one quantity, say ``y``, is a function of another quantity ``x``, that is,
+```math
+y=f\left(x\right)\,,
+```
+we sometimes want to know how a change in the value of ``x`` by an amount ``\Delta x`` will affect the value of ``y``. The exact change ``\Delta y`` in ``y`` is given by
+```math
+\Delta y=f\left(x+\Delta x\right)-f\left(x\right)\,,
+```
+but if the change ``\Delta x`` is small, then we can get a good approximation to ``\Delta y`` by using the fact that ``\displaystyle\frac{\Delta y}{\Delta x}`` is approximately the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. Thus,
+```math
+\Delta y=\frac{\Delta y}{\Delta x}\Delta x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta x=f\prime\left(x\right)\Delta x\,.
+```
+It is often convenient to represent this approximation in terms of differentials; if we denote the change in ``x`` by ``\mathrm{d}\kern-0.5pt x`` instead of ``\Delta x``, then the change ``\Delta y`` in ``y`` is approximated by the differential ``\mathrm{d}\kern-0.5pt y``, that is
+```math
+\Delta y\approx\mathrm{d}\kern-0.5pt y=f\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+{cell=chap display=false output=false}
+```julia
+Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the tangent line, approximates " * tex(raw"\Delta y") * ", the change in height to the graph of f" ) do
+    scale = 40
+    Drawing(width=6scale, height=3.5scale) do
+        xmid = 1scale
+        ymid = 3scale
+        f = x->0.1(x+0.5)^2+0.5
+		x0 = 2
+		fx0 = f(x0)
+		x = 3.5
+		fx = f(x)
+        axis_xy(6scale,3.5scale,xmid,ymid,scale,(x0, x),tuple(), xs=("x","x+\\mathrm{d}\\kern-0.5pt y"))
+        plot_xy(f, -1:0.01:5, (2, 3.5), xmid, ymid, scale, width=1)
+		m = 0.2(x0+0.5)
+		plot_xy(x->m*(x-x0)+fx0, -1:0.01:5, tuple(), xmid, ymid, scale, width=1, color = "RoyalBlue")
+		line(x1=xmid+x0*scale, y1=ymid-fx0*scale, x2=xmid+x0*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+x*scale, y1=ymid-fx*scale, x2=xmid+x*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+x0*scale, y1=ymid-fx0*scale, x2=xmid+5*scale, y2=ymid-fx0*scale, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+x*scale, y1=ymid-fx*scale, x2=xmid+5*scale, y2=ymid-fx*scale, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+x*scale, y1=ymid-(m*(x-x0)+fx0)*scale, x2=xmid+5*scale, y2=ymid-(m*(x-x0)+fx0)*scale, stroke="black", stroke_dasharray = "3")
+		latex("y=f\\left(x\\right)", x=xmid+2.5scale, y=ymid-3scale, width=4font_x, height=font_y)
+		line(x1=xmid+x0*scale+3, y1=ymid-scale, x2=xmid+x*scale-3, y2=ymid-scale, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
+		latex("\\Delta x=\\mathrm{d}\\kern-0.5pt x", x=xmid+1.85scale, y=ymid-1scale, width=5font_x, height=font_y)
+		line(x1=xmid+3.6scale, y1=ymid-(m*(x-x0)+fx0)*scale+3, x2=xmid+3.6scale, y2=ymid-fx0*scale-3, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
+		latex("\\mathrm{d}\\kern-0.5pt y", x=xmid+3.5scale, y=ymid-1.7scale, width=2font_x, height=font_y)
+		line(x1=xmid+4.25scale, y1=ymid-fx*scale+3, x2=xmid+4.25scale, y2=ymid-fx0*scale-3, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
+		latex("\\Delta y", x=xmid+4.25scale, y=ymid-1.7scale, width=2font_x, height=font_y)
+    end
+end
+```
+
+### Some Questions
+
 Is a function ``f`` defined on an interval ``I`` necessarily the derivative of some other function defined on ``I``? The answer is no; some functions are derivatives and some are not. Although a derivative need not be a continuous function, it must, like a continuous function, have the intermediate-value property: on an interval ``\left[a,b\right]``, a derivative ``f\prime\left(x\right)`` takes on every value between ``f\prime\left(a\right)`` and ``f\prime\left(b\right)``. We will prove this in a next section.
 
 If ``g\left(x\right)`` is continuous on an interval ``I``, then ``g\left(x\right)=f\prime\left(x\right)`` for some function ``f`` that is differentiable on ``I`` . We will discuss this fact further in Chapter 6.
@@ -534,6 +594,8 @@ Before developing these differentiation rules we need to establish one obvious b
 	\lim_{h\to 0}f\left(x+h\right)-f\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}h=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\lim_{h\to 0}h=f\prime\left(x\right)0=0\,.
 	```
 	This is equivalent to ``\lim_{h\to 0}f\left(x+h\right)=f\left(x\right)``, which says that ``f`` is continuous at ``x``.
+
+### Sums and Constant Multiples
 
 The derivative of a sum (or difference) of functions is the sum (or difference) of the derivatives of those functions. The derivative of a constant multiple of a function is the same constant multiple of the derivative of the function.
 
@@ -594,6 +656,8 @@ Then we have
 
 With both steps verified, we can claim that the formula holds for any ``n&gt2;`` by induction. In particular, therefore, the derivative of any polynomial is the sum of the derivatives of its terms.
 
+### Product Rule
+
 The rule for differentiating a product of functions is a little more complicated than that for sums. It is **not** true that the derivative of a product is the product of the derivatives.
 
 !!! theorem
@@ -615,26 +679,568 @@ The rule for differentiating a product of functions is a little more complicated
 	```
 	To get the last line, we have used the fact that ``f`` and ``g`` are differentiable and the fact that ``g`` is therefore continuous, as well as limit rules.
 
-### Derivatives of Inverse Functions
+!!! example
+	Use mathematical induction to verify the formula ``\displaystyle \frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^n=nx^{n-1}`` for all positive integers ``n``.
 
+	For ``n=1`` the formula says that ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^1=1x^0``, so the formula is true in this case. We must show that if the formula is true for ``n=k\ge1``, then it is also true for ``n=k+1``. Therefore, assume that
+	```math
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^k=kx^{k-1}
+	```
+	Using the Product Rule we calculate
+	```math
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{k+1}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(x^kx\right)=kx^{k-1}x+x^k 1=\left(k+1\right)x^k=\left(k+1\right)x^{\left(k+1\right)-1}
+	```
+	Thus, the formula is true for ``n=k+1`` also. The formula is true for all integers ``n\ge1`` by induction.
+
+The Product Rule can be extended to products of any number of factors; for instance,
+
+```math
+\begin{aligned}
+\left(fgh\right)^\prime\left(x\right)&=f^\prime\left(x\right)\left(gh\right)\left(x\right)+f\left(x\right)\left(gh\right)^\prime\left(x\right)\\
+&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\prime\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\left(x\right)h\prime\left(x\right)\,.
+\end{aligned}
+```
+
+In general, the derivative of a product of ``n`` functions will have n terms; each term will be the same product but with one of the factors replaced by its derivative:
+```math
+\left(f_1f_2f_3\dots f_n\right)^\prime=f_1^\prime f_2f_3\dots f_n+f_1f_2^\prime f_3\dots f_n+f_1f_2f_3^\prime\dots f_n+\cdots+f_1f_2f_3\dots f_n^\prime\,.
+```
+
+!!! exercise
+	Prove this formula by mathematical induction.
+
+### Reciprocal Rule
+
+!!! theorem
+	If ``f`` is differentiable at ``x`` and ``f\left(x\right)\ne0``, then ``\displaystyle\frac{1}{f}`` is differentiable at ``x``, and
+	```math
+	\left(\frac{1}{f}\right)^\prime\left(x\right)=\frac{-f\prime\left(x\right)}{\left(f\left(x\right)\right)^2}\,.
+	```
+
+!!! proof
+	Using the definition of the derivative, we calculate
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
+	&=\lim_{h\to 0}\frac{f\left(x\right)-f\left(x+h\right)}{hf\left(x+h\right)f\left(x\right)}\\
+	&=\lim_{h\to 0}\left(\frac{-1}{f\left(x+h\right)f\left(x\right)}\right)\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}\right)\\
+	&=\frac{-1}{\left(f\left(x\right)\right)^2}f\prime\left(x\right)
+	\end{aligned}
+	```
+	Again we have to use the continuity of ``f`` and the limit rules.
+
+!!! example
+	Confirm the General Power Rule for negative integers:
+	```math
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{-n}=-nx^{-n-1}\,.
+	```
+	Since we have already proved the rule for positive integers, we have
+	```math
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{-n}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{x^n}=\frac{-nx^{n-1}}{{\left(x^n\right)^2}}=-nx^{-n-1}\,.
+	```
+
+### Quotient Rule
+
+The Product Rule and the Reciprocal Rule can be combined to provide a rule for differentiating a quotient of two functions. Observe that
+```math
+\begin{aligned}
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
+&= \frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
+\end{aligned}
+```
+
+Thus, we have proved the following Quotient Rule.
+
+!!! theorem
+	If ``f`` and ``g`` are differentiable at ``x``, and if ``g\left(x\right)\ne0``, then the quotient ``\displaystyle\frac{f}{g}`` is differentiable at ``x`` and
+	```math
+	\left(\frac{f}{g}\right)^\prime=\frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
+	```
+
+{.pagebreak}
+### Chain Rule
+
+Although we can differentiate ``\sqrt x`` and ``x^2+1``, we cannot yet differentiate ``\sqrt{x^2+1}``. To do this, we need a rule that tells us how to differentiate composites of functions whose derivatives we already know. This rule is known as the Chain Rule and is the most often used of all the differentiation rules.
+
+!!! theorem
+	If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(x\right)`` is differentiable at ``x``, then the composite function ``f\circ g\left(x\right)=f\left(g\left(x\right)\right)`` is differentiable at ``x``, and
+	```math
+	\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+	```
+
+In terms of Leibniz notation, if ``y=f\left(u\right)`` where ``u=g\left(x\right)``, then ``y=f\left(g\left(x\right)\right)`` and:
+
+- at ``u``, ``y`` is changing ``\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}`` times as fast as ``u`` is changing;
+- at ``x``, ``u`` is changing ``\displaystyle \frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}`` times as fast as ``x`` is changing.
+
+Therefore, at ``x``, ``y=f\left(u\right)=f\left(g\left(x\right)\right)`` is changing ``\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}`` times as fast as ``x`` is changing. That is,
+
+```math
+\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\,,\quad\textrm{where }\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\textrm{ is evaluated at }u=g\left(x\right)\,.
+```
+
+It appears as though the symbol ``\mathrm{d}\kern-0.5pt u`` cancels from the numerator and denominator, but this is not meaningful because ``\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}`` was not defined as the quotient of two quantities, but rather as a single quantity, the derivative of ``y`` with respect to ``u``.
+
+We would like to prove this theorem by writing
+```math
+\frac{\Delta y}{\Delta x}=\frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}
+```
+and taking the limit as ``\Delta x \to 0``. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.
+
+!!! proof
+	Suppose that ``f`` is differentiable at the point ``u=g\left(x\right)`` and that ``g`` is differentiable at ``x``.
+
+	Let the function ``E\left(k\right)`` be defined by
+	```math
+	E\left(k\right)=\begin{cases}
+	0&\textrm{if }k=0\,.\\
+	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+	\end{cases}
+	```
+
+	By the definition of derivative
+	```math
+	\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+	```
+	so ``E\left(k\right)`` is continuous at ``k=0``. Also, whether ``k=0`` or not, we have
+	```math
+	f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+	```
+	Now put ``u=g\left(x\right)`` and ``k=g\left(x+h\right)-g\left(x\right)``, so that ``u+k=g\left(x+h\right)``, and obtain
+	```math
+	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+	```
+	Since ``g`` is differentiable at ``x``,
+	```math
+	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+	```
+	Also, ``g`` is continuous at ``x``, so 
+	```math
+	\lim_{h\to 0}k=\lim_{h\to 0}\left(g\left(x+h\right)-g\left(x\right)\right)=0\,.
+	```
+	Since ``E`` is continuous at ``0``, 
+	```math
+	\lim_{h\to 0}E\left(k\right)=\lim_{k\to 0}E\left(k\right)=E\left(0\right)=0\,.
+	```
+	Hence,
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+	&= \left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+	&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+	\end{aligned}
+	```
+	which was to be proved.
+
+!!! example
+	Find the derivative of ``y=\sqrt{x^2+1}``.
+
+	Here ``y=f\left(g\left(x\right)\right)``, where ``f\left(u\right)=\sqrt u`` and ``g\left(x\right)=x^2+1``. Since the derivatives of ``f`` and ``g`` are
+	```math
+	f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\right)=2x\,,
+	```
+	the Chain Rules gives
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\\
+	&=\frac{1}{2\sqrt{g\left(x\right)}}g\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
+	\end{aligned}
+	```
+
+{.pagebreak}
 ## Derivatives of Trigonometric Functions
+
+In this section we will calculate the derivatives of the six trigonometric functions. We only have to work hard for one of them, sine; the others then follow from known identities and the differentiation rules
+
+First, we have to establish some trigonometric limits that we will need to calculate the derivative of sine. It is assumed throughout that the arguments of the trigonometric functions are measured in radians.
+
+!!! theorem
+	The functions ``\sin\theta`` and ``\cos\theta`` are continuous at every value of ``\theta``. In particular, at ``\theta=0`` we have:
+	```math
+	\lim_{\theta\to 0}\sin\theta=\sin 0=0\quad\textrm{and}\quad\lim_{\theta\to 0}\cos\theta=\cos 0=1
+	```
+
+This result seems obvious from the graphs of sine and cosine, but we will still prove it.
+
+!!! proof
+	Let ``A``, ``P`` and ``Q`` be the points as shown in the figure.
+	{cell=chap display=false output=false}
+	```julia
+	Figure("", """Continuity of cosine and sine.""") do
+		Drawing(width=228, height=190) do
+			defs() do
+				marker(id="arrowblue", markerWidth="6", markerHeight="6", refX="3", refY="3", orient="auto") do
+					path(d="M 0 0 L 6 3 L 0 6 z", fill="RoyalBlue" )
+				end
+			end
+			scale = 75
+			xmid = 1.25scale
+			ymid = 1.25scale
+			axis_xy(2.5scale,2.5scale,xmid,ymid,scale,(-1,1),(-1,1))
+			plot_xy(x->sqrt(1-x^2), -1.0:0.01:1.0, (-1, 0, 1), xmid, ymid, scale, width=1)
+			plot_xy(x->-sqrt(1-x^2), -1.0:0.01:1.0, tuple(0), xmid, ymid, scale, width=1)
+			plot_xy(x->tan(pi/3)*x, 0:0.1:cos(pi/3), tuple(cos(pi/3)), xmid, ymid, scale; color="RoyalBlue")
+			latex("\\theta", x=xmid+2/3*scale-font_x, y=ymid-scale/2-font_y/2, width=6font_x, height=font_y, color="red")
+			path(d="M $(xmid+scale/3),$ymid A $(scale/3) $(scale/3) 0 0 0 $(xmid+cos(pi/3)*scale/3+2),$(ymid-sin(pi/3)*scale/3+5)", stroke="RoyalBlue", fill="none", marker_end="url(#arrowblue)")
+			latex("\\theta", x=xmid+scale/5-font_x, y=ymid-scale/10-font_y, width=4font_x, height=font_y, color="RoyalBlue")
+			latex("A", x=xmid+scale+2, y=ymid, width=font_x, height=font_y)
+			latex("Q", x=xmid+cos(pi/3)*scale-7, y=ymid, width=font_x, height=font_y)
+			latex("P=\\left(\\cos \\theta, \\sin \\theta\\right)", x=xmid+scale*cos(pi/3)-5, y=ymid-scale*sin(pi/3)-font_y, width=8*font_x, height=font_y)
+			line(x1=xmid+cos(pi/3)*scale, y1=ymid, x2=xmid+cos(pi/3)*scale, y2=ymid-sin(pi/3)*scale, stroke="RoyalBlue")
+			line(x1=xmid+scale, y1=ymid, x2=xmid+cos(pi/3)*scale, y2=ymid-sin(pi/3)*scale, stroke="RoyalBlue")
+		end
+	end
+	```
+	Since the length of chord ``AP`` is less than the length of arc ``AP``, we have
+	```math
+	\sin^2\theta+\left(1-\cos\theta\right)^2&lt;\theta^2\,.
+	```
+	Squaring yields positive values and the square root is an increasing function, so
+	```math
+	0\le\left|\sin\theta\right|&lt;\left|\theta\right|\quad\textrm{and}\quad 0\le\left|1-\cos\theta\right|&lt;\left|\theta\right|\,.
+	```
+	Using the squeeze theorem, we find
+	```math
+	0\le\lim_{\theta\to 0}\left|\sin\theta\right|&lt;\lim_{\theta\to 0}\left|\theta\right|=0\quad\textrm{and}\quad 0\le\lim_{\theta\to 0}\left|1-\cos\theta\right|&lt;\lim_{\theta\to 0}\left|\theta\right|=0\,.
+	```
+	Thus,
+	```math
+	\lim_{\theta\to 0}\sin\theta = 0=\sin0\quad\textrm{and}\quad\lim_{\theta\to 0}\cos\theta = 1=\cos0
+	```
+	and sine and cosine are continuous at ``\theta=0``.
+
+	To prove the continuity at another point, we use the addition formulas and the rules to evaluate limits:
+	```math
+	\lim_{\theta\to \theta_0}\sin\theta=\lim_{\phi\to0}\sin(\theta_0+\phi)=\sin\theta_0\lim_{\phi\to0}\cos\phi+\cos\theta_0\lim_{\phi\to0}\sin\phi=\sin\theta_0
+	```
+	and
+	```math
+	\lim_{\theta\to \theta_0}\cos\theta=\lim_{\phi\to0}\cos(\theta_0+\phi)=\cos\theta_0\lim_{\phi\to0}\cos\phi-\sin\theta_0\lim_{\phi\to0}\sin\phi=\cos\theta_0\,.
+	```
+
+The graph of the function ``\displaystyle\frac{\sin\theta}{\theta}`` is shown in the next figure. Although it is not defined at ``\theta=0``, this function appears to have limit ``1`` as ``\theta`` approaches ``0``.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", tex(raw"\displaystyle\lim_{\theta\to 0}\frac{\sin\theta}{\theta}=1") ) do
+	scale = 40
+	Drawing(width=14scale, height=2scale) do
+		xmid = 7scale
+		ymid = 1.5scale
+		f = x->sin(x)/x
+		axis_xy(14scale,2scale,xmid,ymid,scale,(-2pi,-pi,-pi/2,pi/2,pi,2pi),(1,),xs=("-2\\uppi", "-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","2\\uppi"), xl=(3, 2, 2, 1, 1, 2), xh=(1,1,2,2,1,1))
+		plot_xy(f, -7:0.01:-0.01, tuple(), xmid, ymid, scale, width=1)
+		plot_xy(f, 0.01:0.01:7, tuple(), xmid, ymid, scale, width=1)
+		circle(cx=xmid, cy=ymid-scale, fill="white", stroke="red", r=3)
+	end
+end
+```
+
+!!! theorem
+	``\displaystyle\lim_{\theta\to 0}\frac{\sin\theta}{\theta}=1\,.``
+
+!!! proof
+	Let ``0&lt;\theta&lt;\frac{\pi}{2}``, and represent ``\theta`` as shown in the figure.
+	{cell=chap display=false output=false}
+	```julia
+	Figure("", "Area " * tex("\\triangle OAP&lt; ") * "Area sector " * tex("OAP&lt; ") * " Area " * tex("\\triangle OAT")) do
+		Drawing(width=228, height=225) do
+			defs() do
+				marker(id="arrowblue", markerWidth="6", markerHeight="6", refX="3", refY="3", orient="auto") do
+					path(d="M 0 0 L 6 3 L 0 6 z", fill="RoyalBlue" )
+				end
+			end
+			scale = 75
+			xmid = 1.25scale
+			ymid = 1.8scale
+			axis_xy(2.5scale,3scale,xmid,ymid,scale,(-1,1),(-1,1))
+			plot_xy(x->sqrt(1-x^2), -1.0:0.01:1.0, (-1, 0, 1), xmid, ymid, scale, width=1)
+			plot_xy(x->-sqrt(1-x^2), -1.0:0.01:1.0, tuple(0), xmid, ymid, scale, width=1)
+			plot_xy(x->tan(pi/3)*x, 0:0.1:1, tuple(cos(pi/3), 1), xmid, ymid, scale; color="RoyalBlue")
+			latex("\\theta", x=xmid+1/2*scale-font_x, y=ymid-2/3*scale-font_y/2, width=6font_x, height=font_y, color="red")
+			path(d="M $(xmid+scale/3),$ymid A $(scale/3) $(scale/3) 0 0 0 $(xmid+cos(pi/3)*scale/3+2),$(ymid-sin(pi/3)*scale/3+5)", stroke="RoyalBlue", fill="none", marker_end="url(#arrowblue)")
+			latex("\\theta", x=xmid+scale/5-font_x, y=ymid-scale/10-font_y, width=4font_x, height=font_y, color="RoyalBlue")
+			latex("A", x=xmid+scale+2, y=ymid, width=font_x, height=font_y)
+			latex("T", x=xmid+scale+2, y=ymid-tan(pi/3)*scale-font_y/2, width=font_x, height=font_y)
+			latex("P=\\left(\\cos \\theta, \\sin \\theta\\right)", x=xmid+scale*cos(pi/3)-5, y=ymid-scale*sin(pi/3)-font_y/2, width=8*font_x, height=font_y)
+			line(x1=xmid+scale, y1=ymid, x2=xmid+scale, y2=ymid-tan(pi/3)*scale, stroke="RoyalBlue")
+			line(x1=xmid+scale, y1=ymid, x2=xmid+cos(pi/3)*scale, y2=ymid-sin(pi/3)*scale, stroke="RoyalBlue")
+		end
+	end
+	```
+	Points ``A\left(1,0\right)`` and ``P\left(\cos\theta,\sin\theta\right)`` lie on the unit circle ``x^2+y^2=1``. The area of the circular sector ``OAP`` lies between the areas of triangles ``\triangle OAP`` and ``\triangle OAT``:
+	```math
+	\textrm{Area }\triangle OAP&lt;\textrm{Area sector } OAP&lt;\textrm{Area }\triangle OAT\,.
+	```
+	As shown in Chapter 2, the area of a circular sector having central angle ``\theta`` and radius ``1`` is ``\frac{\theta}{2}``. The area of a triangle is ``\frac{1}{2}\times\textrm{base}\times\textrm{height}``, so
+	```math
+	\textrm{Area }\triangle OAP=\frac{1}{2}\left(1\right)\sin\theta=\frac{\sin\theta}{2}\quad\textrm{and}\quad
+	\textrm{Area }\triangle OAT=\frac{1}{2}\left(1\right)\tan\theta=\frac{\tan\theta}{2}\,.\\
+	```
+	Thus
+	```math
+	\frac{\sin\theta}{2}&lt;\frac{\theta}{2}&lt;\frac{\sin\theta}{2\cos\theta}\quad\textrm{or}\quad1&lt;\frac{\theta}{\sin\theta}&lt;\frac{1}{\cos\theta}\,.
+	```
+	Now take the reciprocals, thereby reversing the inequalities:
+	```math
+	1&gt;\frac{\sin\theta}{\theta}&gt;\cos\theta\,.
+	```
+	Since ``\lim_{\theta\to 0^+}\cos\theta=1``, the squeeze theorem gives ``\displaystyle\lim_{\theta\to 0^+}\frac{\sin\theta}{\theta}=1``.
+	Finally, note that ``\sin\theta`` and ``\theta`` are odd functions. Therefore, ``f\left(\theta\right)=\frac{\sin\theta}{\theta}`` is an even function: ``f\left(\theta\right)=f\left(-\theta\right)``. This symmetry implies that the left limit at ``0`` must have the same value as the right limit:
+	```math
+	\lim_{\theta\to 0^-}\frac{\sin\theta}{\theta}=1=\lim_{\theta\to 0^+}\frac{\sin\theta}{\theta}\,,
+	```
+	so ``\displaystyle\lim_{\theta\to 0}\frac{\sin\theta}{\theta}=1``.
+
+This theorem can be combined with limit rules and known trigonometric identities to yield other trigonometric limits.
+
+!!! example
+	``\displaystyle\textrm{Show that }\lim_{h\to 0}\frac{\cos h-1}{h}=0\,.``
+
+	Using the half-angle formula ``\cos h=1-\sin^2\frac{h}{2}``, we calculate
+	```math
+	\begin{aligned}
+	\lim_{h\to 0}\frac{\cos h-1}{h}\,&=\lim_{h\to 0}\frac{-2\sin^2\frac{h}{2}}{h}\quad\textrm{let }\theta=\frac{h}{2}\,,\\
+	&=-\lim_{\theta\to 0}\frac{\sin\theta}{\theta}\sin\theta=-\left(1\right)\left(0\right)=0\,.
+	\end{aligned}
+	```
+
+To calculate the derivative of ``\sin x``, we need the addition formula for sine
+```math
+\sin\left(x+h\right)=\sin x\cos h+\cos x\sin h
+```
+
+!!! theorem
+	``\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,.``
+
+!!! proof
+	We use the definition of derivative, the addition formula for sine, the rules for combining limits, and the previous theorem:
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin x&=\lim_{h\to 0}\frac{\sin\left(x+h\right)-\sin x}{h}\\
+	&=\lim_{h\to 0}\frac{\sin x\cos h+\cos x\sin h-\sin x}{h}\\
+	&=\lim_{h\to 0}\frac{\sin x\left(\cos h-1\right)+\cos x\sin h}{h}\\
+	&=\lim_{h\to 0}\sin x\lim_{h\to 0}\frac{\cos h-1}{h}+\lim_{h\to 0}\cos x\lim_{h\to 0}\frac{\sin h}{h}\\
+	&=\left(\sin x\right)\left(0\right)+\left(\cos x\right)\left(1\right)=\cos x\,.
+	\end{aligned}
+	```
+
+!!! theorem
+	``\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=-\sin x\,.``
+
+!!! proof
+	We make use of the complementary angle identities, and the Chain rule:
+	```math
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
+	```
+
+Because ``\sin x`` and ``\cos x`` are differentiable everywhere, the functions
+```math
+\tan x=\frac{\sin x}{\cos x}\,,\quad\cot x=\frac{\cos x}{\sin x}\,,\quad\sec x=\frac{1}{\cos x}\,,\quad\csc x=\frac{1}{\sin x}
+```
+are differentiable at every value of ``x`` at which they are defined (i.e., where their denominators are not zero). Their derivatives can be calculated by the Quotient and Reciprocal Rules and are as follows:
+```math
+\begin{aligned}
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\tan(x)=\sec^2 x\,,\quad&\quad\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cot x=-\csc^2 x\,,\\
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sec(x)=\sec x\tan x\,,\quad&\quad\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\csc x=-\csc x\cot x\,.
+\end{aligned}
+```
+
+!!! example
+	Verify the formula for ``\tan x``.
+
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\tan(x)&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{\sin x}{\cos x}\right)=\frac{\cos x\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin(x)-\sin x\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos(x)}{\cos^2 x}\\
+	&=\frac{\cos x\cos(x)-\sin x\left(-\sin x\right)}{\cos^2 x}=\frac{\cos^2 x+\sin^2 x}{\cos^2 x}\\
+	&=\frac{1}{\cos^2 x}=\sec^2 x\,.
+	\end{aligned}
+	```
+
+!!! exercise
+	Verify the other formulas.
 
 ## Higher Order Derivatives
 
-## Implicit Differentiation
+If the derivative ``y\prime=f\prime\left(x\right)`` of a function ``y=f\left(x\right)`` is itself differentiable at ``x``, we can calculate its derivative, which we call the second derivative of ``f`` and denote by ``y\prime\prime=f\prime\prime\left(x\right)``. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are
+```math
+y\prime\prime=f\prime\prime\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf D_x^2y=\mathsf D_x^2f\left(x\right)\,.
+```
+
+Similarly, you can consider third-, fourth-, and in general ``n``th-order derivatives. The prime notation is inconvenient for derivatives of high order, so we denote the order by a superscript in parentheses (to distinguish it from an exponent): the ``n``th derivative of ``y=f\left(x\right)`` is
+```math
+y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=\mathsf D_x^ny=\mathsf D_x^nf\left(x\right)\,,
+```
+and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f\prime\prime\prime``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
+
+!!! example
+	The *velocity* of a moving object is the (instantaneous) rate of change of the position of the object with respect to time; if the object moves along the ``x``-axis and is at position ``x=f\left(t\right)`` at time ``t``, then its velocity at that time is
+	```math
+	v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f\prime\left(t\right)\,.
+	```
+	Similarly, the *acceleration* of the object is the rate of change of the velocity. Thus, the acceleration is the second derivative of the position:
+	```math
+	a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f\prime\prime\left(t\right)\,.
+	```
+
+!!! example
+	If ``y=x^3``, then ``y\prime=3x^2``, ``y\prime\prime=6x``, ``y\prime\prime\prime=6``, ``y^{\left(4\right)}=0``, and all higher derivatives are zero.
+
+In general, if ``f\left(x\right)=x^n`` (where ``n`` is a positive integer), then
+```math
+\begin{aligned}
+f^{\left(\right)}&=n\left(n-1\right)\left(n-2\right)\cdots\left(n-\left(k-1\right)\right)x^n-k\\
+&=\begin{cases}
+\frac{n!}{\left(n-k\right)!}x^{n-k}&\textrm{if }0\le k\le n\\
+0&\textrm{if }k&gt;n\,,
+\end{cases}
+\end{aligned}
+```
+where ``n!`` is called the *factorial* and is recursively defined by:
+```math
+n!=\begin{cases}
+1&\textrm{if }n=0\\
+n\left(n-1\right)!&\textrm{if }n&gt;0\,.
+\end{cases}
+```
+
+It follows that if ``P`` is a polynomial of degree ``n``,
+```math
+P\left(x\right)=a_nx^2+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\,,
+```
+where ``a_n, a_{n-1}, \dots, a_1, a_0`` are constants, then ``P^{\left(k\right)}\left(x\right)=0`` for ``k&gt;n``. For ``k\le n``, ``P^{\left(k\right)}`` is a polynomial of degree ``n-k``; in particular, ``P^{\left(n\right)}\left(x\right)=n!a_n``, a constant function.
 
 ## The Mean-Value Theorem
 
-## Indeterminate Forms
+If you set out in a car at 1:00 p.m. and arrive in a town 150 km away from your starting point at 3:00 p.m., then you have travelled at an average speed of ``\frac{150}{2}=75`` km/h. Although you may not have travelled at constant speed, you must have been going 75 km/h at at least one instant during your journey, for if your speed was always less than 75 km/h you would have gone less than 150 km in 2 h, and if your speed was always more than 75 km/h, you would have gone more than 150 km in 2 h. In order to get from a value less than 75 km/h to a value greater than 75 km/h, your speed, which is a continuous function of time, must pass through the value 75 km/h at some intermediate time.
+
+The conclusion that the average speed over a time interval must be equal to the instantaneous speed at some time in that interval is an instance of an important mathematical principle. In geometric terms it says that if ``A`` and ``B`` are two points on a smooth curve, then there is at least one point ``C`` on the curve between ``A`` and ``B`` where the tangent line is parallel to the chord line ``AB``.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "There is a point " * tex("C") * " on the curve where the tangent (green) is parallel to the chord " * tex("AB") * " (blue).") do
+    scale = 40
+    Drawing(width=6scale, height=5.5scale) do
+        xmid = 1scale
+        ymid = 5scale
+        f = x->-0.5(x-2)^2+4
+		c = 1.5
+		fc = f(c)
+		a = -0.5
+		fa = f(a)
+		b= 3.5
+		fb=f(b)
+        axis_xy(6scale,5.5scale,xmid,ymid,scale,(a,b,c),tuple(), xs=("a","b","c"))
+        plot_xy(f, -1:0.01:5.5, (a, b, c), xmid, ymid, scale, width=1)
+		m = -(c-2)
+		plot_xy(x->m*(x-c)+fc, -1:0.01:5.5, tuple(), xmid, ymid, scale, width=1, color = "green")
+		plot_xy(x->m*(x-a)+fa, a:0.01:b, tuple(), xmid, ymid, scale, width=1, color = "RoyalBlue")
+		line(x1=xmid+a*scale, y1=ymid-fa*scale, x2=xmid+a*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+b*scale, y1=ymid-fb*scale, x2=xmid+b*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+c*scale, y1=ymid-fc*scale, x2=xmid+c*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		latex("y=f\\left(x\\right)", x=xmid+3scale, y=ymid-4scale, width=4font_x, height=font_y)
+		latex("A", x=xmid+a*scale-0.6font_x, y=ymid-fa*scale-1.25font_y, width=font_x, height=font_y)
+		latex("B", x=xmid+b*scale-0.5font_x, y=ymid-fb*scale-1.25font_y, width=font_x, height=font_y)
+		latex("C", x=xmid+c*scale-0.5font_x, y=ymid-fc*scale-1.25font_y, width=font_x, height=font_y)
+    end
+end
+```
+
+This principle is stated more precisely in the following theorem.
+
+!!! theorem "The Mean-Value Theorem"
+	Suppose that the function ``f`` is continuous on the closed, finite interval ``\left[a,b\right]``and that it is differentiable on the open interval ``\left]a,b\right[``. Then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that
+	```math
+	\frac{f\left(b\right)-f\left(a\right)}{b-a}=f\prime\left(c\right)\,.
+	```
+
+This says that the slope of the chord line joining the points ``\left(a,f\left(a\right)\right)`` and ``\left(b,f\left(b\right)\right)`` is equal to the slope of the tangent line to the curve ``f=f\left(x\right)`` at the point ``\left(c,f\left(c\right)\right)``, so the two lines are parallel.
+
+We can make several observations:
+
+1. The hypotheses of the Mean-Value Theorem are all necessary for the conclusion; if ``f`` fails to be continuous at even one point of ``\left[a,b\right]``or fails to be differentiable at even one point of ``\left]a,b\right[``, then there may be no point where the tangent line is parallel to the secant line ``AB``.
+2. The Mean-Value Theorem gives no indication of how many points ``C`` there may be on the curve between ``A`` and ``B`` where the tangent is parallel to ``AB``. If the curve is itself the straight line ``A``B, then every point on the line between ``A`` and ``B`` has the required property. In general, there may be more than one point; the Mean-Value Theorem asserts only that there must be at least one.
+3. The Mean-Value Theorem gives us no information on how to find the point ``c``, which it says must exist. For some simple functions it is possible to calculate ``c`` (see the following example), but doing so is usually of no practical value. As we shall see, the importance of the Mean-Value Theorem lies in its use as a theoretical tool. It belongs to a class of theorems called existence theorems
+
+The Mean-Value Theorem is one of those deep results that is based on the completeness of the real number system via the fact that a continuous function on a closed, finite interval takes on a maximum and minimum value (Extreme-Value Theorem). Before giving the proof, we establish two preliminary results.
+
+!!! theorem
+	If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f\prime\left(c\right)`` exists, then ``f\prime\left(c\right)=0``. (Values of ``x`` where ``f\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
+
+!!! proof
+
+	Suppose that ``f`` has a maximum value at ``c``. Then ``f\left(x\right)-f\left(c\right)\le0`` whenever ``x`` is in ``\left]a,b\right[``.
+
+	If ``c&lt;x&lt;b``, then
+	```math
+	\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^+}\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,.
+	```
+	If ``a&lt;x&lt;c``, then
+	```math
+	\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^-}\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,.
+	```
+	Thus ``f^\prime\left(c\right)``. The proof for a minimum value at ``c`` is similar.
+
+!!! theorem "Rolle's Theorem"
+
+	Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]``and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``.
+
+!!! proof
+
+	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
+
+	Let us assume that ``g\left(x\right)&gt; g\left(a\right)``. (If ``g\left(x\right)&lt; g\left(a\right)``, the proof is similar.)
+
+	By the Extreme-Value Theorem, being continuous on ``\left[a,b\right]``, ``g`` must have a maximum value at some point ``c`` in ``\left[a,b\right]``.
+
+	Since ``g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)``, ``c`` cannot be either ``a`` or ``b``. Therefore, ``c`` is in the open interval ``\left]a,b\right[``, so ``g`` is differentiable at ``c``.
+
+	By the previous theorem, ``c`` must be a critical point of ``g``: ``g\prime\left(c\right)=0``.
+
+Rolle’s Theorem is a special case of the Mean-Value Theorem in which the chord line has slope 0, so the corresponding parallel tangent line must also have slope 0. We can deduce the Mean-Value Theorem from this special case.
+
+!!! proof "of the Mean-Value Theorem"
+	
+	Suppose ``f`` satisfies the conditions of the Mean-Value Theorem. 
+	
+	Let
+	```math
+	g\left(x\right) = f\left(x\right)-\left(f\left(a\right)+\frac{f\left(b\right)-f\left(a\right)}{b-a}\left(x-a\right)\right)\,.
+	```
+
+	The function ``g`` is also continuous on ``\left[a,b\right]``and differentiable on ``\left]a,b\right[`` because ``f`` has these properties. 
+	
+	In addition, ``g\left(a\right)=g\left(b\right)=0``. By Rolle’s Theorem, there is some point ``c`` in ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``. 
+	
+	Since
+	```math
+	g\prime\left(x\right) = f\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
+	```
+	it follows that
+	```math
+	f\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
+	```
+
+Many of the applications we will make of the Mean-Value Theorem will actually use the following generalized version of it.
+
+!!! theorem "The Generalized Mean-Value Theorem"
+
+
+
+### Increasing and Decreasing Functions
+
+### Derivatives of Inverse Functions
 
 ## Extreme Values
 
 ## Concavity and Inflections
 
-## Sketching the Graph of a Function
+## Indeterminate Forms
 
 ## Linear Approximations
 
 ## Taylor Polynomials
+
+## Implicit Differentiation
 
 ## Antiderivatives

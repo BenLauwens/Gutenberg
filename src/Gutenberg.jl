@@ -18,21 +18,20 @@ const TEMPLATE = """<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="rma.css" />
-<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 MathJax = {
     startup: {
         pageReady() {
             MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            //MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
         }
     },
     tex: {
         inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
+            ['\\\\(', '\\\\)']
         ],
         displayMath: [
-            ['\\[', '\\]']
+            ['\\\\[', '\\\\]']
         ]
     },
     options: {
@@ -56,9 +55,16 @@ MathJax = {
     }
 };
 </script>
-
 <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+PAGED
+</head>
+<body data-type="BODY-TYPE">
+BODY
+</body>
+</html>
+"""
 
+const PAGED = """<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
     constructor(chunker, polisher, caller) {
@@ -82,43 +88,43 @@ class handlers extends Paged.Handler {
         for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);
         }
-        let tocElementNbr = 0;
-        const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
-        for (let i = 0; i < selectors.length; i++) {
-            for (let el of content.querySelectorAll(selectors[i])) {
-                el.classList.add('toc-element');
-                el.setAttribute('data-toc-level', i + 1);
-                if (el.id == '') {
-                    el.id = 'toc-element-' + tocElementNbr++;
-                }
-            }
-        }
-        let level = 0;
-        let toc = document.createElement('div');
-        toc.appendChild(document.createElement('div'));
-        let entry = toc;
-        for (let el of content.querySelectorAll('.toc-element')) {
-            if (el.dataset.tocLevel > level) {
-                level++;
-                entry = document.createElement('ol');
-                toc.lastChild.appendChild(entry);
-                toc = entry;
-            } else if (el.dataset.tocLevel < level) {
-                toc = toc.parentElement.parentElement;
-                level--;
-            }
-            entry = document.createElement('li');
-            entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
-            toc.appendChild(entry);
-        }
-        while (level > 1) {
-            toc = toc.parentElement.parentElement;
-            level--;
-        }
         let nav = content.querySelector('nav[data-type="toc"]');
         if (!nav) {
             console.warn('no nav found');
         } else {
+            let tocElementNbr = 0;
+            const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
+            for (let i = 0; i < selectors.length; i++) {
+                for (let el of content.querySelectorAll(selectors[i])) {
+                    el.classList.add('toc-element');
+                    el.setAttribute('data-toc-level', i + 1);
+                    if (el.id == '') {
+                        el.id = 'toc-element-' + tocElementNbr++;
+                    }
+                }
+            }
+            let level = 0;
+            let toc = document.createElement('div');
+            toc.appendChild(document.createElement('div'));
+            let entry = toc;
+            for (let el of content.querySelectorAll('.toc-element')) {
+                if (el.dataset.tocLevel > level) {
+                    level++;
+                    entry = document.createElement('ol');
+                    toc.lastChild.appendChild(entry);
+                    toc = entry;
+                } else if (el.dataset.tocLevel < level) {
+                    toc = toc.parentElement.parentElement;
+                    level--;
+                }
+                entry = document.createElement('li');
+                entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
+                toc.appendChild(entry);
+            }
+            while (level > 1) {
+                toc = toc.parentElement.parentElement;
+                level--;
+            }
             nav.appendChild(toc);
         }
     }
@@ -133,11 +139,6 @@ class handlers extends Paged.Handler {
 
 Paged.registerHandlers(handlers);
 </script>
-</head>
-<body data-type="BODY-TYPE">
-BODY
-</body>
-</html>
 """
 
 function Base.show(io::IO, ::MIME"text/html", val::Any)
@@ -221,10 +222,15 @@ function _html(buf::Vector{String}, type::CommonMark.Heading, entering::Bool, _:
             level -= 1
             push!(buf, "</section>")
         end
-        if type.level === 1
-            push!(buf, """<section data-type="$(attributes["data-type"])">""")
+        cl = if haskey(attributes, "class")
+            """ class="$(attributes["class"]...)" """
         else
-            push!(buf, """<section data-type="sect$(type.level-1)">""")
+            ""
+        end
+        if type.level === 1
+            push!(buf, """<section data-type="$(attributes["data-type"])"$cl>""")
+        else
+            push!(buf, """<section data-type="sect$(type.level-1)"$cl>""")
         end
         level += 1
         if haskey(attributes, "id")
@@ -466,7 +472,7 @@ function tohtml(file::String)
     for file in meta["files"]
         body *= join(_tohtml(joinpath(path, file)), "\n") * "\n"
     end
-    html = replace(TEMPLATE, "TITLE" => meta["title"], "BODY-TYPE" => "book", "BODY" => body)
+    html = replace(TEMPLATE, "TITLE" => meta["title"], "PAGED" => PAGED, "BODY-TYPE" => "book", "BODY" => body)
     open(joinpath(path, meta["output"]), "w") do out
         write(out, html)
     end
@@ -493,7 +499,7 @@ function watch_and_tohtml(file::String)
         if body === ""
             body = join(next, "\n") * """<div id="tag"></div>\n"""
         end
-        html = replace(TEMPLATE, "TITLE" => name, "BODY-TYPE" => "article", "BODY" => body)
+        html = replace(TEMPLATE, "TITLE" => name, "PAGED" => "", "BODY-TYPE" => "article", "BODY" => body)
         open(joinpath(path, name * ".html"), "w") do out
             write(out, html)
         end
