@@ -100,8 +100,15 @@
 
 @page :first {
     border-bottom: none;
-    @bottom-left { content: none }
-    @bottom-right { content: none }
+
+    @bottom-left {
+        content: none
+    }
+
+    @bottom-right {
+        content: none
+    }
+
     margin: 2cm;
     margin-left: 2.5cm;
     margin-right: 2.5cm;
@@ -238,8 +245,8 @@
 }
 
 @page Nav:right {
-    @bottom-right { 
-	    font-size: 9pt;
+    @bottom-right {
+        font-size: 9pt;
         content: counter(page, lower-roman);
         vertical-align: top;
         border-top-style: solid;
@@ -300,7 +307,7 @@ p[data-type="academy"] {
 }
 
 p[data-type="year"] {
-    font-size : 36pt;
+    font-size: 36pt;
     text-align: center;
     position: absolute;
     bottom: 40px;
@@ -308,7 +315,7 @@ p[data-type="year"] {
 }
 
 p[data-type="course"] {
-    font-size : 14pt;
+    font-size: 14pt;
     position: absolute;
     bottom: -20px;
 }
@@ -322,7 +329,7 @@ section[data-type="titlepage"] h1 {
 }
 
 p[data-type="author"] {
-    font-size : 14pt;
+    font-size: 14pt;
     text-align: center;
     position: absolute;
     bottom: 200px;
@@ -354,12 +361,12 @@ nav li {
     break-inside: auto;
 }
 
-nav > ol {
+nav>ol {
     counter-reset: navnumber;
     padding-left: 30px;
 }
 
-nav > ol > li::before {
+nav>ol>li::before {
     font-size: 12pt;
     font-weight: 600;
     content: counter(navnumber) ".";
@@ -368,7 +375,7 @@ nav > ol > li::before {
     left: 0;
 }
 
-nav > ol > li {
+nav>ol>li {
     margin-bottom: 10px;
     font-size: 12pt;
     font-weight: 600;
@@ -376,23 +383,23 @@ nav > ol > li {
     counter-increment: navnumber;
 }
 
-nav > ol > li > ol{
+nav>ol>li>ol {
     margin: 0;
     padding: 0;
 }
 
-nav > ol > li > ol > li{
+nav>ol>li>ol>li {
     font-size: 11pt;
     font-weight: normal;
     list-style: none;
 }
 
-nav > ol > li > a::after {
-    content: target-counter(attr(href), page); 
+nav>ol>li>a::after {
+    content: target-counter(attr(href), page);
     float: right;
 }
 
-nav > ol > li > ol > li> a::after {
+nav>ol>li>ol>li>a::after {
     content: target-counter(attr(href), page);
     float: right;
 }
@@ -432,7 +439,7 @@ svg math {
 body {
     hyphens: auto;
     font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
-    font-family: "Minion Pro", "STIX Two Text", "Old Standard","Cambria", "Noto Sans SemiCondensed", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic";
+    font-family: "Minion Pro", "STIX Two Text", "Old Standard", "Cambria", "Noto Sans SemiCondensed", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic";
     font-size: 11pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;
@@ -461,7 +468,7 @@ section[data-type="chapter"] {
     counter-reset: sect1number equationnumber figurenumber;
 }
 
-section[data-type="chapter"]:first-of-type {
+section.pagereset {
     counter-reset: page 1;
 }
 

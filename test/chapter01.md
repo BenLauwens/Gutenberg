@@ -1,4 +1,4 @@
-{data-type = chapter}
+{data-type = chapter, class = page.reset}
 # Preliminaries
 
 This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.
