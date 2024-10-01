@@ -93,7 +93,7 @@ class handlers extends Paged.Handler {
             console.warn('no nav found');
         } else {
             let tocElementNbr = 0;
-            const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="sect1"]>h1'];
+            const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="chapter"] section[data-type="sect1"]>h1'];
             for (let i = 0; i < selectors.length; i++) {
                 for (let el of content.querySelectorAll(selectors[i])) {
                     el.classList.add('toc-element');

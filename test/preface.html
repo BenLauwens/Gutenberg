@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="utf-8">
+<title>preface</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="rma.css" />
+<script>
+MathJax = {
+    startup: {
+        pageReady() {
+            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
+            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+        }
+    },
+    tex: {
+        inlineMath: [              // start/end delimiter pairs for in-line math
+            ['\\(', '\\)']
+        ],
+        displayMath: [
+            ['\\[', '\\]']
+        ]
+    },
+    options: {
+        renderActions: {
+            assistiveMml: [],  // disable assistive mathml
+            typeset: [150,
+                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
+                (math, doc) => MathJax.config.renderMathML(math, doc)
+            ]
+        },
+        menuOptions: {
+            settings: {
+                assistiveMml: false
+            }
+        }
+    },
+    renderMathML(math, doc) {
+        math.typesetRoot = document.createElement('mjx-container');
+        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+        math.display && math.typesetRoot.setAttribute('display', 'block');
+    }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+
+</head>
+<body data-type="article">
+<div id="tag"></div>
+<section data-type="preface" class="pagereset" >
+<h1>Preface</h1>
+<section data-type="sect1">
+<h1>Who are we?</h1>
+<ul>
+<li>
+<p>Lecturer: LCL IMM Ben LAUWENS, Dr Ir / D30.19 / <a href="mailto:ben.lauwens@mil.be">ben.lauwens.be</a></p>
+</li>
+<li>
+<p>Assistant: Mr Indy VAN DEN BROECK, MSc</p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Course</h1>
+<ul>
+<li>
+<p>Theory: 22 Hr → 66 Hr</p>
+</li>
+<li>
+<p>Exercises: 20 Hr 	→ 40 Hr</p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Documentation</h1>
+<ul>
+<li>
+<p>Handbook: Calculus, a complete course - 10th edition<br/>Chapter P-9: theory and exercises</p>
+</li>
+<li>
+<p>Handouts: supplements, summaries and other proofs</p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Schedule</h1>
+<table>
+<thead>
+<tr>
+<td style="text-align:center">Lectures</td>
+<td style="text-align:center">Theory</td>
+<td style="text-align:center">Exercises</td>
+<td style="text-align:left">Topic</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">08/10</td>
+<td style="text-align:center">1-2</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Introduction and Preliminaries</td>
+</tr>
+<tr>
+<td style="text-align:center">15/10</td>
+<td style="text-align:center">3-4</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Real Numbers and Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">17/10</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1-2</td>
+<td style="text-align:left">Real Numbers and Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">22/10</td>
+<td style="text-align:center">5-6</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Limits</td>
+</tr>
+<tr>
+<td style="text-align:center">24/10</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">3-4</td>
+<td style="text-align:left">Limits</td>
+</tr>
+<tr>
+<td style="text-align:center">29/10</td>
+<td style="text-align:center">7-8</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Continuity</td>
+</tr>
+<tr>
+<td style="text-align:center">31/10</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">5-6</td>
+<td style="text-align:left">Continuity</td>
+</tr>
+<tr>
+<td style="text-align:center">05/11</td>
+<td style="text-align:center">9-10</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Derivatives and Differentials</td>
+</tr>
+<tr>
+<td style="text-align:center">07/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">7-8</td>
+<td style="text-align:left">Derivatives and Differentials</td>
+</tr>
+<tr>
+<td style="text-align:center">12/11</td>
+<td style="text-align:center">11-12</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Applications of Differentiation</td>
+</tr>
+<tr>
+<td style="text-align:center">14/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">9-10</td>
+<td style="text-align:left">Applications of Differentiation</td>
+</tr>
+<tr>
+<td style="text-align:center">19/11</td>
+<td style="text-align:center">13-14</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Trancendental Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">21/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">11-12</td>
+<td style="text-align:left">Trancendental Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">26/11</td>
+<td style="text-align:center">15-16</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Integrals</td>
+</tr>
+<tr>
+<td style="text-align:center">28/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">13-14</td>
+<td style="text-align:left">Integrals</td>
+</tr>
+<tr>
+<td style="text-align:center">03/12</td>
+<td style="text-align:center">17-18</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Integration Techniques</td>
+</tr>
+<tr>
+<td style="text-align:center">05/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">15-16</td>
+<td style="text-align:left">Integration Techniques</td>
+</tr>
+<tr>
+<td style="text-align:center">10/12</td>
+<td style="text-align:center">19-20</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Polar Coordinates and Parametric Curves</td>
+</tr>
+<tr>
+<td style="text-align:center">12/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">17-18</td>
+<td style="text-align:left">Polar Coordinates and Parametric Curves</td>
+</tr>
+<tr>
+<td style="text-align:center">17/12</td>
+<td style="text-align:center">21-22</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Sequences, Series and Power Series</td>
+</tr>
+<tr>
+<td style="text-align:center">19/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">19-20</td>
+<td style="text-align:left">Sequences, Series and Power Series</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section data-type="sect1">
+<h1>Evaluations</h1>
+<p>Test: 21/11 - 2 Hr: Exercises</p>
+<p>Exam:</p>
+<ul>
+<li>
+<p>Theory: oral exam - 5 min access to notes, 1 Hr preparation without notes and 30 min presentation</p>
+</li>
+<li>
+<p>Exercises: written exam - 4 Hr without notes</p>
+</li>
+</ul>
+</section>
+</section>
+</body>
+</html>

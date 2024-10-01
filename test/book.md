@@ -1,6 +1,7 @@
 +++
 title = "Real Calculus"
 files = [
+    "preface.md",
     "nav.md",
     "chapter01.md",
     "chapter02.md",
