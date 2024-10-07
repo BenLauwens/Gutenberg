@@ -138,7 +138,7 @@ Their truth values are defined by following truth tables:
 | ``F`` | ``F`` |  | ``T`` |  | ``T`` | ``T`` |  | ``T`` |  | ``T`` | ``T``  |
 
 Observe that:
-* The conditional ``𝒫\implies 𝒬`` is false only when the first part ``𝒫`` is true and the second part ``𝒬`` is false. Accordingly, when ``𝒫`` is false, the conditonal ``𝒫\implies 𝒬`` is false regardless of the truth value of ``𝒬``.
+* The conditional ``𝒫\implies 𝒬`` is false only when the first part ``𝒫`` is true and the second part ``𝒬`` is false. Accordingly, when ``𝒫`` is false, the conditonal ``𝒫\implies 𝒬`` is true regardless of the truth value of ``𝒬``.
 * ``𝒫\implies 𝒬`` is logically equivalent to ``\lnot 𝒫\vee 𝒬``.
 * The biconditional ``𝒫\iff 𝒬`` is true whenever ``𝒫`` and ``𝒬`` have the same truth values and false otherwise.
 * ``𝒫\iff 𝒬`` is logically equivalent to ``\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)``. ``𝒬\implies 𝒫`` is called the *converse* of ``𝒫\implies 𝒬``.
@@ -328,7 +328,7 @@ Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. C
 	Some propositions using the existential quantifier:
 
 	* The proposition ``\exists n\in ℕ:n+4 < 7`` is true since ``\lbrace n\mid n\in ℕ,n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset``. 
-	* The proposition ``\forall n\in ℕ:n+6 < 4`` is false since ``\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset``. 
+	* The proposition ``\exists n\in ℕ:n+6 < 4`` is false since ``\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset``. 
 	* The symbol ``\exists`` can be used to define the intersection of an indexed collection ``\lbrace A_i :i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I,x\in A_i \rbrace``. 
 
 Consider the proposition: "All officers are engineers". Its negation is either of the following equivalent statements:

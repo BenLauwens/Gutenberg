@@ -48,7 +48,6 @@ MathJax = {
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter" class="pagereset" >
 <h1>Preliminaries</h1>
 <p>This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.</p>
@@ -453,7 +452,7 @@ MathJax = {
 <p>Observe that:</p>
 <ul>
 <li>
-<p>The conditional <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is false only when the first part <span class="math-tex" data-type="tex">\(𝒫\)</span> is true and the second part <span class="math-tex" data-type="tex">\(𝒬\)</span> is false. Accordingly, when <span class="math-tex" data-type="tex">\(𝒫\)</span> is false, the conditonal <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is false regardless of the truth value of <span class="math-tex" data-type="tex">\(𝒬\)</span>.</p>
+<p>The conditional <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is false only when the first part <span class="math-tex" data-type="tex">\(𝒫\)</span> is true and the second part <span class="math-tex" data-type="tex">\(𝒬\)</span> is false. Accordingly, when <span class="math-tex" data-type="tex">\(𝒫\)</span> is false, the conditonal <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is true regardless of the truth value of <span class="math-tex" data-type="tex">\(𝒬\)</span>.</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is logically equivalent to <span class="math-tex" data-type="tex">\(\lnot 𝒫\vee 𝒬\)</span>.</p>
@@ -699,7 +698,8 @@ MathJax = {
 <p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in ℕ:n+4 < 7\)</span> is true since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset\)</span>.</p>
 </li>
 <li>
-<p>The proposition <span class="math-tex" data-type="tex">\(\forall n\in ℕ:n+6 < 4\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset\)</span>.</p>
+<div id="tag"></div>
+<p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in ℕ:n+6 < 4\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset\)</span>.</p>
 </li>
 <li>
 <p>The symbol <span class="math-tex" data-type="tex">\(\exists\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i :i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I,x\in A_i \rbrace\)</span>.</p>
