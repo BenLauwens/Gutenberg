@@ -288,7 +288,7 @@ To determine the number of elements belonging to a set, we need a definition for
 
 The set of natural number is denoted by ``ℕ``.
 
-A set which is equivalent to the set ``\lbrace 1,2,3,\ldots,n\rbrace`` for some ``n\in ℕ`` is called *finite*; otherwise it is called *infinite*.
+A set which is equivalent to the set ``\lbrace 0,1,2,3,\ldots,n\rbrace`` for some ``n\in ℕ`` is called *finite*; otherwise it is called *infinite*.
 
 An infinite set which is equivalent to the set of natural numbers is called *denumerable*; otherwise it is called *non-denumerable*.
 
