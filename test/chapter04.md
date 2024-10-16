@@ -1208,7 +1208,7 @@ Rolle’s Theorem is a special case of the Mean-Value Theorem in which the chord
 	g\left(x\right) = f\left(x\right)-\left(f\left(a\right)+\frac{f\left(b\right)-f\left(a\right)}{b-a}\left(x-a\right)\right)\,.
 	```
 
-	The function ``g`` is also continuous on ``\left[a,b\right]``and differentiable on ``\left]a,b\right[`` because ``f`` has these properties. 
+	The function ``g`` is also continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[`` because ``f`` has these properties. 
 	
 	In addition, ``g\left(a\right)=g\left(b\right)=0``. By Rolle’s Theorem, there is some point ``c`` in ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``. 
 	
@@ -1224,14 +1224,232 @@ Rolle’s Theorem is a special case of the Mean-Value Theorem in which the chord
 Many of the applications we will make of the Mean-Value Theorem will actually use the following generalized version of it.
 
 !!! theorem "The Generalized Mean-Value Theorem"
+	
+	If functions ``f`` and ``g`` are both continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[``, and if ``g\prime\left(x\right)\ne 0`` for every ``x\in\left]a,b\right[``, then there exists a number ``c \in \left]a,b\right[`` such that
+	```math
+	\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f\prime\left(c\right)}{g\prime\left(c\right)}\,.
+	```
 
-
+!!! proof
+	
+	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g\prime\left(x\right)\ne 0``. Hence, neither denominator above can be zero. Apply the Mean-Value Theorem to
+	```math
+	h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
+	```
+	Since ``h\left(a\right)=h\left(b\right)=0``, there exists ``c\in \left]a,b\right[`` such that ``h\prime\left(c\right)=0``. Thus,
+	```math
+	\left(f\left(b\right)-f\left(a\right)\right)g\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f\prime\left(c\right)=0\,,
+	```
+	and the result follows on division by the ``g`` factors.
 
 ### Increasing and Decreasing Functions
 
+Intervals on which the graph of a function ``f`` has positive or negative slope provide useful information about the behaviour of ``f``. The Mean-Value Theorem enables us to determine such intervals by considering the sign of the derivative ``f\prime``.
+
+!!! definition
+	
+	Suppose that the function ``f`` is defined on an interval ``I`` and that ``x_1`` and ``x_2`` are two points of ``I``.
+	- If ``f\left(x_2\right)&gt;f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *increasing* on ``I``.
+	- If ``f\left(x_2\right)&lt;f\left(x_1\right)`` whenever ``x_2&lt;x_1``, we say ``f`` is *decreasing* on ``I``.
+	- If ``f\left(x_2\right)\ge f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nondecreasing* on ``I``.
+	- If ``f\left(x_2\right)\le f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nonincreasing* on ``I``.
+
+Note the distinction between increasing and nondecreasing. If a function is increasing (or decreasing) on an interval, it must take different values at different points. (Such a function is called *bijective*.) A nondecreasing function (or a nonincreasing function) may be constant on a subinterval of its domain, and may therefore not be bijective. An increasing function is nondecreasing, but a nondecreasing function is not necessarily increasing.
+
+!!! theorem
+	
+	Let ``J`` be an open interval, and let ``I`` be an interval consisting of all the points in ``J`` and possibly one or both of the endpoints of ``J``: Suppose that ``f`` is continuous on ``I`` and differentiable on ``J``.
+	- If ``f\prime\left(x\right)&gt;0`` for all ``x\in J``, then ``f`` is increasing on ``I``.
+	- If ``f\prime\left(x\right)&lt;0`` for all ``x\in J``, then ``f`` is decreasing on ``I``.
+	- If ``f\prime\left(x\right)\ge 0`` for all ``x\in J``, then ``f`` is nondecreasing on ``I``.
+	- If ``f\prime\left(x\right)\le 0`` for all ``x\in J``, then ``f`` is nonincreasing on ``I``.
+
+!!! proof
+	
+	Let ``x_1`` and ``x_2`` be points in ``I`` with ``x_2&gt;x_1``.
+	
+	By the Mean-Value Theorem there exists a point ``c \in \left]x_1,x_2\right[`` (and therefore in ``J``) such that
+	```math
+	\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f\prime\left(c\right)\,;
+	```
+	hence, ``f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f\prime\left(c\right)``. Since ``x_2-x_1&gt;0``, the difference ``f\left(x_2\right)-f\left(x_1\right)`` has the same sign as ``f\prime\left(c\right)`` and may be zero if ``f\prime\left(c\right)`` is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.
+
+!!! example
+	On what intervals is the function ``f\left(x\right)=x^3-12x+1`` increasing? On what intervals is it decreasing?
+
+	We have ``f\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)``. Observe that ``f\prime\left(x\right)&gt;0`` if ``x&lt;-2`` or ``x&gt;2`` and ``f\prime\left(x\right)&lt;0`` if ``-2&lt;x&lt;2``. Therefore, ``f`` is increasing on the intervals ``\left]-\infty,-2\right[`` and ``\left]2, \infty\right[`` and is decreasing on the interval ``\left]-2,2\right[``.
+
+If a function is constant on an interval, then its derivative is zero on that interval. The Mean-Value Theorem provides a converse of this fact.
+
+!!! theorem
+
+	If ``f`` is continuous on an interval ``I``, and ``f\prime\left(x\right)=0`` every interior point of ``I`` (i.e., at interior point of I that is not an endpoint of ``I``), then ``f\left(x\right)=C``, a constant, on ``I``.
+
+!!! proof
+
+	Pick a point ``x_0`` in ``I`` and let ``C=f\left(x_0\right)``.
+
+	If ``x`` is any other point of ``I``, then the Mean-Value Theorem says that there exists a point ``c`` between ``x_0`` and ``x`` such that
+	```math
+	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f\prime\left(x\right)\,.
+	```
+	The point ``c`` must belong to ``I`` because an interval contains all points between any two of its points, and ``c`` cannot be an endpoint of ``I`` since ``c\ne x_0`` and ``c\ne x``. 
+	Since ``f\prime\left(c\right)=0`` for all such points ``c``, we have ``f\left(x\right)-f\left(x_0\right)=0`` for all ``x\in I``, and ``f\left(x\right)=f\left(x_0\right)=C`` as claimed.
+
 ### Derivatives of Inverse Functions
 
+Suppose that the function ``f`` is differentiable on an interval ``\left]a,b\right[`` and that either ``f\prime\left(x\right)&gt;0`` for ``a&lt;x&lt;b``, so that ``f`` is increasing on ``\left]a,b\right[``, or ``f\prime\left(x\right)&lt;0`` for ``a&lt;x&lt;b``, so that ``f`` is decreasing on ``\left]a,b\right[``. In either case ``f`` is bijective on ``\left]a,b\right[`` and has an inverse, ``f^{-1}`` there. Differentiating the cancellation identity
+```math
+f\left(f^{-1}\left(x\right)\right)=x
+````
+with respect to ``x``, using the chain rule, we obtain
+```math
+f\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{\mathrm d\hphantom{x}}{\mathrm dx}x=1\,.
+```
+Thus,
+```math
+\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{1}{f\prime\left(f^{-1}\left(x\right)\right)}\,.
+```
+In Leibniz notation, if ``y=f^{-1}\left(x\right)``, we have
+```math
+\left.\frac{\mathrm dy}{\mathrm dx}\right|_x=\frac{1}{\left.\frac{\mathrm dx}{\mathrm dy}\right|_{y=f^{-1}\left(x\right)}}\,.
+```
+The slope of the graph of ``f^{-1}`` at ``\left(x,y\right)`` is the reciprocal of the slope of the graph of ``f`` at ``\left(y,x\right)``.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "Tangents to the graphs of " * tex("f") * " and " * tex("f^{-1}") * ".") do
+	scale = 40
+	Drawing(width=6scale, height=6scale) do
+		xmid = 1scale
+		ymid = 5scale
+		f = x->0.4(x+1)^2-0.1
+		f_prime = x->0.8(x+1)
+		x_0 = 1.5
+		y_0 = f(x_0)
+		m = f_prime(x_0)
+		f_inv = y->sqrt((y+0.1)/0.4)-1
+		m_prime = 1/f_prime(x_0)
+		axis_xy(6scale,6scale,xmid,ymid,scale,tuple(),tuple())
+		plot_xy(f, -1:0.01:5, tuple(x_0), xmid, ymid, scale, width=1, color="RoyalBlue")
+		plot_xy(f_inv, -0.1:0.01:5, tuple(y_0), xmid, ymid, scale, width=1)
+		line(x1=0, y1=6scale, x2=6scale, y2=0, stroke="green", stroke_dasharray = "3")
+		line(x1=x_0*scale+xmid, y1=ymid-y_0*scale, x2=y_0*scale+xmid, y2=ymid-x_0*scale, stroke="green", stroke_dasharray = "3")
+		x_i = (x_0-y_0-m_prime*y_0+m*x_0)/(m-m_prime)
+		plot_xy(x->m*(x-x_0)+y_0, x_i:0.01:4, tuple(), xmid, ymid, scale, width=1, color="RoyalBlue")
+		plot_xy(x->m_prime*(x-y_0)+x_0, x_i:0.01:5, tuple(), xmid, ymid, scale, width=1)
+		latex("y=f\\left(x\\right)", x=xmid+scale, y=ymid-5scale, width=4font_x, height=font_y, color="RoyalBlue")
+		latex("x=f^{-1}\\left(y\\right)", x=xmid+3.25scale, y=ymid-2scale, width=5font_x, height=font_y, color="red")
+		latex("\\left(x,y\\right)", x=xmid+0.5scale, y=ymid-3scale, width=3font_x, height=font_y)
+		latex("\\left(y,x\\right)", x=xmid+2.5scale, y=ymid-1.5scale, width=3font_x, height=font_y)
+	end
+end
+```
+
+!!! example
+
+	Show that ``f\left(x\right)=x^3+x`` is bijective on the whole real line, and, nothing that ``f\left(2\right)=10``, find ``\left(f^{-1}\right)^\prime\left(10\right)``.
+
+	Since ``f\prime\left(x\right)=3x^2+1&gt;0`` for all real numbers ``x``, ``f`` is increasing and therefore bijective and invertible. If ``y=f^{-1}\left(x\right)``, then
+	```math
+	\begin{aligned}
+	x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
+	&\implies y\prime=\frac{1}{3y^2+1}\,.
+	\end{aligned}
+	```
+	Now ``x=f\left(2\right)=10`` implies ``y=f^{-1}\left(10\right)=2``. Thus,
+	```math
+	\left(f^{-1}\right)^\prime\left(10\right)=\left.\frac{1}{3y^2+1}\right|_{y=2}=\frac{1}{13}\,.
+	```
+
 ## Extreme Values
+
+The first derivative of a function is a source of much useful information about the behaviour of the function. As we have already seen, the sign of ``f\prime`` tells us whether ``f`` is increasing or decreasing.
+
+### Maximum and Minimum Values
+
+Recall that a function has a maximum value at ``x0`` if ``f\left(x\right)\le f\left(x_0\right)`` for all ``x`` in the domain of ``f``. The maximum value is ``f\left(x_0\right)``. To be more precise, we should call such a maximum value an *absolute* or *global* maximum because it is the largest value that ``f`` attains anywhere on its entire domain.
+
+!!! definition
+
+	Function ``f`` has an *absolute maximum value* ``f\left(x_0\right)`` at the point ``x_0`` in its domain if ``f\left(x\right)\le f\left(x_0\right)`` holds for every ``x`` in the domain of ``f``.
+
+	Similarly, ``f`` has an *absolute minimum value* ``f\left(x_1\right)`` at the point ``x_1`` in its domain if ``f\left(x\right)\ge f\left(x_1\right)`` holds for every ``x`` in the domain of ``f``.
+
+Maximum and minimum values of a function are collectively referred to as *extreme values*. The following theorem is a restatement (and slight generalization) of
+the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.
+
+!!! theorem
+
+	If the domain of the function ``f`` is a closed, finite interval or a union of finitely many such intervals, and if ``f`` is continuous on that domain, then ``f`` must have an absolute maximum value and an absolute minimum value.
+
+In addition to these extreme values, ``f`` can have several other “local” maximum and minimum values corresponding to points on the graph that are higher or lower than neighbouring points. The absolute maximum is the highest of the local maxima; the absolute minimum is the lowest of the local minima.
+
+!!! definition
+
+	Function ``f`` has a *local maximum value* ``f\left(x_0\right)`` at the point ``x_0`` in its domain provided there exists a number ``h &gt; 0`` such that ``f\left(x\right)\le f\left(x_0\right)`` whenever ``x`` is in the domain of ``f`` and ``\left|x-x_0\right|&lt;h``.
+
+	Similarly, ``f`` has a *local minimum value* ``f\left(x_1\right)`` at the point ``x_1`` in its domain provided there exists a number ``h &gt; 0`` such that ``f\left(x\right)\ge f\left(x_1\right)`` whenever ``x`` is in the domain of ``f`` and ``\left|x-x_1\right|&lt;h``.
+
+### Critical Points, Singular Points, and Endpoints
+
+A function ``f`` can have local extreme values only at points ``x`` of three special types:
+
+1. critical points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)=0``),
+2. singular points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)``is not defined), and
+3. endpoints of the domain of f (points ``x`` in the domain of ``f`` that do not belong to any open interval contained in the domain of ``f``).
+
+!!! theorem
+
+	If the function ``f`` is defined on an interval ``I`` and has a local maximum (or local minimum) value at point ``x=x_0`` in ``I``, then ``x_0`` must be either a critical point of ``f``; a singular point of ``f``; or an endpoint of ``I``.
+
+!!! proof
+
+	Suppose that ``f`` has a local maximum value at ``x_0`` and that ``x_0`` is neither an endpoint of the domain of ``f`` nor a singular point of ``f``. 
+	
+	Then for some ``h&gt;0``, ``f\left(x\right)`` is defined on the open interval ``\left]x_0-h,x_0+h\right[`` and has an absolute maximum (for that interval) at ``x_0``. Also, ``f\prime\left(x_0\right)`` exists. By the first preliminary result of the Mean-value theorem, ``f\prime\left(x_0\right)=0``. 
+	
+	The proof for the case where ``f`` has a local minimum value at ``x_0`` is similar.
+
+Although a function cannot have extreme values anywhere other than at endpoints, critical points, and singular points, it need not have extreme values at such points.
+
+### Finding Absolute Extreme Values
+
+If a function ``f`` is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that ``f`` must have an absolute maximum value and an
+absolute minimum value. The last theorem tells us how to find them. We need only check the values of ``f`` at any critical points, singular points, and endpoints.
+
+!!! example
+
+	Find the maximum and the minimum values of the function ``g\left(x\right)=x^2-3x^2-9x+2`` on the interval ``\left[-2, 2\right]``.
+
+	Since ``g`` is a polynomial, it can have no singular points. For critical points, we calculate
+	```math
+	g\prime\left(x\right)=3x^2-6x-9=3\left(x^2-2x-3\right)=3\left(x+1\right)\left(x-3\right)=0
+	```
+	if ``x=-1`` or ``x=3``.
+
+	However, ``x=3`` is not in the domain of ``g``, so we can ignore it. We need to consider only the values of ``g`` at the critical point ``x=-1`` and at the endpoints ``x=-2`` and ``x=2``:
+	```math
+	g\left(-2\right)=0\,\quad g\left(-1\right)=7\,\quad g\left(2\right)=-20\,.
+	```
+
+	The maximum value of ``g`` on ``\left[-2, 2\right]`` is ``7``, at the critical point ``x=-1``, and the minimum value is ``-20``, at the endpoint ``x=2``. 
+
+!!! example
+
+	Find the maximum and the minimum values of the function ``h\left(x\right)=2x^\frac{2}{3}-2x`` on the interval ``\left[-1, 1\right]``.
+
+	The derivative of ``h`` is
+	```math
+	h\prime\left(x\right) = 3\left(\frac{2}{3}\right)x^{-\frac{1}{3}}-2=2\left(x^{-\frac{1}{3}}-1\right)
+	```
+
+	Note that ``x^{-\frac{1}{3}}`` is not defined at the point ``x=0`` in the domain of ``h``, so ``x=0`` is a singular point of ``h``. Also, ``h`` has a critical point where ``x^{-\frac{1}{3}}=1``, that is, at ``x=1``, which also happens to be an endpoint of the domain of ``h``. We must therefore examine the values of ``h`` at the points ``x=0`` and ``x=1``, as well as at the other endpoint ``x=-1``. We have
+	```math
+	h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
+	```
+
+	The function ``h`` has maximum value ``5`` at the endpoint point ``x=-1`` and minimum value ``0`` at the singular point ``x=0``.
 
 ## Concavity and Inflections
 

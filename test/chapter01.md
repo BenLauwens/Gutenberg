@@ -573,7 +573,7 @@ The previous two proof methods dealt exclusively with proving conditional statem
 
     Suppose ``a^2`` is even and ``a`` is not even.
 
-    Since ``a`` is odd, there exists a natural number ``c`` for which ``a=2c+1``. Then ``a^2 =\left(2c+1\right)^2 =4c2+4c+1=2\left(2c^2 +2c\right)+1``, so ``a^2`` is odd. 
+    Since ``a`` is odd, there exists a natural number ``c`` for which ``a=2c+1``. Then ``a^2 =\left(2c+1\right)^2 =4c^2+4c+1=2\left(2c^2 +2c\right)+1``, so ``a^2`` is odd. 
 
     Thus ``a^2`` is even and ``a^2`` is not even, a contradiction.
 
