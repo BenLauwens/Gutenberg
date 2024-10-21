@@ -262,7 +262,7 @@ Since the total angle around the point ``O`` is ``2\uppi `` radians, ``\angle AO
 \end{aligned}
 ```
 
-The perimeter ``P_n`` and area ``A_n`` of the polygon are ``n``times these expressions:
+The perimeter ``P_n`` and area ``A_n`` of the polygon are ``n`` times these expressions:
 
 ```math
 \begin{aligned}

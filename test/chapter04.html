@@ -48,7 +48,6 @@ MathJax = {
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -1342,7 +1341,8 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 <div data-type="example">
 <h1></h1>
 <p><span class="math-tex" data-type="tex">\(\displaystyle\textrm{Show that }\lim_{h\to 0}\frac{\cos h-1}{h}=0\,.\)</span></p>
-<p>Using the half-angle formula <span class="math-tex" data-type="tex">\(\cos h=1-\sin^2\frac{h}{2}\)</span>, we calculate</p>
+<div id="tag"></div>
+<p>Using the half-angle formula <span class="math-tex" data-type="tex">\(\cos h=1-2\sin^2\frac{h}{2}\)</span>, we calculate</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
@@ -1892,6 +1892,64 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 </div>
 <p>The function <span class="math-tex" data-type="tex">\(h\)</span> has maximum value <span class="math-tex" data-type="tex">\(5\)</span> at the endpoint point <span class="math-tex" data-type="tex">\(x=-1\)</span> and minimum value <span class="math-tex" data-type="tex">\(0\)</span> at the singular point <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
 </div>
+<section data-type="sect2">
+<h2>The First Derivative Test</h2>
+<p>Most functions you will encounter in elementary calculus have nonzero derivatives everywhere on their domains except possibly at a finite number of critical points, singular points, and endpoints of their domains. On intervals between these points the derivative exists and is not zero, so the function is either increasing or decreasing there. If <span class="math-tex" data-type="tex">\(f\)</span> is continuous and increases to the left of <span class="math-tex" data-type="tex">\(x_0\)</span> and decreases to the right, then it must have a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>. The following theorem collects several results of this type together.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>PART I. Testing interior critical points and singular points.</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\)</span>, and <span class="math-tex" data-type="tex">\(x_0\)</span> is not an endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span>:</p>
+<ul>
+<li>
+<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+<li>
+<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+</ul>
+<p>PART II. Testing endpoints of the domain.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(a\)</span> is a left endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is right continuous at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<ul>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+</li>
+</ul>
+<p>Suppose <span class="math-tex" data-type="tex">\(b\)</span> is a right endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is left continuous at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+<ul>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local mainimum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+</li>
+</ul>
+</div>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\)</span> is positive (or negative) on both sides of a critical or singular point, then <span class="math-tex" data-type="tex">\(f\)</span> has neither a maximum nor a minimum value at that point.</p>
+<section data-type="sect2">
+<h2>Functions Not Defined on Closed, Finite Intervals</h2>
+<p>If the function <span class="math-tex" data-type="tex">\(f\)</span> is not defined on a closed, finite interval, then the extended Extreme-value theorem cannot be used to guarantee the existence of maximum and minimum values for <span class="math-tex" data-type="tex">\(f\)</span>. Of course, <span class="math-tex" data-type="tex">\(f\)</span> may still have such extreme values. In many applied situations we will want to find extreme values of functions defined on infinite and/or open intervals.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a^+}f\left(x\right)=L\quad\textrm{and}\quad\lim_{x\to b^-}f\left(x\right)=M\,,
+\]
+</div>
+<p>then the following conclusions hold:</p>
+<ul>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;M\)</span> for some <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has an absolute maximum value on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\left(u\right)&lt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&lt;M\)</span> for some <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has an absolute minimum value on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
+</li>
+</ul>
+<p>In this theorem <span class="math-tex" data-type="tex">\(a\)</span> may be <span class="math-tex" data-type="tex">\(-\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to -\infty}\)</span>, and <span class="math-tex" data-type="tex">\(b\)</span> may be <span class="math-tex" data-type="tex">\(\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to \infty}\)</span>.<br/>Also, either or both of <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be either <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</div>
 <section data-type="sect1">
 <h1>Concavity and Inflections</h1>
 <section data-type="sect1">
@@ -1904,6 +1962,8 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 <h1>Implicit Differentiation</h1>
 <section data-type="sect1">
 <h1>Antiderivatives</h1>
+</section>
+</section>
 </section>
 </section>
 </section>

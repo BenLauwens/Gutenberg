@@ -997,7 +997,7 @@ This theorem can be combined with limit rules and known trigonometric identities
 !!! example
 	``\displaystyle\textrm{Show that }\lim_{h\to 0}\frac{\cos h-1}{h}=0\,.``
 
-	Using the half-angle formula ``\cos h=1-\sin^2\frac{h}{2}``, we calculate
+	Using the half-angle formula ``\cos h=1-2\sin^2\frac{h}{2}``, we calculate
 	```math
 	\begin{aligned}
 	\lim_{h\to 0}\frac{\cos h-1}{h}\,&=\lim_{h\to 0}\frac{-2\sin^2\frac{h}{2}}{h}\quad\textrm{let }\theta=\frac{h}{2}\,,\\
@@ -1450,6 +1450,57 @@ absolute minimum value. The last theorem tells us how to find them. We need only
 	```
 
 	The function ``h`` has maximum value ``5`` at the endpoint point ``x=-1`` and minimum value ``0`` at the singular point ``x=0``.
+
+### The First Derivative Test
+
+Most functions you will encounter in elementary calculus have nonzero derivatives everywhere on their domains except possibly at a finite number of critical points, singular points, and endpoints of their domains. On intervals between these points the derivative exists and is not zero, so the function is either increasing or decreasing there. If ``f`` is continuous and increases to the left of ``x_0`` and decreases to the right, then it must have a local maximum value at ``x_0``. The following theorem collects several results of this type together.
+
+!!! theorem
+
+	PART I. Testing interior critical points and singular points.
+
+	Suppose that ``f`` is continuous at ``x_0``, and ``x_0`` is not an endpoint of the domain of ``f``:
+
+	- If there exists an open interval ``\left]a,b\right[`` containing ``x_0`` such that ``f\prime\left(x_0\right)&gt;0`` on ``\left]a,x_0\right[`` and ``f\prime\left(x_0\right)&lt;0`` on ``\left]x_0,b\right[``, then ``f`` has a local maximum value at ``x_0``.
+
+	- If there exists an open interval ``\left]a,b\right[`` containing ``x_0`` such that ``f\prime\left(x_0\right)&lt;0`` on ``\left]a,x_0\right[`` and ``f\prime\left(x_0\right)&gt;0`` on ``\left]x_0,b\right[``, then ``f`` has a local minimum value at ``x_0``.
+
+	PART II. Testing endpoints of the domain.
+
+	Suppose ``a`` is a left endpoint of the domain of ``f`` and ``f`` is right continuous at ``a``.
+
+	- If ``f\prime\left(x_0\right)&gt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local minimum value at ``a``.
+
+	- If ``f\prime\left(x_0\right)&lt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``a``.
+
+	Suppose ``b`` is a right endpoint of the domain of ``f`` and ``f`` is left continuous at ``b``.
+
+	- If ``f\prime\left(x_0\right)&gt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``b``.
+
+	- If ``f\prime\left(x_0\right)&lt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local mainimum value at ``b``.
+
+If ``f\prime`` is positive (or negative) on both sides of a critical or singular point, then ``f`` has neither a maximum nor a minimum value at that point.
+
+### Functions Not Defined on Closed, Finite Intervals
+
+If the function ``f`` is not defined on a closed, finite interval, then the extended Extreme-value theorem cannot be used to guarantee the existence of maximum and minimum values for ``f``. Of course, ``f`` may still have such extreme values. In many applied situations we will want to find extreme values of functions defined on infinite and/or open intervals. 
+
+!!! theorem
+
+	If ``f`` is continuous on the open interval ``\left]a,b\right[``, and if
+
+	```math
+	\lim_{x\to a^+}f\left(x\right)=L\quad\textrm{and}\quad\lim_{x\to b^-}f\left(x\right)=M\,,
+	```
+
+	then the following conclusions hold:
+
+	- If ``f\left(u\right)&gt;L`` and ``f\left(u\right)&gt;M`` for some ``u\in\left]a,b\right[``, then ``f`` has an absolute maximum value on ``\left]a,b\right[``.
+
+	- If ``f\left(u\right)&lt;L`` and ``f\left(u\right)&lt;M`` for some ``u\in\left]a,b\right[``, then ``f`` has an absolute minimum value on ``\left]a,b\right[``.
+
+	In this theorem ``a`` may be ``-\infty``, in which case ``\lim_{x\to a^+}`` should be replaced with ``\lim_{x\to -\infty}``, and ``b`` may be ``\infty``, in which case ``\lim_{x\to b^-}`` should be replaced with ``\lim_{x\to \infty}``.
+	Also, either or both of ``L`` and ``M`` may be either ``\infty`` or ``-\infty``.
 
 ## Concavity and Inflections
 

@@ -400,7 +400,7 @@ The already defined intervals are *finite intervals*, that is, each of them has 
 !!! theorem "Theorem of Nested intervals"
 	If ``\forall n\in ℕ``, we have a closed interval
 	```math
-	I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a\le x\le b\right\}
+	I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a_n\le x\le b_n\right\}
 	```
 	such that
 	```math
