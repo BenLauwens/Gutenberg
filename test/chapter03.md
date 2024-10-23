@@ -421,7 +421,7 @@ The formal definition of limit does not tell you how to find the limit of a func
 
        Clearly, we can take ``\delta=\varepsilon`` and the implication above will be true. This proves that ``\lim_{x\to a}x=a``
 
-    2. ``\lim_{c\to a}x=c`` (``c`` is a constant).
+    2. ``\lim_{x\to a}c=c`` (``c`` is a constant).
 
        Let ``\varepsilon>0`` be given. We must find ``\delta>0`` so that
 
@@ -429,7 +429,7 @@ The formal definition of limit does not tell you how to find the limit of a func
        0<\left|x-a\right|<\delta\implies\left|c-c\right|<\varepsilon\,.
        ```
 
-       Since ``c-c=0``, we can use any positive number for ``\delta`` and the implication above will be true. This proves that ``\lim_{c\to a}x=c``.
+       Since ``c-c=0``, we can use any positive number for ``\delta`` and the implication above will be true. This proves that ``\lim_{x\to a}c=c``.
 
     3. ``\lim_{x\to 2}x^2=4``.
 

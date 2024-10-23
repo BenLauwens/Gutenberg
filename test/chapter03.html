@@ -48,7 +48,6 @@ MathJax = {
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Limits and Continuity</h1>
 <p>Calculus was created to describe how quantities change:</p>
@@ -421,14 +420,14 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>Clearly, we can take <span class="math-tex" data-type="tex">\(\delta=\varepsilon\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{x\to a}x=a\)</span></p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\lim_{c\to a}x=c\)</span> (<span class="math-tex" data-type="tex">\(c\)</span> is a constant).</p>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}c=c\)</span> (<span class="math-tex" data-type="tex">\(c\)</span> is a constant).</p>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. We must find <span class="math-tex" data-type="tex">\(\delta>0\)</span> so that</p>
 <div class="math-tex" data-type="equation">
 \[
 0<\left|x-a\right|<\delta\implies\left|c-c\right|<\varepsilon\,.
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(c-c=0\)</span>, we can use any positive number for <span class="math-tex" data-type="tex">\(\delta\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{c\to a}x=c\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(c-c=0\)</span>, we can use any positive number for <span class="math-tex" data-type="tex">\(\delta\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{x\to a}c=c\)</span>.</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(\lim_{x\to 2}x^2=4\)</span>.</p>
@@ -1809,6 +1808,7 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value <span class="math-tex" data-type="tex">\(m\)</span> and its maximum value <span class="math-tex" data-type="tex">\(M\)</span> , so its range is also a closed interval, <span class="math-tex" data-type="tex">\(\left[m,M\right]\)</span>.</p>
 <p>This is the reason why the graph of a function that is continuous on an interval cannot have any breaks. It must be <i>connected</i>, a single, unbroken curve with no jumps.</p>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>
