@@ -1172,7 +1172,7 @@ The following theorems show that if we combine continuous functions in various w
 !!! proof
     Let ``\varepsilon >0`` be given.
 
-    Since ``f`` is continuous at ``L``, there exists ``\kappa&gt;0`` such that ``\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon`` whenever ``\left|g\left(x\right)\right|&lt;\kappa``.
+    Since ``f`` is continuous at ``L``, there exists ``\kappa&gt;0`` such that ``\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon`` whenever ``\left|g\left(x\right)-L\right|&lt;\kappa``.
 
     Since ``\lim_{x\to c}g\left(x\right)=L``, there exists ``\delta>0`` such that if ``0&lt;\left|x-c\right|&lt;\delta``, then ``\left|g\left(x\right)-L\right|&lt;\kappa``.
 
@@ -1243,8 +1243,8 @@ We need the following lemma to prove the intermediate-value property.
 !!! lemma "Aura theorem"
     Let ``f`` be continuous at ``c``.
 
-    1. If ``f\left(x\right)&gt;0``, then ``f\left(x\right)&gt;0`` for all ``x`` in some open interval containing ``c``.
-    2. If ``f\left(x\right)&lt;0``, then ``f\left(x\right)&lt;0`` for all ``x`` in some open interval containing ``c``.
+    1. If ``f\left(c\right)&gt;0``, then ``f\left(x\right)&gt;0`` for all ``x`` in some open interval containing ``c``.
+    2. If ``f\left(c\right)&lt;0``, then ``f\left(x\right)&lt;0`` for all ``x`` in some open interval containing ``c``.
 
 !!! proof
     Let ``f\left(c\right)&gt;0``.
@@ -1402,7 +1402,7 @@ The conclusion of the Extreme-value theorem may fail if the function ``f`` is no
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", """<div style="text-align: justify"><ul><li>""" * tex("\\displaystyle f_1\\left(x\\right)=\\frac{1}{x}") * " is continuous on the open interval " * tex("\\left]0,1\\right[") * ". It is not bounded and has neither a maximum nor a mnimum value.</li><li>" * tex("f_2\\left(x\\right)=x") * " is continuous on the open interval" * tex("\\left]0,1\\right[") * ". It is bounded but neither has a maximum nor a minimum value.</li><li>" * tex("\\displaystyle f_3") * " is defined on the closed interval " * tex("\\left[0,1\\right]") * " but is discontinuous at the endpoint " * tex("x=1") * ". It has a minimum value but no maximum value.</li><li>" * tex("\\displaystyle f_4") * " is discontinuous at an interior point of its domain, the closed interval" * tex("\\left[0,1\\right]") * ". It is bounded but has neither maximum nor minimum values.</li></ul></div>") do
+Figure("", """<div style="text-align: justify"><ul><li>""" * tex("\\displaystyle f_1\\left(x\\right)=\\frac{1}{x}") * " is continuous on the open interval " * tex("\\left]0,1\\right[") * ". It is not bounded and has neither a maximum nor a minimum value.</li><li>" * tex("f_2\\left(x\\right)=x") * " is continuous on the open interval " * tex("\\left]0,1\\right[") * ". It is bounded but neither has a maximum nor a minimum value.</li><li>" * tex("\\displaystyle f_3") * " is defined on the closed interval " * tex("\\left[0,1\\right]") * " but is discontinuous at the endpoint " * tex("x=1") * ". It has a minimum value but no maximum value.</li><li>" * tex("\\displaystyle f_4") * " is discontinuous at an interior point of its domain, the closed interval" * tex("\\left[0,1\\right]") * ". It is bounded but has neither maximum nor minimum values.</li></ul></div>") do
     scale = 60
     Drawing(width=10scale, height=2.75scale) do
         xmid = 0.5scale
