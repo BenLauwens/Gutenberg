@@ -1228,7 +1228,7 @@ Paged.registerHandlers(handlers);
 <h1>&nbsp;(by contradiction)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(a\in ℕ\)</span>.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(a^2\)</span> is even and <span class="math-tex" data-type="tex">\(a\)</span> is not even.</p>
-<p>Since <span class="math-tex" data-type="tex">\(a\)</span> is odd, there exists a natural number <span class="math-tex" data-type="tex">\(c\)</span> for which <span class="math-tex" data-type="tex">\(a=2c+1\)</span>. Then <span class="math-tex" data-type="tex">\(a^2 =\left(2c+1\right)^2 =4c2+4c+1=2\left(2c^2 +2c\right)+1\)</span>, so <span class="math-tex" data-type="tex">\(a^2\)</span> is odd.</p>
+<p>Since <span class="math-tex" data-type="tex">\(a\)</span> is odd, there exists a natural number <span class="math-tex" data-type="tex">\(c\)</span> for which <span class="math-tex" data-type="tex">\(a=2c+1\)</span>. Then <span class="math-tex" data-type="tex">\(a^2 =\left(2c+1\right)^2 =4c^2+4c+1=2\left(2c^2 +2c\right)+1\)</span>, so <span class="math-tex" data-type="tex">\(a^2\)</span> is odd.</p>
 <p>Thus <span class="math-tex" data-type="tex">\(a^2\)</span> is even and <span class="math-tex" data-type="tex">\(a^2\)</span> is not even, a contradiction.</p>
 </div>
 </section>
@@ -1768,7 +1768,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>If <span class="math-tex" data-type="tex">\(\forall n\in ℕ\)</span>, we have a closed interval</p>
 <div class="math-tex" data-type="equation">
 \[
-I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a\le x\le b\right\}
+I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a_n\le x\le b_n\right\}
 \]
 </div>
 <p>such that</p>
@@ -3293,7 +3293,7 @@ A=\uppi r^2\,.
 \end{aligned}
 \]
 </div>
-<p>The perimeter <span class="math-tex" data-type="tex">\(P_n\)</span> and area <span class="math-tex" data-type="tex">\(A_n\)</span> of the polygon are <span class="math-tex" data-type="tex">\(n\)</span>times these expressions:</p>
+<p>The perimeter <span class="math-tex" data-type="tex">\(P_n\)</span> and area <span class="math-tex" data-type="tex">\(A_n\)</span> of the polygon are <span class="math-tex" data-type="tex">\(n\)</span> times these expressions:</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
@@ -3499,14 +3499,14 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>Clearly, we can take <span class="math-tex" data-type="tex">\(\delta=\varepsilon\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{x\to a}x=a\)</span></p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\lim_{c\to a}x=c\)</span> (<span class="math-tex" data-type="tex">\(c\)</span> is a constant).</p>
+<p><span class="math-tex" data-type="tex">\(\lim_{x\to a}c=c\)</span> (<span class="math-tex" data-type="tex">\(c\)</span> is a constant).</p>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon>0\)</span> be given. We must find <span class="math-tex" data-type="tex">\(\delta>0\)</span> so that</p>
 <div class="math-tex" data-type="equation">
 \[
 0<\left|x-a\right|<\delta\implies\left|c-c\right|<\varepsilon\,.
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(c-c=0\)</span>, we can use any positive number for <span class="math-tex" data-type="tex">\(\delta\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{c\to a}x=c\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(c-c=0\)</span>, we can use any positive number for <span class="math-tex" data-type="tex">\(\delta\)</span> and the implication above will be true. This proves that <span class="math-tex" data-type="tex">\(\lim_{x\to a}c=c\)</span>.</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(\lim_{x\to 2}x^2=4\)</span>.</p>
@@ -4523,7 +4523,7 @@ f\left(x\right)=&\frac{x}{\sqrt{x^2+1}}=\frac{x}{\sqrt{x^2\left(1+\frac{1}{x^2}\
 <div data-type="proof">
 <h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon >0\)</span> be given.</p>
-<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(L\)</span>, there exists <span class="math-tex" data-type="tex">\(\kappa&gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon\)</span> whenever <span class="math-tex" data-type="tex">\(\left|g\left(x\right)\right|&lt;\kappa\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(L\)</span>, there exists <span class="math-tex" data-type="tex">\(\kappa&gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon\)</span> whenever <span class="math-tex" data-type="tex">\(\left|g\left(x\right)-L\right|&lt;\kappa\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to c}g\left(x\right)=L\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta>0\)</span> such that if <span class="math-tex" data-type="tex">\(0&lt;\left|x-c\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|g\left(x\right)-L\right|&lt;\kappa\)</span>.</p>
 <p>Hence, if <span class="math-tex" data-type="tex">\(0&lt;\left|x-c\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon\)</span>, and <span class="math-tex" data-type="tex">\(\lim_{x\to c}f\left(g\left(x\right)\right)=f\left(L\right)\)</span>.</p>
 </div>
@@ -4622,10 +4622,10 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>Let <span class="math-tex" data-type="tex">\(f\)</span> be continuous at <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 <ol>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\left(x\right)&gt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\left(x\right)&gt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\left(c\right)&gt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\left(x\right)&gt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\left(x\right)&lt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\left(x\right)&lt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\left(c\right)&lt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\left(x\right)&lt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 </li>
 </ol>
 </div>
@@ -4882,7 +4882,7 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <circle cx="510.0" cy="135.0" r="3" fill="white" stroke="red"/>
 <circle cx="510.0" cy="75.0" r="3" fill="red" stroke="red"/>
 </svg>
-<figcaption><div style="text-align: justify"><ul><li><span class="math-tex" data-type="tex">\(\displaystyle f_1\left(x\right)=\frac{1}{x}\)</span> is continuous on the open interval <span class="math-tex" data-type="tex">\(\left]0,1\right[\)</span>. It is not bounded and has neither a maximum nor a mnimum value.</li><li><span class="math-tex" data-type="tex">\(f_2\left(x\right)=x\)</span> is continuous on the open interval<span class="math-tex" data-type="tex">\(\left]0,1\right[\)</span>. It is bounded but neither has a maximum nor a minimum value.</li><li><span class="math-tex" data-type="tex">\(\displaystyle f_3\)</span> is defined on the closed interval <span class="math-tex" data-type="tex">\(\left[0,1\right]\)</span> but is discontinuous at the endpoint <span class="math-tex" data-type="tex">\(x=1\)</span>. It has a minimum value but no maximum value.</li><li><span class="math-tex" data-type="tex">\(\displaystyle f_4\)</span> is discontinuous at an interior point of its domain, the closed interval<span class="math-tex" data-type="tex">\(\left[0,1\right]\)</span>. It is bounded but has neither maximum nor minimum values.</li></ul></div></figcaption></figure>
+<figcaption><div style="text-align: justify"><ul><li><span class="math-tex" data-type="tex">\(\displaystyle f_1\left(x\right)=\frac{1}{x}\)</span> is continuous on the open interval <span class="math-tex" data-type="tex">\(\left]0,1\right[\)</span>. It is not bounded and has neither a maximum nor a minimum value.</li><li><span class="math-tex" data-type="tex">\(f_2\left(x\right)=x\)</span> is continuous on the open interval <span class="math-tex" data-type="tex">\(\left]0,1\right[\)</span>. It is bounded but neither has a maximum nor a minimum value.</li><li><span class="math-tex" data-type="tex">\(\displaystyle f_3\)</span> is defined on the closed interval <span class="math-tex" data-type="tex">\(\left[0,1\right]\)</span> but is discontinuous at the endpoint <span class="math-tex" data-type="tex">\(x=1\)</span>. It has a minimum value but no maximum value.</li><li><span class="math-tex" data-type="tex">\(\displaystyle f_4\)</span> is discontinuous at an interior point of its domain, the closed interval<span class="math-tex" data-type="tex">\(\left[0,1\right]\)</span>. It is bounded but has neither maximum nor minimum values.</li></ul></div></figcaption></figure>
 <p>The Intermediate-value theorem and the Extreme-value theorem are examples of what mathematicians call <i>existence theorems</i>. Such theorems assert that something exists without telling you how to find it.</p>
 <p>By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value <span class="math-tex" data-type="tex">\(m\)</span> and its maximum value <span class="math-tex" data-type="tex">\(M\)</span> , so its range is also a closed interval, <span class="math-tex" data-type="tex">\(\left[m,M\right]\)</span>.</p>
 <p>This is the reason why the graph of a function that is continuous on an interval cannot have any breaks. It must be <i>connected</i>, a single, unbroken curve with no jumps.</p>
@@ -6181,7 +6181,7 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 <div data-type="example">
 <h1></h1>
 <p><span class="math-tex" data-type="tex">\(\displaystyle\textrm{Show that }\lim_{h\to 0}\frac{\cos h-1}{h}=0\,.\)</span></p>
-<p>Using the half-angle formula <span class="math-tex" data-type="tex">\(\cos h=1-\sin^2\frac{h}{2}\)</span>, we calculate</p>
+<p>Using the half-angle formula <span class="math-tex" data-type="tex">\(\cos h=1-2\sin^2\frac{h}{2}\)</span>, we calculate</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
@@ -6657,7 +6657,7 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <p>Function <span class="math-tex" data-type="tex">\(f\)</span> has an <i>absolute maximum value</i> <span class="math-tex" data-type="tex">\(f\left(x_0\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_0\)</span> in its domain if <span class="math-tex" data-type="tex">\(f\left(x\right)\le f\left(x_0\right)\)</span> holds for every <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 <p>Similarly, <span class="math-tex" data-type="tex">\(f\)</span> has an <i>absolute minimum value</i> <span class="math-tex" data-type="tex">\(f\left(x_1\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_1\)</span> in its domain if <span class="math-tex" data-type="tex">\(f\left(x\right)\ge f\left(x_1\right)\)</span> holds for every <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 </div>
-<p>Maximum and minimum values of a function are collectively referred to as <i>extreme values</i>. The following theorem is a restatement (and slight generalization) of<br/>the Extreme_value Theorem. It will prove very useful in some circumstances when we want to find extreme values.</p>
+<p>Maximum and minimum values of a function are collectively referred to as <i>extreme values</i>. The following theorem is a restatement (and slight generalization) of<br/>the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.</p>
 <div data-type="theorem">
 <h1></h1>
 <p>If the domain of the function <span class="math-tex" data-type="tex">\(f\)</span> is a closed, finite interval or a union of finitely many such intervals, and if <span class="math-tex" data-type="tex">\(f\)</span> is continuous on that domain, then <span class="math-tex" data-type="tex">\(f\)</span> must have an absolute maximum value and an absolute minimum value.</p>
@@ -6665,8 +6665,8 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <p>In addition to these extreme values, <span class="math-tex" data-type="tex">\(f\)</span> can have several other “local” maximum and minimum values corresponding to points on the graph that are higher or lower than neighbouring points. The absolute maximum is the highest of the local maxima; the absolute minimum is the lowest of the local minima.</p>
 <div data-type="definition">
 <h1></h1>
-<p>Function <span class="math-tex" data-type="tex">\(f\)</span> has a <i>local maximum value</i> <span class="math-tex" data-type="tex">\(f\left(x_0\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_0\)</span> in its domain provided there exists a number <span class="math-tex" data-type="tex">\(h &gt; 0\)</span>such that <span class="math-tex" data-type="tex">\(f\left(x\right)\le f\left(x_0\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x\)</span> is in the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(\left|x-x_0\right|&lt;h\)</span>.</p>
-<p>Similarly, <span class="math-tex" data-type="tex">\(f\)</span> has a <i>local minimum value</i> <span class="math-tex" data-type="tex">\(f\left(x_1\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_1\)</span> in its domain provided there exists a number <span class="math-tex" data-type="tex">\(h &gt; 0\)</span>such that <span class="math-tex" data-type="tex">\(f\left(x\right)\ge f\left(x_1\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x\)</span> is in the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(\left|x-x_1\right|&lt;h\)</span>.</p>
+<p>Function <span class="math-tex" data-type="tex">\(f\)</span> has a <i>local maximum value</i> <span class="math-tex" data-type="tex">\(f\left(x_0\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_0\)</span> in its domain provided there exists a number <span class="math-tex" data-type="tex">\(h &gt; 0\)</span> such that <span class="math-tex" data-type="tex">\(f\left(x\right)\le f\left(x_0\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x\)</span> is in the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(\left|x-x_0\right|&lt;h\)</span>.</p>
+<p>Similarly, <span class="math-tex" data-type="tex">\(f\)</span> has a <i>local minimum value</i> <span class="math-tex" data-type="tex">\(f\left(x_1\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_1\)</span> in its domain provided there exists a number <span class="math-tex" data-type="tex">\(h &gt; 0\)</span> such that <span class="math-tex" data-type="tex">\(f\left(x\right)\ge f\left(x_1\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x\)</span> is in the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(\left|x-x_1\right|&lt;h\)</span>.</p>
 </div>
 <section data-type="sect2">
 <h2>Critical Points, Singular Points, and Endpoints</h2>
@@ -6684,13 +6684,150 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 </ol>
 <div data-type="theorem">
 <h1></h1>
-<p>If the function <span class="math-tex" data-type="tex">\(f\)</span> is defined on an interval <span class="math-tex" data-type="tex">\(I\)</span> and has a local maximum (or local minimum) value at point <span class="math-tex" data-type="tex">\(x=x_0\)</span> in <span class="math-tex" data-type="tex">\(I\)</span>, then<span class="math-tex" data-type="tex">\(x_0\)</span> must be either a critical point of <span class="math-tex" data-type="tex">\(f\)</span>; a singular point of <span class="math-tex" data-type="tex">\(f\)</span>; or an endpoint of <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If the function <span class="math-tex" data-type="tex">\(f\)</span> is defined on an interval <span class="math-tex" data-type="tex">\(I\)</span> and has a local maximum (or local minimum) value at point <span class="math-tex" data-type="tex">\(x=x_0\)</span> in <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(x_0\)</span> must be either a critical point of <span class="math-tex" data-type="tex">\(f\)</span>; a singular point of <span class="math-tex" data-type="tex">\(f\)</span>; or an endpoint of <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span> and that <span class="math-tex" data-type="tex">\(x_0\)</span> is neither an endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> nor a singular point of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
+<p>Then for some <span class="math-tex" data-type="tex">\(h&gt;0\)</span>, <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is defined on the open interval <span class="math-tex" data-type="tex">\(\left]x_0-h,x_0+h\right[\)</span> and has an absolute maximum (for that interval) at <span class="math-tex" data-type="tex">\(x_0\)</span>. Also, <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)\)</span> exists. By the first preliminary result of the Mean-value theorem, <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)=0\)</span>.</p>
+<p>The proof for the case where <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span> is similar.</p>
+</div>
+<p>Although a function cannot have extreme values anywhere other than at endpoints, critical points, and singular points, it need not have extreme values at such points.</p>
+<section data-type="sect2">
+<h2>Finding Absolute Extreme Values</h2>
+<p>If a function <span class="math-tex" data-type="tex">\(f\)</span> is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that <span class="math-tex" data-type="tex">\(f\)</span> must have an absolute maximum value and an<br/>absolute minimum value. The last theorem tells us how to find them. We need only check the values of <span class="math-tex" data-type="tex">\(f\)</span> at any critical points, singular points, and endpoints.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find the maximum and the minimum values of the function <span class="math-tex" data-type="tex">\(g\left(x\right)=x^2-3x^2-9x+2\)</span> on the interval <span class="math-tex" data-type="tex">\(\left[-2, 2\right]\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(g\)</span> is a polynomial, it can have no singular points. For critical points, we calculate</p>
+<div class="math-tex" data-type="equation">
+\[
+g\prime\left(x\right)=3x^2-6x-9=3\left(x^2-2x-3\right)=3\left(x+1\right)\left(x-3\right)=0
+\]
+</div>
+<p>if <span class="math-tex" data-type="tex">\(x=-1\)</span> or <span class="math-tex" data-type="tex">\(x=3\)</span>.</p>
+<p>However, <span class="math-tex" data-type="tex">\(x=3\)</span> is not in the domain of <span class="math-tex" data-type="tex">\(g\)</span>, so we can ignore it. We need to consider only the values of <span class="math-tex" data-type="tex">\(g\)</span> at the critical point <span class="math-tex" data-type="tex">\(x=-1\)</span> and at the endpoints <span class="math-tex" data-type="tex">\(x=-2\)</span> and <span class="math-tex" data-type="tex">\(x=2\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+g\left(-2\right)=0\,\quad g\left(-1\right)=7\,\quad g\left(2\right)=-20\,.
+\]
+</div>
+<p>The maximum value of <span class="math-tex" data-type="tex">\(g\)</span> on <span class="math-tex" data-type="tex">\(\left[-2, 2\right]\)</span> is <span class="math-tex" data-type="tex">\(7\)</span>, at the critical point <span class="math-tex" data-type="tex">\(x=-1\)</span>, and the minimum value is <span class="math-tex" data-type="tex">\(-20\)</span>, at the endpoint <span class="math-tex" data-type="tex">\(x=2\)</span>.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Find the maximum and the minimum values of the function <span class="math-tex" data-type="tex">\(h\left(x\right)=2x^\frac{2}{3}-2x\)</span> on the interval <span class="math-tex" data-type="tex">\(\left[-1, 1\right]\)</span>.</p>
+<p>The derivative of <span class="math-tex" data-type="tex">\(h\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+h\prime\left(x\right) = 3\left(\frac{2}{3}\right)x^{-\frac{1}{3}}-2=2\left(x^{-\frac{1}{3}}-1\right)
+\]
+</div>
+<p>Note that <span class="math-tex" data-type="tex">\(x^{-\frac{1}{3}}\)</span> is not defined at the point <span class="math-tex" data-type="tex">\(x=0\)</span> in the domain of <span class="math-tex" data-type="tex">\(h\)</span>, so <span class="math-tex" data-type="tex">\(x=0\)</span> is a singular point of <span class="math-tex" data-type="tex">\(h\)</span>. Also, <span class="math-tex" data-type="tex">\(h\)</span> has a critical point where <span class="math-tex" data-type="tex">\(x^{-\frac{1}{3}}=1\)</span>, that is, at <span class="math-tex" data-type="tex">\(x=1\)</span>, which also happens to be an endpoint of the domain of <span class="math-tex" data-type="tex">\(h\)</span>. We must therefore examine the values of <span class="math-tex" data-type="tex">\(h\)</span> at the points <span class="math-tex" data-type="tex">\(x=0\)</span> and <span class="math-tex" data-type="tex">\(x=1\)</span>, as well as at the other endpoint <span class="math-tex" data-type="tex">\(x=-1\)</span>. We have</p>
+<div class="math-tex" data-type="equation">
+\[
+h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
+\]
+</div>
+<p>The function <span class="math-tex" data-type="tex">\(h\)</span> has maximum value <span class="math-tex" data-type="tex">\(5\)</span> at the endpoint point <span class="math-tex" data-type="tex">\(x=-1\)</span> and minimum value <span class="math-tex" data-type="tex">\(0\)</span> at the singular point <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
+</div>
+<section data-type="sect2">
+<h2>The First Derivative Test</h2>
+<p>Most functions you will encounter in elementary calculus have nonzero derivatives everywhere on their domains except possibly at a finite number of critical points, singular points, and endpoints of their domains. On intervals between these points the derivative exists and is not zero, so the function is either increasing or decreasing there. If <span class="math-tex" data-type="tex">\(f\)</span> is continuous and increases to the left of <span class="math-tex" data-type="tex">\(x_0\)</span> and decreases to the right, then it must have a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>. The following theorem collects several results of this type together.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>PART I. Testing interior critical points and singular points.</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\)</span>, and <span class="math-tex" data-type="tex">\(x_0\)</span> is not an endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span>:</p>
+<ul>
+<li>
+<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+<li>
+<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+</ul>
+<p>PART II. Testing endpoints of the domain.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(a\)</span> is a left endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is right continuous at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<ul>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+</li>
+</ul>
+<p>Suppose <span class="math-tex" data-type="tex">\(b\)</span> is a right endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is left continuous at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+<ul>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local mainimum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+</li>
+</ul>
+</div>
+<p>If <span class="math-tex" data-type="tex">\(f\prime\)</span> is positive (or negative) on both sides of a critical or singular point, then <span class="math-tex" data-type="tex">\(f\)</span> has neither a maximum nor a minimum value at that point.</p>
+<section data-type="sect2">
+<h2>Functions Not Defined on Closed, Finite Intervals</h2>
+<p>If the function <span class="math-tex" data-type="tex">\(f\)</span> is not defined on a closed, finite interval, then the extended Extreme-value theorem cannot be used to guarantee the existence of maximum and minimum values for <span class="math-tex" data-type="tex">\(f\)</span>. Of course, <span class="math-tex" data-type="tex">\(f\)</span> may still have such extreme values. In many applied situations we will want to find extreme values of functions defined on infinite and/or open intervals.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a^+}f\left(x\right)=L\quad\textrm{and}\quad\lim_{x\to b^-}f\left(x\right)=M\,,
+\]
+</div>
+<p>then the following conclusions hold:</p>
+<ul>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;M\)</span> for some <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has an absolute maximum value on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f\left(u\right)&lt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&lt;M\)</span> for some <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has an absolute minimum value on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
+</li>
+</ul>
+<p>In this theorem <span class="math-tex" data-type="tex">\(a\)</span> may be <span class="math-tex" data-type="tex">\(-\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to -\infty}\)</span>, and <span class="math-tex" data-type="tex">\(b\)</span> may be <span class="math-tex" data-type="tex">\(\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to \infty}\)</span>.<br/>Also, either or both of <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be either <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>We prove the first part; the proof of the second part is similar. We are given that there is a number <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;M\)</span>. Here, <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be finite numbers or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(lim_{x\to a^+}f\left(x\right)=L\)</span>, there must exist a number <span class="math-tex" data-type="tex">\(x_1\in\left]a,u\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad a&lt;x&lt;x_1\,.
+\]
+</div>
+<p>Similarly, there must exist a number <span class="math-tex" data-type="tex">\(x_2\in\left]u,b\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(f\left(x\right)&ltf\left(u\right)\)</span> at all points of <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> that are not in the closed, finite subinterval <span class="math-tex" data-type="tex">\(\left[x_1,x_2\right]\)</span>. The function <span class="math-tex" data-type="tex">\(f\)</span>, being continuous on <span class="math-tex" data-type="tex">\(\left[x_1,x_2\right]\)</span>, must have an absolute maximum on that interval, say at the point <span class="math-tex" data-type="tex">\(w\)</span>. Since <span class="math-tex" data-type="tex">\(u\in\left[x_1,x_2\right]\)</span>, we must have <span class="math-tex" data-type="tex">\(f\left(w\right)\ge f\left(u\right)\)</span>, so <span class="math-tex" data-type="tex">\(f\left(w\right)\)</span> is the maximum value of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for all of <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
 </div>
 <section data-type="sect1">
 <h1>Concavity and Inflections</h1>
+<p>Like the first derivative, the second derivative of a function also provides useful information about the behaviour of the function and the shape of its graph: it determines whether the graph is <i>bending upward</i> (i.e., has increasing slope) or <i>bending downward</i> (i.e., has decreasing slope) as we move along the graph toward the right.</p>
+<div data-type="definition">
+<h1></h1>
+<p>We say that the function <span class="math-tex" data-type="tex">\(f\)</span> is concave up on an open interval <span class="math-tex" data-type="tex">\(I\)</span> if it is differentiable there and the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> is an increasing function on <span class="math-tex" data-type="tex">\(I\)</span>. Similarly, <span class="math-tex" data-type="tex">\(f\)</span> is concave down on <span class="math-tex" data-type="tex">\(I\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\)</span> exists and is decreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+</div>
+<p>The terms “concave up” and “concave down” are used to describe the graph of the function as well as the function itself.</p>
+<p>Note that concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no concavity on such an interval. We also say a function has opposite concavity on two intervals if it is concave up on one interval and concave down on the other.</p>
+<div data-type="definition">
+<h1></h1>
+<p>We say that the point <span class="math-tex" data-type="tex">\(\left(x_0,f\left(x_0\right)\right)\)</span> is an <i>inflection point</i> of the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> (or that the function <span class="math-tex" data-type="tex">\(f\)</span> has an inflection point at <span class="math-tex" data-type="tex">\(x_0\)</span>) if the following two conditions are satisfied:</p>
+<ol>
+<li>
+<p>the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> has a tangent line at <span class="math-tex" data-type="tex">\(x=x_0\)</span>, and</p>
+</li>
+<li>
+<p>the concavity of <span class="math-tex" data-type="tex">\(f\)</span> is opposite on opposite sides of <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+</ol>
+</div>
+<p>Note that 1. implies that either <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x_0\)</span> or its graph has a vertical tangent line there, and 2. implies that the graph crosses its tangent line at <span class="math-tex" data-type="tex">\(x_0\)</span>. An inflection point of a function <span class="math-tex" data-type="tex">\(f\)</span> is a point on the graph of a function, rather than a point in its domain like a critical point or a singular point. A function may or may not have an inflection point at a critical point or singular point. In general, a point <span class="math-tex" data-type="tex">\(P\)</span> is an inflection point (or simply an inflection) of a curve <span class="math-tex" data-type="tex">\(C\)</span> (which is not necessarily the graph of a function) if <span class="math-tex" data-type="tex">\(C\)</span> has a tangent at <span class="math-tex" data-type="tex">\(P\)</span> and arcs of <span class="math-tex" data-type="tex">\(C\)</span> extending in opposite directions from <span class="math-tex" data-type="tex">\(P\)</span> are on opposite sides of that tangent line.</p>
 <section data-type="sect1">
 <h1>Indeterminate Forms</h1>
 <section data-type="sect1">
@@ -6701,6 +6838,9 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <h1>Implicit Differentiation</h1>
 <section data-type="sect1">
 <h1>Antiderivatives</h1>
+</section>
+</section>
+</section>
 </section>
 </section>
 </section>

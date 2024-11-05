@@ -1455,7 +1455,7 @@ absolute minimum value. The last theorem tells us how to find them. We need only
 
 Most functions you will encounter in elementary calculus have nonzero derivatives everywhere on their domains except possibly at a finite number of critical points, singular points, and endpoints of their domains. On intervals between these points the derivative exists and is not zero, so the function is either increasing or decreasing there. If ``f`` is continuous and increases to the left of ``x_0`` and decreases to the right, then it must have a local maximum value at ``x_0``. The following theorem collects several results of this type together.
 
-!!! theorem
+!!! theorem "The First Derivative Test"
 
 	PART I. Testing interior critical points and singular points.
 
@@ -1502,13 +1502,169 @@ If the function ``f`` is not defined on a closed, finite interval, then the exte
 	In this theorem ``a`` may be ``-\infty``, in which case ``\lim_{x\to a^+}`` should be replaced with ``\lim_{x\to -\infty}``, and ``b`` may be ``\infty``, in which case ``\lim_{x\to b^-}`` should be replaced with ``\lim_{x\to \infty}``.
 	Also, either or both of ``L`` and ``M`` may be either ``\infty`` or ``-\infty``.
 
+!!! proof
+
+	We prove the first part; the proof of the second part is similar. We are given that there is a number ``u\in\left]a,b\right[`` such that ``f\left(u\right)&gt;L`` and ``f\left(u\right)&gt;M``. Here, ``L`` and ``M`` may be finite numbers or ``-\infty``. 
+	
+	Since ``lim_{x\to a^+}f\left(x\right)=L``, there must exist a number ``x_1\in\left]a,u\right[`` such that
+	```math
+	f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad a&lt;x&lt;x_1\,.
+	```
+
+	Similarly, there must exist a number ``x_2\in\left]u,b\right[`` such that
+	```math
+	f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
+	```
+
+	Thus, ``f\left(x\right)&ltf\left(u\right)`` at all points of ``\left]a,b\right[`` that are not in the closed, finite subinterval ``\left[x_1,x_2\right]``. The function ``f``, being continuous on ``\left[x_1,x_2\right]``, must have an absolute maximum on that interval, say at the point ``w``. Since ``u\in\left[x_1,x_2\right]``, we must have ``f\left(w\right)\ge f\left(u\right)``, so ``f\left(w\right)`` is the maximum value of ``f\left(x\right)`` for all of ``\left]a,b\right[``.
+
 ## Concavity and Inflections
+
+Like the first derivative, the second derivative of a function also provides useful information about the behaviour of the function and the shape of its graph: it determines whether the graph is *bending upward* (i.e., has increasing slope) or *bending downward* (i.e., has decreasing slope) as we move along the graph toward the right.
+
+!!! definition
+
+	We say that the function ``f`` is concave up on an open interval ``I`` if it is differentiable there and the derivative ``f^\prime`` is an increasing function on ``I``. Similarly, ``f`` is concave down on ``I`` if ``f^\prime`` exists and is decreasing on ``I``.
+
+The terms “concave up” and “concave down” are used to describe the graph of the function as well as the function itself.
+
+Note that concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no concavity on such an interval. We also say a function has opposite concavity on two intervals if it is concave up on one interval and concave down on the other.
+
+
+!!! definition
+
+	We say that the point ``\left(x_0,f\left(x_0\right)\right)`` is an *inflection point* of the curve ``y=f\left(x\right)`` (or that the function ``f`` has an inflection point at ``x_0``) if the following two conditions are satisfied:
+
+	1. the graph of ``y=f\left(x\right)`` has a tangent line at ``x=x_0``, and
+	2. the concavity of ``f`` is opposite on opposite sides of ``x_0``.
+
+Note that 1. implies that either ``f`` is differentiable at ``x_0`` or its graph has a vertical tangent line there, and 2. implies that the graph crosses its tangent line at ``x_0``. An inflection point of a function ``f`` is a point on the graph of a function, rather than a point in its domain like a critical point or a singular point. A function may or may not have an inflection point at a critical point or singular point. In general, a point ``P`` is an inflection point (or simply an inflection) of a curve ``C`` (which is not necessarily the graph of a function) if ``C`` has a tangent at ``P`` and arcs of ``C`` extending in opposite directions from ``P`` are on opposite sides of that tangent line.
+
+If a function ``f`` has a second derivative ``f^{\prime\prime}``, the sign of that second derivative tells us whether the first derivative ``f^\prime`` is increasing or decreasing and hence determines the concavity of ``f``.
+
+!!! theorem
+
+	1. If ``f^{\prime\prime}\left(x\right) &gt; 0`` on interval ``I``, then ``f`` is concave up on ``I``.
+	2. If ``f^{\prime\prime}\left(x\right) &lt;0`` on interval ``I``, then ``f`` is concave down on ``I``.
+	3. if ``f`` has an inflection point at ``x_0`` and ``f^{\prime\prime}\left(x_0\right)`` exists, then ``f^{\prime\prime}\left(x_0\right)=0``.
+
+!!! proof
+
+	Part 1. and 2. follow from applying theorem 49 to the derivative ``f^\prime``.
+
+	If ``f`` has an inflection point at ``x_0`` and ``f^{\prime\prime}\left(x_0\right)`` exists, then ``f`` must be differentiable in an open interval containing ``x_0``. Since ``f^\prime`` is increasing on one side of ``x_0`` and decreasing on the other side, it must have a local maximum or minimum at ``x_0``. By theorem 46, ``f^{\prime\prime}\left(x_0\right)=0``.
+
+This theorem tells us that to find (the ``x``-coordinates of) inflection points of a twice differentiable function ``f``, we need only look at points where ``f^{\prime\prime}\left(x\right)=0``. However, not every such point has to be an inflection point. For example, ``f\left(x\right)=x^4``, does not have an inflection point at ``x=0``.
+
+A function ``f`` will have a local maximum (or minimum) value at a critical point if its graph is concave down (or up) in an interval containing that point. In fact, we can often use the value of the second derivative at the critical point to determine whether the function has a local maximum or a local minimum value there.
+
+!!! theorem "The Second Derivative Test"
+
+	1. If ``f^\prime\left(x_0\right)=0`` and ``f^{\prime\prime}\left(x\right) &lt;0``, then ``f`` has a local maximum value at ``x_0``.
+	2. If ``f^\prime\left(x_0\right)=0`` and ``f^{\prime\prime}\left(x\right) &gt;0``, then ``f`` has a local minimum value at ``x_0``.
+	3. If ``f^\prime\left(x_0\right)=0`` and ``f^{\prime\prime}\left(x\right)=0``, no conclusion can be drawn; ``f`` may have a local maximum at ``x_0`` or a local minimum, or it may have an inflection point instead.
+
+!!! proof
+
+	Suppose that ``f^\prime\left(x_0\right)=0`` and ``f^{\prime\prime}\left(x\right) &lt;0``.
+
+	Since
+	```math
+	\lim_{h\to 0}\frac{f^\prime\left(x_0+h\right)}{h}=\lim_{h\to 0}\frac{f^\prime\left(x_0+h\right)-f^\prime\left(x_0\right)}{h}=f^{\prime\prime}\left(x_0\right)&lt0\,,
+	```
+	it follows that ``f^\prime\left(x_0+h\right) &lt; 0`` for all sufficiently small positive ``h``, and ``f^\prime\left(x_0+h\right) &gt; 0`` for all sufficiently small negative ``h``. By the first derivative test, ``f`` must have a local maximum value at ``x_0``. The proof of the local minimum case is similar.
 
 ## Indeterminate Forms
 
-## Linear Approximations
+We showed that
+```math
+\lim{x\to 0}\frac{\sin x}{x}=1
+```
+
+We could not readily see this by substituting ``x=0`` into the function ``\frac{\sin x}{x}`` because both ``\sin x`` and ``x`` are zero at ``x=0``. We call ``\frac{\sin x}{x}`` an indeterminate form of type ``\left[\frac{0}{0}\right]`` at ``x=0``. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:
+```math
+\left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
+```
+
+Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. You can evaluate many indeterminate forms of type ``\left[\frac{0}{0}\right]``with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types ``\left[\frac{0}{0}\right]``and ``\left[\frac{\infty}{\infty}\right]``. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.
+
+!!! theorem "The first l'Hôpital Rule"
+
+	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
+	1. ``\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0`` and
+	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
+
+	Then
+	```math
+	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+	```
+
+	Similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+
+!!! proof
+
+	We prove the case involving ``lim_{x\to a^+}`` for finite ``a``. 
+	
+	Define
+	```math
+	F\left(x\right)=\begin{cases}
+		f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+		0&\textrm{if }x=a
+	\end{cases}\quad\textrm{and}\quad
+	G\left(x\right)=\begin{cases}
+		g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+		0&\textrm{if }x=a
+	\end{cases}\,.
+	```
+
+	Then, ``F`` and ``G`` are continuous on the interval ``\left[a,x\right]``and differentiable on the interval ``\left]a,x\right[`` for every ``x\in \left]a,b\right[``. 
+	
+	By the Generalized Mean-Value Theorem there exists a number ``c \in \left]a,x\right[`` such that
+	```math
+	\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
+	```
+
+	Since ``a&lt;c&lt;x``, if ``x\to a^+``, then necessarily ``c\to a^+``, so we have
+	```math
+	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+	```
+
+	The case involving ``lim_{x\to b^-}`` for finite ``b`` is proved similarly. The cases where ``a=-\infty`` or ``b=\infty`` follow from the cases already considered via the change of variable ``x=\frac{1}{t}``.
+
+!!! example
+
+	Evaluate ``\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}``.
+
+	```math
+	\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
+	```
+
+	Evaluate ``\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)``.
+
+	```math
+	\lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)=\lim_{x\to 0^+}\frac{\sin x-x}{x\sin x}=\lim_{x\to 0^+}\frac{\cos x-1}{\sin x+x\cos x}=\lim_{x\to 0^+}\frac{-\sin x}{2\cos x-x\sin x}=\frac{-0}{2}=0\,.
+	```
+
+!!! theorem "The second l'Hôpital Rule"
+
+	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
+	1. ``\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty`` and
+	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
+
+	Then
+	```math
+	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+	```
+
+	Again, imilar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+
+Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]``or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
 
 ## Taylor Polynomials
+
+### Linear Approximations
+
+### Higher Order Approximations
 
 ## Implicit Differentiation
 

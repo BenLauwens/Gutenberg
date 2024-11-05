@@ -48,6 +48,7 @@ MathJax = {
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -1341,7 +1342,6 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 <div data-type="example">
 <h1></h1>
 <p><span class="math-tex" data-type="tex">\(\displaystyle\textrm{Show that }\lim_{h\to 0}\frac{\cos h-1}{h}=0\,.\)</span></p>
-<div id="tag"></div>
 <p>Using the half-angle formula <span class="math-tex" data-type="tex">\(\cos h=1-2\sin^2\frac{h}{2}\)</span>, we calculate</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1896,7 +1896,7 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 <h2>The First Derivative Test</h2>
 <p>Most functions you will encounter in elementary calculus have nonzero derivatives everywhere on their domains except possibly at a finite number of critical points, singular points, and endpoints of their domains. On intervals between these points the derivative exists and is not zero, so the function is either increasing or decreasing there. If <span class="math-tex" data-type="tex">\(f\)</span> is continuous and increases to the left of <span class="math-tex" data-type="tex">\(x_0\)</span> and decreases to the right, then it must have a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>. The following theorem collects several results of this type together.</p>
 <div data-type="theorem">
-<h1></h1>
+<h1>&nbsp;(The First Derivative Test)</h1>
 <p>PART I. Testing interior critical points and singular points.</p>
 <p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\)</span>, and <span class="math-tex" data-type="tex">\(x_0\)</span> is not an endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span>:</p>
 <ul>
@@ -1950,18 +1950,203 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 </ul>
 <p>In this theorem <span class="math-tex" data-type="tex">\(a\)</span> may be <span class="math-tex" data-type="tex">\(-\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to -\infty}\)</span>, and <span class="math-tex" data-type="tex">\(b\)</span> may be <span class="math-tex" data-type="tex">\(\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to \infty}\)</span>.<br/>Also, either or both of <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be either <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
 </div>
+<div data-type="proof">
+<h1></h1>
+<p>We prove the first part; the proof of the second part is similar. We are given that there is a number <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;M\)</span>. Here, <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be finite numbers or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(lim_{x\to a^+}f\left(x\right)=L\)</span>, there must exist a number <span class="math-tex" data-type="tex">\(x_1\in\left]a,u\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad a&lt;x&lt;x_1\,.
+\]
+</div>
+<p>Similarly, there must exist a number <span class="math-tex" data-type="tex">\(x_2\in\left]u,b\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(f\left(x\right)&ltf\left(u\right)\)</span> at all points of <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> that are not in the closed, finite subinterval <span class="math-tex" data-type="tex">\(\left[x_1,x_2\right]\)</span>. The function <span class="math-tex" data-type="tex">\(f\)</span>, being continuous on <span class="math-tex" data-type="tex">\(\left[x_1,x_2\right]\)</span>, must have an absolute maximum on that interval, say at the point <span class="math-tex" data-type="tex">\(w\)</span>. Since <span class="math-tex" data-type="tex">\(u\in\left[x_1,x_2\right]\)</span>, we must have <span class="math-tex" data-type="tex">\(f\left(w\right)\ge f\left(u\right)\)</span>, so <span class="math-tex" data-type="tex">\(f\left(w\right)\)</span> is the maximum value of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for all of <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
+</div>
 <section data-type="sect1">
 <h1>Concavity and Inflections</h1>
+<p>Like the first derivative, the second derivative of a function also provides useful information about the behaviour of the function and the shape of its graph: it determines whether the graph is <i>bending upward</i> (i.e., has increasing slope) or <i>bending downward</i> (i.e., has decreasing slope) as we move along the graph toward the right.</p>
+<div data-type="definition">
+<h1></h1>
+<p>We say that the function <span class="math-tex" data-type="tex">\(f\)</span> is concave up on an open interval <span class="math-tex" data-type="tex">\(I\)</span> if it is differentiable there and the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> is an increasing function on <span class="math-tex" data-type="tex">\(I\)</span>. Similarly, <span class="math-tex" data-type="tex">\(f\)</span> is concave down on <span class="math-tex" data-type="tex">\(I\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\)</span> exists and is decreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+</div>
+<p>The terms “concave up” and “concave down” are used to describe the graph of the function as well as the function itself.</p>
+<p>Note that concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no concavity on such an interval. We also say a function has opposite concavity on two intervals if it is concave up on one interval and concave down on the other.</p>
+<div data-type="definition">
+<h1></h1>
+<p>We say that the point <span class="math-tex" data-type="tex">\(\left(x_0,f\left(x_0\right)\right)\)</span> is an <i>inflection point</i> of the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> (or that the function <span class="math-tex" data-type="tex">\(f\)</span> has an inflection point at <span class="math-tex" data-type="tex">\(x_0\)</span>) if the following two conditions are satisfied:</p>
+<ol>
+<li>
+<p>the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> has a tangent line at <span class="math-tex" data-type="tex">\(x=x_0\)</span>, and</p>
+</li>
+<li>
+<p>the concavity of <span class="math-tex" data-type="tex">\(f\)</span> is opposite on opposite sides of <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+</ol>
+</div>
+<p>Note that 1. implies that either <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x_0\)</span> or its graph has a vertical tangent line there, and 2. implies that the graph crosses its tangent line at <span class="math-tex" data-type="tex">\(x_0\)</span>. An inflection point of a function <span class="math-tex" data-type="tex">\(f\)</span> is a point on the graph of a function, rather than a point in its domain like a critical point or a singular point. A function may or may not have an inflection point at a critical point or singular point. In general, a point <span class="math-tex" data-type="tex">\(P\)</span> is an inflection point (or simply an inflection) of a curve <span class="math-tex" data-type="tex">\(C\)</span> (which is not necessarily the graph of a function) if <span class="math-tex" data-type="tex">\(C\)</span> has a tangent at <span class="math-tex" data-type="tex">\(P\)</span> and arcs of <span class="math-tex" data-type="tex">\(C\)</span> extending in opposite directions from <span class="math-tex" data-type="tex">\(P\)</span> are on opposite sides of that tangent line.</p>
+<p>If a function <span class="math-tex" data-type="tex">\(f\)</span> has a second derivative <span class="math-tex" data-type="tex">\(f^{\prime\prime}\)</span>, the sign of that second derivative tells us whether the first derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> is increasing or decreasing and hence determines the concavity of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
+<div data-type="theorem">
+<h1></h1>
+<ol>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &gt; 0\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is concave up on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &lt;0\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is concave down on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+</li>
+<li>
+<p>if <span class="math-tex" data-type="tex">\(f\)</span> has an inflection point at <span class="math-tex" data-type="tex">\(x_0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x_0\right)\)</span> exists, then <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x_0\right)=0\)</span>.</p>
+</li>
+</ol>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Part 1. and 2. follow from applying theorem 49 to the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> has an inflection point at <span class="math-tex" data-type="tex">\(x_0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x_0\right)\)</span> exists, then <span class="math-tex" data-type="tex">\(f\)</span> must be differentiable in an open interval containing <span class="math-tex" data-type="tex">\(x_0\)</span>. Since <span class="math-tex" data-type="tex">\(f^\prime\)</span> is increasing on one side of <span class="math-tex" data-type="tex">\(x_0\)</span> and decreasing on the other side, it must have a local maximum or minimum at <span class="math-tex" data-type="tex">\(x_0\)</span>. By theorem 46, <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x_0\right)=0\)</span>.</p>
+</div>
+<p>This theorem tells us that to find (the <span class="math-tex" data-type="tex">\(x\)</span>-coordinates of) inflection points of a twice differentiable function <span class="math-tex" data-type="tex">\(f\)</span>, we need only look at points where <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right)=0\)</span>. However, not every such point has to be an inflection point. For example, <span class="math-tex" data-type="tex">\(f\left(x\right)=x^4\)</span>, does not have an inflection point at <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
+<p>A function <span class="math-tex" data-type="tex">\(f\)</span> will have a local maximum (or minimum) value at a critical point if its graph is concave down (or up) in an interval containing that point. In fact, we can often use the value of the second derivative at the critical point to determine whether the function has a local maximum or a local minimum value there.</p>
+<div data-type="theorem">
+<h1>&nbsp;(The Second Derivative Test)</h1>
+<ol>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)=0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &lt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)=0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &gt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)=0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right)=0\)</span>, no conclusion can be drawn; <span class="math-tex" data-type="tex">\(f\)</span> may have a local maximum at <span class="math-tex" data-type="tex">\(x_0\)</span> or a local minimum, or it may have an inflection point instead.</p>
+</li>
+</ol>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)=0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &lt;0\)</span>.</p>
+<p>Since</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}\frac{f^\prime\left(x_0+h\right)}{h}=\lim_{h\to 0}\frac{f^\prime\left(x_0+h\right)-f^\prime\left(x_0\right)}{h}=f^{\prime\prime}\left(x_0\right)&lt0\,,
+\]
+</div>
+<p>it follows that <span class="math-tex" data-type="tex">\(f^\prime\left(x_0+h\right) &lt; 0\)</span> for all sufficiently small positive <span class="math-tex" data-type="tex">\(h\)</span>, and <span class="math-tex" data-type="tex">\(f^\prime\left(x_0+h\right) &gt; 0\)</span> for all sufficiently small negative <span class="math-tex" data-type="tex">\(h\)</span>. By the first derivative test, <span class="math-tex" data-type="tex">\(f\)</span> must have a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>. The proof of the local minimum case is similar.</p>
+</div>
 <section data-type="sect1">
 <h1>Indeterminate Forms</h1>
-<section data-type="sect1">
-<h1>Linear Approximations</h1>
+<p>We showed that</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim{x\to 0}\frac{\sin x}{x}=1
+\]
+</div>
+<p>We could not readily see this by substituting <span class="math-tex" data-type="tex">\(x=0\)</span> into the function <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> because both <span class="math-tex" data-type="tex">\(\sin x\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> are zero at <span class="math-tex" data-type="tex">\(x=0\)</span>. We call <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> an indeterminate form of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span> at <span class="math-tex" data-type="tex">\(x=0\)</span>. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:</p>
+<div class="math-tex" data-type="equation">
+\[
+\left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
+\]
+</div>
+<p>Indeterminate forms of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>are the most common. You can evaluate many indeterminate forms of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.</p>
+<div data-type="theorem">
+<h1>&nbsp;(The first l'Hôpital Rule)</h1>
+<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0\)</span> and</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</li>
+</ol>
+<p>Then</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\]
+</div>
+<p>Similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>We prove the case involving <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> for finite <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>Define</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x\right)=\begin{cases}
+	f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\quad\textrm{and}\quad
+G\left(x\right)=\begin{cases}
+	g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\,.
+\]
+</div>
+<p>Then, <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>and differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,x\right[\)</span> for every <span class="math-tex" data-type="tex">\(x\in \left]a,b\right[\)</span>.</p>
+<p>By the Generalized Mean-Value Theorem there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,x\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(a&lt;c&lt;x\)</span>, if <span class="math-tex" data-type="tex">\(x\to a^+\)</span>, then necessarily <span class="math-tex" data-type="tex">\(c\to a^+\)</span>, so we have</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+\]
+</div>
+<p>The case involving <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> for finite <span class="math-tex" data-type="tex">\(b\)</span> is proved similarly. The cases where <span class="math-tex" data-type="tex">\(a=-\infty\)</span> or <span class="math-tex" data-type="tex">\(b=\infty\)</span> follow from the cases already considered via the change of variable <span class="math-tex" data-type="tex">\(x=\frac{1}{t}\)</span>.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
+\]
+</div>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)=\lim_{x\to 0^+}\frac{\sin x-x}{x\sin x}=\lim_{x\to 0^+}\frac{\cos x-1}{\sin x+x\cos x}=\lim_{x\to 0^+}\frac{-\sin x}{2\cos x-x\sin x}=\frac{-0}{2}=0\,.
+\]
+</div>
+</div>
+<div data-type="theorem">
+<h1>&nbsp;(The second l'Hôpital Rule)</h1>
+<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty\)</span> and</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</li>
+</ol>
+<p>Then</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\]
+</div>
+<p>Again, imilar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+</div>
+<p>Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>or <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>; such attempts will almost always lead to false conclusions.</p>
 <section data-type="sect1">
 <h1>Taylor Polynomials</h1>
+<section data-type="sect2">
+<h2>Linear Approximations</h2>
+<section data-type="sect2">
+<h2>Higher Order Approximations</h2>
 <section data-type="sect1">
 <h1>Implicit Differentiation</h1>
 <section data-type="sect1">
 <h1>Antiderivatives</h1>
+</section>
 </section>
 </section>
 </section>
