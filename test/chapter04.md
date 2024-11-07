@@ -1089,7 +1089,7 @@ and it is defined to be the derivative of the ``\left(n-1\right)``st derivative.
 In general, if ``f\left(x\right)=x^n`` (where ``n`` is a positive integer), then
 ```math
 \begin{aligned}
-f^{\left(\right)}&=n\left(n-1\right)\left(n-2\right)\cdots\left(n-\left(k-1\right)\right)x^n-k\\
+f^{\left(k\right)}&=n\left(n-1\right)\left(n-2\right)\cdots\left(n-\left(k-1\right)\right)x^{n-k}\\
 &=\begin{cases}
 \frac{n!}{\left(n-k\right)!}x^{n-k}&\textrm{if }0\le k\le n\\
 0&\textrm{if }k&gt;n\,,
@@ -1396,8 +1396,8 @@ In addition to these extreme values, ``f`` can have several other “local” ma
 A function ``f`` can have local extreme values only at points ``x`` of three special types:
 
 1. critical points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)=0``),
-2. singular points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)``is not defined), and
-3. endpoints of the domain of f (points ``x`` in the domain of ``f`` that do not belong to any open interval contained in the domain of ``f``).
+2. singular points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)`` is not defined), and
+3. endpoints of the domain of ``f`` (points ``x`` in the domain of ``f`` that do not belong to any open interval contained in the domain of ``f``).
 
 !!! theorem
 
@@ -1656,13 +1656,66 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 	```
 
-	Again, imilar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+	Again, similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
 
 Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]``or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
 
 ## Taylor Polynomials
 
 ### Linear Approximations
+
+Many problems in applied mathematics are too difficult to be solved exactly—that is why we resort to using computers, even though in many cases they may only give approximate answers. However, not all approximation is done with machines. Linear approximation can be a very effective way to estimate values or test the plausibility of numbers given by a computer.
+
+The tangent to the graph ``y=f\left(x\right)`` at ``x=a`` describes the behaviour of that graph near the point ``P=\left(a,f\left(a\right)\right)`` better than any other straight line through ``P``, because it goes through ``P`` in the same direction as the curve ``y=f\left(x\right)``. We exploit this fact by using the height to the tangent line to calculate approximate values of ``f\left(x\right)`` for values of ``x`` near ``a``. The tangent line has equation ``y=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)``. We call the right side of this equation the *linearization* of ``f`` about ``a``.
+
+!!! definition
+
+	The linearization of the function ``f`` about ``a`` is the function ``L`` defined by
+	```math
+	L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+	```
+
+	We say that ``f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)`` provides *linear approximations* for values of *f* near *a*.
+
+We have already made use of linearization in a previous section, where it was disguised as the formula
+```math
+\Delta y = \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta y
+```
+and used to approximate a small change ``\Delta y=f\left(a+\Delta x\right)-f\left(a\right)`` in the values of function ``f`` corresponding to the small change in the argument of the function from ``a`` to ``a+\Delta x``. This is just the linear approximation
+```math
+f\left(a+\Delta x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+```
+
+In any approximation, the *error* is defined by
+```math
+\textrm{error}=\textrm{true value}-\textrm{approximate value}\,.
+```
+
+If the linearization of ``f`` about ``a`` is used to approximate ``f\left(x\right)`` near ``x=a``, then the error ``E\left(x\right)`` in this approximation is
+```math
+E\left(x\right)=f\left(x\right)-L\left(x\right)=f\left(x\right)-f\left(a\right)-f^\prime\left(a\right)\left(x-a\right)\,.
+```
+
+It is the vertical distance at ``x`` between the graph of ``f`` and the tangent line to that graph at ``x=a``. Observe that if ``x`` is “near” ``a``, then ``E\left(x\right)`` is small compared to the horizontal distance between ``x`` and ``a``.
+
+The following theorem gives us a way to estimate this error if we know bounds for the second derivative of f:
+
+!!! theorem
+
+	If ``f^{\prime\prime}\left(t\right)`` exists for all ``t`` in an interval containing ``a`` and ``x``, then there exists some point ``s`` between ``a`` and ``x`` such that the error ``E\left(x\right)=f\left(x\right)-L\left(x\right)`` in the linear approximation ``f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)`` satisfies
+	```math
+	E\left(x\right)=\frac{f^{\prime\prime}\left(x\right)}{2}\left(x-a\right)^2\,.
+	```
+
+!!! proof
+
+	Let us assume that ``x&gt;a``. (The proof for ``x&lt;a`` is similar.)
+
+	Since
+	```math
+	E\left(t\right)=f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)\,,
+	```
+	we have ``E^\prime\left(t\right)=f^\prime\left(t\right)-f^\prime\left(a\right)``. We apply the Generalized Mean-Value Theorem to the two functions ``E\left(t\right)`` and ``\left(t-a\right)^2`` on ``\left[a,x\right]``. Noting that ``E\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
 
 ### Higher Order Approximations
 

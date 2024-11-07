@@ -48,7 +48,6 @@ MathJax = {
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -1460,7 +1459,7 @@ a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f\prime\prime\left(t
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-f^{\left(\right)}&=n\left(n-1\right)\left(n-2\right)\cdots\left(n-\left(k-1\right)\right)x^n-k\\
+f^{\left(k\right)}&=n\left(n-1\right)\left(n-2\right)\cdots\left(n-\left(k-1\right)\right)x^{n-k}\\
 &=\begin{cases}
 \frac{n!}{\left(n-k\right)!}x^{n-k}&\textrm{if }0\le k\le n\\
 0&\textrm{if }k&gt;n\,,
@@ -1837,10 +1836,10 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <p>critical points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=0\)</span>),</p>
 </li>
 <li>
-<p>singular points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\)</span>is not defined), and</p>
+<p>singular points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\)</span> is not defined), and</p>
 </li>
 <li>
-<p>endpoints of the domain of f (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> that do not belong to any open interval contained in the domain of <span class="math-tex" data-type="tex">\(f\)</span>).</p>
+<p>endpoints of the domain of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> that do not belong to any open interval contained in the domain of <span class="math-tex" data-type="tex">\(f\)</span>).</p>
 </li>
 </ol>
 <div data-type="theorem">
@@ -2133,13 +2132,72 @@ lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\pri
 lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 \]
 </div>
-<p>Again, imilar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+<p>Again, similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
 </div>
 <p>Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>or <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>; such attempts will almost always lead to false conclusions.</p>
 <section data-type="sect1">
 <h1>Taylor Polynomials</h1>
 <section data-type="sect2">
 <h2>Linear Approximations</h2>
+<p>Many problems in applied mathematics are too difficult to be solved exactly—that is why we resort to using computers, even though in many cases they may only give approximate answers. However, not all approximation is done with machines. Linear approximation can be a very effective way to estimate values or test the plausibility of numbers given by a computer.</p>
+<p>The tangent to the graph <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> at <span class="math-tex" data-type="tex">\(x=a\)</span> describes the behaviour of that graph near the point <span class="math-tex" data-type="tex">\(P=\left(a,f\left(a\right)\right)\)</span> better than any other straight line through <span class="math-tex" data-type="tex">\(P\)</span>, because it goes through <span class="math-tex" data-type="tex">\(P\)</span> in the same direction as the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>. We exploit this fact by using the height to the tangent line to calculate approximate values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for values of <span class="math-tex" data-type="tex">\(x\)</span> near <span class="math-tex" data-type="tex">\(a\)</span>. The tangent line has equation <span class="math-tex" data-type="tex">\(y=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\)</span>. We call the right side of this equation the <i>linearization</i> of <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>The linearization of the function <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(a\)</span> is the function <span class="math-tex" data-type="tex">\(L\)</span> defined by</p>
+<div class="math-tex" data-type="equation">
+\[
+L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+\]
+</div>
+<p>We say that <span class="math-tex" data-type="tex">\(f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\)</span> provides <i>linear approximations</i> for values of <i>f</i> near <i>a</i>.</p>
+</div>
+<p>We have already made use of linearization in a previous section, where it was disguised as the formula</p>
+<div class="math-tex" data-type="equation">
+\[
+\Delta y = \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta y
+\]
+</div>
+<p>and used to approximate a small change <span class="math-tex" data-type="tex">\(\Delta y=f\left(a+\Delta x\right)-f\left(a\right)\)</span> in the values of function <span class="math-tex" data-type="tex">\(f\)</span> corresponding to the small change in the argument of the function from <span class="math-tex" data-type="tex">\(a\)</span> to <span class="math-tex" data-type="tex">\(a+\Delta x\)</span>. This is just the linear approximation</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(a+\Delta x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+\]
+</div>
+<p>In any approximation, the <i>error</i> is defined by</p>
+<div class="math-tex" data-type="equation">
+\[
+\textrm{error}=\textrm{true value}-\textrm{approximate value}\,.
+\]
+</div>
+<p>If the linearization of <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(a\)</span> is used to approximate <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> near <span class="math-tex" data-type="tex">\(x=a\)</span>, then the error <span class="math-tex" data-type="tex">\(E\left(x\right)\)</span> in this approximation is</p>
+<div class="math-tex" data-type="equation">
+\[
+E\left(x\right)=f\left(x\right)-L\left(x\right)=f\left(x\right)-f\left(a\right)-f^\prime\left(a\right)\left(x-a\right)\,.
+\]
+</div>
+<p>It is the vertical distance at <span class="math-tex" data-type="tex">\(x\)</span> between the graph of <span class="math-tex" data-type="tex">\(f\)</span> and the tangent line to that graph at <span class="math-tex" data-type="tex">\(x=a\)</span>. Observe that if <span class="math-tex" data-type="tex">\(x\)</span> is “near” <span class="math-tex" data-type="tex">\(a\)</span>, then <span class="math-tex" data-type="tex">\(E\left(x\right)\)</span> is small compared to the horizontal distance between <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>The following theorem gives us a way to estimate this error if we know bounds for the second derivative of f:</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(t\right)\)</span> exists for all <span class="math-tex" data-type="tex">\(t\)</span> in an interval containing <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>, then there exists some point <span class="math-tex" data-type="tex">\(s\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> such that the error <span class="math-tex" data-type="tex">\(E\left(x\right)=f\left(x\right)-L\left(x\right)\)</span> in the linear approximation <span class="math-tex" data-type="tex">\(f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\)</span> satisfies</p>
+<div class="math-tex" data-type="equation">
+\[
+E\left(x\right)=\frac{f^{\prime\prime}\left(x\right)}{2}\left(x-a\right)^2\,.
+\]
+</div>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let us assume that <span class="math-tex" data-type="tex">\(x&gt;a\)</span>. (The proof for <span class="math-tex" data-type="tex">\(x&lt;a\)</span> is similar.)</p>
+<p>Since</p>
+<div class="math-tex" data-type="equation">
+\[
+E\left(t\right)=f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)\,,
+\]
+</div>
+<div id="tag"></div>
+<p>we have <span class="math-tex" data-type="tex">\(E^\prime\left(t\right)=f^\prime\left(t\right)-f^\prime\left(a\right)\)</span>. We apply the Generalized Mean-Value Theorem to the two functions <span class="math-tex" data-type="tex">\(E\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(t-a\right)^2\)</span> on <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>. Noting that <span class="math-tex" data-type="tex">\(E\left(a\right)=0\)</span>, we obtain a number <span class="math-tex" data-type="tex">\(u\in\left]a,x\right[\)</span> such that</p>
+</div>
 <section data-type="sect2">
 <h2>Higher Order Approximations</h2>
 <section data-type="sect1">
