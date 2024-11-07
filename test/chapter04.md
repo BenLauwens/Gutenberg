@@ -1704,7 +1704,7 @@ The following theorem gives us a way to estimate this error if we know bounds fo
 
 	If ``f^{\prime\prime}\left(t\right)`` exists for all ``t`` in an interval containing ``a`` and ``x``, then there exists some point ``s`` between ``a`` and ``x`` such that the error ``E\left(x\right)=f\left(x\right)-L\left(x\right)`` in the linear approximation ``f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)`` satisfies
 	```math
-	E\left(x\right)=\frac{f^{\prime\prime}\left(x\right)}{2}\left(x-a\right)^2\,.
+	E\left(x\right)=\frac{f^{\prime\prime}\left(s\right)}{2}\left(x-a\right)^2\,.
 	```
 
 !!! proof

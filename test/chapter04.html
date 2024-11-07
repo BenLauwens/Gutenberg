@@ -48,6 +48,7 @@ MathJax = {
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -2182,7 +2183,7 @@ E\left(x\right)=f\left(x\right)-L\left(x\right)=f\left(x\right)-f\left(a\right)-
 <p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(t\right)\)</span> exists for all <span class="math-tex" data-type="tex">\(t\)</span> in an interval containing <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>, then there exists some point <span class="math-tex" data-type="tex">\(s\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> such that the error <span class="math-tex" data-type="tex">\(E\left(x\right)=f\left(x\right)-L\left(x\right)\)</span> in the linear approximation <span class="math-tex" data-type="tex">\(f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\)</span> satisfies</p>
 <div class="math-tex" data-type="equation">
 \[
-E\left(x\right)=\frac{f^{\prime\prime}\left(x\right)}{2}\left(x-a\right)^2\,.
+E\left(x\right)=\frac{f^{\prime\prime}\left(s\right)}{2}\left(x-a\right)^2\,.
 \]
 </div>
 </div>
@@ -2195,7 +2196,6 @@ E\left(x\right)=\frac{f^{\prime\prime}\left(x\right)}{2}\left(x-a\right)^2\,.
 E\left(t\right)=f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)\,,
 \]
 </div>
-<div id="tag"></div>
 <p>we have <span class="math-tex" data-type="tex">\(E^\prime\left(t\right)=f^\prime\left(t\right)-f^\prime\left(a\right)\)</span>. We apply the Generalized Mean-Value Theorem to the two functions <span class="math-tex" data-type="tex">\(E\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(t-a\right)^2\)</span> on <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>. Noting that <span class="math-tex" data-type="tex">\(E\left(a\right)=0\)</span>, we obtain a number <span class="math-tex" data-type="tex">\(u\in\left]a,x\right[\)</span> such that</p>
 </div>
 <section data-type="sect2">
