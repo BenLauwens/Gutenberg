@@ -1716,9 +1716,130 @@ The following theorem gives us a way to estimate this error if we know bounds fo
 	E\left(t\right)=f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)\,,
 	```
 	we have ``E^\prime\left(t\right)=f^\prime\left(t\right)-f^\prime\left(a\right)``. We apply the Generalized Mean-Value Theorem to the two functions ``E\left(t\right)`` and ``\left(t-a\right)^2`` on ``\left[a,x\right]``. Noting that ``E\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
+	```math
+	\frac{E\left(x\right)}{\left(x-a\right)^2}=\frac{E\left(x\right)-E\left(a\right)}{\left(x-a\right)^2-\left(a-a\right)^2}=\frac{E^\prime\left(u\right)}{2\left(u-a\right)}=\frac{f^\prime\left(u\right)-f^\prime\left(a\right)}{2\left(u-a\right)}=\frac{1}{2}f^{\prime\prime}\left(s\right)
+	```
+	for some ``s\in\left]a,u\right[``; the latter expression is a consequence of applying the Mean-Value Theorem again, this time to ``f^\prime`` on ``\left[a,u\right]``. Thus,
+	```math
+	E\left(x\right)=\frac{f^{\prime\prime}\left(s\right)}{2}\left(x-a\right)^2\,.
+	```
+	as claimed.
+
+!!! example
+
+	Use the linearization for ``\sqrt x`` about ``x=25`` to find an approximate value for ``\sqrt{26}`` and estimate the size of the error. Use these to give a small interval that you can be sure contains ``\sqrt{26}``.
+
+	If ``f\left(x\right)=\sqrt x``, then ``f^\prime\left(x\right)=\frac{1}{2\sqrt x}``. Since we now that ``f\left(25\right)=5`` and ``f^\prime\left(25\right)=\frac{1}{10}``, the linearization of ``f\left(x\right)`` about ``x=25`` is
+	```math
+	L\left(x\right)=5+\frac{1}{10}\left(x-25\right)
+	```
+	Putting ``x=26``, we get
+	```math
+	\sqrt{26}=f\left(26\right)\approx L\left(26\right)=5+\frac{1}{10}\left(26-25\right)=5.1\,.
+	```
+
+	We have also ``f^{\prime\prime}\left(x\right)=-\frac{1}{4}x^{-\frac{3}{2}}``. For ``25&lt;x&lt;26``, ``f^{\prime\prime}\left(x\right)&lt;0``, so ``\sqrt{26}=f\left(26\right)&lt;L\left(26\right)=5.1``. Also, ``\left|f^{\prime\prime}\left(x\right)\right|&lt;\frac{1}{4}\frac{1}{125}=\frac{1}{500}`` and
+	```math
+	\left|E\left(26\right)\right|&lt;\frac{1}{2}\frac{1}{500}\left(26-25\right)^2=\frac{1}{1000}=0.001\,.
+	```
+	Therefore, ``f\left(26\right)&gt;L\left(26\right)-0.001=5.099``, and ``\sqrt{26}`` is in the interval ``\left]5.099, 5.1\right[``.
 
 ### Higher Order Approximations
 
+The linearization of a function ``f\left(x\right)`` about ``x=a``, namely, the linear function
+```math
+P_1\left(x\right)=L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,,
+```
+describes the behaviour of ``f`` near ``a`` better than any other polynomial of degree ``1`` because both ``P_1`` and ``f`` have the same value and the same derivative at ``a``:
+```math
+P_1\left(a\right)=f\left(a\right)\quad\textrm{and}\quad P_1^\prime\left(a\right)=f^\prime\left(a\right)\,.
+```
+
+We can obtain even better approximations to ``f\left(x\right)`` by using quadratic or higherdegree polynomials and matching more derivatives at ``x=a``. For example, if ``f`` is twice differentiable near ``a``, then the polynomial
+```math
+P_2\left(x\right)=L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)+\frac{f^{\prime\prime}\left(a\right)}{2}\left(x-a\right)^2\,,
+```
+satisfies ``P_2\left(a\right)=f\left(a\right)``, ``P_2^\prime\left(a\right)=f^\prime\left(a\right)`` and ``P_2^{\prime\prime}\left(a\right)=f^{\prime\prime}\left(a\right)`` and describes the behaviour of ``f`` near ``a`` better than any other polynomial of degree at most ``2``.
+
+In general, if ``f^{\left(n\right)}(x)`` exists in an open interval containing ``x=a``, then the polynomial
+```math
+P_n\left(x\right)=L\left(x\right)=\sum_{i=0}^n\frac{f^{\left(i\right)}\left(a\right)}{i!}\left(x-a\right)^i\,,
+```
+matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\left(x\right)`` near ``x=a`` better than any other polynomial of degree at most ``n``. ``P_n`` is called the ``n``th-order *Taylor polynomial* for ``f`` about ``a``. Taylor polynomials about ``0`` are usually called *Maclaurin polynomials*.
+
+!!! example
+
+	Find the Taylor polynomials ``P_1\left(x\right)``, ``P_2\left(x\right)`` and ``P_3\left(x\right)`` for ``f\left(x\right)=\sqrt x`` about ``x=25``.
+
+	We have
+	```math
+	f^\prime\left(x\right)=\frac{1}{2}x^{-\frac{1}{2}}\,,\quad f^{\prime\prime}\left(x\right)=-\frac{1}{4}x^{-\frac{3}{2}}\,,\quad f^{\left(3\right)}\left(x\right)=\frac{3}{8}x^{-\frac{5}{2}}\,.
+	```
+	Thus,
+	```math
+	\begin{aligned}
+	P_1\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)\\
+	&=5+\frac{1}{10}\left(x-25\right)\\
+	P_2\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2\\
+	&=5+\frac{1}{10}\left(x-25\right)-\frac{1}{1000}\left(x-25\right)^2\\
+	P_2\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2+\frac{f^{\left(3\right)}\left(25\right)}{3!}\left(x-25\right)^3\\
+	&=5+\frac{1}{10}\left(x-25\right)-\frac{1}{1000}\left(x-25\right)^2+\frac{1}{50000}\left(x-25\right)^3
+	\end{aligned}
+	```
+
+	{cell=chap display=false output=false}
+	```julia
+	Figure("", "Taylor polynomials (blue, green, gray) for " * tex("f\\left(x\\right)=\\sqrt x") *  " (red)." ) do
+		scale = 10
+		Drawing(width=52scale, height=9scale) do
+			xmid = 2scale
+			ymid = 7.5scale
+			axis_xy(52scale,9scale,xmid,ymid,scale,(5, 10, 15, 20, 25, 30, 35, 40, 45),(2, 4, 6))
+			plot_xy(x->sqrt(x), 0:0.01:50, tuple(), xmid, ymid, scale, width=1)
+			plot_xy(x->5+0.1*(x-25), 0:0.01:50, tuple(), xmid, ymid, scale, width=1, color="RoyalBlue")
+			plot_xy(x->5+0.1*(x-25)-0.001*(x-25)^2, 0:0.01:50, tuple(), xmid, ymid, scale, width=1, color="green")
+			plot_xy(x->5+0.1*(x-25)-0.001*(x-25)^2+2e-5*(x-25)^3, 0:0.01:50, tuple(), xmid, ymid, scale, width=1, color="gray")
+		end
+	end
+	```
+
+!!! theorem "Taylor's Theorem"
+
+	If the ``\left(n+1\right)``st-order derivative, ``f^{\left(n+1\right)}\left(t\right)``, exists for all ``t`` in an interval containing ``a`` and ``x``, and if ``P_n\left(x\right)`` is the ``n``th order Taylor polynomial for ``f`` about ``a``, then the error ``E_n\left(x\right)=f\left(x\right)-p_n\left(x\right)`` is given by
+	```math
+	E_n\left(x\right)=\frac{f^{\left(n+1\right)}\left(s\right)}{\left(n+1\right)!}\left(x-a\right)^{n+1}\,,
+	```
+	where ``s`` is some number between ``a`` and ``x``. The resulting formula
+	```math
+	f\left(x\right)=\sum_{i=0}^n\frac{f^{\left(i\right)}\left(a\right)}{i!}\left(x-a\right)^i+\frac{f^{\left(n+1\right)}\left(s\right)}{\left(n+1\right)!}\left(x-a\right)^{n+1}\,,
+	```
+	is called Taylor's formula with Lagrange remainder.
+
+!!! proof "by induction"
+
+	Observe that the case ``n=0`` of Taylor's formula, namely,
+	```math
+	f\left(x\right)=P_0\left(x\right)+E_0\left(x\right)=f\left(a\right)+f^\prime\left(x\right)\left(x-a\right)\,.
+	```
+	is just the Mean-Value Theorem
+	```math
+	\frac{f\left(x\right)-f\left(a\right)}{x-a}=f^\prime\left(s\right)
+	```
+	for some ``s`` between ``a`` and ``x``.
+
+	Suppose that we have proved the case ``n=k-1``, where ``k\ge 1``. Thus, we are assuming that if ``f`` is any function whose ``k``th derivative exists on an interval containing ``a`` and ``x``, then
+	```math
+	E_{k-1}\left(x\right)=\frac{f^{\left(k\right)}\left(s\right)}{k!}\left(x-a\right)^k\,,
+	```
+	where ``s`` os some number between ``a`` and ``x``.
+
+	Let us conisder the next higher case: ``n=k``. We assume ``x&gt;a``(the case ``x&lt;a`` is similar) and apply the generalized Mean-Value Theorem to the functions ``E_k\left(t\right)`` and ``\left(t-a\right)^{k+1}`` on ``\left[a,x\right]``. Since ``E_k\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
+	```math
+	\frac{E_k\left(x\right)}{\left(x-a\right)^{k+1}}=\frac{E_k\left(x\right)-E_k\left(a\right)}{\left(x-a\right)^{k+1}-\left(a-a\right)^{k+1}}=\frac{E_k^\prime\left(u\right)}{\left(k+1\right)\left(u-a\right)^{k}}\,.
+	```
+
+	Now,
+	
 ## Implicit Differentiation
 
 ## Antiderivatives
