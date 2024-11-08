@@ -1484,6 +1484,91 @@ P\left(x\right)=a_nx^2+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\,,
 </div>
 <p>where <span class="math-tex" data-type="tex">\(a_n, a_{n-1}, \dots, a_1, a_0\)</span> are constants, then <span class="math-tex" data-type="tex">\(P^{\left(k\right)}\left(x\right)=0\)</span> for <span class="math-tex" data-type="tex">\(k&gt;n\)</span>. For <span class="math-tex" data-type="tex">\(k\le n\)</span>, <span class="math-tex" data-type="tex">\(P^{\left(k\right)}\)</span> is a polynomial of degree <span class="math-tex" data-type="tex">\(n-k\)</span>; in particular, <span class="math-tex" data-type="tex">\(P^{\left(n\right)}\left(x\right)=n!a_n\)</span>, a constant function.</p>
 <section data-type="sect1">
+<div id="tag"></div>
+<h1>Implicit Differentiation</h1>
+<p>We know how to find the slope of a curve that is the graph of a function <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> by calculating the derivative of <span class="math-tex" data-type="tex">\(f\)</span>. But not all curves are the graphs of such functions. To be the graph of a function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span>, the curve must not intersect any vertical lines at more than one point.</p>
+<p>Curves are generally the graphs of equations in two variables. Such equations can be written in the form</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x,y\right)=0\,,
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(F\left(x,y\right)\)</span> denotes an expression involving the two variables <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(y\)</span>. For example, a circle with centre at the origin and radius <span class="math-tex" data-type="tex">\(5\)</span> has equation</p>
+<div class="math-tex" data-type="equation">
+\[
+x^2+y^2=25
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(F\left(x,y\right)=x^2+y^2-25\)</span> for that circle.</p>
+<p>Sometimes we can solve an equation <span class="math-tex" data-type="tex">\(F\left(x,y\right)=0\)</span> for <span class="math-tex" data-type="tex">\(y\)</span> and so find explicit formulas for one or more functions <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of <span class="math-tex" data-type="tex">\(x\)</span> implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> of these implicit solutions by a technique called <i>implicit differentiation</i>. The idea is to differentiate the given equation with respect to <span class="math-tex" data-type="tex">\(x\)</span>, regarding <span class="math-tex" data-type="tex">\(y\)</span> as a function of <span class="math-tex" data-type="tex">\(x\)</span> having derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, or <span class="math-tex" data-type="tex">\(y^\prime\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> if <span class="math-tex" data-type="tex">\(y^2=x\)</span>.</p>
+<p>The equation <span class="math-tex" data-type="tex">\(y^2=x\)</span> defines two differentiable functions of <span class="math-tex" data-type="tex">\(x\)</span>; in this case we know them explicitly. They are <span class="math-tex" data-type="tex">\(y_1=\sqrt x\)</span> and <span class="math-tex" data-type="tex">\(y_2=-\sqrt x\)</span>, having derivatives defined for <span class="math-tex" data-type="tex">\(x&gt;0\)</span> by</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{2\sqrt x}\,.
+\]
+</div>
+<p>However, we can find the slope of the curve <span class="math-tex" data-type="tex">\(y^2=x\)</span> at any point <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> satisfying that equation without first solving the equation for <span class="math-tex" data-type="tex">\(y\)</span>. To find <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, we simply differentiate both sides of the equation <span class="math-tex" data-type="tex">\(y^2=x\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>, treating <span class="math-tex" data-type="tex">\(y\)</span> as a differentiable function of <span class="math-tex" data-type="tex">\(x\)</span> and using the Chain Rule to differentiate <span class="math-tex" data-type="tex">\(y^2\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(y^2\right)&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(x\right)\\
+2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=1\\
+\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{1}{2y}\,.
+\end{aligned}
+\]
+</div>
+<p>Observe that this agrees with the derivatives we calculated above for both of the explicit solutions <span class="math-tex" data-type="tex">\(y_1=\sqrt x\)</span> and <span class="math-tex" data-type="tex">\(y_2=-\sqrt x\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_1}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_2}=-\frac{1}{2\sqrt x}\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Find <span class="math-tex" data-type="tex">\(y^{\prime\prime}\)</span> if <span class="math-tex" data-type="tex">\(xy+y^2=2x\)</span>.</p>
+<p>Twice differentiate both sides of the given equation with respect to <span class="math-tex" data-type="tex">\(x\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+y+xy^\prime+2yy^\prime&=2\\
+y^\prime+y^\prime+xy^{\prime\prime}+2\left(y\prime\right)^2+2yy^{\prime\prime}&=0\,.
+\end{aligned}
+\]
+</div>
+<p>Now solve these equations for <span class="math-tex" data-type="tex">\(y^\prime\)</span> and <span class="math-tex" data-type="tex">\(y^{\prime\prime}\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+y^\prime&=\frac{2-y}{x+2y}\\
+y^{\prime\prime}&=-\frac{2y^\prime+2\left(y^\prime\right)^2}{x+2y}=-\frac{8}{\left(x+2y\right)^3}\,.
+\end{aligned}
+\]
+</div>
+</div>
+<p>Until now, we have only proven the General Power Rule</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^r=rx^{r-1}
+\]
+</div>
+<p>for integer exponents <span class="math-tex" data-type="tex">\(r\)</span> and a few special rational exponents such as <span class="math-tex" data-type="tex">\(r=\frac{1}{2}\)</span>. Using implicit differentiation, we can give the proof for any rational exponent <span class="math-tex" data-type="tex">\(r=\frac{m}{n}\)</span>, where <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span> are integers, and <span class="math-tex" data-type="tex">\(n\ne0\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(y=x^\frac{m}{n}\)</span>, then <span class="math-tex" data-type="tex">\(y^n=x^m\)</span>. Differentiating implicitly with respect to <span class="math-tex" data-type="tex">\(x\)</span>, we obtain</p>
+<div class="math-tex" data-type="equation">
+\[
+ny^{n-1}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=mx^{m-1}\,,
+\]
+</div>
+<p>so</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
+\]
+</div>
+<section data-type="sect1">
 <h1>The Mean-Value Theorem</h1>
 <p>If you set out in a car at 1:00 p.m. and arrive in a town 150 km away from your starting point at 3:00 p.m., then you have travelled at an average speed of <span class="math-tex" data-type="tex">\(\frac{150}{2}=75\)</span> km/h. Although you may not have travelled at constant speed, you must have been going 75 km/h at at least one instant during your journey, for if your speed was always less than 75 km/h you would have gone less than 150 km in 2 h, and if your speed was always more than 75 km/h, you would have gone more than 150 km in 2 h. In order to get from a value less than 75 km/h to a value greater than 75 km/h, your speed, which is a continuous function of time, must pass through the value 75 km/h at some intermediate time.</p>
 <p>The conclusion that the average speed over a time interval must be equal to the instantaneous speed at some time in that interval is an instance of an important mathematical principle. In geometric terms it says that if <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> are two points on a smooth curve, then there is at least one point <span class="math-tex" data-type="tex">\(C\)</span> on the curve between <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> where the tangent line is parallel to the chord line <span class="math-tex" data-type="tex">\(AB\)</span>.</p>
@@ -1807,6 +1892,106 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 </div>
 </div>
 <section data-type="sect1">
+<h1>Indeterminate Forms</h1>
+<p>We showed that</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim{x\to 0}\frac{\sin x}{x}=1
+\]
+</div>
+<p>We could not readily see this by substituting <span class="math-tex" data-type="tex">\(x=0\)</span> into the function <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> because both <span class="math-tex" data-type="tex">\(\sin x\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> are zero at <span class="math-tex" data-type="tex">\(x=0\)</span>. We call <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> an indeterminate form of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span> at <span class="math-tex" data-type="tex">\(x=0\)</span>. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:</p>
+<div class="math-tex" data-type="equation">
+\[
+\left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
+\]
+</div>
+<p>Indeterminate forms of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>are the most common. You can evaluate many indeterminate forms of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.</p>
+<div data-type="theorem">
+<h1>&nbsp;(The first l'Hôpital Rule)</h1>
+<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0\)</span> and</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</li>
+</ol>
+<p>Then</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\]
+</div>
+<p>Similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>We prove the case involving <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> for finite <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>Define</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x\right)=\begin{cases}
+	f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\quad\textrm{and}\quad
+G\left(x\right)=\begin{cases}
+	g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\,.
+\]
+</div>
+<p>Then, <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>and differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,x\right[\)</span> for every <span class="math-tex" data-type="tex">\(x\in \left]a,b\right[\)</span>.</p>
+<p>By the Generalized Mean-Value Theorem there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,x\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(a&lt;c&lt;x\)</span>, if <span class="math-tex" data-type="tex">\(x\to a^+\)</span>, then necessarily <span class="math-tex" data-type="tex">\(c\to a^+\)</span>, so we have</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+\]
+</div>
+<p>The case involving <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> for finite <span class="math-tex" data-type="tex">\(b\)</span> is proved similarly. The cases where <span class="math-tex" data-type="tex">\(a=-\infty\)</span> or <span class="math-tex" data-type="tex">\(b=\infty\)</span> follow from the cases already considered via the change of variable <span class="math-tex" data-type="tex">\(x=\frac{1}{t}\)</span>.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
+\]
+</div>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)=\lim_{x\to 0^+}\frac{\sin x-x}{x\sin x}=\lim_{x\to 0^+}\frac{\cos x-1}{\sin x+x\cos x}=\lim_{x\to 0^+}\frac{-\sin x}{2\cos x-x\sin x}=\frac{-0}{2}=0\,.
+\]
+</div>
+</div>
+<div data-type="theorem">
+<h1>&nbsp;(The second l'Hôpital Rule)</h1>
+<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty\)</span> and</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</li>
+</ol>
+<p>Then</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\]
+</div>
+<p>Again, similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+</div>
+<p>Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>or <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>; such attempts will almost always lead to false conclusions.</p>
+<section data-type="sect1">
 <h1>Extreme Values</h1>
 <p>The first derivative of a function is a source of much useful information about the behaviour of the function. As we have already seen, the sign of <span class="math-tex" data-type="tex">\(f\prime\)</span> tells us whether <span class="math-tex" data-type="tex">\(f\)</span> is increasing or decreasing.</p>
 <section data-type="sect2">
@@ -2035,106 +2220,6 @@ f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
 </div>
 <p>it follows that <span class="math-tex" data-type="tex">\(f^\prime\left(x_0+h\right) &lt; 0\)</span> for all sufficiently small positive <span class="math-tex" data-type="tex">\(h\)</span>, and <span class="math-tex" data-type="tex">\(f^\prime\left(x_0+h\right) &gt; 0\)</span> for all sufficiently small negative <span class="math-tex" data-type="tex">\(h\)</span>. By the first derivative test, <span class="math-tex" data-type="tex">\(f\)</span> must have a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>. The proof of the local minimum case is similar.</p>
 </div>
-<section data-type="sect1">
-<h1>Indeterminate Forms</h1>
-<p>We showed that</p>
-<div class="math-tex" data-type="equation">
-\[
-\lim{x\to 0}\frac{\sin x}{x}=1
-\]
-</div>
-<p>We could not readily see this by substituting <span class="math-tex" data-type="tex">\(x=0\)</span> into the function <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> because both <span class="math-tex" data-type="tex">\(\sin x\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> are zero at <span class="math-tex" data-type="tex">\(x=0\)</span>. We call <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> an indeterminate form of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span> at <span class="math-tex" data-type="tex">\(x=0\)</span>. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:</p>
-<div class="math-tex" data-type="equation">
-\[
-\left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
-\]
-</div>
-<p>Indeterminate forms of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>are the most common. You can evaluate many indeterminate forms of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.</p>
-<div data-type="theorem">
-<h1>&nbsp;(The first l'Hôpital Rule)</h1>
-<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
-<ol>
-<li>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0\)</span> and</p>
-</li>
-<li>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
-</li>
-</ol>
-<p>Then</p>
-<div class="math-tex" data-type="equation">
-\[
-lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
-\]
-</div>
-<p>Similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
-</div>
-<div data-type="proof">
-<h1></h1>
-<p>We prove the case involving <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> for finite <span class="math-tex" data-type="tex">\(a\)</span>.</p>
-<p>Define</p>
-<div class="math-tex" data-type="equation">
-\[
-F\left(x\right)=\begin{cases}
-	f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
-	0&\textrm{if }x=a
-\end{cases}\quad\textrm{and}\quad
-G\left(x\right)=\begin{cases}
-	g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
-	0&\textrm{if }x=a
-\end{cases}\,.
-\]
-</div>
-<p>Then, <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>and differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,x\right[\)</span> for every <span class="math-tex" data-type="tex">\(x\in \left]a,b\right[\)</span>.</p>
-<p>By the Generalized Mean-Value Theorem there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,x\right[\)</span> such that</p>
-<div class="math-tex" data-type="equation">
-\[
-\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
-\]
-</div>
-<p>Since <span class="math-tex" data-type="tex">\(a&lt;c&lt;x\)</span>, if <span class="math-tex" data-type="tex">\(x\to a^+\)</span>, then necessarily <span class="math-tex" data-type="tex">\(c\to a^+\)</span>, so we have</p>
-<div class="math-tex" data-type="equation">
-\[
-lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
-\]
-</div>
-<p>The case involving <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> for finite <span class="math-tex" data-type="tex">\(b\)</span> is proved similarly. The cases where <span class="math-tex" data-type="tex">\(a=-\infty\)</span> or <span class="math-tex" data-type="tex">\(b=\infty\)</span> follow from the cases already considered via the change of variable <span class="math-tex" data-type="tex">\(x=\frac{1}{t}\)</span>.</p>
-</div>
-<div data-type="example">
-<h1></h1>
-<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}\)</span>.</p>
-<div class="math-tex" data-type="equation">
-\[
-\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
-\]
-</div>
-<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)\)</span>.</p>
-<div class="math-tex" data-type="equation">
-\[
-\lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)=\lim_{x\to 0^+}\frac{\sin x-x}{x\sin x}=\lim_{x\to 0^+}\frac{\cos x-1}{\sin x+x\cos x}=\lim_{x\to 0^+}\frac{-\sin x}{2\cos x-x\sin x}=\frac{-0}{2}=0\,.
-\]
-</div>
-</div>
-<div data-type="theorem">
-<h1>&nbsp;(The second l'Hôpital Rule)</h1>
-<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
-<ol>
-<li>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty\)</span> and</p>
-</li>
-<li>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
-</li>
-</ol>
-<p>Then</p>
-<div class="math-tex" data-type="equation">
-\[
-lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
-\]
-</div>
-<p>Again, similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
-</div>
-<p>Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>or <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>; such attempts will almost always lead to false conclusions.</p>
 <section data-type="sect1">
 <h1>Taylor Polynomials</h1>
 <section data-type="sect2">
@@ -2393,17 +2478,35 @@ E_{k-1}\left(x\right)=\frac{f^{\left(k\right)}\left(s\right)}{k!}\left(x-a\right
 \]
 </div>
 <p>where <span class="math-tex" data-type="tex">\(s\)</span> os some number between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>.</p>
-<p>Let us conisder the next higher case: <span class="math-tex" data-type="tex">\(n=k\)</span>. We assume <span class="math-tex" data-type="tex">\(x&gt;a\)</span>(the case <span class="math-tex" data-type="tex">\(x&lt;a\)</span> is similar) and apply the generalized Mean-Value Theorem to the functions <span class="math-tex" data-type="tex">\(E_k\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(t-a\right)^{k+1}\)</span> on <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>. Since <span class="math-tex" data-type="tex">\(E_k\left(a\right)=0\)</span>, we obtain a number <span class="math-tex" data-type="tex">\(u\in\left]a,x\right[\)</span> such that</p>
+<p>Let us conisder the next higher case: <span class="math-tex" data-type="tex">\(n=k\)</span>. We assume <span class="math-tex" data-type="tex">\(x&gt;a\)</span> (the case <span class="math-tex" data-type="tex">\(x&lt;a\)</span> is similar) and apply the generalized Mean-Value Theorem to the functions <span class="math-tex" data-type="tex">\(E_k\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(t-a\right)^{k+1}\)</span> on <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>. Since <span class="math-tex" data-type="tex">\(E_k\left(a\right)=0\)</span>, we obtain a number <span class="math-tex" data-type="tex">\(u\in\left]a,x\right[\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
 \frac{E_k\left(x\right)}{\left(x-a\right)^{k+1}}=\frac{E_k\left(x\right)-E_k\left(a\right)}{\left(x-a\right)^{k+1}-\left(a-a\right)^{k+1}}=\frac{E_k^\prime\left(u\right)}{\left(k+1\right)\left(u-a\right)^{k}}\,.
 \]
 </div>
-<div id="tag"></div>
 <p>Now,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+E_k^\prime\left(u\right)&=\left.\frac{\mathrm{d}\kern-0.1pt\hphantom{t}}{\mathrm{d}\kern-0.1pt t}\left(f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)-\frac{f^{\prime\prime}\left(a\right)}{2}\left(t-a\right)^2-\cdots-\frac{f^{\left(k\right)}\left(a\right)}{k!}\left(t-a\right)^k\right)\right|_{t=u}\\
+&=f^\prime\left(t\right)-f^\prime\left(a\right)-f^{\prime\prime}\left(a\right)\left(u-a\right)-\cdots-\frac{f^{\left(k\right)}\left(a\right)}{\left(k-1\right)!}\left(u-a\right)^{k-1}\,.
+\end{aligned}
+\]
 </div>
-<section data-type="sect1">
-<h1>Implicit Differentiation</h1>
+<p>This last expression is just <span class="math-tex" data-type="tex">\(E_{k-1}\left(u\right)\)</span> for the function <span class="math-tex" data-type="tex">\(f^\prime\)</span> instead of <span class="math-tex" data-type="tex">\(f\)</span>. By the induction assumption it is equal to</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\left(f^\prime\right)^{\left(k\right)}\left(s\right)}{k!}\left(u-a\right)^k=\frac{f^{\left(k+1\right)}\left(s\right)}{k!}\left(u-a\right)^k
+\]
+</div>
+<p>for some <span class="math-tex" data-type="tex">\(s\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(u\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+E_k\left(x\right)=\frac{f^{\left(k+1\right)}\left(s\right)}{\left(k+1\right)!}\left(x-a\right)^{k+1}\,.
+\]
+</div>
+<p>We have shown that the case <span class="math-tex" data-type="tex">\(n=k\)</span> of Taylor’s Theorem is true if the case <span class="math-tex" data-type="tex">\(n=k-1\)</span> is true, and the inductive proof is complete.</p>
+</div>
 <section data-type="sect1">
 <h1>Antiderivatives</h1>
 </section>

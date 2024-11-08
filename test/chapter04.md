@@ -1110,6 +1110,80 @@ P\left(x\right)=a_nx^2+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\,,
 ```
 where ``a_n, a_{n-1}, \dots, a_1, a_0`` are constants, then ``P^{\left(k\right)}\left(x\right)=0`` for ``k&gt;n``. For ``k\le n``, ``P^{\left(k\right)}`` is a polynomial of degree ``n-k``; in particular, ``P^{\left(n\right)}\left(x\right)=n!a_n``, a constant function.
 
+## Implicit Differentiation
+
+We know how to find the slope of a curve that is the graph of a function ``y=f\left(x\right)`` by calculating the derivative of ``f``. But not all curves are the graphs of such functions. To be the graph of a function ``f\left(x\right)``, the curve must not intersect any vertical lines at more than one point.
+
+Curves are generally the graphs of equations in two variables. Such equations can be written in the form
+```math
+F\left(x,y\right)=0\,,
+```
+where ``F\left(x,y\right)`` denotes an expression involving the two variables ``x`` and ``y``. For example, a circle with centre at the origin and radius ``5`` has equation
+```math
+x^2+y^2=25
+```
+so ``F\left(x,y\right)=x^2+y^2-25`` for that circle.
+
+Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find explicit formulas for one or more functions ``y=f\left(x\right)`` defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of ``x`` implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` of these implicit solutions by a technique called *implicit differentiation*. The idea is to differentiate the given equation with respect to ``x``, regarding ``y`` as a function of ``x`` having derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, or ``y^\prime``.
+
+!!! example
+
+	Find ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` if ``y^2=x``.
+
+	The equation ``y^2=x`` defines two differentiable functions of ``x``; in this case we know them explicitly. They are ``y_1=\sqrt x`` and ``y_2=-\sqrt x``, having derivatives defined for ``x&gt;0`` by
+	```math
+	\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{2\sqrt x}\,.
+	```
+
+	However, we can find the slope of the curve ``y^2=x`` at any point ``\left(x,y\right)`` satisfying that equation without first solving the equation for ``y``. To find ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, we simply differentiate both sides of the equation ``y^2=x`` with respect to ``x``, treating ``y`` as a differentiable function of ``x`` and using the Chain Rule to differentiate ``y^2``:
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(y^2\right)&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(x\right)\\
+	2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=1\\
+	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{1}{2y}\,.
+	\end{aligned}
+	```
+
+	Observe that this agrees with the derivatives we calculated above for both of the explicit solutions ``y_1=\sqrt x`` and ``y_2=-\sqrt x``:
+	```math
+	\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_1}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_2}=-\frac{1}{2\sqrt x}\,.
+	```
+
+!!! example
+
+	Find ``y^{\prime\prime}`` if ``xy+y^2=2x``.
+
+	Twice differentiate both sides of the given equation with respect to ``x``:
+	```math
+	\begin{aligned}
+	y+xy^\prime+2yy^\prime&=2\\
+	y^\prime+y^\prime+xy^{\prime\prime}+2\left(y\prime\right)^2+2yy^{\prime\prime}&=0\,.
+	\end{aligned}
+	```
+
+	Now solve these equations for ``y^\prime`` and ``y^{\prime\prime}``.
+	```math
+	\begin{aligned}
+	y^\prime&=\frac{2-y}{x+2y}\\
+	y^{\prime\prime}&=-\frac{2y^\prime+2\left(y^\prime\right)^2}{x+2y}=-\frac{8}{\left(x+2y\right)^3}\,.
+	\end{aligned}
+	```
+
+Until now, we have only proven the General Power Rule
+```math
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^r=rx^{r-1}
+```
+for integer exponents ``r`` and a few special rational exponents such as ``r=\frac{1}{2}``. Using implicit differentiation, we can give the proof for any rational exponent ``r=\frac{m}{n}``, where ``m`` and ``n`` are integers, and ``n\ne0``.
+
+If ``y=x^\frac{m}{n}``, then ``y^n=x^m``. Differentiating implicitly with respect to ``x``, we obtain
+```math
+ny^{n-1}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=mx^{m-1}\,,
+```
+so
+```math
+\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
+```
+
 ## The Mean-Value Theorem
 
 If you set out in a car at 1:00 p.m. and arrive in a town 150 km away from your starting point at 3:00 p.m., then you have travelled at an average speed of ``\frac{150}{2}=75`` km/h. Although you may not have travelled at constant speed, you must have been going 75 km/h at at least one instant during your journey, for if your speed was always less than 75 km/h you would have gone less than 150 km in 2 h, and if your speed was always more than 75 km/h, you would have gone more than 150 km in 2 h. In order to get from a value less than 75 km/h to a value greater than 75 km/h, your speed, which is a continuous function of time, must pass through the value 75 km/h at some intermediate time.
@@ -1362,6 +1436,92 @@ end
 	\left(f^{-1}\right)^\prime\left(10\right)=\left.\frac{1}{3y^2+1}\right|_{y=2}=\frac{1}{13}\,.
 	```
 
+## Indeterminate Forms
+
+We showed that
+```math
+\lim{x\to 0}\frac{\sin x}{x}=1
+```
+
+We could not readily see this by substituting ``x=0`` into the function ``\frac{\sin x}{x}`` because both ``\sin x`` and ``x`` are zero at ``x=0``. We call ``\frac{\sin x}{x}`` an indeterminate form of type ``\left[\frac{0}{0}\right]`` at ``x=0``. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:
+```math
+\left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
+```
+
+Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. You can evaluate many indeterminate forms of type ``\left[\frac{0}{0}\right]``with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types ``\left[\frac{0}{0}\right]``and ``\left[\frac{\infty}{\infty}\right]``. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.
+
+!!! theorem "The first l'Hôpital Rule"
+
+	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
+	1. ``\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0`` and
+	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
+
+	Then
+	```math
+	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+	```
+
+	Similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+
+!!! proof
+
+	We prove the case involving ``lim_{x\to a^+}`` for finite ``a``. 
+	
+	Define
+	```math
+	F\left(x\right)=\begin{cases}
+		f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+		0&\textrm{if }x=a
+	\end{cases}\quad\textrm{and}\quad
+	G\left(x\right)=\begin{cases}
+		g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+		0&\textrm{if }x=a
+	\end{cases}\,.
+	```
+
+	Then, ``F`` and ``G`` are continuous on the interval ``\left[a,x\right]``and differentiable on the interval ``\left]a,x\right[`` for every ``x\in \left]a,b\right[``. 
+	
+	By the Generalized Mean-Value Theorem there exists a number ``c \in \left]a,x\right[`` such that
+	```math
+	\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
+	```
+
+	Since ``a&lt;c&lt;x``, if ``x\to a^+``, then necessarily ``c\to a^+``, so we have
+	```math
+	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+	```
+
+	The case involving ``lim_{x\to b^-}`` for finite ``b`` is proved similarly. The cases where ``a=-\infty`` or ``b=\infty`` follow from the cases already considered via the change of variable ``x=\frac{1}{t}``.
+
+!!! example
+
+	Evaluate ``\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}``.
+
+	```math
+	\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
+	```
+
+	Evaluate ``\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)``.
+
+	```math
+	\lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)=\lim_{x\to 0^+}\frac{\sin x-x}{x\sin x}=\lim_{x\to 0^+}\frac{\cos x-1}{\sin x+x\cos x}=\lim_{x\to 0^+}\frac{-\sin x}{2\cos x-x\sin x}=\frac{-0}{2}=0\,.
+	```
+
+!!! theorem "The second l'Hôpital Rule"
+
+	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
+	1. ``\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty`` and
+	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
+
+	Then
+	```math
+	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+	```
+
+	Again, similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+
+Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]``or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
+
 ## Extreme Values
 
 The first derivative of a function is a source of much useful information about the behaviour of the function. As we have already seen, the sign of ``f\prime`` tells us whether ``f`` is increasing or decreasing.
@@ -1574,92 +1734,6 @@ A function ``f`` will have a local maximum (or minimum) value at a critical poin
 	```
 	it follows that ``f^\prime\left(x_0+h\right) &lt; 0`` for all sufficiently small positive ``h``, and ``f^\prime\left(x_0+h\right) &gt; 0`` for all sufficiently small negative ``h``. By the first derivative test, ``f`` must have a local maximum value at ``x_0``. The proof of the local minimum case is similar.
 
-## Indeterminate Forms
-
-We showed that
-```math
-\lim{x\to 0}\frac{\sin x}{x}=1
-```
-
-We could not readily see this by substituting ``x=0`` into the function ``\frac{\sin x}{x}`` because both ``\sin x`` and ``x`` are zero at ``x=0``. We call ``\frac{\sin x}{x}`` an indeterminate form of type ``\left[\frac{0}{0}\right]`` at ``x=0``. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:
-```math
-\left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
-```
-
-Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. You can evaluate many indeterminate forms of type ``\left[\frac{0}{0}\right]``with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types ``\left[\frac{0}{0}\right]``and ``\left[\frac{\infty}{\infty}\right]``. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.
-
-!!! theorem "The first l'Hôpital Rule"
-
-	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
-	1. ``\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0`` and
-	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
-
-	Then
-	```math
-	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
-	```
-
-	Similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
-
-!!! proof
-
-	We prove the case involving ``lim_{x\to a^+}`` for finite ``a``. 
-	
-	Define
-	```math
-	F\left(x\right)=\begin{cases}
-		f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
-		0&\textrm{if }x=a
-	\end{cases}\quad\textrm{and}\quad
-	G\left(x\right)=\begin{cases}
-		g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
-		0&\textrm{if }x=a
-	\end{cases}\,.
-	```
-
-	Then, ``F`` and ``G`` are continuous on the interval ``\left[a,x\right]``and differentiable on the interval ``\left]a,x\right[`` for every ``x\in \left]a,b\right[``. 
-	
-	By the Generalized Mean-Value Theorem there exists a number ``c \in \left]a,x\right[`` such that
-	```math
-	\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
-	```
-
-	Since ``a&lt;c&lt;x``, if ``x\to a^+``, then necessarily ``c\to a^+``, so we have
-	```math
-	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
-	```
-
-	The case involving ``lim_{x\to b^-}`` for finite ``b`` is proved similarly. The cases where ``a=-\infty`` or ``b=\infty`` follow from the cases already considered via the change of variable ``x=\frac{1}{t}``.
-
-!!! example
-
-	Evaluate ``\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}``.
-
-	```math
-	\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
-	```
-
-	Evaluate ``\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)``.
-
-	```math
-	\lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)=\lim_{x\to 0^+}\frac{\sin x-x}{x\sin x}=\lim_{x\to 0^+}\frac{\cos x-1}{\sin x+x\cos x}=\lim_{x\to 0^+}\frac{-\sin x}{2\cos x-x\sin x}=\frac{-0}{2}=0\,.
-	```
-
-!!! theorem "The second l'Hôpital Rule"
-
-	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
-	1. ``\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty`` and
-	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
-
-	Then
-	```math
-	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
-	```
-
-	Again, similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
-
-Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]``or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
-
 ## Taylor Polynomials
 
 ### Linear Approximations
@@ -1833,13 +1907,29 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	```
 	where ``s`` os some number between ``a`` and ``x``.
 
-	Let us conisder the next higher case: ``n=k``. We assume ``x&gt;a``(the case ``x&lt;a`` is similar) and apply the generalized Mean-Value Theorem to the functions ``E_k\left(t\right)`` and ``\left(t-a\right)^{k+1}`` on ``\left[a,x\right]``. Since ``E_k\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
+	Let us conisder the next higher case: ``n=k``. We assume ``x&gt;a`` (the case ``x&lt;a`` is similar) and apply the generalized Mean-Value Theorem to the functions ``E_k\left(t\right)`` and ``\left(t-a\right)^{k+1}`` on ``\left[a,x\right]``. Since ``E_k\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
 	```math
 	\frac{E_k\left(x\right)}{\left(x-a\right)^{k+1}}=\frac{E_k\left(x\right)-E_k\left(a\right)}{\left(x-a\right)^{k+1}-\left(a-a\right)^{k+1}}=\frac{E_k^\prime\left(u\right)}{\left(k+1\right)\left(u-a\right)^{k}}\,.
 	```
 
 	Now,
+	```math
+	\begin{aligned}
+	E_k^\prime\left(u\right)&=\left.\frac{\mathrm{d}\kern-0.1pt\hphantom{t}}{\mathrm{d}\kern-0.1pt t}\left(f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)-\frac{f^{\prime\prime}\left(a\right)}{2}\left(t-a\right)^2-\cdots-\frac{f^{\left(k\right)}\left(a\right)}{k!}\left(t-a\right)^k\right)\right|_{t=u}\\
+	&=f^\prime\left(t\right)-f^\prime\left(a\right)-f^{\prime\prime}\left(a\right)\left(u-a\right)-\cdots-\frac{f^{\left(k\right)}\left(a\right)}{\left(k-1\right)!}\left(u-a\right)^{k-1}\,.
+	\end{aligned}
+	```
 	
-## Implicit Differentiation
+	This last expression is just ``E_{k-1}\left(u\right)`` for the function ``f^\prime`` instead of ``f``. By the induction assumption it is equal to
+	```math
+	\frac{\left(f^\prime\right)^{\left(k\right)}\left(s\right)}{k!}\left(u-a\right)^k=\frac{f^{\left(k+1\right)}\left(s\right)}{k!}\left(u-a\right)^k
+	```
+	for some ``s`` between ``a`` and ``u``. Therefore,
+	```math
+	E_k\left(x\right)=\frac{f^{\left(k+1\right)}\left(s\right)}{\left(k+1\right)!}\left(x-a\right)^{k+1}\,.
+	```
+
+	We have shown that the case ``n=k`` of Taylor’s Theorem is true if the case ``n=k-1`` is true, and the inductive proof is complete.
+
 
 ## Antiderivatives
