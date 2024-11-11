@@ -1440,7 +1440,7 @@ end
 
 We showed that
 ```math
-\lim{x\to 0}\frac{\sin x}{x}=1
+\lim_{x\to 0}\frac{\sin x}{x}=1
 ```
 
 We could not readily see this by substituting ``x=0`` into the function ``\frac{\sin x}{x}`` because both ``\sin x`` and ``x`` are zero at ``x=0``. We call ``\frac{\sin x}{x}`` an indeterminate form of type ``\left[\frac{0}{0}\right]`` at ``x=0``. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:
@@ -1461,11 +1461,11 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 	```
 
-	Similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+	Similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
 
 !!! proof
 
-	We prove the case involving ``lim_{x\to a^+}`` for finite ``a``. 
+	We prove the case involving ``\lim_{x\to a^+}`` for finite ``a``. 
 	
 	Define
 	```math
@@ -1488,10 +1488,10 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 
 	Since ``a&lt;c&lt;x``, if ``x\to a^+``, then necessarily ``c\to a^+``, so we have
 	```math
-	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+	\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=\lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
 	```
 
-	The case involving ``lim_{x\to b^-}`` for finite ``b`` is proved similarly. The cases where ``a=-\infty`` or ``b=\infty`` follow from the cases already considered via the change of variable ``x=\frac{1}{t}``.
+	The case involving ``\lim_{x\to b^-}`` for finite ``b`` is proved similarly. The cases where ``a=-\infty`` or ``b=\infty`` follow from the cases already considered via the change of variable ``x=\frac{1}{t}``.
 
 !!! example
 
@@ -1515,10 +1515,10 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 
 	Then
 	```math
-	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+	\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 	```
 
-	Again, similar results hold if every occurrence of ``lim_{x\to a^+}`` is replaced by ``lim_{x\to b^-}`` or even ``lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+	Again, similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
 
 Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]``or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
 
@@ -1536,8 +1536,7 @@ Recall that a function has a maximum value at ``x0`` if ``f\left(x\right)\le f\l
 
 	Similarly, ``f`` has an *absolute minimum value* ``f\left(x_1\right)`` at the point ``x_1`` in its domain if ``f\left(x\right)\ge f\left(x_1\right)`` holds for every ``x`` in the domain of ``f``.
 
-Maximum and minimum values of a function are collectively referred to as *extreme values*. The following theorem is a restatement (and slight generalization) of
-the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.
+Maximum and minimum values of a function are collectively referred to as *extreme values*. The following theorem is a restatement (and slight generalization) of the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.
 
 !!! theorem
 
@@ -1575,8 +1574,7 @@ Although a function cannot have extreme values anywhere other than at endpoints,
 
 ### Finding Absolute Extreme Values
 
-If a function ``f`` is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that ``f`` must have an absolute maximum value and an
-absolute minimum value. The last theorem tells us how to find them. We need only check the values of ``f`` at any critical points, singular points, and endpoints.
+If a function ``f`` is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that ``f`` must have an absolute maximum value and an absolute minimum value. The last theorem tells us how to find them. We need only check the values of ``f`` at any critical points, singular points, and endpoints.
 
 !!! example
 
@@ -1648,25 +1646,22 @@ If the function ``f`` is not defined on a closed, finite interval, then the exte
 !!! theorem
 
 	If ``f`` is continuous on the open interval ``\left]a,b\right[``, and if
-
 	```math
 	\lim_{x\to a^+}f\left(x\right)=L\quad\textrm{and}\quad\lim_{x\to b^-}f\left(x\right)=M\,,
 	```
-
 	then the following conclusions hold:
-
 	- If ``f\left(u\right)&gt;L`` and ``f\left(u\right)&gt;M`` for some ``u\in\left]a,b\right[``, then ``f`` has an absolute maximum value on ``\left]a,b\right[``.
-
 	- If ``f\left(u\right)&lt;L`` and ``f\left(u\right)&lt;M`` for some ``u\in\left]a,b\right[``, then ``f`` has an absolute minimum value on ``\left]a,b\right[``.
 
 	In this theorem ``a`` may be ``-\infty``, in which case ``\lim_{x\to a^+}`` should be replaced with ``\lim_{x\to -\infty}``, and ``b`` may be ``\infty``, in which case ``\lim_{x\to b^-}`` should be replaced with ``\lim_{x\to \infty}``.
+	
 	Also, either or both of ``L`` and ``M`` may be either ``\infty`` or ``-\infty``.
 
 !!! proof
 
 	We prove the first part; the proof of the second part is similar. We are given that there is a number ``u\in\left]a,b\right[`` such that ``f\left(u\right)&gt;L`` and ``f\left(u\right)&gt;M``. Here, ``L`` and ``M`` may be finite numbers or ``-\infty``. 
 	
-	Since ``lim_{x\to a^+}f\left(x\right)=L``, there must exist a number ``x_1\in\left]a,u\right[`` such that
+	Since ``\lim_{x\to a^+}f\left(x\right)=L``, there must exist a number ``x_1\in\left]a,u\right[`` such that
 	```math
 	f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad a&lt;x&lt;x_1\,.
 	```
@@ -1793,7 +1788,9 @@ The following theorem gives us a way to estimate this error if we know bounds fo
 	```math
 	\frac{E\left(x\right)}{\left(x-a\right)^2}=\frac{E\left(x\right)-E\left(a\right)}{\left(x-a\right)^2-\left(a-a\right)^2}=\frac{E^\prime\left(u\right)}{2\left(u-a\right)}=\frac{f^\prime\left(u\right)-f^\prime\left(a\right)}{2\left(u-a\right)}=\frac{1}{2}f^{\prime\prime}\left(s\right)
 	```
-	for some ``s\in\left]a,u\right[``; the latter expression is a consequence of applying the Mean-Value Theorem again, this time to ``f^\prime`` on ``\left[a,u\right]``. Thus,
+	for some ``s\in\left]a,u\right[``; the latter expression is a consequence of applying the Mean-Value Theorem again, this time to ``f^\prime`` on ``\left[a,u\right]``. 
+	
+	Thus,
 	```math
 	E\left(x\right)=\frac{f^{\prime\prime}\left(s\right)}{2}\left(x-a\right)^2\,.
 	```
@@ -1807,6 +1804,7 @@ The following theorem gives us a way to estimate this error if we know bounds fo
 	```math
 	L\left(x\right)=5+\frac{1}{10}\left(x-25\right)
 	```
+
 	Putting ``x=26``, we get
 	```math
 	\sqrt{26}=f\left(26\right)\approx L\left(26\right)=5+\frac{1}{10}\left(26-25\right)=5.1\,.
@@ -1816,6 +1814,7 @@ The following theorem gives us a way to estimate this error if we know bounds fo
 	```math
 	\left|E\left(26\right)\right|&lt;\frac{1}{2}\frac{1}{500}\left(26-25\right)^2=\frac{1}{1000}=0.001\,.
 	```
+	
 	Therefore, ``f\left(26\right)&gt;L\left(26\right)-0.001=5.099``, and ``\sqrt{26}`` is in the interval ``\left]5.099, 5.1\right[``.
 
 ### Higher Order Approximations
@@ -1849,6 +1848,7 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	```math
 	f^\prime\left(x\right)=\frac{1}{2}x^{-\frac{1}{2}}\,,\quad f^{\prime\prime}\left(x\right)=-\frac{1}{4}x^{-\frac{3}{2}}\,,\quad f^{\left(3\right)}\left(x\right)=\frac{3}{8}x^{-\frac{5}{2}}\,.
 	```
+
 	Thus,
 	```math
 	\begin{aligned}
@@ -1931,5 +1931,81 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 
 	We have shown that the case ``n=k`` of Taylor’s Theorem is true if the case ``n=k-1`` is true, and the inductive proof is complete.
 
-
 ## Antiderivatives
+
+Throughout this chapter we have been concerned with the problem of finding the derivative ``f^\prime`` of a given function ``f``. The reverse problem—given the derivative ``f^\prime``, find ``f``—is also interesting and important. It is the problem studied in integral calculus and is generally more difficult to solve than the problem of finding a derivative. We will take a preliminary look at this problem in this section and will return to it in more detail in Chapter 6.
+
+We begin by defining an *antiderivative* of a function ``f`` to be a function ``F`` whose derivative is ``f``: It is appropriate to require that ``F^\prime\left(x\right)=f\left(x\right)`` on an interval.
+
+!!! definition
+
+	An antiderivative of a function ``f`` on an interval ``I`` is another function ``F`` satisfying
+	```math
+	F^\prime\left(x\right)=f\left(x\right)
+	```
+	for ``x\in I``.
+
+Antiderivatives are not unique; since a constant has derivative zero, you can always add any constant to an antiderivative ``F`` of a function ``f`` on an interval and get another antiderivative of ``f`` on that interval. More importantly, all antiderivatives of ``f`` on an interval can be obtained by adding constants to any particular one. If ``F`` and ``G`` are both antiderivatives of ``f`` on an interval ``I``, then
+```math
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(G\left(x\right)-F\left(x\right)\right)=f\left(x\right)-f\left(x\right)=0
+```
+on ``I``, so ``G\left(x\right)-F\left(x\right)=C`` (a constant) on I. Thus, ``G\left(x\right)=F\left(x\right)+C`` on ``I``.
+
+Note that this conclusion is not valid over a set that is not an interval. For example, the derivative of
+```math
+\operatorname{sgn}\left(x\right)=\begin{cases}
+	\hphantom{-}1\,,&\textrm{if } x&gt;0\\
+	-1\,,&\textrm{if } x&lt;0\,.
+	\end{cases}
+```
+is ``0`` for all ``x\ne0``, but ``\operatorname{sgn}\left(x\right)`` is not constant for all ``x\ne 0``.
+
+The general antiderivative of a function  ``f\left(x\right)`` on an interval ``I`` is ``F\left(x\right)+C``, where ``F\left(x\right)`` is any particular antiderivative of ``f\left(x\right)`` on ``I`` and ``C`` is a constant. This general antiderivative is called the *indefinite integral* of ``f\left(x\right)`` on ``I`` and is denoted ``\int f\left(x\right)\,\mathrm d\kern-0.5pt x``.
+
+!!! definition
+
+	The indefinite integral of ``f\left(x\right)`` on interval ``I`` is
+	```math
+	\int f\left(x\right)\,\mathrm d\kern-0.5pt x=F\left(x\right)+C
+	```
+	on ``I``, provided ``F^\prime\left(x\right)=f\left(x\right)`` for all ``x\in I``.
+
+The symbol ``\int`` is called an *integral sign*. It is shaped like an elongated “S” for reasons that will only become apparent when we study the definite integral in Chapter 6. Just as you regard ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` as a single symbol representing the derivative of ``y`` with respect to ``x``, so you should regard ``\int f\left(x\right)\,\mathrm d\kern-0.5pt x`` as a single symbol representing the indefinite integral (general antiderivative) of ``f`` with respect to ``x``. The constant ``C`` is called a *constant of integration*.
+
+Finding antiderivatives is generally more difficult than finding derivatives; many functions do not have antiderivatives that can be expressed as combinations of finitely many elementary functions. However, every formula for a derivative can be rephrased as a formula for an antiderivative. For instance,
+```math
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,;\quad\textrm{therefore,}\quad\int\cos x\,\mathrm d\kern-0.5pt x=\sin x+C\,.
+```
+
+We will develop several techniques for finding antiderivatives in later chapters. Until then, we must content ourselves with being able to write a few simple antiderivatives based on the known derivatives of elementary functions:
+```math
+\begin{align}
+&\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
+&\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
+&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C&&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
+&\int \sin x\,\mathrm{d}\kern-0.5pt x=-\cos x+C&&\int\cos x\, \mathrm{d}\kern-0.5pt x=\sin x+C\\
+&\int \sec^2 x\,\mathrm{d}\kern-0.5pt x=-\tan x+C&&\int\csc^2 x\, \mathrm{d}\kern-0.5pt x=-\cot x+C
+\end{align}
+```
+
+For the moment, ``r`` must be rational, but this restriction will be removed in the next chapter.
+
+The rule for differentiating sums and constant multiples of functions translates into a similar rule for antiderivatives
+
+The graphs of the different antiderivatives of the same function on the same interval are vertically displaced versions of the same curve. In
+general, only one of these curves will pass through any given point, so we can obtain a unique antiderivative of a given function on an interval by requiring the antiderivative to take a prescribed value at a particular point ``x``.
+
+!!! example
+
+	Find the function ``f\left(x\right)`` whose derivative is ``f^\prime\left(x\right)=6x^2-1`` for all real ``x`` and for which ``f\left(2\right)=10``.
+
+	Since ``f^\prime\left(x\right)=6x^2-1``, we have
+	```math
+	f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d}\kern-0.5pt x=2x^3-x+C
+	```
+	for some constant ``C``. Since ``f\left(2\right)=10``, we have
+	```math
+	10=f\left(2\right)=16-2+C\,.
+	```
+
+	Thus, ``C=-4`` and ``f\left(x\right)=2x^3-x-4``.

@@ -6,7 +6,8 @@ files = [
     "chapter01.md",
     "chapter02.md",
     "chapter03.md",
-    "chapter04.md"
+    "chapter04.md",
+    "chapter05.md"
 ]
 output = "book.html"
 +++

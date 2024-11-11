@@ -1484,7 +1484,6 @@ P\left(x\right)=a_nx^2+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\,,
 </div>
 <p>where <span class="math-tex" data-type="tex">\(a_n, a_{n-1}, \dots, a_1, a_0\)</span> are constants, then <span class="math-tex" data-type="tex">\(P^{\left(k\right)}\left(x\right)=0\)</span> for <span class="math-tex" data-type="tex">\(k&gt;n\)</span>. For <span class="math-tex" data-type="tex">\(k\le n\)</span>, <span class="math-tex" data-type="tex">\(P^{\left(k\right)}\)</span> is a polynomial of degree <span class="math-tex" data-type="tex">\(n-k\)</span>; in particular, <span class="math-tex" data-type="tex">\(P^{\left(n\right)}\left(x\right)=n!a_n\)</span>, a constant function.</p>
 <section data-type="sect1">
-<div id="tag"></div>
 <h1>Implicit Differentiation</h1>
 <p>We know how to find the slope of a curve that is the graph of a function <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> by calculating the derivative of <span class="math-tex" data-type="tex">\(f\)</span>. But not all curves are the graphs of such functions. To be the graph of a function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span>, the curve must not intersect any vertical lines at more than one point.</p>
 <p>Curves are generally the graphs of equations in two variables. Such equations can be written in the form</p>
@@ -1896,7 +1895,7 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <p>We showed that</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim{x\to 0}\frac{\sin x}{x}=1
+\lim_{x\to 0}\frac{\sin x}{x}=1
 \]
 </div>
 <p>We could not readily see this by substituting <span class="math-tex" data-type="tex">\(x=0\)</span> into the function <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> because both <span class="math-tex" data-type="tex">\(\sin x\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> are zero at <span class="math-tex" data-type="tex">\(x=0\)</span>. We call <span class="math-tex" data-type="tex">\(\frac{\sin x}{x}\)</span> an indeterminate form of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span> at <span class="math-tex" data-type="tex">\(x=0\)</span>. The limit of such an indeterminate form can be any number. There are other types of indeterminate forms:</p>
@@ -1923,11 +1922,11 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 \]
 </div>
-<p>Similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+<p>Similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(\lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>We prove the case involving <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> for finite <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>We prove the case involving <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> for finite <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 <p>Define</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1951,10 +1950,10 @@ G\left(x\right)=\begin{cases}
 <p>Since <span class="math-tex" data-type="tex">\(a&lt;c&lt;x\)</span>, if <span class="math-tex" data-type="tex">\(x\to a^+\)</span>, then necessarily <span class="math-tex" data-type="tex">\(c\to a^+\)</span>, so we have</p>
 <div class="math-tex" data-type="equation">
 \[
-lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=\lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
 \]
 </div>
-<p>The case involving <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> for finite <span class="math-tex" data-type="tex">\(b\)</span> is proved similarly. The cases where <span class="math-tex" data-type="tex">\(a=-\infty\)</span> or <span class="math-tex" data-type="tex">\(b=\infty\)</span> follow from the cases already considered via the change of variable <span class="math-tex" data-type="tex">\(x=\frac{1}{t}\)</span>.</p>
+<p>The case involving <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> for finite <span class="math-tex" data-type="tex">\(b\)</span> is proved similarly. The cases where <span class="math-tex" data-type="tex">\(a=-\infty\)</span> or <span class="math-tex" data-type="tex">\(b=\infty\)</span> follow from the cases already considered via the change of variable <span class="math-tex" data-type="tex">\(x=\frac{1}{t}\)</span>.</p>
 </div>
 <div data-type="example">
 <h1></h1>
@@ -1985,10 +1984,10 @@ lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=lim_{c\to a^+}\frac{f^\pri
 <p>Then</p>
 <div class="math-tex" data-type="equation">
 \[
-lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 \]
 </div>
-<p>Again, similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
+<p>Again, similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(\lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
 </div>
 <p>Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span>or <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>; such attempts will almost always lead to false conclusions.</p>
 <section data-type="sect1">
@@ -2002,7 +2001,7 @@ lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 <p>Function <span class="math-tex" data-type="tex">\(f\)</span> has an <i>absolute maximum value</i> <span class="math-tex" data-type="tex">\(f\left(x_0\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_0\)</span> in its domain if <span class="math-tex" data-type="tex">\(f\left(x\right)\le f\left(x_0\right)\)</span> holds for every <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 <p>Similarly, <span class="math-tex" data-type="tex">\(f\)</span> has an <i>absolute minimum value</i> <span class="math-tex" data-type="tex">\(f\left(x_1\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x_1\)</span> in its domain if <span class="math-tex" data-type="tex">\(f\left(x\right)\ge f\left(x_1\right)\)</span> holds for every <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 </div>
-<p>Maximum and minimum values of a function are collectively referred to as <i>extreme values</i>. The following theorem is a restatement (and slight generalization) of<br/>the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.</p>
+<p>Maximum and minimum values of a function are collectively referred to as <i>extreme values</i>. The following theorem is a restatement (and slight generalization) of the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.</p>
 <div data-type="theorem">
 <h1></h1>
 <p>If the domain of the function <span class="math-tex" data-type="tex">\(f\)</span> is a closed, finite interval or a union of finitely many such intervals, and if <span class="math-tex" data-type="tex">\(f\)</span> is continuous on that domain, then <span class="math-tex" data-type="tex">\(f\)</span> must have an absolute maximum value and an absolute minimum value.</p>
@@ -2040,7 +2039,7 @@ lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 <p>Although a function cannot have extreme values anywhere other than at endpoints, critical points, and singular points, it need not have extreme values at such points.</p>
 <section data-type="sect2">
 <h2>Finding Absolute Extreme Values</h2>
-<p>If a function <span class="math-tex" data-type="tex">\(f\)</span> is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that <span class="math-tex" data-type="tex">\(f\)</span> must have an absolute maximum value and an<br/>absolute minimum value. The last theorem tells us how to find them. We need only check the values of <span class="math-tex" data-type="tex">\(f\)</span> at any critical points, singular points, and endpoints.</p>
+<p>If a function <span class="math-tex" data-type="tex">\(f\)</span> is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that <span class="math-tex" data-type="tex">\(f\)</span> must have an absolute maximum value and an absolute minimum value. The last theorem tells us how to find them. We need only check the values of <span class="math-tex" data-type="tex">\(f\)</span> at any critical points, singular points, and endpoints.</p>
 <div data-type="example">
 <h1></h1>
 <p>Find the maximum and the minimum values of the function <span class="math-tex" data-type="tex">\(g\left(x\right)=x^2-3x^2-9x+2\)</span> on the interval <span class="math-tex" data-type="tex">\(\left[-2, 2\right]\)</span>.</p>
@@ -2132,12 +2131,13 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 <p>If <span class="math-tex" data-type="tex">\(f\left(u\right)&lt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&lt;M\)</span> for some <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has an absolute minimum value on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
 </li>
 </ul>
-<p>In this theorem <span class="math-tex" data-type="tex">\(a\)</span> may be <span class="math-tex" data-type="tex">\(-\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to -\infty}\)</span>, and <span class="math-tex" data-type="tex">\(b\)</span> may be <span class="math-tex" data-type="tex">\(\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to \infty}\)</span>.<br/>Also, either or both of <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be either <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+<p>In this theorem <span class="math-tex" data-type="tex">\(a\)</span> may be <span class="math-tex" data-type="tex">\(-\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to -\infty}\)</span>, and <span class="math-tex" data-type="tex">\(b\)</span> may be <span class="math-tex" data-type="tex">\(\infty\)</span>, in which case <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> should be replaced with <span class="math-tex" data-type="tex">\(\lim_{x\to \infty}\)</span>.</p>
+<p>Also, either or both of <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be either <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
 <p>We prove the first part; the proof of the second part is similar. We are given that there is a number <span class="math-tex" data-type="tex">\(u\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;L\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)&gt;M\)</span>. Here, <span class="math-tex" data-type="tex">\(L\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> may be finite numbers or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(lim_{x\to a^+}f\left(x\right)=L\)</span>, there must exist a number <span class="math-tex" data-type="tex">\(x_1\in\left]a,u\right[\)</span> such that</p>
+<p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}f\left(x\right)=L\)</span>, there must exist a number <span class="math-tex" data-type="tex">\(x_1\in\left]a,u\right[\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
 f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad a&lt;x&lt;x_1\,.
@@ -2286,7 +2286,8 @@ E\left(t\right)=f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\
 \frac{E\left(x\right)}{\left(x-a\right)^2}=\frac{E\left(x\right)-E\left(a\right)}{\left(x-a\right)^2-\left(a-a\right)^2}=\frac{E^\prime\left(u\right)}{2\left(u-a\right)}=\frac{f^\prime\left(u\right)-f^\prime\left(a\right)}{2\left(u-a\right)}=\frac{1}{2}f^{\prime\prime}\left(s\right)
 \]
 </div>
-<p>for some <span class="math-tex" data-type="tex">\(s\in\left]a,u\right[\)</span>; the latter expression is a consequence of applying the Mean-Value Theorem again, this time to <span class="math-tex" data-type="tex">\(f^\prime\)</span> on <span class="math-tex" data-type="tex">\(\left[a,u\right]\)</span>. Thus,</p>
+<p>for some <span class="math-tex" data-type="tex">\(s\in\left]a,u\right[\)</span>; the latter expression is a consequence of applying the Mean-Value Theorem again, this time to <span class="math-tex" data-type="tex">\(f^\prime\)</span> on <span class="math-tex" data-type="tex">\(\left[a,u\right]\)</span>.</p>
+<p>Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
 E\left(x\right)=\frac{f^{\prime\prime}\left(s\right)}{2}\left(x-a\right)^2\,.
@@ -2509,6 +2510,86 @@ E_k\left(x\right)=\frac{f^{\left(k+1\right)}\left(s\right)}{\left(k+1\right)!}\l
 </div>
 <section data-type="sect1">
 <h1>Antiderivatives</h1>
+<p>Throughout this chapter we have been concerned with the problem of finding the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> of a given function <span class="math-tex" data-type="tex">\(f\)</span>. The reverse problem—given the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span>, find <span class="math-tex" data-type="tex">\(f\)</span>—is also interesting and important. It is the problem studied in integral calculus and is generally more difficult to solve than the problem of finding a derivative. We will take a preliminary look at this problem in this section and will return to it in more detail in Chapter 6.</p>
+<p>We begin by defining an <i>antiderivative</i> of a function <span class="math-tex" data-type="tex">\(f\)</span> to be a function <span class="math-tex" data-type="tex">\(F\)</span> whose derivative is <span class="math-tex" data-type="tex">\(f\)</span>: It is appropriate to require that <span class="math-tex" data-type="tex">\(F^\prime\left(x\right)=f\left(x\right)\)</span> on an interval.</p>
+<div data-type="definition">
+<h1></h1>
+<p>An antiderivative of a function <span class="math-tex" data-type="tex">\(f\)</span> on an interval <span class="math-tex" data-type="tex">\(I\)</span> is another function <span class="math-tex" data-type="tex">\(F\)</span> satisfying</p>
+<div class="math-tex" data-type="equation">
+\[
+F^\prime\left(x\right)=f\left(x\right)
+\]
+</div>
+<p>for <span class="math-tex" data-type="tex">\(x\in I\)</span>.</p>
+</div>
+<p>Antiderivatives are not unique; since a constant has derivative zero, you can always add any constant to an antiderivative <span class="math-tex" data-type="tex">\(F\)</span> of a function <span class="math-tex" data-type="tex">\(f\)</span> on an interval and get another antiderivative of <span class="math-tex" data-type="tex">\(f\)</span> on that interval. More importantly, all antiderivatives of <span class="math-tex" data-type="tex">\(f\)</span> on an interval can be obtained by adding constants to any particular one. If <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are both antiderivatives of <span class="math-tex" data-type="tex">\(f\)</span> on an interval <span class="math-tex" data-type="tex">\(I\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(G\left(x\right)-F\left(x\right)\right)=f\left(x\right)-f\left(x\right)=0
+\]
+</div>
+<p>on <span class="math-tex" data-type="tex">\(I\)</span>, so <span class="math-tex" data-type="tex">\(G\left(x\right)-F\left(x\right)=C\)</span> (a constant) on I. Thus, <span class="math-tex" data-type="tex">\(G\left(x\right)=F\left(x\right)+C\)</span> on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>Note that this conclusion is not valid over a set that is not an interval. For example, the derivative of</p>
+<div class="math-tex" data-type="equation">
+\[
+\operatorname{sgn}\left(x\right)=\begin{cases}
+	\hphantom{-}1\,,&\textrm{if } x&gt;0\\
+	-1\,,&\textrm{if } x&lt;0\,.
+	\end{cases}
+\]
+</div>
+<p>is <span class="math-tex" data-type="tex">\(0\)</span> for all <span class="math-tex" data-type="tex">\(x\ne0\)</span>, but <span class="math-tex" data-type="tex">\(\operatorname{sgn}\left(x\right)\)</span> is not constant for all <span class="math-tex" data-type="tex">\(x\ne 0\)</span>.</p>
+<p>The general antiderivative of a function  <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on an interval <span class="math-tex" data-type="tex">\(I\)</span> is <span class="math-tex" data-type="tex">\(F\left(x\right)+C\)</span>, where <span class="math-tex" data-type="tex">\(F\left(x\right)\)</span> is any particular antiderivative of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(I\)</span> and <span class="math-tex" data-type="tex">\(C\)</span> is a constant. This general antiderivative is called the <i>indefinite integral</i> of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(I\)</span> and is denoted <span class="math-tex" data-type="tex">\(\int f\left(x\right)\,\mathrm d\kern-0.5pt x\)</span>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>The indefinite integral of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+\int f\left(x\right)\,\mathrm d\kern-0.5pt x=F\left(x\right)+C
+\]
+</div>
+<p>on <span class="math-tex" data-type="tex">\(I\)</span>, provided <span class="math-tex" data-type="tex">\(F^\prime\left(x\right)=f\left(x\right)\)</span> for all <span class="math-tex" data-type="tex">\(x\in I\)</span>.</p>
+</div>
+<p>The symbol <span class="math-tex" data-type="tex">\(\int\)</span> is called an <i>integral sign</i>. It is shaped like an elongated “S” for reasons that will only become apparent when we study the definite integral in Chapter 6. Just as you regard <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> as a single symbol representing the derivative of <span class="math-tex" data-type="tex">\(y\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>, so you should regard <span class="math-tex" data-type="tex">\(\int f\left(x\right)\,\mathrm d\kern-0.5pt x\)</span> as a single symbol representing the indefinite integral (general antiderivative) of <span class="math-tex" data-type="tex">\(f\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>. The constant <span class="math-tex" data-type="tex">\(C\)</span> is called a <i>constant of integration</i>.</p>
+<p>Finding antiderivatives is generally more difficult than finding derivatives; many functions do not have antiderivatives that can be expressed as combinations of finitely many elementary functions. However, every formula for a derivative can be rephrased as a formula for an antiderivative. For instance,</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,;\quad\textrm{therefore,}\quad\int\cos x\,\mathrm d\kern-0.5pt x=\sin x+C\,.
+\]
+</div>
+<p>We will develop several techniques for finding antiderivatives in later chapters. Until then, we must content ourselves with being able to write a few simple antiderivatives based on the known derivatives of elementary functions:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{align}
+&\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
+&\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
+&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C&&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
+&\int \sin x\,\mathrm{d}\kern-0.5pt x=-\cos x+C&&\int\cos x\, \mathrm{d}\kern-0.5pt x=\sin x+C\\
+&\int \sec^2 x\,\mathrm{d}\kern-0.5pt x=-\tan x+C&&\int\csc^2 x\, \mathrm{d}\kern-0.5pt x=-\cot x+C
+\end{align}
+\]
+</div>
+<div id="tag"></div>
+<p>For the moment, <span class="math-tex" data-type="tex">\(r\)</span> must be rational, but this restriction will be removed in the next chapter.</p>
+<p>The rule for differentiating sums and constant multiples of functions translates into a similar rule for antiderivatives</p>
+<p>The graphs of the different antiderivatives of the same function on the same interval are vertically displaced versions of the same curve. In<br/>general, only one of these curves will pass through any given point, so we can obtain a unique antiderivative of a given function on an interval by requiring the antiderivative to take a prescribed value at a particular point <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find the function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> whose derivative is <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=6x^2-1\)</span> for all real <span class="math-tex" data-type="tex">\(x\)</span> and for which <span class="math-tex" data-type="tex">\(f\left(2\right)=10\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=6x^2-1\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d}\kern-0.5pt x=2x^3-x+C
+\]
+</div>
+<p>for some constant <span class="math-tex" data-type="tex">\(C\)</span>. Since <span class="math-tex" data-type="tex">\(f\left(2\right)=10\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+10=f\left(2\right)=16-2+C\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(C=-4\)</span> and <span class="math-tex" data-type="tex">\(f\left(x\right)=2x^3-x-4\)</span>.</p>
+</div>
 </section>
 </section>
 </section>
