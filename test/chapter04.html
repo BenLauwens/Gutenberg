@@ -309,9 +309,9 @@ y=-4\left(x-4\right)+2\quad\textrm{or}\quad 4x+y-18=0
 \]
 </div>
 </div>
-<section data-type="sect1" class="pagebreak" >
+<section data-type="sect1">
 <h1>The Derivative</h1>
-<p>A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x\)</span> is itself a function of <span class="math-tex" data-type="tex">\(x\)</span>. At any point <span class="math-tex" data-type="tex">\(x\)</span> where the graph has a finite slope, we say that <span class="math-tex" data-type="tex">\(f\)</span> is <i>differentiable</i>, and we call the slope the <i>derivative</i> of <span class="math-tex" data-type="tex">\(f\)</span>: The derivative is therefore the limit of the Newton quotient.</p>
+<p>A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x\)</span> is itself a function of <span class="math-tex" data-type="tex">\(x\)</span>. At any point <span class="math-tex" data-type="tex">\(x\)</span> where the graph has a finite slope, we say that <span class="math-tex" data-type="tex">\(f\)</span> is <i>differentiable</i>, and we call the slope the <i>derivative</i> of <span class="math-tex" data-type="tex">\(f\)</span>. The derivative is therefore the limit of the Newton quotient.</p>
 <div data-type="definition">
 <h1></h1>
 <p>The derivative of a function <span class="math-tex" data-type="tex">\(f\)</span> is another function <span class="math-tex" data-type="tex">\(f\prime\)</span> defined by</p>
@@ -1718,7 +1718,7 @@ f\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Note that <span class="math-tex" data-type="tex">\(g\left(b\right)\ne g\left(a\right)\)</span> otherwise, there would be some number in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> where <span class="math-tex" data-type="tex">\(g\prime\left(x\right)\ne 0\)</span>. Hence, neither denominator above can be zero. Apply the Mean-Value Theorem to</p>
+<p>Note that <span class="math-tex" data-type="tex">\(g\left(b\right)\ne g\left(a\right)\)</span> otherwise, there would be some number in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> where <span class="math-tex" data-type="tex">\(g\prime\left(x\right)= 0\)</span>. Hence, neither denominator above can be zero. Apply the Mean-Value Theorem to</p>
 <div class="math-tex" data-type="equation">
 \[
 h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
@@ -2152,14 +2152,15 @@ f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
 <p>Thus, <span class="math-tex" data-type="tex">\(f\left(x\right)&ltf\left(u\right)\)</span> at all points of <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> that are not in the closed, finite subinterval <span class="math-tex" data-type="tex">\(\left[x_1,x_2\right]\)</span>. The function <span class="math-tex" data-type="tex">\(f\)</span>, being continuous on <span class="math-tex" data-type="tex">\(\left[x_1,x_2\right]\)</span>, must have an absolute maximum on that interval, say at the point <span class="math-tex" data-type="tex">\(w\)</span>. Since <span class="math-tex" data-type="tex">\(u\in\left[x_1,x_2\right]\)</span>, we must have <span class="math-tex" data-type="tex">\(f\left(w\right)\ge f\left(u\right)\)</span>, so <span class="math-tex" data-type="tex">\(f\left(w\right)\)</span> is the maximum value of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for all of <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
 </div>
 <section data-type="sect1">
-<h1>Concavity and Inflections</h1>
+<div id="tag"></div>
+<h1>Convexity/Concavity and Inflections</h1>
 <p>Like the first derivative, the second derivative of a function also provides useful information about the behaviour of the function and the shape of its graph: it determines whether the graph is <i>bending upward</i> (i.e., has increasing slope) or <i>bending downward</i> (i.e., has decreasing slope) as we move along the graph toward the right.</p>
 <div data-type="definition">
 <h1></h1>
-<p>We say that the function <span class="math-tex" data-type="tex">\(f\)</span> is concave up on an open interval <span class="math-tex" data-type="tex">\(I\)</span> if it is differentiable there and the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> is an increasing function on <span class="math-tex" data-type="tex">\(I\)</span>. Similarly, <span class="math-tex" data-type="tex">\(f\)</span> is concave down on <span class="math-tex" data-type="tex">\(I\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\)</span> exists and is decreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>We say that the function <span class="math-tex" data-type="tex">\(f\)</span> is convex on an open interval <span class="math-tex" data-type="tex">\(I\)</span> if it is differentiable there and the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> is an increasing function on <span class="math-tex" data-type="tex">\(I\)</span>. Similarly, <span class="math-tex" data-type="tex">\(f\)</span> is concave <span class="math-tex" data-type="tex">\(I\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\)</span> exists and is decreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </div>
-<p>The terms “concave up” and “concave down” are used to describe the graph of the function as well as the function itself.</p>
-<p>Note that concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no concavity on such an interval. We also say a function has opposite concavity on two intervals if it is concave up on one interval and concave down on the other.</p>
+<p>The terms “convex” and “concave are used to describe the graph of the function as well as the function itself.</p>
+<p>Note that convexity/concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no convexity/concavity on such an interval. We also say a function has opposite convexity/concavity on two intervals if it is convex on one interval and concave the other.</p>
 <div data-type="definition">
 <h1></h1>
 <p>We say that the point <span class="math-tex" data-type="tex">\(\left(x_0,f\left(x_0\right)\right)\)</span> is an <i>inflection point</i> of the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> (or that the function <span class="math-tex" data-type="tex">\(f\)</span> has an inflection point at <span class="math-tex" data-type="tex">\(x_0\)</span>) if the following two conditions are satisfied:</p>
@@ -2168,7 +2169,7 @@ f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
 <p>the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> has a tangent line at <span class="math-tex" data-type="tex">\(x=x_0\)</span>, and</p>
 </li>
 <li>
-<p>the concavity of <span class="math-tex" data-type="tex">\(f\)</span> is opposite on opposite sides of <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+<p>the convexity/concavity of <span class="math-tex" data-type="tex">\(f\)</span> is opposite on opposite sides of <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
 </li>
 </ol>
 </div>
@@ -2178,10 +2179,10 @@ f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
 <h1></h1>
 <ol>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &gt; 0\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is concave up on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &gt; 0\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is convex on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &lt;0\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is concave down on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &lt;0\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is concave on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
 <p>if <span class="math-tex" data-type="tex">\(f\)</span> has an inflection point at <span class="math-tex" data-type="tex">\(x_0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x_0\right)\)</span> exists, then <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x_0\right)=0\)</span>.</p>
@@ -2261,7 +2262,7 @@ E\left(x\right)=f\left(x\right)-L\left(x\right)=f\left(x\right)-f\left(a\right)-
 \]
 </div>
 <p>It is the vertical distance at <span class="math-tex" data-type="tex">\(x\)</span> between the graph of <span class="math-tex" data-type="tex">\(f\)</span> and the tangent line to that graph at <span class="math-tex" data-type="tex">\(x=a\)</span>. Observe that if <span class="math-tex" data-type="tex">\(x\)</span> is “near” <span class="math-tex" data-type="tex">\(a\)</span>, then <span class="math-tex" data-type="tex">\(E\left(x\right)\)</span> is small compared to the horizontal distance between <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(a\)</span>.</p>
-<p>The following theorem gives us a way to estimate this error if we know bounds for the second derivative of f:</p>
+<p>The following theorem gives us a way to estimate this error if we know bounds for the second derivative of <span class="math-tex" data-type="tex">\(f\)</span>:</p>
 <div data-type="theorem">
 <h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(t\right)\)</span> exists for all <span class="math-tex" data-type="tex">\(t\)</span> in an interval containing <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>, then there exists some point <span class="math-tex" data-type="tex">\(s\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> such that the error <span class="math-tex" data-type="tex">\(E\left(x\right)=f\left(x\right)-L\left(x\right)\)</span> in the linear approximation <span class="math-tex" data-type="tex">\(f\left(x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\)</span> satisfies</p>
@@ -2619,7 +2620,6 @@ f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d}\kern-0.5pt x=2x^3-x+C
 </section>
 </section>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

@@ -450,6 +450,13 @@ function _html(buf::Vector{String}, _::CommonMark.Text, entering::Bool, str::Str
     return level
 end
 
+function _html(buf::Vector{String}, _::CommonMark.Citation, entering::Bool, str::String, _::Dict{String,Any}, level::Int)
+    if entering
+        buf[end] *= str
+    end
+    return level
+end
+
 function _tohtml(file::String)
     ast = open(PARSER, file)
     buf = String[]

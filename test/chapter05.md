@@ -631,5 +631,327 @@ Logarithmic differentiation is also useful for finding the derivatives of functi
 
 ## The Inverse Trigonometric Functions
 
+The six trigonometric functions are periodic and, hence, not one-to-one. However, as we did with the function ``x^2``, we can restrict their domains in such a way that the restricted functions are one-to-one and invertible.
+
+### The Inverse Sine (or Arcsine) Function
+
+Let us define a function ``\operatorname{Sin} x`` (note the capital letter) to be ``\sin x``, restricted so that its domain is the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]``:
+
+!!! definition
+
+	```math
+	\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
+	```
+
+Since its derivative ``\cos x`` is positive on the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]``, the function ``\operatorname{Sin} x`` is
+increasing on its domain, so it is a bijective function. It has domain ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` and range ``\left[-1,1\right]``.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "The graph of " * tex("\\operatorname{Sin}x") * "." ) do
+	scale = 50
+	Drawing(width=10scale, height=3scale) do
+		xmid = 5scale
+		ymid = 1.5scale
+		axis_xy(10scale,3scale,xmid,ymid,scale,(-pi/2,pi/2), (-1, 1); xs=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),xl=(2, 1), xh=(2, 2))
+		plot_xy(x->sin(x), -5:0.01:5, tuple(), xmid, ymid, scale; width=1, color="RoyalBlue", dashed="3")
+		plot_xy(x->sin(x), -pi/2:0.01:pi/2, (-pi/2, pi/2), xmid, ymid, scale; width=1)
+	end
+end
+```
+
+Being bijective, ``\operatorname{Sin}`` has an inverse function which is denoted ``\operatorname{Arcsin}`` (or, in some books and computer programs, by ``\operatorname{arcsin}``,  ``\operatorname{asin}``, or ``\operatorname{Sin}^{-1}``) and which is called the *inverse sine* or *arcsine function*.
+
+!!! definition
+
+	```math
+	\forall y\in\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
+	```
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "The graph of " * tex("\\operatorname{Arcsin}x") * "." ) do
+	scale = 50
+	Drawing(width=3scale, height=4scale) do
+		xmid = 1.5scale
+		ymid = 2scale
+		axis_xy(3scale,4scale,xmid,ymid,scale,(-1, 1),(-pi/2,pi/2); ys=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),yl=(2, 1), yh=(2, 2))
+		plot_xy(x->asin(x), -1:0.01:1, tuple(-1, 1), xmid, ymid, scale; width=1)
+	end
+end
+```
+
+The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\operatorname{Sin}`` in the line ``y=x``. The domain of ``\operatorname{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\operatorname{Sin}``), and the range of ``\operatorname{Arcsin}`` is ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` (the domain of ``\operatorname{Sin}``).
+
+!!! example
+
+	Simplify the expression ``\tan\left(\operatorname{Arcsin} x\right)``.
+
+	We want the tangent of an angle whose sine is ``x``. Suppose first that ``0\le\theta x&lt;1``. We draw a right triangle with one angle ``\theta``, and label the sides so that ``\theta = \operatorname{Arcsin} x``. The side opposite ``\theta`` is ``x``, and the hypotenuse is ``1``. The remaining side is ``\sqrt{1-x^2}``, and we have
+
+	```math
+	\tan\left(\operatorname{Arcsin} x\right)=\tan\theta=\frac{x}{\sqrt{1-x^2}}\,.
+	```
+
+	Because both sides of the above equation are odd functions of ``x``, the same result holds for ``0&gt; x&gt;-1``.
+
+Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``. Differentiating with respect to ``x``, we obtain
+```math
+1=\cos y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
+```
+Since ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``, we know that ``\cos y\ge 0``. Therefore,
+```math
+\cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
+```
+
+Note that the inverse sine function is differentiable only on the open interval ``\left]-1,1\right[``; the slope of its graph approaches infinity as ``x\to -1^+`` or as ``x\to 1^-``.
+
+!!! example
+
+	Let ``f\left(x\right)=\operatorname{Arcsin}\left(\sin x\right)`` for all real numbers ``x``.
+
+	1. Calculate and simplify ``f^\prime\left(x\right)``.
+
+	   Using the Chain Rule and the Pythagorean identity we calculate
+
+	   ```math
+	   \begin{aligned}
+	   f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
+	   &=\frac{\cos x}{\sqrt{cos^2 x}}=\frac{\cos x}{\left|\cos x\right|}=\begin{cases}
+       \hphantom{-}1&\textrm{if }\cos x&gt; 0\\
+	   -1&\textrm{if }\cos x&lt; 0\,.
+	   \end{cases}
+	   \end{aligned}
+	   ```
+	2. Where is ``f`` differentiable? Where is ``f`` continuous?
+
+	   ``f`` is differentiable at all points where ``\cos x\ne0``, that is, everywhere except at odd multiples of ``\frac{\uppi}{2}``.
+       Since ``\sin`` is continuous everywhere and has values in ``\left[-1,1\right]``, and since ``\operatorname{Arcsin}`` is continuous on``\left[-1,1\right]``, we have that ``f`` is continuous on the whole real line.
+
+	3. Use the previous results to sketch the graph of ``f``.
+
+       Since ``f`` is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between ``1`` and ``-1`` on intervals between consecutive odd multiples of ``\frac{\uppi}{2}``. Since ``f^\prime\left(x\right)=1`` on the interval ``\left]-1,1\right[``, the graph must be as shown below
+
+	   {cell=chap display=false output=false}
+	   ```julia
+	   Figure("", "The graph of " * tex("\\operatorname{Arcsin}\\left(\\sin x\\right)") * "." ) do
+			scale = 40
+			Drawing(width=14scale, height=4scale) do
+				xmid = 7scale
+				ymid = 2scale
+				axis_xy(14scale,4scale,xmid,ymid,scale,(-pi/2,pi/2), (-pi/2,pi/2); xs=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),xl=(2, 1), xh=(2, 2), ys=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"), yl=(2, 1), yh=(2, 2))
+				plot_xy(x->asin(sin(x)), -7:0.01:7, (-pi/2, pi/2), xmid, ymid, scale; width=1)
+			end
+	   end
+	   ```
+
+### Other Inverse Trigonometric Functions
+
+The inverse tangent function is defined in a manner similar to the inverse sine. We begin by restricting the tangent function to an interval where it is bijective.
+
+!!! definition
+
+	```math
+	\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
+	```
+
+The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent function and is denoted ``\operatorname{Arctan}`` (or ``\operatorname{arctan}``,  ``\operatorname{atan}``, or ``\operatorname{Tan}^{-1}``). The domain of ``\operatorname{Arctan}`` is the whole real line (the range of ``\operatorname{Tan}``). Its range is the open interval ``\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[``.
+
+!!! definition
+
+	```math
+	\forall y\in\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
+	```
+
+The derivative of the inverse tangent function is also found by implicit differentiation: if ``y=\operatorname{Arctan}x``, then ``x=\operatorname{Tan}y`` and
+```math
+1 = \sec^2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+\tan^2 y\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+x^2\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
+```
+
+The function ``\cos x`` is bijective on the interval ``\left[0,\uppi\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
+
+```math
+\forall y\in\left[0,\uppi\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
+```
+
+However, ``\cos y=\sin\left(\frac{\uppi}{2}-y\right)``, and ``\frac{\uppi}{2}-y`` is in the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` when ``y\in\left[0,\uppi\right]``.
+
+!!! definition
+
+```math
+\operatorname{Arccos}x=\frac{\uppi}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
+```
+
+The derivative of ``\operatorname{Arccos}x`` is the negative of that of ``\operatorname{Arcsin}x``.
+
 ## Hyperbolic Functions
 
+!!! definition
+
+	For any real ``x`` the hyperbolic cosine, ``\cosh x``, and the hyperbolic sine, ``\sinh x``, are defined by
+
+	```math
+	\cosh x=\frac{ℯ^x+ℯ^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{ℯ^x-ℯ^{-x}}{2}\,.
+	```
+
+Recall that cosine and sine are called circular functions because, for any ``t``, the point ``\left(\cos t, \sin t\right)`` lies on the circle with equation ``x^2+y^2=1``. Similarly, ``\cosh`` and ``\sinh`` are called hyperbolic functions because the point ``\left(\cosh t, \sinh t\right)`` lies on the rectangular hyperbola with equations ``x^2-y^2=1``,
+```math
+\cosh^2 t-\sinh^2 t=1\quad \textrm{for any real }t\,.
+```
+
+There is no interpretation of ``t`` as an arc length or angle as there was in the circular case; however, the area of the hyperbolic sector bounded by ``y=0``, the hyperbola ``x^2-y^2=1``, and the ray from the origin to ``\left(\cosh t, \sinh t\right)`` is ``\frac{t}{2}`` square units, just as is the area of the circular sector bounded by ``y=0``, the circle ``x^2+y^2=1``, and the ray from the origin to ``\left(\cos t, \sin t\right)``.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "The shaded area is " * tex("\\frac{t}{2}") * " square units." ) do
+	scale = 40
+	Drawing(width=6scale, height=6scale) do
+		xmid = 3scale
+		ymid = 3scale
+		path = "$xmid, $ymid $(xmid+2scale), $ymid " * mapreduce(elem->"$(elem[1]), $(elem[2]) ", *, zip(xmid .+ (1scale:0.01scale:2scale), ymid .- scale.* sqrt.((1:0.01:2).^2 .- 1)))
+		polygon(points=path, fill="lightblue", stroke="none")
+		axis_xy(6scale,6scale,xmid,ymid,scale,(2,),(sqrt(3),); xs=("\\cosh t", ), xl=(3,), ys=("\\sinh t", ), yl=(3,))
+		plot_xy(x->sqrt(x^2-1), -3:0.01:-1, tuple(), xmid, ymid, scale; width=1)
+		plot_xy(x->-sqrt(x^2-1), -3:0.01:-1, tuple(), xmid, ymid, scale; width=1)
+		plot_xy(x->sqrt(x^2-1), 1:0.01:3, tuple(), xmid, ymid, scale; width=1)
+		plot_xy(x->-sqrt(x^2-1), 1:0.01:3, tuple(), xmid, ymid, scale; width=1)
+		plot_xy(x->sqrt(3)/2*x, 0:0.01:2, tuple(2), xmid, ymid, scale; width=1, color="RoyalBlue")
+	end
+end
+```
+
+Observe that, similar to the corresponding values of ``\cos x`` and ``\sin x``, we have
+```math
+\cosh 0 = 1\quad\textrm{and}\quad\sinh 0 = 0\,,
+```
+and ``\cosh x``, like ``\cos x``, is an even function, and ``\sinh x``, like ``\sin x``, is an odd function:
+```math
+\cosh\left(-x\right)=\cosh x\quad\textrm{and}\quad\sinh\left(-x\right)=-\sinh x\,.
+```
+
+The graph ``y=\cosh x`` is called a *catenary*. A chain hanging by its ends will assume the shape of a catenary.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "The graphs of " * tex("\\cosh x") * " (red) and " * tex("\\sinh x") * " (blue)." ) do
+	scale = 40
+	Drawing(width=6scale, height=6scale) do
+		xmid = 3scale
+		ymid = 3scale
+		axis_xy(6scale,6scale,xmid,ymid,scale,tuple(),tuple(1,))
+		plot_xy(x->cosh(x), -3:0.01:3, tuple(), xmid, ymid, scale; width=1)
+		plot_xy(x->sinh(x), -3:0.01:3, tuple(2), xmid, ymid, scale; width=1, color="RoyalBlue")
+	end
+end
+```
+
+Many other properties of the hyperbolic functions resemble those of the corresponding circular functions, sometimes with signs changed.
+
+!!! example
+
+	Show that
+
+	```math
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x=\sinh x\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sinh x=\cosh x
+	```
+
+	We have
+
+	```math
+	\begin{aligned}
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{ℯ^x+ℯ^{-x}}{2}=\frac{ℯ^x+ℯ^{-x}\left(-1\right)}{2}=\sinh x\\
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{ℯ^x-ℯ^{-x}}{2}=\frac{ℯ^x-ℯ^{-x}\left(-1\right)}{2}=\cosh x\,.
+	\end{aligned}
+	```
+
+The following addition formulas and double-angle formulas can be checked algebraically by using the definition of ``\cosh`` and ``\sinh`` and the laws of exponents:
+```math
+\begin{aligned}
+\cosh\left(x+y\right)&=\cosh x\cosh y+\sinh x\sinh y\,,\\
+\sinh\left(x+y\right)&=\sinh x\cosh y+\cosh x\sinh y\,,\\
+\cosh\left(2x\right)&=\cosh^2x+\sinh^2x=1+2\sinh^2x=2\cosh^2x-1\,,\\
+\cosh\left(2x\right)&=2\sinh x\cosh x\,.
+\end{aligned}
+```
+
+By analogy with the trigonometric functions, other hyperbolic functions can be defined in terms of ``\cosh`` and ``\sinh``.
+
+!!! definition
+
+	```math
+	\tanh x=\frac{\sinh x}{\cosh x}=\frac{ℯ^x-ℯ^{-x}}{ℯ^x+ℯ^{-x}}=\frac{1-ℯ^{-2x}}{1+ℯ^{-2x}}=\frac{ℯ^{2x}-1}{ℯ^{2x}+1}\,.
+	```
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "The graphs of " * tex("\\tanh x") * "." ) do
+	scale = 40
+	Drawing(width=12scale, height=3scale) do
+		xmid = 6scale
+		ymid = 1.5scale
+		axis_xy(12scale,3scale,xmid,ymid,scale,tuple(),tuple(-1, 1))
+		plot_xy(x->tanh(x), -6:0.01:6, tuple(), xmid, ymid, scale; width=1)
+	end
+end
+```
+
+The functions ``sinh`` and ``tanh`` are increasing and therefore bijective and invertible on the whole real line. Their inverses are denoted ``\operatorname{arcsinh}`` and ``\operatorname{arctanh}``, respectively.
+
+Since the hyperbolic functions are defined in terms of exponentials, it is not surprising that their inverses can be expressed in terms of logarithms.
+
+!!! example
+
+	Express the functions ``\operatorname{arcsinh}`` and ``\operatorname{arctanh}`` in terms of natural logarithms.
+
+	Let ``y=\operatorname{arcsinh} x``. Then
+	```math
+	x = \sinh y=\frac{ℯ^y-ℯ^{-y}}{2}=\frac{ℯ^{2y}-1}{2ℯ^{2y}}\,.
+	```
+	Therefore,
+	```math
+	\left(ℯ^y\right)^2-2xℯ^y-1=0\,.
+	```
+	This is a quadratic equation in ``ℯ^y``, and it can be solved by the quadratic formula:
+	```math
+	ℯ^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
+	```
+	Note that ``\sqrt{x^2+1}&gt;x``. Since ``ℯ^y`` cannot be negative, we need to use the positive sign:
+	```math
+	ℯ^y=x+\sqrt{x^2+1}\,.
+	```
+	Hence, ``y=\ln\left(x+\sqrt{x^2+1}\right)``, and we have
+	```math
+	\operatorname{arcsinh} x=\ln\left(x+\sqrt{x^2+1}\right)\,.
+	```
+
+	Now let ``y=\operatorname{arctanh} x``. Then
+	```math
+	x=\tanh y=\frac{ℯ^y-ℯ^{-y}}{ℯ^y+ℯ^{-y}}=\frac{ℯ^{2y}-1}{ℯ^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
+	```
+	or
+	```math
+	ℯ^{2y}=\frac{1+x}{1-x}.
+	```
+	Thus,
+	```math
+	\operatorname{arctanh} x=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)\quad\textrm{for }-1&lt;x&lt;1\,.
+	```
+
+Since ``\cosh`` is not bijective, its domain must be restricted before an inverse can be defined. Let us define the principal value of ``\cosh`` to be
+```math
+\forall x\ge0:\operatorname{Cosh} x = \cosh x\,.
+```
+
+The inverse, ``\operatorname{Arccosh} x``, is then defined by
+```math
+\forall y\ge0:x=\cosh y=\operatorname{Cosh}y\implies y=\operatorname{Arccosh} x\,.
+```
+
+As we did for ``\operatorname{arcsinh}``, we can obtain the formula
+```math
+\operatorname{Arccosh} x=\ln\left(x+\sqrt{x^2-1}\right)
+```
+
+!!! exercise
+
+	Find the derivatives of the inverse hyperbolic functions.

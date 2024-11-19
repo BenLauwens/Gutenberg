@@ -314,10 +314,9 @@ If a curve ``C`` has a tangent line ``L`` at point ``P``, then the straight line
 	y=-4\left(x-4\right)+2\quad\textrm{or}\quad 4x+y-18=0
 	```
 
-{.pagebreak}
 ## The Derivative
 
-A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of ``y=f\left(x\right)`` at the point ``x`` is itself a function of ``x``. At any point ``x`` where the graph has a finite slope, we say that ``f`` is *differentiable*, and we call the slope the *derivative* of ``f``: The derivative is therefore the limit of the Newton quotient.
+A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of ``y=f\left(x\right)`` at the point ``x`` is itself a function of ``x``. At any point ``x`` where the graph has a finite slope, we say that ``f`` is *differentiable*, and we call the slope the *derivative* of ``f``. The derivative is therefore the limit of the Newton quotient.
 
 !!! definition
 	The derivative of a function ``f`` is another function ``f\prime`` defined by
@@ -1306,7 +1305,7 @@ Many of the applications we will make of the Mean-Value Theorem will actually us
 
 !!! proof
 	
-	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g\prime\left(x\right)\ne 0``. Hence, neither denominator above can be zero. Apply the Mean-Value Theorem to
+	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g\prime\left(x\right)= 0``. Hence, neither denominator above can be zero. Apply the Mean-Value Theorem to
 	```math
 	h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
 	```
@@ -1673,17 +1672,17 @@ If the function ``f`` is not defined on a closed, finite interval, then the exte
 
 	Thus, ``f\left(x\right)&ltf\left(u\right)`` at all points of ``\left]a,b\right[`` that are not in the closed, finite subinterval ``\left[x_1,x_2\right]``. The function ``f``, being continuous on ``\left[x_1,x_2\right]``, must have an absolute maximum on that interval, say at the point ``w``. Since ``u\in\left[x_1,x_2\right]``, we must have ``f\left(w\right)\ge f\left(u\right)``, so ``f\left(w\right)`` is the maximum value of ``f\left(x\right)`` for all of ``\left]a,b\right[``.
 
-## Concavity and Inflections
+## Convexity/Concavity and Inflections
 
 Like the first derivative, the second derivative of a function also provides useful information about the behaviour of the function and the shape of its graph: it determines whether the graph is *bending upward* (i.e., has increasing slope) or *bending downward* (i.e., has decreasing slope) as we move along the graph toward the right.
 
 !!! definition
 
-	We say that the function ``f`` is concave up on an open interval ``I`` if it is differentiable there and the derivative ``f^\prime`` is an increasing function on ``I``. Similarly, ``f`` is concave down on ``I`` if ``f^\prime`` exists and is decreasing on ``I``.
+	We say that the function ``f`` is convex on an open interval ``I`` if it is differentiable there and the derivative ``f^\prime`` is an increasing function on ``I``. Similarly, ``f`` is concave ``I`` if ``f^\prime`` exists and is decreasing on ``I``.
 
-The terms “concave up” and “concave down” are used to describe the graph of the function as well as the function itself.
+The terms “convex” and “concave are used to describe the graph of the function as well as the function itself.
 
-Note that concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no concavity on such an interval. We also say a function has opposite concavity on two intervals if it is concave up on one interval and concave down on the other.
+Note that convexity/concavity is defined only for differentiable functions, and even for those, only on intervals on which their derivatives are not constant. According to the above definition, a function is neither concave up nor concave down on an interval where its graph is a straight line segment. We say the function has no convexity/concavity on such an interval. We also say a function has opposite convexity/concavity on two intervals if it is convex on one interval and concave the other.
 
 
 !!! definition
@@ -1691,7 +1690,7 @@ Note that concavity is defined only for differentiable functions, and even for t
 	We say that the point ``\left(x_0,f\left(x_0\right)\right)`` is an *inflection point* of the curve ``y=f\left(x\right)`` (or that the function ``f`` has an inflection point at ``x_0``) if the following two conditions are satisfied:
 
 	1. the graph of ``y=f\left(x\right)`` has a tangent line at ``x=x_0``, and
-	2. the concavity of ``f`` is opposite on opposite sides of ``x_0``.
+	2. the convexity/concavity of ``f`` is opposite on opposite sides of ``x_0``.
 
 Note that 1. implies that either ``f`` is differentiable at ``x_0`` or its graph has a vertical tangent line there, and 2. implies that the graph crosses its tangent line at ``x_0``. An inflection point of a function ``f`` is a point on the graph of a function, rather than a point in its domain like a critical point or a singular point. A function may or may not have an inflection point at a critical point or singular point. In general, a point ``P`` is an inflection point (or simply an inflection) of a curve ``C`` (which is not necessarily the graph of a function) if ``C`` has a tangent at ``P`` and arcs of ``C`` extending in opposite directions from ``P`` are on opposite sides of that tangent line.
 
@@ -1699,8 +1698,8 @@ If a function ``f`` has a second derivative ``f^{\prime\prime}``, the sign of th
 
 !!! theorem
 
-	1. If ``f^{\prime\prime}\left(x\right) &gt; 0`` on interval ``I``, then ``f`` is concave up on ``I``.
-	2. If ``f^{\prime\prime}\left(x\right) &lt;0`` on interval ``I``, then ``f`` is concave down on ``I``.
+	1. If ``f^{\prime\prime}\left(x\right) &gt; 0`` on interval ``I``, then ``f`` is convex on ``I``.
+	2. If ``f^{\prime\prime}\left(x\right) &lt;0`` on interval ``I``, then ``f`` is concave on ``I``.
 	3. if ``f`` has an inflection point at ``x_0`` and ``f^{\prime\prime}\left(x_0\right)`` exists, then ``f^{\prime\prime}\left(x_0\right)=0``.
 
 !!! proof
@@ -1767,7 +1766,7 @@ E\left(x\right)=f\left(x\right)-L\left(x\right)=f\left(x\right)-f\left(a\right)-
 
 It is the vertical distance at ``x`` between the graph of ``f`` and the tangent line to that graph at ``x=a``. Observe that if ``x`` is “near” ``a``, then ``E\left(x\right)`` is small compared to the horizontal distance between ``x`` and ``a``.
 
-The following theorem gives us a way to estimate this error if we know bounds for the second derivative of f:
+The following theorem gives us a way to estimate this error if we know bounds for the second derivative of ``f``:
 
 !!! theorem
 
