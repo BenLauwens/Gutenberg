@@ -474,15 +474,15 @@ The symbol ``\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5p
 
 The notation ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` are called Leibniz notations for the derivative; Newton used notations similar to the prime ``y\prime`` notations we use here.
 
-The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, can be written in the form ``\frac{\Delta y}{\Delta x}``, where ``\Delta y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
+The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, can be written in the form ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}``, where ``\Delta\kern-0.5pt y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta\kern-0.5pt x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
 
 ```math
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}.
+\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta\kern-0.5pt x\to 0}\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}.
 ```
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", tex(raw"\displaystyle\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}") ) do
+Figure("", tex(raw"\displaystyle\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta\kern-0.5pt x\to 0}\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}") ) do
     scale = 40
     Drawing(width=6scale, height=5.5scale) do
         xmid = 1scale
@@ -503,13 +503,13 @@ Figure("", tex(raw"\displaystyle\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0
 		line(x1=xmid+x*scale, y1=ymid-fx*scale, x2=xmid+x*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
 		line(x1=xmid+x0*scale, y1=ymid-fx0*scale, x2=xmid+x*scale, y2=ymid-fx0*scale, stroke="black", stroke_dasharray = "3")
 		latex("y=f\\left(x\\right)", x=xmid+3.5scale, y=ymid-2.5scale, width=4font_x, height=font_y)
-		latex("\\Delta x", x=xmid+2.1scale, y=ymid-2.85scale, width=2font_x, height=font_y)
-		latex("\\Delta y", x=xmid+3.5scale, y=ymid-3.5scale, width=2font_x, height=font_y)
+		latex("\\Delta\\kern-0.5pt x", x=xmid+2.1scale, y=ymid-2.85scale, width=2font_x, height=font_y)
+		latex("\\Delta\\kern-0.5pt y", x=xmid+3.5scale, y=ymid-3.5scale, width=2font_x, height=font_y)
     end
 end
 ```
 
-The Newton quotient ``\frac{\Delta y}{\Delta x}`` is actually the quotient of two quantities, ``\Delta y`` and ``\Delta x``. It is not at all clear, however, that the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, the limit of ``\frac{\Delta y}{\Delta x}`` as ``\Delta x`` approaches zero, can be regarded as a quotient. If ``y`` is a continuous function of ``x``, then ``\Delta y`` approaches zero when ``\Delta x`` approaches zero, so ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` appears to be the meaningless quantity ``\frac{0}{0}``. Nevertheless, it is sometimes useful to be able to refer to quantities ``\mathrm d\kern-0.5pt y`` and ``\mathrm d\kern-0.5pt x`` in such a way that their quotient is the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. We can justify this by regarding ``\mathrm d\kern-0.5pt x`` as a new independent variable (called the *differential of ``x``*) and defining a new dependent variable ``\mathrm d\kern-0.5pt y`` (the *differential of ``y``*) as a function of ``x`` and ``\mathrm d\kern-0.5pt x`` by
+The Newton quotient ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` is actually the quotient of two quantities, ``\Delta\kern-0.5pt y`` and ``\Delta\kern-0.5pt x``. It is not at all clear, however, that the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, the limit of ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` as ``\Delta\kern-0.5pt x`` approaches zero, can be regarded as a quotient. If ``y`` is a continuous function of ``x``, then ``\Delta\kern-0.5pt y`` approaches zero when ``\Delta\kern-0.5pt x`` approaches zero, so ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` appears to be the meaningless quantity ``\frac{0}{0}``. Nevertheless, it is sometimes useful to be able to refer to quantities ``\mathrm d\kern-0.5pt y`` and ``\mathrm d\kern-0.5pt x`` in such a way that their quotient is the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. We can justify this by regarding ``\mathrm d\kern-0.5pt x`` as a new independent variable (called the *differential of ``x``*) and defining a new dependent variable ``\mathrm d\kern-0.5pt y`` (the *differential of ``y``*) as a function of ``x`` and ``\mathrm d\kern-0.5pt x`` by
 
 ```math
 \mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f\prime(x)\,\mathrm d\kern-0.5pt x
@@ -523,22 +523,22 @@ If one quantity, say ``y``, is a function of another quantity ``x``, that is,
 ```math
 y=f\left(x\right)\,,
 ```
-we sometimes want to know how a change in the value of ``x`` by an amount ``\Delta x`` will affect the value of ``y``. The exact change ``\Delta y`` in ``y`` is given by
+we sometimes want to know how a change in the value of ``x`` by an amount ``\Delta\kern-0.5pt x`` will affect the value of ``y``. The exact change ``\Delta\kern-0.5pt y`` in ``y`` is given by
 ```math
-\Delta y=f\left(x+\Delta x\right)-f\left(x\right)\,,
+\Delta\kern-0.5pt y=f\left(x+\Delta\kern-0.5pt x\right)-f\left(x\right)\,,
 ```
-but if the change ``\Delta x`` is small, then we can get a good approximation to ``\Delta y`` by using the fact that ``\displaystyle\frac{\Delta y}{\Delta x}`` is approximately the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. Thus,
+but if the change ``\Delta\kern-0.5pt x`` is small, then we can get a good approximation to ``\Delta\kern-0.5pt y`` by using the fact that ``\displaystyle\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` is approximately the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. Thus,
 ```math
-\Delta y=\frac{\Delta y}{\Delta x}\Delta x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta x=f\prime\left(x\right)\Delta x\,.
+\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f\prime\left(x\right)\Delta\kern-0.5pt x\,.
 ```
-It is often convenient to represent this approximation in terms of differentials; if we denote the change in ``x`` by ``\mathrm{d}\kern-0.5pt x`` instead of ``\Delta x``, then the change ``\Delta y`` in ``y`` is approximated by the differential ``\mathrm{d}\kern-0.5pt y``, that is
+It is often convenient to represent this approximation in terms of differentials; if we denote the change in ``x`` by ``\mathrm{d}\kern-0.5pt x`` instead of ``\Delta\kern-0.5pt x``, then the change ``\Delta\kern-0.5pt y`` in ``y`` is approximated by the differential ``\mathrm{d}\kern-0.5pt y``, that is
 ```math
-\Delta y\approx\mathrm{d}\kern-0.5pt y=f\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 ```
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the tangent line, approximates " * tex(raw"\Delta y") * ", the change in height to the graph of f" ) do
+Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the tangent line, approximates " * tex(raw"\Delta\kern-0.5pt y") * ", the change in height to the graph of f" ) do
     scale = 40
     Drawing(width=6scale, height=3.5scale) do
         xmid = 1scale
@@ -559,11 +559,11 @@ Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the ta
 		line(x1=xmid+x*scale, y1=ymid-(m*(x-x0)+fx0)*scale, x2=xmid+5*scale, y2=ymid-(m*(x-x0)+fx0)*scale, stroke="black", stroke_dasharray = "3")
 		latex("y=f\\left(x\\right)", x=xmid+2.5scale, y=ymid-3scale, width=4font_x, height=font_y)
 		line(x1=xmid+x0*scale+3, y1=ymid-scale, x2=xmid+x*scale-3, y2=ymid-scale, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
-		latex("\\Delta x=\\mathrm{d}\\kern-0.5pt x", x=xmid+1.85scale, y=ymid-1scale, width=5font_x, height=font_y)
+		latex("\\Delta\\kern-0.5pt x=\\mathrm{d}\\kern-0.5pt x", x=xmid+1.85scale, y=ymid-1scale, width=5font_x, height=font_y)
 		line(x1=xmid+3.6scale, y1=ymid-(m*(x-x0)+fx0)*scale+3, x2=xmid+3.6scale, y2=ymid-fx0*scale-3, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
 		latex("\\mathrm{d}\\kern-0.5pt y", x=xmid+3.5scale, y=ymid-1.7scale, width=2font_x, height=font_y)
 		line(x1=xmid+4.25scale, y1=ymid-fx*scale+3, x2=xmid+4.25scale, y2=ymid-fx0*scale-3, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
-		latex("\\Delta y", x=xmid+4.25scale, y=ymid-1.7scale, width=2font_x, height=font_y)
+		latex("\\Delta\\kern-0.5pt y", x=xmid+4.25scale, y=ymid-1.7scale, width=2font_x, height=font_y)
     end
 end
 ```
@@ -782,9 +782,9 @@ It appears as though the symbol ``\mathrm{d}\kern-0.5pt u`` cancels from the num
 
 We would like to prove this theorem by writing
 ```math
-\frac{\Delta y}{\Delta x}=\frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}
+\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}=\frac{\Delta\kern-0.5pt y}{\Delta u}\frac{\Delta u}{\Delta\kern-0.5pt x}
 ```
-and taking the limit as ``\Delta x \to 0``. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.
+and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.
 
 !!! proof
 	Suppose that ``f`` is differentiable at the point ``u=g\left(x\right)`` and that ``g`` is differentiable at ``x``.
@@ -1747,11 +1747,11 @@ The tangent to the graph ``y=f\left(x\right)`` at ``x=a`` describes the behaviou
 
 We have already made use of linearization in a previous section, where it was disguised as the formula
 ```math
-\Delta y = \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta y
+\Delta\kern-0.5pt y = \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt y
 ```
-and used to approximate a small change ``\Delta y=f\left(a+\Delta x\right)-f\left(a\right)`` in the values of function ``f`` corresponding to the small change in the argument of the function from ``a`` to ``a+\Delta x``. This is just the linear approximation
+and used to approximate a small change ``\Delta\kern-0.5pt y=f\left(a+\Delta\kern-0.5pt x\right)-f\left(a\right)`` in the values of function ``f`` corresponding to the small change in the argument of the function from ``a`` to ``a+\Delta\kern-0.5pt x``. This is just the linear approximation
 ```math
-f\left(a+\Delta x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+f\left(a+\Delta\kern-0.5pt x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
 ```
 
 In any approximation, the *error* is defined by
@@ -1983,7 +1983,7 @@ We will develop several techniques for finding antiderivatives in later chapters
 &\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
 &\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C&&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
 &\int \sin x\,\mathrm{d}\kern-0.5pt x=-\cos x+C&&\int\cos x\, \mathrm{d}\kern-0.5pt x=\sin x+C\\
-&\int \sec^2 x\,\mathrm{d}\kern-0.5pt x=-\tan x+C&&\int\csc^2 x\, \mathrm{d}\kern-0.5pt x=-\cot x+C
+&\int \sec^2 x\,\mathrm{d}\kern-0.5pt x=\tan x+C&&\int\csc^2 x\, \mathrm{d}\kern-0.5pt x=-\cot x+C
 \end{align}
 ```
 
