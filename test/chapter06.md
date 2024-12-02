@@ -446,7 +446,7 @@ We can now use the Bisection Method to prove the Uniform Continuity Theorem.
 
 	Then, there exists ``\varepsilon&gt;0`` such that for every ``\delta&gt;0`` there exists ``x,y\in\left[a_0,b_0\right]`` such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
 
-	From the lemma, it follows that at least one of the two subintervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` and ``\left[\frac{a_0+b_0}{2},b_0\right]`` has the property that for every ``\delta&gt;0`` there exist ``x,y`` in the interval such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``. Otherwise our assumption would be contradicted by the lemma.
+	It follows that at least one of the two subintervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` and ``\left[\frac{a_0+b_0}{2},b_0\right]`` has the property that for every ``\delta&gt;0`` there exist ``x,y`` in the interval such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``. Otherwise our assumption would be contradicted by the lemma.
 
 	Choose a subinterval having this property and call it ``I_1=\left[a_1,b_1\right]``. 
 	
@@ -1082,17 +1082,659 @@ The method of substitution is often useful for evaluating trigonometric integral
 \end{aligned}
 ```
 
-All of these can, of course, be checked by differentiating the right-hand sides. 
+All of these can, of course, be checked by differentiating the right-hand sides. They can be evaluated directly by rewriting``\tan x`` or ``\\cot x`` in terms of ``\sin x`` and ``\cos x`` and using an appropriate substitution. For example,
+
+```math
+\begin{aligned}
+\int \tan x\,\mathrm{d}\kern-0.5pt x&=\int \frac{\sin x}{\cos x}\,\mathrm{d}\kern-0.5pt x\quad\textrm{Let }u=\cos x\textrm{, then }\mathrm{d}\kern-0.5pt u=-\sin x\,\mathrm{d}\kern-0.5pt x\\
+&=-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=-\ln\left|u\right|+C\\
+&=-\ln\left|\cos x\right|+C=-\ln\left|\frac{1}{\cos x}\right|+C=-\ln\left|\sec x\right|+C
+\end{aligned}
+```
+
+We now consider integrals of the form
+
+```math
+\int \sin^m x\cos^n x\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+If either ``m`` or ``n`` is an odd, positive integer, the integral can be done easily by substitution. If, say, ``n=2k+1`` where ``k`` is an integer, then we can use the identity ``\sin^2 x + \cos^2 x = 1`` to rewrite the integral in the form
+
+```math
+\int \sin^m x\left(1-\sin^2 x\right)^k\cos x\,\mathrm{d}\kern-0.5pt x\,,
+```
+
+which can be integrated using the substitution ``u=\sin x``. Similarly, ``u=\cos x`` can be used if ``m`` is an odd integer.
+
+If the powers of ``\sin x`` and ``\cos x`` are both even, then we can make use of the double-angle formulas
+
+```math
+\cos^2 x=\frac{1}{2}\left(1+\cos 2x\right)\quad\textrm{and}\quad \sin^2=\frac{1}{2}\left(1-\cos 2x\right)\,.
+```
+
+!!! example
+
+	Evaluate ``\displaystyle\int \sin^4 x\,\mathrm{d}\kern-0.5pt x``.
+
+	```math
+	\begin{aligned}
+	\int \sin^4 x\,\mathrm{d}\kern-0.5pt x&=\frac{1}{4}\int \left(1-\cos 2x\right)^2\,\mathrm{d}\kern-0.5pt x\\
+	&=\frac{1}{4}\int \left(1-2\cos 2x+\cos^2 2x\right)\,\mathrm{d}\kern-0.5pt x\\
+	&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{1}{8}\int \left(1+\cos 4x\right)\,\mathrm{d}\kern-0.5pt x\\
+	&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{x}{8}+\frac{1}{32}\sin 4x+C\\
+	&=\frac{3}{8}x-\frac{1}{4}\sin 2x+\frac{1}{32}\sin 4x+C
+	\end{aligned}
+	```
 
 ### Integration by Parts
 
+Our next general method for antidifferentiation is called *integration by parts*. Just as the method of substitution can be regarded as inverse to the Chain Rule for differentiation, so the method for integration by parts is inverse to the Product Rule for differentiation.
+
+Suppose that ``U\left(x\right)`` and ``V\left(x\right)`` are two differentiable functions. According to the Product Rule,
+
+```math
+\frac{\mathrm d\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(U\left(x\right)V\left(x\right)\right)=U\left(x\right)\frac{\mathrm{d}\kern-0.5pt V}{\mathrm{d}\kern-0.5pt x}\left(x\right)+V\left(x\right)\frac{\mathrm{d}\kern-0.5pt U}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,.
+```
+
+Integrating both sides of this equation and transposing terms, we obtain
+
+```math
+\int U\left(x\right)\frac{\mathrm{d}\kern-0.5pt V}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,\mathrm{d}\kern-0.5pt x=U\left(x\right)V\left(x\right)-\int V\left(x\right)\frac{\mathrm{d}\kern-0.5pt U}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+The above formula serves as a pattern for carrying out integration by parts. We break up the given integrand into a product of two pieces, ``U`` and ``V^\prime``, where ``V^\prime`` is readily integrated and where ``\int VU^\prime\,\mathrm{d}\kern-0.5pt x`` is usually (but not always) a simpler integral than ``\int UV^\prime\,\mathrm{d}\kern-0.5pt x``. The technique is called integration by parts because it replaces one integral with the sum of an integrated term and another integral that remains to be evaluated. That is, it accomplishes only part of the original integration.
+
+!!! example
+
+	Evaluate ``\displaystyle \int xℯ^x\,\mathrm{d}\kern-0.5pt x``.
+
+	```math
+	\begin{aligned}
+	\int xℯ^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=ℯ^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=ℯ^x\\
+	=&\,xℯ^x-\int ℯ^x\,\mathrm{d}\kern-0.5pt x=xℯ^x-ℯ^x+C\,.
+	\end{aligned}
+	```
+
+Note the form in which the integration by parts is carried out. We indicate at the side what choices we are making for ``U`` and ``\mathrm{d}\kern-0.5pt V`` and then calculate ``\mathrm{d}\kern-0.5pt U`` and ``V`` from these. However, we do not actually substitute ``U`` and ``V`` into the integral; instead, we use the formula ``\int U\,\mathrm{d}\kern-0.5pt V=UV-\int V\,\mathrm{d}\kern-0.5pt U`` as a pattern or mnemonic device to replace the given integral by the equivalent partially integrated form on the second line.
+
+In general, do not include a constant of integration with ``V`` or on the right-hand side until the last integral has been evaluated because that constant would cancel out in the next step.
+
+The following are two useful rules of thumb for choosing ``U`` and ``\mathrm{d}\kern-0.5pt V``:
+
+1. If the integrand involves a polynomial multiplied by an exponential, a sine or a cosine, or some other readily integrable function, try ``U`` equals the polynomial and ``\mathrm{d}\kern-0.5pt V`` equals the rest.
+
+2. If the integrand involves a logarithm, an inverse trigonometric function, or some other function that is not readily integrable but whose derivative is readily calculated, try that function for ``U`` and let ``\mathrm{d}\kern-0.5pt V`` equal the rest.
+
+Of course, these “rules” come with no guarantee.
+
+The following example illustrates a frequently occurring and very useful phenomenon. It may happen after one or two integrations by parts, with the possible application of some known identity, that the original integral reappears on the right-hand side. Unless its coefficient there is ``1``, we have an equation that can be solved for that integral.
+
+!!! example
+
+	Evaluate ``\displaystyle \int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x``.
+
+	```math
+	\begin{aligned}
+	\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=ℯ^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=aℯ^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
+	=&\,\frac{1}{b}ℯ^{ax}\sin bx-\frac{a}{b}\int ℯ^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
+	&\quad\textrm{Let }U=ℯ^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=aℯ^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
+	=&\,\frac{1}{b}ℯ^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}ℯ^{ax}\cos bx+\frac{a}{b}\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
+	=&\,\frac{1}{b}ℯ^{ax}\sin bx+\frac{a}{b^2}ℯ^{ax}\cos bx-\frac{a^2}{b^2}\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
+	\end{aligned}
+	```
+
+	Thus,
+
+	```math
+	\left(1+\frac{a^2}{b^2}\right)\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}ℯ^{ax}\sin bx+\frac{a}{b^2}ℯ^{ax}\cos bx+C_1
+	```
+
+	and
+
+	```math
+	\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{bℯ^{ax}\sin bx+aℯ^{ax}\cos bx}{a^2+b^2}+C\,.
+	```
+
+Observe that after the first integration by parts we had an integral that was different from, but no simpler than, the original integral. At this point we might have become discouraged and given up on this method. However, perseverance proved worthwhile; a second integration by parts returned the original integral in an equation that could be solved for the integral.
+
 ### Integrals of Rational Functions
+
+A complicated fraction can be written as a sum of simpler fractions. This is called the *method of partial fractions*.
+
+!!! theorem
+
+	Let ``P`` and ``Q`` be polynomials with real coefficients, and suppose that the degree of ``P`` is less than the degree of ``Q``. Then
+
+	1. ``Q\left(x\right)`` can be factored into the product of a constant ``K``, real linear factors of the form ``\left(x-a_i\right)``, and real quadratic factors of the form ``x^2+b_i x+c_i`` having no real roots. The linear and quadratic factors may be repeated:
+
+	   ```math
+	   Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a_j\right)^{m_j}\left(x^2+b_1x+c_1\right)^{n_1}\cdots\left(x^2+b_kx+c_k\right)^{n_k}\,.
+	   ```
+
+	   The degree of ``Q`` is ``m_1+m_2+\cdots+m_j+2n_1+2n_2+\cdots+2n_k``.
+
+	2. The rational function ``\displaystyle\frac{P\left(x\right)}{Q\left(x\right)}`` can be expressed as a sum of partial fractions as follows:
+
+	   1. corresponding to each factor ``\left(x-a\right)^m`` of ``Q\left(x\right)`` the decomposition contains a sum of fractions of the form
+
+		  ```math
+		  \frac{A_1}{x-a}+\frac{A_2}{\left(x-a\right)^2}+\cdots+\frac{A_m}{\left(x-a\right)^m}\,;
+		  ```
+
+	   2. corresponding to each factor ``\left(x^2+bx+c\right)^m`` of ``Q\left(x\right)`` the decomposition contains a sum of fractions of the form
+
+	   	  ```math
+		  \frac{B_1x+C_1}{x^2+bx+c^2}+\frac{B_2x+C_2}{\left(x^2+bx+c^2\right)^2}+\cdots+\frac{B_nx+C_n}{\left(x^2+bx+c^2\right)^n}\,.
+		  ```
+
+	   The constants ``A_1, A_2,\dots,A_m,B_1,B_2,\dots,B_n,C_1,C_2,\dots,C_n`` can be determined by adding up the fractions in the decomposition and equating the coefficients of like powers of ``x`` in the numerator of the sum with those in ``P\left(x\right)``.
+
+We do not attempt to give any formal proof of this assertion here; such a proof belongs in an algebra course.
+
+Note that part (1) does not tell us how to find the factors of ``Q\left(x\right)``; it tells us only what form they have. We must know the factors of ``Q`` before we can make use of partial fractions to integrate the rational function ``\frac{P\left(x\right)}{Q\left(x\right)}``.
+
+!!! example
+
+	Evaluate ``\displaystyle \int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x``.
+
+	The denominator factors to ``x\left(2x^2+1\right)^2``, so the appropriate partial fraction decomposition is
+
+	```math
+	\begin{aligned}
+	\frac{x^2 +2}{x\left(2x^2+1\right)^2}&=\frac{A}{x}+\frac{Bx+C}{2x^2+1}+\frac{Dx+E}{\left(2x^2+1\right)^2}\\
+	&=\frac{A\left(4x^4+4x^2+1\right)+B\left(2x^4+x^2\right)+C\left(2x^3+x\right)+Dx^2+Ex}{x\left(2x^2+1\right)^2}\,.
+	\end{aligned}
+	```
+
+	Thus
+
+	```math
+	\begin{aligned}
+	4A + 2B \hphantom{+ 2C + D + E} = 0&\quad\left(\textrm{coefficient of }x^4\right)\\
+	\hphantom{4A + 2B +} 2C \hphantom{+ D + E} = 0&\quad\left(\textrm{coefficient of }x^3\right)\\
+	4A + 2B \hphantom{ + 2C }+ D \hphantom{+ E} = 0&\quad\left(\textrm{coefficient of }x^2\right)\\
+	\hphantom{4A + 2B + 2}C \hphantom{+ D} + E = 0&\quad\left(\textrm{coefficient of }x^1\right)\\
+	\hphantom{4}A \hphantom{+ 2B + 2C + D + E} = 0&\quad\left(\textrm{coefficient of }x^0\right)\,.
+	\end{aligned}
+	```
+
+	Solving these equations, we get ``A=2``, ``B=-4``, ``C=0``, ``D=-3``, and ``E=0``.
+
+	```math
+	\begin{aligned}
+	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x=&\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
+	&\quad\textrm{Let }u=2x^2+1\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt u=4x\,\mathrm{d}\kern-0.5pt x\\
+	=&\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
+	=&\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
+	=&\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
+	\end{aligned}
+	```
 
 ### Inverse Substitutions
 
+The substitutions considered in the beginning of this section were direct substitutions in the sense that we simplified an integrand by replacing an expression appearing in it with a single variable. In this section we consider the reverse approach: we replace the variable of integration with a function of a new variable. Such substitutions, called *inverse substitutions*, would appear on the surface to make the integral more complicated.
+
+As we will see, however, sometimes such substitutions can actually simplify an integrand, transforming the integral into one that can be evaluated by inspection or to which other techniques can readily be applied. In any event, inverse substitutions can often be used to convert integrands to rational functions.
+
+1. Integrals involving ``\sqrt{a^2-x^2}`` (where ``a&gt;0``) can can frequently be reduced to a simpler form by means of the substitution ``x=a\sin\theta``.
+
+   Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corresponds to ``-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}``. Since ``\cos\theta\ge0`` for such ``\theta``, we have
+
+   ```math
+   \sqrt{a^2-x^2}=\sqrt{a^2\left(1-\sin^2 \theta\right)}=\sqrt{a^2\cos^2\theta}=a\cos\theta\,.
+   ```
+
+   !!! example
+
+	   Evaluate ``\displaystyle\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x``.
+
+	   ```math
+	   \begin{aligned}
+	   \int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	   =&\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
+	   =&\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
+	   \end{aligned}
+	   ```
+
+2. Integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}`` (where ``a&gt;0``) can can frequently be reduced to a simpler form by means of the substitution ``x=a\tan\theta``.
+
+   Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}``, so ``\sec\theta&gt;0`` and
+
+   ```math
+   \sqrt{a^2+x^2}=a\sqrt{1+\tan^2\theta}=a\sec\theta\,.
+   ```
+
+   !!! example
+
+       Evaluate ``\displaystyle \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x``.
+
+	   ```math
+	   \begin{aligned}
+	   \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	   =&\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	   =&\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
+	   &\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
+	   =&\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
+	   =&\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
+	   \end{aligned}
+	   ```
+
+3. Integrals involving ``\sqrt{x^2-a^2}`` (where ``a&gt;0``) can can frequently be reduced to a simpler form by means of the substitution ``x=a\sec\theta``.
+
+   We must be more careful with this substitution. Although
+
+   ```math
+   \sqrt{x^2-a^2}=a\sqrt{\sec^2\theta-1}=a\sqrt{\tan^2\theta}=a\left|\tan\theta\right|\,,
+   ```
+
+   we cannot always drop the absolute value from the tangent.
+
+   !!! example
+
+       Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
+	   
+	   Assume ``x\ge a``.
+
+	   ```math
+	   \begin{aligned}
+	   \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	   =&\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
+	   =&\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+	   \end{aligned}
+	   ```
+
+4. As an alternative to the inverse secant substitution ``x=a\sec\theta`` to simplify integrals involving ``\sqrt{x^2-a^2}`` (where ``x\ge a&gt;0``), we can use the inverse hyperbolic cosine substitution ``x=\operatorname{Arccosh} u``. Since ``\cosh^2 u-1=\sinh^2 u``, this substitution produces ``\sqrt{x^2-a^2}= a\operatorname{arcsinh} u``. To express ``u`` in terms of ``x``, we need the result of the previous chapter,
+
+   ```math
+   \operatorname{Arccosh x}=\ln\left(x+\sqrt{x^2-1}\right)\,,\quad x\ge1\,.
+   ```
+
+   !!! example
+
+	   Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
+
+	   Assume ``x\ge a``.
+
+	   ```math
+	   \begin{aligned}
+	   \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
+	   =&\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
+	   =&\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+	   \end{aligned}
+	   ```
+
+5. Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}``. In this case we have ``\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
+
+   ```math
+   \operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
+   ```
+
+   valid for all ``x`` and proved in the previous chapter.
+
+6. There is a certain special substitution that can transform an integral whose integrand is a rational function of ``\sin\theta`` and ``\cos\theta`` (i.e., a quotient of polynomials in ``\sin\theta`` and ``\cos\theta``) into a rational function of ``x``. The substitution is ``x=\tan\frac{\theta}{2}``.
+
+   Observe that
+
+   ```math
+   \cos^2\frac{\theta}{2}=\frac{1}{\sec^2\frac{\theta}{2}}=\frac{1}{1+\tan^2\frac{\theta}{2}}=\frac{1}{1+x^2}\,,
+   ```
+
+   so
+
+   ```math
+   \begin{aligned}
+   \cos\theta&=2\cos^2\frac{\theta}{2}-1=\frac{2}{1+x^2}-1=\frac{1-x^2}{1+x^2}\\
+   \sin\theta&=2\sin\frac{\theta}{2}\cos\frac{\theta}{2}=2\tan\frac{\theta}{2}\cos^2\frac{\theta}{2}=\frac{2x}{1+x^2}\,.
+   \end{aligned}
+   ```
+
+   Also, ``\mathrm{d}\kern-0.5pt x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt \theta``, so
+
+   ```math
+   \mathrm{d}\kern-0.5pt \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt x=\frac{2}{1+x^2}\,\mathrm{d}\kern-0.5pt x\,.
+   ```
+
 ## Improper Integrals
+
+Up to this point, we have considered definite integrals of the form
+
+```math
+I=\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,,
+```
+
+where the integrand ``f`` is continuous on the closed, finite interval ``\left[a,b\right]``. Since such a function is necessarily bounded, the integral I is necessarily a finite number; for positive f it corresponds to the area of a bounded region of the plane, a region contained inside some disk of finite radius with centre at the origin. Such integrals are also called *proper integrals*. 
+
+We are now going to generalize the definite integral to allow for two possibilities excluded in the situation described above:
+
+1. We may have ``a=-\infty`` or ``b=\infty`` or both.
+
+2. ``f`` may be unbounded as ``x`` approaches ``a`` or ``b`` or both.
+
+Integrals satisfying (1) are called *improper integrals of type I*; integrals satisfying (2) are called *improper integrals of type II*. Either type of improper integral corresponds (for positive ``f``) to the area of a region in the plane that “extends to infinity” in some direction and therefore is unbounded. As we will see, such integrals may or may not have finite values.
+
+### Improper Integrals of Type I
+
+!!! definition
+
+	If ``f`` is continuous on ``\left[a,\infty\right[``, we define the improper integral of ``f`` over ``\left[a,\infty\right[`` as a limit of proper integrals:
+
+	```math
+	\int_a^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{R\to\infty}\int_a^R f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+	Similarly, if ``f`` is continuous on ``\left]-\infty, b\right]``, then we define
+
+	```math
+	\int_{-\infty}^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{R\to-\infty}\int_R^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+	In either case, if the limit exists (is a finite number), we say that the improper integral converges; if the limit does not exist, we say that the improper integral diverges. If the limit is ``\infty`` (or ``-\infty``), we say the improper integral diverges to infinity (or diverges to negative infinity).
+
+The integral ``\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` is, for ``f`` continuous on the real line, improper of type I at both endpoints. We break it into two separate integrals:
+
+```math
+\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_{-\infty}^0 f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_0^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+The integral on the left converges if and only if both integrals on the right converge.
+
+!!! example
+
+	Evaluate ``\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x``.
+
+	By the even symmetry of the integrand, we have
+
+	```math
+	\begin{aligned}
+	\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x&=\int_{-\infty}^0 \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x+\int_0^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
+	&=2\lim_{R\to\infty}\int_0^R \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
+	&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\uppi}{2}=\uppi\,.
+	\end{aligned}
+	```
+
+### Improper Integrals of Type II
+
+!!! definition
+
+	If ``f`` is continuous on the interval ``\left]a,b\right]``and is possibly unbounded near ``a``, we define the improper integral
+
+	```math
+	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to a^+}\int_c^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+	Similarly, if ``f`` is continuous on ``\left[a,b\right[`` and is possibly unbounded near ``b``, we define
+
+	```math
+	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to b^-}\int_a^c f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+	These improper integrals may converge, diverge, diverge to infinity, or diverge to negative infinity.
+
+While improper integrals of type I are always easily recognized because of the infinite limits of integration, improper integrals of type II can be somewhat harder to spot. You should be alert for singularities of integrands and especially points where they have vertical asymptotes. It may be necessary to break an improper integral into several improper integrals if it is improper at both endpoints or at points inside the interval of integration.
+
+!!! example
+
+	Find the area of the region ``S`` lying under ``y=\frac{1}{\sqrt x}``, above the ``x``-axis, between ``x=0`` and ``x=1``.
+
+	The area ``A`` is given by
+
+	```math
+	A=\int_0^1\frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x\,,
+	```
+
+	which is an improper integral of type II since the integrand is unbounded near ``x=0``. The region ``S`` has a “spike” extending to infinity along the ``y``-axis, a vertical asymptote of the integrand.
+	
+	We express such integrals as limits of proper integrals:
+
+	```math
+	A = \lim_{x\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d}\kern-0.5pt x=\lim_{x\to 0^+}\left.2x^{\frac{1}{2}}\right|_c^1=\lim_{x\to 0^+}\left(2-2\sqrt x\right)=2\,.
+	```
+
+	This integral converges, and ``S`` has a finite area of ``2`` square units.
 
 ## Areas of Plane Regions
 
+In this section we review and extend the use of definite integrals to represent plane areas. Recall that the integral  ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` measures the area between the graph of ``f`` and the ``x``-axis from ``x=a`` to ``x=b``, but treats as negative any part of this area that lies below the ``x``-axis. (We are assuming that ``a&lt;b``.) In order to express the total area bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b``, counting all of the area positively, we should integrate the absolute value of ``f``.
+
+There is no “rule” for integrating ``\int_a^b \left|f\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x`` one must break the integral into a sum
+of integrals over intervals where ``f\left(x\right)&gt; 0``.
+
+!!! example
+
+	The area bounded by ``y=\cos x``, ``y=0``, ``x=0``, and ``x=\frac{3\uppi}{2}`` is
+
+	```math
+	\begin{aligned}
+	A&=\int_0^\frac{3\uppi}{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
+	&=\int_0^\frac{\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\uppi}{2}^\frac{3\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
+	&=\left.\sin x\right|_0^\frac{\uppi}{2}-\left.\sin x\right|_\frac{\uppi}{2}^\frac{3\uppi}{2}\\
+	&=\left(1-0\right)-\left(-1-1\right)=3\,\textrm{square units.}
+	\end{aligned}
+	```
+
+### Areas Between Two Curves
+
+Suppose that a plane region ``R`` is bounded by the graphs of two continuous functions, ``y=f\left(x\right)`` and ``y=g\left(x\right)``, and the vertical straight lines ``x=a`` and ``x=b``, as shown in the figure. 
+
+Assume that ``a&lt;b`` and that ``f\left(x\right)\le g\left(x\right)`` on ``\left[a,b\right]``, so the graph of ``f`` lies below that of ``g``. If ``f\left(x\right)\ge 0`` on ``\left[a,b\right]`` then the area ``A`` of ``R`` is the area above the ``x``-axis and under the graph of ``g`` minus the area above the ``x``-axis and under the graph of ``f``:
+
+```math
+A=\int_a^b g\left(x\right)\,\mathrm{d}\kern-0.5pt x-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+It is useful to regard this formula as expressing ``A`` as the “sum” (i.e., the integral) of infinitely many *area elements*
+
+```math
+\mathrm{d}\kern-0.5pt A = \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,,
+```
+
+corresponding to values of ``x`` between ``a`` and ``b``. Each such area element is the area of an infinitely thin vertical rectangle of width ``\mathrm{d}\kern-0.5pt x`` and height ``g\left(x\right)-f\left(x\right)`` located at position ``x``. Even if ``f`` and ``g`` can take on negative values on ``\left[a,b\right]``, this interpretation and the resulting area formula
+
+```math
+A=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+remain valid, provided that ``f\left(x\right)\le g\left(x\right)`` on ``\left[a,b\right]`` so that all the area elements ``\mathrm{d}\kern-0.5pt A`` have positive area. Using integrals to represent a quantity as a *sum of differential elements* is a very helpful approach. Of course, what we are really doing is identifying the integral as a limit of a suitable Riemann sum.
+
+More generally, if the restriction ``f\left(x\right)\le g\left(x\right)``  is removed, then the vertical rectangle of width ``\mathrm{d}\kern-0.5pt x`` at position ``x`` extending between the graphs of ``f`` and ``g`` has height ``\left|f\left(x\right)-g\left(x\right)\right|`` and hence area
+
+```math
+\mathrm{d}\kern-0.5pt A = \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+Hence, the total area lying between the graphs ``y=f\left(x\right)`` and ``y=g\left(x\right)`` between the vertical lines ``x=a`` and ``x=b&gt;a`` is given by
+
+```math
+A = \int_a^b \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\,.
+```
+
+In order to evaluate this integral, we have to determine the intervals on which  ``f\left(x\right)&gt; g\left(x\right)`` or ``f\left(x\right)&lt; g\left(x\right)``, and break the integral into a sum of integrals over each of these intervals.
+
+!!! example
+
+	Find the total area ``A`` lying between ``y=\sin x`` and ``y=\cos x`` from ``x=0`` to ``x=2\uppi``.
+
+	Between ``0`` and ``2\uppi`` the graphs of sine and cosine cross at ``x=\frac{\uppi}{4}`` and ``x=\frac{5\uppi}{4}``. The required area is
+
+	```math
+	\begin{aligned}
+	A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\uppi}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\uppi}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
+	&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\uppi}{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\uppi}{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\uppi}{4}^{2\uppi}\\
+	&=\left(\sqrt 2-1\right)+\left(\sqrt 2+\sqrt 2\right)+\left(1+\sqrt 2\right)=4\sqrt 2\,\textrm{square units.}
+	\end{aligned}
+	```
+
+## Volumes by Slicing—Solids of Revolution
+
+In this section we show how volumes of certain three-dimensional regions (or solids) can be expressed as definite integrals and thereby determined. We will not attempt to give a definition of *volume* but will rely on our intuition and experience with solid objects to provide enough insight for us to specify the volumes of certain simple solids. For example, if the base of a rectangular box is a rectangle of length ``l`` and width ``w`` and therefore area ``A=lw``, and if the box has height ``h``, then its volume is ``V=Ah=lwh``.
+
+A rectangular box is a special case of a solid called a *cylinder*. Such a solid has a flat base occupying a region Rin a plane, and consists of all points on parallel straight line segments having one end in Rand the other end in a (necessarily congruent) region in a second plane parallel to the plane of the base. Either of these regions can be called the base of the cylinder. The cylindrical wall is the surface consisting of the parallel line segments joining corresponding points on the boundaries of the two bases. A cylinder having a polygonal base (i.e., one bounded by straight lines) is usually called a *prism*. The height of any cylinder or prism is the perpendicular distance between the parallel planes containing the two bases. If this height is ``h`` units and the area of a base is ``A`` square units, then the volume of the cylinder or prism is ``V=Ah`` cubic units.
+
+### Volumes by Slicing
+
+Knowing the volume of a cylinder enables us to determine the volumes of some more general solids. We can divide solids into thin “slices” by parallel planes. (Think of a loaf of sliced bread.) Each slice is approximately a cylinder of very small “height”; the height is the thickness of the slice. If we know the cross-sectional area of each slice, we can determine its volume and sum these volumes to find the volume of the solid.
+
+!!! definition
+
+	The volume ``V`` of a solid between ``x=a`` and ``x=b`` having cross-sectional area ``A\left(x\right)`` at position ``x`` is
+
+	```math
+	V = \int_a^b A\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+### Solids of Revolution
+
+Many common solids have circular cross-sections in planes perpendicular to some axis. Such solids are called solids of revolution because they can be generated by rotating a plane region about an axis in that plane so that it sweeps out the solid.
+
+!!! theorem
+
+	If the region ``R`` bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b`` is rotated about the ``x``-axis, then the cross-section of the solid generated in the plane perpendicular to the ``x``-axis at ``x`` is a circular disk of radius ``\left|f\left(x\right)\right|``. The area of this cross-section is ``A\left(x\right)=\uppi\left(f\left(x\right)\right)^2``, so the volume of the solid of revolution is
+
+	```math
+	V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+!!! example
+
+	Find the volume of the right-circular cone of base radius ``r`` and height ``h`` that is generated by rotating the triangle with vertices ``\left(0,0\right)``, ``\left(h,0\right)``, and ``\left(h,r\right)`` about the ``x``-axis.
+
+	The line from ``\left(0,0\right)`` to ``\left(h,r\right)`` has equation ``y=\frac{r}{h}x``. Thus the volume of the cone is
+
+	```math
+	V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi r^2h\ \textrm{cubic units.}
+	```
+
+!!! theorem
+
+	The volume of the solid obtained by rotating the plane region ``0\le y\le f\left(x\right)``, ``0\le a&lt;x&lt;b`` about the ``y``-axis is
+
+	```math
+	V=2\uppi\int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+!!! example
+
+	Find the volume of a bowl obtained by revolving the parabolic arc ``y=x^2``, ``0\le x\le1`` about the ``y``-axis.
+
+	The interior of the bowl corresponds to revolving the region given by ``x^2 \le y\le 1``, ``0\le x\le 1`` about the ``y``-axis. The area element at position ``x`` has height ``1-x^2`` and generates a cylindrical shell of volume ``\mathrm{d}\kern-0.5pt V=2\uppi x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x``. Thus, the volume of the bowl is
+
+	```math
+	V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi}{2}\ \textrm{cubic units.}
+	```
+
+We have described two methods for determining the volume of a solid of revolution, slicing and cylindrical shells. The choice of method for a particular solid is usually dictated by the form of the equations defining the region being rotated and by the axis of rotation.
+
 ## Arc Length and Surface Area
 
+In this section we consider how integrals can be used to find the lengths of curves and the areas of the surfaces of solids of revolution.
+
+## Arc Length
+
+If ``A`` and ``B`` are two points in the plane, let ``\left|AB\right|`` denote the distance between ``A`` and ``B``, that is, the length of the straight line segment ``AB``.
+
+Given a curve ``\mathcal C`` joining the two points ``A`` and ``B``, we would like to define what is meant by the length of the curve ``\mathcal C`` from ``A`` to ``B``. Suppose we choose points ``A=P_0``, ``P_1``, ``P_2``, ``\dots``, ``P_{n-1}``, and ``P_n=B`` in order along the curve. The polygonal line ``P_0P_1P_2\dots P_{n-1}P_n`` constructed by joining adjacent pairs of these points with straight line segments forms a polygonal approximation to ``\mathcal C``, having length
+
+```math
+L_n=\left|P_0P_1\right|+\left|P_1P_2\right|+\cdots+\left|P_{n-1}P_n\right|=\sum_{i=1}^n\left|P_{i-1}P_i\right|\,.
+```
+
+!!! definition
+
+	The *arc length* of the curve ``\mathcal C`` from ``A`` to ``B`` is the smallest real number ``s`` such that the length ``L_n`` of every polygonal approximation to ``\mathcal C`` satisfies ``L_n\le s``.
+
+A curve with a finite arc length is said to be *rectifiable*. Its arc length ``s`` is the limit of the lengths ``L_n`` of polygonal approximations as ``n\to \infty`` in such a way that the maximum segment length ``\left|P_{i-1}P_i\right|\to 0``.
+
+### The Arc Length of the Graph of a Function
+
+Let ``f`` be a function defined on a closed, finite interval ``\left[a,b\right]`` and having a continuous derivative ``f^\prime`` there. If ``\mathcal C`` is the graph of ``f``, that is, the graph of the equation ``y=f\left(x\right)``, then any partition of ``\left[a,b\right]``provides a polygonal approximation to ``\mathcal C``. For the partition
+
+```math
+\left\{a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b\right\}
+```
+
+let ``P_i`` be the point ``\left(x_i,f\left(x_i\right)\right)``, ``\left(0\le i\le n\right)``. The length of the polygonal line ``P_0P_1P_2\dots P_{n-1}P_n`` is
+
+```math
+\begin{aligned}
+L_n=\sum_{i=1}^n\left|P_{i-1}P_i\right|&=\sum_{i=1}^n\sqrt{\left(x_i-x_{i-1}\right)^2+\left(f\left(x_i\right)-f\left(x_{i-1}\right)\right)^2}\\
+&=\sum_{i=1}^n\sqrt{1+\left(\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}\right)^2}\Delta\kern-0.5pt x_i\,,
+\end{aligned}
+```
+
+where ``\Delta\kern-0.5pt x_i=x_i-x_{i-1}``. By the Mean-Value Theorem there exists a number ``c_i`` in the interval ``\left[x_{i-1},x_i\right]`` such that
+
+```math
+\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}=f^\prime\left(c_i\right)\,,
+```
+
+so we have
+
+```math
+L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\,.
+```
+
+Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x``. Being the limit of such Riemann sums as ``n\to\infty`` in such a way that ``\max\Delta\kern-0.5pt x_i \to 0``, that integral is the length of the curve ``C``.
+
+!!! theorem
+
+	The arc length ``s`` of the curve ``y=f\left(x\right)`` from ``x=a`` to ``x=b`` is given by
+
+	```math
+	s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x=\int_a^b\sqrt{1+\left(\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+!!! example
+
+	Find the length of the curve ``y=x^\frac{2}{3}`` from ``x=1`` to ``x=8``.
+
+	Since ``\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}=\frac{2}{3}x^{-\frac{1}{3}}`` is continuous between ``x=1`` and ``x=8``, the length of the curve is given by
+
+	```math
+	\begin{aligned}
+	s=&\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
+	=&\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
+	&\quad\textrm{Let }u=9x^\frac{2}{3}+4,\mathrm{d}\kern-0.5pt u=6x^{-\frac{2}{3}}\,\mathrm{d}\kern-0.5pt x\\
+	=&\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
+	\end{aligned}
+	```
+
+### Areas of Surfaces of Revolution
+
+When a plane curve is rotated (in three dimensions) about a line in the plane of the curve, it sweeps out a surface of revolution. For instance, a sphere of radius ``a`` is generated by rotating a semicircle of radius ``a`` about the diameter of that semicircle.
+
+The area of a surface of revolution can be found by integrating an area element ``\mathrm{d}\kern-0.5pt S`` constructed by rotating the arc length element ``\mathrm{d}\kern-0.5pt s`` of the curve about the given line. If the radius of rotation of the element ``\mathrm{d}\kern-0.5pt s`` is ``r``, then it generates, on rotation, a circular band of width ``\mathrm{d}\kern-0.5pt s`` and length (circumference) ``2\uppi r``. The area of this band is, therefore,
+
+```math
+\mathrm{d}\kern-0.5pt S=2\uppi r\,\mathrm{d}\kern-0.5pt s\,.
+```
+
+The areas of surfaces of revolution around various lines can be obtained by integrating ``\mathrm{d}\kern-0.5pt S`` with appropriate choices of ``r``. Here are some important special cases.
+
+!!! theorem
+
+	If ``f^\prime\left(x\right)`` is continuous on ``\left[a,b\right]`` and the curve ``y=f\left(x\right)`` is rotated about the ``x``-axis, the area of the surface of revolution so generated is
+
+	```math
+	S=2\uppi\int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+	If the rotation is about the ``y``-axis, the surface area is
+
+	```math
+	S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	```
+
+!!! example
+
+	Find the surface area of a parabolic reflector whose shape is obtained by rotating the parabolic arc ``y=x^2``, ``\left(0 \le x \le 1\right)``, about the ``y``-axis.
+
+	The arc length element for the parabola ``y=x^2`` is ``\mathrm{d}\kern-0.5pt s=\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x``, so the required surface area is
+
+	```math
+	\begin{aligned}
+	S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
+	&\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
+	=&\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+	=&\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
+	\end{aligned}
+	```

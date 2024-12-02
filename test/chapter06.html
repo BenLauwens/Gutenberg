@@ -485,7 +485,7 @@ U\left(f,P\right)-L\left(f, P\right)\le U\left(f,P^{\prime\prime}\right)-L\left(
 <h1>&nbsp;(by contradiction)</h1>
 <p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(I_0=\left[a,b\right]=\left[a_0,b_0\right]\)</span> but not uniformly continuous.</p>
 <p>Then, there exists <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span> such that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exists <span class="math-tex" data-type="tex">\(x,y\in\left[a_0,b_0\right]\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
-<p>From the lemma, it follows that at least one of the two subintervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> has the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>. Otherwise our assumption would be contradicted by the lemma.</p>
+<p>It follows that at least one of the two subintervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> has the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>. Otherwise our assumption would be contradicted by the lemma.</p>
 <p>Choose a subinterval having this property and call it <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
 <p>Continuing in this ways, we obtain a sequence of closed intervals satisfying the hypotheses of the Nested Intervals Theorem and having the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
 <p>By the Nested Intervals Theorem, there exists <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
@@ -1169,19 +1169,670 @@ I=2\int_1^3\cos u\,\mathrm{d}\kern-0.5pt u=\left.2\sin u\right|_1^3=2\sin 3-2\si
 \end{aligned}
 \]
 </div>
-<p>All of these can, of course, be checked by differentiating the right-hand sides.</p>
+<p>All of these can, of course, be checked by differentiating the right-hand sides. They can be evaluated directly by rewriting<span class="math-tex" data-type="tex">\(\tan x\)</span> or <span class="math-tex" data-type="tex">\(\\cot x\)</span> in terms of <span class="math-tex" data-type="tex">\(\sin x\)</span> and <span class="math-tex" data-type="tex">\(\cos x\)</span> and using an appropriate substitution. For example,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int \tan x\,\mathrm{d}\kern-0.5pt x&=\int \frac{\sin x}{\cos x}\,\mathrm{d}\kern-0.5pt x\quad\textrm{Let }u=\cos x\textrm{, then }\mathrm{d}\kern-0.5pt u=-\sin x\,\mathrm{d}\kern-0.5pt x\\
+&=-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=-\ln\left|u\right|+C\\
+&=-\ln\left|\cos x\right|+C=-\ln\left|\frac{1}{\cos x}\right|+C=-\ln\left|\sec x\right|+C
+\end{aligned}
+\]
+</div>
+<p>We now consider integrals of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\int \sin^m x\cos^n x\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>If either <span class="math-tex" data-type="tex">\(m\)</span> or <span class="math-tex" data-type="tex">\(n\)</span> is an odd, positive integer, the integral can be done easily by substitution. If, say, <span class="math-tex" data-type="tex">\(n=2k+1\)</span> where <span class="math-tex" data-type="tex">\(k\)</span> is an integer, then we can use the identity <span class="math-tex" data-type="tex">\(\sin^2 x + \cos^2 x = 1\)</span> to rewrite the integral in the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\int \sin^m x\left(1-\sin^2 x\right)^k\cos x\,\mathrm{d}\kern-0.5pt x\,,
+\]
+</div>
+<p>which can be integrated using the substitution <span class="math-tex" data-type="tex">\(u=\sin x\)</span>. Similarly, <span class="math-tex" data-type="tex">\(u=\cos x\)</span> can be used if <span class="math-tex" data-type="tex">\(m\)</span> is an odd integer.</p>
+<p>If the powers of <span class="math-tex" data-type="tex">\(\sin x\)</span> and <span class="math-tex" data-type="tex">\(\cos x\)</span> are both even, then we can make use of the double-angle formulas</p>
+<div class="math-tex" data-type="equation">
+\[
+\cos^2 x=\frac{1}{2}\left(1+\cos 2x\right)\quad\textrm{and}\quad \sin^2=\frac{1}{2}\left(1-\cos 2x\right)\,.
+\]
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle\int \sin^4 x\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int \sin^4 x\,\mathrm{d}\kern-0.5pt x&=\frac{1}{4}\int \left(1-\cos 2x\right)^2\,\mathrm{d}\kern-0.5pt x\\
+&=\frac{1}{4}\int \left(1-2\cos 2x+\cos^2 2x\right)\,\mathrm{d}\kern-0.5pt x\\
+&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{1}{8}\int \left(1+\cos 4x\right)\,\mathrm{d}\kern-0.5pt x\\
+&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{x}{8}+\frac{1}{32}\sin 4x+C\\
+&=\frac{3}{8}x-\frac{1}{4}\sin 2x+\frac{1}{32}\sin 4x+C
+\end{aligned}
+\]
+</div>
+</div>
 <section data-type="sect2">
 <h2>Integration by Parts</h2>
+<p>Our next general method for antidifferentiation is called <i>integration by parts</i>. Just as the method of substitution can be regarded as inverse to the Chain Rule for differentiation, so the method for integration by parts is inverse to the Product Rule for differentiation.</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(U\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(V\left(x\right)\)</span> are two differentiable functions. According to the Product Rule,</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\mathrm d\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(U\left(x\right)V\left(x\right)\right)=U\left(x\right)\frac{\mathrm{d}\kern-0.5pt V}{\mathrm{d}\kern-0.5pt x}\left(x\right)+V\left(x\right)\frac{\mathrm{d}\kern-0.5pt U}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,.
+\]
+</div>
+<p>Integrating both sides of this equation and transposing terms, we obtain</p>
+<div class="math-tex" data-type="equation">
+\[
+\int U\left(x\right)\frac{\mathrm{d}\kern-0.5pt V}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,\mathrm{d}\kern-0.5pt x=U\left(x\right)V\left(x\right)-\int V\left(x\right)\frac{\mathrm{d}\kern-0.5pt U}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>The above formula serves as a pattern for carrying out integration by parts. We break up the given integrand into a product of two pieces, <span class="math-tex" data-type="tex">\(U\)</span> and <span class="math-tex" data-type="tex">\(V^\prime\)</span>, where <span class="math-tex" data-type="tex">\(V^\prime\)</span> is readily integrated and where <span class="math-tex" data-type="tex">\(\int VU^\prime\,\mathrm{d}\kern-0.5pt x\)</span> is usually (but not always) a simpler integral than <span class="math-tex" data-type="tex">\(\int UV^\prime\,\mathrm{d}\kern-0.5pt x\)</span>. The technique is called integration by parts because it replaces one integral with the sum of an integrated term and another integral that remains to be evaluated. That is, it accomplishes only part of the original integration.</p>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int xℯ^x\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int xℯ^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=ℯ^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=ℯ^x\\
+=&\,xℯ^x-\int ℯ^x\,\mathrm{d}\kern-0.5pt x=xℯ^x-ℯ^x+C\,.
+\end{aligned}
+\]
+</div>
+</div>
+<p>Note the form in which the integration by parts is carried out. We indicate at the side what choices we are making for <span class="math-tex" data-type="tex">\(U\)</span> and <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V\)</span> and then calculate <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt U\)</span> and <span class="math-tex" data-type="tex">\(V\)</span> from these. However, we do not actually substitute <span class="math-tex" data-type="tex">\(U\)</span> and <span class="math-tex" data-type="tex">\(V\)</span> into the integral; instead, we use the formula <span class="math-tex" data-type="tex">\(\int U\,\mathrm{d}\kern-0.5pt V=UV-\int V\,\mathrm{d}\kern-0.5pt U\)</span> as a pattern or mnemonic device to replace the given integral by the equivalent partially integrated form on the second line.</p>
+<p>In general, do not include a constant of integration with <span class="math-tex" data-type="tex">\(V\)</span> or on the right-hand side until the last integral has been evaluated because that constant would cancel out in the next step.</p>
+<p>The following are two useful rules of thumb for choosing <span class="math-tex" data-type="tex">\(U\)</span> and <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V\)</span>:</p>
+<ol>
+<li>
+<p>If the integrand involves a polynomial multiplied by an exponential, a sine or a cosine, or some other readily integrable function, try <span class="math-tex" data-type="tex">\(U\)</span> equals the polynomial and <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V\)</span> equals the rest.</p>
+</li>
+<li>
+<p>If the integrand involves a logarithm, an inverse trigonometric function, or some other function that is not readily integrable but whose derivative is readily calculated, try that function for <span class="math-tex" data-type="tex">\(U\)</span> and let <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V\)</span> equal the rest.</p>
+</li>
+</ol>
+<p>Of course, these “rules” come with no guarantee.</p>
+<p>The following example illustrates a frequently occurring and very useful phenomenon. It may happen after one or two integrations by parts, with the possible application of some known identity, that the original integral reappears on the right-hand side. Unless its coefficient there is <span class="math-tex" data-type="tex">\(1\)</span>, we have an equation that can be solved for that integral.</p>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=ℯ^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=aℯ^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
+=&\,\frac{1}{b}ℯ^{ax}\sin bx-\frac{a}{b}\int ℯ^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
+&\quad\textrm{Let }U=ℯ^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=aℯ^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
+=&\,\frac{1}{b}ℯ^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}ℯ^{ax}\cos bx+\frac{a}{b}\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
+=&\,\frac{1}{b}ℯ^{ax}\sin bx+\frac{a}{b^2}ℯ^{ax}\cos bx-\frac{a^2}{b^2}\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
+\end{aligned}
+\]
+</div>
+<p>Thus,</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(1+\frac{a^2}{b^2}\right)\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}ℯ^{ax}\sin bx+\frac{a}{b^2}ℯ^{ax}\cos bx+C_1
+\]
+</div>
+<p>and</p>
+<div class="math-tex" data-type="equation">
+\[
+\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{bℯ^{ax}\sin bx+aℯ^{ax}\cos bx}{a^2+b^2}+C\,.
+\]
+</div>
+</div>
+<p>Observe that after the first integration by parts we had an integral that was different from, but no simpler than, the original integral. At this point we might have become discouraged and given up on this method. However, perseverance proved worthwhile; a second integration by parts returned the original integral in an equation that could be solved for the integral.</p>
 <section data-type="sect2">
 <h2>Integrals of Rational Functions</h2>
+<p>A complicated fraction can be written as a sum of simpler fractions. This is called the <i>method of partial fractions</i>.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(Q\)</span> be polynomials with real coefficients, and suppose that the degree of <span class="math-tex" data-type="tex">\(P\)</span> is less than the degree of <span class="math-tex" data-type="tex">\(Q\)</span>. Then</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> can be factored into the product of a constant <span class="math-tex" data-type="tex">\(K\)</span>, real linear factors of the form <span class="math-tex" data-type="tex">\(\left(x-a_i\right)\)</span>, and real quadratic factors of the form <span class="math-tex" data-type="tex">\(x^2+b_i x+c_i\)</span> having no real roots. The linear and quadratic factors may be repeated:</p>
+<div class="math-tex" data-type="equation">
+\[
+Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a_j\right)^{m_j}\left(x^2+b_1x+c_1\right)^{n_1}\cdots\left(x^2+b_kx+c_k\right)^{n_k}\,.
+\]
+</div>
+<p>The degree of <span class="math-tex" data-type="tex">\(Q\)</span> is <span class="math-tex" data-type="tex">\(m_1+m_2+\cdots+m_j+2n_1+2n_2+\cdots+2n_k\)</span>.</p>
+</li>
+<li>
+<p>The rational function <span class="math-tex" data-type="tex">\(\displaystyle\frac{P\left(x\right)}{Q\left(x\right)}\)</span> can be expressed as a sum of partial fractions as follows:</p>
+<ol>
+<li>
+<p>corresponding to each factor <span class="math-tex" data-type="tex">\(\left(x-a\right)^m\)</span> of <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> the decomposition contains a sum of fractions of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{A_1}{x-a}+\frac{A_2}{\left(x-a\right)^2}+\cdots+\frac{A_m}{\left(x-a\right)^m}\,;
+\]
+</div>
+</li>
+<li>
+<p>corresponding to each factor <span class="math-tex" data-type="tex">\(\left(x^2+bx+c\right)^m\)</span> of <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span> the decomposition contains a sum of fractions of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{B_1x+C_1}{x^2+bx+c^2}+\frac{B_2x+C_2}{\left(x^2+bx+c^2\right)^2}+\cdots+\frac{B_nx+C_n}{\left(x^2+bx+c^2\right)^n}\,.
+\]
+</div>
+</li>
+</ol>
+<p>The constants <span class="math-tex" data-type="tex">\(A_1, A_2,\dots,A_m,B_1,B_2,\dots,B_n,C_1,C_2,\dots,C_n\)</span> can be determined by adding up the fractions in the decomposition and equating the coefficients of like powers of <span class="math-tex" data-type="tex">\(x\)</span> in the numerator of the sum with those in <span class="math-tex" data-type="tex">\(P\left(x\right)\)</span>.</p>
+</li>
+</ol>
+</div>
+<p>We do not attempt to give any formal proof of this assertion here; such a proof belongs in an algebra course.</p>
+<p>Note that part (1) does not tell us how to find the factors of <span class="math-tex" data-type="tex">\(Q\left(x\right)\)</span>; it tells us only what form they have. We must know the factors of <span class="math-tex" data-type="tex">\(Q\)</span> before we can make use of partial fractions to integrate the rational function <span class="math-tex" data-type="tex">\(\frac{P\left(x\right)}{Q\left(x\right)}\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<p>The denominator factors to <span class="math-tex" data-type="tex">\(x\left(2x^2+1\right)^2\)</span>, so the appropriate partial fraction decomposition is</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\frac{x^2 +2}{x\left(2x^2+1\right)^2}&=\frac{A}{x}+\frac{Bx+C}{2x^2+1}+\frac{Dx+E}{\left(2x^2+1\right)^2}\\
+&=\frac{A\left(4x^4+4x^2+1\right)+B\left(2x^4+x^2\right)+C\left(2x^3+x\right)+Dx^2+Ex}{x\left(2x^2+1\right)^2}\,.
+\end{aligned}
+\]
+</div>
+<p>Thus</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+4A + 2B \hphantom{+ 2C + D + E} = 0&\quad\left(\textrm{coefficient of }x^4\right)\\
+\hphantom{4A + 2B +} 2C \hphantom{+ D + E} = 0&\quad\left(\textrm{coefficient of }x^3\right)\\
+4A + 2B \hphantom{ + 2C }+ D \hphantom{+ E} = 0&\quad\left(\textrm{coefficient of }x^2\right)\\
+\hphantom{4A + 2B + 2}C \hphantom{+ D} + E = 0&\quad\left(\textrm{coefficient of }x^1\right)\\
+\hphantom{4}A \hphantom{+ 2B + 2C + D + E} = 0&\quad\left(\textrm{coefficient of }x^0\right)\,.
+\end{aligned}
+\]
+</div>
+<p>Solving these equations, we get <span class="math-tex" data-type="tex">\(A=2\)</span>, <span class="math-tex" data-type="tex">\(B=-4\)</span>, <span class="math-tex" data-type="tex">\(C=0\)</span>, <span class="math-tex" data-type="tex">\(D=-3\)</span>, and <span class="math-tex" data-type="tex">\(E=0\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x=&\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
+&\quad\textrm{Let }u=2x^2+1\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt u=4x\,\mathrm{d}\kern-0.5pt x\\
+=&\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
+=&\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
+=&\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
+\end{aligned}
+\]
+</div>
+</div>
 <section data-type="sect2">
 <h2>Inverse Substitutions</h2>
+<p>The substitutions considered in the beginning of this section were direct substitutions in the sense that we simplified an integrand by replacing an expression appearing in it with a single variable. In this section we consider the reverse approach: we replace the variable of integration with a function of a new variable. Such substitutions, called <i>inverse substitutions</i>, would appear on the surface to make the integral more complicated.</p>
+<p>As we will see, however, sometimes such substitutions can actually simplify an integrand, transforming the integral into one that can be evaluated by inspection or to which other techniques can readily be applied. In any event, inverse substitutions can often be used to convert integrands to rational functions.</p>
+<ol>
+<li>
+<p>Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sin\theta\)</span>.</p>
+<p>Observe that <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> makes sense only if <span class="math-tex" data-type="tex">\(-a\le x\le a\)</span>, which corresponds to <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}\)</span>. Since <span class="math-tex" data-type="tex">\(\cos\theta\ge0\)</span> for such <span class="math-tex" data-type="tex">\(\theta\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\sqrt{a^2-x^2}=\sqrt{a^2\left(1-\sin^2 \theta\right)}=\sqrt{a^2\cos^2\theta}=a\cos\theta\,.
+\]
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
+=&\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
+=&\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
+\end{aligned}
+\]
+</div>
+</div>
+</li>
+<li>
+<p>Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\)</span> can take any real value, we have <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}\)</span>, so <span class="math-tex" data-type="tex">\(\sec\theta&gt;0\)</span> and</p>
+<div class="math-tex" data-type="equation">
+\[
+\sqrt{a^2+x^2}=a\sqrt{1+\tan^2\theta}=a\sec\theta\,.
+\]
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
+=&\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
+=&\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
+&\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
+=&\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
+=&\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
+\end{aligned}
+\]
+</div>
+</div>
+</li>
+<li>
+<p>Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sec\theta\)</span>.</p>
+<p>We must be more careful with this substitution. Although</p>
+<div class="math-tex" data-type="equation">
+\[
+\sqrt{x^2-a^2}=a\sqrt{\sec^2\theta-1}=a\sqrt{\tan^2\theta}=a\left|\tan\theta\right|\,,
+\]
+</div>
+<p>we cannot always drop the absolute value from the tangent.</p>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<p>Assume <span class="math-tex" data-type="tex">\(x\ge a\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
+=&\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
+=&\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+\end{aligned}
+\]
+</div>
+</div>
+</li>
+<li>
+<p>As an alternative to the inverse secant substitution <span class="math-tex" data-type="tex">\(x=a\sec\theta\)</span> to simplify integrals involving <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}\)</span> (where <span class="math-tex" data-type="tex">\(x\ge a&gt;0\)</span>), we can use the inverse hyperbolic cosine substitution <span class="math-tex" data-type="tex">\(x=\operatorname{Arccosh} u\)</span>. Since <span class="math-tex" data-type="tex">\(\cosh^2 u-1=\sinh^2 u\)</span>, this substitution produces <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}= a\operatorname{arcsinh} u\)</span>. To express <span class="math-tex" data-type="tex">\(u\)</span> in terms of <span class="math-tex" data-type="tex">\(x\)</span>, we need the result of the previous chapter,</p>
+<div class="math-tex" data-type="equation">
+\[
+\operatorname{Arccosh x}=\ln\left(x+\sqrt{x^2-1}\right)\,,\quad x\ge1\,.
+\]
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<p>Assume <span class="math-tex" data-type="tex">\(x\ge a\)</span>.</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
+=&\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
+=&\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+\end{aligned}
+\]
+</div>
+</div>
+</li>
+<li>
+<p>Similarly, the inverse hyperbolic substitution <span class="math-tex" data-type="tex">\(x=\operatorname{arcsinh} u\)</span> can be used instead of the inverse tangent substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span> to simplify integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span>. In this case we have <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u\)</span> and <span class="math-tex" data-type="tex">\(x^2+a^2=a^2\cosh^2 u\)</span>, and we may need the result</p>
+<div class="math-tex" data-type="equation">
+\[
+\operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
+\]
+</div>
+<p>valid for all <span class="math-tex" data-type="tex">\(x\)</span> and proved in the previous chapter.</p>
+</li>
+<li>
+<p>There is a certain special substitution that can transform an integral whose integrand is a rational function of <span class="math-tex" data-type="tex">\(\sin\theta\)</span> and <span class="math-tex" data-type="tex">\(\cos\theta\)</span> (i.e., a quotient of polynomials in <span class="math-tex" data-type="tex">\(\sin\theta\)</span> and <span class="math-tex" data-type="tex">\(\cos\theta\)</span>) into a rational function of <span class="math-tex" data-type="tex">\(x\)</span>. The substitution is <span class="math-tex" data-type="tex">\(x=\tan\frac{\theta}{2}\)</span>.</p>
+<p>Observe that</p>
+<div class="math-tex" data-type="equation">
+\[
+\cos^2\frac{\theta}{2}=\frac{1}{\sec^2\frac{\theta}{2}}=\frac{1}{1+\tan^2\frac{\theta}{2}}=\frac{1}{1+x^2}\,,
+\]
+</div>
+<p>so</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\cos\theta&=2\cos^2\frac{\theta}{2}-1=\frac{2}{1+x^2}-1=\frac{1-x^2}{1+x^2}\\
+\sin\theta&=2\sin\frac{\theta}{2}\cos\frac{\theta}{2}=2\tan\frac{\theta}{2}\cos^2\frac{\theta}{2}=\frac{2x}{1+x^2}\,.
+\end{aligned}
+\]
+</div>
+<p>Also, <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt \theta\)</span>, so</p>
+<div class="math-tex" data-type="equation">
+\[
+\mathrm{d}\kern-0.5pt \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt x=\frac{2}{1+x^2}\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</li>
+</ol>
 <section data-type="sect1">
 <h1>Improper Integrals</h1>
+<p>Up to this point, we have considered definite integrals of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+I=\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,,
+\]
+</div>
+<p>where the integrand <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. Since such a function is necessarily bounded, the integral I is necessarily a finite number; for positive f it corresponds to the area of a bounded region of the plane, a region contained inside some disk of finite radius with centre at the origin. Such integrals are also called <i>proper integrals</i>.</p>
+<p>We are now going to generalize the definite integral to allow for two possibilities excluded in the situation described above:</p>
+<ol>
+<li>
+<p>We may have <span class="math-tex" data-type="tex">\(a=-\infty\)</span> or <span class="math-tex" data-type="tex">\(b=\infty\)</span> or both.</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(f\)</span> may be unbounded as <span class="math-tex" data-type="tex">\(x\)</span> approaches <span class="math-tex" data-type="tex">\(a\)</span> or <span class="math-tex" data-type="tex">\(b\)</span> or both.</p>
+</li>
+</ol>
+<p>Integrals satisfying (1) are called <i>improper integrals of type I</i>; integrals satisfying (2) are called <i>improper integrals of type II</i>. Either type of improper integral corresponds (for positive <span class="math-tex" data-type="tex">\(f\)</span>) to the area of a region in the plane that “extends to infinity” in some direction and therefore is unbounded. As we will see, such integrals may or may not have finite values.</p>
+<section data-type="sect2">
+<h2>Improper Integrals of Type I</h2>
+<div data-type="definition">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,\infty\right[\)</span>, we define the improper integral of <span class="math-tex" data-type="tex">\(f\)</span> over <span class="math-tex" data-type="tex">\(\left[a,\infty\right[\)</span> as a limit of proper integrals:</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{R\to\infty}\int_a^R f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>Similarly, if <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left]-\infty, b\right]\)</span>, then we define</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_{-\infty}^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{R\to-\infty}\int_R^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>In either case, if the limit exists (is a finite number), we say that the improper integral converges; if the limit does not exist, we say that the improper integral diverges. If the limit is <span class="math-tex" data-type="tex">\(\infty\)</span> (or <span class="math-tex" data-type="tex">\(-\infty\)</span>), we say the improper integral diverges to infinity (or diverges to negative infinity).</p>
+</div>
+<p>The integral <span class="math-tex" data-type="tex">\(\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x\)</span> is, for <span class="math-tex" data-type="tex">\(f\)</span> continuous on the real line, improper of type I at both endpoints. We break it into two separate integrals:</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_{-\infty}^0 f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_0^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>The integral on the left converges if and only if both integrals on the right converge.</p>
+<div data-type="example">
+<h1></h1>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<p>By the even symmetry of the integrand, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x&=\int_{-\infty}^0 \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x+\int_0^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
+&=2\lim_{R\to\infty}\int_0^R \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
+&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\uppi}{2}=\uppi\,.
+\end{aligned}
+\]
+</div>
+</div>
+<section data-type="sect2">
+<h2>Improper Integrals of Type II</h2>
+<div data-type="definition">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right]\)</span>and is possibly unbounded near <span class="math-tex" data-type="tex">\(a\)</span>, we define the improper integral</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to a^+}\int_c^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>Similarly, if <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right[\)</span> and is possibly unbounded near <span class="math-tex" data-type="tex">\(b\)</span>, we define</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to b^-}\int_a^c f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>These improper integrals may converge, diverge, diverge to infinity, or diverge to negative infinity.</p>
+</div>
+<p>While improper integrals of type I are always easily recognized because of the infinite limits of integration, improper integrals of type II can be somewhat harder to spot. You should be alert for singularities of integrands and especially points where they have vertical asymptotes. It may be necessary to break an improper integral into several improper integrals if it is improper at both endpoints or at points inside the interval of integration.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find the area of the region <span class="math-tex" data-type="tex">\(S\)</span> lying under <span class="math-tex" data-type="tex">\(y=\frac{1}{\sqrt x}\)</span>, above the <span class="math-tex" data-type="tex">\(x\)</span>-axis, between <span class="math-tex" data-type="tex">\(x=0\)</span> and <span class="math-tex" data-type="tex">\(x=1\)</span>.</p>
+<p>The area <span class="math-tex" data-type="tex">\(A\)</span> is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+A=\int_0^1\frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x\,,
+\]
+</div>
+<p>which is an improper integral of type II since the integrand is unbounded near <span class="math-tex" data-type="tex">\(x=0\)</span>. The region <span class="math-tex" data-type="tex">\(S\)</span> has a “spike” extending to infinity along the <span class="math-tex" data-type="tex">\(y\)</span>-axis, a vertical asymptote of the integrand.</p>
+<p>We express such integrals as limits of proper integrals:</p>
+<div class="math-tex" data-type="equation">
+\[
+A = \lim_{x\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d}\kern-0.5pt x=\lim_{x\to 0^+}\left.2x^{\frac{1}{2}}\right|_c^1=\lim_{x\to 0^+}\left(2-2\sqrt x\right)=2\,.
+\]
+</div>
+<p>This integral converges, and <span class="math-tex" data-type="tex">\(S\)</span> has a finite area of <span class="math-tex" data-type="tex">\(2\)</span> square units.</p>
+</div>
 <section data-type="sect1">
 <h1>Areas of Plane Regions</h1>
+<p>In this section we review and extend the use of definite integrals to represent plane areas. Recall that the integral  <span class="math-tex" data-type="tex">\(\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\)</span> measures the area between the graph of <span class="math-tex" data-type="tex">\(f\)</span> and the <span class="math-tex" data-type="tex">\(x\)</span>-axis from <span class="math-tex" data-type="tex">\(x=a\)</span> to <span class="math-tex" data-type="tex">\(x=b\)</span>, but treats as negative any part of this area that lies below the <span class="math-tex" data-type="tex">\(x\)</span>-axis. (We are assuming that <span class="math-tex" data-type="tex">\(a&lt;b\)</span>.) In order to express the total area bounded by <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=a\)</span>, and <span class="math-tex" data-type="tex">\(x=b\)</span>, counting all of the area positively, we should integrate the absolute value of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
+<p>There is no “rule” for integrating <span class="math-tex" data-type="tex">\(\int_a^b \left|f\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\)</span> one must break the integral into a sum<br/>of integrals over intervals where <span class="math-tex" data-type="tex">\(f\left(x\right)&gt; 0\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>The area bounded by <span class="math-tex" data-type="tex">\(y=\cos x\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=0\)</span>, and <span class="math-tex" data-type="tex">\(x=\frac{3\uppi}{2}\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+A&=\int_0^\frac{3\uppi}{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
+&=\int_0^\frac{\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\uppi}{2}^\frac{3\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
+&=\left.\sin x\right|_0^\frac{\uppi}{2}-\left.\sin x\right|_\frac{\uppi}{2}^\frac{3\uppi}{2}\\
+&=\left(1-0\right)-\left(-1-1\right)=3\,\textrm{square units.}
+\end{aligned}
+\]
+</div>
+</div>
+<section data-type="sect2">
+<h2>Areas Between Two Curves</h2>
+<p>Suppose that a plane region <span class="math-tex" data-type="tex">\(R\)</span> is bounded by the graphs of two continuous functions, <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(y=g\left(x\right)\)</span>, and the vertical straight lines <span class="math-tex" data-type="tex">\(x=a\)</span> and <span class="math-tex" data-type="tex">\(x=b\)</span>, as shown in the figure.</p>
+<p>Assume that <span class="math-tex" data-type="tex">\(a&lt;b\)</span> and that <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, so the graph of <span class="math-tex" data-type="tex">\(f\)</span> lies below that of <span class="math-tex" data-type="tex">\(g\)</span>. If <span class="math-tex" data-type="tex">\(f\left(x\right)\ge 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> then the area <span class="math-tex" data-type="tex">\(A\)</span> of <span class="math-tex" data-type="tex">\(R\)</span> is the area above the <span class="math-tex" data-type="tex">\(x\)</span>-axis and under the graph of <span class="math-tex" data-type="tex">\(g\)</span> minus the area above the <span class="math-tex" data-type="tex">\(x\)</span>-axis and under the graph of <span class="math-tex" data-type="tex">\(f\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+A=\int_a^b g\left(x\right)\,\mathrm{d}\kern-0.5pt x-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>It is useful to regard this formula as expressing <span class="math-tex" data-type="tex">\(A\)</span> as the “sum” (i.e., the integral) of infinitely many <i>area elements</i></p>
+<div class="math-tex" data-type="equation">
+\[
+\mathrm{d}\kern-0.5pt A = \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,,
+\]
+</div>
+<p>corresponding to values of <span class="math-tex" data-type="tex">\(x\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span>. Each such area element is the area of an infinitely thin vertical rectangle of width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x\)</span> and height <span class="math-tex" data-type="tex">\(g\left(x\right)-f\left(x\right)\)</span> located at position <span class="math-tex" data-type="tex">\(x\)</span>. Even if <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> can take on negative values on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, this interpretation and the resulting area formula</p>
+<div class="math-tex" data-type="equation">
+\[
+A=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>remain valid, provided that <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> so that all the area elements <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt A\)</span> have positive area. Using integrals to represent a quantity as a <i>sum of differential elements</i> is a very helpful approach. Of course, what we are really doing is identifying the integral as a limit of a suitable Riemann sum.</p>
+<p>More generally, if the restriction <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\)</span>  is removed, then the vertical rectangle of width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x\)</span> at position <span class="math-tex" data-type="tex">\(x\)</span> extending between the graphs of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> has height <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-g\left(x\right)\right|\)</span> and hence area</p>
+<div class="math-tex" data-type="equation">
+\[
+\mathrm{d}\kern-0.5pt A = \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>Hence, the total area lying between the graphs <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(y=g\left(x\right)\)</span> between the vertical lines <span class="math-tex" data-type="tex">\(x=a\)</span> and <span class="math-tex" data-type="tex">\(x=b&gt;a\)</span> is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+A = \int_a^b \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>In order to evaluate this integral, we have to determine the intervals on which  <span class="math-tex" data-type="tex">\(f\left(x\right)&gt; g\left(x\right)\)</span> or <span class="math-tex" data-type="tex">\(f\left(x\right)&lt; g\left(x\right)\)</span>, and break the integral into a sum of integrals over each of these intervals.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find the total area <span class="math-tex" data-type="tex">\(A\)</span> lying between <span class="math-tex" data-type="tex">\(y=\sin x\)</span> and <span class="math-tex" data-type="tex">\(y=\cos x\)</span> from <span class="math-tex" data-type="tex">\(x=0\)</span> to <span class="math-tex" data-type="tex">\(x=2\uppi\)</span>.</p>
+<p>Between <span class="math-tex" data-type="tex">\(0\)</span> and <span class="math-tex" data-type="tex">\(2\uppi\)</span> the graphs of sine and cosine cross at <span class="math-tex" data-type="tex">\(x=\frac{\uppi}{4}\)</span> and <span class="math-tex" data-type="tex">\(x=\frac{5\uppi}{4}\)</span>. The required area is</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\uppi}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\uppi}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
+&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\uppi}{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\uppi}{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\uppi}{4}^{2\uppi}\\
+&=\left(\sqrt 2-1\right)+\left(\sqrt 2+\sqrt 2\right)+\left(1+\sqrt 2\right)=4\sqrt 2\,\textrm{square units.}
+\end{aligned}
+\]
+</div>
+</div>
+<section data-type="sect1">
+<h1>Volumes by Slicing—Solids of Revolution</h1>
+<p>In this section we show how volumes of certain three-dimensional regions (or solids) can be expressed as definite integrals and thereby determined. We will not attempt to give a definition of <i>volume</i> but will rely on our intuition and experience with solid objects to provide enough insight for us to specify the volumes of certain simple solids. For example, if the base of a rectangular box is a rectangle of length <span class="math-tex" data-type="tex">\(l\)</span> and width <span class="math-tex" data-type="tex">\(w\)</span> and therefore area <span class="math-tex" data-type="tex">\(A=lw\)</span>, and if the box has height <span class="math-tex" data-type="tex">\(h\)</span>, then its volume is <span class="math-tex" data-type="tex">\(V=Ah=lwh\)</span>.</p>
+<p>A rectangular box is a special case of a solid called a <i>cylinder</i>. Such a solid has a flat base occupying a region Rin a plane, and consists of all points on parallel straight line segments having one end in Rand the other end in a (necessarily congruent) region in a second plane parallel to the plane of the base. Either of these regions can be called the base of the cylinder. The cylindrical wall is the surface consisting of the parallel line segments joining corresponding points on the boundaries of the two bases. A cylinder having a polygonal base (i.e., one bounded by straight lines) is usually called a <i>prism</i>. The height of any cylinder or prism is the perpendicular distance between the parallel planes containing the two bases. If this height is <span class="math-tex" data-type="tex">\(h\)</span> units and the area of a base is <span class="math-tex" data-type="tex">\(A\)</span> square units, then the volume of the cylinder or prism is <span class="math-tex" data-type="tex">\(V=Ah\)</span> cubic units.</p>
+<section data-type="sect2">
+<h2>Volumes by Slicing</h2>
+<p>Knowing the volume of a cylinder enables us to determine the volumes of some more general solids. We can divide solids into thin “slices” by parallel planes. (Think of a loaf of sliced bread.) Each slice is approximately a cylinder of very small “height”; the height is the thickness of the slice. If we know the cross-sectional area of each slice, we can determine its volume and sum these volumes to find the volume of the solid.</p>
+<div data-type="definition">
+<h1></h1>
+<p>The volume <span class="math-tex" data-type="tex">\(V\)</span> of a solid between <span class="math-tex" data-type="tex">\(x=a\)</span> and <span class="math-tex" data-type="tex">\(x=b\)</span> having cross-sectional area <span class="math-tex" data-type="tex">\(A\left(x\right)\)</span> at position <span class="math-tex" data-type="tex">\(x\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+V = \int_a^b A\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<section data-type="sect2">
+<h2>Solids of Revolution</h2>
+<p>Many common solids have circular cross-sections in planes perpendicular to some axis. Such solids are called solids of revolution because they can be generated by rotating a plane region about an axis in that plane so that it sweeps out the solid.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If the region <span class="math-tex" data-type="tex">\(R\)</span> bounded by <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=a\)</span>, and <span class="math-tex" data-type="tex">\(x=b\)</span> is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, then the cross-section of the solid generated in the plane perpendicular to the <span class="math-tex" data-type="tex">\(x\)</span>-axis at <span class="math-tex" data-type="tex">\(x\)</span> is a circular disk of radius <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\)</span>. The area of this cross-section is <span class="math-tex" data-type="tex">\(A\left(x\right)=\uppi\left(f\left(x\right)\right)^2\)</span>, so the volume of the solid of revolution is</p>
+<div class="math-tex" data-type="equation">
+\[
+V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Find the volume of the right-circular cone of base radius <span class="math-tex" data-type="tex">\(r\)</span> and height <span class="math-tex" data-type="tex">\(h\)</span> that is generated by rotating the triangle with vertices <span class="math-tex" data-type="tex">\(\left(0,0\right)\)</span>, <span class="math-tex" data-type="tex">\(\left(h,0\right)\)</span>, and <span class="math-tex" data-type="tex">\(\left(h,r\right)\)</span> about the <span class="math-tex" data-type="tex">\(x\)</span>-axis.</p>
+<p>The line from <span class="math-tex" data-type="tex">\(\left(0,0\right)\)</span> to <span class="math-tex" data-type="tex">\(\left(h,r\right)\)</span> has equation <span class="math-tex" data-type="tex">\(y=\frac{r}{h}x\)</span>. Thus the volume of the cone is</p>
+<div class="math-tex" data-type="equation">
+\[
+V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi r^2h\ \textrm{cubic units.}
+\]
+</div>
+</div>
+<div data-type="theorem">
+<h1></h1>
+<p>The volume of the solid obtained by rotating the plane region <span class="math-tex" data-type="tex">\(0\le y\le f\left(x\right)\)</span>, <span class="math-tex" data-type="tex">\(0\le a&lt;x&lt;b\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis is</p>
+<div class="math-tex" data-type="equation">
+\[
+V=2\uppi\int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Find the volume of a bowl obtained by revolving the parabolic arc <span class="math-tex" data-type="tex">\(y=x^2\)</span>, <span class="math-tex" data-type="tex">\(0\le x\le1\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis.</p>
+<p>The interior of the bowl corresponds to revolving the region given by <span class="math-tex" data-type="tex">\(x^2 \le y\le 1\)</span>, <span class="math-tex" data-type="tex">\(0\le x\le 1\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis. The area element at position <span class="math-tex" data-type="tex">\(x\)</span> has height <span class="math-tex" data-type="tex">\(1-x^2\)</span> and generates a cylindrical shell of volume <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V=2\uppi x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x\)</span>. Thus, the volume of the bowl is</p>
+<div class="math-tex" data-type="equation">
+\[
+V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi}{2}\ \textrm{cubic units.}
+\]
+</div>
+</div>
+<p>We have described two methods for determining the volume of a solid of revolution, slicing and cylindrical shells. The choice of method for a particular solid is usually dictated by the form of the equations defining the region being rotated and by the axis of rotation.</p>
 <section data-type="sect1">
 <h1>Arc Length and Surface Area</h1>
+<p>In this section we consider how integrals can be used to find the lengths of curves and the areas of the surfaces of solids of revolution.</p>
+<section data-type="sect1">
+<h1>Arc Length</h1>
+<p>If <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> are two points in the plane, let <span class="math-tex" data-type="tex">\(\left|AB\right|\)</span> denote the distance between <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span>, that is, the length of the straight line segment <span class="math-tex" data-type="tex">\(AB\)</span>.</p>
+<p>Given a curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> joining the two points <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span>, we would like to define what is meant by the length of the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> from <span class="math-tex" data-type="tex">\(A\)</span> to <span class="math-tex" data-type="tex">\(B\)</span>. Suppose we choose points <span class="math-tex" data-type="tex">\(A=P_0\)</span>, <span class="math-tex" data-type="tex">\(P_1\)</span>, <span class="math-tex" data-type="tex">\(P_2\)</span>, <span class="math-tex" data-type="tex">\(\dots\)</span>, <span class="math-tex" data-type="tex">\(P_{n-1}\)</span>, and <span class="math-tex" data-type="tex">\(P_n=B\)</span> in order along the curve. The polygonal line <span class="math-tex" data-type="tex">\(P_0P_1P_2\dots P_{n-1}P_n\)</span> constructed by joining adjacent pairs of these points with straight line segments forms a polygonal approximation to <span class="math-tex" data-type="tex">\(\mathcal C\)</span>, having length</p>
+<div class="math-tex" data-type="equation">
+\[
+L_n=\left|P_0P_1\right|+\left|P_1P_2\right|+\cdots+\left|P_{n-1}P_n\right|=\sum_{i=1}^n\left|P_{i-1}P_i\right|\,.
+\]
+</div>
+<div data-type="definition">
+<h1></h1>
+<p>The <i>arc length</i> of the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> from <span class="math-tex" data-type="tex">\(A\)</span> to <span class="math-tex" data-type="tex">\(B\)</span> is the smallest real number <span class="math-tex" data-type="tex">\(s\)</span> such that the length <span class="math-tex" data-type="tex">\(L_n\)</span> of every polygonal approximation to <span class="math-tex" data-type="tex">\(\mathcal C\)</span> satisfies <span class="math-tex" data-type="tex">\(L_n\le s\)</span>.</p>
+</div>
+<p>A curve with a finite arc length is said to be <i>rectifiable</i>. Its arc length <span class="math-tex" data-type="tex">\(s\)</span> is the limit of the lengths <span class="math-tex" data-type="tex">\(L_n\)</span> of polygonal approximations as <span class="math-tex" data-type="tex">\(n\to \infty\)</span> in such a way that the maximum segment length <span class="math-tex" data-type="tex">\(\left|P_{i-1}P_i\right|\to 0\)</span>.</p>
+<section data-type="sect2">
+<h2>The Arc Length of the Graph of a Function</h2>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> be a function defined on a closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and having a continuous derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> there. If <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is the graph of <span class="math-tex" data-type="tex">\(f\)</span>, that is, the graph of the equation <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, then any partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>provides a polygonal approximation to <span class="math-tex" data-type="tex">\(\mathcal C\)</span>. For the partition</p>
+<div class="math-tex" data-type="equation">
+\[
+\left\{a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b\right\}
+\]
+</div>
+<p>let <span class="math-tex" data-type="tex">\(P_i\)</span> be the point <span class="math-tex" data-type="tex">\(\left(x_i,f\left(x_i\right)\right)\)</span>, <span class="math-tex" data-type="tex">\(\left(0\le i\le n\right)\)</span>. The length of the polygonal line <span class="math-tex" data-type="tex">\(P_0P_1P_2\dots P_{n-1}P_n\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+L_n=\sum_{i=1}^n\left|P_{i-1}P_i\right|&=\sum_{i=1}^n\sqrt{\left(x_i-x_{i-1}\right)^2+\left(f\left(x_i\right)-f\left(x_{i-1}\right)\right)^2}\\
+&=\sum_{i=1}^n\sqrt{1+\left(\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}\right)^2}\Delta\kern-0.5pt x_i\,,
+\end{aligned}
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x_i=x_i-x_{i-1}\)</span>. By the Mean-Value Theorem there exists a number <span class="math-tex" data-type="tex">\(c_i\)</span> in the interval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}=f^\prime\left(c_i\right)\,,
+\]
+</div>
+<p>so we have</p>
+<div class="math-tex" data-type="equation">
+\[
+L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(L_n\)</span> is a Riemann sum for <span class="math-tex" data-type="tex">\(\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\)</span>. Being the limit of such Riemann sums as <span class="math-tex" data-type="tex">\(n\to\infty\)</span> in such a way that <span class="math-tex" data-type="tex">\(\max\Delta\kern-0.5pt x_i \to 0\)</span>, that integral is the length of the curve <span class="math-tex" data-type="tex">\(C\)</span>.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>The arc length <span class="math-tex" data-type="tex">\(s\)</span> of the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> from <span class="math-tex" data-type="tex">\(x=a\)</span> to <span class="math-tex" data-type="tex">\(x=b\)</span> is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x=\int_a^b\sqrt{1+\left(\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Find the length of the curve <span class="math-tex" data-type="tex">\(y=x^\frac{2}{3}\)</span> from <span class="math-tex" data-type="tex">\(x=1\)</span> to <span class="math-tex" data-type="tex">\(x=8\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}=\frac{2}{3}x^{-\frac{1}{3}}\)</span> is continuous between <span class="math-tex" data-type="tex">\(x=1\)</span> and <span class="math-tex" data-type="tex">\(x=8\)</span>, the length of the curve is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+s=&\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
+=&\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
+&\quad\textrm{Let }u=9x^\frac{2}{3}+4,\mathrm{d}\kern-0.5pt u=6x^{-\frac{2}{3}}\,\mathrm{d}\kern-0.5pt x\\
+=&\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
+\end{aligned}
+\]
+</div>
+</div>
+<section data-type="sect2">
+<h2>Areas of Surfaces of Revolution</h2>
+<p>When a plane curve is rotated (in three dimensions) about a line in the plane of the curve, it sweeps out a surface of revolution. For instance, a sphere of radius <span class="math-tex" data-type="tex">\(a\)</span> is generated by rotating a semicircle of radius <span class="math-tex" data-type="tex">\(a\)</span> about the diameter of that semicircle.</p>
+<p>The area of a surface of revolution can be found by integrating an area element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt S\)</span> constructed by rotating the arc length element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> of the curve about the given line. If the radius of rotation of the element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> is <span class="math-tex" data-type="tex">\(r\)</span>, then it generates, on rotation, a circular band of width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> and length (circumference) <span class="math-tex" data-type="tex">\(2\uppi r\)</span>. The area of this band is, therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\mathrm{d}\kern-0.5pt S=2\uppi r\,\mathrm{d}\kern-0.5pt s\,.
+\]
+</div>
+<p>The areas of surfaces of revolution around various lines can be obtained by integrating <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt S\)</span> with appropriate choices of <span class="math-tex" data-type="tex">\(r\)</span>. Here are some important special cases.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, the area of the surface of revolution so generated is</p>
+<div class="math-tex" data-type="equation">
+\[
+S=2\uppi\int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>If the rotation is about the <span class="math-tex" data-type="tex">\(y\)</span>-axis, the surface area is</p>
+<div class="math-tex" data-type="equation">
+\[
+S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Find the surface area of a parabolic reflector whose shape is obtained by rotating the parabolic arc <span class="math-tex" data-type="tex">\(y=x^2\)</span>, <span class="math-tex" data-type="tex">\(\left(0 \le x \le 1\right)\)</span>, about the <span class="math-tex" data-type="tex">\(y\)</span>-axis.</p>
+<p>The arc length element for the parabola <span class="math-tex" data-type="tex">\(y=x^2\)</span> is <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s=\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\)</span>, so the required surface area is</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
+&\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
+=&\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+=&\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
+\end{aligned}
+\]
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
 </section>
 </section>
 </section>
