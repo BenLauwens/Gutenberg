@@ -8,7 +8,9 @@ files = [
     "chapter03.md",
     "chapter04.md",
     "chapter05.md",
-    "chapter06.md"
+    "chapter06.md",
+    "chapter07.md",
+    "chapter08.md"
 ]
 output = "book.html"
 +++
@@ -16,7 +18,7 @@ output = "book.html"
     <img src="cover.svg">
     <h1>CALCULUS</h1>
     <p data-type="academy">ROYAL<br>MILITARY ACADEMY</p>
-	<p data-type="author">Ben Lauwens, Dr. ir<br>Lieutenant-Colonel IMM<br>Military Professor</p>
+	<p data-type="author">Ben Lauwens, PhD MScEng<br>Lieutenant-Colonel IMM<br>Professor</p>
 	<p data-type="year">2024</p>
 	<p data-type="course">ES111</p>
 </section>

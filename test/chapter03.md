@@ -377,13 +377,13 @@ Figure("", "If " * tex("x\\ne a") * " and " * tex("\\left|x-a\\right|&lt;\\delta
     Drawing(width=6scale, height=4.5scale) do
         xmid = 1scale
         ymid = 4scale
-        axis_xy(6scale,4.5scale,xmid,ymid,scale,(2,3,4),(3,2,1),xs=("a-\\delta","a","a+\\delta"),xl=(3,1,3),ys=("L-\\varepsilon","L","L+\\varepsilon"),yl=(3,1,3))
+        axis_xy(6scale,4.5scale,xmid,ymid,scale,(2.4,3,3.6),(3,2,1),xs=("a-\\delta","a","a+\\delta"),xl=(3,1,3),ys=("L-\\varepsilon","L","L+\\varepsilon"),yl=(3,1,3))
         line(x1=4scale,y1=4scale,x2=4scale,y2=2scale,stroke_dasharray = "3",stroke="black")
         line(x1=1scale,y1=2scale,x2=4scale,y2=2scale,stroke_dasharray = "3",stroke="black")
         plot_xy(x->0.25(x-3+sqrt(7))^2+0.25, -1:0.01:5, tuple(), xmid, ymid, scale, width=1)
         circle(cx=4scale, cy=2scale, r=3, fill="white", stroke="red")
-        rect(x=3scale,y=0,width=2scale,height=4scale, fill="hsla(189, 100%, 50%, 10%)")
-        rect(x=scale,y=scale,width=4scale,height=2scale, fill="hsla(180, 100%, 25%, 10%)")
+        rect(x=3.4scale,y=0,width=1.2scale,height=4scale, fill="hsla(189, 100%, 50%, 10%)")
+        rect(x=1scale,y=scale,width=4scale,height=2scale, fill="hsla(180, 100%, 25%, 10%)")
         latex("y=f\\left(x\\right)", x=0.8scale, y=3.1scale, width=5font_x, height=font_y,color="red")
     end
 end

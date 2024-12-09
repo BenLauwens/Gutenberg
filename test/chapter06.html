@@ -162,7 +162,7 @@ S_n=\sum_{i=1}^n f\left(x_i\right)\Delta\kern-0.5pt x_i\,.
 </svg>
 <figcaption>Approximating the area under the graph of a decreasing function using rectangles.</figcaption></figure>
 <p>The rectangles are shown shaded in the figure for a decreasing function <span class="math-tex" data-type="tex">\(f\)</span>. For an increasing function, the tops of the rectangles would lie above the graph of <span class="math-tex" data-type="tex">\(f\)</span> rather than below it. Evidently, <span class="math-tex" data-type="tex">\(S_n\)</span> is an approximation to the area of the region <span class="math-tex" data-type="tex">\(R\)</span>, and the approximation gets better as <span class="math-tex" data-type="tex">\(n\)</span> increases, provided we choose the points <span class="math-tex" data-type="tex">\(a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b\)</span> in such a way that the width <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x_i\)</span> of the widest rectangle approaches zero.</p>
-<p>Subdividing a subinterval into two smaller subintervals reduces the error in the approximation by reducing that part of the area under the curve that is not contained in the rectangles. It is reasonable, therefore, to calculate the area of <span class="math-tex" data-type="tex">\(R\)</span> by finding the limit of <span class="math-tex" data-type="tex">\(S_n\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> with the restriction that<br/>the largest of the subinterval widths <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x_i\)</span> must approach zero:</p>
+<p>Subdividing a subinterval into two smaller subintervals reduces the error in the approximation by reducing that part of the area under the curve that is not contained in the rectangles. It is reasonable, therefore, to calculate the area of <span class="math-tex" data-type="tex">\(R\)</span> by finding the limit of <span class="math-tex" data-type="tex">\(S_n\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> with the restriction that the largest of the subinterval widths <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x_i\)</span> must approach zero:</p>
 <div class="math-tex" data-type="equation">
 \[
 \textrm{Area of }R=\lim_{
@@ -370,6 +370,27 @@ x\le \sup S\le \inf T \le y\,.
 </div>
 <p>the (<i>Darboux</i>) <i>integral</i> of <span class="math-tex" data-type="tex">\(f\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>,.</p>
 </div>
+<p>The definite integral of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> over <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> is a number; it is not a function of <span class="math-tex" data-type="tex">\(x\)</span>. It depends on the numbers <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span> and on the particular function <span class="math-tex" data-type="tex">\(f\)</span>, but not on the variable <span class="math-tex" data-type="tex">\(x\)</span> (which is a <i>dummy variable</i> like the variable <span class="math-tex" data-type="tex">\(i\)</span> in the sum <span class="math-tex" data-type="tex">\(\sum_{i=1}^nf\left(i\right)\)</span>). Replacing <span class="math-tex" data-type="tex">\(x\)</span> with another variable does not change the value of the integral:</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^b f\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+\]
+</div>
+<p>The various parts of the symbol <span class="math-tex" data-type="tex">\(\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\)</span> have their own names:</p>
+<ul>
+<li>
+<p><span class="math-tex" data-type="tex">\(\int\)</span> is called the <i>integral sign</i>; it resembles the letter <span class="math-tex" data-type="tex">\(S\)</span> since it represents the limit of a sum.</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span> are called the <i>limits of integration</i>; <span class="math-tex" data-type="tex">\(a\)</span> is the <i>lower limit</i>, <span class="math-tex" data-type="tex">\(b\)</span> is the <i>upper limit</i>.</p>
+</li>
+<li>
+<p>The function <span class="math-tex" data-type="tex">\(f\)</span> is the <i>integrand</i>; <span class="math-tex" data-type="tex">\(x\)</span> is the <i>variable of integration</i>.</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x\)</span> is the <i>differential of <span class="math-tex" data-type="tex">\(x\)</span></i>. It replaces <span class="math-tex" data-type="tex">\(x\)</span> in the Riemann sums. If an integrand depends on more than one variable, the differential tells you which one is the variable of integration.</p>
+</li>
+</ul>
 <div data-type="example">
 <h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(f\left(x\right)=x^2\)</span> is integrable over the interval <span class="math-tex" data-type="tex">\(\left[0,a\right]\)</span> (where <span class="math-tex" data-type="tex">\(a &gt; 0\)</span>), and evaluate</p>
@@ -394,13 +415,29 @@ I=\int_0^a f\left(x\right)\,\mathrm{d}\kern-0.5pt x
 \]
 </div>
 </div>
-<p>It can be shown that the <i>Darboux integral</i> is equivalent to the better known <i>Riemann integral</i></p>
+<p>Let <span class="math-tex" data-type="tex">\(P=\left\{x_0,x_1,x_2,\dots,x_n\right\}\)</span>, where <span class="math-tex" data-type="tex">\(a=x_0&lt;x1&lt;x2&lt;\dots&lt;x_n=b\)</span>, be a partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. In each subinterval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> of<span class="math-tex" data-type="tex">\(P\)</span> pick a point <span class="math-tex" data-type="tex">\(c_i\)</span> (called a <i>tag</i>). Let <span class="math-tex" data-type="tex">\(c=\left(c_1,c_2,\dots,c_n\right)\)</span> denote the list of these tags. The sum</p>
 <div class="math-tex" data-type="equation">
 \[
-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{\begin{aligned}n&\to\infty\\\max &\Delta\kern-0.5pt x_i\to 0\end{aligned}}\sum_{i=1}^n f\left(x^\prime_i\right)\Delta\kern-0.5pt x_i\,,
+\begin{aligned}
+R\left(f,P,c\right)&=\sum_{i=1}^nf\left(c_i\right)\Delta\kern-0.5pt x\\
+&=f\left(c_1\right)\Delta\kern-0.5pt x_1+f\left(c_2\right)\Delta\kern-0.5pt x_2+\cdots+f\left(c_n\right)\Delta\kern-0.5pt x_n
+\end{aligned}
 \]
 </div>
-<p>where <span class="math-tex" data-type="tex">\(x^\prime_i\)</span> is an arbitrary point in <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>. The Darboux integral is easier to use than the more intuitive Riemann integral.</p>
+<p>is called the <i>Riemann sum</i> of <span class="math-tex" data-type="tex">\(f\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> corresponding to partition <span class="math-tex" data-type="tex">\(P\)</span> and tags <span class="math-tex" data-type="tex">\(c\)</span>.</p>
+<p>For any choice of the tags <span class="math-tex" data-type="tex">\(c\)</span>, the Riemann sum <span class="math-tex" data-type="tex">\(F\left(f,P,c\right)\)</span> satisfies</p>
+<div class="math-tex" data-type="equation">
+\[
+L\left(f,P\right)\le R\left(f,P,c\right)\le U\left(f,P\right)
+\]
+</div>
+<p>Therefore, if <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then its integral is the limit of such Riemann sums, where the limit is taken as the number <span class="math-tex" data-type="tex">\(n\left(P\right)\)</span> of subintervals of <span class="math-tex" data-type="tex">\(P\)</span> increases to infinity in such a way that the lengths of all the subintervals approach zero. That is,</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{\begin{aligned}n&\to\infty\\\max &\Delta\kern-0.5pt x_i\to 0\end{aligned}}\sum_{i=1}^n f\left(c_i\right)\Delta\kern-0.5pt x_i\,,
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(c_i\)</span> is an arbitrary point in <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>. The Darboux integral is easier to use than the more intuitive <i>Riemann integral</i> but many applications of integration depend on recognizing that a limit of Riemann sums is a definite integral.</p>
 <p>The following theorem provides a convenient test for determining whether a given bounded function is integrable.</p>
 <div data-type="theorem">
 <h1>&nbsp;(Darboux's Integrability Condition)</h1>
@@ -485,7 +522,8 @@ U\left(f,P\right)-L\left(f, P\right)\le U\left(f,P^{\prime\prime}\right)-L\left(
 <h1>&nbsp;(by contradiction)</h1>
 <p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(I_0=\left[a,b\right]=\left[a_0,b_0\right]\)</span> but not uniformly continuous.</p>
 <p>Then, there exists <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span> such that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exists <span class="math-tex" data-type="tex">\(x,y\in\left[a_0,b_0\right]\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
-<p>It follows that at least one of the two subintervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> has the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>. Otherwise our assumption would be contradicted by the lemma.</p>
+<div id="tag"></div>
+<p>It follows from the lemma that, corresponding to this <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, it must be true for at least one of the two subintervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
 <p>Choose a subinterval having this property and call it <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
 <p>Continuing in this ways, we obtain a sequence of closed intervals satisfying the hypotheses of the Nested Intervals Theorem and having the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
 <p>By the Nested Intervals Theorem, there exists <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
@@ -538,7 +576,7 @@ U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{b-a}\sum_{i=1}^{n\left
 <p><span class="math-tex" data-type="tex">\(\displaystyle\int_a^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=0\,.\)</span></p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\int_b^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=\displaystyle\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.\)</span></p>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\int_b^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=-\displaystyle\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.\)</span></p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(\displaystyle\int_a^b\left(Af\left(x\right)+Bg\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+B\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.\)</span></p>
@@ -610,7 +648,7 @@ U\left(f+g,P\right)-L\left(f+g,P\right)\le U\left(f,P\right)-L\left(f,P\right)+ 
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\le L\left(f,P\right)+ L\left(g,P\right)\\
+\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
 &&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
 \end{aligned}
 \]
@@ -618,7 +656,7 @@ U\left(f+g,P\right)-L\left(f+g,P\right)\le U\left(f,P\right)-L\left(f,P\right)+ 
 <p>are true for all <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
-\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
 </div>
@@ -675,7 +713,7 @@ U_a^c\left(f,P\right)-L_a^c\left(f,P\right)&lt;\varepsilon\,,
 \[
 \begin{aligned}
 \int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
-&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
 \end{aligned}
 \]
 </div>
@@ -692,7 +730,7 @@ U_a^c\left(f,P\right)-L_a^c\left(f,P\right)&lt;\varepsilon\,,
 <p>Hint: for any interval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\in\left[a,b\right]\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
-\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\right|\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
+\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
 \]
 </div>
 </div>
@@ -1175,7 +1213,7 @@ I=2\int_1^3\cos u\,\mathrm{d}\kern-0.5pt u=\left.2\sin u\right|_1^3=2\sin 3-2\si
 \begin{aligned}
 \int \tan x\,\mathrm{d}\kern-0.5pt x&=\int \frac{\sin x}{\cos x}\,\mathrm{d}\kern-0.5pt x\quad\textrm{Let }u=\cos x\textrm{, then }\mathrm{d}\kern-0.5pt u=-\sin x\,\mathrm{d}\kern-0.5pt x\\
 &=-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=-\ln\left|u\right|+C\\
-&=-\ln\left|\cos x\right|+C=-\ln\left|\frac{1}{\cos x}\right|+C=-\ln\left|\sec x\right|+C
+&=-\ln\left|\cos x\right|+C=\ln\left|\frac{1}{\cos x}\right|+C=\ln\left|\sec x\right|+C
 \end{aligned}
 \]
 </div>
@@ -1365,9 +1403,7 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 <h2>Inverse Substitutions</h2>
 <p>The substitutions considered in the beginning of this section were direct substitutions in the sense that we simplified an integrand by replacing an expression appearing in it with a single variable. In this section we consider the reverse approach: we replace the variable of integration with a function of a new variable. Such substitutions, called <i>inverse substitutions</i>, would appear on the surface to make the integral more complicated.</p>
 <p>As we will see, however, sometimes such substitutions can actually simplify an integrand, transforming the integral into one that can be evaluated by inspection or to which other techniques can readily be applied. In any event, inverse substitutions can often be used to convert integrands to rational functions.</p>
-<ol>
-<li>
-<p>Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sin\theta\)</span>.</p>
+<p>(1) Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sin\theta\)</span>.</p>
 <p>Observe that <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> makes sense only if <span class="math-tex" data-type="tex">\(-a\le x\le a\)</span>, which corresponds to <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}\)</span>. Since <span class="math-tex" data-type="tex">\(\cos\theta\ge0\)</span> for such <span class="math-tex" data-type="tex">\(\theta\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1387,9 +1423,7 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \]
 </div>
 </div>
-</li>
-<li>
-<p>Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span>.</p>
+<p>(2) Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(x\)</span> can take any real value, we have <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}\)</span>, so <span class="math-tex" data-type="tex">\(\sec\theta&gt;0\)</span> and</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1412,9 +1446,7 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \]
 </div>
 </div>
-</li>
-<li>
-<p>Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sec\theta\)</span>.</p>
+<p>(3) Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sec\theta\)</span>.</p>
 <p>We must be more careful with this substitution. Although</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1436,9 +1468,7 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \]
 </div>
 </div>
-</li>
-<li>
-<p>As an alternative to the inverse secant substitution <span class="math-tex" data-type="tex">\(x=a\sec\theta\)</span> to simplify integrals involving <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}\)</span> (where <span class="math-tex" data-type="tex">\(x\ge a&gt;0\)</span>), we can use the inverse hyperbolic cosine substitution <span class="math-tex" data-type="tex">\(x=\operatorname{Arccosh} u\)</span>. Since <span class="math-tex" data-type="tex">\(\cosh^2 u-1=\sinh^2 u\)</span>, this substitution produces <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}= a\operatorname{arcsinh} u\)</span>. To express <span class="math-tex" data-type="tex">\(u\)</span> in terms of <span class="math-tex" data-type="tex">\(x\)</span>, we need the result of the previous chapter,</p>
+<p>(4) As an alternative to the inverse secant substitution <span class="math-tex" data-type="tex">\(x=a\sec\theta\)</span> to simplify integrals involving <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}\)</span> (where <span class="math-tex" data-type="tex">\(x\ge a&gt;0\)</span>), we can use the inverse hyperbolic cosine substitution <span class="math-tex" data-type="tex">\(x=\operatorname{Arccosh} u\)</span>. Since <span class="math-tex" data-type="tex">\(\cosh^2 u-1=\sinh^2 u\)</span>, this substitution produces <span class="math-tex" data-type="tex">\(\sqrt{x^2-a^2}= a\operatorname{arcsinh} u\)</span>. To express <span class="math-tex" data-type="tex">\(u\)</span> in terms of <span class="math-tex" data-type="tex">\(x\)</span>, we need the result of the previous chapter,</p>
 <div class="math-tex" data-type="equation">
 \[
 \operatorname{Arccosh x}=\ln\left(x+\sqrt{x^2-1}\right)\,,\quad x\ge1\,.
@@ -1458,18 +1488,14 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \]
 </div>
 </div>
-</li>
-<li>
-<p>Similarly, the inverse hyperbolic substitution <span class="math-tex" data-type="tex">\(x=\operatorname{arcsinh} u\)</span> can be used instead of the inverse tangent substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span> to simplify integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span>. In this case we have <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u\)</span> and <span class="math-tex" data-type="tex">\(x^2+a^2=a^2\cosh^2 u\)</span>, and we may need the result</p>
+<p>(5) Similarly, the inverse hyperbolic substitution <span class="math-tex" data-type="tex">\(x=\operatorname{arcsinh} u\)</span> can be used instead of the inverse tangent substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span> to simplify integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span>. In this case we have <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u\)</span> and <span class="math-tex" data-type="tex">\(x^2+a^2=a^2\cosh^2 u\)</span>, and we may need the result</p>
 <div class="math-tex" data-type="equation">
 \[
 \operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
 \]
 </div>
 <p>valid for all <span class="math-tex" data-type="tex">\(x\)</span> and proved in the previous chapter.</p>
-</li>
-<li>
-<p>There is a certain special substitution that can transform an integral whose integrand is a rational function of <span class="math-tex" data-type="tex">\(\sin\theta\)</span> and <span class="math-tex" data-type="tex">\(\cos\theta\)</span> (i.e., a quotient of polynomials in <span class="math-tex" data-type="tex">\(\sin\theta\)</span> and <span class="math-tex" data-type="tex">\(\cos\theta\)</span>) into a rational function of <span class="math-tex" data-type="tex">\(x\)</span>. The substitution is <span class="math-tex" data-type="tex">\(x=\tan\frac{\theta}{2}\)</span>.</p>
+<p>(6) There is a certain special substitution that can transform an integral whose integrand is a rational function of <span class="math-tex" data-type="tex">\(\sin\theta\)</span> and <span class="math-tex" data-type="tex">\(\cos\theta\)</span> (i.e., a quotient of polynomials in <span class="math-tex" data-type="tex">\(\sin\theta\)</span> and <span class="math-tex" data-type="tex">\(\cos\theta\)</span>) into a rational function of <span class="math-tex" data-type="tex">\(x\)</span>. The substitution is <span class="math-tex" data-type="tex">\(x=\tan\frac{\theta}{2}\)</span>.</p>
 <p>Observe that</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -1491,8 +1517,6 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \mathrm{d}\kern-0.5pt \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt x=\frac{2}{1+x^2}\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
-</li>
-</ol>
 <section data-type="sect1">
 <h1>Improper Integrals</h1>
 <p>Up to this point, we have considered definite integrals of the form</p>
@@ -1716,8 +1740,8 @@ V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi\left(
 <section data-type="sect1">
 <h1>Arc Length and Surface Area</h1>
 <p>In this section we consider how integrals can be used to find the lengths of curves and the areas of the surfaces of solids of revolution.</p>
-<section data-type="sect1">
-<h1>Arc Length</h1>
+<section data-type="sect2">
+<h2>Arc Length</h2>
 <p>If <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span> are two points in the plane, let <span class="math-tex" data-type="tex">\(\left|AB\right|\)</span> denote the distance between <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span>, that is, the length of the straight line segment <span class="math-tex" data-type="tex">\(AB\)</span>.</p>
 <p>Given a curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> joining the two points <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span>, we would like to define what is meant by the length of the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> from <span class="math-tex" data-type="tex">\(A\)</span> to <span class="math-tex" data-type="tex">\(B\)</span>. Suppose we choose points <span class="math-tex" data-type="tex">\(A=P_0\)</span>, <span class="math-tex" data-type="tex">\(P_1\)</span>, <span class="math-tex" data-type="tex">\(P_2\)</span>, <span class="math-tex" data-type="tex">\(\dots\)</span>, <span class="math-tex" data-type="tex">\(P_{n-1}\)</span>, and <span class="math-tex" data-type="tex">\(P_n=B\)</span> in order along the curve. The polygonal line <span class="math-tex" data-type="tex">\(P_0P_1P_2\dots P_{n-1}P_n\)</span> constructed by joining adjacent pairs of these points with straight line segments forms a polygonal approximation to <span class="math-tex" data-type="tex">\(\mathcal C\)</span>, having length</p>
 <div class="math-tex" data-type="equation">
@@ -1844,7 +1868,6 @@ S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
 </section>
 </section>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

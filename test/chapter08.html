@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="utf-8">
+<title>chapter08</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="rma.css" />
+<script>
+MathJax = {
+    startup: {
+        pageReady() {
+            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
+            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+        }
+    },
+    tex: {
+        inlineMath: [              // start/end delimiter pairs for in-line math
+            ['\\(', '\\)']
+        ],
+        displayMath: [
+            ['\\[', '\\]']
+        ]
+    },
+    options: {
+        renderActions: {
+            assistiveMml: [],  // disable assistive mathml
+            typeset: [150,
+                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
+                (math, doc) => MathJax.config.renderMathML(math, doc)
+            ]
+        },
+        menuOptions: {
+            settings: {
+                assistiveMml: false
+            }
+        }
+    },
+    renderMathML(math, doc) {
+        math.typesetRoot = document.createElement('mjx-container');
+        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+        math.display && math.typesetRoot.setAttribute('display', 'block');
+    }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+
+</head>
+<body data-type="article">
+<section data-type="chapter">
+<h1>Sequences, Infinite Series and Power Series</h1>
+<p>An infinite series is a sum that involves infinitely many terms. Since addition is carried out on two numbers at a time, the evaluation of the sum of an infinite series necessarily involves finding a limit.</p>
+<section data-type="sect1">
+<h1>Sequences and Convergence</h1>
+<p>By a <i>sequence</i> (or an infinite sequence) we mean an ordered list having a first element but no last element. For our purposes, the elements (called <i>terms</i>) of a sequence will always be real numbers, although much of our discussion could be applied to complex numbers as well. Examples of sequences are:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left(a_n\right)=&\left(0, 1, 2, 3, 4, 5, 6, 7\dots \right)\\
+\left(b_n\right)=&\left(1, -\frac{1}{2}, \frac{1}{4}, -\frac{1}{8}, \frac{1}{16}, -\frac{1}{32}, \frac{1}{64},\dots \right)\\
+\left(c_n\right)=&\left(0, 1, 1, 2, 3, 5, 8, 13, \dots \right)
+\end{aligned}
+\]
+</div>
+<p>The terms of a sequence are usually listed in parentheses as shown. The ellipsis points <span class="math-tex" data-type="tex">\(\dots\)</span> should be read “and so on.”</p>
+<p>An infinite sequence is a special kind of function, one whose domain is a set of integers extending from some starting integer to infinity. The starting integer is usually <span class="math-tex" data-type="tex">\(0\)</span> or <span class="math-tex" data-type="tex">\(1\)</span>, so the domain is the set of positive integers. The sequence <span class="math-tex" data-type="tex">\(\left(a_0, a_1, a_2, a_3, \dots\right)\)</span> is the function <span class="math-tex" data-type="tex">\(f\)</span> that takes the value <span class="math-tex" data-type="tex">\(f\left(n\right)=a_n\)</span> an at each positive integer <span class="math-tex" data-type="tex">\(n\)</span>. A sequence can be specified in three ways:</p>
+<ol>
+<li>
+<p>We can list the first few terms followed by <span class="math-tex" data-type="tex">\(\dots\)</span> if the pattern is obvious.</p>
+</li>
+<li>
+<p>We can provide a formula for the general term <span class="math-tex" data-type="tex">\(a_n\)</span> as a function of <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+</li>
+<li>
+<p>We can provide a formula for calculating the term an as a function of earlier terms <span class="math-tex" data-type="tex">\(a_1,a_2,\dots,a_{n-1}\)</span> and specify enough of the beginning terms so the process of computing higher terms can begin.</p>
+</li>
+</ol>
+<p>In each case it must be possible to determine any term of the sequence, although it may be necessary to calculate all the preceding terms first.</p>
+<div data-type="example">
+<h1></h1>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+a_n &= n\\
+b_n &= \left(-\frac{1}{2}\right)^n\\
+c_n &= c_{n-2} + c_{n-1}\textrm{ with }c_0 = 0\textrm{ and }c_1=1\,.
+\end{aligned}
+\]
+</div>
+</div>
+<p>In the last example we say the sequence <span class="math-tex" data-type="tex">\(c_n\)</span> is defined <i>recursively</i> or <i>inductively</i>; each term must be calculated from previousones rather than directly as a function of <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>We now introduce terminology used to describe various properties of sequences.</p>
+<div data-type="definition">
+<h1></h1>
+<ul>
+<li>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>bounded below</i> by <span class="math-tex" data-type="tex">\(L\)</span>, and <span class="math-tex" data-type="tex">\(L\)</span> is a <i>lower bound</i> for <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span>, if <span class="math-tex" data-type="tex">\(a_n\ge L\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>. The sequence is <i>bounded above</i> by <span class="math-tex" data-type="tex">\(M\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> is an upper bound, if <span class="math-tex" data-type="tex">\(a_n\le M\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>.</p>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>bounded</i> if it is both bounded above and bounded below. In this case there is a constant <span class="math-tex" data-type="tex">\(K\)</span> such that <span class="math-tex" data-type="tex">\(\left|a_n\right|\le K\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>.</p>
+</li>
+<li>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>positive</i> if it is bounded below by zero, that is, if <span class="math-tex" data-type="tex">\(a_n\ge 0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>; it is <i>negative</i> if <span class="math-tex" data-type="tex">\(a_n\le 0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>.</p>
+</li>
+<li>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>increasing</i> if <span class="math-tex" data-type="tex">\(a_{n+1}\ge a_n\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>; it is <i>decreasing</i> if <span class="math-tex" data-type="tex">\(a_{n+1}\le a_n\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>. The sequence is said to be <i>monotonic</i> if it is either increasing or decreasing.</p>
+</li>
+<li>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>alternating</i> if <span class="math-tex" data-type="tex">\(a_na_{n+1}&lt;0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>, that is, if any two consecutive terms have opposite signs. Note that this definition requires <span class="math-tex" data-type="tex">\(a_n\ne0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>.</p>
+</li>
+</ul>
+</div>
+<p>When you want to show that a sequence is increasing, you can try to show that the inequality <span class="math-tex" data-type="tex">\(a_{n+1}-a_n \ge 0\)</span> holds for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>. Alternatively, if  <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span> for a differentiable function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> you can show that <span class="math-tex" data-type="tex">\(f\)</span> is a nondecreasing function on <span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span> by showing that <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\ge0\)</span> there. Similar approaches are useful for showing that a sequence is decreasing.</p>
+<p>The adverb <i>ultimately</i> is used to describe any termwise property of a sequence that the terms have from some point on, but not necessarily at the beginning of the sequence.</p>
+<p>Central to the study of sequences is the notion of convergence. The concept of the limit of a sequence is a special case of the concept of the limit of a function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> as <span class="math-tex" data-type="tex">\(x\to\infty\)</span>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>We say that sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> converges to the limit <span class="math-tex" data-type="tex">\(L\)</span>, and we write <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n= L\)</span>, if for every positive real number <span class="math-tex" data-type="tex">\(\varepsilon\)</span> there exists an integer <span class="math-tex" data-type="tex">\(N\)</span> (which may depend on <span class="math-tex" data-type="tex">\(\varepsilon\)</span>) such that if <span class="math-tex" data-type="tex">\(n\ge N\)</span>, then <span class="math-tex" data-type="tex">\(\left|a_n-L\right|\le\varepsilon\)</span>.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Show that <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} \frac{c}{n^p}= 0\)</span> or any real number <span class="math-tex" data-type="tex">\(c\)</span> and any <span class="math-tex" data-type="tex">\(p&gt;0\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>be given. Then</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|\frac{c}{n^p}\right|&lt;\varepsilon\quad\textrm{if}\quad n^p\&gt;\frac{\left|c\right|}{\varepsilon}\,,
+\]
+</div>
+<p>that is, if <span class="math-tex" data-type="tex">\(n\ge N\)</span>, the least integer greater than <span class="math-tex" data-type="tex">\(\left(\frac{\left|c\right|}{\varepsilon}\right)^\frac{1}{p}\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} \frac{c}{n^p}= 0\)</span>.</p>
+</div>
+<p>Every sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> must either <i>converge</i> to a finite limit <span class="math-tex" data-type="tex">\(L\)</span> or <i>diverge</i>. That is, either <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n= L\)</span> exists (is a real number) or <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n\)</span> does not exist. If <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n=\infty\)</span>, we can say that the sequence diverges to <span class="math-tex" data-type="tex">\(\infty\)</span>; if <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n=-\infty\)</span>, we can say that it diverges to <span class="math-tex" data-type="tex">\(-\infty\)</span>. If <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n= L\)</span> simply does not exist (but is not <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>), we can only say that the sequence diverges.</p>
+<p>The limit of a sequence is equivalent to the limit of a function as its argument approaches infinity:</p>
+<p>If <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to\infty}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle\lim_{n\to\infty}a_n=L\)</span>.</p>
+<p>Because of this, the standard rules for limits of functions also hold for limits of sequences, with the appropriate changes of notation.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(b_n\right)\)</span> converge, then</p>
+<ul>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}\left(a_n\pm b_n\right)=\lim_{n\to\infty}a_n\pm\lim_{n\to\infty}b_n\,,\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}ca_n=c\lim_{n\to\infty}a_n\,,\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}a_nb_n=\left(\lim_{n\to\infty}a_n\right)\left(\lim_{n\to\infty}b_n\right)\,,\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}\frac{a_n}{b_n}=\frac{\displaystyle\lim_{n\to\infty}a_n}{\displaystyle\lim_{n\to\infty}b_n}\quad\textrm{assuming }\lim_{n\to\infty}b_n\ne 0\,.\)</span></p>
+</li>
+</ul>
+<p>If <span class="math-tex" data-type="tex">\(a_n\le b_n\)</span> ultimately, then <span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}a_n\le \lim_{n\to\infty}b_n\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(a_n\le c_n\le b_n\)</span> ultimately, and <span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}a_n=L=\lim_{n\to\infty}b_n\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}c_n=L\)</span>.</p>
+</div>
+<p>The limits of many explicitly defined sequences can be evaluated using these properties in a manner similar to the methods used for limits of the form <span class="math-tex" data-type="tex">\(\lim_{x\to\infty}f\left(x\right)\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>Calculate the limits of the sequences</p>
+<div class="math-tex" data-type="equation">
+\[
+1.\ \left(\frac{2n^2-n-1}{5n^2+n-3}\right)\quad 2.\ \left(\frac{\cos n}{n}\right)\quad 3.\ \sqrt{n^2+2n}-n\,.
+\]
+</div>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}\frac{2n^2-n-1}{5n^2+n-3}=\lim_{n\to\infty}\frac{2-\frac{1}{n}-\frac{1}{n^2}}{5+\frac{1}{n}-\frac{3}{n^2}}=\frac{2}{5}\,.\)</span></p>
+</li>
+<li>
+<p>Since <span class="math-tex" data-type="tex">\(\left|\cos n\right|\le 1\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+-\frac{1}{n}\le\frac{\cos n}{n}\le\frac{1}{n}\quad\textrm{for }n\ge 1\,.
+\]
+</div>
+<p>Now, <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}-\frac{1}{n}=0=\lim_{n\to\infty}\frac{1}{n}\)</span>. Therefore, <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}-\frac{\cos n}{n}=0\)</span>.</p>
+</li>
+<li>
+</li>
+</ol>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\lim_{n\to\infty}\left(\sqrt{n^2+2n}-n\right)&=\lim_{n\to\infty}\frac{\left(\sqrt{n^2+2n}-n\right)\left(\sqrt{n^2+2n}+n\right)}{\sqrt{n^2+2n}+n}\\
+&=\lim_{n\to\infty}\frac{2n}{\sqrt{n^2+2n}+n}=\lim_{n\to\infty}\frac{2}{\sqrt{1+\frac{2}{n}}+1}=1\,.
+\end{aligned}
+\]
+</div>
+</div>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> converges, then <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is bounded.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n=L\)</span>.</p>
+<p>For <span class="math-tex" data-type="tex">\(\varepsilon = 1\)</span>there exists a number <span class="math-tex" data-type="tex">\(N\)</span> such that if <span class="math-tex" data-type="tex">\(n&gt; N\)</span>, then <span class="math-tex" data-type="tex">\(\left|a_n-L\right|&lt1\)</span>; therefore <span class="math-tex" data-type="tex">\(\left|a_n\right|&lt;1+\left| L\right|\)</span> for such <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(K\)</span> denotes the largest of the numbers <span class="math-tex" data-type="tex">\(\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|\)</span>, and <span class="math-tex" data-type="tex">\(1+\left| L\right|\)</span>, then <span class="math-tex" data-type="tex">\(\left|a_n\right|\le K\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>.</p>
+<p>Hence, <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is bounded.</p>
+</div>
+<p>The converse of this theorem is false; the sequence <span class="math-tex" data-type="tex">\(\left(\left(-1\right)^n\right)\)</span> is bounded but does not converge.</p>
+<p>The <i>completeness property</i> of the real number system can be reformulated in terms of sequences to read as follows:</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If the sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is bounded above and is (ultimately) increasing, then it converges. The same conclusion holds if a<span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is bounded below and is (ultimately) decreasing.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> be defined recursively by</p>
+<div class="math-tex" data-type="equation">
+\[
+a_n=\begin{cases}
+1&\textrm{if }n=0\\
+\sqrt{6+a_{n-1}}&\textrm{if }n\ge 1\,.
+\end{cases}
+\]
+</div>
+<p>Show that <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n\)</span> exists and find its value.</p>
+<p>Observe that <span class="math-tex" data-type="tex">\(a_1=\sqrt 7\&gt;a_0\)</span>. If <span class="math-tex" data-type="tex">\(a_{k+1}&gt;a_k\)</span>, then we have <span class="math-tex" data-type="tex">\(a_{k+2}=\sqrt{6+a_{k+1}}&gt;\sqrt{6+a_k}=_{k+1}\)</span>, so <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is increasing, by induction.</p>
+<p>Observe also that <span class="math-tex" data-type="tex">\(a_0=1&lt;3\)</span>. If <span class="math-tex" data-type="tex">\(a_k&lt;3\)</span>, then <span class="math-tex" data-type="tex">\(a_{k+1}=\sqrt{6+a_k}&lt;\sqrt{6+3}=3\)</span>, si <span class="math-tex" data-type="tex">\(a_n&lt; 3\)</span> for every <span class="math-tex" data-type="tex">\(n\)</span> by induction.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is increasing and bounded above, <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n=a\)</span> exists, by completeness.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\sqrt{6+x}\)</span> is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+a=\lim_{n\to\infty}a_{n+1}=\lim_{n\to\infty}\sqrt{6+a_{n}}=\sqrt{6+\lim_{n\to\infty}a_n}=\sqrt{6+a}\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(a^2=6+a\)</span>, or <span class="math-tex" data-type="tex">\(a^2-a-6=0\)</span>, or <span class="math-tex" data-type="tex">\(\left(a-3\right)\left(a+2\right)=0\)</span>. This quadratic has roots <span class="math-tex" data-type="tex">\(a=3\)</span> and <span class="math-tex" data-type="tex">\(a=-2\)</span>. Since <span class="math-tex" data-type="tex">\(a_n\ge 1\)</span> for every <span class="math-tex" data-type="tex">\(n\)</span>, we must have <span class="math-tex" data-type="tex">\(a\ge1\)</span>. Therefore, <span class="math-tex" data-type="tex">\(a=3\)</span> and <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n=3\)</span>.</p>
+</div>
+</section>
+<section data-type="sect1">
+<h1>Infinite Series</h1>
+<section data-type="sect2">
+<h2>Definitions</h2>
+<p>An <i>infinite series</i>, usually just called a <i>series</i>, is a formal sum of infinitely many terms; for instance, <span class="math-tex" data-type="tex">\(a_0+a_1+a_2+a_3+\cdots\)</span> is a series formed by adding the terms of the sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span>. This series is also denoted <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty a_n=a_0+a_1+a_2+a_3+\cdots
+\]
+</div>
+<p>The interpretation we place on the infinite sum is that of adding from left to right, as suggested by the grouping</p>
+<div class="math-tex" data-type="equation">
+\[
+\cdots\left(\left(\left(\left(a_0+a_1\right)+a_2\right)+a_3\right)+a_4\right)+\cdots\,.
+\]
+</div>
+<p>We accomplish this by defining a new sequence <span class="math-tex" data-type="tex">\(\left(s_n\right)\)</span>, called the <i>sequence of partial sums</i> of the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span>, so that <span class="math-tex" data-type="tex">\(s_n\)</span> is the sum of the first <span class="math-tex" data-type="tex">\(n\)</span> terms of the series:</p>
+<div class="math-tex" data-type="equation">
+\[
+s_n=\sum_{i=0}^na_i\,.
+\]
+</div>
+<p>We then define the sum of the infinite series to be the limit of this sequence of partial sums.</p>
+<div data-type="definition">
+<h1></h1>
+<p>We say that the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges to the sum <span class="math-tex" data-type="tex">\(s\)</span>, and we write</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty a_n=s\,,
+\]
+</div>
+<p>if <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}s_n=s\)</span>, where <span class="math-tex" data-type="tex">\(s_n\)</span> is the <span class="math-tex" data-type="tex">\(n\)</span>th partial sum of <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span>.</p>
+</div>
+<p>Thus, a series converges if and only if the sequence of its partial sums converges. Similarly, a series is said to diverge to infinity, diverge to negative infinity, or simply diverge if its sequence of partial sums does so.</p>
+</section>
+<section data-type="sect2">
+<h2>Geometric Series</h2>
+<div data-type="definition">
+<h1></h1>
+<p>A series of the form <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots\)</span>, whose <span class="math-tex" data-type="tex">\(n\)</span>th term is <span class="math-tex" data-type="tex">\(a_n=ar^n\)</span>, is called a <i>geometric series</i>. The number <span class="math-tex" data-type="tex">\(a\)</span> is the first term. The number <span class="math-tex" data-type="tex">\(r\)</span> is called the common ratio of the series, since it is the value of the ratio of the <span class="math-tex" data-type="tex">\(\left(n+1\right)\)</span>th term to the <span class="math-tex" data-type="tex">\(n\)</span>th term for any <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{a_{n+1}}{a_n}=\frac{ar^{n+1}}{ar^n}=r\,.
+\]
+</div>
+</div>
+<p>The <span class="math-tex" data-type="tex">\(n\)</span>th partial sum <span class="math-tex" data-type="tex">\(s_n\)</span> of a geometric series is calculated as follows:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+s_n&=a+ar+ar^2+ar^3+\cdots+ar^n\\
+rs_n&=\hphantom{a+}ar+ar^2+ar^3+\cdots+ar^n+ar^{n+1}
+\end{aligned}
+\]
+</div>
+<p>The second equation is obtained by multiplying the first by <span class="math-tex" data-type="tex">\(r\)</span>. Subtracting these two equations (note the cancellations), we get <span class="math-tex" data-type="tex">\(\left(1-r\right)s_n=a-ar^{n+1}\)</span>. If <span class="math-tex" data-type="tex">\(r\ne1\)</span>, we can divide by <span class="math-tex" data-type="tex">\(1-r\)</span> and get a formula for <span class="math-tex" data-type="tex">\(s_n\)</span>.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>The <span class="math-tex" data-type="tex">\(n\)</span>th partial sum of a geometric series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty ar^n\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+s_n=\sum_{i=0}^n ar^i=\begin{cases}
+\left(n+1\right)a&\textrm{if }r=1\,,\\
+\displaystyle\frac{a\left(1-r^{n+1}\right)}{1-r}&\textrm{if }r\ne1\,.
+\end{cases}
+\]
+</div>
+</div>
+<p>The convergence of the geometric series can be summarized as follows</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty ar^n=\begin{cases}
+0&\textrm{if }a=0\,,\\
+\displaystyle\frac{a}{1-r}&\textrm{if }\left|r\right|&lt;1\,.
+\end{cases}
+\]
+</div>
+<p>In all other cases the geometric series diverges.</p>
+<p>The representation of the function <span class="math-tex" data-type="tex">\(\frac{1}{1-x}\)</span> as the sum of a geometric series,</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{1-x}=\sum_{n=0}^\infty x^n=1+x+x^2+x^3+\cdots\quad\textrm{for }-1&lt;x&lt;1\,,
+\]
+</div>
+<p>will be important in our discussion of power series later in this chapter.</p>
+</section>
+<section data-type="sect2">
+<h2>Theorems</h2>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges, then <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n=0\)</span>. Therefore, if <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n\)</span> does not exist or exists but is not zero, then the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> diverges.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(s_n=a_0+a_1+a_2+\cdots+a_n\)</span>, then <span class="math-tex" data-type="tex">\(s_n-s_{n-1}=a_n\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges, then <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}s_n=s\)</span> exists, and <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}s_{n-1}=s\)</span>.</p>
+<p>Hence, <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n=s-s=0\)</span>.</p>
+</div>
+<p>This theorem is very important for the understanding of infinite series. Students often err either in forgeting that a series cannot converge if its terms do not approach zero or in confusing this result with its converse, which is false.</p>
+<p>When considering whether a given series converges, the first question you should ask yourself is: “Does the <span class="math-tex" data-type="tex">\(n\)</span>th term approach <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> approaches <span class="math-tex" data-type="tex">\(\infty\)</span>?” If the answer is no, then the series does not converge. If the answer is yes, then the series <i>may or may not</i> converge.</p>
+<p>The following theorem asserts that it is only the ultimate behaviour of an that deterines whether <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges.</p>
+<div data-type="theorem">
+<h1></h1>
+<p><span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges if and only if <span class="math-tex" data-type="tex">\(\sum_{n=N}^\infty a_n\)</span> converges for any integer <span class="math-tex" data-type="tex">\(N\ge 0\)</span>.</p>
+</div>
+<div data-type="exercise">
+<h1></h1>
+<p>Prove this theorem.</p>
+</div>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is ultimately positive, then the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges if its partial sums are bounded above.</p>
+</div>
+<div data-type="exercise">
+<h1></h1>
+<p>Prove this theorem.</p>
+</div>
+</section>
+<section data-type="sect2">
+<h2>Convergence Tests</h2>
+<p>The integral test provides a means for determining whether an ultimately positive series converges or diverges by comparing it with an improper integral that behaves similarly.</p>
+<div data-type="theorem">
+<h1>&nbsp;(Integral Test)</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> is positive, continuous, and nonincreasing on an interval <span class="math-tex" data-type="tex">\(\left[N,\infty\right[\)</span> for some positive integer <span class="math-tex" data-type="tex">\(N\)</span>. Then</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty a_n\quad\textrm{and}\quad\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t
+\]
+</div>
+<p>either both converge or both diverge to infinity.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>Show that</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty \left(n+1\right)^{-p}=\sum_{n=1}^\infty n^{-p}
+\]
+</div>
+<p>converges if <span class="math-tex" data-type="tex">\(p&gt;1\)</span>.</p>
+<p>By the integral test</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_1^\infty t^{-p}\,\mathrm{d}\kern-0.5pt t=\lim_{x\to\infty}\left(-px^{-p-1}\right)-\left(-p1^{-p-1}\right)=p\quad\textrm{if }p&gt;1
+\]
+</div>
+<p>the series converges for <span class="math-tex" data-type="tex">\(p&gt;1\)</span>.</p>
+</div>
+<div data-type="theorem">
+<h1>&nbsp;(Comparison Test)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span> and <span class="math-tex" data-type="tex">\(n_n=f\left(n\right)\)</span> be sequences for which there exists a positive constant <span class="math-tex" data-type="tex">\(K\)</span> such that, ultimately, <span class="math-tex" data-type="tex">\(0\le a_n\le Kb_n\)</span>. If the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty b_n\)</span> converges, then so does the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span>.</p>
+</div>
+<div data-type="theorem">
+<h1>&nbsp;(Ratio Test)</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(a_n &gt; 0\)</span> (ultimately) and that</p>
+<div class="math-tex" data-type="equation">
+\[
+\rho = \lim_{n\to\infty}\frac{a_{n+1}}{a_n}
+\]
+</div>
+<p>exists and <span class="math-tex" data-type="tex">\(0\le\rho&lt;1\)</span>, then <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges.</p>
+</div>
+</section>
+<section data-type="sect2">
+<h2>Absolute Convergence</h2>
+<div data-type="definition">
+<h1></h1>
+<p>The series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> is said to be <i>absolutely convergent</i> if <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty \left|a_n\right|\)</span> converges.</p>
+</div>
+<p>The series</p>
+<div class="math-tex" data-type="equation">
+\[
+s=\sum_{n=0}^\infty\frac{\left(-1\right)^n}{\left(n+1\right)^2}=1-\frac{1}{4}+\frac{1}{9}-\frac{1}{16}+\cdots
+\]
+</div>
+<p>converges absolutely since</p>
+<div class="math-tex" data-type="equation">
+\[
+S=\sum_{n=0}^\infty\left|\frac{\left(-1\right)^n}{\left(n+1\right)^2}\right|=1+\frac{1}{4}+\frac{1}{9}+\frac{1}{16}+\cdots
+\]
+</div>
+<p>converges. It seems reasonable that the first series must converge, and its sum <span class="math-tex" data-type="tex">\(s\)</span> should satisfy <span class="math-tex" data-type="tex">\(-S\le s\le S\)</span>.</p>
+<p>In general, the cancellation that occurs because some terms are negative and others positive makes it easier for a series to converge than if all the terms are of one sign. We verify this insight in the following theorem.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If a series converges absolutely, then it converges.</p>
+</div>
+<section data-type="sect1">
+<h1>Power Series</h1>
+</section>
+</section>
+</section>
+</section><div id="tag"></div>
+
+</body>
+</html>

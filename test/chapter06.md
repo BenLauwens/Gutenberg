@@ -166,8 +166,7 @@ end
 
 The rectangles are shown shaded in the figure for a decreasing function ``f``. For an increasing function, the tops of the rectangles would lie above the graph of ``f`` rather than below it. Evidently, ``S_n`` is an approximation to the area of the region ``R``, and the approximation gets better as ``n`` increases, provided we choose the points ``a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b`` in such a way that the width ``\Delta\kern-0.5pt x_i`` of the widest rectangle approaches zero.
 
-Subdividing a subinterval into two smaller subintervals reduces the error in the approximation by reducing that part of the area under the curve that is not contained in the rectangles. It is reasonable, therefore, to calculate the area of ``R`` by finding the limit of ``S_n`` as ``n`` with the restriction that
-the largest of the subinterval widths ``\Delta\kern-0.5pt x_i`` must approach zero:
+Subdividing a subinterval into two smaller subintervals reduces the error in the approximation by reducing that part of the area under the curve that is not contained in the rectangles. It is reasonable, therefore, to calculate the area of ``R`` by finding the limit of ``S_n`` as ``n`` with the restriction that the largest of the subinterval widths ``\Delta\kern-0.5pt x_i`` must approach zero:
 
 ```math
 \textrm{Area of }R=\lim_{
@@ -332,6 +331,22 @@ The last theorem shows that the set of values of ``L\left(f, P\right)`` for fixe
 
 	the (*Darboux*) *integral* of ``f`` on ``\left[a,b\right]``\,.
 
+The definite integral of ``f\left(x\right)`` over ``\left[a,b\right]`` is a number; it is not a function of ``x``. It depends on the numbers ``a`` and ``b`` and on the particular function ``f``, but not on the variable ``x`` (which is a *dummy variable* like the variable ``i`` in the sum ``\sum_{i=1}^nf\left(i\right)``). Replacing ``x`` with another variable does not change the value of the integral:
+
+```math
+\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^b f\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+```
+
+The various parts of the symbol ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` have their own names:
+
+- ``\int`` is called the *integral sign*; it resembles the letter ``S`` since it represents the limit of a sum.
+
+- ``a`` and ``b`` are called the *limits of integration*; ``a`` is the *lower limit*, ``b`` is the *upper limit*.
+
+- The function ``f`` is the *integrand*; ``x`` is the *variable of integration*.
+
+- ``\mathrm{d}\kern-0.5pt x`` is the *differential of ``x``*. It replaces ``x`` in the Riemann sums. If an integrand depends on more than one variable, the differential tells you which one is the variable of integration.
+
 !!! example
 
 	Show that ``f\left(x\right)=x^2`` is integrable over the interval ``\left[0,a\right]`` (where ``a &gt; 0``), and evaluate
@@ -355,13 +370,30 @@ The last theorem shows that the set of values of ``L\left(f, P\right)`` for fixe
 	\int_0^a f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_0^a x^2\,\mathrm{d}\kern-0.5pt x=\frac{a^3}{3}\,.
 	```
 
-It can be shown that the *Darboux integral* is equivalent to the better known *Riemann integral*
+Let ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}``, where ``a=x_0&lt;x1&lt;x2&lt;\dots&lt;x_n=b``, be a partition of ``\left[a,b\right]``. In each subinterval ``\left[x_{i-1},x_i\right]`` of``P`` pick a point ``c_i`` (called a *tag*). Let ``c=\left(c_1,c_2,\dots,c_n\right)`` denote the list of these tags. The sum
 
 ```math
-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{\begin{aligned}n&\to\infty\\\max &\Delta\kern-0.5pt x_i\to 0\end{aligned}}\sum_{i=1}^n f\left(x^\prime_i\right)\Delta\kern-0.5pt x_i\,,
+\begin{aligned}
+R\left(f,P,c\right)&=\sum_{i=1}^nf\left(c_i\right)\Delta\kern-0.5pt x\\
+&=f\left(c_1\right)\Delta\kern-0.5pt x_1+f\left(c_2\right)\Delta\kern-0.5pt x_2+\cdots+f\left(c_n\right)\Delta\kern-0.5pt x_n
+\end{aligned}
 ```
 
-where ``x^\prime_i`` is an arbitrary point in ``\left[x_{i-1},x_i\right]``. The Darboux integral is easier to use than the more intuitive Riemann integral.
+is called the *Riemann sum* of ``f`` on ``\left[a,b\right]`` corresponding to partition ``P`` and tags ``c``.
+
+For any choice of the tags ``c``, the Riemann sum ``F\left(f,P,c\right)`` satisfies
+
+```math
+L\left(f,P\right)\le R\left(f,P,c\right)\le U\left(f,P\right)
+```
+
+Therefore, if ``f`` is integrable on ``\left[a,b\right]``, then its integral is the limit of such Riemann sums, where the limit is taken as the number ``n\left(P\right)`` of subintervals of ``P`` increases to infinity in such a way that the lengths of all the subintervals approach zero. That is,
+
+```math
+\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{\begin{aligned}n&\to\infty\\\max &\Delta\kern-0.5pt x_i\to 0\end{aligned}}\sum_{i=1}^n f\left(c_i\right)\Delta\kern-0.5pt x_i\,,
+```
+
+where ``c_i`` is an arbitrary point in ``\left[x_{i-1},x_i\right]``. The Darboux integral is easier to use than the more intuitive *Riemann integral* but many applications of integration depend on recognizing that a limit of Riemann sums is a definite integral.
 
 The following theorem provides a convenient test for determining whether a given bounded function is integrable.
 
@@ -446,7 +478,7 @@ We can now use the Bisection Method to prove the Uniform Continuity Theorem.
 
 	Then, there exists ``\varepsilon&gt;0`` such that for every ``\delta&gt;0`` there exists ``x,y\in\left[a_0,b_0\right]`` such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
 
-	It follows that at least one of the two subintervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` and ``\left[\frac{a_0+b_0}{2},b_0\right]`` has the property that for every ``\delta&gt;0`` there exist ``x,y`` in the interval such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``. Otherwise our assumption would be contradicted by the lemma.
+	It follows from the lemma that, corresponding to this ``\varepsilon``, it must be true for at least one of the two subintervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` and ``\left[\frac{a_0+b_0}{2},b_0\right]`` that for every ``\delta&gt;0`` there exist ``x,y`` in the interval such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
 
 	Choose a subinterval having this property and call it ``I_1=\left[a_1,b_1\right]``. 
 	
@@ -511,7 +543,7 @@ Some of the most important properties of the definite integral are summarized in
 
 	1. ``\displaystyle\int_a^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=0\,.``
 
-	2. ``\displaystyle\int_b^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=\displaystyle\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
+	2. ``\displaystyle\int_b^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=-\displaystyle\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
 
 	3. ``\displaystyle\int_a^b\left(Af\left(x\right)+Bg\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+B\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
 
@@ -579,7 +611,7 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 
 	```math
 	\begin{aligned}
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\le L\left(f,P\right)+ L\left(g,P\right)\\
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
 	&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
 	\end{aligned}
 	```
@@ -587,7 +619,7 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 	are true for all ``\varepsilon``, we have
 
 	```math
-	\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 	```
 
 !!! exercise
@@ -646,7 +678,7 @@ Now, we will prove the additive dependency of an integral on the interval of int
 	```math
 	\begin{aligned}
 	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
-	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
 	\end{aligned}
 	```
 
@@ -663,7 +695,7 @@ Now, we will prove the additive dependency of an integral on the interval of int
 	Hint: for any interval ``\left[x_{i-1},x_i\right]\in\left[a,b\right]``, we have
 
 	```math
-	\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\right|\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
+	\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
 	```
 
 ### Mean-Value Theorem for Integrals
@@ -1088,7 +1120,7 @@ All of these can, of course, be checked by differentiating the right-hand sides.
 \begin{aligned}
 \int \tan x\,\mathrm{d}\kern-0.5pt x&=\int \frac{\sin x}{\cos x}\,\mathrm{d}\kern-0.5pt x\quad\textrm{Let }u=\cos x\textrm{, then }\mathrm{d}\kern-0.5pt u=-\sin x\,\mathrm{d}\kern-0.5pt x\\
 &=-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=-\ln\left|u\right|+C\\
-&=-\ln\left|\cos x\right|+C=-\ln\left|\frac{1}{\cos x}\right|+C=-\ln\left|\sec x\right|+C
+&=-\ln\left|\cos x\right|+C=\ln\left|\frac{1}{\cos x}\right|+C=\ln\left|\sec x\right|+C
 \end{aligned}
 ```
 
@@ -1276,123 +1308,123 @@ The substitutions considered in the beginning of this section were direct substi
 
 As we will see, however, sometimes such substitutions can actually simplify an integrand, transforming the integral into one that can be evaluated by inspection or to which other techniques can readily be applied. In any event, inverse substitutions can often be used to convert integrands to rational functions.
 
-1. Integrals involving ``\sqrt{a^2-x^2}`` (where ``a&gt;0``) can can frequently be reduced to a simpler form by means of the substitution ``x=a\sin\theta``.
+(1) Integrals involving ``\sqrt{a^2-x^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\sin\theta``.
 
-   Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corresponds to ``-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}``. Since ``\cos\theta\ge0`` for such ``\theta``, we have
+Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corresponds to ``-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}``. Since ``\cos\theta\ge0`` for such ``\theta``, we have
 
-   ```math
-   \sqrt{a^2-x^2}=\sqrt{a^2\left(1-\sin^2 \theta\right)}=\sqrt{a^2\cos^2\theta}=a\cos\theta\,.
-   ```
+```math
+\sqrt{a^2-x^2}=\sqrt{a^2\left(1-\sin^2 \theta\right)}=\sqrt{a^2\cos^2\theta}=a\cos\theta\,.
+```
 
-   !!! example
+!!! example
 
-	   Evaluate ``\displaystyle\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x``.
 
-	   ```math
-	   \begin{aligned}
-	   \int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	   =&\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
-	   =&\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
-	   \end{aligned}
-	   ```
+	```math
+	\begin{aligned}
+	\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	=&\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
+	=&\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
+	\end{aligned}
+	```
 
-2. Integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}`` (where ``a&gt;0``) can can frequently be reduced to a simpler form by means of the substitution ``x=a\tan\theta``.
+(2) Integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\tan\theta``.
 
-   Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}``, so ``\sec\theta&gt;0`` and
+Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}``, so ``\sec\theta&gt;0`` and
 
-   ```math
-   \sqrt{a^2+x^2}=a\sqrt{1+\tan^2\theta}=a\sec\theta\,.
-   ```
+```math
+\sqrt{a^2+x^2}=a\sqrt{1+\tan^2\theta}=a\sec\theta\,.
+```
 
-   !!! example
+!!! example
 
-       Evaluate ``\displaystyle \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x``.
 
-	   ```math
-	   \begin{aligned}
-	   \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	   =&\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	   =&\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
-	   &\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
-	   =&\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
-	   =&\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
-	   \end{aligned}
-	   ```
+	```math
+	\begin{aligned}
+	\int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	=&\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	=&\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
+	&\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
+	=&\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
+	=&\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
+	\end{aligned}
+	```
 
-3. Integrals involving ``\sqrt{x^2-a^2}`` (where ``a&gt;0``) can can frequently be reduced to a simpler form by means of the substitution ``x=a\sec\theta``.
+(3) Integrals involving ``\sqrt{x^2-a^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\sec\theta``.
+   
+We must be more careful with this substitution. Although
 
-   We must be more careful with this substitution. Although
+```math
+\sqrt{x^2-a^2}=a\sqrt{\sec^2\theta-1}=a\sqrt{\tan^2\theta}=a\left|\tan\theta\right|\,,
+```
 
-   ```math
-   \sqrt{x^2-a^2}=a\sqrt{\sec^2\theta-1}=a\sqrt{\tan^2\theta}=a\left|\tan\theta\right|\,,
-   ```
+we cannot always drop the absolute value from the tangent.
 
-   we cannot always drop the absolute value from the tangent.
+!!! example
+	
+	Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
+	
+	Assume ``x\ge a``.
+	
+	```math
+	\begin{aligned}
+	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	=&\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
+	=&\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+	\end{aligned}
+	```
 
-   !!! example
+(4) As an alternative to the inverse secant substitution ``x=a\sec\theta`` to simplify integrals involving ``\sqrt{x^2-a^2}`` (where ``x\ge a&gt;0``), we can use the inverse hyperbolic cosine substitution ``x=\operatorname{Arccosh} u``. Since ``\cosh^2 u-1=\sinh^2 u``, this substitution produces ``\sqrt{x^2-a^2}= a\operatorname{arcsinh} u``. To express ``u`` in terms of ``x``, we need the result of the previous chapter,
 
-       Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
-	   
-	   Assume ``x\ge a``.
+```math
+\operatorname{Arccosh x}=\ln\left(x+\sqrt{x^2-1}\right)\,,\quad x\ge1\,.
+```
 
-	   ```math
-	   \begin{aligned}
-	   \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	   =&\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
-	   =&\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
-	   \end{aligned}
-	   ```
+!!! example
 
-4. As an alternative to the inverse secant substitution ``x=a\sec\theta`` to simplify integrals involving ``\sqrt{x^2-a^2}`` (where ``x\ge a&gt;0``), we can use the inverse hyperbolic cosine substitution ``x=\operatorname{Arccosh} u``. Since ``\cosh^2 u-1=\sinh^2 u``, this substitution produces ``\sqrt{x^2-a^2}= a\operatorname{arcsinh} u``. To express ``u`` in terms of ``x``, we need the result of the previous chapter,
+	Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
 
-   ```math
-   \operatorname{Arccosh x}=\ln\left(x+\sqrt{x^2-1}\right)\,,\quad x\ge1\,.
-   ```
+	Assume ``x\ge a``.
 
-   !!! example
+	```math
+	\begin{aligned}
+	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
+	=&\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
+	=&\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+	\end{aligned}
+	```
 
-	   Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
+(5) Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}``. In this case we have ``\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
 
-	   Assume ``x\ge a``.
+```math
+\operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
+```
 
-	   ```math
-	   \begin{aligned}
-	   \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
-	   =&\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
-	   =&\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
-	   \end{aligned}
-	   ```
+valid for all ``x`` and proved in the previous chapter.
 
-5. Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}``. In this case we have ``\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
+(6) There is a certain special substitution that can transform an integral whose integrand is a rational function of ``\sin\theta`` and ``\cos\theta`` (i.e., a quotient of polynomials in ``\sin\theta`` and ``\cos\theta``) into a rational function of ``x``. The substitution is ``x=\tan\frac{\theta}{2}``.
 
-   ```math
-   \operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
-   ```
+Observe that
 
-   valid for all ``x`` and proved in the previous chapter.
+```math
+\cos^2\frac{\theta}{2}=\frac{1}{\sec^2\frac{\theta}{2}}=\frac{1}{1+\tan^2\frac{\theta}{2}}=\frac{1}{1+x^2}\,,
+```
 
-6. There is a certain special substitution that can transform an integral whose integrand is a rational function of ``\sin\theta`` and ``\cos\theta`` (i.e., a quotient of polynomials in ``\sin\theta`` and ``\cos\theta``) into a rational function of ``x``. The substitution is ``x=\tan\frac{\theta}{2}``.
+so
 
-   Observe that
+```math
+\begin{aligned}
+\cos\theta&=2\cos^2\frac{\theta}{2}-1=\frac{2}{1+x^2}-1=\frac{1-x^2}{1+x^2}\\
+\sin\theta&=2\sin\frac{\theta}{2}\cos\frac{\theta}{2}=2\tan\frac{\theta}{2}\cos^2\frac{\theta}{2}=\frac{2x}{1+x^2}\,.
+\end{aligned}
+```
 
-   ```math
-   \cos^2\frac{\theta}{2}=\frac{1}{\sec^2\frac{\theta}{2}}=\frac{1}{1+\tan^2\frac{\theta}{2}}=\frac{1}{1+x^2}\,,
-   ```
+Also, ``\mathrm{d}\kern-0.5pt x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt \theta``, so
 
-   so
-
-   ```math
-   \begin{aligned}
-   \cos\theta&=2\cos^2\frac{\theta}{2}-1=\frac{2}{1+x^2}-1=\frac{1-x^2}{1+x^2}\\
-   \sin\theta&=2\sin\frac{\theta}{2}\cos\frac{\theta}{2}=2\tan\frac{\theta}{2}\cos^2\frac{\theta}{2}=\frac{2x}{1+x^2}\,.
-   \end{aligned}
-   ```
-
-   Also, ``\mathrm{d}\kern-0.5pt x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt \theta``, so
-
-   ```math
-   \mathrm{d}\kern-0.5pt \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt x=\frac{2}{1+x^2}\,\mathrm{d}\kern-0.5pt x\,.
-   ```
+```math
+\mathrm{d}\kern-0.5pt \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt x=\frac{2}{1+x^2}\,\mathrm{d}\kern-0.5pt x\,.
+```
 
 ## Improper Integrals
 
@@ -1628,7 +1660,7 @@ We have described two methods for determining the volume of a solid of revolutio
 
 In this section we consider how integrals can be used to find the lengths of curves and the areas of the surfaces of solids of revolution.
 
-## Arc Length
+### Arc Length
 
 If ``A`` and ``B`` are two points in the plane, let ``\left|AB\right|`` denote the distance between ``A`` and ``B``, that is, the length of the straight line segment ``AB``.
 

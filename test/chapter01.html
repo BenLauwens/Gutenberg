@@ -48,7 +48,6 @@ MathJax = {
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter" class="pagereset" >
 <h1>Preliminaries</h1>
 <p>This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.</p>
@@ -819,7 +818,7 @@ MathJax = {
 <p>Many proofs can be written by following a simple <i>template</i> that suggests guidelines to follow when writing the proof.</p>
 <section data-type="sect2">
 <h2>Direct Proof</h2>
-<p>To proof <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>, we can proceed by looking at the truth table. The table shows that if <span class="math-tex" data-type="tex">\(𝒫\)</span> is false, the statement <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is automatically true. This means that if we are concerned with showing <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is true, we don’t have to worry about the situations where <span class="math-tex" data-type="tex">\(𝒫\)</span> is false  because the statement <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> will be automatically true in those cases. But we must be very careful about the situations where <span class="math-tex" data-type="tex">\(𝒫\)</span> is true. We must show that the condition of <span class="math-tex" data-type="tex">\(𝒫\)</span> being true forces <span class="math-tex" data-type="tex">\(𝒬\)</span> to be true also.</p>
+<p>To prove <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>, we can proceed by looking at the truth table. The table shows that if <span class="math-tex" data-type="tex">\(𝒫\)</span> is false, the statement <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is automatically true. This means that if we are concerned with showing <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is true, we don’t have to worry about the situations where <span class="math-tex" data-type="tex">\(𝒫\)</span> is false  because the statement <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> will be automatically true in those cases. But we must be very careful about the situations where <span class="math-tex" data-type="tex">\(𝒫\)</span> is true. We must show that the condition of <span class="math-tex" data-type="tex">\(𝒫\)</span> being true forces <span class="math-tex" data-type="tex">\(𝒬\)</span> to be true also.</p>
 <div data-type="template">
 <h1>&nbsp;(direct proof)</h1>
 <p><i>SET THE CONTEXT</i></p>
@@ -829,7 +828,7 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof the proposition “The sum of any two odd natural numbers is even”.</p>
+<p>Prove the proposition “The sum of any two odd natural numbers is even”.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -867,7 +866,7 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof the proposition “If <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)\)</span> is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>”.</p>
+<p>Prove the proposition “If <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)\)</span> is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>”.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -893,7 +892,7 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof by contraposition the proposition “Let <span class="math-tex" data-type="tex">\(x\in ℕ\)</span>. If <span class="math-tex" data-type="tex">\(x^2\)</span> is even, then <span class="math-tex" data-type="tex">\(x\)</span> is even”.</p>
+<p>Prove by contraposition the proposition “Let <span class="math-tex" data-type="tex">\(x\in ℕ\)</span>. If <span class="math-tex" data-type="tex">\(x^2\)</span> is even, then <span class="math-tex" data-type="tex">\(x\)</span> is even”.</p>
 <p>A direct proof would be problematic. We will proof the logically equivalent proposition “If <span class="math-tex" data-type="tex">\(x\)</span> is not even, then <span class="math-tex" data-type="tex">\(x^2\)</span> is not even”.</p>
 </div>
 <div data-type="proof">
@@ -921,7 +920,7 @@ MathJax = {
 <p>A slightly unsettling feature of this method is that we may not know at the beginning of the proof what the statement <span class="math-tex" data-type="tex">\(𝒞\)</span> is going to be.</p>
 <div data-type="example">
 <h1></h1>
-<p>Proof by contradiction the proposition “If <span class="math-tex" data-type="tex">\(a,b\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(a^2 -4b\not= 2\)</span>”.</p>
+<p>Prove by contradiction the proposition “If <span class="math-tex" data-type="tex">\(a,b\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(a^2 -4b\not= 2\)</span>”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
@@ -941,7 +940,7 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof by contradiction the proposition “Let <span class="math-tex" data-type="tex">\(a\in ℕ\)</span>. If <span class="math-tex" data-type="tex">\(a^2\)</span> is even, then <span class="math-tex" data-type="tex">\(a\)</span> is even”.</p>
+<p>Prove by contradiction the proposition “Let <span class="math-tex" data-type="tex">\(a\in ℕ\)</span>. If <span class="math-tex" data-type="tex">\(a^2\)</span> is even, then <span class="math-tex" data-type="tex">\(a\)</span> is even”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
@@ -956,7 +955,7 @@ MathJax = {
 <p>Some propositions have the form <span class="math-tex" data-type="tex">\(𝒫\iff 𝒬\)</span>. We know that this is logically equivalent to <span class="math-tex" data-type="tex">\(\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)\)</span>. So to prove “<span class="math-tex" data-type="tex">\(𝒫\)</span> if and only if <span class="math-tex" data-type="tex">\(𝒬\)</span>” we must prove  <b>two</b> conditional statements. Recall that <span class="math-tex" data-type="tex">\(𝒬\implies 𝒫\)</span> is called the  <i>converse</i> of <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span>. Thus we need to prove both <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> and its converse. These are both conditional statements, so we may prove them with either direct, contrapositive or contradiction proof.</p>
 <div data-type="example">
 <h1></h1>
-<p>Proof the proposition “The natural number <span class="math-tex" data-type="tex">\(n\)</span> is odd if and only if <span class="math-tex" data-type="tex">\(n^2\)</span> is odd”.</p>
+<p>Prove the proposition “The natural number <span class="math-tex" data-type="tex">\(n\)</span> is odd if and only if <span class="math-tex" data-type="tex">\(n^2\)</span> is odd”.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -991,7 +990,7 @@ MathJax = {
 <p>How to disprove a universally quantified statement such as <span class="math-tex" data-type="tex">\(\forall x:𝒫\left(x\right)\)</span>? To disprove this statement, we must prove its negation. Its negation is <span class="math-tex" data-type="tex">\(\lnot\left(\forall x:𝒫\left(x\right)\implies 𝒬\left(x\right)\right)\equiv \exists x:\lnot\left(𝒫\left(x\right)\implies 𝒬\left(x\right)\right)\)</span>. The negation is an existence statement. To prove the negation is true, we just need to produce an example of an <span class="math-tex" data-type="tex">\(x\)</span> that makes <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> false.</p>
 <div data-type="example">
 <h1></h1>
-<p>Disproof the proposition “For every <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(n\right)=n^2 -n+11\)</span> is prime”.</p>
+<p>Disprove the proposition “For every <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(n\right)=n^2 -n+11\)</span> is prime”.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -1011,18 +1010,30 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof by induction the proposition “If <span class="math-tex" data-type="tex">\(n\in ℕ\setminus \lbrace 0\rbrace\)</span>, then <span class="math-tex" data-type="tex">\(1+3+5+7+\cdots +\left(2n-1\right)=n^2\,\)</span>”.</p>
+<p>Prove by induction the proposition “If <span class="math-tex" data-type="tex">\(n\in ℕ\setminus \lbrace 0\rbrace\)</span>, then <span class="math-tex" data-type="tex">\(1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\,\)</span>”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by induction)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(n\in ℕ_0\)</span>.</p>
-<p>Observe that if <span class="math-tex" data-type="tex">\(n=1\)</span>, this statement is <span class="math-tex" data-type="tex">\(1=1^2\)</span>, which is obviously true.</p>
-<p>Suppose that <span class="math-tex" data-type="tex">\(1+3+5+\cdots +\left(2k-1\right)=k^2\)</span> for some natural number <span class="math-tex" data-type="tex">\(k\ge 1\)</span>.</p>
-<p>Then, <span class="math-tex" data-type="tex">\(1+3+5+\cdots +\left(2k-1\right)+\left(2\left(k+1\right)-1\right)=k^2 +2k+1=\left(k+1\right)^2\)</span>.</p>
-<p>Therefore, by mathematical induction, <span class="math-tex" data-type="tex">\(1+3+5+7+\cdots +\left(2n-1\right)=n^2\)</span> for all natural numbers <span class="math-tex" data-type="tex">\(n\ge 1\)</span>.</p>
+<p>Observe that if <span class="math-tex" data-type="tex">\(n=1\)</span>, this statement is <span class="math-tex" data-type="tex">\(1=\frac{1}{6}\left(1\right)\left(2\right)\left(3\right)\)</span>, which is obviously true.</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(1^2+2^2+3^2+\cdots+k^2=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)\)</span> for some natural number <span class="math-tex" data-type="tex">\(k\ge 1\)</span>.</p>
+<p>Then,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
+&=\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
+&=\frac{1}{6}\left(2k^3+9^2+13k+6\right)\\
+&=\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
+&=\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
+\end{aligned}
+\]
+</div>
+<p>Therefore, by mathematical induction, <span class="math-tex" data-type="tex">\(1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\)</span> for all natural numbers <span class="math-tex" data-type="tex">\(n\ge 1\)</span>.</p>
 </div>
 </section>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>

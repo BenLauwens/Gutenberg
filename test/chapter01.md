@@ -413,7 +413,7 @@ Many proofs can be written by following a simple *template* that suggests guidel
 
 ### Direct Proof
 
-To proof ``𝒫\implies 𝒬``, we can proceed by looking at the truth table. The table shows that if ``𝒫`` is false, the statement ``𝒫\implies 𝒬`` is automatically true. This means that if we are concerned with showing ``𝒫\implies 𝒬`` is true, we don’t have to worry about the situations where ``𝒫`` is false  because the statement ``𝒫\implies 𝒬`` will be automatically true in those cases. But we must be very careful about the situations where ``𝒫`` is true. We must show that the condition of ``𝒫`` being true forces ``𝒬`` to be true also.
+To prove ``𝒫\implies 𝒬``, we can proceed by looking at the truth table. The table shows that if ``𝒫`` is false, the statement ``𝒫\implies 𝒬`` is automatically true. This means that if we are concerned with showing ``𝒫\implies 𝒬`` is true, we don’t have to worry about the situations where ``𝒫`` is false  because the statement ``𝒫\implies 𝒬`` will be automatically true in those cases. But we must be very careful about the situations where ``𝒫`` is true. We must show that the condition of ``𝒫`` being true forces ``𝒬`` to be true also.
 
 !!! template "direct proof"
 
@@ -427,7 +427,7 @@ To proof ``𝒫\implies 𝒬``, we can proceed by looking at the truth table. Th
 
 !!! example
 
-	Proof the proposition "The sum of any two odd natural numbers is even".
+	Prove the proposition "The sum of any two odd natural numbers is even".
 
 !!! proof
 
@@ -469,7 +469,7 @@ In proving a statement is true, we sometimes have to examine multiple cases befo
 
 !!! example
 
-	Proof the proposition "If ``n\in ℕ``, then ``1+\left(-1\right)^n \left(2n-1\right)`` is a multiple of ``4``".
+	Prove the proposition "If ``n\in ℕ``, then ``1+\left(-1\right)^n \left(2n-1\right)`` is a multiple of ``4``".
 
 !!! proof
 
@@ -501,7 +501,7 @@ Sometimes a direct proof of ``𝒫\implies 𝒬`` is very hard. The proposition 
 
 !!! example
 
-	Proof by contraposition the proposition "Let ``x\in ℕ``. If ``x^2`` is even, then ``x`` is even".
+	Prove by contraposition the proposition "Let ``x\in ℕ``. If ``x^2`` is even, then ``x`` is even".
 
 	A direct proof would be problematic. We will proof the logically equivalent proposition "If ``x`` is not even, then ``x^2`` is not even".
 
@@ -537,7 +537,7 @@ A slightly unsettling feature of this method is that we may not know at the begi
 
 !!! example
 
-	Proof by contradiction the proposition "If ``a,b\in ℕ``, then ``a^2 -4b\not= 2``".
+	Prove by contradiction the proposition "If ``a,b\in ℕ``, then ``a^2 -4b\not= 2``".
 
 !!! proof "by contradiction"
 
@@ -565,7 +565,7 @@ The previous two proof methods dealt exclusively with proving conditional statem
 
 !!! example
 
-	Proof by contradiction the proposition "Let ``a\in ℕ``. If ``a^2`` is even, then ``a`` is even".
+	Prove by contradiction the proposition "Let ``a\in ℕ``. If ``a^2`` is even, then ``a`` is even".
 
 !!! proof "by contradiction"
 
@@ -583,7 +583,7 @@ Some propositions have the form ``𝒫\iff 𝒬``. We know that this is logicall
 
 !!! example
 
-	Proof the proposition "The natural number ``n`` is odd if and only if ``n^2`` is odd".
+	Prove the proposition "The natural number ``n`` is odd if and only if ``n^2`` is odd".
 
 !!! proof
 
@@ -629,7 +629,7 @@ How to disprove a universally quantified statement such as ``\forall x:𝒫\left
 
 !!! example
 
-	Disproof the proposition "For every ``n\in ℕ``, the natural number ``f\left(n\right)=n^2 -n+11`` is prime".
+	Disprove the proposition "For every ``n\in ℕ``, the natural number ``f\left(n\right)=n^2 -n+11`` is prime".
 
 !!! proof
 
@@ -653,16 +653,27 @@ Suppose the variable ``n`` represents any natural number, and there is a proposi
 
 !!! example
 
-	Proof by induction the proposition "If ``n\in ℕ\setminus \lbrace 0\rbrace``, then ``1+3+5+7+\cdots +\left(2n-1\right)=n^2\,``". 
+	Prove by induction the proposition "If ``n\in ℕ\setminus \lbrace 0\rbrace``, then ``1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\,``". 
 
 !!! proof "by induction"
     
     Let ``n\in ℕ_0``.
     
-    Observe that if ``n=1``, this statement is ``1=1^2``, which is obviously true.
+    Observe that if ``n=1``, this statement is ``1=\frac{1}{6}\left(1\right)\left(2\right)\left(3\right)``, which is obviously true.
     
-    Suppose that ``1+3+5+\cdots +\left(2k-1\right)=k^2`` for some natural number ``k\ge 1``.
+    Suppose that ``1^2+2^2+3^2+\cdots+k^2=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)`` for some natural number ``k\ge 1``.
     
-    Then, ``1+3+5+\cdots +\left(2k-1\right)+\left(2\left(k+1\right)-1\right)=k^2 +2k+1=\left(k+1\right)^2``.
-    
-    Therefore, by mathematical induction, ``1+3+5+7+\cdots +\left(2n-1\right)=n^2`` for all natural numbers ``n\ge 1``.
+    Then,
+
+	```math
+	\begin{aligned}
+	1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
+	&=\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
+	&=\frac{1}{6}\left(2k^3+9^2+13k+6\right)\\
+	&=\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
+	&=\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
+	\end{aligned}
+	```
+
+
+    Therefore, by mathematical induction, ``1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)`` for all natural numbers ``n\ge 1``.
