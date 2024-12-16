@@ -344,19 +344,59 @@ s_n=\sum_{i=0}^n ar^i=\begin{cases}
 <h1></h1>
 <p>Prove this theorem.</p>
 </div>
+<div data-type="theorem">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(\sum a_n\)</span> and <span class="math-tex" data-type="tex">\(\sum b_n\)</span> converge to <span class="math-tex" data-type="tex">\(A\)</span> and <span class="math-tex" data-type="tex">\(B\)</span>, respectively, then</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\sum ca_n\)</span> converges to <span class="math-tex" data-type="tex">\(cA\)</span> (where <span class="math-tex" data-type="tex">\(c\)</span> is a constant);</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\sum\left(a_n\pm b_n\right)\)</span> converges to <span class="math-tex" data-type="tex">\(A\pm B\)</span>;</p>
+</li>
+<li>
+<p>if <span class="math-tex" data-type="tex">\(a_n \le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>, then <span class="math-tex" data-type="tex">\(A\le B\)</span>.</p>
+</li>
+</ol>
+</div>
+<div data-type="exercise">
+<h1></h1>
+<p>Prove this theorem.</p>
+</div>
 </section>
 <section data-type="sect2">
-<h2>Convergence Tests</h2>
+<h2>Convergence Tests for Positive Sequences</h2>
 <p>The integral test provides a means for determining whether an ultimately positive series converges or diverges by comparing it with an improper integral that behaves similarly.</p>
 <div data-type="theorem">
 <h1>&nbsp;(Integral Test)</h1>
-<p>Suppose that <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> is positive, continuous, and nonincreasing on an interval <span class="math-tex" data-type="tex">\(\left[N,\infty\right[\)</span> for some positive integer <span class="math-tex" data-type="tex">\(N\)</span>. Then</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> is positive, continuous, and nonincreasing on an interval <span class="math-tex" data-type="tex">\(\left[N,\infty\right[\)</span> for some positive integer <span class="math-tex" data-type="tex">\(N\)</span>. If</p>
 <div class="math-tex" data-type="equation">
 \[
-\sum_{n=0}^\infty a_n\quad\textrm{and}\quad\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t
+\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t
 \]
 </div>
-<p>either both converge or both diverge to infinity.</p>
+<p>converges, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty a_n
+\]
+</div>
+<p>converges also.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(s_n=a_0+a_1+a_2+\cdots+a_n\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(n&gt;N\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+s_n&=s_N+a_{N+1}+a_{N+2}+\cdots+a_n\\
+&=s_N+f\left(N+1\right)+f\left(N+2\right)+\cdots+f\left(n\right)\\
+&\le s_N+\int_N^\infty f\left(t\right)\,\mathrm d\kern-0.5pt t\,.
+\end{aligned}
+\]
+</div>
+<p>If the improper integral <span class="math-tex" data-type="tex">\(\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t\)</span> converges, then the sequence <span class="math-tex" data-type="tex">\(\left(s_n\right)\)</span> is bounded above and <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges.</p>
 </div>
 <div data-type="example">
 <h1></h1>
@@ -379,6 +419,35 @@ s_n=\sum_{i=0}^n ar^i=\begin{cases}
 <h1>&nbsp;(Comparison Test)</h1>
 <p>Let <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span> and <span class="math-tex" data-type="tex">\(n_n=f\left(n\right)\)</span> be sequences for which there exists a positive constant <span class="math-tex" data-type="tex">\(K\)</span> such that, ultimately, <span class="math-tex" data-type="tex">\(0\le a_n\le Kb_n\)</span>. If the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty b_n\)</span> converges, then so does the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span>.</p>
 </div>
+<div data-type="proof">
+<h1></h1>
+<p>Since a series converges if and only if its tail converges, we can assume, without loss of generality, that the condition <span class="math-tex" data-type="tex">\(0\le a_n\le Kb_n\)</span> holds for all <span class="math-tex" data-type="tex">\(n\ge0\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(s_n=a_0+a_1+a_2+\cdots+a_n\)</span> and <span class="math-tex" data-type="tex">\(S_n=b_0+b_1+b_2+\cdots+b_n\)</span>. Then <span class="math-tex" data-type="tex">\(s_n\le KS_n\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(\sum b_n\)</span> converges, then <span class="math-tex" data-type="tex">\(\left(S_n\right)\)</span> is convergent and hence is bounded.</p>
+<p>Hence <span class="math-tex" data-type="tex">\(\left(s_n\right)\)</span> is bounded above and <span class="math-tex" data-type="tex">\(\sum a_n\)</span> converges.</p>
+</div>
+<div data-type="theorem">
+<h1>&nbsp;(Limit Comparison Test)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(b_n\right)\)</span> are positive sequences and that</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{n\to\infty}\frac{a_n}{b_n}=L\,,
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(L\)</span> is a nonnegative finite number.</p>
+<p>If <span class="math-tex" data-type="tex">\(\sum b_n\)</span> converges, then <span class="math-tex" data-type="tex">\(\sum a_n\)</span> also converges.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(L\)</span> a nonnegative finite number, we have <span class="math-tex" data-type="tex">\(b_n&gt;0\)</span> and</p>
+<div class="math-tex" data-type="equation">
+\[
+0\le \frac{a_n}{b_n}\le L+1\,,
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(0\le a_n\le \left(L+1\right)b_n\)</span>.</p>
+<p>Hence <span class="math-tex" data-type="tex">\(\sum a_n\)</span> converges if <span class="math-tex" data-type="tex">\(\sum b_n\)</span> converges by the previous theorem.</p>
+</div>
 <div data-type="theorem">
 <h1>&nbsp;(Ratio Test)</h1>
 <p>Suppose that <span class="math-tex" data-type="tex">\(a_n &gt; 0\)</span> (ultimately) and that</p>
@@ -388,6 +457,24 @@ s_n=\sum_{i=0}^n ar^i=\begin{cases}
 \]
 </div>
 <p>exists and <span class="math-tex" data-type="tex">\(0\le\rho&lt;1\)</span>, then <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\rho &lt; 1\)</span>. Pick a number <span class="math-tex" data-type="tex">\(r\)</span> such that <span class="math-tex" data-type="tex">\(\rho&lt; r&lt;1\)</span>.</p>
+<p>Since we are given that <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\rho\)</span>, we have <span class="math-tex" data-type="tex">\(\frac{a_{n+1}}{a_n}\le r\)</span> for <span class="math-tex" data-type="tex">\(n\)</span> sufficiently large; that is, <span class="math-tex" data-type="tex">\(a_{n+1}\le ra_n\)</span> for <span class="math-tex" data-type="tex">\(n\le N\)</span>. In particular,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+a_{N+1}&\le ra_N\\
+a_{N+2}&\le ra_{N+1}\le r^2a_N\\
+a_{N+3}&\le ra_{N+2}\le r^3a_N\\
+&\vdots\\
+a_{N+k}&\le r^ka_N\quad\textrm{for }k\in\mathbb N\,.
+\end{aligned}
+\]
+</div>
+<p>Hence, <span class="math-tex" data-type="tex">\(\sum_{n=N}^\infty a_n\)</span> converges by comparison with the convergent geometric series <span class="math-tex" data-type="tex">\(\sum_{k=0}^\infty r^k\)</span>.</p>
+<p>It follows that <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n=\sum_{n=0}^{N-1} a_n+\sum_{n=N}^\infty a_n\)</span> must also converge.</p>
 </div>
 </section>
 <section data-type="sect2">
@@ -414,8 +501,365 @@ S=\sum_{n=0}^\infty\left|\frac{\left(-1\right)^n}{\left(n+1\right)^2}\right|=1+\
 <h1></h1>
 <p>If a series converges absolutely, then it converges.</p>
 </div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\sum a_n\)</span> be absolutely convergent, and let <span class="math-tex" data-type="tex">\(b_n=a_n +\left|a_n\right|\)</span> for each <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(-\left|a_n\right|\le a_n\le \left|a_n\right|\)</span>, we have <span class="math-tex" data-type="tex">\(0\le b_n \le 2\left|a_n\right|\)</span> for each <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>Thus, <span class="math-tex" data-type="tex">\(\sum b_n\)</span> converges by the comparison test.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\sum a_n=\sum b_n -\sum \left|a_n\right|\)</span> also converges.</p>
+</div>
 <section data-type="sect1">
 <h1>Power Series</h1>
+<div data-type="definition">
+<h1></h1>
+<p>A series of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty a_n\left(x-c\right)^n=a_0+a_1\left(x-c\right)+a_2\left(x-c\right)^2+a_3\left(x-c\right)^3+\cdots
+\]
+</div>
+<p>is called a <i>power series in powers of <span class="math-tex" data-type="tex">\(x-c\)</span></i> or a <i>power series about <span class="math-tex" data-type="tex">\(c\)</span></i>. The constants <span class="math-tex" data-type="tex">\(a_0,a_1,a_2,a_3,\dots\)</span> are called the <i>coefficients</i> of the power series.</p>
+</div>
+<p>Since the terms of a power series are functions of a variable <span class="math-tex" data-type="tex">\(x\)</span>, the series may or may not converge for each value of <span class="math-tex" data-type="tex">\(x\)</span>. For those values of <span class="math-tex" data-type="tex">\(x\)</span> for which the series does converge, the sum defines a function of <span class="math-tex" data-type="tex">\(x\)</span>. For example, if <span class="math-tex" data-type="tex">\(-1&lt;x&lt;1\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+1+x+x^2+x^3+\cdots = \frac{1}{1-x}\,.
+\]
+</div>
+<p>The geometric series on the left side is a power series <i>representation</i> of the function <span class="math-tex" data-type="tex">\(\frac{1}{1-x}\)</span> in powers of <span class="math-tex" data-type="tex">\(x\)</span> (or about <span class="math-tex" data-type="tex">\(0\)</span>). Note that the representation is valid only in the open interval <span class="math-tex" data-type="tex">\(\left]-1, 1\right[\)</span> even though <span class="math-tex" data-type="tex">\(\frac{1}{1-x}\)</span> is defined for all real <span class="math-tex" data-type="tex">\(x\)</span> except <span class="math-tex" data-type="tex">\(x=1\)</span>. For <span class="math-tex" data-type="tex">\(x=-1\)</span> and for <span class="math-tex" data-type="tex">\(\left|x\right|&gt; 1\)</span> the series does not converge, so it cannot represent <span class="math-tex" data-type="tex">\(\frac{1}{1-x}\)</span> at these points.</p>
+<p>The point <span class="math-tex" data-type="tex">\(c\)</span> is the <i>centre of convergence</i> of the power series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span>. The series certainly converges (to <span class="math-tex" data-type="tex">\(a_0\)</span>) at <span class="math-tex" data-type="tex">\(x=c\)</span>. (All the terms except possibly the first are <span class="math-tex" data-type="tex">\(0\)</span>.) The next theorem shows that if the series converges anywhere else, then it converges on an interval (possibly infinite) centred at <span class="math-tex" data-type="tex">\(x=c\)</span>, and it converges absolutely everywhere on that interval except possibly at one or both of the endpoints if the interval is finite. The geometric series</p>
+<div class="math-tex" data-type="equation">
+\[
+1+x+x^2+x^3+\cdots 
+\]
+</div>
+<p>is an example of this behaviour. It has centre of convergence <span class="math-tex" data-type="tex">\(c=0\)</span>, and converges only on the interval <span class="math-tex" data-type="tex">\(\left]-1, 1\right[\)</span>, centred at <span class="math-tex" data-type="tex">\(0\)</span>. The convergence is absolute at every point of the interval.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>For any power series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> one of the following alternatives must hold:</p>
+<ol>
+<li>
+<p>the series may converge only at <span class="math-tex" data-type="tex">\(x=c\)</span>,</p>
+</li>
+<li>
+<p>the series may converge at every real number <span class="math-tex" data-type="tex">\(x\)</span>, or</p>
+</li>
+<li>
+<p>there may exist a positive real number <span class="math-tex" data-type="tex">\(R\)</span> such that the series converges at every <span class="math-tex" data-type="tex">\(x\)</span> satisfying <span class="math-tex" data-type="tex">\(\left|x-c\right|&lt;R\)</span> and diverges at every <span class="math-tex" data-type="tex">\(x\)</span> satisfying <span class="math-tex" data-type="tex">\(\left|x-c\right|&gt;R\)</span>. In this case the series may or may not converge at either of the two endpoints <span class="math-tex" data-type="tex">\(x=c-R\)</span> and <span class="math-tex" data-type="tex">\(x=c+R\)</span>.</p>
+</li>
+</ol>
+<p>In each of these cases the convergence is absolute except possibly at the endpoints <span class="math-tex" data-type="tex">\(x=c-R\)</span> and <span class="math-tex" data-type="tex">\(x=c+R\)</span>.</p>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Suppose, therefore, that <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x_0-c\right)^n\)</span>converges.</p>
+<p>Then <span class="math-tex" data-type="tex">\(\lim_{n\to\infty} a_n\left(x_0-c\right)^n=0\)</span>, so <span class="math-tex" data-type="tex">\(\left|a_n\left(x_0-c\right)^n\right|\le K\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>, where <span class="math-tex" data-type="tex">\(K\)</span> is some constant.</p>
+<p>If <span class="math-tex" data-type="tex">\(r=\frac{\left|x-c\right|}{\left|x_0-c\right|}&lt;1\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty \left|a_n\left(x-c\right)^n\right|=\sum_{n=0}^\infty \left|a_n\left(x_0-c\right)^n\right|\left|\frac{\left|x-c\right|}{\left|x_0-c\right|}\right|^n\le K \sum_{n=0}^\infty r^n=\frac{K}{1-r}&lt;\infty\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> converges absolutely.</p>
+</div>
+<p>The set of values <span class="math-tex" data-type="tex">\(x\)</span> for which the power series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> converges is an interval centred at <span class="math-tex" data-type="tex">\(x=c\)</span>. We call this interval the <i>interval of convergence</i> of the power series. It must have one of the following forms:</p>
+<ol>
+<li>
+<p>the isolated point <span class="math-tex" data-type="tex">\(x=c\)</span> (a degenerate closed interval <span class="math-tex" data-type="tex">\(\left[c,c\right]\)</span>),</p>
+</li>
+<li>
+<p>the entire real line <span class="math-tex" data-type="tex">\(\left]-\infty,\infty\right[\)</span>,</p>
+</li>
+<li>
+<p>a finite interval centred at <span class="math-tex" data-type="tex">\(c\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\left[c-R,c+R\right]\,,\quad\textrm{or}\quad\left[c-R,c+R\right[\,,\quad\textrm{or}\quad\left]c-R,c+R\right]\,,\quad\textrm{or}\quad\left]c-R,c+R\right[\,.
+\]
+</div>
+</li>
+</ol>
+<p>The number <span class="math-tex" data-type="tex">\(R\)</span> is called the <i>radius of convergence</i> of the power series. In the first case we say the radius of convergence is <span class="math-tex" data-type="tex">\(R=0\)</span>; in the second case it is <span class="math-tex" data-type="tex">\(R=\infty\)</span>.</p>
+<p>The radius of convergence, <span class="math-tex" data-type="tex">\(R\)</span>, can often be found by using the ratio test on the power series. If</p>
+<div class="math-tex" data-type="equation">
+\[
+\rho =\lim_{n\to\infty}\left|\frac{a_{n+1}\left(x-c\right)^{n+1}}{a_n\left(x-c\right)^n}\right|=\left(\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|\right)\left|x-c\right|
+\]
+</div>
+<p>exists, then the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> converges absolutely where<span class="math-tex" data-type="tex">\(\rho&lt;1\)</span>, that is, where</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|x-c\right|&lt; R=\frac{1}{\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|}\,.
+\]
+</div>
+<p>The series diverges if <span class="math-tex" data-type="tex">\(\left|x-c\right|&gt; R\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>Determine the centre, radius, and interval of convergence of</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty\frac{\left(2x+5\right)^n}{\left(n^2+1\right)3^n}\,.
+\]
+</div>
+<p>The series can be rewritten</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty\left(\frac{2}{3}\right)^n\frac{1}{n^2+1}\left(x+\frac{5}{2}\right)^n\,.
+\]
+</div>
+<p>The centre of convergence is <span class="math-tex" data-type="tex">\(x=-\frac{5}{2}\)</span>. The radius of convergence, <span class="math-tex" data-type="tex">\(R\)</span>, is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{R}=L=\lim_{n\to\infty}\left|\frac{\left(\frac{2}{3}\right)^{n+1}\frac{1}{\left(n+1\right)^2+1}}{\left(\frac{2}{3}\right)^n\frac{1}{n^2+1}}\right|=\lim_{n\to\infty}\frac{2}{3}\frac{n^2+1}{\left(n+1\right)^2+1}=\frac{2}{3}\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(R=\frac{3}{2}\)</span>. The series converges absolutely on <span class="math-tex" data-type="tex">\(\left]-\frac{5}{2}-\frac{3}{2}, -\frac{5}{2}+\frac{3}{2}\right[=\left]-4, -1\right[\)</span>, and it diverges on <span class="math-tex" data-type="tex">\(\left]-\infty, -4\right[\)</span> and <span class="math-tex" data-type="tex">\(\left]-1, \infty\right[\)</span>. At <span class="math-tex" data-type="tex">\(x=-1\)</span> the series is <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty\frac{1}{n^2+1}\)</span>; at <span class="math-tex" data-type="tex">\(x=-4\)</span> the series is <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty\left(-1\right)^n\frac{1}{n^2+1}\)</span>. Both series converge (absolutely). The interval of convergence of the given power series is therefore <span class="math-tex" data-type="tex">\(\left[-4,-1\right]\)</span>.</p>
+</div>
+<section data-type="sect2">
+<h2>Algebraic Operations on Power Series</h2>
+<p>To simplify the following discussion, we will consider only power series with centre of convergence <span class="math-tex" data-type="tex">\(0\)</span>, that is, series of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty a_nx^n=a_0+a_1x+a_2x^2+a_3x^3+\cdots
+\]
+</div>
+<p>Any properties we demonstrate for such series extend automatically to power series of the form <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(y-c\right)^n\)</span> via the change of variable <span class="math-tex" data-type="tex">\(x=y-c\)</span>.</p>
+<p>First, we observe that series having the same centre of convergence can be added or subtracted on whatever interval is common to their intervals of convergence. The following theorem is a simple consequence of the algebraic properties of series</p>
+<div data-type="theorem">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_nx^n\)</span> and <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty b_nx^n\)</span> be two power series with radii of convergence <span class="math-tex" data-type="tex">\(R_a\)</span> and <span class="math-tex" data-type="tex">\(R_b\)</span>, respectively, and let <span class="math-tex" data-type="tex">\(c\)</span> be a constant. Then</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty \left(ca\right)_nx^n\)</span> has radius of convergence <span class="math-tex" data-type="tex">\(R_a\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty \left(ca\right)_nx^n=c\sum_{n=0}^\infty a_nx^n
+\]
+</div>
+<p>wherever the series on the right converges.</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty \left(a_n+b_n\right)x^n\)</span> has radius of convergence <span class="math-tex" data-type="tex">\(R\)</span> at least as large as the smaller of <span class="math-tex" data-type="tex">\(R_a\)</span> and <span class="math-tex" data-type="tex">\(R_b\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty \left(a_n+b_n\right)x^n=\sum_{n=0}^\infty a_nx^n+\sum_{n=0}^\infty b_nx^n
+\]
+</div>
+<p>wherever both series on the right converge.</p>
+</li>
+</ol>
+</div>
+<p>The situation regarding multiplication and division of power series is more complicated. We will mention only the results and will not attempt any proofs of our assertions.</p>
+<p>Long multiplication of the form</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(a_0+a_1x+a_2x^2+a_3x^3+\cdots\right)\left(b_0+b_1x+b_2x^2+b_3x^3+\cdots\right)
+\]
+</div>
+<p>leads us to conjecture the formula</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(\sum_{n=0}^\infty a_nx^n\right)\left(\sum_{n=0}^\infty b_nx^n\right)=\sum_{n=0}^\infty c_nx^n
+\]
+</div>
+<p>where</p>
+<div class="math-tex" data-type="equation">
+\[
+c_n=a_0b_n+a_1b_{n-1}+\cdots+a_nb_0=\sum_{i=0}^na_ib_{n-i}\,n.
+\]
+</div>
+<p>The series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty c_nx^n\)</span> is called the <i>Cauchy product</i> of the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_nx^n\)</span> and <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty b_nx^n\)</span>. Like the sum, the Cauchy product also has radius of convergence at least equal to the lesser of those of the factor series.</p>
+<div data-type="example">
+<h1></h1>
+<p>Since</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{n=0}^\infty x^n
+\]
+</div>
+<p>holds for <span class="math-tex" data-type="tex">\(x\in\left]-1, 1\right[\)</span>, we can determine a power series representation for <span class="math-tex" data-type="tex">\(\frac{1}{\left(1-x\right)^2}\)</span> by taking the Cauchy product of this series with itself. Since <span class="math-tex" data-type="tex">\(a_n=b_n=1\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+c_n=\sum_{i=0}^n1=n+1
+\]
+</div>
+<p>and</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{\left(1-x\right)^2}=1+2x+3x^3+4x^3+\cdots=\sum_{n=0}^\infty\left(n+1\right)x^n\,,
+\]
+</div>
+<p>which must also hold for <span class="math-tex" data-type="tex">\(x\in\left]-1, 1\right[\)</span>.</p>
+</div>
+<section data-type="sect2">
+<h2>Differentiation and Integration of Power Series</h2>
+<p>If a power series has a positive radius of convergence, it can be differentiated or integrated term by term. The resulting series will converge to the appropriate derivative or integral of the sum of the original series everywhere except possibly at the endpoints of the interval of convergence of the original series. This very important fact ensures that, for purposes of calculation, power series behave just like polynomials, the easiest functions to differentiate and integrate. We formalize the differentiation and integration properties of power series in the following theorem.</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_nx^n\)</span> converges to the sum <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on an interval <span class="math-tex" data-type="tex">\(\left]-R, R\right[\)</span> where <span class="math-tex" data-type="tex">\(R&gt;0\)</span>, that is,</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)=\sum_{n=0}^\infty a_nx^n=a_0+a_1x+a_2x^2+a_3x^3+\cdots\,,\quad x\in\left]-R, R\right[\,,
+\]
+</div>
+<p>then <span class="math-tex" data-type="tex">\(f\)</span> is differentiable on <span class="math-tex" data-type="tex">\(\left]-R, R\right[\)</span> and</p>
+<div class="math-tex" data-type="equation">
+\[
+f^\prime\left(x\right)=\sum_{n=1}^\infty na_nx^n=a_1x+2a_2x^2+3a_3x^3+\cdots\,,\quad x\in\left]-R, R\right[\,.
+\]
+</div>
+<p>Also, <span class="math-tex" data-type="tex">\(f\)</span> is integrable over any closed subinterval of <span class="math-tex" data-type="tex">\(\left]-R, R\right[\)</span> and if <span class="math-tex" data-type="tex">\(\left|x\right|&lt;R\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_0^x f\left(t\right)\,\mathrm{d}\kern-0.5pt t=\sum_{n=0}^\infty \frac{a_n}{n+1}x^{n+1}=a_0x+\frac{a_1}{2}x^2+\frac{a_2}{3}x^3+\frac{a_3}{4}x^4+\cdots\,.
+\]
+</div>
+</div>
+<p>Together, these results imply that the termwise differentiated or integrated series have the same radius of convergence as the given series. In fact, as the following examples illustrate, the interval of convergence of the differentiated series is the same as that of the original series except for the possible loss of one or both endpoints if the original series converges at endpoints of its interval of convergence. Similarly, the integrated series will converge everywhere on the interval of convergence of the original series and possibly at one or both endpoints of that interval, even if the original series does not converge at the endpoints.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find power series representations for the functions</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{\left(1-x\right)^2}\quad\textrm{and}\quad\ln\left(1+x\right)
+\]
+</div>
+<p>by starting with the geometric series</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{n=0}^\infty x^n
+\]
+</div>
+<p>Differentiate the geometric series term by term to obtain</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{\left(1-x\right)^2}=1+2x+3x^3+4x^3+\cdots=\sum_{n=0}^\infty\left(n+1\right)x^n\,,\quad x\in\left]-R, R\right[\,.
+\]
+</div>
+<p>Substitute <span class="math-tex" data-type="tex">\(-t\)</span> in place of <span class="math-tex" data-type="tex">\(x\)</span> in the original geometric series:</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{1+t}=1-t+t^2-t^3+\cdots=\sum_{n=0}^\infty \left(-1\right)^nx^n\,,\quad x\in\left]-R, R\right[\,.
+\]
+</div>
+<p>Integrate from <span class="math-tex" data-type="tex">\(0\)</span> to <span class="math-tex" data-type="tex">\(x\)</span>, where <span class="math-tex" data-type="tex">\(\left|x\right|&lt;1\)</span>, to get</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\ln\left(1+x\right)&=\int_0^x\frac{1}{1+t}\,\,\mathrm{d}\kern-0.5pt t=\sum_{n=0}^\infty \left(-1\right)^n\int_0^xt^n\,\,\mathrm{d}\kern-0.5pt t\\
+&=\sum_{n=0}^\infty \left(-1\right)^n\frac{x^{n+1}}{n+1}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots\,,\quad x\in\left]-R, R\right[\,.
+\end{aligned}
+\]
+</div>
+</div>
+<p>Being differentiable on <span class="math-tex" data-type="tex">\(\left]-R, R\right[\)</span>, where <span class="math-tex" data-type="tex">\(R\)</span> is the radius of convergence, the sum <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> of a power series is necessarily continuous on that open interval. If the series happens to converge at either or both of the endpoints <span class="math-tex" data-type="tex">\(-R\)</span> and <span class="math-tex" data-type="tex">\(R\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is also continuous (on one side) up to these endpoints. This result is stated formally in the following theorem. We will not prove it here.</p>
+<div data-type="theorem">
+<h1>&nbsp;(Abel's Theorem)</h1>
+<p>The sum of a power series is a continuous function everywhere on the interval of convergence of the series.</p>
+</div>
+<div data-type="example">
+<h1></h1>
+<p>The series in the last example converges (conditionally) at the endpoint <span class="math-tex" data-type="tex">\(x=1\)</span> as well as on the interval <span class="math-tex" data-type="tex">\(\left]-1,1\right[\)</span>. Since <span class="math-tex" data-type="tex">\(\ln\left(1+x\right)\)</span> is continuous at <span class="math-tex" data-type="tex">\(x=1\)</span>, Abel’s Theorem assures us that the series must converge to that function at <span class="math-tex" data-type="tex">\(x=1\)</span> also.</p>
+<p>In particular, therefore, the alternating harmonic series converges to <span class="math-tex" data-type="tex">\(\ln 2\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\ln 2 = 1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\cdots=\sum_{n=0}^\infty \left(-1\right)^n\frac{1}{n+1}\,.
+\]
+</div>
+<p>This would not, however, be a very useful formula for calculating the value of ln 2. (Why not?)</p>
+</div>
+<section data-type="sect1">
+<h1>Taylor and Maclaurin Series</h1>
+<p>If a power series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> has a positive radius of convergence <span class="math-tex" data-type="tex">\(R\)</span>, then the sum of the series defines a function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on the interval <span class="math-tex" data-type="tex">\(\left]c-R,c+R\right[\)</span>. We say that the power series is a <i>representation</i> of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on that interval. What relationship exists between the function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> and the coefficients <span class="math-tex" data-type="tex">\(a_0, a_1, a_2,\dots\)</span> of the power series?</p>
+<div data-type="theorem">
+<h1></h1>
+<p>If the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> converges to <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for <span class="math-tex" data-type="tex">\(x\in\left]c-R,c+R\right[\)</span>, where <span class="math-tex" data-type="tex">\(R&gt;0\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+a_n=\frac{f^{\left(n\right)}\left(x\right)}{n!}\quad\textrm{for }n\in\mathbb N\,.
+\]
+</div>
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>This proof requires that we differentiate the series for <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> term by term several times justified by a previous theorem:</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+f^\prime\left(x\right)&=\sum_{n=1}^\infty na_n\left(x-c\right)^{n-1}=a_1+2a_2\left(x-c\right)+3a_3\left(x-c\right)^2+\cdots\\
+f^{\prime\prime}\left(x\right)&=\sum_{n=2}^\infty n\left(n-1\right)a_n\left(x-c\right)^{n-2}=2a_2+6a_3\left(x-c\right)+\cdots\\
+&\vdots\\
+f^{\left(i\right)}\left(x\right)&=\sum_{n=i}^\infty n\left(n-1\right)\left(n-2\right)\cdots\left(n-i+1\right)a_n\left(x-c\right)^{n-i}\\
+&=i!a_i+\frac{\left(i+1\right)!}{1!}a_{i+1}\left(x-c\right)+\frac{\left(i+2\right)!}{2!}a_{i+2}\left(x-c\right)^2+\cdots\,.
+\end{aligned}
+\]
+</div>
+<p>Each series converges for <span class="math-tex" data-type="tex">\(x\in\left]c-R,c+R\right[\)</span>. Setting <span class="math-tex" data-type="tex">\(x=c\)</span>, we obtain <span class="math-tex" data-type="tex">\(f^{\left(i\right)}\left(x\right)=i!a_i\)</span>, which proves the theorem.</p>
+</div>
+<p>This theorem shows that a function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> that has a power series representation with centre at <span class="math-tex" data-type="tex">\(c\)</span> and positive radius of convergence must have derivatives of all orders in an interval around <span class="math-tex" data-type="tex">\(x=c\)</span>, and it can have only one representation as a power series in powers of <span class="math-tex" data-type="tex">\(x-c\)</span>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> has derivatives of all orders at <span class="math-tex" data-type="tex">\(x=c\)</span>, then the series</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty \frac{f^{\left(n\right)}\left(x\right)}{n!}\left(x-c\right)^n=f\left(c\right)+f^\prime\left(c\right)\left(x-c\right)+\frac{f^{\prime\prime}\left(c\right)}{2!}\left(x-c\right)^2+\frac{f^{\left(3\right)}\left(c\right)}{3!}\left(x-c\right)^3+\cdots
+\]
+</div>
+<p>is called the <i>Taylor series of <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(c\)</span></i>. If <span class="math-tex" data-type="tex">\(c=0\)</span>, the term <i>Maclaurin series</i> is usually used in place of Taylor series.</p>
+</div>
+<p>The Taylor series is a power series as defined in the previous section. This implies that <span class="math-tex" data-type="tex">\(c\)</span> must be the centre of any interval on which such a series converges, but<br/>the definition of Taylor series makes no requirement that the series should converge anywhere except at the point <span class="math-tex" data-type="tex">\(x=c\)</span>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>A function <span class="math-tex" data-type="tex">\(f\)</span> is analytic at <span class="math-tex" data-type="tex">\(c\)</span> if <span class="math-tex" data-type="tex">\(f\)</span> has a Taylor series at <span class="math-tex" data-type="tex">\(c\)</span> and that series converges to <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> in an open interval containing <span class="math-tex" data-type="tex">\(c\)</span>. If <span class="math-tex" data-type="tex">\(f\)</span> is analytic at each point of an open interval, then we say it is analytic on that interval.</p>
+</div>
+<p>Most, but not all, of the elementary functions encountered in calculus are analytic wherever they have derivatives of all orders. On the other hand, whenever a power series in powers of <span class="math-tex" data-type="tex">\(x=c\)</span> converges for all <span class="math-tex" data-type="tex">\(x\)</span> in an open interval containing <span class="math-tex" data-type="tex">\(c\)</span>, then its sum <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is analytic at <span class="math-tex" data-type="tex">\(c\)</span>, and the given series is the Taylor series of <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(c\)</span>.</p>
+<div data-type="example">
+<h1></h1>
+<p>Find the Taylor series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span>. Where does the series converge to <span class="math-tex" data-type="tex">\(ℯ^x\)</span>? Where is <span class="math-tex" data-type="tex">\(ℯ^x\)</span> analytic? What is the Maclaurin series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span>?</p>
+<p>Since all the derivatives of <span class="math-tex" data-type="tex">\(f\left(x\right)=ℯ^x\)</span> are <span class="math-tex" data-type="tex">\(ℯ^x\)</span>, we have <span class="math-tex" data-type="tex">\(f^{\left(n\right)}\left(c\right)=ℯ^c\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb N\)</span>. Thus, the taylorseries for <span class="math-tex" data-type="tex">\(ℯ^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span> is</p>
+<div class="math-tex" data-type="equation">
+\[
+\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
+\]
+</div>
+<p>The radius of convergence <span class="math-tex" data-type="tex">\(R\)</span> of this series is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{ℯ^c}{\left(n+1\right)!}}{\frac{ℯ^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
+\]
+</div>
+<p>Thus, the radius of convergence is <span class="math-tex" data-type="tex">\(R=\infty\)</span> and the series converges for all <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Suppose the sum is <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+g\left(x\right)=ℯ^c+ℯ^c\left(x-c\right)+\frac{ℯ^c}{2!}\left(x-c\right)^2+\frac{ℯ^c}{3!}\left(x-c\right)^3+\cdots\,.
+\]
+</div>
+<p>By the differentiation theorem of series, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+g^\prime\left(x\right)&=0+ℯ^c+\frac{ℯ^c}{2!}2\left(x-c\right)+\frac{ℯ^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
+&=ℯ^c+ℯ^c\left(x-c\right)+\frac{ℯ^c}{2!}\left(x-c\right)^2+\frac{ℯ^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
+\end{aligned}
+\]
+</div>
+<p>Also, <span class="math-tex" data-type="tex">\(g\left(c\right)=ℯ^c+0+0+\cdots=ℯ^c\)</span>. Since <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> satisfies the differential equation <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)=g\left(x\right)\)</span>, we have <span class="math-tex" data-type="tex">\(g\left(x\right)=Cℯ^x\)</span>.  Substituting <span class="math-tex" data-type="tex">\(x=c\)</span> gives <span class="math-tex" data-type="tex">\(ℯ^c=g\left(c\right)=Cℯ^c\)</span>, so <span class="math-tex" data-type="tex">\(C=1\)</span>. Thus, the Taylor series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span> in powers of <span class="math-tex" data-type="tex">\(x-c\)</span> converges to <span class="math-tex" data-type="tex">\(ℯ^x\)</span> for every real number <span class="math-tex" data-type="tex">\(x\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+ℯ^x=\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
+\]
+</div>
+<p>In particular, <span class="math-tex" data-type="tex">\(ℯ^x\)</span> is analytic on the whole real line. Setting <span class="math-tex" data-type="tex">\(c=0\)</span>we obtain the Maclaurin series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+ℯ^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
+\]
+</div>
+</div>
+</section>
+</section>
+</section>
 </section>
 </section>
 </section>
