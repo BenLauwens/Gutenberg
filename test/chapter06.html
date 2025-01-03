@@ -314,7 +314,9 @@ U\left(f,P_n\right)&=\sum_{i=1}^nx_i^2\Delta\kern-0.5pt x\\
 <div data-type="proof">
 <h1></h1>
 <p>If <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> are sets of real numbers, and <span class="math-tex" data-type="tex">\(S\subset T\)</span>, then any lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(T\)</span> is also a lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(S\)</span>. Hence, the greatest lower bound of <span class="math-tex" data-type="tex">\(S\)</span> is at least as large as that of <span class="math-tex" data-type="tex">\(T\)</span>; and the least upper bound of <span class="math-tex" data-type="tex">\(S\)</span> is no greater than that of <span class="math-tex" data-type="tex">\(T\)</span>.</p>
-<p>Let <span class="math-tex" data-type="tex">\(P\)</span> be a given partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and form a new partition <span class="math-tex" data-type="tex">\(P^\prime\)</span> by adding one subdivision point to those of <span class="math-tex" data-type="tex">\(P\)</span>, say, the point <span class="math-tex" data-type="tex">\(k\)</span> dividing the <span class="math-tex" data-type="tex">\(i\)</span>th subinterval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> of <span class="math-tex" data-type="tex">\(P\)</span> into two subintervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>.<br/>Let <span class="math-tex" data-type="tex">\(m_i\)</span>, <span class="math-tex" data-type="tex">\(m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i^{\prime\prime}\)</span> be the greatest lower bounds of the sets of values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span>  on the intervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>, <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[k,x_i\right]\)</span>, respectively. Then <span class="math-tex" data-type="tex">\(m_i\le m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i\le m_i^{\prime\prime}\)</span>.<br/>Thus,</p>
+<p>Let <span class="math-tex" data-type="tex">\(P\)</span> be a given partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and form a new partition <span class="math-tex" data-type="tex">\(P^\prime\)</span> by adding one subdivision point to those of <span class="math-tex" data-type="tex">\(P\)</span>, say, the point <span class="math-tex" data-type="tex">\(k\)</span> dividing the <span class="math-tex" data-type="tex">\(i\)</span>th subinterval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> of <span class="math-tex" data-type="tex">\(P\)</span> into two subintervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(m_i\)</span>, <span class="math-tex" data-type="tex">\(m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i^{\prime\prime}\)</span> be the greatest lower bounds of the sets of values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span>  on the intervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>, <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[k,x_i\right]\)</span>, respectively. Then <span class="math-tex" data-type="tex">\(m_i\le m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i\le m_i^{\prime\prime}\)</span>.</p>
+<p>Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
 m_i\left(x_i-x_{i-1}\right)\le m_i^\prime\left(k-x_{i-1}\right)+m_i^{\prime\prime}\left(x_i-k\right)\,,
@@ -344,9 +346,10 @@ L\left(f,P\right)\le L\left(f,P^\star\right)\le U\left(f,P^\star\right)\le U\lef
 <p><span class="math-tex" data-type="tex">\(I_\star\le I^\star\)</span>.</p>
 </div>
 <div data-type="proof">
-<h1>&nbsp;(by contradiction)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> be sets of real numbers, such that for any <span class="math-tex" data-type="tex">\(x\in S\)</span> and any <span class="math-tex" data-type="tex">\(y\in T\)</span> we have <span class="math-tex" data-type="tex">\(x\le y\)</span>. Because every <span class="math-tex" data-type="tex">\(x\)</span> is a lower bound of <span class="math-tex" data-type="tex">\(T\)</span>,  we have <span class="math-tex" data-type="tex">\(x\le\inf T\)</span>.</p>
-<p>Suppose <span class="math-tex" data-type="tex">\(\sup S &gt; \inf T\)</span>. <span class="math-tex" data-type="tex">\(\inf T\)</span> cannot be an upper bound of <span class="math-tex" data-type="tex">\(S\)</span>, so there exists <span class="math-tex" data-type="tex">\(x^\prime\in S\)</span> for which <span class="math-tex" data-type="tex">\(x^\prime &gt; \inf T\)</span>. This is impossible.</p>
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> be sets of real numbers, such that for any <span class="math-tex" data-type="tex">\(x\in S\)</span> and any <span class="math-tex" data-type="tex">\(y\in T\)</span> we have <span class="math-tex" data-type="tex">\(x\le y\)</span>.</p>
+<p>Because every <span class="math-tex" data-type="tex">\(x\)</span> is a lower bound of <span class="math-tex" data-type="tex">\(T\)</span>,  we have <span class="math-tex" data-type="tex">\(x\le\inf T\)</span>.</p>
+<p>Because <span class="math-tex" data-type="tex">\(\inf T\)</span> is an upper bound of <span class="math-tex" data-type="tex">\(S\)</span>, we have <span class="math-tex" data-type="tex">\(\sup S\le\inf T\)</span>.</p>
 <p>Therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -522,7 +525,6 @@ U\left(f,P\right)-L\left(f, P\right)\le U\left(f,P^{\prime\prime}\right)-L\left(
 <h1>&nbsp;(by contradiction)</h1>
 <p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(I_0=\left[a,b\right]=\left[a_0,b_0\right]\)</span> but not uniformly continuous.</p>
 <p>Then, there exists <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span> such that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exists <span class="math-tex" data-type="tex">\(x,y\in\left[a_0,b_0\right]\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
-<div id="tag"></div>
 <p>It follows from the lemma that, corresponding to this <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, it must be true for at least one of the two subintervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
 <p>Choose a subinterval having this property and call it <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
 <p>Continuing in this ways, we obtain a sequence of closed intervals satisfying the hypotheses of the Nested Intervals Theorem and having the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
@@ -560,6 +562,31 @@ U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{b-a}\sum_{i=1}^{n\left
 \]
 </div>
 <p>Thus, <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<p>Alternative proof based on the Heine-Borel Theorem.</p>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>.</p>
+<p>For each <span class="math-tex" data-type="tex">\(x \in \left[a, b\right]\)</span>, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(I_x=\left]x-\delta_x, x+\delta_x\right[\)</span> such that for all <span class="math-tex" data-type="tex">\(y \in I_x \cap \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x\right)\right| &lt; \frac{\varepsilon}{2\left(b-a\right)}\)</span>.</p>
+<p>The set of all such open intervals <span class="math-tex" data-type="tex">\(I_x\)</span> forms an open cover of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>By the Heine-Borel theorem there exists a finite subcover such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}\)</span>.</p>
+<p>Now, create a partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> using the endpoints of these intervals that lie within <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. Specifically, our partition points will be: <span class="math-tex" data-type="tex">\(a = y_0 &lt; y_1 &lt; y_2 &lt; \dots &lt; y_m = b\)</span>.</p>
+<p>Consider any subinterval <span class="math-tex" data-type="tex">\(\left[y_{j-1},y_j\right]\)</span> in this partition.</p>
+<div id="tag"></div>
+<p>Since the function is continuous on all closed subintervals of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, we have by the Extreme-value theorem <span class="math-tex" data-type="tex">\(M_j = \max\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\)</span> and <span class="math-tex" data-type="tex">\(m_j = \min\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\)</span>.</p>
+<p>Since this subinterval is entirely contained within at least one of our original open intervals <span class="math-tex" data-type="tex">\(I_{x_i}\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+M_j-m_j = \left(M_j-x_i\right) + \left(x_i-m_j\right) &lt; \frac{\varepsilon}{2\left(b-a\right)} + \frac{\varepsilon}{2\left(b-a\right)}=\frac{\varepsilon}{\left(b-a\right)}\,.
+\]
+</div>
+<p>Calculate the difference between the upper and lower Riemann sums for this partition:</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f, P\right)-L\left(f, P\right)=\sum_{j=1}^m\left(M_j-m_j\right)\left(x_j-x_{j-1}\right)&lt;\frac{\varepsilon}{\left(b-a\right)}\sum_{j=1}^m\left(x_j-x_{j-1}\right)=\varepsilon\,.
+\]
+</div>
+<p>By the Darboux’s Integrability condition, <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 </div>
 </section>
 <section data-type="sect1">
@@ -767,7 +794,7 @@ m\left(b-a\right)=L\left(f,P\right)\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0
 f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le M=f\left(u\right)\,.
 \]
 </div>
-<p>By the Intermedidate-Value theorem, <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> must take on every value between the two values <span class="math-tex" data-type="tex">\(f\left(l\right)\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)\)</span>. Hence, there is a number <span class="math-tex" data-type="tex">\(c\)</span> between <span class="math-tex" data-type="tex">\(l\)</span> and <span class="math-tex" data-type="tex">\(u\)</span> such that</p>
+<p>By the Intermediate-Value theorem, <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> must take on every value between the two values <span class="math-tex" data-type="tex">\(f\left(l\right)\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)\)</span>. Hence, there is a number <span class="math-tex" data-type="tex">\(c\)</span> between <span class="math-tex" data-type="tex">\(l\)</span> and <span class="math-tex" data-type="tex">\(u\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
 f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.

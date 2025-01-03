@@ -217,6 +217,27 @@
     }
 }
 
+@page Exam {
+    @bottom-center {
+        font-size: 9pt;
+        content: counter(page);
+        vertical-align: top;
+        border-style: none;
+    }
+
+    @bottom-left {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+
+    @bottom-right {
+        vertical-align: top;
+        border-style: none;
+        content: "";
+    }
+}
+
 @page Front:left {
     @bottom-left {
         font-size: 9pt;
@@ -339,9 +360,16 @@ p[data-type="author"] {
 nav, section[data-type="preface"] {
     page: Front;
     page-break-before: right;
+    counter-reset: sect1number equationnumber figurenumber;
 }
 
-nav>h1, section[data-type="preface"]>h1 {
+section[data-type="unnumbered"] {
+    page: Exam;
+    page-break-before: right;
+    counter-reset: sect1number equationnumber figurenumber theoremnumber;
+}
+
+nav>h1, section[data-type="preface"], section[data-type="unnumbered"]>h1 {
     font-size: 24pt;
     font-variant: small-caps;
     text-align: center;
@@ -350,6 +378,11 @@ nav>h1, section[data-type="preface"]>h1 {
 }
 
 section[data-type="preface"] section[data-type="sect1"]>h1:before {
+    content: counter(sect1number);
+    margin-right: 12px
+}
+
+section[data-type="unnumbered"] section[data-type="sect1"]>h1:before {
     content: counter(sect1number);
     margin-right: 12px
 }

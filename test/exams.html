@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="utf-8">
+<title>Exams Real Calculus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="rma.css" />
+<script>
+MathJax = {
+    startup: {
+        pageReady() {
+            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
+            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+        }
+    },
+    tex: {
+        inlineMath: [              // start/end delimiter pairs for in-line math
+            ['\\(', '\\)']
+        ],
+        displayMath: [
+            ['\\[', '\\]']
+        ]
+    },
+    options: {
+        renderActions: {
+            assistiveMml: [],  // disable assistive mathml
+            typeset: [150,
+                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
+                (math, doc) => MathJax.config.renderMathML(math, doc)
+            ]
+        },
+        menuOptions: {
+            settings: {
+                assistiveMml: false
+            }
+        }
+    },
+    renderMathML(math, doc) {
+        math.typesetRoot = document.createElement('mjx-container');
+        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+        math.display && math.typesetRoot.setAttribute('display', 'block');
+    }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+<script>
+class handlers extends Paged.Handler {
+    constructor(chunker, polisher, caller) {
+        super(chunker, polisher, caller);
+    }
+
+    beforeParsed(content) {
+        for (let el of content.querySelectorAll('div[data-type="equation"]')) {
+            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true });
+            el.classList.remove("math-tex");
+        }
+        for (let el of content.querySelectorAll('foreignObject')) {
+            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false });
+        }
+        for (let el of content.querySelectorAll('span[data-type="tex"]')) {
+            const math = document.createRange().createContextualFragment(
+                MathJax.tex2mml(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false })
+            ).firstElementChild;
+            el.replaceWith(math);
+        }
+        for (let el of content.querySelectorAll('pre code')) {
+            hljs.highlightElement(el);
+        }
+        let nav = content.querySelector('nav[data-type="toc"]');
+        if (!nav) {
+            console.warn('no nav found');
+        } else {
+            let tocElementNbr = 0;
+            const selectors = ['section[data-type="chapter"]>h1', 'section[data-type="chapter"] section[data-type="sect1"]>h1'];
+            for (let i = 0; i < selectors.length; i++) {
+                for (let el of content.querySelectorAll(selectors[i])) {
+                    el.classList.add('toc-element');
+                    el.setAttribute('data-toc-level', i + 1);
+                    if (el.id == '') {
+                        el.id = 'toc-element-' + tocElementNbr++;
+                    }
+                }
+            }
+            let level = 0;
+            let toc = document.createElement('div');
+            toc.appendChild(document.createElement('div'));
+            let entry = toc;
+            for (let el of content.querySelectorAll('.toc-element')) {
+                if (el.dataset.tocLevel > level) {
+                    level++;
+                    entry = document.createElement('ol');
+                    toc.lastChild.appendChild(entry);
+                    toc = entry;
+                } else if (el.dataset.tocLevel < level) {
+                    toc = toc.parentElement.parentElement;
+                    level--;
+                }
+                entry = document.createElement('li');
+                entry.innerHTML = '<a href= "#' + el.id + '" >' + el.innerHTML + '</a>';
+                toc.appendChild(entry);
+            }
+            while (level > 1) {
+                toc = toc.parentElement.parentElement;
+                level--;
+            }
+            nav.appendChild(toc);
+        }
+    }
+
+    afterRendered(pages) {
+        const element = document.getElementById('tag');
+        if (element) {
+            element.scrollIntoView();
+        }
+    }
+}
+
+Paged.registerHandlers(handlers);
+</script>
+
+</head>
+<body data-type="book">
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 1</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove using the formal definition of the limit of a function that <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 1} \frac{1}{x - 1}\)</span> does not exist.</p>
+</section>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove</p>
+<div class="math-tex" data-type="equation">
+\[
+1^3+2^3+\cdots+n^3=\left(1+2+\cdots+n\right)^2\,.
+\]
+</div>
+</section>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\left(u\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span>, and <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, then the composite function <span class="math-tex" data-type="tex">\(f\circ g\left(x\right)=f\left(g\left(x\right)\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at the point <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span> and that <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Let the function <span class="math-tex" data-type="tex">\(E\left(k\right)\)</span> be defined by</p>
+<div class="math-tex" data-type="equation">
+\[
+E\left(k\right)=\begin{cases}
+0&\textrm{if }k=0\,.\\
+\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+\end{cases}
+\]
+</div>
+<p>By the definition of derivative</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(E\left(k\right)\)</span> is continuous at <span class="math-tex" data-type="tex">\(k=0\)</span>. Also, whether <span class="math-tex" data-type="tex">\(k=0\)</span> or not, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+\]
+</div>
+<p>Now put <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(k=g\left(x+h\right)-g\left(x\right)\)</span>, so that <span class="math-tex" data-type="tex">\(u+k=g\left(x+h\right)\)</span>, and obtain</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+\]
+</div>
+<p>Also, <span class="math-tex" data-type="tex">\(g\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, so</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}k=\lim_{h\to 0}\left(g\left(x+h\right)-g\left(x\right)\right)=0\,.
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(E\)</span> is continuous at <span class="math-tex" data-type="tex">\(0\)</span>,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}E\left(k\right)=\lim_{k\to 0}E\left(k\right)=E\left(0\right)=0\,.
+\]
+</div>
+<p>Hence,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+&= \left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+\end{aligned}
+\]
+</div>
+<p>which was to be proved.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 2</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove that if <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(a\)</span>, then for any <span class="math-tex" data-type="tex">\(\varepsilon &gt; 0\)</span> there is a <span class="math-tex" data-type="tex">\(\delta &gt;0\)</span> so that whenever <span class="math-tex" data-type="tex">\(\left|x - a\right| &lt;\delta\)</span> and <span class="math-tex" data-type="tex">\(\left|y - a\right| &lt;\delta\)</span>, we have <span class="math-tex" data-type="tex">\(\left|f\left(x\right) - f\left(y\right)\right| &lt;\varepsilon\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove that <span class="math-tex" data-type="tex">\(\sqrt 3\)</span> is irrational. Hint: use the fact that every integer is of the form <span class="math-tex" data-type="tex">\(3n\)</span>, <span class="math-tex" data-type="tex">\(3n+1\)</span> or <span class="math-tex" data-type="tex">\(3n+2\)</span>. Why doesn’t this proof work for <span class="math-tex" data-type="tex">\(\sqrt 4\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(P^\star\)</span> is a refinement of <span class="math-tex" data-type="tex">\(P\)</span>, then <span class="math-tex" data-type="tex">\(L\left(f,P^\star\right)\ge L\left(f,P\right)\)</span> and <span class="math-tex" data-type="tex">\(U\left(f,P^\star\right)\le U\left(f,P\right)\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> are sets of real numbers, and <span class="math-tex" data-type="tex">\(S\subset T\)</span>, then any lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(T\)</span> is also a lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(S\)</span>. Hence, the greatest lower bound of <span class="math-tex" data-type="tex">\(S\)</span> is at least as large as that of <span class="math-tex" data-type="tex">\(T\)</span>; and the least upper bound of <span class="math-tex" data-type="tex">\(S\)</span> is no greater than that of <span class="math-tex" data-type="tex">\(T\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(P\)</span> be a given partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and form a new partition <span class="math-tex" data-type="tex">\(P^\prime\)</span> by adding one subdivision point to those of <span class="math-tex" data-type="tex">\(P\)</span>, say, the point <span class="math-tex" data-type="tex">\(k\)</span> dividing the <span class="math-tex" data-type="tex">\(i\)</span>th subinterval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> of <span class="math-tex" data-type="tex">\(P\)</span> into two subintervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>.<br/>Let <span class="math-tex" data-type="tex">\(m_i\)</span>, <span class="math-tex" data-type="tex">\(m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i^{\prime\prime}\)</span> be the greatest lower bounds of the sets of values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span>  on the intervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>, <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>and <span class="math-tex" data-type="tex">\(\left[k,x_i\right]\)</span>, respectively. Then <span class="math-tex" data-type="tex">\(m_i\le m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i\le m_i^{\prime\prime}\)</span>.<br/>Thus,</p>
+<div class="math-tex" data-type="equation">
+\[
+m_i\left(x_i-x_{i-1}\right)\le m_i^\prime\left(k-x_{i-1}\right)+m_i^{\prime\prime}\left(x_i-k\right)\,,
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le L\left(f,P^\prime\right)\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(P^\star\)</span> is a refinement of <span class="math-tex" data-type="tex">\(P\)</span>, it can be obtained by adding one point at a time to those of <span class="math-tex" data-type="tex">\(P\)</span> and thus <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le L\left(f,P^\star\right)\)</span>.</p>
+<p>We can prove that <span class="math-tex" data-type="tex">\(U\left(f,P^\star\right)\le U\left(f,P\right)\)</span> in a similar manner.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 3</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> satisfies <span class="math-tex" data-type="tex">\(f\left(x + y\right) = f\left(x\right) + f\left(y\right)\)</span>, and that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(0\)</span>. Prove that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(a\)</span> for all <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove or give a counterexample for each of the following assertions:</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(f\circ\left(g+h\right)=f\circ g+f\circ h\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\left(g+h\right)\circ f=g\circ f+h\circ f\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\frac{1}{f\circ g}=\frac{1}{f}\circ g\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\frac{1}{f\circ g}=f\circ \frac{1}{g}\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span> are two partitions of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le U\left(f,P^\star\right)\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>Combine the subdivision points of <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span> to form a new partition <span class="math-tex" data-type="tex">\(P^\star\)</span>, which is a refinement of both <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span>. Then,</p>
+<div class="math-tex" data-type="equation">
+\[
+L\left(f,P\right)\le L\left(f,P^\star\right)\le U\left(f,P^\star\right)\le U\left(f,P^\prime\right)\,.
+\]
+</div>
+<p>No lower sum can exceed any upper sum.</p>
+</div>
+<p><span class="math-tex" data-type="tex">\(I_\star\le I^\star\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by contradiction)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> be sets of real numbers, such that for any <span class="math-tex" data-type="tex">\(x\in S\)</span> and any <span class="math-tex" data-type="tex">\(y\in T\)</span> we have <span class="math-tex" data-type="tex">\(x\le y\)</span>.</p>
+<p>Because every <span class="math-tex" data-type="tex">\(x\)</span> is a lower bound of <span class="math-tex" data-type="tex">\(T\)</span>,  we have <span class="math-tex" data-type="tex">\(x\le\inf T\)</span>.</p>
+<p>Because <span class="math-tex" data-type="tex">\(\inf T\)</span> is an upper bound of <span class="math-tex" data-type="tex">\(S\)</span>, we have <span class="math-tex" data-type="tex">\(\sup S\le\inf T\)</span>.</p>
+<p>Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+x\le \sup S\le \inf T \le y\,.
+\]
+</div>
+<p>Applying this result to the set of values of <span class="math-tex" data-type="tex">\(L\left(f, P\right)\)</span> and <span class="math-tex" data-type="tex">\(U\left(f, P\right)\)</span> for fixed <span class="math-tex" data-type="tex">\(f\)</span> and various partitions <span class="math-tex" data-type="tex">\(P\)</span>, we find using the previous theorem</p>
+<div class="math-tex" data-type="equation">
+\[
+\sup L\left(f, P\right)=I_\star\le I^\star=\inf U\left(f, P\right)\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 4</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is a continuous function on <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span> and that <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is in <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span> for each <span class="math-tex" data-type="tex">\(x\)</span> (draw a picture). Prove that <span class="math-tex" data-type="tex">\(f\left(x\right) = x\)</span> for some number <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Describe the graph of <span class="math-tex" data-type="tex">\(g\)</span> in terms of the graph of <span class="math-tex" data-type="tex">\(f\)</span> if</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=f\left(x\right)+c\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=f\left(x+c\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=cf\left(x\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=f\left(cx\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle g\left(x\right)=f\left(\frac{1}{x}\right)\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>The bounded function <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> if and only if for every positive number <span class="math-tex" data-type="tex">\(\varepsilon\)</span> there exists a partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> such that <span class="math-tex" data-type="tex">\(U\left(f,P\right)-L\left(f,P\right)&lt;\varepsilon\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>Suppose that for every <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span> there exists a partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> such that <span class="math-tex" data-type="tex">\(U\left(f,P\right)-L\left(f,P\right)&lt;\varepsilon\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+I^\star\le U\left(f,P\right)&lt;L\left(f, P\right)+\varepsilon\le I_\star +\varepsilon
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(I^\star&lt; I_\star +\varepsilon\)</span> must hold for every <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>, it follows that <span class="math-tex" data-type="tex">\(I^\star\le I_\star\)</span>. Since we already know that <span class="math-tex" data-type="tex">\(I_\star\le I^\star\)</span>, we have <span class="math-tex" data-type="tex">\(I_\star= I^\star\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Conversely, if <span class="math-tex" data-type="tex">\(I_\star= I^\star\)</span> and <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span> are given, we can find a partition <span class="math-tex" data-type="tex">\(P^\prime\)</span> such that <span class="math-tex" data-type="tex">\(L\left(f,P^\prime\right)&gt;I_\star-\frac{\varepsilon}{2}\)</span>, and another partition <span class="math-tex" data-type="tex">\(P^{\prime\prime}\)</span> such that <span class="math-tex" data-type="tex">\(U\left(f,P^{\prime\prime}\right)&lt;I^\star+\frac{\varepsilon}{2}\)</span>. If <span class="math-tex" data-type="tex">\(P\)</span> is a common refinement of <span class="math-tex" data-type="tex">\(P^\prime\)</span> and <span class="math-tex" data-type="tex">\(P^{\prime\prime}\)</span>, then we have that</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f,P\right)-L\left(f, P\right)\le U\left(f,P^{\prime\prime}\right)-L\left(f, P^\prime\right)&lt;\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\,,
+\]
+</div>
+<p>as required.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 5</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>. Prove that</p>
+<div class="math-tex" data-type="equation">
+\[
+f^\prime\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x-h\right)}{2h}\,.
+\]
+</div>
+<p>Hint: Remember an old algebraic trick — a number is not changed if the same quantity is added to and then subtracted from it.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Describe the graph of <span class="math-tex" data-type="tex">\(g\)</span> in terms of the graph of <span class="math-tex" data-type="tex">\(f\)</span> if</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=f\left(\left|x\right|\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=\left|f\left(x\right)\right|\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=\max\left(f\left(x\right),0\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=\min\left(f\left(x\right),0\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(g\left(x\right)=\max\left(f\left(x\right),1\right)\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(g\)</span> is a continuous function on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> that is differentiable on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if <span class="math-tex" data-type="tex">\(g^\prime\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. There exist a partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(g^\prime,P\right)-L\left(g^\prime,P\right)&lt; \varepsilon\,.
+\]
+</div>
+<p>We apply the Mean-Value theorem to <span class="math-tex" data-type="tex">\(g\)</span> on each interval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>, to obtain <span class="math-tex" data-type="tex">\(t_i\in \left[x_{i-1},x_i\right]\)</span> for which</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(x_i-x_{i-1}\right)g^\prime\left(t_i\right)=g\left(x_i\right)-g\left(x_{i-1}\right)\,.
+\]
+</div>
+<p>Hence,</p>
+<div class="math-tex" data-type="equation">
+\[
+g\left(b\right)-g\left(a\right)=\sum_{i=1}^n\left(g\left(x_i\right)-g\left(x_{i-1}\right)\right)=\sum_{i=1}^ng^\prime\left(t_i\right)\left(x_i-x_{i-1}\right)\,.
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(\inf\left\{g^\prime\left(x\right)\mid x\in\left[x_{i-1},x_i\right] \right\}\le g^\prime\left(t_i\right)\le\sup\left\{g^\prime\left(x\right)\mid x\in\left[x_{i-1},x_i\right] \right\}\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+L\left(g^\prime,P\right)\le g\left(b\right)-g\left(a\right)\le U\left(g^\prime,P\right)\,.
+\]
+</div>
+<p>We also have that</p>
+<div class="math-tex" data-type="equation">
+\[
+L\left(g^\prime,P\right)\le \int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\le U\left(g^\prime,P\right)\,,
+\]
+</div>
+<p>so the Darboux integrability criterion implies</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x-\left(g\left(b\right)-g\left(a\right)\right)\right|&lt;\varepsilon\,.
+\]
+</div>
+<p>This is true for all <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, so</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 6</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<ol>
+<li>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\left(a\right) = g\left(a\right) = h\left(a\right)\)</span>, that <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\le h\left(x\right)\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span>, and that <span class="math-tex" data-type="tex">\(f^\prime\left(a\right) = h^\prime\left(a\right)\)</span>. Prove that <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(a\)</span>, and that <span class="math-tex" data-type="tex">\(f^\prime\left(a\right) = g^\prime\left(a\right) = h^\prime\left(a\right)\)</span>. (Begin with the definition of <span class="math-tex" data-type="tex">\(g^\prime\left(a\right)\)</span>.)</p>
+</li>
+<li>
+<p>Show that the conclusion does not follow if we omit the hypothesis <span class="math-tex" data-type="tex">\(f\left(a\right) = g\left(a\right) = h\left(a\right)\)</span>.</p>
+</li>
+</ol>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Determine the limit <span class="math-tex" data-type="tex">\(L\)</span> for the given <span class="math-tex" data-type="tex">\(a\)</span>, and prove that it is the limit by showing how to find a <span class="math-tex" data-type="tex">\(\delta\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(x\right) - L\right| &lt; \varepsilon\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> satisfying <span class="math-tex" data-type="tex">\(0 &lt; \left|x-a\right| &lt; \delta\)</span>.</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(f\left(x\right)=x^2+5x-2,\,a=2\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(f\left(x\right)=\sqrt{\left|x\right|},\,a=0\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then there exists a point <span class="math-tex" data-type="tex">\(c\in\left[a,b\right]\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\left(b-a\right)f\left(c\right)\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> be a function continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. Then <span class="math-tex" data-type="tex">\(f\)</span> assumes a minimum value <span class="math-tex" data-type="tex">\(m\)</span> and a maximum value <span class="math-tex" data-type="tex">\(M\)</span> on the interval, say at points <span class="math-tex" data-type="tex">\(x=l\)</span> and <span class="math-tex" data-type="tex">\(x=u\)</span>, respectively:</p>
+<div class="math-tex" data-type="equation">
+\[
+\forall x\in \left[a,b\right]: m=f\left(l\right)\le f\left(x\right)\le f\left(u\right)=M\,.
+\]
+</div>
+<p>For the partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> having <span class="math-tex" data-type="tex">\(x_0=a\)</span> and <span class="math-tex" data-type="tex">\(x_1=b\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+m\left(b-a\right)=L\left(f,P\right)\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le U\left(f,P\right)=M\left(b-a\right)\,.
+\]
+</div>
+<p>Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le M=f\left(u\right)\,.
+\]
+</div>
+<p>By the Intermediate-Value theorem, <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> must take on every value between the two values <span class="math-tex" data-type="tex">\(f\left(l\right)\)</span> and <span class="math-tex" data-type="tex">\(f\left(u\right)\)</span>. Hence, there is a number <span class="math-tex" data-type="tex">\(c\)</span> between <span class="math-tex" data-type="tex">\(l\)</span> and <span class="math-tex" data-type="tex">\(u\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 7</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<ol>
+<li>
+<p>Prove that if <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(a\)</span>, then <span class="math-tex" data-type="tex">\(\left|f\right|\)</span> is also differentiable at <span class="math-tex" data-type="tex">\(a\)</span>, provided that <span class="math-tex" data-type="tex">\(f\left(a\right) \ne 0\)</span>.</p>
+</li>
+<li>
+<p>Give a counterexample if <span class="math-tex" data-type="tex">\(f\left(a\right) = 0\)</span></p>
+</li>
+</ol>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Determine the limit <span class="math-tex" data-type="tex">\(L\)</span> for the given <span class="math-tex" data-type="tex">\(a\)</span>, and prove that it is the limit by showing how to find a <span class="math-tex" data-type="tex">\(\delta\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(x\right) - L\right| &lt; \varepsilon\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> satisfying <span class="math-tex" data-type="tex">\(0 &lt; \left|x-a\right| &lt; \delta\)</span>.</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)=\frac{100}{x}\,a=1\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(f\left(x\right)=\sqrt{x},\,a=1\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<div data-type="theorem">
+<h1>&nbsp;(Heine-Borel Theorem)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+</div>
+<p>This theorem is used in the proof of the following theorem.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>For each <span class="math-tex" data-type="tex">\(x \in \left[a, b\right]\)</span>, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(I_x=\left]x-\delta_x, x+\delta_x\right[\)</span> such that for all <span class="math-tex" data-type="tex">\(y \in I_x \cap \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x\right)\right| &lt; 1\)</span>.</p>
+<p>The set of all such open intervals <span class="math-tex" data-type="tex">\(I_x\)</span> forms an open cover of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>By the Heine-Borel theorem there exists a finite subcover such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}\)</span>.</p>
+<p>For any point <span class="math-tex" data-type="tex">\(y \in \left[a, b\right]\)</span>, <span class="math-tex" data-type="tex">\(y\)</span> must be in at least one of the intervals <span class="math-tex" data-type="tex">\(I_{x_i}=\left]x_i-\delta_{x_i}, x_i+\delta_{x_i}\right[\)</span>. Let’s say <span class="math-tex" data-type="tex">\(y\in\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[\)</span>.</p>
+<p>By the property of the open interval <span class="math-tex" data-type="tex">\(\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[\)</span>, we know that <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x_j\right)\right| &lt; 1\)</span>, i.e. <span class="math-tex" data-type="tex">\(f\left(y\right) &lt; f\left(x_j\right) + 1\)</span> and <span class="math-tex" data-type="tex">\(f\left(y\right) &gt; f\left(x_j\right) - 1\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(M = \max\left\{f\left(x_i\right) |0\le i\le n\right\}+ 1\)</span> and <span class="math-tex" data-type="tex">\(m = \min\left\{f\left(x_i\right) |0\le i\le n\right\}- 1\)</span>.</p>
+<p>We can conclude that for all <span class="math-tex" data-type="tex">\(y \in \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(m &lt; f\left(y\right) &lt; M\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, with <span class="math-tex" data-type="tex">\(m\)</span> as a lower bound and <span class="math-tex" data-type="tex">\(M\)</span> as an upper bound.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 8</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove the following (which we often use implicitly): If <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(\left]a, b\right[\)</span> and continuous at <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. In particular, if <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span> and <span class="math-tex" data-type="tex">\(f^\prime &gt; 0\)</span> on <span class="math-tex" data-type="tex">\(\left]a, b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Give examples to show that the following definitions of <span class="math-tex" data-type="tex">\(\lim_{x\to a} f(x) = L\)</span> are not correct.</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\forall\delta&gt; 0,\exists\varepsilon&gt;0:0&lt;\left|x-a\right|&lt;\delta\implies\left|f\left(x\right)-L\right|&lt;\varepsilon\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\forall\varepsilon&gt; 0,\exists\delta&gt;0:\left|f\left(x\right)-L\right|&lt;\varepsilon\implies0&lt;\left|x-a\right|&lt;\delta\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> be an integrable function on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. For <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>, let</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x\right)=\int_a^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+\]
+</div>
+<p>Then <span class="math-tex" data-type="tex">\(F\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. If <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\in\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(F\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x_0\)</span> and</p>
+<div class="math-tex" data-type="equation">
+\[
+F^\prime\left(x_0\right)=f\left(x_0\right)\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p><span class="math-tex" data-type="tex">\(f\)</span> is an integrable function, so <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and there exists <span class="math-tex" data-type="tex">\(B\ge 0\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\le B\)</span> for <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. If <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\frac{\epsilon}{B}\)</span> for <span class="math-tex" data-type="tex">\(a\le x&lt; y\le b\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d}\kern-0.5pt t\le\int_y^xB,\mathrm{d}\kern-0.5pt t=B\left(y-x\right)&lt;\varepsilon\,.
+\]
+</div>
+<p>This shows that <span class="math-tex" data-type="tex">\(F\)</span> is (uniformly) continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\in\left]a,b\right[\)</span>. We have</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}=\frac{1}{x-x_0}\int_{x_0}^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t
+\]
+</div>
+<p>for <span class="math-tex" data-type="tex">\(x\ne x_0\)</span> and</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^xf\left(x_0\right)\,\mathrm{d}\kern-0.5pt t\,.
+\]
+</div>
+<p>Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}-f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^x\left(f\left(t\right)-f\left(x_0\right)\right)\,\mathrm{d}\kern-0.5pt t\,.
+\]
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> such that for <span class="math-tex" data-type="tex">\(t\in\left]a,b\right[\)</span></p>
+<div class="math-tex" data-type="equation">
+\[
+\left|t-x_0\right|&lt;\delta\implies \left|f\left(t\right)-f\left(x_0\right)\right|&lt;\varepsilon\,.
+\]
+</div>
+<p>Thus for <span class="math-tex" data-type="tex">\(x\in\left]a,b\right[\)</span> satisfying <span class="math-tex" data-type="tex">\(\left|x-x_0\right|&lt;\delta\)</span> we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}-f\left(x_0\right)\right|\le\varepsilon\,.
+\]
+</div>
+<p>This shows that</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to x_0}\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}=f\left(x_0\right)\,.
+\]
+</div>
+<p>In other words, <span class="math-tex" data-type="tex">\(F^\prime\left(x_0\right)=f\left(x_0\right)\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 9</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is a continuous and differentiable function on <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span> and that <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is in <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span> for each <span class="math-tex" data-type="tex">\(x\)</span> (draw a picture). Show that there is exactly one number <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span> such that <span class="math-tex" data-type="tex">\(f\left(x\right) = x\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove that there is some number <span class="math-tex" data-type="tex">\(x\)</span> such that <span class="math-tex" data-type="tex">\(\sin x=x-1\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> be integrable on an interval containing the points <span class="math-tex" data-type="tex">\(a\)</span>, <span class="math-tex" data-type="tex">\(b\)</span>, and <span class="math-tex" data-type="tex">\(c\)</span>. Then</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is bounded on both <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[b,c\right]\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,c\right]\)</span>. In this proof we will decorate lower and upper sums so that it will be clear which intervals we are dealing with.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>.</p>
+<p>There exists partitions <span class="math-tex" data-type="tex">\(P_1\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(P_2\)</span> of <span class="math-tex" data-type="tex">\(\left[b,c\right]\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+U_a^b\left(f,P_1\right)-L_a^b\left(f,P_1\right)&lt;\frac{\varepsilon}{2}\quad\textrm{and}\quad U_b^c\left(f,P_2\right)-L_b^c\left(f,P_2\right)&lt;\frac{\varepsilon}{2}\,.
+\]
+</div>
+<p>The set <span class="math-tex" data-type="tex">\(P=P_1\cup P_2\)</span> is a partition of <span class="math-tex" data-type="tex">\(\left[a,c\right]\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+U_a^c\left(f,P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\quad\textrm{and}\quad L_a^c\left(f,P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\,.
+\]
+</div>
+<p>It follows that</p>
+<div class="math-tex" data-type="equation">
+\[
+U_a^c\left(f,P\right)-L_a^c\left(f,P\right)&lt;\varepsilon\,,
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,c\right]\)</span>.</p>
+<p>Since</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
+&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+\end{aligned}
+\]
+</div>
+<p>and</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
+&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+\end{aligned}
+\]
+</div>
+<p>are true for all <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 10</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove that if <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are continuous on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span> and differentiable on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right) \ne 0\)</span> for <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then there is some <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> with</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=\frac{f\left(x\right)-f\left(a\right)}{g\left(b\right)-g\left(x\right)}\,.
+\]
+</div>
+<p>Hint: Multiply out first, to see what this really says.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<ol>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(g=f^2\)</span>, find a formula for <span class="math-tex" data-type="tex">\(g^\prime\)</span> (involving <span class="math-tex" data-type="tex">\(f^\prime\)</span>).</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(g=\left(f^\prime\right)^2\)</span>, find a formula for <span class="math-tex" data-type="tex">\(g^\prime\)</span> (involving <span class="math-tex" data-type="tex">\(f^{\prime\prime}\)</span>).</p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>A continuous function on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> attains both an absolute maximum and an absolute minimum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by contradiction)</h1>
+<p>We prove <span class="math-tex" data-type="tex">\(f\)</span> has a maximum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, by the Boundness theorem <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is bounded, its image set is a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span> which is bounded above, so by the Completeness axiom it has a least upper bound.</p>
+<p>Let <span class="math-tex" data-type="tex">\(M=\sup f\left(\left[a,b\right]\right)\)</span>. By definition of <span class="math-tex" data-type="tex">\(M\)</span>, <span class="math-tex" data-type="tex">\(f\left(x\right)\le M\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\left(x\right)&lt; M\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>Then <span class="math-tex" data-type="tex">\(\displaystyle g\left(x\right)=\frac{1}{M-f\left(x\right)}\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and hence bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> by the Boundness theorem.</p>
+<p>So, there exists <span class="math-tex" data-type="tex">\(K>0\)</span> such that <span class="math-tex" data-type="tex">\(\displaystyle\frac{1}{M-f\left(x\right)}\le K\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>It follows that <span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)\le M-\frac{1}{K}\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>, which says that <span class="math-tex" data-type="tex">\(\displaystyle M-\frac{1}{K}\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(f\left(\left[a,b\right]\right)\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(K>0\)</span>, <span class="math-tex" data-type="tex">\(\displaystyle M-\frac{1}{K}&lt; M\)</span>. This contradicts the fact that <span class="math-tex" data-type="tex">\(M=\sup f\left(\left[a,b\right]\right)\)</span>.</p>
+<p>Hence, there must exist <span class="math-tex" data-type="tex">\(c\in\left[a,b\right]\)</span> such that <span class="math-tex" data-type="tex">\(f\left(c\right)=M\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 11</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove that if <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\ge M\)</span> for all <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\left(b\right) \ge f\left(a\right) + M\left(b—a\right)\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is three times differentiable and <span class="math-tex" data-type="tex">\(f^\prime\left(x\right) \ne 0\)</span>, the <i>Schwarzian derivative</i> of <span class="math-tex" data-type="tex">\(f\)</span> at <span class="math-tex" data-type="tex">\(x\)</span> is defined to be</p>
+<div class="math-tex" data-type="equation">
+\[
+\mathcal Df\left(x\right)=\frac{f^{\prime\prime\prime\left(x\right)}}{f^\prime\left(x\right)}-\frac{3}{2}\left(\frac{f^{\prime\prime}\left(x\right)}{f^\prime\left(x\right)}\right)^2\,.
+\]
+</div>
+<p>Show that</p>
+<div class="math-tex" data-type="equation">
+\[
+\mathcal D\left(f\circ g\right)=\left(\mathcal D f\circ g\right)\left(g^\prime\right)^2+\mathcal Dg\,.
+\]
+</div>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by bisection and contradiction)</h1>
+<p>Suppose that no finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span> covers <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(I_0=\left[a,b\right]=\left[a_0,b_0\right]\)</span>.</p>
+<p>At least one of the intervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> cannot be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>. If both could be covered by finite subsets, their union would cover <span class="math-tex" data-type="tex">\(I_0\)</span>.</p>
+<p>Let the interval that can’t be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span> be <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
+<p>Continuing this way, we obtain a sequence of closed intervals <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span> satisfying the hypotheses of the nested intervals theorem, where each <span class="math-tex" data-type="tex">\(I_n\)</span> can’t be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>.</p>
+<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{x\right\}\)</span> where <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> is covered by the union of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(\left]c_i, d_i\right[\)</span> such that <span class="math-tex" data-type="tex">\(x \in \left]c_i, d_i\right[\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\left]c_i, d_i\right[\)</span> is open, there exists an <span class="math-tex" data-type="tex">\(\delta &gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\in \bigcap_{n\in ℕ}I_n\)</span>, there exists <span class="math-tex" data-type="tex">\(N\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(I_N\subset\left]x-\delta, x+\delta\right[\)</span> by the extension of the Capture theorem.</p>
+<p>This means that for <span class="math-tex" data-type="tex">\(n\ge N\)</span>, <span class="math-tex" data-type="tex">\(I_n \subset \left]c_i, d_i\right[\)</span>, contradicting our assumption that no <span class="math-tex" data-type="tex">\(I_n\)</span> can be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>.</p>
+<p>Therefore, our initial assumption must be false, and there must exist a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span> that covers <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 12</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous and bijective on an interval, then <span class="math-tex" data-type="tex">\(f^{-1}\)</span> is also continuous.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\left(x\right) = xg\left(x\right)\)</span> for some function <span class="math-tex" data-type="tex">\(g\)</span> which is continuous at <span class="math-tex" data-type="tex">\(0\)</span>.<br/>Prove that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(0\)</span>, and find <span class="math-tex" data-type="tex">\(f^\prime\left(0\right)\)</span> in terms of <span class="math-tex" data-type="tex">\(g\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>First note that, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, it is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>. Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous, it is uniformly continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, so corresponding to <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{b-a}&gt;0\)</span> there exists <span class="math-tex" data-type="tex">\(\delta&gt; 0\)</span> such that for all <span class="math-tex" data-type="tex">\(x, y\in\left[a,b\right]\)</span>, <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> implies <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|&lt;\frac{\varepsilon}{b-a}\)</span>.</p>
+<p>Choose a partition <span class="math-tex" data-type="tex">\(P=\left\{x_0,x_1,x_2,\dots,x_n\right\}\)</span> for which each subinterval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> has length <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x_i&lt;\delta\)</span>.</p>
+<p>By the Extreme-Value Theorem, the least upper bound, <span class="math-tex" data-type="tex">\(M_i\)</span>, and the greatest lower bound <span class="math-tex" data-type="tex">\(m_i\)</span> of the set of values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> satisfy <span class="math-tex" data-type="tex">\(M_i-m_i&lt;\frac{\varepsilon}{b-a}\)</span>.</p>
+<p>Accordingly,</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{b-a}\sum_{i=1}^{n\left(P\right)}\Delta\kern-0.5pt x_i=\frac{\varepsilon}{b-a}\left(b-a\right)=\varepsilon\,.
+\]
+</div>
+<p>Thus, <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 13</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove that if <span class="math-tex" data-type="tex">\(f\)</span> is increasing, then so is <span class="math-tex" data-type="tex">\(f^{-1}\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>If <span class="math-tex" data-type="tex">\(a_1&lt;a_2&lt;\cdots&lt;a_n\)</span>, find the minimum values of <span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)=\sum_{i=1}^n\left(x-a_i\right)^2\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(x\in ℝ\)</span> and <span class="math-tex" data-type="tex">\(\varepsilon\in ℝ^+\)</span>. The interval <span class="math-tex" data-type="tex">\(\left]x-\varepsilon,x+\varepsilon\right[\)</span> contains a rational number.</p>
+<div data-type="proof">
+<h1>&nbsp;(by bisection)</h1>
+<p>If <span class="math-tex" data-type="tex">\(x\)</span> is rational we are done, so let <span class="math-tex" data-type="tex">\(x\)</span> be irrational.</p>
+<p>Let <span class="math-tex" data-type="tex">\(b_0\)</span> be the smallest integer greater than <span class="math-tex" data-type="tex">\(x\)</span>, and let <span class="math-tex" data-type="tex">\(a_0=b_0-1\)</span>.</p>
+<p>Then <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints. It follows that <span class="math-tex" data-type="tex">\(x\)</span> is contained in either <span class="math-tex" data-type="tex">\(\left]a_0, \frac{a_0+b_0}{2}\right[\)</span> or <span class="math-tex" data-type="tex">\(\left]\frac{a_0+b_0}{2}, b_0\right[\)</span>. Let <span class="math-tex" data-type="tex">\(I_1\)</span> be the closed subinterval containing <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Continuing this way, we obtain a sequence of closed intervals <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span> satisfying the hypotheses of the nested intervals theorem, where each <span class="math-tex" data-type="tex">\(I_n\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints.</p>
+<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{y\right\}\)</span> where <span class="math-tex" data-type="tex">\(y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>. Since <span class="math-tex" data-type="tex">\(x\in I_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, <span class="math-tex" data-type="tex">\(y=x\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}\)</span>, by the previous lemma, the open interval <span class="math-tex" data-type="tex">\(\left]x-\varepsilon,x+\varepsilon\right[\)</span> contains <span class="math-tex" data-type="tex">\(a_m\in ℚ\)</span> for some <span class="math-tex" data-type="tex">\(m\in ℕ\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 14</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(x = u\left(\right)\)</span>, <span class="math-tex" data-type="tex">\(y = v\left(t\right)\)</span> is a parametric representation of a curve, and that <span class="math-tex" data-type="tex">\(u\)</span> is bijective on some interval.</p>
+<ol>
+<li>
+<p>Show that on this interval the curve lies along the graph of <span class="math-tex" data-type="tex">\(f = v\circ u^{-1}\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(u\)</span> is differentiable on this interval and <span class="math-tex" data-type="tex">\(u^\prime\left(t\right)\ne 0\)</span>, show that at the point <span class="math-tex" data-type="tex">\(x=u\left(t\right)\)</span> we have</p>
+<div class="math-tex" data-type="equation">
+\[
+f^\prime\left(x\right)=\frac{v^\prime\left(t\right)}{u^\prime\left(t\right)}\,.
+\]
+</div>
+</li>
+<li>
+<p>Prove also</p>
+<div class="math-tex" data-type="equation">
+\[
+f^{\prime\prime}\left(x\right)=\frac{u^\prime\left(t\right)v^{\prime\prime}\left(t\right)-v^\prime\left(t\right)u^{\prime\prime}\left(t\right)}{\left(u^\prime\left(t\right)\right)^3}\,.
+\]
+</div>
+</li>
+</ol>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove that the polynomial function <span class="math-tex" data-type="tex">\(f_m\left(x\right) = x^3 - 3x + m\)</span> never has two roots in <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span>, no matter what <span class="math-tex" data-type="tex">\(m\)</span> may be.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is uniformly continuous on that interval.</p>
+<div data-type="proof">
+<h1>&nbsp;(by contradiction)</h1>
+<p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(I_0=\left[a,b\right]=\left[a_0,b_0\right]\)</span> but not uniformly continuous.</p>
+<p>Then, there exists <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span> such that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exists <span class="math-tex" data-type="tex">\(x,y\in\left[a_0,b_0\right]\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
+<p>It follows from the lemma that, corresponding to this <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, it must be true for at least one of the two subintervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
+<p>Choose a subinterval having this property and call it <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
+<p>Continuing in this ways, we obtain a sequence of closed intervals satisfying the hypotheses of the Nested Intervals Theorem and having the property that for every <span class="math-tex" data-type="tex">\(\delta&gt;0\)</span> there exist <span class="math-tex" data-type="tex">\(x,y\)</span> in the interval such that <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
+<p>By the Nested Intervals Theorem, there exists <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(c\)</span>, corresponding to the <span class="math-tex" data-type="tex">\(\varepsilon\)</span> above, there exists <span class="math-tex" data-type="tex">\(\delta_1&gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-c\right|&lt\delta_1\)</span> implies <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(c\right)\right|&lt;\frac{\varepsilon}{2}\)</span>. Similarly, there exists <span class="math-tex" data-type="tex">\(\delta_2&gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left|y-c\right|&lt\delta_1\)</span> implies <span class="math-tex" data-type="tex">\(\left|f\left(y\right)-f\left(c\right)\right|&lt;\frac{\varepsilon}{2}\)</span>. Let <span class="math-tex" data-type="tex">\(\delta_0=\min\left\{\delta_1, \delta_2\right\}\)</span>.</p>
+<p>The Capture Theorem states that the interval <span class="math-tex" data-type="tex">\(\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[\)</span> contains <span class="math-tex" data-type="tex">\(I_N\)</span> for some <span class="math-tex" data-type="tex">\(N\in\mathbb N\)</span>.</p>
+<p>Since the length of the interval <span class="math-tex" data-type="tex">\(\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[\)</span> is <span class="math-tex" data-type="tex">\(\delta_0\)</span>,  we have <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta_0\)</span> for every <span class="math-tex" data-type="tex">\(x,y\in\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[\)</span>. By our choice of the <span class="math-tex" data-type="tex">\(I_n\)</span>, there exists <span class="math-tex" data-type="tex">\(x,y\in I_N\)</span> with <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\delta_0\)</span> but <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\left|x-c\right|&lt\delta_0\)</span> and <span class="math-tex" data-type="tex">\(\left|y-c\right|&lt\delta_0\)</span> for every <span class="math-tex" data-type="tex">\(x,y\in\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[\)</span>, it follows that</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left|f\left(x\right)-f\left(y\right)\right|&=\left|f\left(x\right)-f\left(c\right)+f\left(c\right)-f\left(y\right)\right|\\
+&\le\left|f\left(x\right)-f\left(c\right)\right|+\left|f\left(c\right)-f\left(y\right)\right|\\
+&&lt;\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\,.
+\end{aligned}
+\]
+</div>
+<p>This is impossible. Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is uniformly continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 15</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove that</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_{ca}^{cb}f\left(t\right)\,\mathrm d\kern-0.5pt t=c\int_a^bf\left(ct\right)\,\mathrm d\kern-0.5pt t\,.
+\]
+</div>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<ol>
+<li>
+<p>What is wrong with the following use of l’Hôpital’s Rule:</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to 1}\frac{x^3+x-2}{x^2-3x+2}=\lim_{x\to 1}\frac{3x^2+1}{2x-3}=\lim_{x\to 1}\frac{6x}{2}=3
+\]
+</div>
+<p>What is the actual limit?</p>
+</li>
+<li>
+<p>Find the following limits:</p>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0}\frac{x}{\tan x}\,.\)</span></p>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0}\frac{\cos^2 x -1}{x^2}\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by contradiction)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]=\left[a,b\right]\)</span>.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> but not bounded. Then <span class="math-tex" data-type="tex">\(f\)</span> is either unbounded on <span class="math-tex" data-type="tex">\(\displaystyle \left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\displaystyle \left[\frac{a_0+b_0}{2},b_0\right]\)</span> (since, otherwise, <span class="math-tex" data-type="tex">\(f\)</span> would be bounded on their union and hence on all <span class="math-tex" data-type="tex">\(I_0\)</span>).</p>
+<p>Let <span class="math-tex" data-type="tex">\(I_1=\left[a_1, b_1\right]\)</span> be the subinterval on which <span class="math-tex" data-type="tex">\(f\)</span> is unbounded and repeat.</p>
+<p>By the Nested Intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{c\right\}\)</span>, where <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(c\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>. However, as we have seen, such an open interval contains one of the intervals <span class="math-tex" data-type="tex">\(I_N\)</span>, which is a contradiction since <span class="math-tex" data-type="tex">\(f\)</span> is unbounded on each <span class="math-tex" data-type="tex">\(I_n\)</span>.</p>
+<p>Hence, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 16</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is nondecreasing on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>. Notice that <span class="math-tex" data-type="tex">\(f\)</span> is automatically bounded on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>, because <span class="math-tex" data-type="tex">\(f\left(a\right) \le f\left(x\right) \le f\left(b\right)\)</span> for <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>.</p>
+<ol>
+<li>
+<p>If <span class="math-tex" data-type="tex">\(P = \left(t_0, t_1, \dots, t_n\right)\)</span> is a partition of <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>, what is <span class="math-tex" data-type="tex">\(L\left(f, P\right)\)</span> and <span class="math-tex" data-type="tex">\(U\left(f, P\right)\)</span>?</p>
+</li>
+<li>
+<p>Suppose that <span class="math-tex" data-type="tex">\(t_i - t_{i-1} = \delta\)</span> for each <span class="math-tex" data-type="tex">\(i\)</span>. Prove that <span class="math-tex" data-type="tex">\(U\left(f, P\right) - L\left(f, P\right) = \delta\left(f\left(b\right) - f\left(a\right)\right)\)</span>.</p>
+</li>
+<li>
+<p>Prove that <span class="math-tex" data-type="tex">\(f\)</span> is integrable.</p>
+</li>
+</ol>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Find a formula for <span class="math-tex" data-type="tex">\(\left(f^{-1}\right)^{\prime\prime}\left(x\right)\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>A continuous function on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> attains both an absolute maximum and an absolute minimum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by contradiction)</h1>
+<p>We prove <span class="math-tex" data-type="tex">\(f\)</span> has a maximum on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, by the Boundness theorem <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is bounded, its image set is a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span> which is bounded above, so by the Completeness axiom it has a least upper bound.</p>
+<p>Let <span class="math-tex" data-type="tex">\(M=\sup f\left(\left[a,b\right]\right)\)</span>. By definition of <span class="math-tex" data-type="tex">\(M\)</span>, <span class="math-tex" data-type="tex">\(f\left(x\right)\le M\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\left(x\right)&lt; M\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>Then <span class="math-tex" data-type="tex">\(\displaystyle g\left(x\right)=\frac{1}{M-f\left(x\right)}\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and hence bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> by the Boundness theorem.</p>
+<p>So, there exists <span class="math-tex" data-type="tex">\(K>0\)</span> such that <span class="math-tex" data-type="tex">\(\displaystyle\frac{1}{M-f\left(x\right)}\le K\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
+<p>It follows that <span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)\le M-\frac{1}{K}\)</span> for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>, which says that <span class="math-tex" data-type="tex">\(\displaystyle M-\frac{1}{K}\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(f\left(\left[a,b\right]\right)\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(K>0\)</span>, <span class="math-tex" data-type="tex">\(\displaystyle M-\frac{1}{K}&lt; M\)</span>. This contradicts the fact that <span class="math-tex" data-type="tex">\(M=\sup f\left(\left[a,b\right]\right)\)</span>.</p>
+<p>Hence, there must exist <span class="math-tex" data-type="tex">\(c\in\left[a,b\right]\)</span> such that <span class="math-tex" data-type="tex">\(f\left(c\right)=M\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 17</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span> and that <span class="math-tex" data-type="tex">\(g\)</span> is integrable and nonnegative on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>. Prove that</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)g\left(x\right)\,\mathrm d\kern-0.5pt x=f\left(c\right)\int_a^bg\left(x\right)\,\mathrm d\kern-0.5pt x
+\]
+</div>
+<p>for some <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Suppose <span class="math-tex" data-type="tex">\(h\)</span> is a function such that <span class="math-tex" data-type="tex">\(h^\prime\left(x\right) = \sin\left(sin\left(x + 1\right)\right)\)</span> and <span class="math-tex" data-type="tex">\(h\left(0\right) = 3\)</span>. Find</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\left(h^{-1}\right)^\prime\left(3\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\left(\beta^{-1}\right)^\prime\left(3\right)\)</span>, where <span class="math-tex" data-type="tex">\(\beta\left(x\right)=h\left(x+1\right)\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<div data-type="theorem">
+<h1>&nbsp;(Heine-Borel Theorem)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+</div>
+<p>This theorem is used in the proof of the following theorem.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>.</p>
+<p>For each <span class="math-tex" data-type="tex">\(x \in \left[a, b\right]\)</span>, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(I_x=\left]x-\delta_x, x+\delta_x\right[\)</span> such that for all <span class="math-tex" data-type="tex">\(y \in I_x \cap \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x\right)\right| &lt; \frac{\varepsilon}{2\left(b-a\right)}\)</span>.</p>
+<p>The set of all such open intervals <span class="math-tex" data-type="tex">\(I_x\)</span> forms an open cover of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>By the Heine-Borel theorem there exists a finite subcover such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}\)</span>.</p>
+<p>Now, create a partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> using the endpoints of these intervals that lie within <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. Specifically, our partition points will be: <span class="math-tex" data-type="tex">\(a = y_0 &lt; y_1 &lt; y_2 &lt; \dots &lt; y_m = b\)</span>.</p>
+<p>Consider any subinterval <span class="math-tex" data-type="tex">\(\left[y_{j-1},y_j\right]\)</span> in this partition.</p>
+<p>Since the function is continuous on all closed subintervals of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, we have by the Extreme-value theorem <span class="math-tex" data-type="tex">\(M_j = \max\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\)</span> and <span class="math-tex" data-type="tex">\(m_j = \min\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\)</span>.</p>
+<p>Since this subinterval is entirely contained within at least one of our original open intervals <span class="math-tex" data-type="tex">\(I_{x_i}\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+M_j-m_j = \left(M_j-x_i\right) + \left(x_i-m_j\right) &lt; \frac{\varepsilon}{2\left(b-a\right)} + \frac{\varepsilon}{2\left(b-a\right)}=\frac{\varepsilon}{\left(b-a\right)}\,.
+\]
+</div>
+<p>Calculate the difference between the upper and lower Riemann sums for this partition:</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f, P\right)-L\left(f, P\right)=\sum_{j=1}^m\left(M_j-m_j\right)\left(x_j-x_{j-1}\right)&lt;\frac{\varepsilon}{\left(b-a\right)}\sum_{j=1}^m\left(x_j-x_{j-1}\right)=\varepsilon\,.
+\]
+</div>
+<p>By the Darboux’s Integrability condition, <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 18</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span>. Prove that there is a number <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left]a, b\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^xf\left(t\right)\,\mathrm d\kern-0.5pt t=\int_x^bf\left(t\right)\,\mathrm d\kern-0.5pt t\,.
+\]
+</div>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove that <span class="math-tex" data-type="tex">\(\displaystyle \int_0^bx^3\,\mathrm d\kern-0.5pt x=\frac{b^4}{4}\)</span>, by considering partitions into <span class="math-tex" data-type="tex">\(n\)</span> equal subintervals, using the formula <span class="math-tex" data-type="tex">\(\displaystyle \sum_{i=1}^ni^3= \left(\sum_{i=1}^ni\right)^2\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\left(x\right)\le g\left(x\right)\le h\left(x\right)\)</span> holds for all <span class="math-tex" data-type="tex">\(x\)</span> in some open interval containing <span class="math-tex" data-type="tex">\(a\)</span>, except possibly at <span class="math-tex" data-type="tex">\(x=a\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}f\left(x\right)=\lim_{x\to a}h\left(x\right)=L\,,
+\]
+</div>
+<p>then,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a}g\left(x\right)=L\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon > 0\)</span> be given.</p>
+<p>We want to find a strict positive number <span class="math-tex" data-type="tex">\(\delta\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta\implies\left|g\left(x\right)-L\right|&lt;\varepsilon
+\]
+</div>
+<p>Observe that</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\left|g\left(x\right)-L\right|=&\left|g\left(x\right)-f\left(x\right)+f\left(x\right)-L\right|\\
+\le&\left|g\left(x\right)-f\left(x\right)\right|+\left|f\left(x\right)-L\right|\\
+\le&\left|h\left(x\right)-f\left(x\right)\right|+\left|f\left(x\right)-L\right|=\left|h\left(x\right)-L+L-f\left(x\right)\right|+\left|f\left(x\right)-L\right|\\
+\le&\left|h\left(x\right)-L\right|+\left|L-f\left(x\right)\right|+\left|f\left(x\right)-L\right|
+\end{aligned}\\
+\]
+</div>
+<p>by the triangle inequality and the squeezing of <span class="math-tex" data-type="tex">\(g\)</span> between <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(h\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{3}\)</span> is a strict positive number, there exists a number <span class="math-tex" data-type="tex">\(\delta_1\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta_1\implies\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\,.
+\]
+</div>
+<p>Similarly, since <span class="math-tex" data-type="tex">\(\lim_{x\to a}h\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\frac{\varepsilon}{3}\)</span> is a strict positive number, there exists a number <span class="math-tex" data-type="tex">\(\delta_2\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+0&lt;\left|x-a\right|&lt;\delta_2\implies\left|h\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\,.
+\]
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\delta=\min\left\lbrace\delta_1,\delta_2\right\rbrace\)</span>. If <span class="math-tex" data-type="tex">\(0&lt;\left|x-a\right|&lt;\delta\)</span>, then <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_1\)</span>, so <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\)</span>, and <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta_2\)</span>, so <span class="math-tex" data-type="tex">\(\left|h\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+\left|g\left(x\right)-L\right|\le\left|h\left(x\right)-L\right|+\left|L-f\left(x\right)\right|+\left|f\left(x\right)-L\right|&lt;\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon\,.
+\]
+</div>
+<p>This shows that <span class="math-tex" data-type="tex">\(\lim_{x\to a}g\left(x\right)=L\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 19</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove that if <span class="math-tex" data-type="tex">\(h\)</span> is continuous, <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable, and</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x\right)=\int_{f\left(x\right)}^{g\left(x\right)}h\left(t\right)\,\mathrm d\kern-0.5pt t\,,
+\]
+</div>
+<p>then <span class="math-tex" data-type="tex">\(F^\prime\left(x\right)=h\left(g\left(x\right)\right)g^\prime\left(x\right)-h\left(f\left(x\right)\right)f^\prime\left(x\right)\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Find <span class="math-tex" data-type="tex">\(\left(f^{-1}\right)^\prime\left(0\right)\)</span> if</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right) = \int_0^x\left(1+\sin\left(\sin t\right)\right)\,\mathrm d\kern-0.5pt t\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right) = \int_0^x\cos\left(\cos t\right)\,\mathrm d\kern-0.5pt t\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is defined on an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and achieves a maximum (or minimum) value at the point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if <span class="math-tex" data-type="tex">\(f\prime\left(c\right)\)</span> exists, then <span class="math-tex" data-type="tex">\(f\prime\left(c\right)=0\)</span>. (Values of <span class="math-tex" data-type="tex">\(x\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=0\)</span> are called <i>critical points</i> of the function <span class="math-tex" data-type="tex">\(f\)</span>.)</p>
+<div data-type="proof">
+<h1></h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> has a maximum value at <span class="math-tex" data-type="tex">\(c\)</span>. Then <span class="math-tex" data-type="tex">\(f\left(x\right)-f\left(c\right)\le0\)</span> whenever <span class="math-tex" data-type="tex">\(x\)</span> is in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(c&lt;x&lt;b\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^+}\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,.
+\]
+</div>
+<p>If <span class="math-tex" data-type="tex">\(a&lt;x&lt;c\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^-}\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,.
+\]
+</div>
+<p>Thus <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)\)</span>. The proof for a minimum value at <span class="math-tex" data-type="tex">\(c\)</span> is similar.</p>
+</div>
+<p>Suppose that the function <span class="math-tex" data-type="tex">\(g\)</span> is continuous on the closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>and that it is differentiable on the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. If <span class="math-tex" data-type="tex">\(g\left(a\right)=g\left(b\right)\)</span>, then there exists a point <span class="math-tex" data-type="tex">\(c\)</span> in the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>If <span class="math-tex" data-type="tex">\(g\left(x\right)=g\left(a\right)\)</span> for every <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(g\)</span> is a constant function, so <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span> for every <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. Therefore, suppose there exists <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\left(x\right)\ne g\left(a\right)\)</span>.</p>
+<p>Let us assume that <span class="math-tex" data-type="tex">\(g\left(x\right)&gt; g\left(a\right)\)</span>. (If <span class="math-tex" data-type="tex">\(g\left(x\right)&lt; g\left(a\right)\)</span>, the proof is similar.)</p>
+<p>By the Extreme-Value Theorem, being continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, <span class="math-tex" data-type="tex">\(g\)</span> must have a maximum value at some point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)\)</span>, <span class="math-tex" data-type="tex">\(c\)</span> cannot be either <span class="math-tex" data-type="tex">\(a\)</span> or <span class="math-tex" data-type="tex">\(b\)</span>. Therefore, <span class="math-tex" data-type="tex">\(c\)</span> is in the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, so <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(c\)</span>.</p>
+<p>By the previous theorem, <span class="math-tex" data-type="tex">\(c\)</span> must be a critical point of <span class="math-tex" data-type="tex">\(g\)</span>: <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 20</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove the integrability of the absolute value of an integrable function.</p>
+<p>Hint: for any interval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\in\left[a,b\right]\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
+\]
+</div>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Find <span class="math-tex" data-type="tex">\(F^\prime\left(x\right)\)</span> if <span class="math-tex" data-type="tex">\(\displaystyle F\left(x\right)=\int_0^xxf\left(t\right)\,\mathrm d\kern-0.5pt t\)</span>. (The answer is not <span class="math-tex" data-type="tex">\(xf\left(x\right)\)</span>.)</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0\)</span> and</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</li>
+</ol>
+<p>Then</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Define</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x\right)=\begin{cases}
+	f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\quad\textrm{and}\quad
+G\left(x\right)=\begin{cases}
+	g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\,.
+\]
+</div>
+<p>Then, <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>and differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,x\right[\)</span> for every <span class="math-tex" data-type="tex">\(x\in \left]a,b\right[\)</span>.</p>
+<p>By the Generalized Mean-Value Theorem there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,x\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(a&lt;c&lt;x\)</span>, if <span class="math-tex" data-type="tex">\(x\to a^+\)</span>, then necessarily <span class="math-tex" data-type="tex">\(c\to a^+\)</span>, so we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=\lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 21</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(a\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on some open interval containing <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[0, 1\right]\)</span>, compute <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to0^+}x\int_x^1\frac{f\left(t\right)}{t}\,\mathrm d\kern-0.5pt t\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If the <span class="math-tex" data-type="tex">\(\left(n+1\right)\)</span>st-order derivative, <span class="math-tex" data-type="tex">\(f^{\left(n+1\right)}\left(t\right)\)</span>, exists for all <span class="math-tex" data-type="tex">\(t\)</span> in an interval containing <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>, and if <span class="math-tex" data-type="tex">\(P_n\left(x\right)\)</span> is the <span class="math-tex" data-type="tex">\(n\)</span>th order Taylor polynomial for <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(a\)</span>, then the error <span class="math-tex" data-type="tex">\(E_n\left(x\right)=f\left(x\right)-p_n\left(x\right)\)</span> is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+E_n\left(x\right)=\frac{f^{\left(n+1\right)}\left(s\right)}{\left(n+1\right)!}\left(x-a\right)^{n+1}\,,
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(s\)</span> is some number between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>. The resulting formula</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)=\sum_{i=0}^n\frac{f^{\left(i\right)}\left(a\right)}{i!}\left(x-a\right)^i+\frac{f^{\left(n+1\right)}\left(s\right)}{\left(n+1\right)!}\left(x-a\right)^{n+1}\,,
+\]
+</div>
+<p>is called Taylor’s formula with Lagrange remainder.</p>
+<div data-type="proof">
+<h1>&nbsp;(by induction)</h1>
+<p>Observe that the case <span class="math-tex" data-type="tex">\(n=0\)</span> of Taylor’s formula, namely,</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right)=P_0\left(x\right)+E_0\left(x\right)=f\left(a\right)+f^\prime\left(x\right)\left(x-a\right)\,.
+\]
+</div>
+<p>is just the Mean-Value Theorem</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)-f\left(a\right)}{x-a}=f^\prime\left(s\right)
+\]
+</div>
+<p>for some <span class="math-tex" data-type="tex">\(s\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Suppose that we have proved the case <span class="math-tex" data-type="tex">\(n=k-1\)</span>, where <span class="math-tex" data-type="tex">\(k\ge 1\)</span>. Thus, we are assuming that if <span class="math-tex" data-type="tex">\(f\)</span> is any function whose <span class="math-tex" data-type="tex">\(k\)</span>th derivative exists on an interval containing <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+E_{k-1}\left(x\right)=\frac{f^{\left(k\right)}\left(s\right)}{k!}\left(x-a\right)^k\,,
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(s\)</span> os some number between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Let us conisder the next higher case: <span class="math-tex" data-type="tex">\(n=k\)</span>. We assume <span class="math-tex" data-type="tex">\(x&gt;a\)</span> (the case <span class="math-tex" data-type="tex">\(x&lt;a\)</span> is similar) and apply the generalized Mean-Value Theorem to the functions <span class="math-tex" data-type="tex">\(E_k\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(t-a\right)^{k+1}\)</span> on <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>. Since <span class="math-tex" data-type="tex">\(E_k\left(a\right)=0\)</span>, we obtain a number <span class="math-tex" data-type="tex">\(u\in\left]a,x\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{E_k\left(x\right)}{\left(x-a\right)^{k+1}}=\frac{E_k\left(x\right)-E_k\left(a\right)}{\left(x-a\right)^{k+1}-\left(a-a\right)^{k+1}}=\frac{E_k^\prime\left(u\right)}{\left(k+1\right)\left(u-a\right)^{k}}\,.
+\]
+</div>
+<p>Now,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+E_k^\prime\left(u\right)&=\left.\frac{\mathrm{d}\kern-0.1pt\hphantom{t}}{\mathrm{d}\kern-0.1pt t}\left(f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)-\frac{f^{\prime\prime}\left(a\right)}{2}\left(t-a\right)^2-\cdots-\frac{f^{\left(k\right)}\left(a\right)}{k!}\left(t-a\right)^k\right)\right|_{t=u}\\
+&=f^\prime\left(t\right)-f^\prime\left(a\right)-f^{\prime\prime}\left(a\right)\left(u-a\right)-\cdots-\frac{f^{\left(k\right)}\left(a\right)}{\left(k-1\right)!}\left(u-a\right)^{k-1}\,.
+\end{aligned}
+\]
+</div>
+<p>This last expression is just <span class="math-tex" data-type="tex">\(E_{k-1}\left(u\right)\)</span> for the function <span class="math-tex" data-type="tex">\(f^\prime\)</span> instead of <span class="math-tex" data-type="tex">\(f\)</span>. By the induction assumption it is equal to</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{\left(f^\prime\right)^{\left(k\right)}\left(s\right)}{k!}\left(u-a\right)^k=\frac{f^{\left(k+1\right)}\left(s\right)}{k!}\left(u-a\right)^k
+\]
+</div>
+<p>for some <span class="math-tex" data-type="tex">\(s\)</span> between <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(u\)</span>. Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+E_k\left(x\right)=\frac{f^{\left(k+1\right)}\left(s\right)}{\left(k+1\right)!}\left(x-a\right)^{k+1}\,.
+\]
+</div>
+<p>We have shown that the case <span class="math-tex" data-type="tex">\(n=k\)</span> of Taylor’s Theorem is true if the case <span class="math-tex" data-type="tex">\(n=k-1\)</span> is true, and the inductive proof is complete.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 22</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)=0\)</span> and <span class="math-tex" data-type="tex">\(f^{\prime\prime}\left(x\right) &gt;0\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Prove that</p>
+<div class="math-tex" data-type="equation">
+\[
+\operatorname{Arcsin}\alpha+\operatorname{Arcsin}\beta=\operatorname{Arcsin}\left(\alpha\sqrt{1-\beta^2}+\beta\sqrt{1-\alpha^2}\right)\,,
+\]
+</div>
+<p>indicating any restrictions on <span class="math-tex" data-type="tex">\(\alpha\)</span> and <span class="math-tex" data-type="tex">\(\beta\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> be integrable on an interval containing the points <span class="math-tex" data-type="tex">\(a\)</span>, <span class="math-tex" data-type="tex">\(b\)</span>, and <span class="math-tex" data-type="tex">\(c\)</span>. Then</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is bounded on both <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[b,c\right]\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,c\right]\)</span>. In this proof we will decorate lower and upper sums so that it will be clear which intervals we are dealing with.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>.</p>
+<p>There exists partitions <span class="math-tex" data-type="tex">\(P_1\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(P_2\)</span> of <span class="math-tex" data-type="tex">\(\left[b,c\right]\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+U_a^b\left(f,P_1\right)-L_a^b\left(f,P_1\right)&lt;\frac{\varepsilon}{2}\quad\textrm{and}\quad U_b^c\left(f,P_2\right)-L_b^c\left(f,P_2\right)&lt;\frac{\varepsilon}{2}\,.
+\]
+</div>
+<p>The set <span class="math-tex" data-type="tex">\(P=P_1\cup P_2\)</span> is a partition of <span class="math-tex" data-type="tex">\(\left[a,c\right]\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+U_a^c\left(f,P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\quad\textrm{and}\quad L_a^c\left(f,P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\,.
+\]
+</div>
+<p>It follows that</p>
+<div class="math-tex" data-type="equation">
+\[
+U_a^c\left(f,P\right)-L_a^c\left(f,P\right)&lt;\varepsilon\,,
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,c\right]\)</span>.</p>
+<p>Since</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
+&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+\end{aligned}
+\]
+</div>
+<p>and</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
+&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+\end{aligned}
+\]
+</div>
+<p>are true for all <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 23</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(g\)</span> is a differentiable function on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> that satisfies <span class="math-tex" data-type="tex">\(g\left(a\right)=A\)</span> and <span class="math-tex" data-type="tex">\(g\left(b\right)=B\)</span>. Also suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the range of <span class="math-tex" data-type="tex">\(g\)</span>. Then</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_A^B f^\prime\left(u\right)\,\mathrm{d}\kern-0.5pt u\,.
+\]
+</div>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[-\uppi,\uppi\right]\)</span>, show that the minimum value of</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_{-\uppi}^\uppi\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d\kern-0.5pt x
+\]
+</div>
+<p>occurs when</p>
+<div class="math-tex" data-type="equation">
+\[
+a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d\kern-0.5pt x
+\]
+</div>
+<p>(Bring <span class="math-tex" data-type="tex">\(a\)</span> outside the integral sign, obtaining a quadratic expression in <span class="math-tex" data-type="tex">\(a\)</span>.)</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<div data-type="theorem">
+<h1>&nbsp;(Heine-Borel Theorem)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+</div>
+<p>This theorem is used in the proof of the following theorem.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon&gt;0\)</span>.</p>
+<p>For each <span class="math-tex" data-type="tex">\(x \in \left[a, b\right]\)</span>, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(I_x=\left]x-\delta_x, x+\delta_x\right[\)</span> such that for all <span class="math-tex" data-type="tex">\(y \in I_x \cap \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x\right)\right| &lt; \frac{\varepsilon}{2\left(b-a\right)}\)</span>.</p>
+<p>The set of all such open intervals <span class="math-tex" data-type="tex">\(I_x\)</span> forms an open cover of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>By the Heine-Borel theorem there exists a finite subcover such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}\)</span>.</p>
+<p>Now, create a partition <span class="math-tex" data-type="tex">\(P\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> using the endpoints of these intervals that lie within <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. Specifically, our partition points will be: <span class="math-tex" data-type="tex">\(a = y_0 &lt; y_1 &lt; y_2 &lt; \dots &lt; y_m = b\)</span>.</p>
+<p>Consider any subinterval <span class="math-tex" data-type="tex">\(\left[y_{j-1},y_j\right]\)</span> in this partition.</p>
+<p>Since the function is continuous on all closed subintervals of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, we have by the Extreme-value theorem <span class="math-tex" data-type="tex">\(M_j = \max\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\)</span> and <span class="math-tex" data-type="tex">\(m_j = \min\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\)</span>.</p>
+<p>Since this subinterval is entirely contained within at least one of our original open intervals <span class="math-tex" data-type="tex">\(I_{x_i}\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+M_j-m_j = \left(M_j-x_i\right) + \left(x_i-m_j\right) &lt; \frac{\varepsilon}{2\left(b-a\right)} + \frac{\varepsilon}{2\left(b-a\right)}=\frac{\varepsilon}{\left(b-a\right)}\,.
+\]
+</div>
+<p>Calculate the difference between the upper and lower Riemann sums for this partition:</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f, P\right)-L\left(f, P\right)=\sum_{j=1}^m\left(M_j-m_j\right)\left(x_j-x_{j-1}\right)&lt;\frac{\varepsilon}{\left(b-a\right)}\sum_{j=1}^m\left(x_j-x_{j-1}\right)=\varepsilon\,.
+\]
+</div>
+<p>By the Darboux’s Integrability condition, <span class="math-tex" data-type="tex">\(f\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 24</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>The arc length <span class="math-tex" data-type="tex">\(s\)</span> of the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> from <span class="math-tex" data-type="tex">\(x=a\)</span> to <span class="math-tex" data-type="tex">\(x=b\)</span> is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x=\int_a^b\sqrt{1+\left(\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Use logarithmic differentiation to find <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> for each of the following.</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)=\left(1+x\right)\left(1+ℯ^{x^2}\right)\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle f\left(x\right)=\left(\sin x\right)^{\cos x}+\left(\cos x\right)^{\sin x}\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> be integrable on an interval containing the points <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span>. Then</p>
+<div class="math-tex" data-type="equation">
+\[
+\displaystyle\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon > 0\)</span>.</p>
+<p>By the Darboux condition of integrability, there are partitions <span class="math-tex" data-type="tex">\(P_1\)</span> and <span class="math-tex" data-type="tex">\(P_2\)</span> of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f,P_1\right)-L\left(f,P_1\right)&lt;\frac{\varepsilon}{2}\quad\textrm{and}\quad U\left(g,P_2\right)-L\left(g,P_2\right)&lt;\frac{\varepsilon}{2}\,.
+\]
+</div>
+<p>If <span class="math-tex" data-type="tex">\(P=P_1\cup P_2\)</span>, then</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{2}\quad\textrm{and}\quad U\left(g,P\right)-L\left(g,P\right)&lt;\frac{\varepsilon}{2}\,.
+\]
+</div>
+<p>For any interval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\in\left[a,b\right]\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}+\inf\left\{g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}&\le\inf\left\{f\left(x\right)+g\left(x\right)\mid x\in\left[x_{i-1},x_i\right]\right\}\textrm{ and}\\
+\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}+\sup\left\{g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}&\ge\sup\left\{f\left(x\right)+g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
+\end{aligned}
+\]
+</div>
+<p>It follows that</p>
+<div class="math-tex" data-type="equation">
+\[
+L\left(f,P\right)+ L\left(g,P\right)\le L\left(f+g,P\right)\quad\textrm{and}\quad U\left(f,P\right)+ U\left(g,P\right)\ge U\left(f+g,P\right)\,.
+\]
+</div>
+<p>Therefore,</p>
+<div class="math-tex" data-type="equation">
+\[
+U\left(f+g,P\right)-L\left(f+g,P\right)\le U\left(f,P\right)-L\left(f,P\right)+ U\left(g,P\right)-L\left(g,P\right)&lt;\varepsilon
+\]
+</div>
+<p>This shows that <span class="math-tex" data-type="tex">\(f+g\)</span> is integrable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Since</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I^\star\left(f+g\right)\le U\left(f+g,P\right)\le U\left(f,P\right)+ U\left(g,P\right)\\
+&&lt;L\left(f,P\right)+ L\left(g,P\right)+\varepsilon\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+\end{aligned}
+\]
+</div>
+<p>and</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
+&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+\end{aligned}
+\]
+</div>
+<p>are true for all <span class="math-tex" data-type="tex">\(\varepsilon\)</span>, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 25</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Prove the integrability of a constant times an integrable function</p>
+<div class="math-tex" data-type="equation">
+\[
+\displaystyle\int_a^b\left(Af\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\]
+</div>
+<p>Hint: consider the cases <span class="math-tex" data-type="tex">\(A\)</span> positive and negative.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Find the following limits by l’Hôpital’s Rule.</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0}\left(1-x\right)^\frac{1}{x}\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to \frac{\uppi}{4}}\left(\tan x\right)^{\tan 2x}\,.\)</span></p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0}\left(\cos x\right)^\frac{1}{x^2}\,.\)</span></p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
+<ol>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} f\left(x\right)=lim_{x\to a^+} g\left(x\right)=0\)</span> and</p>
+</li>
+<li>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
+</li>
+</ol>
+<p>Then</p>
+<div class="math-tex" data-type="equation">
+\[
+lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Define</p>
+<div class="math-tex" data-type="equation">
+\[
+F\left(x\right)=\begin{cases}
+	f\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\quad\textrm{and}\quad
+G\left(x\right)=\begin{cases}
+	g\left(x\right)&\textrm{if }a&lt;x&ltb;\\
+	0&\textrm{if }x=a
+\end{cases}\,.
+\]
+</div>
+<p>Then, <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a,x\right]\)</span>and differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,x\right[\)</span> for every <span class="math-tex" data-type="tex">\(x\in \left]a,b\right[\)</span>.</p>
+<p>By the Generalized Mean-Value Theorem there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,x\right[\)</span> such that</p>
+<div class="math-tex" data-type="equation">
+\[
+\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(a&lt;c&lt;x\)</span>, if <span class="math-tex" data-type="tex">\(x\to a^+\)</span>, then necessarily <span class="math-tex" data-type="tex">\(c\to a^+\)</span>, so we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=\lim_{c\to a^+}\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}=L\,.
+\]
+</div>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 26</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is a continuous function at the point <span class="math-tex" data-type="tex">\(L\)</span> and if <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to c}g\left(x\right)=L\)</span>, then we have</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{x\to c}f\left(g\left(x\right)\right)=f\left(L\right)=f\left(\lim_{x\to c}g\left(x\right)\right)\,.
+\]
+</div>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Find all continuous functions <span class="math-tex" data-type="tex">\(f\)</span> satisfying</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_0^{x^2}f\left(x\right)\,\mathrm d\kern-0.5pt x=1-ℯ^{2x^2}\,.
+\]
+</div>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(f\left(u\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span>, and <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, then the composite function <span class="math-tex" data-type="tex">\(f\circ g\left(x\right)=f\left(g\left(x\right)\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at the point <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span> and that <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Let the function <span class="math-tex" data-type="tex">\(E\left(k\right)\)</span> be defined by</p>
+<div class="math-tex" data-type="equation">
+\[
+E\left(k\right)=\begin{cases}
+0&\textrm{if }k=0\,.\\
+\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+\end{cases}
+\]
+</div>
+<p>By the definition of derivative</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+\]
+</div>
+<p>so <span class="math-tex" data-type="tex">\(E\left(k\right)\)</span> is continuous at <span class="math-tex" data-type="tex">\(k=0\)</span>. Also, whether <span class="math-tex" data-type="tex">\(k=0\)</span> or not, we have</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+\]
+</div>
+<p>Now put <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(k=g\left(x+h\right)-g\left(x\right)\)</span>, so that <span class="math-tex" data-type="tex">\(u+k=g\left(x+h\right)\)</span>, and obtain</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+\]
+</div>
+<p>Also, <span class="math-tex" data-type="tex">\(g\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, so</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}k=\lim_{h\to 0}\left(g\left(x+h\right)-g\left(x\right)\right)=0\,.
+\]
+</div>
+<p>Since <span class="math-tex" data-type="tex">\(E\)</span> is continuous at <span class="math-tex" data-type="tex">\(0\)</span>,</p>
+<div class="math-tex" data-type="equation">
+\[
+\lim_{h\to 0}E\left(k\right)=\lim_{k\to 0}E\left(k\right)=E\left(0\right)=0\,.
+\]
+</div>
+<p>Hence,</p>
+<div class="math-tex" data-type="equation">
+\[
+\begin{aligned}
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+&= \left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+\end{aligned}
+\]
+</div>
+<p>which was to be proved.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 27</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(k\)</span> is a constant, then <span class="math-tex" data-type="tex">\(\lim_{x\to a}kf\left(x\right)=kL\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Find all continuous functions <span class="math-tex" data-type="tex">\(f\)</span> satisfying</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_0^xf\left(t\right)\frac{t}{1+t^2}\,\mathrm d\kern-0.5pt t=\left(f\left(x\right)\right)^2\,.
+\]
+</div>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(f\)</span> be a continuous function defined on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. If <span class="math-tex" data-type="tex">\(f\left(a\right)&lt;0\)</span> and <span class="math-tex" data-type="tex">\(f\left(b\right)&gt;0\)</span>, then there exists <span class="math-tex" data-type="tex">\(c\in\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(f\left(c\right)=0\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by contradiction)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]=\left[a,b\right]\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(\displaystyle f\left(\frac{a_0+b_0}{2}\right)=0\)</span>, we are done. Otherwise, <span class="math-tex" data-type="tex">\(f\)</span> changes sign on either <span class="math-tex" data-type="tex">\(\displaystyle\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\displaystyle\left[\frac{a_0+b_0}{2},b_0\right]\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(I_1=\left[a_1, b_1\right]\)</span> be the subinterval on which <span class="math-tex" data-type="tex">\(f\)</span> changes sign and repeat.</p>
+<p>By the Nested Intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{c\right\}\)</span>, where <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(f\left(c\right)&gt;0\)</span>. By the Aura theorem, <span class="math-tex" data-type="tex">\(f\)</span> must be positive on an open interval containing <span class="math-tex" data-type="tex">\(c\)</span>. Since <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}\)</span>, by the Capture theorem this open interval must contain some <span class="math-tex" data-type="tex">\(a_m\)</span>. But <span class="math-tex" data-type="tex">\(f\left(a_m\right)&lt;0\)</span> which is a contradiction.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(f\left(c\right)&lt;0\)</span>. By the Aura theorem, <span class="math-tex" data-type="tex">\(f\)</span> must be negative on an open interval containing <span class="math-tex" data-type="tex">\(c\)</span>. Since <span class="math-tex" data-type="tex">\(c=\inf\left\{b_n\right\}\)</span>, by the Capture theorem this open interval must contain some <span class="math-tex" data-type="tex">\(b_m\)</span>. But <span class="math-tex" data-type="tex">\(f\left(b_m\right)&gt;0\)</span> which is a contradiction.</p>
+<p>Hence, <span class="math-tex" data-type="tex">\(f\left(c\right)=0\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 28</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span>. If <span class="math-tex" data-type="tex">\(A\)</span> is bounded below, than any open interval containing <span class="math-tex" data-type="tex">\(\inf A\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Suppose that <span class="math-tex" data-type="tex">\(f^{\prime\prime}\)</span> is continuous and that</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_0^\uppi\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d\kern-0.5pt x=2\,.
+\]
+</div>
+<p>Given that <span class="math-tex" data-type="tex">\(f\left(\uppi\right) = 1\)</span>, compute <span class="math-tex" data-type="tex">\(f\left(0\right)\)</span>.</p>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+<div data-type="proof">
+<h1>&nbsp;(by bisection and contradiction)</h1>
+<p>Suppose that no finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span> covers <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(I_0=\left[a,b\right]=\left[a_0,b_0\right]\)</span>.</p>
+<p>At least one of the intervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> cannot be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>. If both could be covered by finite subsets, their union would cover <span class="math-tex" data-type="tex">\(I_0\)</span>.</p>
+<p>Let the interval that can’t be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span> be <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
+<p>Continuing this way, we obtain a sequence of closed intervals <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span> satisfying the hypotheses of the nested intervals theorem, where each <span class="math-tex" data-type="tex">\(I_n\)</span> can’t be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>.</p>
+<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{x\right\}\)</span> where <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> is covered by the union of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(\left]c_i, d_i\right[\)</span> such that <span class="math-tex" data-type="tex">\(x \in \left]c_i, d_i\right[\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\left]c_i, d_i\right[\)</span> is open, there exists an <span class="math-tex" data-type="tex">\(\delta &gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\in \bigcap_{n\in ℕ}I_n\)</span>, there exists <span class="math-tex" data-type="tex">\(N\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(I_N\subset\left]x-\delta, x+\delta\right[\)</span> by the extension of the Capture theorem.</p>
+<p>This means that for <span class="math-tex" data-type="tex">\(n\ge N\)</span>, <span class="math-tex" data-type="tex">\(I_n \subset \left]c_i, d_i\right[\)</span>, contradicting our assumption that no <span class="math-tex" data-type="tex">\(I_n\)</span> can be covered by a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span>.</p>
+<p>Therefore, our initial assumption must be false, and there must exist a finite subset of <span class="math-tex" data-type="tex">\(\mathcal O\)</span> that covers <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 29</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>Let <span class="math-tex" data-type="tex">\(a&gt;0\)</span> and <span class="math-tex" data-type="tex">\(S\)</span> a set of real numbers. Show that <span class="math-tex" data-type="tex">\(\inf aS=a\inf S\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<ol>
+<li>
+<p>Prove that</p>
+<div class="math-tex" data-type="equation">
+\[
+\int_a^bf\left(x\right)\,\mathrm d\kern-0.5pt x=\int_a^bf\left(a+b-x\right)\,\mathrm d\kern-0.5pt x
+\]
+</div>
+</li>
+<li>
+<p>The graph of <span class="math-tex" data-type="tex">\(f(x) = 1/x\)</span>, <span class="math-tex" data-type="tex">\(x \ge 1\)</span> is revolved around the horizontal axis.</p>
+<p>(a) Find the volume of the enclosed “infinite trumpet.”<br/>(b) Show that the surface area is infinite.</p>
+<p>Suppose that we fill up the trumpet with the finite amount of paint found in part (a). It would seem that we have thereby coated the infinite inside surface area with only a finite amount of paint. How is this possible?</p>
+</li>
+</ol>
+<section data-type="sect1" class="pagebreak" >
+<h1>Explain the proof!</h1>
+<div data-type="theorem">
+<h1>&nbsp;(Heine-Borel Theorem)</h1>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+</div>
+<p>This theorem is used in the proof of the following theorem.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<div data-type="proof">
+<h1></h1>
+<p>For each <span class="math-tex" data-type="tex">\(x \in \left[a, b\right]\)</span>, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(I_x=\left]x-\delta_x, x+\delta_x\right[\)</span> such that for all <span class="math-tex" data-type="tex">\(y \in I_x \cap \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x\right)\right| &lt; 1\)</span>.</p>
+<p>The set of all such open intervals <span class="math-tex" data-type="tex">\(I_x\)</span> forms an open cover of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>By the Heine-Borel theorem there exists a finite subcover such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}\)</span>.</p>
+<p>For any point <span class="math-tex" data-type="tex">\(y \in \left[a, b\right]\)</span>, <span class="math-tex" data-type="tex">\(y\)</span> must be in at least one of the intervals <span class="math-tex" data-type="tex">\(I_{x_i}=\left]x_i-\delta_{x_i}, x_i+\delta_{x_i}\right[\)</span>. Let’s say <span class="math-tex" data-type="tex">\(y\in\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[\)</span>.</p>
+<p>By the property of the open interval <span class="math-tex" data-type="tex">\(\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[\)</span>, we know that <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x_j\right)\right| &lt; 1\)</span>, i.e. <span class="math-tex" data-type="tex">\(f\left(y\right) &lt; f\left(x_j\right) + 1\)</span> and <span class="math-tex" data-type="tex">\(f\left(y\right) &gt; f\left(x_j\right) - 1\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(M = \max\left\{f\left(x_i\right) |0\le i\le n\right\}+ 1\)</span> and <span class="math-tex" data-type="tex">\(m = \min\left\{f\left(x_i\right) |0\le i\le n\right\}- 1\)</span>.</p>
+<p>We can conclude that for all <span class="math-tex" data-type="tex">\(y \in \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(m &lt; f\left(y\right) &lt; M\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, with <span class="math-tex" data-type="tex">\(m\)</span> as a lower bound and <span class="math-tex" data-type="tex">\(M\)</span> as an upper bound.</p>
+</div>
+<section data-type="unnumbered" class="pagereset" >
+<h1>Exam: ES111 Calculus – Series 30</h1>
+<p>Promotion: ………………………………………………………………………………………</p>
+<p>First Name: ………………………………………………………………………………………</p>
+<p>Last Name: ………………………………………………………………………………………</p>
+<section data-type="sect1">
+<h1>Create a proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=L\)</span> and <span class="math-tex" data-type="tex">\(\lim_{x\to a}f\left(x\right)=M\)</span>, then <span class="math-tex" data-type="tex">\(L=M\)</span>.</p>
+<section data-type="sect1">
+<h1>Do some calculations!</h1>
+<p>Let</p>
+<div class="math-tex" data-type="equation">
+\[
+f\left(x\right) = \begin{cases}
+\frac{ℯ^x-1}{x}\,,&x\ne 0\\
+1\,,&x=0\,.
+\end{cases}
+\]
+</div>
+<ol>
+<li>
+<p>Find the Taylor polynomial of degree <span class="math-tex" data-type="tex">\(n\)</span> for <span class="math-tex" data-type="tex">\(f\)</span> at <span class="math-tex" data-type="tex">\(0\)</span>, compute <span class="math-tex" data-type="tex">\(f^{\left(k\right)}\left(0\right)\)</span>, and give an estimate for the remainder term <span class="math-tex" data-type="tex">\(E_n\left(x\right)\)</span>.</p>
+</li>
+<li>
+<p>Compute <span class="math-tex" data-type="tex">\(\displaystyle\int_0^1f\left(x\right)\,\mathrm d\kern-0.5pt x\)</span>, with an error of less than <span class="math-tex" data-type="tex">\(10^{-4}\)</span>.</p>
+</li>
+</ol>
+<section data-type="sect1">
+<h1>Explain the proof!</h1>
+<p>If <span class="math-tex" data-type="tex">\(\forall n\in ℕ\)</span>, we have a closed interval</p>
+<div class="math-tex" data-type="equation">
+\[
+I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a_n\le x\le b_n\right\}
+\]
+</div>
+<p>such that</p>
+<div class="math-tex" data-type="equation">
+\[
+a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\,,
+\]
+</div>
+<p>then</p>
+<div class="math-tex" data-type="equation">
+\[
+\bigcap_{n\in ℕ}I_n\ne\emptyset
+\]
+</div>
+<p>and if, in addition,</p>
+<div class="math-tex" data-type="equation">
+\[
+\inf\left\{b_n-a_n\right\}=0\,,
+\]
+</div>
+<p>then</p>
+<div class="math-tex" data-type="equation">
+\[
+\bigcap_{n\in ℕ}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
+\]
+</div>
+<div data-type="proof">
+<h1></h1>
+<p>We split the proof in four parts.</p>
+<ul>
+<li>
+<p>We prove first that <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n\ne\emptyset\)</span>.</p>
+<p>Since the intervals are nested, <span class="math-tex" data-type="tex">\(a_m \le b_n\)</span> for all <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span>. This shows that every <span class="math-tex" data-type="tex">\(b_n\)</span> is an upper bound for the set <span class="math-tex" data-type="tex">\(\left\{a_m\right\}\)</span> and every <span class="math-tex" data-type="tex">\(a_m\)</span> is a lower bound for the set <span class="math-tex" data-type="tex">\(\left\{b_n\right\}\)</span>. Let <span class="math-tex" data-type="tex">\(a = \sup\{a_n\}\)</span> and <span class="math-tex" data-type="tex">\(b = \inf\{b_n\}\)</span>.</p>
+<p>By definition, <span class="math-tex" data-type="tex">\(a_n \le a\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>, and since <span class="math-tex" data-type="tex">\(b_n\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(\left\{a_n\right\}\)</span>, we have <span class="math-tex" data-type="tex">\(a_n\le a\le b_n\)</span>, which says that <span class="math-tex" data-type="tex">\(a\in I_n\)</span> for every <span class="math-tex" data-type="tex">\(n\)</span> and so <span class="math-tex" data-type="tex">\(a\in\bigcap_{n\in ℕ}I_n\)</span>.</p>
+<p>Similarly, <span class="math-tex" data-type="tex">\(b\in\bigcap_{n\in ℕ}I_n\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n\ne\emptyset\)</span></p>
+</li>
+<li>
+<p>Secondly, we prove by contradiction that <span class="math-tex" data-type="tex">\(a\le b\)</span>.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(a&gt;b\)</span>. We have <span class="math-tex" data-type="tex">\(b&lt;\frac{a+b}{2}&lt;a\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\frac{a+b}{2}&lt;a\)</span>, <span class="math-tex" data-type="tex">\(\frac{a+b}{2}\)</span> is not a upper bound for <span class="math-tex" data-type="tex">\(\left\{a_n\right\}\)</span>, so there exists some <span class="math-tex" data-type="tex">\(a_k &gt; \frac{a+b}{2}\)</span>.</p>
+<p>Similarly, since <span class="math-tex" data-type="tex">\(b&lt;\frac{a+b}{2}\)</span>, <span class="math-tex" data-type="tex">\(\frac{a+b}{2}\)</span> is not a lower bound for <span class="math-tex" data-type="tex">\(\left\{b_n\right\}\)</span>, so there exists some <span class="math-tex" data-type="tex">\(b_l &lt; \frac{a+b}{2}\)</span>.</p>
+<p>But then <span class="math-tex" data-type="tex">\(b_l &lt; a_k\)</span> which is a contradiction since <span class="math-tex" data-type="tex">\(a_m \le b_n\)</span> for all <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(a\le b\)</span>.</p>
+</li>
+<li>
+<p>Given the condition <span class="math-tex" data-type="tex">\(\inf\left\{b_n-a_n\right\}=0\)</span>, we prove that <span class="math-tex" data-type="tex">\(a=b\)</span>.</p>
+<p>Note that <span class="math-tex" data-type="tex">\(a_n\le a\le b\le b_n\)</span> implies <span class="math-tex" data-type="tex">\(0\le b-a\le b_n-a_n\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>, so <span class="math-tex" data-type="tex">\(b-a\)</span> is a lower bound for <span class="math-tex" data-type="tex">\(\left\{b_n-a_n\right\}\)</span> and <span class="math-tex" data-type="tex">\(0\le b-a\le\inf\left\{b_n-a_n\right\}=0\)</span></p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(a=b\)</span>.</p>
+</li>
+<li>
+<p>Finally, we prove that <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{a\right\}\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(y\in\bigcap_{n\in ℕ}I_n\)</span>. Then, <span class="math-tex" data-type="tex">\(a_n\le y\le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>The first inequality implies that <span class="math-tex" data-type="tex">\(y\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(a_n\)</span>, hence <span class="math-tex" data-type="tex">\(a\le y\)</span>.</p>
+<p>The second inequality implies that <span class="math-tex" data-type="tex">\(y\)</span> is an lower bound for <span class="math-tex" data-type="tex">\(b_n\)</span>, hence <span class="math-tex" data-type="tex">\(y\le b=a\)</span>.</p>
+<p>Combining both inequalities <span class="math-tex" data-type="tex">\(a\le y\le a\)</span>, we have <span class="math-tex" data-type="tex">\(y=a\)</span>, so <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n \subset \left\{a\right\}\)</span>.</p>
+<p>We also have <span class="math-tex" data-type="tex">\(\left\{a\right\} \subset \bigcap_{n\in ℕ}I_n\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{a\right\}\)</span>.</p>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+</body>
+</html>

@@ -475,6 +475,7 @@ function tohtml(file::String)
     ast = open(PARSER, file)
     meta = frontmatter(ast)
     body = ""
+    get!(meta, "files", String[])
     pushfirst!(meta["files"], file)
     for file in meta["files"]
         body *= join(_tohtml(joinpath(path, file)), "\n") * "\n"

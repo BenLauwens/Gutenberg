@@ -543,7 +543,7 @@ We need following lemma.
 	Prove the second statement.
 
 !!! theorem "The rational numbers are dense in the real numbers"
-	Let ``x\in ℝ`` and ``\varepsilon\in ℝ^+``. The interval ``\left]x-\varepsilon,x+\varepsilon\right[`` contains a rational number.
+	Let ``x\in ℝ`` and ``\varepsilon\in ℝ^+``. The interval ``\left]x-\delta,x+\delta\right[`` contains a rational number.
 
 !!! proof "by bisection"
     If ``x`` is rational we are done, so let ``x`` be irrational.
@@ -556,9 +556,44 @@ We need following lemma.
 
     By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{y\right\}`` where ``y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``. Since ``x\in I_n`` for all ``n\in ℕ``, ``y=x``.
 
-    Since ``x=\sup\left\{a_n\right\}``, by the previous lemma, the open interval ``\left]x-\varepsilon,x+\varepsilon\right[`` contains ``a_m\in ℚ`` for some ``m\in ℕ``.
+    Since ``x=\sup\left\{a_n\right\}``, by the previous lemma, the open interval ``\left]x-\delta,x+\delta\right[`` contains ``a_m\in ℚ`` for some ``m\in ℕ``.
 
 The practical use of this theorem is the possibility to approximate with a given tolerance a real number by a rational number, eg. in computer science *floating point* values are rational approximations of real numbers.
+
+Something stronger than the Capture theorem is actually true: for ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}`` the open interval ``\left]x-\delta,x+\delta\right[`` actually contains an entire interval ``I_N``, for some ``N``. To see this, note that there are tree possibilities when ``a_k\in\left]x-\delta,x+\delta\right[`` and ``b_l\in\left]x-\delta,x+\delta\right[``:
+- if ``k=l``, then the open interval contains ``I_k=I_l``;
+- if ``k&lt; l``, then the open interval contains ``a_k\le a_{k+1}\le \dots a_l\le b_l``, so the open interval contains ``I_l``;
+- if ``k&gt; l``, then the open interval contains ``a_k\le b_k\le \dots \le \dots b_{l+1}\le b_l``, so the open interval contains ``I_k``.
+
+!!! theorem "Heine-Borel Theorem"
+
+	Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+
+!!! proof "by bisection and contradiction"
+
+	Suppose that no finite subset of ``\mathcal O`` covers ``\left[a,b\right]``.
+
+	Let ``I_0=\left[a,b\right]=\left[a_0,b_0\right]``. 
+	
+	At least one of the intervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]`` cannot be covered by a finite subset of ``\mathcal O``. If both could be covered by finite subsets, their union would cover ``I_0``.
+
+	Let the interval that can't be covered by a finite subset of ``\mathcal O`` be ``I_1=\left[a_1,b_1\right]``.
+
+	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``\mathcal O``.
+
+	By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+
+	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``\mathcal O``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
+
+	Since ``\left]c_i, d_i\right[`` is open, there exists an ``\delta &gt;0`` such that ``\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[``.
+
+	Since ``x\in \bigcap_{n\in ℕ}I_n``, there exists ``N\in ℕ`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
+
+	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``\mathcal O``.
+
+	Therefore, our initial assumption must be false, and there must exist a finite subset of ``\mathcal O`` that covers ``\left[a,b\right]``.
+
+The Heine-Borel theorem let us replace an infinite set of open intervals with a finite set. Something that will be very useful in the next chapters.
 
 ## Functions, Cartesian Plane and Graphs
 

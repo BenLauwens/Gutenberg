@@ -269,8 +269,10 @@ If ``P`` is any partition of ``\left[a,b\right]`` and we create a new partition 
 
 	If ``S`` and ``T`` are sets of real numbers, and ``S\subset T``, then any lower bound (or upper bound) of ``T`` is also a lower bound (or upper bound) of ``S``. Hence, the greatest lower bound of ``S`` is at least as large as that of ``T``; and the least upper bound of ``S`` is no greater than that of ``T``.
 
-	Let ``P`` be a given partition of ``\left[a,b\right]`` and form a new partition ``P^\prime`` by adding one subdivision point to those of ``P``, say, the point ``k`` dividing the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` into two subintervals ``\left[x_{i-1},k\right]``and ``\left[x_{i-1},k\right]``. 
-	Let ``m_i``, ``m_i^\prime`` and ``m_i^{\prime\prime}`` be the greatest lower bounds of the sets of values of ``f\left(x\right)``  on the intervals ``\left[x_{i-1},x_i\right]``, ``\left[x_{i-1},k\right]``and ``\left[k,x_i\right]``, respectively. Then ``m_i\le m_i^\prime`` and ``m_i\le m_i^{\prime\prime}``. 
+	Let ``P`` be a given partition of ``\left[a,b\right]`` and form a new partition ``P^\prime`` by adding one subdivision point to those of ``P``, say, the point ``k`` dividing the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` into two subintervals ``\left[x_{i-1},k\right]``and ``\left[x_{i-1},k\right]``.
+
+	Let ``m_i``, ``m_i^\prime`` and ``m_i^{\prime\prime}`` be the greatest lower bounds of the sets of values of ``f\left(x\right)``  on the intervals ``\left[x_{i-1},x_i\right]``, ``\left[x_{i-1},k\right]``and ``\left[k,x_i\right]``, respectively. Then ``m_i\le m_i^\prime`` and ``m_i\le m_i^{\prime\prime}``.
+
 	Thus,
 
 	```math
@@ -303,11 +305,13 @@ The last theorem shows that the set of values of ``L\left(f, P\right)`` for fixe
 
 	``I_\star\le I^\star``.
 
-!!! proof "by contradiction"
+!!! proof
 
-	Let ``S`` and ``T`` be sets of real numbers, such that for any ``x\in S`` and any ``y\in T`` we have ``x\le y``. Because every ``x`` is a lower bound of ``T``,  we have ``x\le\inf T``.
+	Let ``S`` and ``T`` be sets of real numbers, such that for any ``x\in S`` and any ``y\in T`` we have ``x\le y``. 
+	
+	Because every ``x`` is a lower bound of ``T``,  we have ``x\le\inf T``.
 
-	Suppose ``\sup S &gt; \inf T``. ``\inf T`` cannot be an upper bound of ``S``, so there exists ``x^\prime\in S`` for which ``x^\prime &gt; \inf T``. This is impossible.
+	Because ``\inf T`` is an upper bound of ``S``, we have ``\sup S\le\inf T``.
 
 	Therefore,
 	
@@ -529,6 +533,38 @@ We are now in a position to prove that a continuous function is integrable.
 
 	Thus, ``f`` is integrable on ``\left[a,b\right]``.
 
+Alternative proof based on the Heine-Borel Theorem.
+
+!!! proof
+
+	Let ``\varepsilon&gt;0``.
+
+	For each ``x \in \left[a, b\right]``, since ``f`` is continuous at ``x``, there exists an open interval ``I_x=\left]x-\delta_x, x+\delta_x\right[`` such that for all ``y \in I_x \cap \left[a, b\right]`` we have ``\left|f\left(y\right) - f\left(x\right)\right| &lt; \frac{\varepsilon}{2\left(b-a\right)}``.
+
+	The set of all such open intervals ``I_x`` forms an open cover of ``\left[a,b\right]``.
+
+    By the Heine-Borel theorem there exists a finite subcover such that ``\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}``.
+
+	Now, create a partition ``P`` of ``\left[a,b\right]`` using the endpoints of these intervals that lie within ``\left[a,b\right]``. Specifically, our partition points will be: ``a = y_0 &lt; y_1 &lt; y_2 &lt; \dots &lt; y_m = b``.
+
+	Consider any subinterval ``\left[y_{j-1},y_j\right]`` in this partition. 
+
+	Since the function is continuous on all closed subintervals of ``\left[a,b\right]``, we have by the Extreme-value theorem ``M_j = \max\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}`` and ``m_j = \min\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}``.
+
+	Since this subinterval is entirely contained within at least one of our original open intervals ``I_{x_i}``, we have 
+
+	```math
+	M_j-m_j = \left(M_j-x_i\right) + \left(x_i-m_j\right) &lt; \frac{\varepsilon}{2\left(b-a\right)} + \frac{\varepsilon}{2\left(b-a\right)}=\frac{\varepsilon}{\left(b-a\right)}\,.
+	```
+
+	Calculate the difference between the upper and lower Riemann sums for this partition:
+
+	```math
+	U\left(f, P\right)-L\left(f, P\right)=\sum_{j=1}^m\left(M_j-m_j\right)\left(x_j-x_{j-1}\right)&lt;\frac{\varepsilon}{\left(b-a\right)}\sum_{j=1}^m\left(x_j-x_{j-1}\right)=\varepsilon\,.
+	```
+
+	By the Darboux's Integrability condition, ``f`` is integrable on ``\left[a,b\right]``.
+
 ## Properties of the Definite Integral
 
 It is convenient to extend the definition of the definite integral ``\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x`` to allow ``a=b`` and ``a&gt;b`` as well as ``a&lt; b``. The extension still involves partitions ``P`` having ``x_0=a`` and ``x_n=b`` with intermediate points occurring in order between these end points, so that if ``a=b``, then we must have ``\Delta\kern-0.5pt x_i=0`` for every ``i``, and hence the integral is zero. If ``a&gt;b``, we have ``\Delta\kern-0.5pt x_i&lt; 0`` for each ``i``, so the integral will be negative for positive functions ``f`` and vice versa.
@@ -730,7 +766,7 @@ A simple but very useful result is the Mean-Value Theorem for integrals.
 	f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le M=f\left(u\right)\,.
 	```
 
-	By the Intermedidate-Value theorem, ``f\left(x\right)`` must take on every value between the two values ``f\left(l\right)`` and ``f\left(u\right)``. Hence, there is a number ``c`` between ``l`` and ``u`` such that
+	By the Intermediate-Value theorem, ``f\left(x\right)`` must take on every value between the two values ``f\left(l\right)`` and ``f\left(u\right)``. Hence, there is a number ``c`` between ``l`` and ``u`` such that
 
 	```math
 	f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.

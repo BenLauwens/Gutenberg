@@ -1638,19 +1638,6 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(a\)</span>, corresponding to <span class="math-tex" data-type="tex">\(\varepsilon =1&gt;0\)</span>, there exists <span class="math-tex" data-type="tex">\(\delta>0\)</span> such that <span class="math-tex" data-type="tex">\(\left|x-a\right|&lt;\delta\)</span> implies <span class="math-tex" data-type="tex">\(\left|f\left(x\right)-f\left(a\right)\right|&lt;1\)</span>.</p>
 <p>That is, <span class="math-tex" data-type="tex">\(x\in\left]a-\delta,a+\delta\right[\)</span> implies <span class="math-tex" data-type="tex">\(f\left(a\right)-1&lt;f\left(x\right)&lt;f\left(a\right)+1\)</span>, which shows that <span class="math-tex" data-type="tex">\(f\)</span> is bounded on the open interval <span class="math-tex" data-type="tex">\(\left]a-\delta,a+\delta\right[\)</span>.</p>
 </div>
-<p>As we have seen in the proof of the intermediate-value theorem, when our nested intervals <span class="math-tex" data-type="tex">\(I_n=\left[a_n,b_n\right]\)</span> arise from the bisection procedure the capture theorem implies that any open interval containing <span class="math-tex" data-type="tex">\(c\)</span> (where <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{c\right\}\)</span>) necessarily contains an <span class="math-tex" data-type="tex">\(a_k\)</span> and a <span class="math-tex" data-type="tex">\(b_l\)</span>. Something stronger is actually true: any open interval containing <span class="math-tex" data-type="tex">\(c\)</span> actually contains an entire interval <span class="math-tex" data-type="tex">\(I_N\)</span>, for some <span class="math-tex" data-type="tex">\(N\)</span>.</p>
-<p>To see this, note that there are tree possibilities:</p>
-<ul>
-<li>
-<p>if <span class="math-tex" data-type="tex">\(k=l\)</span>, then the open interval contains <span class="math-tex" data-type="tex">\(I_k\)</span>;</p>
-</li>
-<li>
-<p>if <span class="math-tex" data-type="tex">\(k&lt; l\)</span>, then the open interval contains <span class="math-tex" data-type="tex">\(a_k\le a_{k+1}\le \dots a_l\le b_l\)</span>, so the open interval contains <span class="math-tex" data-type="tex">\(I_l\)</span>;</p>
-</li>
-<li>
-<p>if  if <span class="math-tex" data-type="tex">\(k&gt; l\)</span>, then the open interval contains <span class="math-tex" data-type="tex">\(a_k\le b_k\le \dots \le \dots b_{l+1}\le b_l\)</span>, so the open interval contains <span class="math-tex" data-type="tex">\(I_k\)</span>.</p>
-</li>
-</ul>
 <div data-type="theorem">
 <h1>&nbsp;(Boundness theorem)</h1>
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is continous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
@@ -1661,8 +1648,21 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>Suppose <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> but not bounded. Then <span class="math-tex" data-type="tex">\(f\)</span> is either unbounded on <span class="math-tex" data-type="tex">\(\displaystyle \left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\displaystyle \left[\frac{a_0+b_0}{2},b_0\right]\)</span> (since, otherwise, <span class="math-tex" data-type="tex">\(f\)</span> would be bounded on their union and hence on all <span class="math-tex" data-type="tex">\(I_0\)</span>).</p>
 <p>Let <span class="math-tex" data-type="tex">\(I_1=\left[a_1, b_1\right]\)</span> be the subinterval on which <span class="math-tex" data-type="tex">\(f\)</span> is unbounded and repeat.</p>
 <p>By the Nested Intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{c\right\}\)</span>, where <span class="math-tex" data-type="tex">\(c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(c\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>. However, as we have seen, such an open interval contains one of the intervals <span class="math-tex" data-type="tex">\(I_N\)</span>, which is a contradiction since <span class="math-tex" data-type="tex">\(f\)</span> is unbounded on each <span class="math-tex" data-type="tex">\(I_n\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(c\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on some open interval containing <span class="math-tex" data-type="tex">\(c\)</span>. However, as we have seen by the extension of the Capture theorem, such an open interval contains one of the intervals <span class="math-tex" data-type="tex">\(I_N\)</span>, which is a contradiction since <span class="math-tex" data-type="tex">\(f\)</span> is unbounded on each <span class="math-tex" data-type="tex">\(I_n\)</span>.</p>
 <p>Hence, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+</div>
+<p>Alternative proof based on the Heine-Borel Theorem.</p>
+<div data-type="proof">
+<h1></h1>
+<p>For each <span class="math-tex" data-type="tex">\(x \in \left[a, b\right]\)</span>, since <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(I_x=\left]x-\delta_x, x+\delta_x\right[\)</span> such that for all <span class="math-tex" data-type="tex">\(y \in I_x \cap \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x\right)\right| &lt; 1\)</span>.</p>
+<p>The set of all such open intervals <span class="math-tex" data-type="tex">\(I_x\)</span> forms an open cover of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
+<p>By the Heine-Borel theorem there exists a finite subcover such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}\)</span>.</p>
+<p>For any point <span class="math-tex" data-type="tex">\(y \in \left[a, b\right]\)</span>, <span class="math-tex" data-type="tex">\(y\)</span> must be in at least one of the intervals <span class="math-tex" data-type="tex">\(I_{x_i}=\left]x_i-\delta_{x_i}, x_i+\delta_{x_i}\right[\)</span>. Let’s say <span class="math-tex" data-type="tex">\(y\in\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[\)</span>.</p>
+<p>By the property of the open interval <span class="math-tex" data-type="tex">\(\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[\)</span>, we know that <span class="math-tex" data-type="tex">\(\left|f\left(y\right) - f\left(x_j\right)\right| &lt; 1\)</span>, i.e. <span class="math-tex" data-type="tex">\(f\left(y\right) &lt; f\left(x_j\right) + 1\)</span> and <span class="math-tex" data-type="tex">\(f\left(y\right) &gt; f\left(x_j\right) - 1\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(M = \max\left\{f\left(x_i\right) |0\le i\le n\right\}+ 1\)</span> and <span class="math-tex" data-type="tex">\(m = \min\left\{f\left(x_i\right) |0\le i\le n\right\}- 1\)</span>.</p>
+<div id="tag"></div>
+<p>We can conclude that for all <span class="math-tex" data-type="tex">\(y \in \left[a, b\right]\)</span> we have <span class="math-tex" data-type="tex">\(m &lt; f\left(y\right) &lt; M\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, with <span class="math-tex" data-type="tex">\(m\)</span> as a lower bound and <span class="math-tex" data-type="tex">\(M\)</span> as an upper bound.</p>
 </div>
 <p>Finally, we can prove the Extreme-value theorem.</p>
 <div data-type="theorem">
@@ -1808,7 +1808,6 @@ f\left(x\right)=\frac{x^2-x}{x^2-1}=\frac{x\left(x-1\right)}{\left(x+1\right)\le
 <p>By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value <span class="math-tex" data-type="tex">\(m\)</span> and its maximum value <span class="math-tex" data-type="tex">\(M\)</span> , so its range is also a closed interval, <span class="math-tex" data-type="tex">\(\left[m,M\right]\)</span>.</p>
 <p>This is the reason why the graph of a function that is continuous on an interval cannot have any breaks. It must be <i>connected</i>, a single, unbroken curve with no jumps.</p>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

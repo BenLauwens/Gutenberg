@@ -1337,24 +1337,21 @@ To prove the extreme-value theorem, we will first show that a continuous functio
 We need the following lemma to prove the boundness property.
 
 !!! lemma
+
     If ``f`` is continuous at ``a``, then ``f`` is bounded on some open interval containing ``a``.
 
 !!! proof
+
     Since ``f`` is continuous at ``a``, corresponding to ``\varepsilon =1&gt;0``, there exists ``\delta>0`` such that ``\left|x-a\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(a\right)\right|&lt;1``.
 
     That is, ``x\in\left]a-\delta,a+\delta\right[`` implies ``f\left(a\right)-1&lt;f\left(x\right)&lt;f\left(a\right)+1``, which shows that ``f`` is bounded on the open interval ``\left]a-\delta,a+\delta\right[``.
 
-As we have seen in the proof of the intermediate-value theorem, when our nested intervals ``I_n=\left[a_n,b_n\right]`` arise from the bisection procedure the capture theorem implies that any open interval containing ``c`` (where ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``) necessarily contains an ``a_k`` and a ``b_l``. Something stronger is actually true: any open interval containing ``c`` actually contains an entire interval ``I_N``, for some ``N``.
-
-To see this, note that there are tree possibilities:
-- if ``k=l``, then the open interval contains ``I_k``;
-- if ``k&lt; l``, then the open interval contains ``a_k\le a_{k+1}\le \dots a_l\le b_l``, so the open interval contains ``I_l``;
-- if  if ``k&gt; l``, then the open interval contains ``a_k\le b_k\le \dots \le \dots b_{l+1}\le b_l``, so the open interval contains ``I_k``.
-
 !!! theorem "Boundness theorem"
+
     If ``f`` is continous on ``\left[a,b\right]``, then ``f`` is bounded on ``\left[a,b\right]``.
 
 !!! proof "by contradiction"
+
     Let ``I_0=\left[a_0, b_0\right]=\left[a,b\right]``.
 
     Suppose ``f`` is continuous on ``\left[a,b\right]`` but not bounded. Then ``f`` is either unbounded on ``\displaystyle \left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\displaystyle \left[\frac{a_0+b_0}{2},b_0\right]`` (since, otherwise, ``f`` would be bounded on their union and hence on all ``I_0``).
@@ -1363,9 +1360,29 @@ To see this, note that there are tree possibilities:
 
     By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
-    Since ``f`` is continuous at ``c``, ``f`` is bounded on some open interval containing ``c``. However, as we have seen, such an open interval contains one of the intervals ``I_N``, which is a contradiction since ``f`` is unbounded on each ``I_n``.
+    Since ``f`` is continuous at ``c``, ``f`` is bounded on some open interval containing ``c``. However, as we have seen by the extension of the Capture theorem, such an open interval contains one of the intervals ``I_N``, which is a contradiction since ``f`` is unbounded on each ``I_n``.
 
     Hence, ``f`` is bounded on ``\left[a,b\right]``.
+
+Alternative proof based on the Heine-Borel Theorem.
+
+!!! proof
+
+    For each ``x \in \left[a, b\right]``, since ``f`` is continuous at ``x``, there exists an open interval ``I_x=\left]x-\delta_x, x+\delta_x\right[`` such that for all ``y \in I_x \cap \left[a, b\right]`` we have ``\left|f\left(y\right) - f\left(x\right)\right| &lt; 1``.
+
+    The set of all such open intervals ``I_x`` forms an open cover of ``\left[a,b\right]``.
+
+    By the Heine-Borel theorem there exists a finite subcover such that ``\left[a,b\right]\subset\bigcup_{i=0}^nI_{x_i}``.
+
+    For any point ``y \in \left[a, b\right]``, ``y`` must be in at least one of the intervals ``I_{x_i}=\left]x_i-\delta_{x_i}, x_i+\delta_{x_i}\right[``. Let's say ``y\in\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[``.
+
+    By the property of the open interval ``\left]x_j-\delta_{x_j}, x_j+\delta_{x_j}\right[``, we know that ``\left|f\left(y\right) - f\left(x_j\right)\right| &lt; 1``, i.e. ``f\left(y\right) &lt; f\left(x_j\right) + 1`` and ``f\left(y\right) &gt; f\left(x_j\right) - 1``.
+
+    Let ``M = \max\left\{f\left(x_i\right) |0\le i\le n\right\}+ 1`` and ``m = \min\left\{f\left(x_i\right) |0\le i\le n\right\}- 1``.
+
+    We can conclude that for all ``y \in \left[a, b\right]`` we have ``m &lt; f\left(y\right) &lt; M``.
+
+    Therefore, ``f`` is bounded on ``\left[a,b\right]``, with ``m`` as a lower bound and ``M`` as an upper bound.
 
 Finally, we can prove the Extreme-value theorem.
 
