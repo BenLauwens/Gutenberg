@@ -130,7 +130,7 @@ Another common statement is of the form "``𝒫`` if and only if ``𝒬``". Such
 
 Their truth values are defined by following truth tables:
 
-| ``𝒫`` | ``𝒬`` |  | ``𝒫\implies 𝒬`` |  | ``\lnot 𝒫`` | ``\lnot 𝒫\vee 𝒬`` |  | ``𝒫\iff 𝒬`` |  | ``𝒬\implies 𝒫`` | ``\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)``  |
+| ``𝒫`` | ``𝒬`` |  | ``\left.𝒫\implies 𝒬\right.`` |  | ``\lnot 𝒫`` | ``\lnot 𝒫\vee 𝒬`` |  | ``𝒫\iff 𝒬`` |  | ``𝒬\implies 𝒫`` | ``\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)``  |
 | :-: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | ``T`` | ``T`` |  | ``T`` |  | ``F`` | ``T`` |  | ``T`` |  | ``T`` | ``T``  |
 | ``T`` | ``F`` |  | ``F`` |  | ``F`` | ``F`` |  | ``F`` |  | ``T`` | ``F``  |

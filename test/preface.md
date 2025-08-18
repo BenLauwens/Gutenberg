@@ -3,7 +3,7 @@
 
 ## Who are we?
 
-* Lecturer: LCL IMM Ben LAUWENS, PhD MScEng / D30.19 / [ben.lauwens@mil.be](mailto:ben.lauwens@mil.be)
+* Lecturer: COL IMM Ben LAUWENS, PhD MScEng / D30.19 / [ben.lauwens@mil.be](mailto:ben.lauwens@mil.be)
 * Assistant: Mr Indy VAN DEN BROECK, MSc
 
 ## Course

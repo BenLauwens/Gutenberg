@@ -369,7 +369,7 @@ section[data-type="unnumbered"] {
     counter-reset: sect1number equationnumber figurenumber theoremnumber;
 }
 
-nav>h1, section[data-type="preface"], section[data-type="unnumbered"]>h1 {
+nav>h1, section[data-type="preface"]>h1, section[data-type="unnumbered"]>h1 {
     font-size: 24pt;
     font-variant: small-caps;
     text-align: center;
