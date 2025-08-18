@@ -8,8 +8,8 @@
 
 ## Course
 
-* Theory: 22 Hr → 66 Hr
-* Exercises: 22 Hr 	→ 44 Hr
+* Theory: 24 Hr → 72 Hr
+* Exercises: 20 Hr 	→ 40 Hr
 
 ## Documentation
 
