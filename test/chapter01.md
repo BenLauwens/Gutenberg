@@ -130,7 +130,7 @@ Another common statement is of the form "``𝒫`` if and only if ``𝒬``". Such
 
 Their truth values are defined by following truth tables:
 
-| ``𝒫`` | ``𝒬`` |  | ``\left.𝒫\implies 𝒬\right.`` |  | ``\lnot 𝒫`` | ``\lnot 𝒫\vee 𝒬`` |  | ``𝒫\iff 𝒬`` |  | ``𝒬\implies 𝒫`` | ``\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)``  |
+| ``𝒫`` | ``𝒬`` |  | ``\left.𝒫\implies 𝒬\right.`` |  | ``\left.\lnot 𝒫\right.`` | ``\left.\lnot 𝒫\vee 𝒬\right.`` |  | ``\left.𝒫\iff 𝒬\right.`` |  | ``\left.𝒬\implies 𝒫\right.`` | ``\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)``  |
 | :-: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | ``T`` | ``T`` |  | ``T`` |  | ``F`` | ``T`` |  | ``T`` |  | ``T`` | ``T``  |
 | ``T`` | ``F`` |  | ``F`` |  | ``F`` | ``F`` |  | ``F`` |  | ``T`` | ``F``  |
@@ -292,16 +292,14 @@ A set which is equivalent to the set ``\lbrace 0,1,2,3,\ldots,n\rbrace`` for som
 
 An infinite set which is equivalent to the set of natural numbers is called *denumerable*; otherwise it is called *non-denumerable*.
 
-A set which is either empty, finite or denumerable is called *countable*; otherwise it is called *non-countable*.
-
 !!! definition
     The *cardinal number* of the set ``\lbrace 1,2,3,\ldots,n\rbrace`` as well as any set equivalent to it is defined to be ``n``. The cardinal number of any denumerable set is defined as ``\aleph_0``, *aleph null*. The cardinal number of the empty set ``\emptyset`` is defined as ``0``.
 
 The cardinal number of a set ``S`` is denoted by ``\#S``.
 
-## Propositional Functions and Quantifiers
+## Quantifiers
 
-Let ``A`` be a given set. A *propositional function* defined on ``A`` is a function ``A\to \lbrace T,F\rbrace :𝒫\left(x\right)`` which has the property that ``𝒫\left(a\right)`` is true or false for each ``a\in A``. That is, ``𝒫\left(x\right)`` becomes a proposition (with a truth value) whenever any element ``a\in A`` is substituted for the variable ``x.`` The set ``T_{𝒫}`` of all elements of ``a\in A`` for which ``𝒫\left(a\right)`` is true is called the *truth set* of ``𝒫\left(x\right)``.
+Let ``A`` be a given set. A *propositional function* defined on ``A`` is a function ``𝒫:A\to \lbrace T,F\rbrace`` which has the property that ``𝒫\left(a\right)`` is true or false for each ``a\in A``. That is, ``𝒫\left(x\right)`` becomes a proposition (with a truth value) whenever any element ``a\in A`` is substituted for the variable ``x.`` The set ``T_{𝒫}`` of all elements of ``a\in A`` for which ``𝒫\left(a\right)`` is true is called the *truth set* of ``𝒫\left(x\right)``.
 
 !!! example
 
@@ -319,7 +317,7 @@ Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. C
 
 	* The proposition ``\forall n\in ℕ:n+4&gt;3`` is true since ``\lbrace n\mid n\in ℕ,n+4&gt;3\rbrace =ℕ``. 
 	* The proposition ``\forall n\in ℕ:n+2&gt;8`` is false since ``\lbrace n\mid n\in ℕ,n+2&gt;8\rbrace =\lbrace 7,8,9,\ldots\rbrace``. 
-	* The symbol ``\forall`` can be used to define the intersection of an indexed collection ``\lbrace A_i :i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcap_{i\in I} A_i =\lbrace x\mid\forall i\in I,x\in A_i \rbrace``. 
+	* The symbol ``\forall`` can be used to define the intersection of an indexed collection ``\lbrace A_i\mid i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcap_{i\in I} A_i =\lbrace x\mid\forall i\in I:x\in A_i \rbrace``. 
 
 Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. Consider the expression "``\exists x\in A:𝒫\left(x\right)``" which reads "There exists an ``x`` in ``A`` such that ``𝒫\left(x\right)`` is a true statement". The symbol ``\exists`` which reads "there exists" or "for some" or "for at least one" is called the *existential quantifier*. The proposition ``\exists x\in A:𝒫\left(x\right)`` expresses that the truth set of ``𝒫\left(x\right)`` is not the emptyset, or symbolically, ``T_{𝒫} =\lbrace x\mid x\in A,𝒫\left(x\right)\rbrace \not= \emptyset``.
 
@@ -329,7 +327,7 @@ Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. C
 
 	* The proposition ``\exists n\in ℕ:n+4 < 7`` is true since ``\lbrace n\mid n\in ℕ,n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset``. 
 	* The proposition ``\exists n\in ℕ:n+6 < 4`` is false since ``\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset``. 
-	* The symbol ``\exists`` can be used to define the intersection of an indexed collection ``\lbrace A_i :i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I,x\in A_i \rbrace``. 
+	* The symbol ``\exists`` can be used to define the intersection of an indexed collection ``\lbrace A_i\mid i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I:x\in A_i \rbrace``. 
 
 Consider the proposition: "All officers are engineers". Its negation is either of the following equivalent statements:
 
@@ -372,7 +370,7 @@ That is, the following two statements are equivalent:
 
 Previously, ``\lnot`` was used as an operation on propositions, here ``\lnot`` is used as an operation on propositional functions. The operations ``\vee`` and ``\wedge`` can also be applied to propositional functions.
 
-1.  The truth set of ``\lnot 𝒫\left(x\right)`` is the complement of ``T_{𝒫}``, that is ``T_{𝒫}^c``.
+1. The truth set of ``\lnot 𝒫\left(x\right)`` is the complement of ``T_{𝒫}``, that is ``T_{𝒫}^c``.
 2. The truth set of ``𝒫\left(x\right)\vee 𝒬\left(x\right)`` is the union of ``T_{𝒫}`` and ``T_{𝒬}``, that is ``T_{𝒫} \cup T_{𝒬}``.
 3. The truth set of ``𝒫\left(x\right)\wedge 𝒬\left(x\right)`` is the intersection of ``T_{𝒫}`` and ``T_{𝒬}``, that is ``T_{𝒫} \cap T_{𝒬}``.
 
@@ -393,7 +391,7 @@ Observe that the only difference between both examples is the order of the quant
 
 	For any propositional function ``𝒫\left(x,y\right)`` :
 	
-	1.  ``\forall x\in A,\forall y\in B:𝒫\left(x,y\right)~\iff ~\forall y\in B,\forall x\in A:𝒫\left(x,y\right)``.
+	1. ``\forall x\in A,\forall y\in B:𝒫\left(x,y\right)~\iff ~\forall y\in B,\forall x\in A:𝒫\left(x,y\right)``.
 	2. ``\exists x\in A,\exists y\in B:𝒫\left(x,y\right)~\iff ~\exists y\in B,\exists x\in A:𝒫\left(x,y\right)``.
 	3. ``\exists x\in A,\forall y\in B:𝒫\left(x,y\right)~\implies ~\forall y\in B,\exists x\in A:𝒫\left(x,y\right)``.
 	4. ``\forall x\in A,\exists y\in B:𝒫\left(x,y\right)~\mathrel{\rlap{\implies}\ \,/\quad}~\exists y\in B,\forall x\in A:𝒫\left(x,y\right)``.
@@ -437,7 +435,7 @@ To prove ``𝒫\implies 𝒬``, we can proceed by looking at the truth table. Th
 
     *LIST IMPLICATIONS:*
 
-    1.  From the definition of odd natural numbers, there is a natural number ``k_1`` such that ``m=2k_1 +1`` and a natural number ``k_2`` such that ``n=2k_2 +1``.
+    1. From the definition of odd natural numbers, there is a natural number ``k_1`` such that ``m=2k_1 +1`` and a natural number ``k_2`` such that ``n=2k_2 +1``.
     2. Then ``m+n=\left(2k_1 +1\right)+\left(2k_2 +1\right)=2\left(k_1 +k_2 +1\right)``.
     3. Since ``k_1`` and ``k_2`` are natural numbers, so is ``k_1 +k_2 +1``.
     4. Thus, the sum ``m+n`` is equal to twice a natural number, so by the definition of even natural numbers, ``m+n`` is even.
@@ -669,7 +667,7 @@ Suppose the variable ``n`` represents any natural number, and there is a proposi
 	\begin{aligned}
 	1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
 	&=\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
-	&=\frac{1}{6}\left(2k^3+9^2+13k+6\right)\\
+	&=\frac{1}{6}\left(2k^3+9k^2+13k+6\right)\\
 	&=\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
 	&=\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
 	\end{aligned}

@@ -720,7 +720,7 @@ Figure("", """<span class="math-tex" data-type="tex">\\(\\left(f+g\\right)(x)=f\
 		scale = 50
 		range = -2.0:0.1:2.0
 		axis_xy(255,255,xmid,ymid,scale,(-2,-1,1,2),(-2,-1,1,2))
-		plot_xy(x->x^2, -sqrt(130/50):0.01:sqrt(130/50), (-1, ), xmid, ymid, scale; color="blue")
+		plot_xy(x->x^2, -sqrt(130/50):0.01:sqrt(130/50), (-1, ), xmid, ymid, scale; color="RoyalBlue")
 		plot_xy(x->x-1, -125/50+1:0.01:130/50, (-1,), xmid, ymid, scale; color="green")
 		D = sqrt(77/5)
 		plot_xy(x->x^2+x-1, 0.5(-1-D):0.01:0.5(-1+D), (-1,), xmid, ymid, scale)
