@@ -912,7 +912,7 @@ The following definition is analogous to the definition of a rational number as 
 	S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm 2\,.
 	```
 
-If the numerator and the denominator of a rational function have a common factor, that factro can be cancelled out just as with integers. However, the resulting simpler rational function may not have the same domain as the orginal one, so it should be regarded as a different rational function even though it is equal to the orginal one at all points of the original domain.
+If the numerator and the denominator of a rational function have a common factor, that factor can be cancelled out just as with integers. However, the resulting simpler rational function may not have the same domain as the orginal one, so it should be regarded as a different rational function even though it is equal to the orginal one at all points of the original domain.
 
 !!! example
 	```math

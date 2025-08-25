@@ -478,6 +478,7 @@ function tohtml(file::String)
     get!(meta, "files", String[])
     pushfirst!(meta["files"], file)
     for file in meta["files"]
+        println(file)
         body *= join(_tohtml(joinpath(path, file)), "\n") * "\n"
     end
     html = replace(TEMPLATE, "TITLE" => meta["title"], "PAGED" => PAGED, "BODY-TYPE" => "book", "BODY" => body)
