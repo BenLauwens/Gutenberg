@@ -609,7 +609,7 @@ The following rules make it easy to calculate limits and one-sided limits of man
     6. If ``m\in ℤ`` and ``n\in ℕ_0``, then ``\lim_{x\to a}\left(f\left(x\right)\right)^\frac{m}{n}=L^\frac{m}{n}``, provided ``L>0`` if ``n`` is even and ``L\ne0`` if ``m &lt;0``. (limit of a power)
     7. If ``f\left(x\right)\le g\left(x\right)`` on an interval containing ``a`` in its interior, then ``L\le M``. (order is preserved)
 
-Rules 1—6 are also valid for one-sided limits. So is rule 7, under the assumption that ``f\left(x\right)\le\left(x\right)`` on an open interval extending from ``a`` in the appropriate direction.
+Rules 1—6 are also valid for one-sided limits. So is rule 7, under the assumption that ``f\left(x\right)\le g\left(x\right)`` on an open interval extending from ``a`` in the appropriate direction.
 
 !!! proof "limit of a sum"
     Let ``\varepsilon > 0`` be given.
@@ -700,7 +700,7 @@ Figure("", "The graph of " * tex("g") * " is squeezed between those of " * tex("
 end
 ```
 
-!!! theorem
+!!! theorem "Squeeze theorem"
     If ``f\left(x\right)\le g\left(x\right)\le h\left(x\right)`` holds for all ``x`` in some open interval containing ``a``, except possibly at ``x=a``, and
 
     ```math
@@ -843,7 +843,10 @@ This example suggest the following definition of a limit at infinity.
     ```
 
 !!! example
-    Show that ``\displaystyle\lim_{x\to\infty}\frac{1}{x}=0``.
+    Show that 
+    ```math
+    \lim_{x\to\infty}\frac{1}{x}=0\,.
+    ```
 
     Let ``\varepsilon`` be a given positive number. For ``x&gt;0``, we have
 
@@ -878,7 +881,10 @@ The rules and theorems of previous section have suitable counterparts for limits
 The only polynomials that have limits at infinity are constant ones. The situation is more interesting for rational functions. The following examples show how to render such a function in a form where its limits at infinity (if they exist) are apparent. The way to do this is to *divide the numerator and the denominator by the highest power of ``x`` in the denominator.
 
 !!! example
-    Evaluate ``\displaystyle\lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}``.
+    Evaluate 
+    ```math
+    \lim_{x\to\infty}\frac{2x^2-x+3}{3x^2+5}\,.
+    ```
 
     Divide the numerator and the denominator by ``x^2``, the highest power of ``x`` appearing in the denominator:
 
@@ -941,7 +947,11 @@ A function whose values grow arbitrarily large can sometimes said to have an inf
     ```
 
 !!! example
-    Verify that ``\displaystyle\lim_{x\to 0}\frac{1}{x^2}=\infty``.
+    Verify that
+
+    ```math
+    \displaystyle\lim_{x\to 0}\frac{1}{x^2}=\infty\,.
+    ```
 
     Let ``B`` be any positive number. We have
 
@@ -992,7 +1002,11 @@ A function whose values grow arbitrarily large can sometimes said to have an inf
 We can now say a bit more about the limits at infinity and negative infinity of a rational function whose nuberator has higher degree than the denominator. Earlier we said that such a limit *does not exist*. This is true, but we can assign ``\infty`` or ``-\infty`` to such limits, as the following example shows.
 
 !!! example
-    Evaluate ``\displaystyle\lim_{x\to\infty}\frac{x^3+1}{x^2+1}``.
+    Evaluate 
+    
+    ```math
+    \lim_{x\to\infty}\frac{x^3+1}{x^2+1}\,.
+    ```
 
     Divide the numerator and the denominator by ``x^2``, the largest power of the denominator:
 
@@ -1012,9 +1026,9 @@ A polynomial ``Q\left(x\right)`` of degree ``n&gt;0`` can have at most ``n`` *ze
 
     4. ``\displaystyle\lim_{x\to 2^-}\frac{x- 3}{x^2-4}=\lim_{x\to 2^-}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}=\infty``.
 
-    4. ``\displaystyle\lim_{x\to 2}\frac{x- 3}{x^2-4}=\lim_{x\to 2}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}`` does not exist.
+    5. ``\displaystyle\lim_{x\to 2}\frac{x- 3}{x^2-4}=\lim_{x\to 2}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}`` does not exist.
 
-    5. ``\displaystyle\lim_{x\to 2}\frac{2-x}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{-\left(x-2\right)}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{1}{\left(x-2\right)^2}=-\infty``.
+    6. ``\displaystyle\lim_{x\to 2}\frac{2-x}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{-\left(x-2\right)}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{1}{\left(x-2\right)^2}=-\infty``.
 
 ## Continuity Defined
 
@@ -1178,7 +1192,7 @@ The following theorems show that if we combine continuous functions in various w
 
     Hence, if ``0&lt;\left|x-c\right|&lt;\delta``, then ``\left|f\left(g\left(x\right)\right)-f\left(L\right)\right|&lt;\varepsilon``, and ``\lim_{x\to c}f\left(g\left(x\right)\right)=f\left(L\right)``.
 
-## Continuous Extensions and Removable Discontinuities
+## Continuous Extensions
 
 As we have seen a rational function may have a limit even at a point where its denominator is zero. If ``f\left(c\right)`` is not defined, but ``\lim_{x\to c}f\left(x\right)=L`` exists, we can define a new function ``F\left(x\right)`` by
 ```math
@@ -1200,7 +1214,7 @@ As we have seen a rational function may have a limit even at a point where its d
 
     The function ``\displaystyle F\left(x\right)=\frac{x}{x+1}`` is equal to ``f\left(x\right)`` for ``x\neq 1`` but is also continuous at ``x=1``, having there the value ``\frac{1}{2}``. The continuous extension of ``f\left(x\right)`` to ``x=1`` is ``F\left(x\right)``. It has the same graph as ``f\left(x\right)`` except with no hole at ``\left(1,\frac{1}{2}\right)``.
 
-If a function ``f`` is undefined or discontinuous at a point ``c`` but can be (re)defined at that single point so that it becomes continuous there, then we say that ``f`` has a removable discontinuity at ``c``. The function ``f`` in the above example has a removable discontinuity at ``x=1``. To remove it, define ``f\left(1\right)=\frac{1}{2}``.
+If a function ``f`` is undefined or discontinuous at a point ``c`` but can be (re)defined at that single point so that it becomes continuous there, then we say that ``f`` has a *removable discontinuity* at ``c``. The function ``f`` in the above example has a removable discontinuity at ``x=1``. To remove it, define ``f\left(1\right)=\frac{1}{2}``.
 
 !!! example
     The function ``\displaystyle g\left(x\right)=\begin{cases}x&\textrm{if}\ x\neq2\\1&\textrm{if }x=2\end{cases}`` has a removable discontinuity at ``x=2``. To remove it, redefine ``g\left(2\right)=2``.
@@ -1308,7 +1322,7 @@ One method for finding a zero of a function that is continuous and changes sign 
         a = 1
         b = 2
         f = x->x^3-x-1
-        thead(io, ("i", "a_i", "B_i", "\\displaystyle\\frac{a_i+b_i}{2}", "\\displaystyle f\\left(\\frac{a_i+b_i}{2}\\right)"), latex=true)
+        thead(io, ("i", "a_i", "b_i", "\\displaystyle\\frac{a_i+b_i}{2}", "\\displaystyle f\\left(\\frac{a_i+b_i}{2}\\right)"), latex=true)
         for i in 0:11
             m = 0.5(a+b)
             fm = f(m)
@@ -1334,7 +1348,7 @@ The second of the properties states that a function ``f`` that is continuous on 
 
 To prove the extreme-value theorem, we will first show that a continuous function on a closed interval is bounded; that is, there exists a constant ``K`` such that ``\left|f\left(x\right)\right|\le K`` if ``a\le x\le b``.
 
-We need the following lemma to prove the boundness property.
+We need the following lemma to prove the boundedness property.
 
 !!! lemma
 
@@ -1346,7 +1360,7 @@ We need the following lemma to prove the boundness property.
 
     That is, ``x\in\left]a-\delta,a+\delta\right[`` implies ``f\left(a\right)-1&lt;f\left(x\right)&lt;f\left(a\right)+1``, which shows that ``f`` is bounded on the open interval ``\left]a-\delta,a+\delta\right[``.
 
-!!! theorem "Boundness theorem"
+!!! theorem "Boundedness theorem"
 
     If ``f`` is continous on ``\left[a,b\right]``, then ``f`` is bounded on ``\left[a,b\right]``.
 
@@ -1364,7 +1378,7 @@ We need the following lemma to prove the boundness property.
 
     Hence, ``f`` is bounded on ``\left[a,b\right]``.
 
-Alternative proof based on the Heine-Borel Theorem.
+Alternative constructive proof based on the Heine-Borel theorem.
 
 !!! proof
 
@@ -1392,7 +1406,7 @@ Finally, we can prove the Extreme-value theorem.
 !!! proof "by contradiction"
     We prove ``f`` has a maximum on ``\left[a,b\right]``.
 
-    Since ``f`` is continuous on ``\left[a,b\right]``, by the Boundness theorem ``f`` is bounded on ``\left[a,b\right]``.
+    Since ``f`` is continuous on ``\left[a,b\right]``, by the Boundedness theorem ``f`` is bounded on ``\left[a,b\right]``.
 
     Since ``f`` is bounded, its image set is a nonempty subset of ``ℝ`` which is bounded above, so by the Completeness axiom it has a least upper bound.
 
@@ -1400,7 +1414,7 @@ Finally, we can prove the Extreme-value theorem.
 
     Suppose that ``f\left(x\right)&lt; M`` for all ``x\in\left[a,b\right]``.
 
-    Then ``\displaystyle g\left(x\right)=\frac{1}{M-f\left(x\right)}`` is continuous on ``\left[a,b\right]`` and hence bounded on ``\left[a,b\right]`` by the Boundness theorem.
+    Then ``\displaystyle g\left(x\right)=\frac{1}{M-f\left(x\right)}`` is continuous on ``\left[a,b\right]`` and hence bounded on ``\left[a,b\right]`` by the Boundedness theorem.
 
     So, there exists ``K>0`` such that ``\displaystyle\frac{1}{M-f\left(x\right)}\le K`` for all ``x\in\left[a,b\right]``.
 
@@ -1426,25 +1440,25 @@ Figure("", """<div style="text-align: justify"><ul><li>""" * tex("\\displaystyle
         ymid = 2.25scale
         axis_xy(2scale,2.75scale,xmid,ymid,scale,(1,),tuple())
         plot_xy(x->1/x, 0.1:0.01:1, tuple(), xmid, ymid, scale, width=1)
-        latex("y=f_1\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4*font_x, height=font_y+2)
+        latex("y=f_1\\left(x\\right)", x=xmid+scale-font_x, y=0, width=4*font_x, height=font_y+2)
         circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="white", stroke="red")
         xmid = 3scale
         axis_xy(2scale,2.75scale,xmid,ymid,scale,(1,),tuple(),shift_x=2.5scale)
         plot_xy(x->x, 0:0.01:1, tuple(), xmid, ymid, scale, width=1)
-        latex("y=f_2\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4font_x, height=font_y+2)
+        latex("y=f_2\\left(x\\right)", x=xmid+scale-font_x, y=0, width=4font_x, height=font_y+2)
         circle(cx=xmid, cy=ymid, r=3, fill="white", stroke="red")
         circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="white", stroke="red")
         xmid = 5.5scale
         axis_xy(2scale,2.75scale,xmid,ymid,scale,(1,),tuple(),shift_x=5scale)
         plot_xy(x->x, 0:0.01:1, (0, ), xmid, ymid, scale, width=1)
-        latex("y=f_3\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4font_x, height=font_y+2)
+        latex("y=f_3\\left(x\\right)", x=xmid+scale-font_x, y=0, width=4font_x, height=font_y+2)
         circle(cx=xmid+scale, cy=ymid, r=3, fill="red", stroke="red")
         circle(cx=xmid+scale, cy=ymid-scale, r=3, fill="white", stroke="red")
         xmid = 8scale
         axis_xy(2scale,2.75scale,xmid,ymid,scale,(0.5, 1,),tuple(),shift_x=7.5scale)
         plot_xy(x->1+2x, 0:0.01:0.5, (0,), xmid, ymid, scale, width=1)
         plot_xy(x->2x-1, 0.5:0.01:1, (1,), xmid, ymid, scale, width=1)
-        latex("y=f_4\\left(x\\right)", x=xmid+scale-2font_x, y=-5, width=4font_x, height=font_y+2)
+        latex("y=f_4\\left(x\\right)", x=xmid+scale-font_x, y=0, width=4font_x, height=font_y+2)
         circle(cx=xmid+0.5scale, cy=ymid-2scale, r=3, fill="white", stroke="red")
         circle(cx=xmid+0.5scale, cy=ymid, r=3, fill="white", stroke="red")
         circle(cx=xmid+0.5scale, cy=ymid-scale, r=3, fill="red", stroke="red")
@@ -1454,6 +1468,6 @@ end
 
 The Intermediate-value theorem and the Extreme-value theorem are examples of what mathematicians call *existence theorems*. Such theorems assert that something exists without telling you how to find it.
 
-By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value ``m`` and its maximum value ``M`` , so its range is also a closed interval, ``\left[m,M\right]``.
+By the Intermediate-value theorem and the Extreme-value theorem, a continuous function defined on a closed interval takes on all values between its minimum value ``m`` and its maximum value ``M``, so its range is also a closed interval, ``\left[m,M\right]``.
 
 This is the reason why the graph of a function that is continuous on an interval cannot have any breaks. It must be *connected*, a single, unbroken curve with no jumps.
