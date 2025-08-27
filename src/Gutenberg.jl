@@ -1,5 +1,6 @@
 module Gutenberg
 
+using Dates
 using TOML
 using FileWatching
 using IOCapture
@@ -168,6 +169,7 @@ end
 
 function _html(buf::Vector{String}, type::Any, entering::Bool, str::String, attributes::Dict{String,Any}, level::Int64)
     println(string(entering) * " " * string(type) * string(" ") * string(str) * " " * string(attributes))
+    push!(buf, "ERRORERRORERROR")
     return level
 end
 
@@ -495,6 +497,7 @@ function watch_and_tohtml(file::String)
     name, _ = splitext(file)
     prev = String[]
     while true
+        println("Recompile at ", Dates.now())
         body = ""
         next = _tohtml(file)
         for (i, str) in enumerate(next)

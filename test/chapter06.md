@@ -112,7 +112,7 @@ function tex(str::String)
 end
 ```
 
-The second fundamental problem addressed by calculus is the problem of areas, that is, the problem of determining the area of a region of the plane bounded by various curves. Like the problem of tangents considered in Chapter 2, many practical problems in various disciplines require the evaluation of areas for their solution, and the solution of the problem of areas necessarily involves the notion of limits. On the surface the problem of areas appears unrelated to the problem of tangents. However, we will see that the two problems are very closely related; one is the inverse of the other. Finding an area is equivalent to finding an antiderivative or, as we prefer to say, finding an integral. The relationship between areas and antiderivatives is called the Fundamental Theorem of Calculus.
+The second fundamental problem addressed by calculus is the problem of areas, that is, the problem of determining the area of a region of the plane bounded by various curves. Like the problem of tangents considered in Chapter 2, many practical problems in various disciplines require the evaluation of areas for their solution, and the solution of the problem of areas necessarily involves the notion of limits. On the surface the problem of areas appears unrelated to the problem of tangents. However, we will see that the two problems are very closely related; one is the inverse of the other. Finding an area is equivalent to finding an antiderivative or, as we prefer to say, finding an integral. The relationship between areas and antiderivatives is called the Fundamental theorem of Calculus.
 
 ## Areas as Limits of Sums
 
@@ -128,7 +128,7 @@ Using these five properties we can calculate the area of any *polygon* (a region
 
 We can’t go beyond polygons without taking limits. If a region has a curved boundary, its area can only be approximated by using rectangles or triangles; calculating the exact area requires the evaluation of a limit. We showed how this could be done for a circle in Section 3.1.
 
-We are going to consider how to find the area of a region ``R`` lying under the graph ``y=f\left(x\right)`` of a nonnegative-valued, continuous function ``f``, above the ``x``-axis and between the vertical lines ``x=a`` and ``x=b``, where ``a&lt;b``. To accomplish this, we proceed as follows. Divide the interval ``\left[a,b\right]``into ``n`` subintervals by using division points:
+We are going to consider how to find the area of a region ``R`` lying under the graph ``y=f\left(x\right)`` of a nonnegative-valued, continuous function ``f``, above the ``x``-axis and between the vertical lines ``x=a`` and ``x=b``, where ``a&lt;b``. To accomplish this, we proceed as follows. Divide the interval ``\left[a,b\right]`` into ``n`` subintervals by using division points:
 
 ```math
 a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b
@@ -229,13 +229,13 @@ Figure("", "Upper and lower sums corresponding to the partition " * tex("P=\\lef
 end
 ```
 
-Note that if ``f`` is continuous on ``\left[a,b\right]``, then ``m_i`` and ``M_i`` are, in fact, the minimum and maximum values of ``f`` over ``\left[x_{i-1},x_i\right]``by the Extreme-Value Theorem, that is, ``m_i=f\left(l_i\right)`` and ``M_i=\left(u_i\right)``, where ``f\left(l_i\right)\le f\left(x\right)\le f\left(u_i\right)`` for ``x\in \left[x_{i-1},x_i\right]``.
+Note that if ``f`` is continuous on ``\left[a,b\right]``, then ``m_i`` and ``M_i`` are, in fact, the minimum and maximum values of ``f`` over ``\left[x_{i-1},x_i\right]`` by the Extreme-Value theorem, that is, ``m_i=f\left(l_i\right)`` and ``M_i=\left(u_i\right)``, where ``f\left(l_i\right)\le f\left(x\right)\le f\left(u_i\right)`` for ``x\in \left[x_{i-1},x_i\right]``.
 
 !!! example
 
-	Calculate the lower and upper Riemann sums for the function ``f\left(x\right)=x^2`` on the interval ``\left[0,a\right]``(where ``a &gt; 0``), corresponding to the partition ``P_n`` of ``\left[0,a\right]`` into ``n`` subintervals of equal length.
+	Calculate the lower and upper Riemann sums for the function ``f\left(x\right)=x^2`` on the interval ``\left[0,a\right]`` (where ``a &gt; 0``), corresponding to the partition ``P_n`` of ``\left[0,a\right]`` into ``n`` subintervals of equal length.
 
-	Each subinterval of ``P_n`` has length ``\Delta\kern-0.5pt x=\frac{a}{n}``, and the division points are given by ``x_i=\frac{ia}{n}`` for ``i= 0, 1, 2,\dots, n``. Since ``x^2`` is increasing on ``\left[0,a\right]``, its minimum and maximum values over the ``i``th subinterval ``\left[x_{i-1},x_i\right]``occur at ``l_i=x_{i-1}`` and ``u_i=x_i``, respectively. Thus, the lower Riemann sum of ``f`` for ``P_n`` is
+	Each subinterval of ``P_n`` has length ``\Delta\kern-0.5pt x=\frac{a}{n}``, and the division points are given by ``x_i=\frac{ia}{n}`` for ``i= 0, 1, 2,\dots, n``. Since ``x^2`` is increasing on ``\left[0,a\right]``, its minimum and maximum values over the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` occur at ``l_i=x_{i-1}`` and ``u_i=x_i``, respectively. Thus, the lower Riemann sum of ``f`` for ``P_n`` is
 
 	```math
 	\begin{aligned}
@@ -269,9 +269,9 @@ If ``P`` is any partition of ``\left[a,b\right]`` and we create a new partition 
 
 	If ``S`` and ``T`` are sets of real numbers, and ``S\subset T``, then any lower bound (or upper bound) of ``T`` is also a lower bound (or upper bound) of ``S``. Hence, the greatest lower bound of ``S`` is at least as large as that of ``T``; and the least upper bound of ``S`` is no greater than that of ``T``.
 
-	Let ``P`` be a given partition of ``\left[a,b\right]`` and form a new partition ``P^\prime`` by adding one subdivision point to those of ``P``, say, the point ``k`` dividing the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` into two subintervals ``\left[x_{i-1},k\right]``and ``\left[x_{i-1},k\right]``.
+	Let ``P`` be a given partition of ``\left[a,b\right]`` and form a new partition ``P^\prime`` by adding one subdivision point to those of ``P``, say, the point ``k`` dividing the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` into two subintervals ``\left[x_{i-1},k\right]`` and ``\left[x_{i-1},k\right]``.
 
-	Let ``m_i``, ``m_i^\prime`` and ``m_i^{\prime\prime}`` be the greatest lower bounds of the sets of values of ``f\left(x\right)``  on the intervals ``\left[x_{i-1},x_i\right]``, ``\left[x_{i-1},k\right]``and ``\left[k,x_i\right]``, respectively. Then ``m_i\le m_i^\prime`` and ``m_i\le m_i^{\prime\prime}``.
+	Let ``m_i``, ``m_i^\prime`` and ``m_i^{\prime\prime}`` be the greatest lower bounds of the sets of values of ``f\left(x\right)``  on the intervals ``\left[x_{i-1},x_i\right]``, ``\left[x_{i-1},k\right]`` and ``\left[k,x_i\right]``, respectively. Then ``m_i\le m_i^\prime`` and ``m_i\le m_i^{\prime\prime}``.
 
 	Thus,
 
@@ -333,7 +333,7 @@ The last theorem shows that the set of values of ``L\left(f, P\right)`` for fixe
 	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=I_\star=I^\star
 	```
 
-	the (*Darboux*) *integral* of ``f`` on ``\left[a,b\right]``\,.
+	the (*Darboux*) *integral* of ``f`` on ``\left[a,b\right]\,.``
 
 The definite integral of ``f\left(x\right)`` over ``\left[a,b\right]`` is a number; it is not a function of ``x``. It depends on the numbers ``a`` and ``b`` and on the particular function ``f``, but not on the variable ``x`` (which is a *dummy variable* like the variable ``i`` in the sum ``\sum_{i=1}^nf\left(i\right)``). Replacing ``x`` with another variable does not change the value of the integral:
 
@@ -374,7 +374,7 @@ The various parts of the symbol ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5p
 	\int_0^a f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_0^a x^2\,\mathrm{d}\kern-0.5pt x=\frac{a^3}{3}\,.
 	```
 
-Let ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}``, where ``a=x_0&lt;x1&lt;x2&lt;\dots&lt;x_n=b``, be a partition of ``\left[a,b\right]``. In each subinterval ``\left[x_{i-1},x_i\right]`` of``P`` pick a point ``c_i`` (called a *tag*). Let ``c=\left(c_1,c_2,\dots,c_n\right)`` denote the list of these tags. The sum
+Let ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}``, where ``a=x_0&lt;x_1&lt;x_2&lt;\dots&lt;x_n=b``, be a partition of ``\left[a,b\right]``. In each subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` pick a point ``c_i`` (called a *tag*). Let ``c=\left(c_1,c_2,\dots,c_n\right)`` denote the list of these tags. The sum
 
 ```math
 \begin{aligned}
@@ -423,117 +423,11 @@ The following theorem provides a convenient test for determining whether a given
 
 	as required.
 
-To prove that a continuous functions on an interval ``\left[a,b\right]`` is integrable. We are still missing one piece of the puzzle, the notion of *uniformly continuous* functions.
-
-!!! definition
-
-	A function is uniformly continuous on an interval ``I`` if for every ``\varepsilon&gt;0`` there exists a ``\delta>0`` such that, for all ``x,y\in I``, ``\left|x-y\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``:
-
-	```math
-	\forall\varepsilon&gt;0,\exists\delta&gt;0:\left|x-y\right|&lt;\delta\implies\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon\,.
-	```
-
-If a function is continuous on an interval ``I``, the positive number ``\delta`` can depend both on ``\varepsilon`` and the point ``x\in I``. For a function uniformly continuous on an interval ``\left[a,b\right]``, we can always find a positive number ``\delta`` that only depends on ``\varepsilon``.
-
-We will now show that the both notion of continuity of a function are identical for a closed interval ``\left[a,b\right]``. As is the case for all hard theorems, we need a technical lemma.
-
-!!! lemma
-
-	Let ``\left[a,c\right]`` and ``\left[c,b\right]`` be two closed intervals with a common endpoint ``c`` and ``f`` a continuous function on ``\left[a,b\right]``. If the following two statements hold for any ``\varepsilon &gt;0``:
-	
-	1. there exists ``\delta_1 &gt;0`` such that ``\forall x,y\in\left[a,c\right]:\left|x-y\right|&lt;\delta_1`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``,
-	2. there exists ``\delta_2 &gt;0`` such that ``\forall x,y\in\left[c,b\right]:\left|x-y\right|&lt;\delta_2`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``,
-
-	then there exists ``\delta&gt;0`` such that ``\forall x,y\in\left[a,b\right]:\left|x-y\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``.
-
-!!! proof
-
-	Suppose ``x&lt;c&lt;y``. 
-	
-	Since ``f`` is continuous at ``c``, there exists ``\delta_3&gt;0`` such that ``\left|x-c\right|&lt;\delta_3`` implies ``\left|f\left(x\right)-f\left(c\right)\right|&lt;\frac{\varepsilon}{2}``. Similarly, there exists ``\delta_4&gt;0`` such that ``\left|y-c\right|&lt;\delta_4`` implies ``\left|f\left(y\right)-f\left(c\right)\right|&lt;\frac{\varepsilon}{2}``.
-
-	Therefore,
-
-	```math
-	\begin{aligned}
-	\left|f\left(x\right)-f\left(y\right)\right|&=\left|f\left(x\right)-f\left(c\right)+f\left(c\right)-f\left(y\right)\right|\\
-	&\le\left|f\left(x\right)-f\left(c\right)\right|+\left|f\left(c\right)-f\left(y\right)\right|\\
-	&&lt;\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\,.
-	\end{aligned}
-	```
-
-	Let ``\delta=\min\left\{\delta_1, \delta_2, \delta_3, \delta_4\right\}`` and ``\forall x,y \in\left[a,b\right]:\left|x-y\right|&lt;\delta``.
-
-	- If ``x,y\in\left[a,c\right]``, then ``\left|x-y\right|&lt;\delta`` implies ``\left|x-y\right|&lt;\delta_1`` such that ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``.
-	- If ``x,y\in\left[c,b\right]``, then ``\left|x-y\right|&lt;\delta`` implies ``\left|x-y\right|&lt;\delta_2`` such that ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``.
-	- If ``x&lt;c&lt;y``, then ``\left|x-y\right|&lt;\delta`` implies ``\left|x-c\right|&lt;\delta_3`` and ``\left|y-c\right|&lt;\delta_4`` such that ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``.
-
-	This shows that ``\forall x,y\in\left[a,b\right]:\left|x-y\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\varepsilon``.
-
-We can now use the Bisection Method to prove the Uniform Continuity Theorem.
-
-!!! theorem "Uniform Continuity Theorem"
-
-	If ``f`` is continuous on the closed, finite interval ``\left[a,b\right]``, then ``f`` is uniformly continuous on that interval.
-
-!!! proof "by contradiction"
-
-	Suppose ``f`` is continuous on ``I_0=\left[a,b\right]=\left[a_0,b_0\right]`` but not uniformly continuous.
-
-	Then, there exists ``\varepsilon&gt;0`` such that for every ``\delta&gt;0`` there exists ``x,y\in\left[a_0,b_0\right]`` such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
-
-	It follows from the lemma that, corresponding to this ``\varepsilon``, it must be true for at least one of the two subintervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` and ``\left[\frac{a_0+b_0}{2},b_0\right]`` that for every ``\delta&gt;0`` there exist ``x,y`` in the interval such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
-
-	Choose a subinterval having this property and call it ``I_1=\left[a_1,b_1\right]``. 
-	
-	Continuing in this ways, we obtain a sequence of closed intervals satisfying the hypotheses of the Nested Intervals Theorem and having the property that for every ``\delta&gt;0`` there exist ``x,y`` in the interval such that ``\left|x-y\right|&lt;\delta`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
-
-	By the Nested Intervals Theorem, there exists ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
-
-	Since ``f`` is continuous at ``c``, corresponding to the ``\varepsilon`` above, there exists ``\delta_1&gt;0`` such that ``\left|x-c\right|&lt\delta_1`` implies ``\left|f\left(x\right)-f\left(c\right)\right|&lt;\frac{\varepsilon}{2}``. Similarly, there exists ``\delta_2&gt;0`` such that ``\left|y-c\right|&lt\delta_1`` implies ``\left|f\left(y\right)-f\left(c\right)\right|&lt;\frac{\varepsilon}{2}``. Let ``\delta_0=\min\left\{\delta_1, \delta_2\right\}``.
-
-	The Capture Theorem states that the interval ``\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[`` contains ``I_N`` for some ``N\in\mathbb N``.
-
-	Since the length of the interval ``\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[`` is ``\delta_0``,  we have ``\left|x-y\right|&lt;\delta_0`` for every ``x,y\in\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[``. By our choice of the ``I_n``, there exists ``x,y\in I_N`` with ``\left|x-y\right|&lt;\delta_0`` but ``\left|f\left(x\right)-f\left(y\right)\right|\ge\varepsilon``.
-
-	Since ``\left|x-c\right|&lt\delta_0`` and ``\left|y-c\right|&lt\delta_0`` for every ``x,y\in\left]c-\frac{\delta_0}{2},c+\frac{\delta_0}{2}\right[``, it follows that
-
-	```math
-	\begin{aligned}
-	\left|f\left(x\right)-f\left(y\right)\right|&=\left|f\left(x\right)-f\left(c\right)+f\left(c\right)-f\left(y\right)\right|\\
-	&\le\left|f\left(x\right)-f\left(c\right)\right|+\left|f\left(c\right)-f\left(y\right)\right|\\
-	&&lt;\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\,.
-	\end{aligned}
-	```
-	
-	This is impossible. Therefore, ``f`` is uniformly continuous on ``\left[a,b\right]``.
-	
-
 We are now in a position to prove that a continuous function is integrable.
 
 !!! theorem
 
 	If ``f`` is continuous on ``\left[a,b\right]``, then ``f`` is integrable on ``\left[a,b\right]``.
-
-!!! proof
-
-	First note that, since ``f`` is continuous on ``\left[a,b\right]``, it is bounded on ``\left[a,b\right]``.
-
-	Let ``\varepsilon&gt;0``. Since ``f`` is continuous, it is uniformly continuous on ``\left[a,b\right]``, so corresponding to ``\frac{\varepsilon}{b-a}&gt;0`` there exists ``\delta&gt; 0`` such that for all ``x, y\in\left[a,b\right]``, ``\left|x-y\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\frac{\varepsilon}{b-a}``.
-
-	Choose a partition ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}`` for which each subinterval ``\left[x_{i-1},x_i\right]`` has length ``\Delta\kern-0.5pt x_i&lt;\delta``.
-
-	By the Extreme-Value Theorem, the least upper bound, ``M_i``, and the greatest lower bound ``m_i`` of the set of values of ``f\left(x\right)`` on ``\left[x_{i-1},x_i\right]`` satisfy ``M_i-m_i&lt;\frac{\varepsilon}{b-a}``.
-
-	Accordingly,
-
-	```math
-	U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{b-a}\sum_{i=1}^{n\left(P\right)}\Delta\kern-0.5pt x_i=\frac{\varepsilon}{b-a}\left(b-a\right)=\varepsilon\,.
-	```
-
-	Thus, ``f`` is integrable on ``\left[a,b\right]``.
-
-Alternative proof based on the Heine-Borel Theorem.
 
 !!! proof
 
@@ -549,12 +443,16 @@ Alternative proof based on the Heine-Borel Theorem.
 
 	Consider any subinterval ``\left[y_{j-1},y_j\right]`` in this partition. 
 
-	Since the function is continuous on all closed subintervals of ``\left[a,b\right]``, we have by the Extreme-value theorem ``M_j = \max\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}`` and ``m_j = \min\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}``.
+	Since the function is continuous on all closed subintervals of ``\left[a,b\right]``, we have by the Extreme-Value theorem 
+	
+	```math
+	M_j = \max\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\quad\textrm{and}\quad m_j = \min\left\{f\left(y\right)\mid y \in \left[y_{j-1},y_j\right]\right\}\,.
+	```
 
 	Since this subinterval is entirely contained within at least one of our original open intervals ``I_{x_i}``, we have 
 
 	```math
-	M_j-m_j = \left(M_j-x_i\right) + \left(x_i-m_j\right) &lt; \frac{\varepsilon}{2\left(b-a\right)} + \frac{\varepsilon}{2\left(b-a\right)}=\frac{\varepsilon}{\left(b-a\right)}\,.
+	M_j-m_j = \left(M_j-f\left(x_i\right)\right) + \left(f\left(x_i\right)-m_j\right) &lt; \frac{\varepsilon}{2\left(b-a\right)} + \frac{\varepsilon}{2\left(b-a\right)}=\frac{\varepsilon}{\left(b-a\right)}\,.
 	```
 
 	Calculate the difference between the upper and lower Riemann sums for this partition:
@@ -614,10 +512,13 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 	For any interval ``\left[x_{i-1},x_i\right]\in\left[a,b\right]``, we have
 
 	```math
-	\begin{aligned}
-	\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}+\inf\left\{g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}&\le\inf\left\{f\left(x\right)+g\left(x\right)\mid x\in\left[x_{i-1},x_i\right]\right\}\textrm{ and}\\
-	\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}+\sup\left\{g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}&\ge\sup\left\{f\left(x\right)+g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
-	\end{aligned}
+	\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}+\inf\left\{g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\le\inf\left\{f\left(x\right)+g\left(x\right)\mid x\in\left[x_{i-1},x_i\right]\right\}
+	```
+
+	and
+
+	```math
+	\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}+\sup\left\{g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\ge\sup\left\{f\left(x\right)+g\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
 	```
 
 	It follows that
@@ -639,7 +540,8 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 	```math
 	\begin{aligned}
 	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I^\star\left(f+g\right)\le U\left(f+g,P\right)\le U\left(f,P\right)+ U\left(g,P\right)\\
-	&&lt;L\left(f,P\right)+ L\left(g,P\right)+\varepsilon\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+	&&lt;L\left(f,P\right)+ L\left(g,P\right)+\varepsilon\\
+	&\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
 	\end{aligned}
 	```
 
@@ -648,7 +550,8 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 	```math
 	\begin{aligned}
 	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
-	&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\\
+	&\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
 	\end{aligned}
 	```
 
@@ -736,7 +639,7 @@ Now, we will prove the additive dependency of an integral on the interval of int
 
 ### Mean-Value Theorem for Integrals
 
-A simple but very useful result is the Mean-Value Theorem for integrals.
+A simple but very useful result is the Mean-Value theorem for integrals.
 
 !!! theorem
 
@@ -842,7 +745,7 @@ Figure("", "A piecewise continuous function.") do
 end
 ```
 
-Consider the graph ``y=f\left(x\right)`` shown above. Although ``f`` is not continuous at all points in ``\left[a,b\right]``(it is discontinuous at ``c_1`` and ``c_2``), clearly the region lying under the graph and above the ``x``-axis between ``x= a`` and ``x= b`` does have an area. We would like to represent this area as
+Consider the graph ``y=f\left(x\right)`` shown above. Although ``f`` is not continuous at all points in ``\left[a,b\right]`` (it is discontinuous at ``c_1`` and ``c_2``), clearly the region lying under the graph and above the ``x``-axis between ``x= a`` and ``x= b`` does have an area. We would like to represent this area as
 
 ```math
 \int_a^{c_1}f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_{c_1}^{c_2}f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_{c_2}^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
@@ -888,7 +791,7 @@ This is reasonable because there are continuous functions (extensions) on ``\lef
 
 In this section we demonstrate the relationship between the definite integral defined and the indefinite integral (or general antiderivative). A consequence of this relationship is that we will be able to calculate definite integrals of functions whose antiderivatives we can find.
 
-!!! theorem "Fundamental Theorem of Calculus Part 1"
+!!! theorem "Fundamental theorem of Calculus Part 1"
 
 	If ``g`` is a continuous function on ``\left[a,b\right]`` that is differentiable on ``\left]a,b\right[``, and if ``g^\prime`` is integrable on ``\left[a,b\right]``, then
 
@@ -940,7 +843,7 @@ In this section we demonstrate the relationship between the definite integral de
 	\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
 	```
 
-To facilitate the evaluation of definite integrals using the Fundamental Theorem of Calculus Part 1, we define the *evaluation symbol*
+To facilitate the evaluation of definite integrals using the Fundamental theorem of Calculus Part 1, we define the *evaluation symbol*
 
 !!! definition
 
@@ -964,7 +867,7 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 
 	``\displaystyle \int_0^a x^2\,\mathrm{d}\kern-0.5pt x=\left.\frac{1}{3}x^3\right|_0^a=\frac{1}{3}a^3-\frac{1}{3}0^3=\frac{a^3}{3}`` because ``\displaystyle \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{x^3}{3}=x^2``.
 
-!!! theorem "Fundamental Theorem of Calculus Part 2"
+!!! theorem "Fundamental theorem of Calculus Part 2"
 
 	Let ``f`` be an integrable function on ``\left[a,b\right]``. For ``x\in\left[a,b\right]``, let
 
@@ -1040,13 +943,13 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 	\end{aligned}
 	```
 
-We can build the Chain Rule into the Fundamental Theorem of Calculus part 2
+We can build the Chain Rule into the Fundamental theorem of Calculus part 2
 
 ```math
 \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\int^{g\left(x\right)}_{h\left(x\right)}f\left(t\right)\,\mathrm{d}\kern-0.5pt t=f\left(g\left(x\right)\right)g^\prime\left(x\right)-f\left(h\left(x\right)\right)h^\prime\left(x\right)\,.
 ```
 
-You should remember both conclusions of the Fundamental Theorem; they are both useful. Part 1 concerns the integral of a derivative; it tells you how to evaluate a definite integral if you can find an antiderivative of the integrand. Part 2 concerns the derivative of an integral; it tells you how to differentiate a definite integral with respect to its upper limit.
+You should remember both conclusions of the Fundamental theorem; they are both useful. Part 1 concerns the integral of a derivative; it tells you how to evaluate a definite integral if you can find an antiderivative of the integrand. Part 2 concerns the derivative of an integral; it tells you how to differentiate a definite integral with respect to its upper limit.
 
 ## Methods of Integrations
 
@@ -1524,7 +1427,7 @@ The integral on the left converges if and only if both integrals on the right co
 
 !!! definition
 
-	If ``f`` is continuous on the interval ``\left]a,b\right]``and is possibly unbounded near ``a``, we define the improper integral
+	If ``f`` is continuous on the interval ``\left]a,b\right]`` and is possibly unbounded near ``a``, we define the improper integral
 
 	```math
 	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to a^+}\int_c^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
@@ -1555,7 +1458,7 @@ While improper integrals of type I are always easily recognized because of the i
 	We express such integrals as limits of proper integrals:
 
 	```math
-	A = \lim_{x\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d}\kern-0.5pt x=\lim_{x\to 0^+}\left.2x^{\frac{1}{2}}\right|_c^1=\lim_{x\to 0^+}\left(2-2\sqrt x\right)=2\,.
+	A = \lim_{c\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d}\kern-0.5pt x=\lim_{c\to 0^+}\left.2x^{\frac{1}{2}}\right|_c^1=\lim_{c\to 0^+}\left(2-2\sqrt c\right)=2\,.
 	```
 
 	This integral converges, and ``S`` has a finite area of ``2`` square units.
@@ -1714,7 +1617,7 @@ A curve with a finite arc length is said to be *rectifiable*. Its arc length ``s
 
 ### The Arc Length of the Graph of a Function
 
-Let ``f`` be a function defined on a closed, finite interval ``\left[a,b\right]`` and having a continuous derivative ``f^\prime`` there. If ``\mathcal C`` is the graph of ``f``, that is, the graph of the equation ``y=f\left(x\right)``, then any partition of ``\left[a,b\right]``provides a polygonal approximation to ``\mathcal C``. For the partition
+Let ``f`` be a function defined on a closed, finite interval ``\left[a,b\right]`` and having a continuous derivative ``f^\prime`` there. If ``\mathcal C`` is the graph of ``f``, that is, the graph of the equation ``y=f\left(x\right)``, then any partition of ``\left[a,b\right]`` provides a polygonal approximation to ``\mathcal C``. For the partition
 
 ```math
 \left\{a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b\right\}
@@ -1729,7 +1632,7 @@ L_n=\sum_{i=1}^n\left|P_{i-1}P_i\right|&=\sum_{i=1}^n\sqrt{\left(x_i-x_{i-1}\rig
 \end{aligned}
 ```
 
-where ``\Delta\kern-0.5pt x_i=x_i-x_{i-1}``. By the Mean-Value Theorem there exists a number ``c_i`` in the interval ``\left[x_{i-1},x_i\right]`` such that
+where ``\Delta\kern-0.5pt x_i=x_i-x_{i-1}``. By the Mean-Value theorem there exists a number ``c_i`` in the interval ``\left[x_{i-1},x_i\right]`` such that
 
 ```math
 \frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}=f^\prime\left(c_i\right)\,,

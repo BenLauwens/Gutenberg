@@ -1348,37 +1348,9 @@ The second of the properties states that a function ``f`` that is continuous on 
 
 To prove the extreme-value theorem, we will first show that a continuous function on a closed interval is bounded; that is, there exists a constant ``K`` such that ``\left|f\left(x\right)\right|\le K`` if ``a\le x\le b``.
 
-We need the following lemma to prove the boundedness property.
-
-!!! lemma
-
-    If ``f`` is continuous at ``a``, then ``f`` is bounded on some open interval containing ``a``.
-
-!!! proof
-
-    Since ``f`` is continuous at ``a``, corresponding to ``\varepsilon =1&gt;0``, there exists ``\delta>0`` such that ``\left|x-a\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(a\right)\right|&lt;1``.
-
-    That is, ``x\in\left]a-\delta,a+\delta\right[`` implies ``f\left(a\right)-1&lt;f\left(x\right)&lt;f\left(a\right)+1``, which shows that ``f`` is bounded on the open interval ``\left]a-\delta,a+\delta\right[``.
-
 !!! theorem "Boundedness theorem"
 
     If ``f`` is continous on ``\left[a,b\right]``, then ``f`` is bounded on ``\left[a,b\right]``.
-
-!!! proof "by contradiction"
-
-    Let ``I_0=\left[a_0, b_0\right]=\left[a,b\right]``.
-
-    Suppose ``f`` is continuous on ``\left[a,b\right]`` but not bounded. Then ``f`` is either unbounded on ``\displaystyle \left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\displaystyle \left[\frac{a_0+b_0}{2},b_0\right]`` (since, otherwise, ``f`` would be bounded on their union and hence on all ``I_0``).
-
-    Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` is unbounded and repeat.
-
-    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
-
-    Since ``f`` is continuous at ``c``, ``f`` is bounded on some open interval containing ``c``. However, as we have seen by the extension of the Capture theorem, such an open interval contains one of the intervals ``I_N``, which is a contradiction since ``f`` is unbounded on each ``I_n``.
-
-    Hence, ``f`` is bounded on ``\left[a,b\right]``.
-
-Alternative constructive proof based on the Heine-Borel theorem.
 
 !!! proof
 
