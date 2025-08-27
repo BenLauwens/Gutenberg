@@ -116,7 +116,7 @@ With the exception of the trigonometric functions, all the functions we have enc
 
 This chapter is devoted to developing other transcendental functions, including *exponential* and *logarithmic functions* and the *inverse trigonometric functions*.
 
-## Exponential and Logarithmic Functions
+## Exponentialsand Logarithms
 
 ### Exponentials
 
@@ -270,7 +270,7 @@ To get a hint as to how this can be done, remember the relationship you have see
 
 !!! definition
 
-	For ``x&gt;0``, let ``A_x`` be the area of the plane region bounded by the curve ``y=\frac{1}{t}``, the ``t-axis``, and the vertical lines ``t=1`` and ``t=x``. The function ``\ln x`` is defined by
+	For ``x&gt;0``, let ``A_x`` be the area of the plane region bounded by the curve ``y=\frac{1}{t}``, the ``t``-axis, and the vertical lines ``t=1`` and ``t=x``. The function ``\ln x`` is defined by
 	```math
 	\ln x=\begin{cases}
 	\hphantom{-}A_x&\textrm{if }x\ge1\,,\\

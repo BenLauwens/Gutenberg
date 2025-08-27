@@ -428,7 +428,7 @@ An important special case of this example says that the derivative of a constant
 	```math
 	\begin{aligned}
 	k\prime\left(x\right)&=\lim_{h\to 0}\frac{k\left(x+h\right)-k\left(x\right)}{h}\\
-	&=\lim_{h\to 0}\frac{\sqrt{x+h}-\sqrt x}{h}=\lim_{h\to 0}\frac{\sqrt{x+h}-\sqrt x}{h}\frac{\sqrt{x+h}+\sqrt x}{\sqrt{x+h}-+\sqrt x}\\
+	&=\lim_{h\to 0}\frac{\sqrt{x+h}-\sqrt x}{h}=\lim_{h\to 0}\frac{\sqrt{x+h}-\sqrt x}{h}\frac{\sqrt{x+h}+\sqrt x}{\sqrt{x+h}+\sqrt x}\\
 	&=\lim_{h\to 0}\frac{x+h-x}{h\left(\sqrt{x+h}+\sqrt x\right)}=\lim_{h\to 0}\frac{1}{\sqrt{x+h}+\sqrt x}=\frac{1}{2\sqrt x}\,.
 	\end{aligned}
 	```
@@ -456,7 +456,7 @@ The three derivative formulas calculated in this example are special cases of th
 
 ### Notation
 
-Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If ``y=\left(x\right)``, we can use the dependent variable ``y`` to represent the function, and we can denote the derivative of the function with respect to ``x`` in any of the following ways:
+Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If ``y=f\left(x\right)``, we can use the dependent variable ``y`` to represent the function, and we can denote the derivative of the function with respect to ``x`` in any of the following ways:
 
 ```math
 \mathsf{D}_x\kern-0.5pt y=y\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
@@ -620,7 +620,7 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	&=f\prime\left(x\right)+g\prime\left(x\right)\,,
 	\end{aligned}
 	```
-	because the limit of a sum is the sum of the limits. The proof for the difference ``f-g``is similar. 
+	because the limit of a sum is the sum of the limits. The proof for the difference ``f-g`` is similar. 
 	
 	For the constant multiple, we have
 	```math
@@ -636,7 +636,7 @@ The rule for differentiating sums extends to sums of any finite number of terms
 \left(f_1+f_2+\cdots+f_n\right)\prime=f_1^\prime+f_2^\prime+\cdots+f_n^\prime\,.
 ```
 
-To see this we can use mathematical induction. Theorem 2 shows that the case ``n=2`` is true; this is STEP 1. For STEP 2, we must show that if the formula holds for some integer ``n=h\ge2``, then it must also hold for ``n=k+1``. Therefore, *assume* that
+To see this we can use mathematical induction. theorem 2 shows that the case ``n=2`` is true; this is STEP 1. For STEP 2, we must show that if the formula holds for some integer ``n=h\ge2``, then it must also hold for ``n=k+1``. Therefore, *assume* that
 
 ```math
 \left(f_1+f_2+\cdots+f_k\right)\prime=f_1^\prime+f_2^\prime+\cdots+f_k^\prime\,.
@@ -825,7 +825,7 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 	```math
 	\begin{aligned}
 	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
-	&= \left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+	&=\lim_{h\to 0}\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 	&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
 	\end{aligned}
 	```
@@ -1105,7 +1105,7 @@ n\left(n-1\right)!&\textrm{if }n&gt;0\,.
 
 It follows that if ``P`` is a polynomial of degree ``n``,
 ```math
-P\left(x\right)=a_nx^2+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\,,
+P\left(x\right)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\,,
 ```
 where ``a_n, a_{n-1}, \dots, a_1, a_0`` are constants, then ``P^{\left(k\right)}\left(x\right)=0`` for ``k&gt;n``. For ``k\le n``, ``P^{\left(k\right)}`` is a polynomial of degree ``n-k``; in particular, ``P^{\left(n\right)}\left(x\right)=n!a_n``, a constant function.
 
@@ -1183,193 +1183,7 @@ so
 \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
 ```
 
-## The Mean-Value Theorem
-
-If you set out in a car at 1:00 p.m. and arrive in a town 150 km away from your starting point at 3:00 p.m., then you have travelled at an average speed of ``\frac{150}{2}=75`` km/h. Although you may not have travelled at constant speed, you must have been going 75 km/h at at least one instant during your journey, for if your speed was always less than 75 km/h you would have gone less than 150 km in 2 h, and if your speed was always more than 75 km/h, you would have gone more than 150 km in 2 h. In order to get from a value less than 75 km/h to a value greater than 75 km/h, your speed, which is a continuous function of time, must pass through the value 75 km/h at some intermediate time.
-
-The conclusion that the average speed over a time interval must be equal to the instantaneous speed at some time in that interval is an instance of an important mathematical principle. In geometric terms it says that if ``A`` and ``B`` are two points on a smooth curve, then there is at least one point ``C`` on the curve between ``A`` and ``B`` where the tangent line is parallel to the chord line ``AB``.
-
-{cell=chap display=false output=false}
-```julia
-Figure("", "There is a point " * tex("C") * " on the curve where the tangent (green) is parallel to the chord " * tex("AB") * " (blue).") do
-    scale = 40
-    Drawing(width=6scale, height=5.5scale) do
-        xmid = 1scale
-        ymid = 5scale
-        f = x->-0.5(x-2)^2+4
-		c = 1.5
-		fc = f(c)
-		a = -0.5
-		fa = f(a)
-		b= 3.5
-		fb=f(b)
-        axis_xy(6scale,5.5scale,xmid,ymid,scale,(a,b,c),tuple(), xs=("a","b","c"))
-        plot_xy(f, -1:0.01:5.5, (a, b, c), xmid, ymid, scale, width=1)
-		m = -(c-2)
-		plot_xy(x->m*(x-c)+fc, -1:0.01:5.5, tuple(), xmid, ymid, scale, width=1, color = "green")
-		plot_xy(x->m*(x-a)+fa, a:0.01:b, tuple(), xmid, ymid, scale, width=1, color = "RoyalBlue")
-		line(x1=xmid+a*scale, y1=ymid-fa*scale, x2=xmid+a*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
-		line(x1=xmid+b*scale, y1=ymid-fb*scale, x2=xmid+b*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
-		line(x1=xmid+c*scale, y1=ymid-fc*scale, x2=xmid+c*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
-		latex("y=f\\left(x\\right)", x=xmid+3scale, y=ymid-4scale, width=4font_x, height=font_y)
-		latex("A", x=xmid+a*scale-0.6font_x, y=ymid-fa*scale-1.25font_y, width=font_x, height=font_y)
-		latex("B", x=xmid+b*scale-0.5font_x, y=ymid-fb*scale-1.25font_y, width=font_x, height=font_y)
-		latex("C", x=xmid+c*scale-0.5font_x, y=ymid-fc*scale-1.25font_y, width=font_x, height=font_y)
-    end
-end
-```
-
-This principle is stated more precisely in the following theorem.
-
-!!! theorem "The Mean-Value Theorem"
-	Suppose that the function ``f`` is continuous on the closed, finite interval ``\left[a,b\right]``and that it is differentiable on the open interval ``\left]a,b\right[``. Then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that
-	```math
-	\frac{f\left(b\right)-f\left(a\right)}{b-a}=f\prime\left(c\right)\,.
-	```
-
-This says that the slope of the chord line joining the points ``\left(a,f\left(a\right)\right)`` and ``\left(b,f\left(b\right)\right)`` is equal to the slope of the tangent line to the curve ``f=f\left(x\right)`` at the point ``\left(c,f\left(c\right)\right)``, so the two lines are parallel.
-
-We can make several observations:
-
-1. The hypotheses of the Mean-Value Theorem are all necessary for the conclusion; if ``f`` fails to be continuous at even one point of ``\left[a,b\right]``or fails to be differentiable at even one point of ``\left]a,b\right[``, then there may be no point where the tangent line is parallel to the secant line ``AB``.
-2. The Mean-Value Theorem gives no indication of how many points ``C`` there may be on the curve between ``A`` and ``B`` where the tangent is parallel to ``AB``. If the curve is itself the straight line ``A``B, then every point on the line between ``A`` and ``B`` has the required property. In general, there may be more than one point; the Mean-Value Theorem asserts only that there must be at least one.
-3. The Mean-Value Theorem gives us no information on how to find the point ``c``, which it says must exist. For some simple functions it is possible to calculate ``c`` (see the following example), but doing so is usually of no practical value. As we shall see, the importance of the Mean-Value Theorem lies in its use as a theoretical tool. It belongs to a class of theorems called existence theorems
-
-The Mean-Value Theorem is one of those deep results that is based on the completeness of the real number system via the fact that a continuous function on a closed, finite interval takes on a maximum and minimum value (Extreme-Value Theorem). Before giving the proof, we establish two preliminary results.
-
-!!! theorem
-	If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f\prime\left(c\right)`` exists, then ``f\prime\left(c\right)=0``. (Values of ``x`` where ``f\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
-
-!!! proof
-
-	Suppose that ``f`` has a maximum value at ``c``. Then ``f\left(x\right)-f\left(c\right)\le0`` whenever ``x`` is in ``\left]a,b\right[``.
-
-	If ``c&lt;x&lt;b``, then
-	```math
-	\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^+}\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,.
-	```
-	If ``a&lt;x&lt;c``, then
-	```math
-	\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^-}\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,.
-	```
-	Thus ``f^\prime\left(c\right)``. The proof for a minimum value at ``c`` is similar.
-
-!!! theorem "Rolle's Theorem"
-
-	Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]``and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``.
-
-!!! proof
-
-	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
-
-	Let us assume that ``g\left(x\right)&gt; g\left(a\right)``. (If ``g\left(x\right)&lt; g\left(a\right)``, the proof is similar.)
-
-	By the Extreme-Value Theorem, being continuous on ``\left[a,b\right]``, ``g`` must have a maximum value at some point ``c`` in ``\left[a,b\right]``.
-
-	Since ``g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)``, ``c`` cannot be either ``a`` or ``b``. Therefore, ``c`` is in the open interval ``\left]a,b\right[``, so ``g`` is differentiable at ``c``.
-
-	By the previous theorem, ``c`` must be a critical point of ``g``: ``g\prime\left(c\right)=0``.
-
-Rolle’s Theorem is a special case of the Mean-Value Theorem in which the chord line has slope 0, so the corresponding parallel tangent line must also have slope 0. We can deduce the Mean-Value Theorem from this special case.
-
-!!! proof "of the Mean-Value Theorem"
-	
-	Suppose ``f`` satisfies the conditions of the Mean-Value Theorem. 
-	
-	Let
-	```math
-	g\left(x\right) = f\left(x\right)-\left(f\left(a\right)+\frac{f\left(b\right)-f\left(a\right)}{b-a}\left(x-a\right)\right)\,.
-	```
-
-	The function ``g`` is also continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[`` because ``f`` has these properties. 
-	
-	In addition, ``g\left(a\right)=g\left(b\right)=0``. By Rolle’s Theorem, there is some point ``c`` in ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``. 
-	
-	Since
-	```math
-	g\prime\left(x\right) = f\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
-	```
-	it follows that
-	```math
-	f\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
-	```
-
-Many of the applications we will make of the Mean-Value Theorem will actually use the following generalized version of it.
-
-!!! theorem "The Generalized Mean-Value Theorem"
-	
-	If functions ``f`` and ``g`` are both continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[``, and if ``g\prime\left(x\right)\ne 0`` for every ``x\in\left]a,b\right[``, then there exists a number ``c \in \left]a,b\right[`` such that
-	```math
-	\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f\prime\left(c\right)}{g\prime\left(c\right)}\,.
-	```
-
-!!! proof
-	
-	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g\prime\left(x\right)= 0``. Hence, neither denominator above can be zero. Apply the Mean-Value Theorem to
-	```math
-	h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
-	```
-	Since ``h\left(a\right)=h\left(b\right)=0``, there exists ``c\in \left]a,b\right[`` such that ``h\prime\left(c\right)=0``. Thus,
-	```math
-	\left(f\left(b\right)-f\left(a\right)\right)g\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f\prime\left(c\right)=0\,,
-	```
-	and the result follows on division by the ``g`` factors.
-
-### Increasing and Decreasing Functions
-
-Intervals on which the graph of a function ``f`` has positive or negative slope provide useful information about the behaviour of ``f``. The Mean-Value Theorem enables us to determine such intervals by considering the sign of the derivative ``f\prime``.
-
-!!! definition
-	
-	Suppose that the function ``f`` is defined on an interval ``I`` and that ``x_1`` and ``x_2`` are two points of ``I``.
-	- If ``f\left(x_2\right)&gt;f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *increasing* on ``I``.
-	- If ``f\left(x_2\right)&lt;f\left(x_1\right)`` whenever ``x_2&lt;x_1``, we say ``f`` is *decreasing* on ``I``.
-	- If ``f\left(x_2\right)\ge f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nondecreasing* on ``I``.
-	- If ``f\left(x_2\right)\le f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nonincreasing* on ``I``.
-
-Note the distinction between increasing and nondecreasing. If a function is increasing (or decreasing) on an interval, it must take different values at different points. (Such a function is called *bijective*.) A nondecreasing function (or a nonincreasing function) may be constant on a subinterval of its domain, and may therefore not be bijective. An increasing function is nondecreasing, but a nondecreasing function is not necessarily increasing.
-
-!!! theorem
-	
-	Let ``J`` be an open interval, and let ``I`` be an interval consisting of all the points in ``J`` and possibly one or both of the endpoints of ``J``: Suppose that ``f`` is continuous on ``I`` and differentiable on ``J``.
-	- If ``f\prime\left(x\right)&gt;0`` for all ``x\in J``, then ``f`` is increasing on ``I``.
-	- If ``f\prime\left(x\right)&lt;0`` for all ``x\in J``, then ``f`` is decreasing on ``I``.
-	- If ``f\prime\left(x\right)\ge 0`` for all ``x\in J``, then ``f`` is nondecreasing on ``I``.
-	- If ``f\prime\left(x\right)\le 0`` for all ``x\in J``, then ``f`` is nonincreasing on ``I``.
-
-!!! proof
-	
-	Let ``x_1`` and ``x_2`` be points in ``I`` with ``x_2&gt;x_1``.
-	
-	By the Mean-Value Theorem there exists a point ``c \in \left]x_1,x_2\right[`` (and therefore in ``J``) such that
-	```math
-	\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f\prime\left(c\right)\,;
-	```
-	hence, ``f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f\prime\left(c\right)``. Since ``x_2-x_1&gt;0``, the difference ``f\left(x_2\right)-f\left(x_1\right)`` has the same sign as ``f\prime\left(c\right)`` and may be zero if ``f\prime\left(c\right)`` is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.
-
-!!! example
-	On what intervals is the function ``f\left(x\right)=x^3-12x+1`` increasing? On what intervals is it decreasing?
-
-	We have ``f\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)``. Observe that ``f\prime\left(x\right)&gt;0`` if ``x&lt;-2`` or ``x&gt;2`` and ``f\prime\left(x\right)&lt;0`` if ``-2&lt;x&lt;2``. Therefore, ``f`` is increasing on the intervals ``\left]-\infty,-2\right[`` and ``\left]2, \infty\right[`` and is decreasing on the interval ``\left]-2,2\right[``.
-
-If a function is constant on an interval, then its derivative is zero on that interval. The Mean-Value Theorem provides a converse of this fact.
-
-!!! theorem
-
-	If ``f`` is continuous on an interval ``I``, and ``f\prime\left(x\right)=0`` every interior point of ``I`` (i.e., at interior point of I that is not an endpoint of ``I``), then ``f\left(x\right)=C``, a constant, on ``I``.
-
-!!! proof
-
-	Pick a point ``x_0`` in ``I`` and let ``C=f\left(x_0\right)``.
-
-	If ``x`` is any other point of ``I``, then the Mean-Value Theorem says that there exists a point ``c`` between ``x_0`` and ``x`` such that
-	```math
-	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f\prime\left(x\right)\,.
-	```
-	The point ``c`` must belong to ``I`` because an interval contains all points between any two of its points, and ``c`` cannot be an endpoint of ``I`` since ``c\ne x_0`` and ``c\ne x``. 
-	Since ``f\prime\left(c\right)=0`` for all such points ``c``, we have ``f\left(x\right)-f\left(x_0\right)=0`` for all ``x\in I``, and ``f\left(x\right)=f\left(x_0\right)=C`` as claimed.
-
-### Derivatives of Inverse Functions
+## Derivatives of Inverse Functions
 
 Suppose that the function ``f`` is differentiable on an interval ``\left]a,b\right[`` and that either ``f\prime\left(x\right)&gt;0`` for ``a&lt;x&lt;b``, so that ``f`` is increasing on ``\left]a,b\right[``, or ``f\prime\left(x\right)&lt;0`` for ``a&lt;x&lt;b``, so that ``f`` is decreasing on ``\left]a,b\right[``. In either case ``f`` is bijective on ``\left]a,b\right[`` and has an inverse, ``f^{-1}`` there. Differentiating the cancellation identity
 ```math
@@ -1435,6 +1249,138 @@ end
 	\left(f^{-1}\right)^\prime\left(10\right)=\left.\frac{1}{3y^2+1}\right|_{y=2}=\frac{1}{13}\,.
 	```
 
+## The Mean-Value Theorem
+
+If you set out in a car at 1:00 p.m. and arrive in a town 150 km away from your starting point at 3:00 p.m., then you have travelled at an average speed of ``\frac{150}{2}=75`` km/h. Although you may not have travelled at constant speed, you must have been going 75 km/h at at least one instant during your journey, for if your speed was always less than 75 km/h you would have gone less than 150 km in 2 h, and if your speed was always more than 75 km/h, you would have gone more than 150 km in 2 h. In order to get from a value less than 75 km/h to a value greater than 75 km/h, your speed, which is a continuous function of time, must pass through the value 75 km/h at some intermediate time.
+
+The conclusion that the average speed over a time interval must be equal to the instantaneous speed at some time in that interval is an instance of an important mathematical principle. In geometric terms it says that if ``A`` and ``B`` are two points on a smooth curve, then there is at least one point ``C`` on the curve between ``A`` and ``B`` where the tangent line is parallel to the chord line ``AB``.
+
+{cell=chap display=false output=false}
+```julia
+Figure("", "There is a point " * tex("C") * " on the curve where the tangent (green) is parallel to the chord " * tex("AB") * " (blue).") do
+    scale = 40
+    Drawing(width=6scale, height=5.5scale) do
+        xmid = 1scale
+        ymid = 5scale
+        f = x->-0.5(x-2)^2+4
+		c = 1.5
+		fc = f(c)
+		a = -0.5
+		fa = f(a)
+		b= 3.5
+		fb=f(b)
+        axis_xy(6scale,5.5scale,xmid,ymid,scale,(a,b,c),tuple(), xs=("a","b","c"))
+        plot_xy(f, -1:0.01:5.5, (a, b, c), xmid, ymid, scale, width=1)
+		m = -(c-2)
+		plot_xy(x->m*(x-c)+fc, -1:0.01:5.5, tuple(), xmid, ymid, scale, width=1, color = "green")
+		plot_xy(x->m*(x-a)+fa, a:0.01:b, tuple(), xmid, ymid, scale, width=1, color = "RoyalBlue")
+		line(x1=xmid+a*scale, y1=ymid-fa*scale, x2=xmid+a*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+b*scale, y1=ymid-fb*scale, x2=xmid+b*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		line(x1=xmid+c*scale, y1=ymid-fc*scale, x2=xmid+c*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
+		latex("y=f\\left(x\\right)", x=xmid+3scale, y=ymid-4scale, width=4font_x, height=font_y)
+		latex("A", x=xmid+a*scale-0.6font_x, y=ymid-fa*scale-1.25font_y, width=font_x, height=font_y)
+		latex("B", x=xmid+b*scale-0.5font_x, y=ymid-fb*scale-1.25font_y, width=font_x, height=font_y)
+		latex("C", x=xmid+c*scale-0.5font_x, y=ymid-fc*scale-1.25font_y, width=font_x, height=font_y)
+    end
+end
+```
+
+This principle is stated more precisely in the following theorem.
+
+!!! theorem "The Mean-Value theorem"
+	Suppose that the function ``f`` is continuous on the closed, finite interval ``\left[a,b\right]`` and that it is differentiable on the open interval ``\left]a,b\right[``. Then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that
+	```math
+	\frac{f\left(b\right)-f\left(a\right)}{b-a}=f\prime\left(c\right)\,.
+	```
+
+This says that the slope of the chord line joining the points ``\left(a,f\left(a\right)\right)`` and ``\left(b,f\left(b\right)\right)`` is equal to the slope of the tangent line to the curve ``f=f\left(x\right)`` at the point ``\left(c,f\left(c\right)\right)``, so the two lines are parallel.
+
+We can make several observations:
+
+1. The hypotheses of the Mean-Value theorem are all necessary for the conclusion; if ``f`` fails to be continuous at even one point of ``\left[a,b\right]`` or fails to be differentiable at even one point of ``\left]a,b\right[``, then there may be no point where the tangent line is parallel to the secant line ``AB``.
+2. The Mean-Value theorem gives no indication of how many points ``C`` there may be on the curve between ``A`` and ``B`` where the tangent is parallel to ``AB``. If the curve is itself the straight line ``A``B, then every point on the line between ``A`` and ``B`` has the required property. In general, there may be more than one point; the Mean-Value theorem asserts only that there must be at least one.
+3. The Mean-Value theorem gives us no information on how to find the point ``c``, which it says must exist. For some simple functions it is possible to calculate ``c`` (see the following example), but doing so is usually of no practical value. As we shall see, the importance of the Mean-Value theorem lies in its use as a theoretical tool. It belongs to a class of theorems called existence theorems
+
+The Mean-Value theorem is one of those deep results that is based on the completeness of the real number system via the fact that a continuous function on a closed, finite interval takes on a maximum and minimum value (Extreme-Value theorem). Before giving the proof, we establish two preliminary results.
+
+!!! theorem
+	If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f\prime\left(c\right)`` exists, then ``f\prime\left(c\right)=0``. (Values of ``x`` where ``f\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
+
+!!! proof
+
+	Suppose that ``f`` has a maximum value at ``c``. Then ``f\left(x\right)-f\left(c\right)\le0`` whenever ``x`` is in ``\left]a,b\right[``.
+
+	If ``c&lt;x&lt;b``, then
+	```math
+	\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^+}\frac{f\left(x\right)-f\left(c\right)}{x-c}\le0\,.
+	```
+	If ``a&lt;x&lt;c``, then
+	```math
+	\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^-}\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,.
+	```
+	Thus ``f^\prime\left(c\right)``. The proof for a minimum value at ``c`` is similar.
+
+!!! theorem "Rolle's theorem"
+
+	Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]`` and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``.
+
+!!! proof
+
+	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
+
+	Let us assume that ``g\left(x\right)&gt; g\left(a\right)``. (If ``g\left(x\right)&lt; g\left(a\right)``, the proof is similar.)
+
+	By the Extreme-Value theorem, being continuous on ``\left[a,b\right]``, ``g`` must have a maximum value at some point ``c`` in ``\left[a,b\right]``.
+
+	Since ``g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)``, ``c`` cannot be either ``a`` or ``b``. Therefore, ``c`` is in the open interval ``\left]a,b\right[``, so ``g`` is differentiable at ``c``.
+
+	By the previous theorem, ``c`` must be a critical point of ``g``: ``g\prime\left(c\right)=0``.
+
+Rolle’s theorem is a special case of the Mean-Value theorem in which the chord line has slope 0, so the corresponding parallel tangent line must also have slope 0. We can deduce the Mean-Value theorem from this special case.
+
+!!! proof "of the Mean-Value theorem"
+	
+	Suppose ``f`` satisfies the conditions of the Mean-Value theorem. 
+	
+	Let
+	```math
+	g\left(x\right) = f\left(x\right)-\left(f\left(a\right)+\frac{f\left(b\right)-f\left(a\right)}{b-a}\left(x-a\right)\right)\,.
+	```
+
+	The function ``g`` is also continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[`` because ``f`` has these properties. 
+	
+	In addition, ``g\left(a\right)=g\left(b\right)=0``. By Rolle’s theorem, there is some point ``c`` in ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``. 
+	
+	Since
+	```math
+	g\prime\left(x\right) = f\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
+	```
+	it follows that
+	```math
+	f\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
+	```
+
+Many of the applications we will make of the Mean-Value theorem will actually use the following generalized version of it.
+
+!!! theorem "The Generalized Mean-Value theorem"
+	
+	If functions ``f`` and ``g`` are both continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[``, and if ``g\prime\left(x\right)\ne 0`` for every ``x\in\left]a,b\right[``, then there exists a number ``c \in \left]a,b\right[`` such that
+	```math
+	\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f\prime\left(c\right)}{g\prime\left(c\right)}\,.
+	```
+
+!!! proof
+	
+	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g\prime\left(x\right)= 0``. Hence, neither denominator above can be zero. Apply the Mean-Value theorem to
+	```math
+	h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
+	```
+	Since ``h\left(a\right)=h\left(b\right)=0``, there exists ``c\in \left]a,b\right[`` such that ``h\prime\left(c\right)=0``. Thus,
+	```math
+	\left(f\left(b\right)-f\left(a\right)\right)g\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f\prime\left(c\right)=0\,,
+	```
+	and the result follows on division by the ``g`` factors.
+
 ## Indeterminate Forms
 
 We showed that
@@ -1447,7 +1393,7 @@ We could not readily see this by substituting ``x=0`` into the function ``\frac{
 \left[\frac{\infty}{\infty}\right]\,,\quad\left[0\cdot\infty\right]\,,\quad\left[\infty-\infty\right]\,,\quad\left[0^0\right]\,,\quad\left[\infty^0\right]\,,\quad\left[1^\infty\right]\,.
 ```
 
-Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. You can evaluate many indeterminate forms of type ``\left[\frac{0}{0}\right]``with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types ``\left[\frac{0}{0}\right]``and ``\left[\frac{\infty}{\infty}\right]``. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.
+Indeterminate forms of type ``\left[\frac{0}{0}\right]`` are the most common. You can evaluate many indeterminate forms of type ``\left[\frac{0}{0}\right]`` with simple algebra, typically by cancelling common factors. We will now develop another method called l’Hôpital’s Rules for evaluating limits of indeterminate forms of the types ``\left[\frac{0}{0}\right]`` and ``\left[\frac{\infty}{\infty}\right]``. The other types of indeterminate forms can usually be reduced to one of these two by algebraic manipulation and the taking of logarithms.
 
 !!! theorem "The first l'Hôpital Rule"
 
@@ -1460,7 +1406,7 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 	```
 
-	Similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+	Similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;c&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
 
 !!! proof
 
@@ -1478,9 +1424,9 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 	\end{cases}\,.
 	```
 
-	Then, ``F`` and ``G`` are continuous on the interval ``\left[a,x\right]``and differentiable on the interval ``\left]a,x\right[`` for every ``x\in \left]a,b\right[``. 
+	Then, ``F`` and ``G`` are continuous on the interval ``\left[a,x\right]`` and differentiable on the interval ``\left]a,x\right[`` for every ``x\in \left]a,b\right[``. 
 	
-	By the Generalized Mean-Value Theorem there exists a number ``c \in \left]a,x\right[`` such that
+	By the Generalized Mean-Value theorem there exists a number ``c \in \left]a,x\right[`` such that
 	```math
 	\frac{f\left(x\right)}{g\left(x\right)}=\frac{F\left(x\right)}{G\left(x\right)}=\frac{F\left(x\right)-F\left(a\right)}{G\left(x\right)-G\left(a\right)}=\frac{F^\prime\left(c\right)}{G^\prime\left(c\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}
 	```
@@ -1517,13 +1463,67 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]``are the most common. Y
 	\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 	```
 
-	Again, similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;x&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
+	Again, similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;c&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
 
-Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]``or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
+Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type ``\left[\frac{0}{0}\right]`` or ``\left[\frac{\infty}{\infty}\right]``; such attempts will almost always lead to false conclusions.
+
+## Increasing and Decreasing Functions
+
+Intervals on which the graph of a function ``f`` has positive or negative slope provide useful information about the behaviour of ``f``. The Mean-Value theorem enables us to determine such intervals by considering the sign of the derivative ``f\prime``.
+
+!!! definition
+	
+	Suppose that the function ``f`` is defined on an interval ``I`` and that ``x_1`` and ``x_2`` are two points of ``I``.
+	- If ``f\left(x_2\right)&gt;f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *increasing* on ``I``.
+	- If ``f\left(x_2\right)&lt;f\left(x_1\right)`` whenever ``x_2&lt;x_1``, we say ``f`` is *decreasing* on ``I``.
+	- If ``f\left(x_2\right)\ge f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nondecreasing* on ``I``.
+	- If ``f\left(x_2\right)\le f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nonincreasing* on ``I``.
+
+Note the distinction between increasing and nondecreasing. If a function is increasing (or decreasing) on an interval, it must take different values at different points. (Such a function is called *bijective*.) A nondecreasing function (or a nonincreasing function) may be constant on a subinterval of its domain, and may therefore not be bijective. An increasing function is nondecreasing, but a nondecreasing function is not necessarily increasing.
+
+!!! theorem
+	
+	Let ``J`` be an open interval, and let ``I`` be an interval consisting of all the points in ``J`` and possibly one or both of the endpoints of ``J``: Suppose that ``f`` is continuous on ``I`` and differentiable on ``J``.
+	- If ``f\prime\left(x\right)&gt;0`` for all ``x\in J``, then ``f`` is increasing on ``I``.
+	- If ``f\prime\left(x\right)&lt;0`` for all ``x\in J``, then ``f`` is decreasing on ``I``.
+	- If ``f\prime\left(x\right)\ge 0`` for all ``x\in J``, then ``f`` is nondecreasing on ``I``.
+	- If ``f\prime\left(x\right)\le 0`` for all ``x\in J``, then ``f`` is nonincreasing on ``I``.
+
+!!! proof
+	
+	Let ``x_1`` and ``x_2`` be points in ``I`` with ``x_2&gt;x_1``.
+	
+	By the Mean-Value theorem there exists a point ``c \in \left]x_1,x_2\right[`` (and therefore in ``J``) such that
+	```math
+	\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f\prime\left(c\right)\,;
+	```
+	hence, ``f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f\prime\left(c\right)``. Since ``x_2-x_1&gt;0``, the difference ``\left.f\left(x_2\right)-f\left(x_1\right)\right.`` has the same sign as ``f\prime\left(c\right)`` and may be zero if ``f\prime\left(c\right)`` is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.
+
+!!! example
+	On what intervals is the function ``f\left(x\right)=x^3-12x+1`` increasing? On what intervals is it decreasing?
+
+	We have ``f\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)``. Observe that ``f\prime\left(x\right)&gt;0`` if ``x&lt;-2`` or ``x&gt;2`` and ``f\prime\left(x\right)&lt;0`` if ``-2&lt;x&lt;2``. Therefore, ``f`` is increasing on the intervals ``\left]-\infty,-2\right[`` and ``\left]2, \infty\right[`` and is decreasing on the interval ``\left]-2,2\right[``.
+
+If a function is constant on an interval, then its derivative is zero on that interval. The Mean-Value theorem provides a converse of this fact.
+
+!!! theorem
+
+	If ``f`` is continuous on an interval ``I``, and ``f\prime\left(x\right)=0`` every interior point of ``I`` (i.e., at interior point of I that is not an endpoint of ``I``), then ``f\left(x\right)=C``, a constant, on ``I``.
+
+!!! proof
+
+	Pick a point ``x_0`` in ``I`` and let ``C=f\left(x_0\right)``.
+
+	If ``x`` is any other point of ``I``, then the Mean-Value theorem says that there exists a point ``c`` between ``x_0`` and ``x`` such that
+	```math
+	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f\prime\left(x\right)\,.
+	```
+	The point ``c`` must belong to ``I`` because an interval contains all points between any two of its points, and ``c`` cannot be an endpoint of ``I`` since ``c\ne x_0`` and ``c\ne x``. 
+	Since ``f\prime\left(c\right)=0`` for all such points ``c``, we have ``f\left(x\right)-f\left(x_0\right)=0`` for all ``x\in I``, and ``f\left(x\right)=f\left(x_0\right)=C`` as claimed.
 
 ## Extreme Values
 
-The first derivative of a function is a source of much useful information about the behaviour of the function. As we have already seen, the sign of ``f\prime`` tells us whether ``f`` is increasing or decreasing.
+The first derivative of a function is a source of much useful information about the behaviour of the function.
 
 ### Maximum and Minimum Values
 
@@ -1535,7 +1535,7 @@ Recall that a function has a maximum value at ``x0`` if ``f\left(x\right)\le f\l
 
 	Similarly, ``f`` has an *absolute minimum value* ``f\left(x_1\right)`` at the point ``x_1`` in its domain if ``f\left(x\right)\ge f\left(x_1\right)`` holds for every ``x`` in the domain of ``f``.
 
-Maximum and minimum values of a function are collectively referred to as *extreme values*. The following theorem is a restatement (and slight generalization) of the Extreme-Value Theorem. It will prove very useful in some circumstances when we want to find extreme values.
+Maximum and minimum values of a function are collectively referred to as *extreme values*. The following theorem is a restatement (and slight generalization) of the Extreme-Value theorem. It will prove very useful in some circumstances when we want to find extreme values.
 
 !!! theorem
 
@@ -1656,22 +1656,6 @@ If the function ``f`` is not defined on a closed, finite interval, then the exte
 	
 	Also, either or both of ``L`` and ``M`` may be either ``\infty`` or ``-\infty``.
 
-!!! proof
-
-	We prove the first part; the proof of the second part is similar. We are given that there is a number ``u\in\left]a,b\right[`` such that ``f\left(u\right)&gt;L`` and ``f\left(u\right)&gt;M``. Here, ``L`` and ``M`` may be finite numbers or ``-\infty``. 
-	
-	Since ``\lim_{x\to a^+}f\left(x\right)=L``, there must exist a number ``x_1\in\left]a,u\right[`` such that
-	```math
-	f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad a&lt;x&lt;x_1\,.
-	```
-
-	Similarly, there must exist a number ``x_2\in\left]u,b\right[`` such that
-	```math
-	f\left(x\right)&lt;f\left(u\right)\quad\textrm{whenever}\quad x_2&lt;x&lt;b\,.
-	```
-
-	Thus, ``f\left(x\right)&ltf\left(u\right)`` at all points of ``\left]a,b\right[`` that are not in the closed, finite subinterval ``\left[x_1,x_2\right]``. The function ``f``, being continuous on ``\left[x_1,x_2\right]``, must have an absolute maximum on that interval, say at the point ``w``. Since ``u\in\left[x_1,x_2\right]``, we must have ``f\left(w\right)\ge f\left(u\right)``, so ``f\left(w\right)`` is the maximum value of ``f\left(x\right)`` for all of ``\left]a,b\right[``.
-
 ## Convexity/Concavity and Inflections
 
 Like the first derivative, the second derivative of a function also provides useful information about the behaviour of the function and the shape of its graph: it determines whether the graph is *bending upward* (i.e., has increasing slope) or *bending downward* (i.e., has decreasing slope) as we move along the graph toward the right.
@@ -1704,7 +1688,7 @@ If a function ``f`` has a second derivative ``f^{\prime\prime}``, the sign of th
 
 !!! proof
 
-	Part 1. and 2. follow from applying theorem 49 to the derivative ``f^\prime``.
+	Part 1. and 2. follow from applying theorem 52 to the derivative ``f^\prime``.
 
 	If ``f`` has an inflection point at ``x_0`` and ``f^{\prime\prime}\left(x_0\right)`` exists, then ``f`` must be differentiable in an open interval containing ``x_0``. Since ``f^\prime`` is increasing on one side of ``x_0`` and decreasing on the other side, it must have a local maximum or minimum at ``x_0``. By theorem 46, ``f^{\prime\prime}\left(x_0\right)=0``.
 
@@ -1783,11 +1767,11 @@ The following theorem gives us a way to estimate this error if we know bounds fo
 	```math
 	E\left(t\right)=f\left(t\right)-f\left(a\right)-f^\prime\left(a\right)\left(t-a\right)\,,
 	```
-	we have ``E^\prime\left(t\right)=f^\prime\left(t\right)-f^\prime\left(a\right)``. We apply the Generalized Mean-Value Theorem to the two functions ``E\left(t\right)`` and ``\left(t-a\right)^2`` on ``\left[a,x\right]``. Noting that ``E\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
+	we have ``E^\prime\left(t\right)=f^\prime\left(t\right)-f^\prime\left(a\right)``. We apply the Generalized Mean-Value theorem to the two functions ``E\left(t\right)`` and ``\left(t-a\right)^2`` on ``\left[a,x\right]``. Noting that ``E\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
 	```math
 	\frac{E\left(x\right)}{\left(x-a\right)^2}=\frac{E\left(x\right)-E\left(a\right)}{\left(x-a\right)^2-\left(a-a\right)^2}=\frac{E^\prime\left(u\right)}{2\left(u-a\right)}=\frac{f^\prime\left(u\right)-f^\prime\left(a\right)}{2\left(u-a\right)}=\frac{1}{2}f^{\prime\prime}\left(s\right)
 	```
-	for some ``s\in\left]a,u\right[``; the latter expression is a consequence of applying the Mean-Value Theorem again, this time to ``f^\prime`` on ``\left[a,u\right]``. 
+	for some ``s\in\left]a,u\right[``; the latter expression is a consequence of applying the Mean-Value theorem again, this time to ``f^\prime`` on ``\left[a,u\right]``. 
 	
 	Thus,
 	```math
@@ -1876,7 +1860,7 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	end
 	```
 
-!!! theorem "Taylor's Theorem"
+!!! theorem "Taylor's theorem"
 
 	If the ``\left(n+1\right)``st-order derivative, ``f^{\left(n+1\right)}\left(t\right)``, exists for all ``t`` in an interval containing ``a`` and ``x``, and if ``P_n\left(x\right)`` is the ``n``th order Taylor polynomial for ``f`` about ``a``, then the error ``E_n\left(x\right)=f\left(x\right)-p_n\left(x\right)`` is given by
 	```math
@@ -1894,7 +1878,7 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	```math
 	f\left(x\right)=P_0\left(x\right)+E_0\left(x\right)=f\left(a\right)+f^\prime\left(x\right)\left(x-a\right)\,.
 	```
-	is just the Mean-Value Theorem
+	is just the Mean-Value theorem
 	```math
 	\frac{f\left(x\right)-f\left(a\right)}{x-a}=f^\prime\left(s\right)
 	```
@@ -1904,9 +1888,9 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	```math
 	E_{k-1}\left(x\right)=\frac{f^{\left(k\right)}\left(s\right)}{k!}\left(x-a\right)^k\,,
 	```
-	where ``s`` os some number between ``a`` and ``x``.
+	where ``s`` is some number between ``a`` and ``x``.
 
-	Let us conisder the next higher case: ``n=k``. We assume ``x&gt;a`` (the case ``x&lt;a`` is similar) and apply the generalized Mean-Value Theorem to the functions ``E_k\left(t\right)`` and ``\left(t-a\right)^{k+1}`` on ``\left[a,x\right]``. Since ``E_k\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
+	Let us consider the next higher case: ``n=k``. We assume ``x&gt;a`` (the case ``x&lt;a`` is similar) and apply the generalized Mean-Value theorem to the functions ``E_k\left(t\right)`` and ``\left(t-a\right)^{k+1}`` on ``\left[a,x\right]``. Since ``E_k\left(a\right)=0``, we obtain a number ``u\in\left]a,x\right[`` such that
 	```math
 	\frac{E_k\left(x\right)}{\left(x-a\right)^{k+1}}=\frac{E_k\left(x\right)-E_k\left(a\right)}{\left(x-a\right)^{k+1}-\left(a-a\right)^{k+1}}=\frac{E_k^\prime\left(u\right)}{\left(k+1\right)\left(u-a\right)^{k}}\,.
 	```
@@ -1928,7 +1912,7 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	E_k\left(x\right)=\frac{f^{\left(k+1\right)}\left(s\right)}{\left(k+1\right)!}\left(x-a\right)^{k+1}\,.
 	```
 
-	We have shown that the case ``n=k`` of Taylor’s Theorem is true if the case ``n=k-1`` is true, and the inductive proof is complete.
+	We have shown that the case ``n=k`` of Taylor’s theorem is true if the case ``n=k-1`` is true, and the inductive proof is complete.
 
 ## Antiderivatives
 
@@ -1991,8 +1975,7 @@ For the moment, ``r`` must be rational, but this restriction will be removed in 
 
 The rule for differentiating sums and constant multiples of functions translates into a similar rule for antiderivatives
 
-The graphs of the different antiderivatives of the same function on the same interval are vertically displaced versions of the same curve. In
-general, only one of these curves will pass through any given point, so we can obtain a unique antiderivative of a given function on an interval by requiring the antiderivative to take a prescribed value at a particular point ``x``.
+The graphs of the different antiderivatives of the same function on the same interval are vertically displaced versions of the same curve. In general, only one of these curves will pass through any given point, so we can obtain a unique antiderivative of a given function on an interval by requiring the antiderivative to take a prescribed value at a particular point ``x``.
 
 !!! example
 
