@@ -687,7 +687,7 @@ The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\oper
 
 	Simplify the expression ``\tan\left(\operatorname{Arcsin} x\right)``.
 
-	We want the tangent of an angle whose sine is ``x``. Suppose first that ``0\le\theta x&lt;1``. We draw a right triangle with one angle ``\theta``, and label the sides so that ``\theta = \operatorname{Arcsin} x``. The side opposite ``\theta`` is ``x``, and the hypotenuse is ``1``. The remaining side is ``\sqrt{1-x^2}``, and we have
+	We want the tangent of an angle whose sine is ``x``. Suppose first that ``0\le x&lt;1``. We draw a right triangle with one angle ``\theta``, and label the sides so that ``\theta = \operatorname{Arcsin} x``. The side opposite ``\theta`` is ``x``, and the hypotenuse is ``1``. The remaining side is ``\sqrt{1-x^2}``, and we have
 
 	```math
 	\tan\left(\operatorname{Arcsin} x\right)=\tan\theta=\frac{x}{\sqrt{1-x^2}}\,.
