@@ -144,7 +144,7 @@ By a *sequence* (or an infinite sequence) we mean an ordered list having a first
 
 ```math
 \begin{aligned}
-\left(a_n\right)=&\left(0, 1, 2, 3, 4, 5, 6, 7\dots \right)\\
+\left(a_n\right)=&\left(0, 1, 2, 3, 4, 5, 6, 7, \dots \right)\\
 \left(b_n\right)=&\left(1, -\frac{1}{2}, \frac{1}{4}, -\frac{1}{8}, \frac{1}{16}, -\frac{1}{32}, \frac{1}{64},\dots \right)\\
 \left(c_n\right)=&\left(0, 1, 1, 2, 3, 5, 8, 13, \dots \right)
 \end{aligned}
@@ -156,7 +156,7 @@ An infinite sequence is a special kind of function, one whose domain is a set of
 
 1. We can list the first few terms followed by ``\dots`` if the pattern is obvious.
 2. We can provide a formula for the general term ``a_n`` as a function of ``n``.
-3. We can provide a formula for calculating the term an as a function of earlier terms ``a_1,a_2,\dots,a_{n-1}`` and specify enough of the beginning terms so the process of computing higher terms can begin.
+3. We can provide a formula for calculating the term ``a_n`` as a function of earlier terms ``a_1,a_2,\dots,a_{n-1}`` and specify enough of the beginning terms so the process of computing higher terms can begin.
 
 In each case it must be possible to determine any term of the sequence, although it may be necessary to calculate all the preceding terms first.
 
@@ -176,17 +176,17 @@ We now introduce terminology used to describe various properties of sequences.
 
 !!! definition
 
-	- The sequence ``\left(a_n\right)`` is *bounded below* by ``L``, and ``L`` is a *lower bound* for ``\left(a_n\right)``, if ``a_n\ge L`` for every ``n\in\mathbb N``. The sequence is *bounded above* by ``M`` and ``M`` is an upper bound, if ``a_n\le M`` for every ``n\in\mathbb N``.
+	- The sequence ``\left(a_n\right)`` is *bounded below* by ``L``, and ``L`` is a *lower bound* for ``\left(a_n\right)``, if ``a_n\ge L`` for every ``\left.n\inℕ\right.``. The sequence is *bounded above* by ``M`` and ``M`` is an upper bound, if ``a_n\le M`` for every ``n\inℕ``.
 
-	  The sequence ``\left(a_n\right)`` is *bounded* if it is both bounded above and bounded below. In this case there is a constant ``K`` such that ``\left|a_n\right|\le K`` for every ``n\in\mathbb N``.
+	  The sequence ``\left(a_n\right)`` is *bounded* if it is both bounded above and bounded below. In this case there is a constant ``K`` such that ``\left|a_n\right|\le K`` for every ``n\inℕ``.
 	  
-	- The sequence ``\left(a_n\right)`` is *positive* if it is bounded below by zero, that is, if ``a_n\ge 0`` for every ``n\in\mathbb N``; it is *negative* if ``a_n\le 0 `` for every ``n\in\mathbb N``.
+	- The sequence ``\left(a_n\right)`` is *positive* if it is bounded below by zero, that is, if ``a_n\ge 0`` for every ``n\inℕ``; it is *negative* if ``a_n\le 0 `` for every ``n\inℕ``.
 
-	- The sequence ``\left(a_n\right)`` is *increasing* if ``a_{n+1}\ge a_n`` for every ``n\in\mathbb N``; it is *decreasing* if ``a_{n+1}\le a_n`` for every ``n\in\mathbb N``. The sequence is said to be *monotonic* if it is either increasing or decreasing.
+	- The sequence ``\left(a_n\right)`` is *increasing* if ``a_{n+1}\ge a_n`` for every ``n\inℕ``; it is *decreasing* if ``a_{n+1}\le a_n`` for every ``n\inℕ``. The sequence is said to be *monotonic* if it is either increasing or decreasing.
 
-	- The sequence ``\left(a_n\right)`` is *alternating* if ``a_na_{n+1}&lt;0`` for every ``n\in\mathbb N``, that is, if any two consecutive terms have opposite signs. Note that this definition requires ``a_n\ne0`` for every ``n\in\mathbb N``.
+	- The sequence ``\left(a_n\right)`` is *alternating* if ``a_na_{n+1}&lt;0`` for every ``n\inℕ``, that is, if any two consecutive terms have opposite signs. Note that this definition requires ``a_n\ne0`` for every ``n\inℕ``.
 
-When you want to show that a sequence is increasing, you can try to show that the inequality ``a_{n+1}-a_n \ge 0`` holds for every ``n\in\mathbb N``. Alternatively, if  ``a_n=f\left(n\right)`` for a differentiable function ``f\left(x\right)`` you can show that ``f`` is a nondecreasing function on ``\left[0,\infty\right[`` by showing that ``f^\prime\left(x\right)\ge0`` there. Similar approaches are useful for showing that a sequence is decreasing.
+When you want to show that a sequence is increasing, you can try to show that the inequality ``a_{n+1}-a_n \ge 0`` holds for every ``n\inℕ``. Alternatively, if  ``a_n=f\left(n\right)`` for a differentiable function ``f\left(x\right)`` you can show that ``f`` is a nondecreasing function on ``\left[0,\infty\right[`` by showing that ``f^\prime\left(x\right)\ge0`` there. Similar approaches are useful for showing that a sequence is decreasing.
 
 The adverb *ultimately* is used to describe any termwise property of a sequence that the terms have from some point on, but not necessarily at the beginning of the sequence.
 
@@ -246,7 +246,7 @@ The limits of many explicitly defined sequences can be evaluated using these pro
 
 	1. ``\displaystyle \lim_{n\to\infty}\frac{2n^2-n-1}{5n^2+n-3}=\lim_{n\to\infty}\frac{2-\frac{1}{n}-\frac{1}{n^2}}{5+\frac{1}{n}-\frac{3}{n^2}}=\frac{2}{5}\,.``
 
-	2. Since ``\left|\cos n\right|\le 1`` for ``n\in\mathbb N``, we have
+	2. Since ``\left|\cos n\right|\le 1`` for ``n\inℕ``, we have
 
 	   ```math
 	   -\frac{1}{n}\le\frac{\cos n}{n}\le\frac{1}{n}\quad\textrm{for }n\ge 1\,.
@@ -271,9 +271,9 @@ The limits of many explicitly defined sequences can be evaluated using these pro
 
 	Let ``\lim_{n\to\infty}a_n=L``.
 
-	For ``\varepsilon = 1``there exists a number ``N`` such that if ``n&gt; N``, then ``\left|a_n-L\right|&lt1``; therefore ``\left|a_n\right|&lt;1+\left| L\right|`` for such ``n``.
+	For ``\varepsilon = 1`` there exists a number ``N`` such that if ``n&gt; N``, then ``\left|a_n-L\right|&lt1``; therefore ``\left|a_n\right|&lt;1+\left| L\right|`` for such ``n``.
 
-	If ``K`` denotes the largest of the numbers ``\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|``, and ``1+\left| L\right|``, then ``\left|a_n\right|\le K`` for every ``n\in\mathbb N``. 
+	If ``K`` denotes the largest of the numbers ``\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|``, and ``1+\left| L\right|``, then ``\left|a_n\right|\le K`` for every ``n\in ℕ``. 
 	
 	Hence, ``\left(a_n\right)`` is bounded.
 
@@ -283,7 +283,7 @@ The *completeness property* of the real number system can be reformulated in ter
 
 !!! theorem
 
-	If the sequence ``\left(a_n\right)`` is bounded above and is (ultimately) increasing, then it converges. The same conclusion holds if a``\left(a_n\right)`` is bounded below and is (ultimately) decreasing.
+	If the sequence ``\left(a_n\right)`` is bounded above and is (ultimately) increasing, then it converges. The same conclusion holds if ``\left(a_n\right)`` is bounded below and is (ultimately) decreasing.
 
 !!! example
 
@@ -352,7 +352,7 @@ Thus, a series converges if and only if the sequence of its partial sums converg
 
 !!! definition
 
-	A series of the form ``\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots``, whose ``n``th term is ``a_n=ar^n``, is called a *geometric series*. The number ``a`` is the first term. The number ``r`` is called the common ratio of the series, since it is the value of the ratio of the ``\left(n+1\right)``th term to the ``n``th term for any ``n\in\mathbb N``:
+	A series of the form ``\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots``, whose ``n``th term is ``a_n=ar^n``, is called a *geometric series*. The number ``a`` is the first term. The number ``r`` is called the common ratio of the series, since it is the value of the ratio of the ``\left(n+1\right)``th term to the ``n``th term for any ``n\in ℕ``:
 
 	```math
 	\frac{a_{n+1}}{a_n}=\frac{ar^{n+1}}{ar^n}=r\,.
@@ -417,7 +417,7 @@ This theorem is very important for the understanding of infinite series. Student
 
 When considering whether a given series converges, the first question you should ask yourself is: “Does the ``n``th term approach ``0`` as ``n`` approaches ``\infty``?” If the answer is no, then the series does not converge. If the answer is yes, then the series *may or may not* converge.
 
-The following theorem asserts that it is only the ultimate behaviour of an that deterines whether ``\sum_{n=0}^\infty a_n`` converges.
+The following theorem asserts that it is only the ultimate behaviour of ``a_n`` that determines whether ``\sum_{n=0}^\infty a_n`` converges.
 
 !!! theorem
 
@@ -437,13 +437,13 @@ The following theorem asserts that it is only the ultimate behaviour of an that 
 
 !!! theorem
 
-	If ``\sum a_n`` and ``\sum b_n`` converge to ``A`` and ``B``, respectively, then
+	If ``\sum_{n=0}^\infty a_n`` and ``\sum_{n=0}^\infty b_n`` converge to ``A`` and ``B``, respectively, then
 
-	1. ``\sum ca_n`` converges to ``cA`` (where ``c`` is a constant);
+	1. ``\sum_{n=0}^\infty ca_n`` converges to ``cA`` (where ``c`` is a constant);
 
-	2. ``\sum\left(a_n\pm b_n\right)`` converges to ``A\pm B``;
+	2. ``\sum_{n=0}^\infty\left(a_n\pm b_n\right)`` converges to ``A\pm B``;
 
-	3. if ``a_n \le b_n`` for all ``n\in\mathbb N``, then ``A\le B``.
+	3. if ``a_n \le b_n`` for all ``n\in ℕ``, then ``A\le B``.
 
 !!! exercise
 
@@ -566,7 +566,7 @@ The integral test provides a means for determining whether an ultimately positiv
 	a_{N+2}&\le ra_{N+1}\le r^2a_N\\
 	a_{N+3}&\le ra_{N+2}\le r^3a_N\\
 	&\vdots\\
-	a_{N+k}&\le r^ka_N\quad\textrm{for }k\in\mathbb N\,.
+	a_{N+k}&\le r^ka_N\quad\textrm{for }k\in ℕ\,.
 	\end{aligned}
 	```
 
@@ -652,7 +652,7 @@ is an example of this behaviour. It has centre of convergence ``c=0``, and conve
 
 !!! proof
 
-	Suppose, therefore, that ``\sum_{n=0}^\infty a_n\left(x_0-c\right)^n``converges. 
+	Suppose, therefore, that ``\sum_{n=0}^\infty a_n\left(x_0-c\right)^n`` converges. 
 	
 	Then ``\lim_{n\to\infty} a_n\left(x_0-c\right)^n=0``, so ``\left|a_n\left(x_0-c\right)^n\right|\le K`` for all ``n``, where ``K`` is some constant.
 
@@ -684,7 +684,7 @@ The radius of convergence, ``R``, can often be found by using the ratio test on 
 \rho =\lim_{n\to\infty}\left|\frac{a_{n+1}\left(x-c\right)^{n+1}}{a_n\left(x-c\right)^n}\right|=\left(\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|\right)\left|x-c\right|
 ```
 
-exists, then the series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` converges absolutely where``\rho&lt;1``, that is, where
+exists, then the series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` converges absolutely where ``\rho&lt;1``, that is, where
 
 ```math
 \left|x-c\right|&lt; R=\frac{1}{\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|}\,.
@@ -709,7 +709,7 @@ The series diverges if ``\left|x-c\right|&gt; R``.
 	The centre of convergence is ``x=-\frac{5}{2}``. The radius of convergence, ``R``, is given by
 
 	```math
-	\frac{1}{R}=L=\lim_{n\to\infty}\left|\frac{\left(\frac{2}{3}\right)^{n+1}\frac{1}{\left(n+1\right)^2+1}}{\left(\frac{2}{3}\right)^n\frac{1}{n^2+1}}\right|=\lim_{n\to\infty}\frac{2}{3}\frac{n^2+1}{\left(n+1\right)^2+1}=\frac{2}{3}\,.
+	\frac{1}{R}=\rho=\lim_{n\to\infty}\left|\frac{\left(\frac{2}{3}\right)^{n+1}\frac{1}{\left(n+1\right)^2+1}}{\left(\frac{2}{3}\right)^n\frac{1}{n^2+1}}\right|=\lim_{n\to\infty}\frac{2}{3}\frac{n^2+1}{\left(n+1\right)^2+1}=\frac{2}{3}\,.
 	```
 
 	Thus, ``R=\frac{3}{2}``. The series converges absolutely on ``\left]-\frac{5}{2}-\frac{3}{2}, -\frac{5}{2}+\frac{3}{2}\right[=\left]-4, -1\right[``, and it diverges on ``\left]-\infty, -4\right[`` and ``\left]-1, \infty\right[``. At ``x=-1`` the series is ``\sum_{n=0}^\infty\frac{1}{n^2+1}``; at ``x=-4`` the series is ``\sum_{n=0}^\infty\left(-1\right)^n\frac{1}{n^2+1}``. Both series converge (absolutely). The interval of convergence of the given power series is therefore ``\left[-4,-1\right]``.
@@ -764,7 +764,7 @@ leads us to conjecture the formula
 where
 
 ```math
-c_n=a_0b_n+a_1b_{n-1}+\cdots+a_nb_0=\sum_{i=0}^na_ib_{n-i}\,n.
+c_n=a_0b_n+a_1b_{n-1}+\cdots+a_nb_0=\sum_{i=0}^na_ib_{n-i}\,.
 ```
 
 The series ``\sum_{n=0}^\infty c_nx^n`` is called the *Cauchy product* of the series ``\sum_{n=0}^\infty a_nx^n`` and ``\sum_{n=0}^\infty b_nx^n``. Like the sum, the Cauchy product also has radius of convergence at least equal to the lesser of those of the factor series.
@@ -777,7 +777,7 @@ The series ``\sum_{n=0}^\infty c_nx^n`` is called the *Cauchy product* of the se
 	\frac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{n=0}^\infty x^n
 	```
 
-	holds for ``x\in\left]-1, 1\right[``, we can determine a power series representation for ``\frac{1}{\left(1-x\right)^2}`` by taking the Cauchy product of this series with itself. Since ``a_n=b_n=1`` for ``n\in\mathbb N``, we have
+	holds for ``x\in\left]-1, 1\right[``, we can determine a power series representation for ``\frac{1}{\left(1-x\right)^2}`` by taking the Cauchy product of this series with itself. Since ``a_n=b_n=1`` for ``n\inℕ``, we have
 
 	```math
 	c_n=\sum_{i=0}^n1=n+1
@@ -880,7 +880,7 @@ If a power series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` has a positive rad
 	If the series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` converges to ``f\left(x\right)`` for ``x\in\left]c-R,c+R\right[``, where ``R&gt;0``, then
 
 	```math
-	a_n=\frac{f^{\left(n\right)}\left(x\right)}{n!}\quad\textrm{for }n\in\mathbb N\,.
+	a_n=\frac{f^{\left(n\right)}\left(c\right)}{n!}\quad\textrm{for }n\in ℕ\,.
 	```
 
 !!! proof
@@ -897,7 +897,7 @@ If a power series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` has a positive rad
 	\end{aligned}
 	```
 
-	Each series converges for ``x\in\left]c-R,c+R\right[``. Setting ``x=c``, we obtain ``f^{\left(i\right)}\left(x\right)=i!a_i``, which proves the theorem.
+	Each series converges for ``x\in\left]c-R,c+R\right[``. Setting ``x=c``, we obtain ``f^{\left(i\right)}\left(c\right)=i!a_i``, which proves the theorem.
 
 This theorem shows that a function ``f\left(x\right)`` that has a power series representation with centre at ``c`` and positive radius of convergence must have derivatives of all orders in an interval around ``x=c``, and it can have only one representation as a power series in powers of ``x-c``.
 
@@ -910,8 +910,7 @@ This theorem shows that a function ``f\left(x\right)`` that has a power series r
 
 	is called the *Taylor series of ``f`` about ``c``*. If ``c=0``, the term *Maclaurin series* is usually used in place of Taylor series.
 
-The Taylor series is a power series as defined in the previous section. This implies that ``c`` must be the centre of any interval on which such a series converges, but
-the definition of Taylor series makes no requirement that the series should converge anywhere except at the point ``x=c``.
+The Taylor series is a power series as defined in the previous section. This implies that ``c`` must be the centre of any interval on which such a series converges, but the definition of Taylor series makes no requirement that the series should converge anywhere except at the point ``x=c``.
 
 !!! definition
 
@@ -923,7 +922,7 @@ Most, but not all, of the elementary functions encountered in calculus are analy
 
 	Find the Taylor series for ``ℯ^x`` about ``x=c``. Where does the series converge to ``ℯ^x``? Where is ``ℯ^x`` analytic? What is the Maclaurin series for ``ℯ^x``?
 
-	Since all the derivatives of ``f\left(x\right)=ℯ^x`` are ``ℯ^x``, we have ``f^{\left(n\right)}\left(c\right)=ℯ^c`` for ``n\in\mathbb N``. Thus, the taylorseries for ``ℯ^x`` about ``x=c`` is
+	Since all the derivatives of ``f\left(x\right)=ℯ^x`` are ``ℯ^x``, we have ``f^{\left(n\right)}\left(c\right)=ℯ^c`` for ``n\inℕ``. Thus, the taylorseries for ``ℯ^x`` about ``x=c`` is
 
 	```math
 	\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
