@@ -778,9 +778,9 @@ However, ``\cos y=\sin\left(\frac{\uppi}{2}-y\right)``, and ``\frac{\uppi}{2}-y`
 
 !!! definition
 
-```math
-\operatorname{Arccos}x=\frac{\uppi}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
-```
+	```math
+	\operatorname{Arccos}x=\frac{\uppi}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
+	```
 
 The derivative of ``\operatorname{Arccos}x`` is the negative of that of ``\operatorname{Arcsin}x``.
 
