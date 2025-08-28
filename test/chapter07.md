@@ -250,7 +250,7 @@ Although the curve in this example is more easily identified when the parameter 
 
 	A plane curve is a set of points ``\left(x,y\right)`` in the plane such that ``x=f\left(t\right)`` and ``y=g\left(t\right)`` for some ``t`` in an interval ``I``, where ``f`` and ``g`` are continuous functions defined on ``I``. Any such interval ``I`` and function pair ``\left(f, g\right)`` that generate the points of ``\mathcal C`` is called a *parametrization* of ``\mathcal C``.
 
-Since a plane curve does not involve any specific parametrization, it has no specific direction.``
+Since a plane curve does not involve any specific parametrization, it has no specific direction.
 
 !!! example
 
@@ -264,7 +264,7 @@ Since a plane curve does not involve any specific parametrization, it has no spe
 
 We say that a plane curve is *smooth* if it has a tangent line at each point ``P`` and this tangent turns in a continuous way as ``P`` moves along the curve.
 
-If the curve ``\mathcal C`` is the graph of function ``f``; then ``\mathcal C`` is certainly smooth on any interval where the derivative ``f^\prime\left(x\right)`` exists and is a continuous function of ``x``. It may also be smooth on intervals containing isolated singular points; for example, the curve ``y=x^\frac{1}{3}`` is smooth everywhere even though ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` does not exist at ``x=0``.
+If the curve ``\mathcal C`` is the graph of function ``f``; then ``\mathcal C`` is certainly smooth on any interval where the derivative ``f^\prime\left(x\right)`` exists and is a continuous function of ``x``. It may also be smooth on intervals containing isolated singular points; for example, the curve ``y=x^⅓`` is smooth everywhere even though ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` does not exist at ``x=0``.
 
 For parametric curves ``x=f\left(t\right), y = g\left(t\right)`` the situation is more complicated. Even if ``f`` and ``g`` have continuous derivatives everywhere, such curves may fail to be smooth at certain points, specifically points where ``f^\prime\left(t\right)=g^\prime\left(t\right)=0``.
 
@@ -314,7 +314,7 @@ The following theorem confirms that a parametric curve is smooth at points where
 
 !!! proof
 
-	``f^\prime\left(t\right)\ne 0`` on ``I``, then ``f`` is either increasing or decreasing on ``I``and so is bijective and invertible. So,
+	``f^\prime\left(t\right)\ne 0`` on ``I``, then ``f`` is either increasing or decreasing on ``I`` and so is bijective and invertible. So,
 
 	```math
 	y = g\left(t\right)=g\left(f^{-1}\left(x\right)\right)
@@ -330,7 +330,7 @@ The following theorem confirms that a parametric curve is smooth at points where
 
 If ``f^\prime`` and ``g^\prime`` are continuous, and both vanish at some point ``t_0``, then the curve ``\mathcal C`` *may or may not* be smooth around ``t_0``.
 
-The concavity of a parametric curve can be determined using the second derivatives of the parametric equations. The procedure is just to calculate ``\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}`` using the Chain Rule:
+The concavity of a parametric curve can be determined using the second derivatives of the parametric equations. The procedure is just to calculate the second derivative of ``y`` with respect to ``x`` using the Chain Rule:
 
 ```math
 \begin{aligned}
@@ -472,7 +472,7 @@ Similar arguments can be given for three other cases:
 
 - if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\ge 0`` on ``\left[a,b\right]``, then ``\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
 
-- if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
+- if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
 
 where ``A``  is the (positive) area bounded by ``\mathcal C``, the ``x``-axis, and the vertical lines ``x=f\left(a\right)`` and ``x=f\left(b\right)``. Combining these results we can see that
 
@@ -494,7 +494,7 @@ A=\begin{cases}
 	Find the area bounded by the ellipse
 
 	```math
-	x=a\cos s\quad\textrm{and}\quad y=a\sin s\quad\textrm{for } 0\le s\le 2\uppi\,,\quad\textrm{where }a&gt;0, b&gt;0\,.
+	x=a\cos s\quad\textrm{and}\quad y=b\sin s\quad\textrm{for } 0\le s\le 2\uppi\,,\quad\textrm{where }a&gt;0, b&gt;0\,.
 	```
 
 	This ellipse is traversed counterclockwise. The area enclosed is
