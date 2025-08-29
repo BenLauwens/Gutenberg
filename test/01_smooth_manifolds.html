@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="utf-8">
+<title>01_smooth_manifolds</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="rma.css" />
+<script>
+MathJax = {
+    startup: {
+        pageReady() {
+            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
+            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+        }
+    },
+    tex: {
+        inlineMath: [              // start/end delimiter pairs for in-line math
+            ['\\(', '\\)']
+        ],
+        displayMath: [
+            ['\\[', '\\]']
+        ]
+    },
+    options: {
+        renderActions: {
+            assistiveMml: [],  // disable assistive mathml
+            typeset: [150,
+                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
+                (math, doc) => MathJax.config.renderMathML(math, doc)
+            ]
+        },
+        menuOptions: {
+            settings: {
+                assistiveMml: false
+            }
+        }
+    },
+    renderMathML(math, doc) {
+        math.typesetRoot = document.createElement('mjx-container');
+        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+        math.display && math.typesetRoot.setAttribute('display', 'block');
+    }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+
+</head>
+<body data-type="article">
+<div id="tag"></div>
+<section data-type="chapter" class="pagereset" >
+<h1>Smooth Manifolds</h1>
+<section data-type="sect1">
+<h1>Topological Spaces</h1>
+<div data-type="definition">
+<h1></h1>
+<p>A <i>topological space</i> is a pair <span class="math-tex" data-type="tex">\(\left(M, 𝒯_M\right)\)</span> consisting of a set <span class="math-tex" data-type="tex">\(M\)</span> and a family <span class="math-tex" data-type="tex">\(𝒯_M\)</span> of subsets of <span class="math-tex" data-type="tex">\(M\)</span> such that:</p>
+<ol>
+<li>
+<p>the empty set <span class="math-tex" data-type="tex">\(\emptyset\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> itself belong to <span class="math-tex" data-type="tex">\(𝒯_M\)</span>;</p>
+</li>
+<li>
+<p>the union of any numbers of elements of <span class="math-tex" data-type="tex">\(𝒯_M\)</span> is again an element of <span class="math-tex" data-type="tex">\(𝒯_M\)</span>;</p>
+</li>
+<li>
+<p>the intersection of any finite number of elements of <span class="math-tex" data-type="tex">\(𝒯_M\)</span> is again an element of <span class="math-tex" data-type="tex">\(𝒯_M\)</span>.</p>
+</li>
+</ol>
+<p>The family <span class="math-tex" data-type="tex">\(𝒯_M\)</span> is said to form a <i>topology</i> on <span class="math-tex" data-type="tex">\(M\)</span> and its elements are called the <i>open sets</i> of <span class="math-tex" data-type="tex">\(M\)</span>.</p>
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\alpha\)</span> range over a set of indices <span class="math-tex" data-type="tex">\(A\)</span>, and denote a general element of <span class="math-tex" data-type="tex">\(𝒯_M\)</span> by <span class="math-tex" data-type="tex">\(U_a\)</span>; if <span class="math-tex" data-type="tex">\(N\)</span> is a subset of <span class="math-tex" data-type="tex">\(M\)</span>, the family</p>
+<div class="math-tex" data-type="equation">
+\[
+𝒯_N=\left\lbrace U_\alpha\cap N\mid\alpha\in A\right\rbrace
+\]
+</div>
+<p>is a topology on <span class="math-tex" data-type="tex">\(N\)</span>, called the <i>induced topology</i> on <span class="math-tex" data-type="tex">\(N\)</span>.</p>
+<p>A <i>neighbourhood</i> of a point (element) <span class="math-tex" data-type="tex">\(p\)</span> of <span class="math-tex" data-type="tex">\(M\)</span> is a set <span class="math-tex" data-type="tex">\(B_p\)</span> containing an open set to which the point <span class="math-tex" data-type="tex">\(p\)</span> belongs.</p>
+<p>A topological space <span class="math-tex" data-type="tex">\(\left(M, 𝒯_M\right)\)</span> is <i>connected</i> if it is not possible to write <span class="math-tex" data-type="tex">\(M = U\cup V\)</span> with <span class="math-tex" data-type="tex">\(U, V \in 𝒯_M\)</span> and <span class="math-tex" data-type="tex">\(U\cap V = \emptyset\)</span>.</p>
+<p>A topological space is <i>separated</i> (or Hausdorff) if it is connected and any two distinct points have disjoint neighbourhoods.</p>
+<p>A family <span class="math-tex" data-type="tex">\(\left\lbrace U_\alpha\mid\alpha\in A\right\rbrace\)</span> of (open) sets of <span class="math-tex" data-type="tex">\(M\)</span> forms a (open) covering of <span class="math-tex" data-type="tex">\(M\)</span> if</p>
+<div class="math-tex" data-type="equation">
+\[
+\bigcup_{\alpha\in A} U_\alpha=M
+\]
+</div>
+<p>A topological space <span class="math-tex" data-type="tex">\(M\)</span> is <i>compact</i> if it is separated and any open covering of <span class="math-tex" data-type="tex">\(M\)</span> contains a finite covering of <span class="math-tex" data-type="tex">\(M\)</span>.</p>
+</section>
+<section data-type="sect1">
+<h1>Maps</h1>
+<div data-type="definition">
+<h1></h1>
+<p>Given two sets <span class="math-tex" data-type="tex">\(U\)</span> and <span class="math-tex" data-type="tex">\(V\)</span>, a <i>map</i>:</p>
+<div class="math-tex" data-type="equation">
+\[
+\Phi:U\to V
+\]
+</div>
+<p>associates to each point <span class="math-tex" data-type="tex">\(p\in U\)</span> a unique point <span class="math-tex" data-type="tex">\(q\in V\)</span>:</p>
+<div class="math-tex" data-type="equation">
+\[
+p\mapsto q=\Phi\left(p\right)\,.
+\]
+</div>
+<p>the set <span class="math-tex" data-type="tex">\(\Phi\left(U\right)=\left\lbrace\Phi\left(U\right): p\in U\right\rbrace\)</span> is the <i>image</i> in <span class="math-tex" data-type="tex">\(V\)</span> of <span class="math-tex" data-type="tex">\(U\)</span>.</p>
+</div>
+<p>If for every <span class="math-tex" data-type="tex">\(q\in\Phi\left(U\right)\)</span> there is only one point <span class="math-tex" data-type="tex">\(p\in U\)</span> such that <span class="math-tex" data-type="tex">\(\Phi\left(p\right) = q\)</span>, the map <span class="math-tex" data-type="tex">\(\Phi\)</span> is said to be <i>injective</i>.</p>
+<p>If <span class="math-tex" data-type="tex">\(\Phi\left(U\right)=V\)</span>, the map is said to be <i>surjective</i>.</p>
+<p>If it is both surjective and injective, then the map is said to be <i>bijective</i>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>If we are given a map <span class="math-tex" data-type="tex">\(\Phi:U\to V\)</span> and a map <span class="math-tex" data-type="tex">\(\Psi:V\to W\)</span>, then the map:</p>
+<div class="math-tex" data-type="equation">
+\[
+\Psi\circ\Phi:U\to W
+\]
+</div>
+<p>defined by applying <span class="math-tex" data-type="tex">\(\Phi\)</span> and then <span class="math-tex" data-type="tex">\(\Psi\)</span> is called the <i>composition</i> of <span class="math-tex" data-type="tex">\(\Phi\)</span> with <span class="math-tex" data-type="tex">\(\Psi\)</span>.</p>
+</div>
+<p>If <span class="math-tex" data-type="tex">\(\Phi:U\to V\)</span> is injective, then we can define a map <span class="math-tex" data-type="tex">\(\Phi^{-1}:V\to U\)</span> which satisfies:</p>
+<div class="math-tex" data-type="equation">
+\[
+\Phi\circ\Phi^{-1}=I_{\Phi\left(U\right)}\quad\textrm{and}\quad\Phi^{-1}\circ\Phi=I_U
+\]
+</div>
+<p>where <span class="math-tex" data-type="tex">\(I_U\)</span> denotes the identity on <span class="math-tex" data-type="tex">\(U\)</span>.</p>
+<div data-type="definition">
+<h1></h1>
+<p>Suppose now that <span class="math-tex" data-type="tex">\(\left(M, 𝒯_M\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(N, 𝒯_N\right)\)</span> are topological spaces. A map <span class="math-tex" data-type="tex">\(\Phi:M\to N\)</span> is said to be <i>continuous</i> at a point <span class="math-tex" data-type="tex">\(p\in M\)</span> if <span class="math-tex" data-type="tex">\(\Phi^{-1}\left(B\right)\)</span> is a neighbourhood of <span class="math-tex" data-type="tex">\(p\)</span> for every neighbourhood <span class="math-tex" data-type="tex">\(B\)</span> of <span class="math-tex" data-type="tex">\(\Phi\left(p\right)\in N\)</span>.</p>
+</div>
+<p>A map <span class="math-tex" data-type="tex">\(\Phi\)</span> is called <i>continuous</i> in <span class="math-tex" data-type="tex">\(M\)</span> if it is continuous at every point <span class="math-tex" data-type="tex">\(p\in M\)</span>: this happens precisely when <span class="math-tex" data-type="tex">\(\Phi^{-1}\left(B\right)\)</span> is open for every open <span class="math-tex" data-type="tex">\(B\in N\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(\Phi:M\to N\)</span> is bijective, and if <span class="math-tex" data-type="tex">\(\Phi\)</span> and <span class="math-tex" data-type="tex">\(\Phi^{-1}\)</span> are continuous, then <span class="math-tex" data-type="tex">\(\Phi\)</span> is called a <i>homeomorphism</i> and <span class="math-tex" data-type="tex">\(M\)</span> and <span class="math-tex" data-type="tex">\(N\)</span> are called <i>homeomorphic</i>.</p>
+<p>More generally, if <span class="math-tex" data-type="tex">\(\Phi\)</span> is injective and <span class="math-tex" data-type="tex">\(\Phi\)</span> and <span class="math-tex" data-type="tex">\(\Phi^{-1}\)</span> are continuous with respect to the induced topology on <span class="math-tex" data-type="tex">\(\Phi\left(M\right)\)</span>, then <span class="math-tex" data-type="tex">\(\Phi\)</span> is called a <i>homeomorphism into</i> <span class="math-tex" data-type="tex">\(N\)</span>.</p>
+<p>If we are given more than two maps, the composition of maps satisfies the associative property:</p>
+<div class="math-tex" data-type="equation">
+\[
+\Phi\circ\left(\Psi\circ\Theta\right)=\left(\Phi\circ\Psi\right)\circ\Theta\,.
+\]
+</div>
+</section>
+<section data-type="sect1">
+<h1>Charts</h1>
+<div data-type="definition">
+<h1></h1>
+<p>Given a topological space <span class="math-tex" data-type="tex">\(\left(M, 𝒯_M\right)\)</span> we define a <i>chart</i> of <span class="math-tex" data-type="tex">\(M\)</span> to be a pair <span class="math-tex" data-type="tex">\(\left(U_\alpha,\phi_\alpha\right)\)</span>, with <span class="math-tex" data-type="tex">\(U_\alpha\)</span> an element of <span class="math-tex" data-type="tex">\(𝒯_M\)</span> and <span class="math-tex" data-type="tex">\(\phi_\alpha\)</span> a homeomorphism of <span class="math-tex" data-type="tex">\(U_\alpha\)</span> into an open set of <span class="math-tex" data-type="tex">\(ℝ^n\)</span>, the space of the <span class="math-tex" data-type="tex">\(n\)</span>-tuples of real numbers <span class="math-tex" data-type="tex">\(\left(x^i\right)_{i=1,2,\dots,n}\)</span>. The numbers <span class="math-tex" data-type="tex">\(x^1, x^2, \dots x^n\)</span> constituting the image of a point <span class="math-tex" data-type="tex">\(p\in U_\alpha\)</span> under the map <span class="math-tex" data-type="tex">\(\phi_\alpha\)</span> are called the <i>local coordinates</i> of <span class="math-tex" data-type="tex">\(p\)</span>. A family of charts <span class="math-tex" data-type="tex">\(𝒜 = \left\lbrace\left(U_\alpha,\phi_\alpha\right)\mid \alpha\in A\right\rbrace\)</span> on <span class="math-tex" data-type="tex">\(M\)</span> is said to form an <i>atlas</i> on <span class="math-tex" data-type="tex">\(M\)</span> if</p>
+<div class="math-tex" data-type="equation">
+\[
+\bigcup_{\alpha\in A}U_\alpha=M\,.
+\]
+</div>
+</div>
+<p>Let <span class="math-tex" data-type="tex">\(\left(U_\alpha,\phi_\alpha\right)\)</span> and <span class="math-tex" data-type="tex">\(\left(U_\beta,\phi_\beta\right)\)</span> be two charts on <span class="math-tex" data-type="tex">\(M\)</span> with <span class="math-tex" data-type="tex">\(U_\alpha\cap U_\beta\ne\emptyset\)</span>. A point <span class="math-tex" data-type="tex">\(p\in U_\alpha\cap U_\beta\)</span> can be expressed in terms of its two images in <span class="math-tex" data-type="tex">\(ℝ^n\)</span> as:</p>
+<div class="math-tex" data-type="equation">
+\[
+p=\phi_\alpha^{-1}\left(x\right)=\phi_\beta^{-1}\left(y\right)
+\]
+</div>
+<p>where we put <span class="math-tex" data-type="tex">\(x = \left(x^i\right)_{i=1,2,\dots,n}\)</span> and <span class="math-tex" data-type="tex">\(y = \left(y^i\right)_{i=1,2,\dots,n}\)</span>. It is easy to show that the composite map:</p>
+<div class="math-tex" data-type="equation">
+\[
+\phi_\beta\circ\phi_\alpha^{-1}:\phi_\alpha\left(U_\alpha\cap U_\beta\right)\to\phi_\beta\left(U_\alpha\cap U_\beta\right)
+\]
+</div>
+<p>is a homeomorphism between open sets of <span class="math-tex" data-type="tex">\(ℝ^n\)</span>. The inverse map is given by</p>
+<div class="math-tex" data-type="equation">
+\[
+\left(\phi_\beta\circ\phi_\alpha^{-1}\right)^{-1}=\phi_\alpha\circ\phi_\beta^{-1}\,.
+\]
+</div>
+<p>An atlas on <span class="math-tex" data-type="tex">\(M\)</span> is a <span class="math-tex" data-type="tex">\(C^r\)</span>-atlas if <span class="math-tex" data-type="tex">\(\phi_\beta\circ\phi_\alpha^{-1}\)</span> (and its inverse) for any pair <span class="math-tex" data-type="tex">\(\left(\alpha,\beta\right)\)</span> is an <span class="math-tex" data-type="tex">\(ℝ^n\)</span>-valued <span class="math-tex" data-type="tex">\(C^r\)</span>-function of <span class="math-tex" data-type="tex">\(n\)</span> variables (i.e. has a continuous <span class="math-tex" data-type="tex">\(r\)</span>-th derivative). The composite maps are called coordinate transformations in <span class="math-tex" data-type="tex">\(M\)</span> and can be written as</p>
+<div class="math-tex" data-type="equation">
+\[
+y = \phi_\beta\circ\phi_\alpha^{-1}\left(x\right)
+\]
+</div>
+<p>and its inverse</p>
+<div class="math-tex" data-type="equation">
+\[
+x = \phi_\alpha\circ\phi_\beta^{-1}\left(y\right)\,.
+\]
+</div>
+</section>
+<section data-type="sect1">
+<h1>Differentiable Manifolds</h1>
+<div data-type="definition">
+<h1></h1>
+<p>A <i>differentiable manifold</i> of class <span class="math-tex" data-type="tex">\(C^r\)</span> and dimension <span class="math-tex" data-type="tex">\(n\)</span> is a Hausdorff topological space with a <span class="math-tex" data-type="tex">\(C^r\)</span>-atlas. Any point in a <span class="math-tex" data-type="tex">\(C^r\)</span>-differentiable manifold has a neighbourhood which is also a coordinate neighbourhood of <span class="math-tex" data-type="tex">\(M\)</span>. Hereafter, a <span class="math-tex" data-type="tex">\(C^r\)</span>-differentiable manifold will be simply referred to as a (smooth) manifold unless stated otherwise.</p>
+</div>
+<p>A map <span class="math-tex" data-type="tex">\(\mathsf f:M\to ℝ\)</span> is said to be a <span class="math-tex" data-type="tex">\(C^k\)</span>-function at <span class="math-tex" data-type="tex">\(p\in M\)</span>, if for any chart <span class="math-tex" data-type="tex">\(\left(U_\alpha,\phi_\alpha\right)\)</span>, there exists a neighbourhood <span class="math-tex" data-type="tex">\(B\)</span> of <span class="math-tex" data-type="tex">\(p\)</span> such that the composite map</p>
+<div class="math-tex" data-type="equation">
+\[
+f_\alpha:\phi_\alpha\left(B\right)\subset ℝ^n\to ℝ:f_\alpha\left(x^1,x^2,\dots,x^n\right)=\mathsf f\circ\phi_\alpha^{-1}\left(x\right)
+\]
+</div>
+<p>is a <span class="math-tex" data-type="tex">\(C^k\)</span>-differentiable function in <span class="math-tex" data-type="tex">\(\phi_\alpha\left(B\right)\)</span>.</p>
+</section>
+</section>
+</body>
+</html>
