@@ -169,7 +169,7 @@ A parametric curve has a direction (indicated, say, by arrowheads), namely, the 
 	Sketch and identify the parametric curve
 
 	```math
-	x=t^2-1\quad\textrm{and}\quad y=t+1\,,\quad t\in\mathbb R\,.
+	x=t^2-1\quad\textrm{and}\quad y=t+1\,,\quad t\in ℝ\,.
 	```
 
 	We could construct a table of values of ``x`` and ``y`` for various values of ``t``, thus getting the coordinates of a number of points on a curve. However, for this example it is easier to *eliminate* the parameter from the pair of parametric equations, thus producing a single equation in ``x`` and ``y`` whose graph is the desired curve:
@@ -182,7 +182,7 @@ A parametric curve has a direction (indicated, say, by arrowheads), namely, the 
 
 	{cell=chap display=false output=false}
 	```julia
-	Figure("", "The parabola defined parameterically by " * tex("x=t^2-1, y=t+1, t\\in\\mathbb R\\,.") ) do
+	Figure("", "The parabola defined parameterically by " * tex("x=t^2-1, y=t+1, t\\in ℝ\\,.") ) do
 		scale = 40
 		Drawing(width=11scale, height=7scale) do
 			xmid = 2scale

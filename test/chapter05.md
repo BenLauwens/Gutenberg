@@ -418,7 +418,7 @@ The function ``\ln x`` is bijective on its domain, the interval ``\left]0,\infty
 
 Since ``\ln 1=0``, we have ``\exp 0=1``. The domain of ``\exp`` is ``\left]-\infty,\infty\right[``, the range of ``\ln``. The range of ``\exp`` is ``\left]0,\infty\right[``, the domain of ``\ln``. We have cancellation identities
 ```math
-\forall x\in\mathbb R:\ln\left(\exp x\right)=x\quad\textrm{and}\quad\forall x&gt;0:\exp\left(\ln x\right)=x\,.
+\forall x\in ℝ:\ln\left(\exp x\right)=x\quad\textrm{and}\quad\forall x&gt;0:\exp\left(\ln x\right)=x\,.
 ```
 
 We can deduce various properties of ``\exp`` from corresponding properties of ``\ln``. Not surprisingly, they are properties we would expect an exponential function to have.
@@ -545,7 +545,7 @@ We can use the fact that ``ℯ^x`` is now defined for all real ``x`` to define t
 
 	Let
 	```math
-	\forall x\in\mathbb R,\forall a&gt;0:a^x=ℯ^{x\ln a}\,.
+	\forall x\in ℝ,\forall a&gt;0:a^x=ℯ^{x\ln a}\,.
 	```
 
 The laws of exponents for ``a^x`` can now be obtained from those for ``ℯ^x``, as can the derivative:
