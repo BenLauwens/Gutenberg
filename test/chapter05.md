@@ -116,7 +116,7 @@ With the exception of the trigonometric functions, all the functions we have enc
 
 This chapter is devoted to developing other transcendental functions, including *exponential* and *logarithmic functions* and the *inverse trigonometric functions*.
 
-## Exponentialsand Logarithms
+## Exponentials and Logarithms
 
 ### Exponentials
 
