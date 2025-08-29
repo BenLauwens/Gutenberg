@@ -957,7 +957,7 @@ Most, but not all, of the elementary functions encountered in calculus are analy
 	ℯ^x=\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
 	```
 
-	In particular, ``ℯ^x`` is analytic on the whole real line. Setting ``c=0``we obtain the Maclaurin series for ``ℯ^x``:
+	In particular, ``ℯ^x`` is analytic on the whole real line. Setting ``c=0`` we obtain the Maclaurin series for ``ℯ^x``:
 
 	```math
 	ℯ^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
