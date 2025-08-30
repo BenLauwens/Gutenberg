@@ -48,6 +48,7 @@ MathJax = {
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter" class="pagereset" >
 <h1>Preliminaries</h1>
 <p>This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.</p>
@@ -351,7 +352,7 @@ MathJax = {
 <p><span class="math-tex" data-type="tex">\(\lnot \left(\lnot 𝒫\right)\equiv 𝒫\)</span> (<i>involution law</i>)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\lnot \left(𝒫\vee 𝒬\right)\equiv \lnot 𝒫\wedge \lnot 𝒬\)</span> and <span class="math-tex" data-type="tex">\(\lnot \left(𝒫\wedge 𝒬\right)\equiv \lnot 𝒫\vee \lnot 𝒬\)</span> (<i>DeMorgan’s laws</i>)</p>
+<p><span class="math-tex" data-type="tex">\(\lnot \left(𝒫\vee 𝒬\right)\equiv \lnot 𝒫\wedge \lnot 𝒬\)</span> and <span class="math-tex" data-type="tex">\(\lnot \left(𝒫\wedge 𝒬\right)\equiv \lnot 𝒫\vee \lnot 𝒬\)</span> (<i>De Morgan’s laws</i>)</p>
 </li>
 </ol>
 </div>
@@ -381,12 +382,12 @@ MathJax = {
 <td style="text-align:center"></td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(\left.𝒫\implies 𝒬\right.\)</span></td>
 <td style="text-align:center"></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\lnot 𝒫\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\lnot 𝒫\vee 𝒬\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left.\lnot 𝒫\right.\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left.\lnot 𝒫\vee 𝒬\right.\)</span></td>
 <td style="text-align:center"></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(𝒫\iff 𝒬\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left.𝒫\iff 𝒬\right.\)</span></td>
 <td style="text-align:center"></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(𝒬\implies 𝒫\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left.𝒬\implies 𝒫\right.\)</span></td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(\left(𝒫\implies 𝒬\right)\wedge \left(𝒬\implies 𝒫\right)\)</span></td>
 </tr>
 </thead>
@@ -535,7 +536,7 @@ MathJax = {
 <p><span class="math-tex" data-type="tex">\(\left(A^c \right)^c =A\)</span> (<i>involution law</i>)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\left(A\cup B\right)^c =A^c \cap B^c\)</span> and <span class="math-tex" data-type="tex">\(\left(A\cap B\right)^c =A^c \cup B^c\)</span> (<i>DeMorgan’s laws</i>)</p>
+<p><span class="math-tex" data-type="tex">\(\left(A\cup B\right)^c =A^c \cap B^c\)</span> and <span class="math-tex" data-type="tex">\(\left(A\cap B\right)^c =A^c \cup B^c\)</span> (<i>De Morgan’s laws</i>)</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(A\setminus B=A\cap B^c\)</span></p>
@@ -550,7 +551,7 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof the first law of DeMorgan.</p>
+<p>Proof the first law of De Morgan.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -648,7 +649,6 @@ MathJax = {
 <p>The set of natural number is denoted by <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
 <p>A set which is equivalent to the set <span class="math-tex" data-type="tex">\(\lbrace 0,1,2,3,\ldots,n\rbrace\)</span> for some <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> is called <i>finite</i>; otherwise it is called <i>infinite</i>.</p>
 <p>An infinite set which is equivalent to the set of natural numbers is called <i>denumerable</i>; otherwise it is called <i>non-denumerable</i>.</p>
-<p>A set which is either empty, finite or denumerable is called <i>countable</i>; otherwise it is called <i>non-countable</i>.</p>
 <div data-type="definition">
 <h1></h1>
 <p>The <i>cardinal number</i> of the set <span class="math-tex" data-type="tex">\(\lbrace 1,2,3,\ldots,n\rbrace\)</span> as well as any set equivalent to it is defined to be <span class="math-tex" data-type="tex">\(n\)</span>. The cardinal number of any denumerable set is defined as <span class="math-tex" data-type="tex">\(\aleph_0\)</span>, <i>aleph null</i>. The cardinal number of the empty set <span class="math-tex" data-type="tex">\(\emptyset\)</span> is defined as <span class="math-tex" data-type="tex">\(0\)</span>.</p>
@@ -656,8 +656,8 @@ MathJax = {
 <p>The cardinal number of a set <span class="math-tex" data-type="tex">\(S\)</span> is denoted by <span class="math-tex" data-type="tex">\(\#S\)</span>.</p>
 </section>
 <section data-type="sect1">
-<h1>Propositional Functions and Quantifiers</h1>
-<p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a given set. A <i>propositional function</i> defined on <span class="math-tex" data-type="tex">\(A\)</span> is a function <span class="math-tex" data-type="tex">\(A\to \lbrace T,F\rbrace :𝒫\left(x\right)\)</span> which has the property that <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true or false for each <span class="math-tex" data-type="tex">\(a\in A\)</span>. That is, <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> becomes a proposition (with a truth value) whenever any element <span class="math-tex" data-type="tex">\(a\in A\)</span> is substituted for the variable <span class="math-tex" data-type="tex">\(x.\)</span> The set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of all elements of <span class="math-tex" data-type="tex">\(a\in A\)</span> for which <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true is called the <i>truth set</i> of <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span>.</p>
+<h1>Quantifiers</h1>
+<p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a given set. A <i>propositional function</i> defined on <span class="math-tex" data-type="tex">\(A\)</span> is a function <span class="math-tex" data-type="tex">\(𝒫:A\to \lbrace T,F\rbrace\)</span> which has the property that <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true or false for each <span class="math-tex" data-type="tex">\(a\in A\)</span>. That is, <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> becomes a proposition (with a truth value) whenever any element <span class="math-tex" data-type="tex">\(a\in A\)</span> is substituted for the variable <span class="math-tex" data-type="tex">\(x.\)</span> The set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of all elements of <span class="math-tex" data-type="tex">\(a\in A\)</span> for which <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true is called the <i>truth set</i> of <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span>.</p>
 <div data-type="example">
 <h1></h1>
 <p>Find the truth set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of each propositional function <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> defined on <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
@@ -685,7 +685,7 @@ MathJax = {
 <p>The proposition <span class="math-tex" data-type="tex">\(\forall n\in ℕ:n+2&gt;8\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+2&gt;8\rbrace =\lbrace 7,8,9,\ldots\rbrace\)</span>.</p>
 </li>
 <li>
-<p>The symbol <span class="math-tex" data-type="tex">\(\forall\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i :i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcap_{i\in I} A_i =\lbrace x\mid\forall i\in I,x\in A_i \rbrace\)</span>.</p>
+<p>The symbol <span class="math-tex" data-type="tex">\(\forall\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i\mid i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcap_{i\in I} A_i =\lbrace x\mid\forall i\in I:x\in A_i \rbrace\)</span>.</p>
 </li>
 </ul>
 </div>
@@ -701,7 +701,7 @@ MathJax = {
 <p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in ℕ:n+6 < 4\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset\)</span>.</p>
 </li>
 <li>
-<p>The symbol <span class="math-tex" data-type="tex">\(\exists\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i :i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I,x\in A_i \rbrace\)</span>.</p>
+<p>The symbol <span class="math-tex" data-type="tex">\(\exists\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i\mid i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I:x\in A_i \rbrace\)</span>.</p>
 </li>
 </ul>
 </div>
@@ -728,7 +728,7 @@ MathJax = {
 </div>
 <p>The above is true for any proposition <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span>.</p>
 <div data-type="theorem">
-<h1>&nbsp;(DeMorgan 1)</h1>
+<h1>&nbsp;(De Morgan 1)</h1>
 <p><span class="math-tex" data-type="tex">\(\lnot \left(\forall x\in A:𝒫\left(x\right)\right)\equiv \exists x\in A:\lnot 𝒫\left(x\right)\)</span>.</p>
 </div>
 <p>In other words, the following two statements are equivalent:</p>
@@ -742,7 +742,7 @@ MathJax = {
 </ul>
 <p>There is an analogous theorem for the negation of a proposition which contains the existential quantifier.</p>
 <div data-type="theorem">
-<h1>&nbsp;(DeMorgan 2)</h1>
+<h1>&nbsp;(De Morgan 2)</h1>
 <p><span class="math-tex" data-type="tex">\(\lnot \left(\exists x\in A:𝒫\left(x\right)\right)\equiv \forall x\in A:\lnot 𝒫\left(x\right)\)</span>.</p>
 </div>
 <p>That is, the following two statements are equivalent:</p>
@@ -799,7 +799,7 @@ MathJax = {
 </li>
 </ol>
 </div>
-<p>Quantified statements with more than one variable may be negated by successively applying the theorems of DeMorgan. Thus each <span class="math-tex" data-type="tex">\(\forall\)</span> is changed to <span class="math-tex" data-type="tex">\(\exists\)</span>, and each <span class="math-tex" data-type="tex">\(\exists\)</span> is changed to <span class="math-tex" data-type="tex">\(\forall\)</span> as the negation symbol <span class="math-tex" data-type="tex">\(\lnot\)</span> passes through the statement from left to right.</p>
+<p>Quantified statements with more than one variable may be negated by successively applying the theorems of De Morgan. Thus each <span class="math-tex" data-type="tex">\(\forall\)</span> is changed to <span class="math-tex" data-type="tex">\(\exists\)</span>, and each <span class="math-tex" data-type="tex">\(\exists\)</span> is changed to <span class="math-tex" data-type="tex">\(\forall\)</span> as the negation symbol <span class="math-tex" data-type="tex">\(\lnot\)</span> passes through the statement from left to right.</p>
 <div data-type="example">
 <h1></h1>
 <p>Some examples of the negation of quantified statement with more than one variable:</p>
@@ -1021,11 +1021,11 @@ MathJax = {
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
-&=\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
-&=\frac{1}{6}\left(2k^3+9^2+13k+6\right)\\
-&=\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
-&=\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
+1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=&\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
+&=&\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
+&=&\frac{1}{6}\left(2k^3+9k^2+13k+6\right)\\
+&=&\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
+&=&\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
 \end{aligned}
 \]
 </div>
@@ -1033,7 +1033,6 @@ MathJax = {
 </div>
 </section>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

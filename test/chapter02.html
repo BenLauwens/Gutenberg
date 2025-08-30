@@ -48,7 +48,6 @@ MathJax = {
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Real Numbers and Functions</h1>
 <p>In this chapter, the real numbers are formally defined and some basic real functions are explored.</p>
@@ -364,7 +363,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 <div data-type="exercise">
 <h1></h1>
-<p>Proof <span class="math-tex" data-type="tex">\(\sqrt 3 \notin ℚ\)</span>. What goes wrong if you try to proof <span class="math-tex" data-type="tex">\(\sqrt 4 \notin ℚ\)</span>?</p>
+<p>Prove <span class="math-tex" data-type="tex">\(\sqrt 3 \notin ℚ\)</span>. What goes wrong if you try to prove <span class="math-tex" data-type="tex">\(\sqrt 4 \notin ℚ\)</span>?</p>
 <p>Hint: If a prime number divides the square of an integer, it also divides the integer itself.</p>
 </div>
 <section data-type="sect1">
@@ -471,8 +470,8 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left|a\pm b\right|^2&=\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
-&\le\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
+\left|a\pm b\right|^2&=&\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
+&\le&\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
 \end{aligned}
 \]
 </div>
@@ -944,10 +943,10 @@ y=\sqrt{1-x^2}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=-\sqrt{1-x^2}\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(f+g\right)(x)&=f(x)+g(x)\\
-\left(f-g\right)(x)&=f(x)-g(x)\\
-\left(fg\right)(x)&=f(x)g(x)\\
-\left(\frac{f}{g}\right)(x)&=\frac{f(x)}{g(x)}\,,\textrm{ where } g(x)\ne0\,.
+\left(f+g\right)(x)&=&f(x)+g(x)\\
+\left(f-g\right)(x)&=&f(x)-g(x)\\
+\left(fg\right)(x)&=&f(x)g(x)\\
+\left(\frac{f}{g}\right)(x)&=&\frac{f(x)}{g(x)}\,,\textrm{ where } g(x)\ne0\,.
 \end{aligned}
 \]
 </div>
@@ -1678,10 +1677,10 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\cos\left(s+t\right)&=\cos s\cos t-\sin s\sin t\\
-\sin\left(s+t\right)&=\sin s\cos t+\cos s\sin t\\
-\cos\left(s-t\right)&=\cos s\cos t+\sin s\sin t\\
-\sin\left(s-t\right)&=\sin s\cos t-\cos s\sin t\\
+\cos\left(s+t\right)&=&\cos s\,\cos t-\sin s\,\sin t\\
+\sin\left(s+t\right)&=&\sin s\,\cos t+\cos s\,\sin t\\
+\cos\left(s-t\right)&=&\cos s\,\cos t+\sin s\,\sin t\\
+\sin\left(s-t\right)&=&\sin s\,\cos t-\cos s\,\sin t\\
 \end{aligned}
 \]
 </div>
@@ -1692,8 +1691,8 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <div class="math-tex" data-type="equation">
 \[
 \begin{alignedat}{3}
-P_t&=\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
-P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
+P_t&=&\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=&\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
+P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
 \end{alignedat}
 \]
 </div>
@@ -1707,8 +1706,8 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <div class="math-tex" data-type="equation">
 \[
 \begin{gathered}
-\cos^2s- 2\cos s\cos t+\cos^2t+\sin^2s-2\sin s\sin t+\sin^2 t\\
-=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
+\cos^2s- 2\cos s\,\cos t+\cos^2t+\sin^2s-2\sin s\,\sin t+\sin^2 t\\
+\quad\quad\quad\quad=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
 \end{gathered}
 \]
 </div>
@@ -1716,7 +1715,7 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 </div>
 <div data-type="exercise">
 <h1></h1>
-<p>Proof the other formulas using the even/odd behavior of the cosine and sine functions and the complementary angles relations.</p>
+<p>Prove the other formulas using the even/odd behavior of the cosine and sine functions and the complementary angles relations.</p>
 </div>
 <p>From the addition formulas, we obtain as special cases certain useful formulas called <i>double-angle formulas</i>.</p>
 <div data-type="corollary">
@@ -1724,7 +1723,7 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <p>Let <span class="math-tex" data-type="tex">\(t\inℝ\)</span>.</p>
 <ol>
 <li>
-<p><span class="math-tex" data-type="tex">\(\sin 2t=2\sin t\cos t\)</span> and</p>
+<p><span class="math-tex" data-type="tex">\(\sin 2t=2\sin t\,\cos t\)</span> and</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(\cos 2t=\cos^2t-\sin^2t=2\cos^2t-1=1-2\sin^2t\)</span>.</p>
@@ -1743,22 +1742,22 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\tan:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textit{(tangent)}
+\tan:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textrm{(tangent)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\cot:ℝ\setminus\left\{k\mathrm{π}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{\cos x}{\sin x}\quad\textit{(cotangent)}
+\cot:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\cos x}{\sin x}\quad\textrm{(cotangent)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\sec:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{1}{\cos x}\quad\textit{(secans)}
+\sec:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\cos x}\quad\textrm{(secans)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\csc:ℝ\setminus\left\{k\mathrm{π}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{1}{\sin x}\quad\textit{(cosecans)}
+\csc:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\sin x}\quad\textrm{(cosecans)}
 \]
 </div>
 </div>
@@ -1901,6 +1900,7 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 </section>
 </section>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>

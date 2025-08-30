@@ -268,7 +268,7 @@ end
     Therefore, ``\sqrt 2 \notin ℚ``.
 
 !!! exercise
-	Proof ``\sqrt 3 \notin ℚ``. What goes wrong if you try to proof ``\sqrt 4 \notin ℚ``?
+	Prove ``\sqrt 3 \notin ℚ``. What goes wrong if you try to prove ``\sqrt 4 \notin ℚ``?
 
 	Hint: If a prime number divides the square of an integer, it also divides the integer itself.
 
@@ -365,8 +365,8 @@ The absolute value has the following properties.
     
     ```math
     \begin{aligned}
-    \left|a\pm b\right|^2&=\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
-    &\le\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
+    \left|a\pm b\right|^2&=&\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
+    &\le&\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
     \end{aligned}
     ```
 
@@ -701,10 +701,10 @@ Like numbers, functions can be added, subtracted, multiplied, and divided (excep
 	If ``f`` and ``g`` are functions, then for every ``x`` that belongs to the domains of both ``f`` and ``g`` we define functions ``f+g``, ``f-g``, ``fg``, and ``\frac{f}{g}`` by the formulas:
 	```math
 	\begin{aligned}
-	\left(f+g\right)(x)&=f(x)+g(x)\\
-	\left(f-g\right)(x)&=f(x)-g(x)\\
-	\left(fg\right)(x)&=f(x)g(x)\\
-	\left(\frac{f}{g}\right)(x)&=\frac{f(x)}{g(x)}\,,\textrm{ where } g(x)\ne0\,.
+	\left(f+g\right)(x)&=&f(x)+g(x)\\
+	\left(f-g\right)(x)&=&f(x)-g(x)\\
+	\left(fg\right)(x)&=&f(x)g(x)\\
+	\left(\frac{f}{g}\right)(x)&=&\frac{f(x)}{g(x)}\,,\textrm{ where } g(x)\ne0\,.
 	\end{aligned}
 	```
 
@@ -1044,10 +1044,10 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 	Let ``s,t\inℝ``.
 	```math
 	\begin{aligned}
-	\cos\left(s+t\right)&=\cos s\cos t-\sin s\sin t\\
-	\sin\left(s+t\right)&=\sin s\cos t+\cos s\sin t\\
-	\cos\left(s-t\right)&=\cos s\cos t+\sin s\sin t\\
-	\sin\left(s-t\right)&=\sin s\cos t-\cos s\sin t\\
+	\cos\left(s+t\right)&=&\cos s\,\cos t-\sin s\,\sin t\\
+	\sin\left(s+t\right)&=&\sin s\,\cos t+\cos s\,\sin t\\
+	\cos\left(s-t\right)&=&\cos s\,\cos t+\sin s\,\sin t\\
+	\sin\left(s-t\right)&=&\sin s\,\cos t-\cos s\,\sin t\\
 	\end{aligned}
 	```
 
@@ -1055,8 +1055,8 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 	Let ``s,t\inℝ`` and consider the points
 	```math
 	\begin{alignedat}{3}
-	P_t&=\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
-	P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
+	P_t&=&\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=&\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
+	P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
 	\end{alignedat}
 	```
 	The angle ``\angle P_tOP_s=s-t=\angle AOP_{s-t}``, so the distance ``P_sP_t`` is equal to the distance ``P_{s-t}A``. 
@@ -1067,20 +1067,20 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 	```
 	```math
 	\begin{gathered}
-	\cos^2s- 2\cos s\cos t+\cos^2t+\sin^2s-2\sin s\sin t+\sin^2 t\\
-	=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
+	\cos^2s- 2\cos s\,\cos t+\cos^2t+\sin^2s-2\sin s\,\sin t+\sin^2 t\\
+	\quad\quad\quad\quad=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
 	\end{gathered}
 	```
 	Since ``\cos^2x+\sin^2x=1``, this reduces to ``\cos\left(s-t\right)=\cos s\cos t+\sin s\sin t``.
 
 !!! exercise
-	Proof the other formulas using the even/odd behavior of the cosine and sine functions and the complementary angles relations.
+	Prove the other formulas using the even/odd behavior of the cosine and sine functions and the complementary angles relations.
 
 From the addition formulas, we obtain as special cases certain useful formulas called *double-angle formulas*.
 
 !!! corollary
 	Let ``t\inℝ``.
-	1. ``\sin 2t=2\sin t\cos t`` and
+	1. ``\sin 2t=2\sin t\,\cos t`` and
 	2. ``\cos 2t=\cos^2t-\sin^2t=2\cos^2t-1=1-2\sin^2t``.
 
 Solving the last two formulas for ``\cos^2t`` and ``\sin^2t``, we obtain

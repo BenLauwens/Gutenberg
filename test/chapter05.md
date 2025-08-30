@@ -436,7 +436,7 @@ We can deduce various properties of ``\exp`` from corresponding properties of ``
 
 !!! proof
 
-	We proof only the first property, the rest are done similarly.
+	We prove only the first property, the rest are done similarly.
 
 	If ``u=\left(\exp x\right)^r``, then, ``\ln u=r\ln\left(\exp x\right)=rx``. Therefore, ``u=\exp\left(rx\right)``.
 

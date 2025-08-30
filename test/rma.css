@@ -404,8 +404,8 @@ nav>ol {
 }
 
 nav>ol>li::before {
-    font-size: 12pt;
-    font-weight: 600;
+    font-size: 11pt;
+    font-weight: 500;
     content: counter(navnumber) ".";
     position: absolute;
     display: block;
@@ -414,8 +414,8 @@ nav>ol>li::before {
 
 nav>ol>li {
     margin-bottom: 10px;
-    font-size: 12pt;
-    font-weight: 600;
+    font-size: 11pt;
+    font-weight: 500;
     list-style: none;
     counter-increment: navnumber;
 }
@@ -426,7 +426,7 @@ nav>ol>li>ol {
 }
 
 nav>ol>li>ol>li {
-    font-size: 11pt;
+    font-size: 10pt;
     font-weight: normal;
     list-style: none;
 }
@@ -462,7 +462,7 @@ div.pagedjs_footnote_content::before {
 }
 
 math {
-    font-family: "Noto Sans Math", "Minion Math", "STIX Two Math", "OldStandard-Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math", "FiraMath";
+    font-family: "Fira Math", "Minion Math", "OldStandard-Math", "Noto Sans Math", "STIX Two Math", "Noto Sans Math", "STIX Two Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math", "FiraMath";
 }
 
 math[display="block"] {
@@ -470,17 +470,21 @@ math[display="block"] {
 }
 
 svg math {
-    font-size: 10pt;
+    font-size: 9pt;
+}
+
+mtd:last-of-type {
+    text-align: left;
 }
 
 body {
     hyphens: auto;
     font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
-    font-family: "Noto Sans SemiCondensed", "Minion Pro", "STIX Two Text", "Old Standard", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic", "Fira Sans";
-    font-size: 11pt;
+    font-family: "Fira Sans Condensed", "Minion Pro", "Old Standard", "Noto Sans SemiCondensed", "STIX Two Text", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic", "Fira Sans";
+    font-size: 10pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;
-    line-height: 125%;
+    line-height: 135%;
 }
 
 h1,
@@ -490,7 +494,7 @@ h4,
 h5,
 h6 {
     font-style: italic;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 section {
@@ -664,7 +668,7 @@ div[data-type="example"]>h1,
 div[data-type="exercise"]>h1,
 div[data-type="proof"]>h1,
 div[data-type="template"]>h1 {
-    font-weight: 600;
+    font-weight: 500;
     font-style: normal;
     margin: 0;
     margin-right: 6px;
@@ -690,7 +694,7 @@ div[data-type="lemma"]>h1,
 div[data-type="corollary"]>h1,
 div[data-type="definition"]>h1,
 div[data-type="axiom"]>h1 {
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 div[data-type="example"],
@@ -733,7 +737,7 @@ div[data-type="corollary"] {
     counter-increment: theoremnumber;
     background-color: hsla(189, 100%, 50%, 10%);
     border-left-color: hsla(189, 100%, 50%, 80%);
-    font-size: 11pt;
+    font-size: 10pt;
     font-style: italic;
 }
 
@@ -741,14 +745,14 @@ div[data-type="definition"] {
     counter-increment: definitionnumber;
     background-color: hsla(180, 100%, 25%, 10%);
     border-left-color: hsla(180, 100%, 25%, 80%);
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 div[data-type="axiom"] {
     counter-increment: axiomnumber;
     background-color: hsla(300, 100%, 25%, 10%);
     border-left-color: hsla(300, 100%, 25%, 80%);
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 div[data-type="example"] {
@@ -831,19 +835,19 @@ div[data-type="equation"][id]:after {
 
 span[data-type="footnote"] {
     float: footnote;
-    font-size: 10pt;
+    font-size: 9pt;
     text-align: justify;
 }
 
 ::footnote-call {
     content: counter(footnote);
-    font-size: 10pt;
+    font-size: 9pt;
     line-height: 0;
 }
 
 ::footnote-marker {
     content: counter(footnote);
-    font-size: 10pt;
+    font-size: 9pt;
     vertical-align: baseline;
     font-variant-position: super;
 }
@@ -870,7 +874,7 @@ tr {
 }
 
 thead {
-    font-weight: 600;
+    font-weight: 500;
     text-align: left;
     margin-top: 0;
     border-top: 0.5px solid black;
@@ -898,7 +902,7 @@ figure {
 }
 
 figcaption {
-    font-size: 10pt;
+    font-size: 9pt;
     font-style: italic;
     text-align: center;
     break-before: avoid;

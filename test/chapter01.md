@@ -665,13 +665,12 @@ Suppose the variable ``n`` represents any natural number, and there is a proposi
 
 	```math
 	\begin{aligned}
-	1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
-	&=\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
-	&=\frac{1}{6}\left(2k^3+9k^2+13k+6\right)\\
-	&=\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
-	&=\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
+	1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=&\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
+	&=&\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
+	&=&\frac{1}{6}\left(2k^3+9k^2+13k+6\right)\\
+	&=&\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
+	&=&\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
 	\end{aligned}
 	```
-
 
     Therefore, by mathematical induction, ``1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)`` for all natural numbers ``n\ge 1``.

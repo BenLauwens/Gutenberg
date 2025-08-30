@@ -11,7 +11,7 @@ bijection: bijection (f), de bijectie
 
 cardinal number: nobre cardinal (m), het cardinaalgetal
 
-cartesian product: produit catésien (m), het cartesisch product
+cartesian product: produit cartésien (m), het cartesisch product
 
 complement: complément (m), het complement
 
@@ -259,7 +259,7 @@ rational function: fonction rationnelle (f), de rationale functie
 
 rational number: nombre rationnel (m), het rationaal getal
 
-real line: droite (f) réelle, de reële as
+real line: droite réelle (f), de reële as
 
 real number: nombre réel (m), het reëel getal
 
