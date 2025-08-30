@@ -364,9 +364,9 @@ nav, section[data-type="preface"] {
 }
 
 section[data-type="unnumbered"] {
-    page: Exam;
+    page: Front;
     page-break-before: right;
-    counter-reset: sect1number equationnumber figurenumber theoremnumber;
+    counter-reset: sect1number equationnumber figurenumber;
 }
 
 nav>h1, section[data-type="preface"]>h1, section[data-type="unnumbered"]>h1 {
@@ -383,8 +383,8 @@ section[data-type="preface"] section[data-type="sect1"]>h1:before {
 }
 
 section[data-type="unnumbered"] section[data-type="sect1"]>h1:before {
-    content: counter(sect1number);
-    margin-right: 12px
+    content: "";
+    margin-right: 0
 }
 
 a {
@@ -462,7 +462,7 @@ div.pagedjs_footnote_content::before {
 }
 
 math {
-    font-family: "Minion Math", "STIX Two Math", "OldStandard-Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math";
+    font-family: "Noto Sans Math", "Minion Math", "STIX Two Math", "OldStandard-Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math", "FiraMath";
 }
 
 math[display="block"] {
@@ -476,7 +476,7 @@ svg math {
 body {
     hyphens: auto;
     font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
-    font-family: "Minion Pro", "STIX Two Text", "Old Standard", "Cambria", "Noto Sans SemiCondensed", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic";
+    font-family: "Noto Sans SemiCondensed", "Minion Pro", "STIX Two Text", "Old Standard", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic", "Fira Sans";
     font-size: 11pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;

@@ -50,7 +50,7 @@
 
 5. Derivatives (2 Hr)
 
-6. Applications of Derivatives (2 Hr)
+6. Applications of Derivatives (3 Hr)
 
 7. Trancendental Functions (2 Hr)
 
@@ -64,7 +64,7 @@
 
     5. Hyperbolic Functions
 
-8. Integrals (3 Hr)
+8. Integrals (2 Hr)
 
 9. Applications of Integrals (1 Hr)
 

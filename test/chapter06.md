@@ -758,7 +758,7 @@ This is reasonable because there are continuous functions (extensions) on ``\lef
 	Let ``c_0 &lt; c_1 &lt; c_2 &lt; \cdots &lt; c_n`` be a finite set of points on the real line. A function ``f`` defined on ``\left[c_0,c_n\right]`` except possibly at some of the points ``c_i``, is called piecewise continuous on that interval if for each ``i`` there exists a function ``F_i`` continuous on the closed interval ``\left[c_{i-1},c_i\right]`` such that
 
 	```math
-	f\left(x\right)=F_i\left(x\right)\quad\textrm{on the \it open interval }\left]c_{i-1},c_i\right[\,.
+	f\left(x\right)=F_i\left(x\right)\quad\textrm{on the open interval }\left]c_{i-1},c_i\right[\,.
 	```
 
 	In this case, we define the definite integral of ``f`` from ``c_0`` to ``c_n`` to be
@@ -1603,7 +1603,7 @@ In this section we consider how integrals can be used to find the lengths of cur
 
 If ``A`` and ``B`` are two points in the plane, let ``\left|AB\right|`` denote the distance between ``A`` and ``B``, that is, the length of the straight line segment ``AB``.
 
-Given a curve ``\mathcal C`` joining the two points ``A`` and ``B``, we would like to define what is meant by the length of the curve ``\mathcal C`` from ``A`` to ``B``. Suppose we choose points ``A=P_0``, ``P_1``, ``P_2``, ``\dots``, ``P_{n-1}``, and ``P_n=B`` in order along the curve. The polygonal line ``P_0P_1P_2\dots P_{n-1}P_n`` constructed by joining adjacent pairs of these points with straight line segments forms a polygonal approximation to ``\mathcal C``, having length
+Given a curve ``𝒞`` joining the two points ``A`` and ``B``, we would like to define what is meant by the length of the curve ``𝒞`` from ``A`` to ``B``. Suppose we choose points ``A=P_0``, ``P_1``, ``P_2``, ``\dots``, ``P_{n-1}``, and ``P_n=B`` in order along the curve. The polygonal line ``P_0P_1P_2\dots P_{n-1}P_n`` constructed by joining adjacent pairs of these points with straight line segments forms a polygonal approximation to ``𝒞``, having length
 
 ```math
 L_n=\left|P_0P_1\right|+\left|P_1P_2\right|+\cdots+\left|P_{n-1}P_n\right|=\sum_{i=1}^n\left|P_{i-1}P_i\right|\,.
@@ -1611,13 +1611,13 @@ L_n=\left|P_0P_1\right|+\left|P_1P_2\right|+\cdots+\left|P_{n-1}P_n\right|=\sum_
 
 !!! definition
 
-	The *arc length* of the curve ``\mathcal C`` from ``A`` to ``B`` is the smallest real number ``s`` such that the length ``L_n`` of every polygonal approximation to ``\mathcal C`` satisfies ``L_n\le s``.
+	The *arc length* of the curve ``𝒞`` from ``A`` to ``B`` is the smallest real number ``s`` such that the length ``L_n`` of every polygonal approximation to ``𝒞`` satisfies ``L_n\le s``.
 
 A curve with a finite arc length is said to be *rectifiable*. Its arc length ``s`` is the limit of the lengths ``L_n`` of polygonal approximations as ``n\to \infty`` in such a way that the maximum segment length ``\left|P_{i-1}P_i\right|\to 0``.
 
 ### The Arc Length of the Graph of a Function
 
-Let ``f`` be a function defined on a closed, finite interval ``\left[a,b\right]`` and having a continuous derivative ``f^\prime`` there. If ``\mathcal C`` is the graph of ``f``, that is, the graph of the equation ``y=f\left(x\right)``, then any partition of ``\left[a,b\right]`` provides a polygonal approximation to ``\mathcal C``. For the partition
+Let ``f`` be a function defined on a closed, finite interval ``\left[a,b\right]`` and having a continuous derivative ``f^\prime`` there. If ``𝒞`` is the graph of ``f``, that is, the graph of the equation ``y=f\left(x\right)``, then any partition of ``\left[a,b\right]`` provides a polygonal approximation to ``𝒞``. For the partition
 
 ```math
 \left\{a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b\right\}

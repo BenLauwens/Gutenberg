@@ -403,7 +403,7 @@ Determine the limit ``L`` for the given ``a``, and prove that it is the limit by
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -670,31 +670,31 @@ Show that
 {class = pagebreak}
 ## Explain the proof!
 
-Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 !!! proof "by bisection and contradiction"
 
-	Suppose that no finite subset of ``\mathcal O`` covers ``\left[a,b\right]``.
+	Suppose that no finite subset of ``𝒪`` covers ``\left[a,b\right]``.
 
 	Let ``I_0=\left[a,b\right]=\left[a_0,b_0\right]``. 
 	
-	At least one of the intervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]`` cannot be covered by a finite subset of ``\mathcal O``. If both could be covered by finite subsets, their union would cover ``I_0``.
+	At least one of the intervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]`` cannot be covered by a finite subset of ``𝒪``. If both could be covered by finite subsets, their union would cover ``I_0``.
 
-	Let the interval that can't be covered by a finite subset of ``\mathcal O`` be ``I_1=\left[a_1,b_1\right]``.
+	Let the interval that can't be covered by a finite subset of ``𝒪`` be ``I_1=\left[a_1,b_1\right]``.
 
-	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``\mathcal O``.
+	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``𝒪``.
 
 	By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
-	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``\mathcal O``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
+	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``𝒪``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
 
 	Since ``\left]c_i, d_i\right[`` is open, there exists an ``\delta &gt;0`` such that ``\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[``.
 
 	Since ``x\in \bigcap_{n\in ℕ}I_n``, there exists ``N\in ℕ`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
 
-	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``\mathcal O``.
+	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``𝒪``.
 
-	Therefore, our initial assumption must be false, and there must exist a finite subset of ``\mathcal O`` that covers ``\left[a,b\right]``.
+	Therefore, our initial assumption must be false, and there must exist a finite subset of ``𝒪`` that covers ``\left[a,b\right]``.
 
 {data-type = unnumbered, class = page.reset}
 # Exam: ES111 Calculus – Series 12
@@ -972,7 +972,7 @@ Suppose ``h`` is a function such that ``h^\prime\left(x\right) = \sin\left(sin\l
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -1404,7 +1404,7 @@ a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d\kern-0.5p
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -1752,31 +1752,31 @@ Given that ``f\left(\uppi\right) = 1``, compute ``f\left(0\right)``.
 {class = pagebreak}
 ## Explain the proof!
 
-Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 !!! proof "by bisection and contradiction"
 
-	Suppose that no finite subset of ``\mathcal O`` covers ``\left[a,b\right]``.
+	Suppose that no finite subset of ``𝒪`` covers ``\left[a,b\right]``.
 
 	Let ``I_0=\left[a,b\right]=\left[a_0,b_0\right]``. 
 	
-	At least one of the intervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]`` cannot be covered by a finite subset of ``\mathcal O``. If both could be covered by finite subsets, their union would cover ``I_0``.
+	At least one of the intervals ``\left[a_0,\frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2},b_0\right]`` cannot be covered by a finite subset of ``𝒪``. If both could be covered by finite subsets, their union would cover ``I_0``.
 
-	Let the interval that can't be covered by a finite subset of ``\mathcal O`` be ``I_1=\left[a_1,b_1\right]``.
+	Let the interval that can't be covered by a finite subset of ``𝒪`` be ``I_1=\left[a_1,b_1\right]``.
 
-	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``\mathcal O``.
+	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``𝒪``.
 
 	By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
-	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``\mathcal O``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
+	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``𝒪``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
 
 	Since ``\left]c_i, d_i\right[`` is open, there exists an ``\delta &gt;0`` such that ``\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[``.
 
 	Since ``x\in \bigcap_{n\in ℕ}I_n``, there exists ``N\in ℕ`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
 
-	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``\mathcal O``.
+	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``𝒪``.
 
-	Therefore, our initial assumption must be false, and there must exist a finite subset of ``\mathcal O`` that covers ``\left[a,b\right]``.
+	Therefore, our initial assumption must be false, and there must exist a finite subset of ``𝒪`` that covers ``\left[a,b\right]``.
 
 {data-type = unnumbered, class = page.reset}
 # Exam: ES111 Calculus – Series 29
@@ -1811,7 +1811,7 @@ Let ``a&gt;0`` and ``S`` a set of real numbers. Show that ``\inf aS=a\inf S``.
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``\mathcal O=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 

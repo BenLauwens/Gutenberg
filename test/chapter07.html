@@ -48,6 +48,7 @@ MathJax = {
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter">
 <h1>Parametric and Polar Curves</h1>
 <p>Until now, most curves we have encountered have been graphs of functions, and they provided useful visual information about the behaviour of the functions. In this chapter we begin to look at plane curves as interesting objects in their own right.</p>
@@ -59,18 +60,18 @@ MathJax = {
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\,.
 \]
 </div>
-<p>The path followed by the object is a curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> in the plane that is specified by the two equations above. We call these equations <i>parametric equations</i> of <span class="math-tex" data-type="tex">\(\mathcal C\)</span>. A curve specified by a particular pair of parametric equations is called a <i>parametric curve</i>.</p>
+<p>The path followed by the object is a curve <span class="math-tex" data-type="tex">\(𝒞\)</span> in the plane that is specified by the two equations above. We call these equations <i>parametric equations</i> of <span class="math-tex" data-type="tex">\(𝒞\)</span>. A curve specified by a particular pair of parametric equations is called a <i>parametric curve</i>.</p>
 <div data-type="definition">
 <h1></h1>
-<p>A <i>parametric curve</i> <span class="math-tex" data-type="tex">\(\mathcal C\)</span> in the plane consists of an ordered pair <span class="math-tex" data-type="tex">\(\left(f, g\right)\)</span> of continuous functions each defined on the same interval <span class="math-tex" data-type="tex">\(I\)</span>. The equations</p>
+<p>A <i>parametric curve</i> <span class="math-tex" data-type="tex">\(𝒞\)</span> in the plane consists of an ordered pair <span class="math-tex" data-type="tex">\(\left(f, g\right)\)</span> of continuous functions each defined on the same interval <span class="math-tex" data-type="tex">\(I\)</span>. The equations</p>
 <div class="math-tex" data-type="equation">
 \[
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\in I\,,
 \]
 </div>
-<p>are called <i>parametric equations</i> of the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span>. The independent variable <span class="math-tex" data-type="tex">\(t\)</span> is called the <i>parameter</i>.</p>
+<p>are called <i>parametric equations</i> of the curve <span class="math-tex" data-type="tex">\(𝒞\)</span>. The independent variable <span class="math-tex" data-type="tex">\(t\)</span> is called the <i>parameter</i>.</p>
 </div>
-<p>Note that the parametric curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> was not defined as a set of points in the plane, but rather as the ordered pair of functions whose range is that set of points. Different pairs of functions can give the same set of points in the plane, but we may still want to regard them as different parametric curves.</p>
+<p>Note that the parametric curve <span class="math-tex" data-type="tex">\(𝒞\)</span> was not defined as a set of points in the plane, but rather as the ordered pair of functions whose range is that set of points. Different pairs of functions can give the same set of points in the plane, but we may still want to regard them as different parametric curves.</p>
 <p>We will usually denote the parameter by <span class="math-tex" data-type="tex">\(t\)</span>; in many applications the parameter represents time, but this need not always be the case.</p>
 <p>A parametric curve has a direction (indicated, say, by arrowheads), namely, the direction corresponding to increasing values of the parameter <span class="math-tex" data-type="tex">\(t\)</span>.</p>
 <div data-type="example">
@@ -78,7 +79,7 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\i
 <p>Sketch and identify the parametric curve</p>
 <div class="math-tex" data-type="equation">
 \[
-x=t^2-1\quad\textrm{and}\quad y=t+1\,,\quad t\in\mathbb R\,.
+x=t^2-1\quad\textrm{and}\quad y=t+1\,,\quad t\in ℝ\,.
 \]
 </div>
 <p>We could construct a table of values of <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(y\)</span> for various values of <span class="math-tex" data-type="tex">\(t\)</span>, thus getting the coordinates of a number of points on a curve. However, for this example it is easier to <i>eliminate</i> the parameter from the pair of parametric equations, thus producing a single equation in <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(y\)</span> whose graph is the desired curve:</p>
@@ -133,7 +134,7 @@ t=y - 1\,,\quad x=t^2-1=\left(y-1\right)^2-1=y^2-2y\,.
 \(t=-2\)
 </foreignObject>
 </svg>
-<figcaption>The parabola defined parameterically by <span class="math-tex" data-type="tex">\(x=t^2-1, y=t+1, t\in\mathbb R\,.\)</span></figcaption></figure>
+<figcaption>The parabola defined parameterically by <span class="math-tex" data-type="tex">\(x=t^2-1, y=t+1, t\in ℝ\,.\)</span></figcaption></figure>
 </div>
 <p>Although the curve in this example is more easily identified when the parameter is eliminated, there is a loss of information in going to the nonparametric form. Specifically, we lose the sense of the curve as the path of a moving point and hence also the direction of the curve.</p>
 <div data-type="example">
@@ -209,7 +210,7 @@ x^2=t^2\left(t^2-3\right)^2=y\left(y-2\right)^2\,,
 </div>
 <div data-type="definition">
 <h1></h1>
-<p>A plane curve is a set of points <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> in the plane such that <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(y=g\left(t\right)\)</span> for some <span class="math-tex" data-type="tex">\(t\)</span> in an interval <span class="math-tex" data-type="tex">\(I\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are continuous functions defined on <span class="math-tex" data-type="tex">\(I\)</span>. Any such interval <span class="math-tex" data-type="tex">\(I\)</span> and function pair <span class="math-tex" data-type="tex">\(\left(f, g\right)\)</span> that generate the points of <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is called a <i>parametrization</i> of <span class="math-tex" data-type="tex">\(\mathcal C\)</span>.</p>
+<p>A plane curve is a set of points <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> in the plane such that <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(y=g\left(t\right)\)</span> for some <span class="math-tex" data-type="tex">\(t\)</span> in an interval <span class="math-tex" data-type="tex">\(I\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are continuous functions defined on <span class="math-tex" data-type="tex">\(I\)</span>. Any such interval <span class="math-tex" data-type="tex">\(I\)</span> and function pair <span class="math-tex" data-type="tex">\(\left(f, g\right)\)</span> that generate the points of <span class="math-tex" data-type="tex">\(𝒞\)</span> is called a <i>parametrization</i> of <span class="math-tex" data-type="tex">\(𝒞\)</span>.</p>
 </div>
 <p>Since a plane curve does not involve any specific parametrization, it has no specific direction.</p>
 <div data-type="example">
@@ -225,7 +226,7 @@ x=t\quad\textrm{and}\quad y=f\left(t\right)\,,\quad t\in I\,.
 <section data-type="sect1">
 <h1>Smooth Parametric Curves and Their Slopes</h1>
 <p>We say that a plane curve is <i>smooth</i> if it has a tangent line at each point <span class="math-tex" data-type="tex">\(P\)</span> and this tangent turns in a continuous way as <span class="math-tex" data-type="tex">\(P\)</span> moves along the curve.</p>
-<p>If the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is the graph of function <span class="math-tex" data-type="tex">\(f\)</span>; then <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is certainly smooth on any interval where the derivative <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> exists and is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>. It may also be smooth on intervals containing isolated singular points; for example, the curve <span class="math-tex" data-type="tex">\(y=x^⅓\)</span> is smooth everywhere even though <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> does not exist at <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
+<p>If the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> is the graph of function <span class="math-tex" data-type="tex">\(f\)</span>; then <span class="math-tex" data-type="tex">\(𝒞\)</span> is certainly smooth on any interval where the derivative <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> exists and is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>. It may also be smooth on intervals containing isolated singular points; for example, the curve <span class="math-tex" data-type="tex">\(y=x^⅓\)</span> is smooth everywhere even though <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> does not exist at <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
 <p>For parametric curves <span class="math-tex" data-type="tex">\(x=f\left(t\right), y = g\left(t\right)\)</span> the situation is more complicated. Even if <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> have continuous derivatives everywhere, such curves may fail to be smooth at certain points, specifically points where <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)=g^\prime\left(t\right)=0\)</span>.</p>
 <div data-type="example">
 <h1></h1>
@@ -279,13 +280,13 @@ x=f\left(t\right)=t^2\quad\textrm{and}\quad y = g\left(t\right)=t^3\,.
 <p>The following theorem confirms that a parametric curve is smooth at points where the derivatives of its coordinate functions are continuous and not both zero.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(\mathcal C\)</span> be the parametric curve</p>
+<p>Let <span class="math-tex" data-type="tex">\(𝒞\)</span> be the parametric curve</p>
 <div class="math-tex" data-type="equation">
 \[
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\in I\,,
 \]
 </div>
-<p>where <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\left(t\right)\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(I\)</span>. If <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ne 0\)</span> on <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is smooth and has at each <span class="math-tex" data-type="tex">\(t\)</span> a tangent line with slope</p>
+<p>where <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\left(t\right)\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(I\)</span>. If <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ne 0\)</span> on <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(𝒞\)</span> is smooth and has at each <span class="math-tex" data-type="tex">\(t\)</span> a tangent line with slope</p>
 <div class="math-tex" data-type="equation">
 \[
 \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
@@ -306,9 +307,9 @@ y = g\left(t\right)=g\left(f^{-1}\left(x\right)\right)
 \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=g^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}f^{-1}\left(x\right)=\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
 \]
 </div>
-<p>This slope is a continuous function of <span class="math-tex" data-type="tex">\(t\)</span>, so the tangent to <span class="math-tex" data-type="tex">\(\mathcal C\)</span> turns continuously for <span class="math-tex" data-type="tex">\(t\)</span> in <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>This slope is a continuous function of <span class="math-tex" data-type="tex">\(t\)</span>, so the tangent to <span class="math-tex" data-type="tex">\(𝒞\)</span> turns continuously for <span class="math-tex" data-type="tex">\(t\)</span> in <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </div>
-<p>If <span class="math-tex" data-type="tex">\(f^\prime\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\)</span> are continuous, and both vanish at some point <span class="math-tex" data-type="tex">\(t_0\)</span>, then the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> <i>may or may not</i> be smooth around <span class="math-tex" data-type="tex">\(t_0\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\)</span> are continuous, and both vanish at some point <span class="math-tex" data-type="tex">\(t_0\)</span>, then the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> <i>may or may not</i> be smooth around <span class="math-tex" data-type="tex">\(t_0\)</span>.</p>
 <p>The concavity of a parametric curve can be determined using the second derivatives of the parametric equations. The procedure is just to calculate the second derivative of <span class="math-tex" data-type="tex">\(y\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span> using the Chain Rule:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -323,7 +324,7 @@ y = g\left(t\right)=g\left(f^{-1}\left(x\right)\right)
 </section>
 <section data-type="sect1">
 <h1>Arc Lengths and Areas for Parametric Curves</h1>
-<p>Let <span class="math-tex" data-type="tex">\(\mathcal C\)</span> be a smooth parametric curve with equations</p>
+<p>Let <span class="math-tex" data-type="tex">\(𝒞\)</span> be a smooth parametric curve with equations</p>
 <div class="math-tex" data-type="equation">
 \[
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b\,.
@@ -335,7 +336,7 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\l
 \mathrm{d}\kern-0.5pt s=\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
 \]
 </div>
-<p>The length of the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is given by</p>
+<p>The length of the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> is given by</p>
 <div class="math-tex" data-type="equation">
 \[
 s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
@@ -456,13 +457,13 @@ S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d}\ker
 \]
 </div>
 </div>
-<p>Consider the parametric curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> with equations</p>
+<p>Consider the parametric curve <span class="math-tex" data-type="tex">\(𝒞\)</span> with equations</p>
 <div class="math-tex" data-type="equation">
 \[
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b\,,
 \]
 </div>
-<p>where <span class="math-tex" data-type="tex">\(f\)</span> is differentiable and <span class="math-tex" data-type="tex">\(g\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. For the moment, let us also assume that <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ge 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\ge 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, so <span class="math-tex" data-type="tex">\(\mathcal C\)</span> has no points below the <span class="math-tex" data-type="tex">\(x\)</span>-axis and is traversed from left to right as <span class="math-tex" data-type="tex">\(t\)</span> increases from <span class="math-tex" data-type="tex">\(a\)</span> to <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+<p>where <span class="math-tex" data-type="tex">\(f\)</span> is differentiable and <span class="math-tex" data-type="tex">\(g\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>. For the moment, let us also assume that <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ge 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\ge 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, so <span class="math-tex" data-type="tex">\(𝒞\)</span> has no points below the <span class="math-tex" data-type="tex">\(x\)</span>-axis and is traversed from left to right as <span class="math-tex" data-type="tex">\(t\)</span> increases from <span class="math-tex" data-type="tex">\(a\)</span> to <span class="math-tex" data-type="tex">\(b\)</span>.</p>
 <p>The region under <span class="math-tex" data-type="tex">\(C\)</span> and above the <span class="math-tex" data-type="tex">\(x\)</span>-axis has area element given by</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -487,18 +488,18 @@ A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
 <p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\le 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\le 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\)</span>,</p>
 </li>
 </ul>
-<p>where <span class="math-tex" data-type="tex">\(A\)</span>  is the (positive) area bounded by <span class="math-tex" data-type="tex">\(\mathcal C\)</span>, the <span class="math-tex" data-type="tex">\(x\)</span>-axis, and the vertical lines <span class="math-tex" data-type="tex">\(x=f\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(x=f\left(b\right)\)</span>. Combining these results we can see that</p>
+<p>where <span class="math-tex" data-type="tex">\(A\)</span>  is the (positive) area bounded by <span class="math-tex" data-type="tex">\(𝒞\)</span>, the <span class="math-tex" data-type="tex">\(x\)</span>-axis, and the vertical lines <span class="math-tex" data-type="tex">\(x=f\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(x=f\left(b\right)\)</span>. Combining these results we can see that</p>
 <div class="math-tex" data-type="equation">
 \[
 \int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t=A_1-A_2\,,
 \]
 </div>
-<p>where <span class="math-tex" data-type="tex">\(A_1\)</span> is the area lying vertically between <span class="math-tex" data-type="tex">\(\mathcal C\)</span> and that part of the <span class="math-tex" data-type="tex">\(x\)</span>-axis consisting of points <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> such that <span class="math-tex" data-type="tex">\(g\left(t\right)f^\prime\left(t\right)\ge 0\)</span>, and <span class="math-tex" data-type="tex">\(A_2\)</span> is a similar area corresponding to points where <span class="math-tex" data-type="tex">\(g\left(t\right)f^\prime\left(t\right)&lt; 0\)</span>. This formula is valid for arbitrary continuous <span class="math-tex" data-type="tex">\(g\)</span> and differentiable <span class="math-tex" data-type="tex">\(f\)</span>. In particular, if <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is a non–self-intersecting closed curve, then the area of the region bounded by <span class="math-tex" data-type="tex">\(\mathcal C\)</span> is given by</p>
+<p>where <span class="math-tex" data-type="tex">\(A_1\)</span> is the area lying vertically between <span class="math-tex" data-type="tex">\(𝒞\)</span> and that part of the <span class="math-tex" data-type="tex">\(x\)</span>-axis consisting of points <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> such that <span class="math-tex" data-type="tex">\(g\left(t\right)f^\prime\left(t\right)\ge 0\)</span>, and <span class="math-tex" data-type="tex">\(A_2\)</span> is a similar area corresponding to points where <span class="math-tex" data-type="tex">\(g\left(t\right)f^\prime\left(t\right)&lt; 0\)</span>. This formula is valid for arbitrary continuous <span class="math-tex" data-type="tex">\(g\)</span> and differentiable <span class="math-tex" data-type="tex">\(f\)</span>. In particular, if <span class="math-tex" data-type="tex">\(𝒞\)</span> is a non–self-intersecting closed curve, then the area of the region bounded by <span class="math-tex" data-type="tex">\(𝒞\)</span> is given by</p>
 <div class="math-tex" data-type="equation">
 \[
 A=\begin{cases}
-\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }\mathcal C\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
--\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }\mathcal C\textrm{ is traversed counterclockwise.}
+\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
+-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed counterclockwise.}
 \end{cases}
 \]
 </div>
@@ -707,7 +708,7 @@ x^2+y^2=2ax\\
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>The curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> with equations</p>
+<p>The curve <span class="math-tex" data-type="tex">\(𝒞\)</span> with equations</p>
 <div class="math-tex" data-type="equation">
 \[
 x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = h\left(\theta\right)=r\left(\theta\right)\sin\theta\quad\textrm{having parameter }\theta\,,
@@ -866,7 +867,7 @@ A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d}\kern-0.5pt \theta+
 </div>
 </div>
 <p>The arc length element for the polar curve <span class="math-tex" data-type="tex">\(r=f\left(\theta\right)\)</span> can be derived from that for a parametric curve.</p>
-<p>The curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> with equations</p>
+<p>The curve <span class="math-tex" data-type="tex">\(𝒞\)</span> with equations</p>
 <div class="math-tex" data-type="equation">
 \[
 x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = h\left(\theta\right)=r\left(\theta\right)\sin\theta\quad\textrm{having parameter }\theta\,,
@@ -882,7 +883,7 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 \end{aligned}
 \]
 </div>
-<p>The length of the curve <span class="math-tex" data-type="tex">\(\mathcal C\)</span> for <span class="math-tex" data-type="tex">\(\theta\)</span> between <span class="math-tex" data-type="tex">\(\alpha\)</span> and <span class="math-tex" data-type="tex">\(\beta\)</span> is then given by</p>
+<p>The length of the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> for <span class="math-tex" data-type="tex">\(\theta\)</span> between <span class="math-tex" data-type="tex">\(\alpha\)</span> and <span class="math-tex" data-type="tex">\(\beta\)</span> is then given by</p>
 <div class="math-tex" data-type="equation">
 \[
 s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d}\kern-0.5pt \theta\,.
@@ -954,7 +955,6 @@ s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d}\
 </div>
 </div>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

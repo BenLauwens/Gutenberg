@@ -3,6 +3,7 @@ title = "Real Calculus"
 files = [
     "preface.md",
     "nav.md",
+    "lexicon.md",
     "chapter01.md",
     "chapter02.md",
     "chapter03.md",

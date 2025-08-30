@@ -11,17 +11,19 @@
 MathJax = {
     startup: {
         pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
+            const doc = MathJax.startup.document;
+            doc.menu.menu.findID('Options', 'AssistiveMml').disable();
         }
     },
+    loader: {load: ['[tex]/upgreek']},
     tex: {
         inlineMath: [              // start/end delimiter pairs for in-line math
             ['\\(', '\\)']
         ],
         displayMath: [
             ['\\[', '\\]']
-        ]
+        ],
+        packages: {'[+]': ['upgreek']}
     },
     options: {
         renderActions: {
@@ -44,7 +46,7 @@ MathJax = {
     }
 };
 </script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-svg-nofont.js"></script>
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
@@ -52,19 +54,19 @@ class handlers extends Paged.Handler {
         super(chunker, polisher, caller);
     }
 
-    beforeParsed(content) {
+    async beforeParsed(content) {
         for (let el of content.querySelectorAll('div[data-type="equation"]')) {
-            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true });
+            await MathJax.tex2mmlPromise(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true }).then((result) => { el.innerHTML = result;});
             el.classList.remove("math-tex");
         }
         for (let el of content.querySelectorAll('foreignObject')) {
-            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false });
+            await MathJax.tex2mmlPromise(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false }).then((result) => { el.innerHTML = result;});
         }
         for (let el of content.querySelectorAll('span[data-type="tex"]')) {
-            const math = document.createRange().createContextualFragment(
-                MathJax.tex2mml(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false })
-            ).firstElementChild;
-            el.replaceWith(math);
+            await MathJax.tex2mmlPromise(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false }).then((result) => { 
+                const math = document.createRange().createContextualFragment(result).firstElementChild;
+                el.replaceWith(math);
+            });
         }
         for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);
@@ -330,158 +332,6 @@ Paged.registerHandlers(handlers);
 <nav data-type="toc">
 <h1>Table of Contents</h1>
 </nav>
-<section data-type="unnumbered">
-<h1>Lexicon</h1>
-<section data-type="sect1">
-<h1>Chapter 1</h1>
-<p>axiom of induction: axiome de l’induction (m), het inductie axioma</p>
-<p>axioms of Peano: axiomes de Peano (m), de axioma’s van Peano</p>
-<p>bijection: bijection (f), de bijectie</p>
-<p>cardinal number: nobre cardinal (m), het cardinaalgetal</p>
-<p>cartesian product: produit catésien (m), het cartesisch product</p>
-<p>complement: complément (m), het complement</p>
-<p>composite proposition: proposition composée (f), de samengestelde bewering</p>
-<p>conditional proposition: proposition conditionelle (f), de voorwaardelijke bewering</p>
-<p>conjunction: conjonction (f), de conjunctie</p>
-<p>connective: connecteur (m), de connector</p>
-<p>contradiction: contradiction (f), de tegenstrijdigheid</p>
-<p>converse: inverse (m), het omgekeerde</p>
-<p>countable: denombrable, aftelbaar</p>
-<p>counterexample: contre-exemple (m), het tegenvoorbeeld</p>
-<p>difference: différence (f), het verschil</p>
-<p>direct proof: démonstration directe (f), het rechtstreeks bewijs</p>
-<p>disjunction: disjonction (f), de disjunctie</p>
-<p>domain: domaine (m), het domein</p>
-<p>element: élément (m), het element</p>
-<p>empty set: ensemble vide (m), de lege verzameling</p>
-<p>equal: égal, gelijk</p>
-<p>equivalent: équivalent, gelijkwaardig</p>
-<p>existence proof: démonstration de l’existence (f), het bestaansbewijs</p>
-<p>existential quantifier: quantificateur existentiel, de existentiële kwantificator</p>
-<p>expression: expression (f), de uitdrukking</p>
-<p>if and only if: si et seulement si, als en slechts als</p>
-<p>image: image (f), het beeld</p>
-<p>implication: implication (f), de gevolgtrekking</p>
-<p>injection: injection (f): de injectie</p>
-<p>intersection: intersection (f), de doorsnede</p>
-<p>inverse image: image réciproque (f), het inverse beeld</p>
-<p>inverse function: fonction réciproque (f), de inverse functie</p>
-<p>finite: fini, eindig</p>
-<p>function: fonction (f), de functie</p>
-<p>laws of De Morgan: lois de De Morgan (f), de wetten van De Morgan</p>
-<p>natural number: nombre naturel (m), het natuurlijk getal</p>
-<p>negation: négation (f), de ontkenning</p>
-<p>ordered pair: paire ordonnée (f), het geordend paar</p>
-<p>prime number: nombre premier (m), het priemgetal</p>
-<p>primitive proposition: proposition primitive (f), de enkelvoudige bewering</p>
-<p>proof: démonstration (f), het bewijs</p>
-<p>proof by contradiction: démonstration par l’absurde (f), het bewijs uit het ongeruime</p>
-<p>proof by contraposition: démonstration par contraposition (f), het bewijs door contrapositie</p>
-<p>proof by induction: démonstration par induction, het bewijs door inductie</p>
-<p>proposition: proposition (f), de bewering</p>
-<p>propositional function: fonction propositionnelle (f), de propositiefunctie</p>
-<p>quantifier: quantificateur (m), de kwantificator</p>
-<p>range: étendue (f), het bereik</p>
-<p>set: ensemble (m), de verzameling</p>
-<p>subset: sousensemble (m), de deelverzameling</p>
-<p>successor: successeur (m), de opvolger</p>
-<p>supposition: supposition (f), de veronderstelling</p>
-<p>surjection: surjection (f), de surjectie</p>
-<p>tautology: tautologie (f), de tautologie</p>
-<p>template: template (m), het sjabloon</p>
-<p>theorem: théorème (m), de stelling</p>
-<p>to assert the hypothesis: affirmer l’hypothèse, de hypothese bevestigen</p>
-<p>to list the implications: énumérer les implications, de gevolgen oplijsten</p>
-<p>to prove: démontrer, bewijzen</p>
-<p>to set the context: introduire le contexte, de context inleiden</p>
-<p>to state the conclusion: formuler la conclusion, het besluit verwoorden</p>
-<p>truth set: ensemble de vérité (m), de waarheidsverzameling</p>
-<p>union: union (f), de vereniging</p>
-<p>universal quantifier: quantificateur universel (m), de universele kwantificator</p>
-<p>universe: univers (m), het universum</p>
-<p>variabel: variable (f), de veranderlijke</p>
-</section>
-<section data-type="sect1">
-<h1>Chapter 2</h1>
-<p>absolute value: valeur absolue (f), de absolute waarde</p>
-<p>acute angle: angle aigu (m), de scherpe hoek</p>
-<p>addition: addition (f), de optelling</p>
-<p>arc length: longueur d’arc (f); de booglengte</p>
-<p>Archimedean principle: principe d’Archimède (m), het principe van Archimedes</p>
-<p>associativity: associativité (f), de associativiteit</p>
-<p>binary search: recherche par dichotomie (f), de binaire zoektocht</p>
-<p>bisection: dichotomie (f), de bisectie</p>
-<p>boundary point: borne (f), het grenspunt</p>
-<p>bounded: borné, begrensd</p>
-<p>capture theorem: théorème de capture (m), de vangstelling</p>
-<p>Cartesian plane: plan cartésien (m), het cartesisch vlak</p>
-<p>closed interval: intervalle fermé (m), het gesloten interval</p>
-<p>commutativity: commutativité (f), de commutativiteit</p>
-<p>completeness: complétude (f), de volledigheid</p>
-<p>composite function: fonction composée (f), de samengestelde functie</p>
-<p>composition: composition (f), de samenstelling</p>
-<p>connected set: ensemble connecté (m), de samenhangende verzameling</p>
-<p>coordinate: coordonnée (f), de coördinaat</p>
-<p>coordinate axis: axe de coordonnées (m), de coördinaatsas</p>
-<p>coordinate system: système de coordonnées (m), het assenstelsel</p>
-<p>counterclockwise: contre le sens des aiguilles, tegenuurwijzerszin</p>
-<p>cosecans: cosécante (f), de cosecans</p>
-<p>cosine: cosinus (m), de cosinus</p>
-<p>cotangent: cotangente (f), de cotangens</p>
-<p>curve: courbe (f), de kromme</p>
-<p>decimal expansion: expansion décimale (f), de decimale expansie</p>
-<p>denominator: dénominateur (m), de noemer</p>
-<p>dense: dense, dicht</p>
-<p>distributivity: distributivité (f), de distributiviteit</p>
-<p>divison: division (f), de deling</p>
-<p>even function: fonction paire (f), de even functie</p>
-<p>field: champ (m), het veld</p>
-<p>floating point number: nombre à virgule flottante (m), het drijvende-kommagetal</p>
-<p>fraction: rapport (m), de breuk</p>
-<p>graph: graphe (m), de grafiek</p>
-<p>Hein-Borel theorem: théorème de Heine-Borel (m), de stelling van Heine-Borel</p>
-<p>identity: identité (f), de identiteit</p>
-<p>infimum: borne inférieure (f), het infimum</p>
-<p>infinity: infinité (f), de oneidigheid</p>
-<p>integer: nombre entier (m), het geheel getal</p>
-<p>interval: intervalle (m), het interval</p>
-<p>inverse number: nombre inverse (m), het omgekeerde getal</p>
-<p>irreducible: irréductible, onvereenvoudigbaar</p>
-<p>lower bound: minorant (m), de ondergrens</p>
-<p>metric space: espace métrique (m), de metrische ruimte</p>
-<p>multiplication: multiplication (f), het product</p>
-<p>numerator: numérateur (m), de teller</p>
-<p>odd function: fonction impaire (f), de oneven functie</p>
-<p>open interval: intervalle ouvert (m), het open interval</p>
-<p>operation: opération (f), de operatie</p>
-<p>opposite number: nombre opposé (m), het tegengestelde getal</p>
-<p>ordered: ordonné, geordend</p>
-<p>origin: origine (f), de oorsprong</p>
-<p>polynomial: polynôme (m), de veelterm</p>
-<p>product: produit (m), het product</p>
-<p>proof by bisection: démonstration par dichotomie (f), het bewijs door bisectie</p>
-<p>Pythagorean theorem: théorème de Pythagore (m), de stelling van Pythagoras</p>
-<p>radian: radian (m), de radiaal</p>
-<p>rational function: fonction rationnelle (f), de rationale functie</p>
-<p>rational number: nombre rationnel (m), het rationaal getal</p>
-<p>real line: droite (f) réelle, de reële as</p>
-<p>real number: nombre réel (m), het reëel getal</p>
-<p>relation: relation (f), de relatie</p>
-<p>upper bound: majorant (m), de bovengrens</p>
-<p>secans: sécante (f), de secant</p>
-<p>sector area: aire de secteur (f), de sectoroppervlakte</p>
-<p>sine: sinus (m), de sinus</p>
-<p>smooth curve: courbe lisse (f), de gladde kromme</p>
-<p>subtraction: soustraction (f), het verschil</p>
-<p>sum: sommation (f), de som</p>
-<p>supremum: borne supérieure (f), het supremum</p>
-<p>tangent: tangente (f), de tangens</p>
-<p>theorem of nested intervals: théorème des intervalles imbriqués (m), de stelling van de geneste intervallen</p>
-<p>transitivity: transitivité (f), de transitiviteit</p>
-<p>triangle inequality: inégalité triangulaire (f), de driehoeksongelijkheid</p>
-<p>trigonometric function: fonction trigonométrique (f), de goniometrische functie</p>
-</section>
-</section>
 <section data-type="chapter" class="pagereset" >
 <h1>Preliminaries</h1>
 <p>This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.</p>
@@ -785,7 +635,7 @@ Paged.registerHandlers(handlers);
 <p><span class="math-tex" data-type="tex">\(\lnot \left(\lnot 𝒫\right)\equiv 𝒫\)</span> (<i>involution law</i>)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\lnot \left(𝒫\vee 𝒬\right)\equiv \lnot 𝒫\wedge \lnot 𝒬\)</span> and <span class="math-tex" data-type="tex">\(\lnot \left(𝒫\wedge 𝒬\right)\equiv \lnot 𝒫\vee \lnot 𝒬\)</span> (<i>De Morgan’s laws</i>)</p>
+<p><span class="math-tex" data-type="tex">\(\lnot \left(𝒫\vee 𝒬\right)\equiv \lnot 𝒫\wedge \lnot 𝒬\)</span> and <span class="math-tex" data-type="tex">\(\lnot \left(𝒫\wedge 𝒬\right)\equiv \lnot 𝒫\vee \lnot 𝒬\)</span> (<i>DeMorgan’s laws</i>)</p>
 </li>
 </ol>
 </div>
@@ -969,7 +819,7 @@ Paged.registerHandlers(handlers);
 <p><span class="math-tex" data-type="tex">\(\left(A^c \right)^c =A\)</span> (<i>involution law</i>)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\left(A\cup B\right)^c =A^c \cap B^c\)</span> and <span class="math-tex" data-type="tex">\(\left(A\cap B\right)^c =A^c \cup B^c\)</span> (<i>De Morgan’s laws</i>)</p>
+<p><span class="math-tex" data-type="tex">\(\left(A\cup B\right)^c =A^c \cap B^c\)</span> and <span class="math-tex" data-type="tex">\(\left(A\cap B\right)^c =A^c \cup B^c\)</span> (<i>DeMorgan’s laws</i>)</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(A\setminus B=A\cap B^c\)</span></p>
@@ -984,7 +834,7 @@ Paged.registerHandlers(handlers);
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof the first law of De Morgan.</p>
+<p>Proof the first law of DeMorgan.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -1161,7 +1011,7 @@ Paged.registerHandlers(handlers);
 </div>
 <p>The above is true for any proposition <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span>.</p>
 <div data-type="theorem">
-<h1>&nbsp;(De Morgan 1)</h1>
+<h1>&nbsp;(DeMorgan 1)</h1>
 <p><span class="math-tex" data-type="tex">\(\lnot \left(\forall x\in A:𝒫\left(x\right)\right)\equiv \exists x\in A:\lnot 𝒫\left(x\right)\)</span>.</p>
 </div>
 <p>In other words, the following two statements are equivalent:</p>
@@ -1175,7 +1025,7 @@ Paged.registerHandlers(handlers);
 </ul>
 <p>There is an analogous theorem for the negation of a proposition which contains the existential quantifier.</p>
 <div data-type="theorem">
-<h1>&nbsp;(De Morgan 2)</h1>
+<h1>&nbsp;(DeMorgan 2)</h1>
 <p><span class="math-tex" data-type="tex">\(\lnot \left(\exists x\in A:𝒫\left(x\right)\right)\equiv \forall x\in A:\lnot 𝒫\left(x\right)\)</span>.</p>
 </div>
 <p>That is, the following two statements are equivalent:</p>
@@ -1232,7 +1082,7 @@ Paged.registerHandlers(handlers);
 </li>
 </ol>
 </div>
-<p>Quantified statements with more than one variable may be negated by successively applying the theorems of De Morgan. Thus each <span class="math-tex" data-type="tex">\(\forall\)</span> is changed to <span class="math-tex" data-type="tex">\(\exists\)</span>, and each <span class="math-tex" data-type="tex">\(\exists\)</span> is changed to <span class="math-tex" data-type="tex">\(\forall\)</span> as the negation symbol <span class="math-tex" data-type="tex">\(\lnot\)</span> passes through the statement from left to right.</p>
+<p>Quantified statements with more than one variable may be negated by successively applying the theorems of DeMorgan. Thus each <span class="math-tex" data-type="tex">\(\forall\)</span> is changed to <span class="math-tex" data-type="tex">\(\exists\)</span>, and each <span class="math-tex" data-type="tex">\(\exists\)</span> is changed to <span class="math-tex" data-type="tex">\(\forall\)</span> as the negation symbol <span class="math-tex" data-type="tex">\(\lnot\)</span> passes through the statement from left to right.</p>
 <div data-type="example">
 <h1></h1>
 <p>Some examples of the negation of quantified statement with more than one variable:</p>
@@ -1748,7 +1598,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </foreignObject>
 <line x1="571.3274122871835" y1="75" x2="571.3274122871835" y2="85" stroke="black"/>
 <foreignObject x="564.3274122871835" y="55" width="14" height="18">
-\(\uppi \)
+\(\uppi  \)
 </foreignObject>
 <line x1="320" y1="80" x2="400" y2="80" stroke="RoyalBlue" stroke-dasharray="3"/>
 <foreignObject x="357" y="60" width="30" height="15">
@@ -2863,7 +2713,7 @@ S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm
 </svg>
 <figcaption>Basic definition of sinus and cosinus.</figcaption></figure>
 <p>In calculus we need more general definitions of <span class="math-tex" data-type="tex">\(\cos t\)</span> and <span class="math-tex" data-type="tex">\(\sin t\)</span> as functions defined for all real numbers <span class="math-tex" data-type="tex">\(t\)</span>, not just acute angles.</p>
-<p>Let <span class="math-tex" data-type="tex">\(C\)</span> be the circle with centre at the origin <span class="math-tex" data-type="tex">\(O\)</span> and radius <span class="math-tex" data-type="tex">\(1\)</span>; its equation is <span class="math-tex" data-type="tex">\(x^2+y^2=1\)</span>. Let <span class="math-tex" data-type="tex">\(A\)</span> be the point <span class="math-tex" data-type="tex">\(\left(1,0\right)\)</span> on <span class="math-tex" data-type="tex">\(C\)</span>. For any real number <span class="math-tex" data-type="tex">\(t\)</span>, let <span class="math-tex" data-type="tex">\(P_t\)</span> be the point on <span class="math-tex" data-type="tex">\(C\)</span> at distance <span class="math-tex" data-type="tex">\(\left|t\right|\)</span> from <span class="math-tex" data-type="tex">\(A\)</span>, measured along <span class="math-tex" data-type="tex">\(C\)</span> in the counterclockwise direction if <span class="math-tex" data-type="tex">\(t>0\)</span> and the clockwise direction if <span class="math-tex" data-type="tex">\(t<0\)</span>. For example, since <span class="math-tex" data-type="tex">\(C\)</span> has circumference <span class="math-tex" data-type="tex">\(2\uppi\)</span>, the point <span class="math-tex" data-type="tex">\(P_{\uppi /2}\)</span> is one-quarter of the way counterclockwise around <span class="math-tex" data-type="tex">\(C\)</span> from <span class="math-tex" data-type="tex">\(A\)</span>; it is the point <span class="math-tex" data-type="tex">\(\left(0,1\right)\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(C\)</span> be the circle with centre at the origin <span class="math-tex" data-type="tex">\(O\)</span> and radius <span class="math-tex" data-type="tex">\(1\)</span>; its equation is <span class="math-tex" data-type="tex">\(x^2+y^2=1\)</span>. Let <span class="math-tex" data-type="tex">\(A\)</span> be the point <span class="math-tex" data-type="tex">\(\left(1,0\right)\)</span> on <span class="math-tex" data-type="tex">\(C\)</span>. For any real number <span class="math-tex" data-type="tex">\(t\)</span>, let <span class="math-tex" data-type="tex">\(P_t\)</span> be the point on <span class="math-tex" data-type="tex">\(C\)</span> at distance <span class="math-tex" data-type="tex">\(\left|t\right|\)</span> from <span class="math-tex" data-type="tex">\(A\)</span>, measured along <span class="math-tex" data-type="tex">\(C\)</span> in the counterclockwise direction if <span class="math-tex" data-type="tex">\(t>0\)</span> and the clockwise direction if <span class="math-tex" data-type="tex">\(t<0\)</span>. For example, since <span class="math-tex" data-type="tex">\(C\)</span> has circumference <span class="math-tex" data-type="tex">\(2\uppi \)</span>, the point <span class="math-tex" data-type="tex">\(P_{\uppi  /2}\)</span> is one-quarter of the way counterclockwise around <span class="math-tex" data-type="tex">\(C\)</span> from <span class="math-tex" data-type="tex">\(A\)</span>; it is the point <span class="math-tex" data-type="tex">\(\left(0,1\right)\)</span>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="255">
 <defs>
@@ -2924,13 +2774,13 @@ S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm
 \(P_t=\left(\cos t, \sin t\right)\)
 </foreignObject>
 <foreignObject x="2" y="115" width="28" height="18">
-\(P_\uppi \)
+\(P_\uppi  \)
 </foreignObject>
 <foreignObject x="137" y="16.0" width="28" height="18">
-\(P_{\uppi /2}\)
+\(P_{\uppi  /2}\)
 </foreignObject>
 <foreignObject x="135" y="235" width="42" height="18">
-\(P_{-\uppi /2}\)
+\(P_{-\uppi  /2}\)
 </foreignObject>
 </svg>
 <figcaption>Definition of cosine and sine.</figcaption></figure>
@@ -2938,21 +2788,21 @@ S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm
 <h1></h1>
 <p>The <i>radian measure</i> of <span class="math-tex" data-type="tex">\(\angle AOP_t\)</span> is <span class="math-tex" data-type="tex">\(t\)</span> radians.</p>
 </div>
-<p>In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle <span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span> we mean <span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span> radians (which is <span class="math-tex" data-type="tex">\(60°\)</span>), not <span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span> degrees.</p>
+<p>In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle <span class="math-tex" data-type="tex">\(\frac{\uppi  }{3}\)</span> we mean <span class="math-tex" data-type="tex">\(\frac{\uppi  }{3}\)</span> radians (which is <span class="math-tex" data-type="tex">\(60°\)</span>), not <span class="math-tex" data-type="tex">\(\frac{\uppi  }{3}\)</span> degrees.</p>
 <div data-type="example">
 <h1></h1>
 <p><i>Arc length</i> and <i>sector area</i>.</p>
 <p>An arc of a circle of radius <span class="math-tex" data-type="tex">\(r\)</span> subtends an angle <span class="math-tex" data-type="tex">\(t\)</span> at the centre of the circle. Find the length <span class="math-tex" data-type="tex">\(s\)</span> of the arc and the area <span class="math-tex" data-type="tex">\(A\)</span> of the sector lying between the arc and the centre of the circle.</p>
-<p>The length <span class="math-tex" data-type="tex">\(s\)</span> of the arc is the same fraction of the circumference <span class="math-tex" data-type="tex">\(2\uppi r\)</span> of the circle that the angle <span class="math-tex" data-type="tex">\(t\)</span> is to a complete revolution <span class="math-tex" data-type="tex">\(2\uppi\)</span> radians. Thus,</p>
+<p>The length <span class="math-tex" data-type="tex">\(s\)</span> of the arc is the same fraction of the circumference <span class="math-tex" data-type="tex">\(2\uppi  r\)</span> of the circle that the angle <span class="math-tex" data-type="tex">\(t\)</span> is to a complete revolution <span class="math-tex" data-type="tex">\(2\uppi \)</span> radians. Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
-s=\frac{t}{2\uppi }(2\uppi  r)=rt\,.
+s=\frac{t}{2\uppi  }(2\uppi   r)=rt\,.
 \]
 </div>
-<p>Similarly, the area <span class="math-tex" data-type="tex">\(A\)</span> of the circular sector is the same fraction of the area <span class="math-tex" data-type="tex">\(\uppi r^2\)</span> of the whole circle:</p>
+<p>Similarly, the area <span class="math-tex" data-type="tex">\(A\)</span> of the circular sector is the same fraction of the area <span class="math-tex" data-type="tex">\(\uppi  r^2\)</span> of the whole circle:</p>
 <div class="math-tex" data-type="equation">
 \[
-A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
+A=\frac{t}{2\uppi  }(\uppi   r^2)=\frac{r^2t}{2}\,.
 \]
 </div>
 </div>
@@ -2974,16 +2824,16 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <p><span class="math-tex" data-type="tex">\(\cos^2 t+\sin^2 t=1\)</span> (Pythagorean identity)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\cos(t+2\uppi )=\cos t\)</span> and <span class="math-tex" data-type="tex">\(\sin(t+2\uppi )=\sin t\)</span> (periodicity)</p>
+<p><span class="math-tex" data-type="tex">\(\cos(t+2\uppi  )=\cos t\)</span> and <span class="math-tex" data-type="tex">\(\sin(t+2\uppi  )=\sin t\)</span> (periodicity)</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(\cos(-t)=\cos(t)\)</span> and <span class="math-tex" data-type="tex">\(\sin(-t)=-\sin t\)</span> (cosine is an <i>even</i> function, sine is an <i>odd</i> function)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\cos\left(\frac{\uppi }{2}-t\right)=\sin t\)</span> and <span class="math-tex" data-type="tex">\(\sin\left(\frac{\uppi }{2}-t\right)=\cos t\)</span> (<i>complementary angles</i>, symmetry about <span class="math-tex" data-type="tex">\(y=x\)</span>)</p>
+<p><span class="math-tex" data-type="tex">\(\cos\left(\frac{\uppi  }{2}-t\right)=\sin t\)</span> and <span class="math-tex" data-type="tex">\(\sin\left(\frac{\uppi  }{2}-t\right)=\cos t\)</span> (<i>complementary angles</i>, symmetry about <span class="math-tex" data-type="tex">\(y=x\)</span>)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\cos(\uppi -t)=-\cos(t)\)</span> and <span class="math-tex" data-type="tex">\(\sin(\uppi -t)=\sin t\)</span> (<i>supplementary angles</i>, symmetry about <span class="math-tex" data-type="tex">\(x=0\)</span>)</p>
+<p><span class="math-tex" data-type="tex">\(\cos(\uppi  -t)=-\cos(t)\)</span> and <span class="math-tex" data-type="tex">\(\sin(\uppi  -t)=\sin t\)</span> (<i>supplementary angles</i>, symmetry about <span class="math-tex" data-type="tex">\(x=0\)</span>)</p>
 </li>
 </ol>
 </div>
@@ -2993,14 +2843,14 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <tr>
 <td style="text-align:left">Radians</td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(0\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi }{6}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi }{4}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi }{3}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi }{2}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{2\uppi }{3}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{3\uppi }{4}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{5\uppi }{6}\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\uppi\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi  }{6}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi  }{4}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi  }{3}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{\uppi  }{2}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{2\uppi  }{3}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{3\uppi  }{4}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\frac{5\uppi  }{6}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\uppi \)</span></td>
 </tr>
 </thead>
 <tbody>
@@ -3030,7 +2880,7 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 </tr>
 </tbody>
 </table>
-<p>Observe that the graph of <span class="math-tex" data-type="tex">\(\sin x\)</span> is the graph of <span class="math-tex" data-type="tex">\(\cos x\)</span> shifted to the right a distance <span class="math-tex" data-type="tex">\(\frac{\uppi }{2}\)</span>.</p>
+<p>Observe that the graph of <span class="math-tex" data-type="tex">\(\sin x\)</span> is the graph of <span class="math-tex" data-type="tex">\(\cos x\)</span> shifted to the right a distance <span class="math-tex" data-type="tex">\(\frac{\uppi  }{2}\)</span>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="625" height="155">
 <defs>
@@ -3050,31 +2900,31 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <line x1="0" y1="80" x2="622" y2="80" stroke="black" marker-end="url(#arrow)"/>
 <line x1="64.38055098076552" y1="77" x2="64.38055098076552" y2="83" stroke="black"/>
 <foreignObject x="43.38055098076552" y="80" width="42" height="36">
-\(-\frac{3\uppi }{2}\)
+\(-\frac{3\uppi  }{2}\)
 </foreignObject>
 <line x1="142.92036732051034" y1="77" x2="142.92036732051034" y2="83" stroke="black"/>
 <foreignObject x="128.92036732051034" y="80" width="28" height="18">
-\(-\uppi \)
+\(-\uppi  \)
 </foreignObject>
 <line x1="221.46018366025515" y1="77" x2="221.46018366025515" y2="83" stroke="black"/>
 <foreignObject x="207.46018366025515" y="80" width="28" height="36">
-\(-\frac{\uppi }{2}\)
+\(-\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="378.53981633974485" y1="77" x2="378.53981633974485" y2="83" stroke="black"/>
 <foreignObject x="371.53981633974485" y="80" width="14" height="36">
-\(\frac{\uppi }{2}\)
+\(\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="457.0796326794897" y1="77" x2="457.0796326794897" y2="83" stroke="black"/>
 <foreignObject x="450.0796326794897" y="80" width="14" height="18">
-\(\uppi \)
+\(\uppi  \)
 </foreignObject>
 <line x1="535.6194490192345" y1="77" x2="535.6194490192345" y2="83" stroke="black"/>
 <foreignObject x="521.6194490192345" y="80" width="28" height="36">
-\(\frac{3\uppi }{2}\)
+\(\frac{3\uppi  }{2}\)
 </foreignObject>
 <line x1="614.1592653589794" y1="77" x2="614.1592653589794" y2="83" stroke="black"/>
 <foreignObject x="600.1592653589794" y="80" width="28" height="18">
-\(2\uppi \)
+\(2\uppi  \)
 </foreignObject>
 <line x1="300" y1="155" x2="300" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="297" y1="130" x2="303" y2="130" stroke="black"/>
@@ -3161,22 +3011,22 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\tan:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textrm{(tangent)}
+\tan:ℝ\setminus\left\{\frac{\mathrm{\uppi}}{2}+k\mathrm{\uppi}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textit{(tangent)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\cot:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\cos x}{\sin x}\quad\textrm{(cotangent)}
+\cot:ℝ\setminus\left\{k\mathrm{\uppi}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{\cos x}{\sin x}\quad\textit{(cotangent)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\sec:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\cos x}\quad\textrm{(secans)}
+\sec:ℝ\setminus\left\{\frac{\mathrm{\uppi}}{2}+k\mathrm{\uppi}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{1}{\cos x}\quad\textit{(secans)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\csc:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\sin x}\quad\textrm{(cosecans)}
+\csc:ℝ\setminus\left\{k\mathrm{\uppi}\mid k\inℤ\right\}\toℝ:x\mapsto\frac{1}{\sin x}\quad\textit{(cosecans)}
 \]
 </div>
 </div>
@@ -3199,19 +3049,19 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <line x1="0" y1="130" x2="467" y2="130" stroke="black" marker-end="url(#arrow)"/>
 <line x1="82.92036732051034" y1="127" x2="82.92036732051034" y2="133" stroke="black"/>
 <foreignObject x="68.92036732051034" y="130" width="28" height="18">
-\(-\uppi \)
+\(-\uppi  \)
 </foreignObject>
 <line x1="161.46018366025515" y1="127" x2="161.46018366025515" y2="133" stroke="black"/>
 <foreignObject x="147.46018366025515" y="130" width="28" height="36">
-\(-\frac{\uppi }{2}\)
+\(-\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="318.53981633974485" y1="127" x2="318.53981633974485" y2="133" stroke="black"/>
 <foreignObject x="311.53981633974485" y="130" width="14" height="36">
-\(\frac{\uppi }{2}\)
+\(\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="397.0796326794897" y1="127" x2="397.0796326794897" y2="133" stroke="black"/>
 <foreignObject x="390.0796326794897" y="130" width="14" height="18">
-\(\uppi \)
+\(\uppi  \)
 </foreignObject>
 <line x1="240" y1="255" x2="240" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="237" y1="230" x2="243" y2="230" stroke="black"/>
@@ -3262,19 +3112,19 @@ P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 <line x1="0" y1="130" x2="467" y2="130" stroke="black" marker-end="url(#arrow)"/>
 <line x1="82.92036732051034" y1="127" x2="82.92036732051034" y2="133" stroke="black"/>
 <foreignObject x="68.92036732051034" y="130" width="28" height="18">
-\(-\uppi \)
+\(-\uppi  \)
 </foreignObject>
 <line x1="161.46018366025515" y1="127" x2="161.46018366025515" y2="133" stroke="black"/>
 <foreignObject x="147.46018366025515" y="130" width="28" height="36">
-\(-\frac{\uppi }{2}\)
+\(-\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="318.53981633974485" y1="127" x2="318.53981633974485" y2="133" stroke="black"/>
 <foreignObject x="311.53981633974485" y="130" width="14" height="36">
-\(\frac{\uppi }{2}\)
+\(\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="397.0796326794897" y1="127" x2="397.0796326794897" y2="133" stroke="black"/>
 <foreignObject x="390.0796326794897" y="130" width="14" height="18">
-\(\uppi \)
+\(\uppi  \)
 </foreignObject>
 <line x1="240" y1="260" x2="240" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="237" y1="230" x2="243" y2="230" stroke="black"/>
@@ -3420,16 +3270,16 @@ y = \frac{gt^2}{2}\,\left[\mathrm{s}\right]\,,
 </section>
 <section data-type="sect1">
 <h1>The Area of a Circle</h1>
-<p>All circles are similar geometric figures; they all have the same shape and differ only in size. The ratio of the circumference <span class="math-tex" data-type="tex">\(C\)</span> to the diameter <span class="math-tex" data-type="tex">\(2r\)</span> has the same value for all circles. The number <span class="math-tex" data-type="tex">\(\uppi\)</span> is defined to be this common ratio:</p>
+<p>All circles are similar geometric figures; they all have the same shape and differ only in size. The ratio of the circumference <span class="math-tex" data-type="tex">\(C\)</span> to the diameter <span class="math-tex" data-type="tex">\(2r\)</span> has the same value for all circles. The number <span class="math-tex" data-type="tex">\(\uppi \)</span> is defined to be this common ratio:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{C}{2r}=\uppi \quad\textrm{or}\quad C=2\uppi r\,.
+\frac{C}{2r}=\uppi  \quad\textrm{or}\quad C=2\uppi  r\,.
 \]
 </div>
-<p>We were taught that the area <span class="math-tex" data-type="tex">\(A\)</span> of a circle is this same number <span class="math-tex" data-type="tex">\(\uppi\)</span> times the square of the radius:</p>
+<p>We were taught that the area <span class="math-tex" data-type="tex">\(A\)</span> of a circle is this same number <span class="math-tex" data-type="tex">\(\uppi \)</span> times the square of the radius:</p>
 <div class="math-tex" data-type="equation">
 \[
-A=\uppi r^2\,.
+A=\uppi  r^2\,.
 \]
 </div>
 <p>Can we deduce this area formula from the formula for the circumference?</p>
@@ -3472,17 +3322,17 @@ A=\uppi r^2\,.
 </foreignObject>
 <path d="M 226 151 A 75 75 0 0 0 222.97694655894313, 127.09848925057484" stroke="black" fill="none" marker-end="url(#arrow)"/>
 <foreignObject x="229.78462024097664" y="123.63838853394651" width="14" height="36">
-\(\frac{\uppi }{n}\)
+\(\frac{\uppi  }{n}\)
 </foreignObject>
 </svg>
 <figcaption>A regular polygon (green) of <span class="math-tex" data-type="tex">\(n\)</span> sides inscribed in a red circle. Here <span class="math-tex" data-type="tex">\(n=9\)</span>.</figcaption></figure>
 <p>The perimeter <span class="math-tex" data-type="tex">\(P_n\)</span> and the area <span class="math-tex" data-type="tex">\(A_n\)</span> of the polygon are, respectively, less than the circumference <span class="math-tex" data-type="tex">\(C\)</span> and the area <span class="math-tex" data-type="tex">\(A\)</span> of the circle, but if <span class="math-tex" data-type="tex">\(n\)</span> is large <span class="math-tex" data-type="tex">\(P_n\)</span> is close to <span class="math-tex" data-type="tex">\(C\)</span> and <span class="math-tex" data-type="tex">\(A_n\)</span> is close to <span class="math-tex" data-type="tex">\(A\)</span>. We could expect <span class="math-tex" data-type="tex">\(P_n\)</span> to approach the limit <span class="math-tex" data-type="tex">\(C\)</span> and <span class="math-tex" data-type="tex">\(A_n\)</span> to approach the limit <span class="math-tex" data-type="tex">\(A\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity.</p>
-<p>Since the total angle around the point <span class="math-tex" data-type="tex">\(O\)</span> is <span class="math-tex" data-type="tex">\(2\uppi\)</span> radians, <span class="math-tex" data-type="tex">\(\angle AOB\)</span> is <span class="math-tex" data-type="tex">\(\frac{2\uppi }{n}\)</span> radians. If <span class="math-tex" data-type="tex">\(M\)</span> is the midpoint of <span class="math-tex" data-type="tex">\(AB\)</span>, then <span class="math-tex" data-type="tex">\(O\)</span> bisects <span class="math-tex" data-type="tex">\(\angle AOB\)</span>. We can write the length of <span class="math-tex" data-type="tex">\(AB\)</span> and the area of <span class="math-tex" data-type="tex">\(\triangle OAB\)</span> in terms of the radius:</p>
+<p>Since the total angle around the point <span class="math-tex" data-type="tex">\(O\)</span> is <span class="math-tex" data-type="tex">\(2\uppi \)</span> radians, <span class="math-tex" data-type="tex">\(\angle AOB\)</span> is <span class="math-tex" data-type="tex">\(\frac{2\uppi  }{n}\)</span> radians. If <span class="math-tex" data-type="tex">\(M\)</span> is the midpoint of <span class="math-tex" data-type="tex">\(AB\)</span>, then <span class="math-tex" data-type="tex">\(O\)</span> bisects <span class="math-tex" data-type="tex">\(\angle AOB\)</span>. We can write the length of <span class="math-tex" data-type="tex">\(AB\)</span> and the area of <span class="math-tex" data-type="tex">\(\triangle OAB\)</span> in terms of the radius:</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left|AB\right|=&2\left|AM\right|=2r\sin\frac{\uppi}{n}\\
-\triangle OAB=&\frac{1}{2}\left|AB\right|\left|OM\right|=r^2\sin\frac{\uppi}{n}\cos\frac{\uppi}{n}
+\left|AB\right|=&2\left|AM\right|=2r\sin\frac{\uppi }{n}\\
+\triangle OAB=&\frac{1}{2}\left|AB\right|\left|OM\right|=r^2\sin\frac{\uppi }{n}\cos\frac{\uppi }{n}
 \end{aligned}
 \]
 </div>
@@ -3490,18 +3340,18 @@ A=\uppi r^2\,.
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-P_n=&2rn\sin\frac{\uppi}{n}\\
-A_n=&r^2n\sin\frac{\uppi}{n}\cos\frac{\uppi}{n}
+P_n=&2rn\sin\frac{\uppi }{n}\\
+A_n=&r^2n\sin\frac{\uppi }{n}\cos\frac{\uppi }{n}
 \end{aligned}
 \]
 </div>
-<p>Solving the first equation for <span class="math-tex" data-type="tex">\(rn\sin\frac{\uppi}{n}=\frac{P_n}{2}\)</span> and substituting into the second equation, we get</p>
+<p>Solving the first equation for <span class="math-tex" data-type="tex">\(rn\sin\frac{\uppi }{n}=\frac{P_n}{2}\)</span> and substituting into the second equation, we get</p>
 <div class="math-tex" data-type="equation">
 \[
-A_n = \frac{1}{2}P_nr\cos\frac{\uppi}{n}
+A_n = \frac{1}{2}P_nr\cos\frac{\uppi }{n}
 \]
 </div>
-<p>Now <span class="math-tex" data-type="tex">\(\angle AOM=\frac{\uppi}{n}\)</span> approaches <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, so its cosine, <span class="math-tex" data-type="tex">\(\cos\frac{\uppi}{n}=\frac{\left|OM\right|}{\left|OA\right|}\)</span>, approaches <span class="math-tex" data-type="tex">\(1\)</span>. Since <span class="math-tex" data-type="tex">\(P_n\)</span> approaches <span class="math-tex" data-type="tex">\(C=2\uppi r\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, the expression for <span class="math-tex" data-type="tex">\(A_n\)</span> approaches <span class="math-tex" data-type="tex">\(\frac{1}{2}\left(2\uppi r\right)r\left(1\right)=\uppi r^2\)</span>, which must therefore be the area of the circle.</p>
+<p>Now <span class="math-tex" data-type="tex">\(\angle AOM=\frac{\uppi }{n}\)</span> approaches <span class="math-tex" data-type="tex">\(0\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, so its cosine, <span class="math-tex" data-type="tex">\(\cos\frac{\uppi }{n}=\frac{\left|OM\right|}{\left|OA\right|}\)</span>, approaches <span class="math-tex" data-type="tex">\(1\)</span>. Since <span class="math-tex" data-type="tex">\(P_n\)</span> approaches <span class="math-tex" data-type="tex">\(C=2\uppi  r\)</span> as <span class="math-tex" data-type="tex">\(n\)</span> tends to infinity, the expression for <span class="math-tex" data-type="tex">\(A_n\)</span> approaches <span class="math-tex" data-type="tex">\(\frac{1}{2}\left(2\uppi  r\right)r\left(1\right)=\uppi  r^2\)</span>, which must therefore be the area of the circle.</p>
 </section>
 <section data-type="sect1">
 <h1>Limits Defined</h1>
@@ -3587,18 +3437,18 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>This definition is informal because phrases such as <i>close as we want</i> and <i>close enough</i> are imprecise; their meaning depends on the context. If we want to prove results about limits a more precise definition is needed. This precise definition is based on the idea of controlling the input <span class="math-tex" data-type="tex">\(x\)</span> of a function <span class="math-tex" data-type="tex">\(f\)</span> so that the output <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> will lie in a specific interval.</p>
 <div data-type="example">
 <h1></h1>
-<p>The area of a circular disk of radius <span class="math-tex" data-type="tex">\(r\,\left[\mathrm{cm}\right]\)</span> is <span class="math-tex" data-type="tex">\(A=\uppi r^2\,\left[\mathrm{cm}^2\right]\)</span>. A machinist is required to manufacture a circular metal disk having area <span class="math-tex" data-type="tex">\(400\uppi\,\left[\mathrm{cm}^2\right]\)</span> within an error tolerance of <span class="math-tex" data-type="tex">\(\pm 5\,\left[\mathrm{cm}^2\right]\)</span>. How close to <span class="math-tex" data-type="tex">\(20\,\left[\mathrm{cm}\right]\)</span> must the machinist control the radius of the disk to achieve this?</p>
-<p>The machinist wants <span class="math-tex" data-type="tex">\(\left|\uppi r^2-400\uppi\right|<5\)</span>, that is,</p>
+<p>The area of a circular disk of radius <span class="math-tex" data-type="tex">\(r\,\left[\mathrm{cm}\right]\)</span> is <span class="math-tex" data-type="tex">\(A=\uppi  r^2\,\left[\mathrm{cm}^2\right]\)</span>. A machinist is required to manufacture a circular metal disk having area <span class="math-tex" data-type="tex">\(400\uppi \,\left[\mathrm{cm}^2\right]\)</span> within an error tolerance of <span class="math-tex" data-type="tex">\(\pm 5\,\left[\mathrm{cm}^2\right]\)</span>. How close to <span class="math-tex" data-type="tex">\(20\,\left[\mathrm{cm}\right]\)</span> must the machinist control the radius of the disk to achieve this?</p>
+<p>The machinist wants <span class="math-tex" data-type="tex">\(\left|\uppi  r^2-400\uppi \right|<5\)</span>, that is,</p>
 <div class="math-tex" data-type="equation">
 \[
-400\uppi-5<\uppi r^2<400\uppi+5
+400\uppi -5<\uppi  r^2<400\uppi +5
 \]
 </div>
 <p>or, equivalently,</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-    \sqrt{400-\frac{5}{\uppi}}<&r<\sqrt{400+\frac{5}{\uppi}}\\
+    \sqrt{400-\frac{5}{\uppi }}<&r<\sqrt{400+\frac{5}{\uppi }}\\
     19.96017<&r<20.03975\,.
 \end{aligned}
 \]
@@ -6229,27 +6079,27 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 <line x1="0" y1="60.0" x2="557" y2="60.0" stroke="black" marker-end="url(#arrow)"/>
 <line x1="28.67258771281655" y1="57.0" x2="28.67258771281655" y2="63.0" stroke="black"/>
 <foreignObject x="7.672587712816551" y="60.0" width="42" height="18">
-\(-2\uppi\)
+\(-2\uppi \)
 </foreignObject>
 <line x1="154.33629385640828" y1="57.0" x2="154.33629385640828" y2="63.0" stroke="black"/>
 <foreignObject x="140.33629385640828" y="60.0" width="28" height="18">
-\(-\uppi \)
+\(-\uppi  \)
 </foreignObject>
 <line x1="217.16814692820412" y1="57.0" x2="217.16814692820412" y2="63.0" stroke="black"/>
 <foreignObject x="203.16814692820412" y="60.0" width="28" height="36">
-\(-\frac{\uppi }{2}\)
+\(-\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="342.8318530717959" y1="57.0" x2="342.8318530717959" y2="63.0" stroke="black"/>
 <foreignObject x="335.8318530717959" y="60.0" width="14" height="36">
-\(\frac{\uppi }{2}\)
+\(\frac{\uppi  }{2}\)
 </foreignObject>
 <line x1="405.66370614359175" y1="57.0" x2="405.66370614359175" y2="63.0" stroke="black"/>
 <foreignObject x="398.66370614359175" y="60.0" width="14" height="18">
-\(\uppi \)
+\(\uppi  \)
 </foreignObject>
 <line x1="531.3274122871835" y1="57.0" x2="531.3274122871835" y2="63.0" stroke="black"/>
 <foreignObject x="517.3274122871835" y="60.0" width="28" height="18">
-\(2\uppi\)
+\(2\uppi \)
 </foreignObject>
 <line x1="280" y1="80" x2="280" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="277" y1="20.0" x2="283" y2="20.0" stroke="black"/>
@@ -6417,7 +6267,7 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 <p>We make use of the complementary angle identities, and the Chain rule:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi }{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi }{2}-x\right)=-\sin x\,.
 \]
 </div>
 </div>
@@ -6917,10 +6767,10 @@ G\left(x\right)=\begin{cases}
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}\)</span>.</p>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to \frac{\pi}{2}^-}\frac{2x-\uppi}{\cos^2x}\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{x\to \frac{\pi}{2}^-}\frac{2x-π}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
+\lim_{x\to \frac{\pi}{2}^-}\frac{2x-\uppi}{\cos^2x}=\lim_{x\to \frac{\pi}{2}^-}\frac{2}{-2\sin x\cos x}=-\infty\,.
 \]
 </div>
 <p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \lim_{x\to 0^+}\left(\frac{1}{x}-\frac{1}{\sin x}\right)\)</span>.</p>
@@ -7659,7 +7509,7 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 </div>
 <p>In this definition, <span class="math-tex" data-type="tex">\(\sqrt[n]{a}\)</span> is the number <span class="math-tex" data-type="tex">\(b&gt;0\)</span> that satisfies <span class="math-tex" data-type="tex">\(b^n=a\)</span>.</p>
 </div>
-<p>How should we define <span class="math-tex" data-type="tex">\(a^x\)</span> if <span class="math-tex" data-type="tex">\(x\)</span> is not rational? For example, what does <span class="math-tex" data-type="tex">\(2^\uppi\)</span> mean? In order to calculate a derivative of <span class="math-tex" data-type="tex">\(a^x\)</span>, we will want the function to be defined for all real numbers <span class="math-tex" data-type="tex">\(x\)</span>, not just rational ones.</p>
+<p>How should we define <span class="math-tex" data-type="tex">\(a^x\)</span> if <span class="math-tex" data-type="tex">\(x\)</span> is not rational? For example, what does <span class="math-tex" data-type="tex">\(2^\uppi \)</span> mean? In order to calculate a derivative of <span class="math-tex" data-type="tex">\(a^x\)</span>, we will want the function to be defined for all real numbers <span class="math-tex" data-type="tex">\(x\)</span>, not just rational ones.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="250" height="300">
 <defs>
@@ -8266,7 +8116,7 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 </foreignObject>
 </svg>
 <figcaption>The definition of <span class="math-tex" data-type="tex">\(ℯ\)</span>.</figcaption></figure>
-<p>The number <span class="math-tex" data-type="tex">\(ℯ\)</span> is one of the most important numbers in mathematics. Like <span class="math-tex" data-type="tex">\(\uppi\)</span>, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins</p>
+<p>The number <span class="math-tex" data-type="tex">\(ℯ\)</span> is one of the most important numbers in mathematics. Like <span class="math-tex" data-type="tex">\(\uppi \)</span>, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins</p>
 <div class="math-tex" data-type="equation">
 \[
 ℯ=2.718281828459045\dots\,.
@@ -8465,16 +8315,16 @@ y=ℯ^{g\left(x\right)\ln f\left(x\right)}
 <p>The six trigonometric functions are periodic and, hence, not one-to-one. However, as we did with the function <span class="math-tex" data-type="tex">\(x^2\)</span>, we can restrict their domains in such a way that the restricted functions are one-to-one and invertible.</p>
 <section data-type="sect2">
 <h2>The Inverse Sine (or Arcsine) Function</h2>
-<p>Let us define a function <span class="math-tex" data-type="tex">\(\operatorname{Sin} x\)</span> (note the capital letter) to be <span class="math-tex" data-type="tex">\(\sin x\)</span>, restricted so that its domain is the interval <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]\)</span>:</p>
+<p>Let us define a function <span class="math-tex" data-type="tex">\(\operatorname{Sin} x\)</span> (note the capital letter) to be <span class="math-tex" data-type="tex">\(\sin x\)</span>, restricted so that its domain is the interval <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi }{2},\frac{\uppi }{2}\right]\)</span>:</p>
 <div data-type="definition">
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
+\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\uppi }{2}\le x\le\frac{\uppi }{2}\,.
 \]
 </div>
 </div>
-<p>Since its derivative <span class="math-tex" data-type="tex">\(\cos x\)</span> is positive on the interval <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]\)</span>, the function <span class="math-tex" data-type="tex">\(\operatorname{Sin} x\)</span> is<br/>increasing on its domain, so it is a bijective function. It has domain <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]\)</span> and range <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>.</p>
+<p>Since its derivative <span class="math-tex" data-type="tex">\(\cos x\)</span> is positive on the interval <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi }{2},\frac{\uppi }{2}\right]\)</span>, the function <span class="math-tex" data-type="tex">\(\operatorname{Sin} x\)</span> is<br/>increasing on its domain, so it is a bijective function. It has domain <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi }{2},\frac{\uppi }{2}\right]\)</span> and range <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="150">
 <defs>
@@ -8494,11 +8344,11 @@ y=ℯ^{g\left(x\right)\ln f\left(x\right)}
 <line x1="0" y1="75.0" x2="497" y2="75.0" stroke="black" marker-end="url(#arrow)"/>
 <line x1="171.46018366025515" y1="72.0" x2="171.46018366025515" y2="78.0" stroke="black"/>
 <foreignObject x="157.46018366025515" y="75.0" width="28" height="36">
-\(-\frac{\uppi}{2}\)
+\(-\frac{\uppi }{2}\)
 </foreignObject>
 <line x1="328.53981633974485" y1="72.0" x2="328.53981633974485" y2="78.0" stroke="black"/>
 <foreignObject x="321.53981633974485" y="75.0" width="14" height="36">
-\(\frac{\uppi}{2}\)
+\(\frac{\uppi }{2}\)
 </foreignObject>
 <line x1="250" y1="150" x2="250" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="247" y1="125.0" x2="253" y2="125.0" stroke="black"/>
@@ -8520,7 +8370,7 @@ y=ℯ^{g\left(x\right)\ln f\left(x\right)}
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\forall y\in\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
+\forall y\in\left[-\frac{\uppi }{2},\frac{\uppi }{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
 \]
 </div>
 </div>
@@ -8552,18 +8402,18 @@ y=ℯ^{g\left(x\right)\ln f\left(x\right)}
 <line x1="75.0" y1="200" x2="75.0" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="72.0" y1="178.53981633974485" x2="78.0" y2="178.53981633974485" stroke="black"/>
 <foreignObject x="47.0" y="169.53981633974485" width="28" height="36">
-\(-\frac{\uppi}{2}\)
+\(-\frac{\uppi }{2}\)
 </foreignObject>
 <line x1="72.0" y1="21.46018366025517" x2="78.0" y2="21.46018366025517" stroke="black"/>
 <foreignObject x="61.0" y="12.460183660255169" width="14" height="36">
-\(\frac{\uppi}{2}\)
+\(\frac{\uppi }{2}\)
 </foreignObject>
 <polyline points="25.0, 178.53981633974485 25.5, 171.46284267352348 26.0, 168.52307422358882 26.5, 166.26154046398023 27.0, 164.35011087932844 27.5, 162.66179487516877 28.0, 161.1315152760968 28.5, 159.72064222385842 29.0, 158.40402426071176 29.5, 157.16420309250134 30.0, 155.9884757499317 30.5, 154.86725847614153 31.0, 153.79311002270006 31.5, 152.7601160274403 32.0, 151.76348362402544 32.5, 150.79926469074127 33.0, 149.86416111859 33.5, 148.95538421841763 34.0, 148.0705509382051 34.5, 147.2076057577078 35.0, 146.36476090008063 35.5, 145.5404498703699 36.0, 144.73329086171177 36.5, 143.94205758342898 37.0, 143.1656557507777 37.5, 142.40310394907405 38.0, 141.65351791708238 38.5, 140.91609753157798 39.0, 140.1901159466515 39.5, 139.4749104673086 40.0, 138.76987483053765 40.5, 138.07445263738165 41.0, 137.38813173299604 41.5, 136.71043937266796 42.0, 136.04093804350447 42.5, 135.3792218362678 43.0, 134.72491328132782 43.5, 134.07766057815584 44.0, 133.4371351601186 44.5, 132.80302954624614 45.0, 132.17505543966422 45.5, 131.55294203890105 46.0, 130.93643453361256 46.5, 130.32529276065435 47.0, 129.71929000005312 47.5, 129.11821189343718 48.0, 128.5218554699961 48.5, 127.93002826714005 49.0, 127.3425475347972 49.5, 126.75923951377999 50.0, 126.17993877991495 50.5, 125.60448764670738 51.0, 125.0327356202294 51.5, 124.46453890070578 52.0, 123.89975992594762 52.5, 123.33826695236482 53.0, 122.77993366979118 53.5, 122.22463884679095 54.0, 121.6722660034943 54.5, 121.12270310933779 55.0, 120.5758423033744 55.5, 120.0315796350686 56.0, 119.48981482371303 56.5, 118.95045103479754 57.0, 118.413394671832 57.5, 117.8785551822755 58.0, 117.34584487635809 58.5, 116.81517875769902 59.0, 116.2864743647315 59.5, 115.75965162203622 60.0, 115.23463270076988 60.5, 114.71134188744912 61.0, 114.18970546041639 61.5, 113.66965157337366 62.0, 113.15111014542344 62.5, 112.63401275710393 63.0, 112.11829255194816 63.5, 111.60388414313566 64.0, 111.09072352483972 64.5, 110.57874798790478 65.0, 110.06789603951654 65.5, 109.55810732655299 66.0, 109.04932256232739 66.5, 108.54148345645523 67.0, 108.03453264759553 67.5, 107.52841363883431 68.0, 107.0230707354928 68.5, 106.51844898515728 69.0, 106.0144941197394 69.5, 105.51115249938734 70.0, 105.00837105807798 70.5, 104.50609725072977 71.0, 104.00427900168295 71.5, 103.50286465440252 72.0, 103.00180292226392 72.5, 102.5010428402885 73.0, 102.00053371769944 73.5, 101.50022509117385 74.0, 101.00006667866953 74.5, 100.50000833370835 75.0, 100.0 75.5, 99.49999166629165 76.0, 98.99993332133047 76.5, 98.49977490882615 77.0, 97.99946628230056 77.5, 97.4989571597115 78.0, 96.99819707773608 78.5, 96.49713534559748 79.0, 95.99572099831705 79.5, 95.49390274927023 80.0, 94.99162894192202 80.5, 94.48884750061266 81.0, 93.9855058802606 81.5, 93.48155101484272 82.0, 92.9769292645072 82.5, 92.47158636116569 83.0, 91.96546735240447 83.5, 91.45851654354477 84.0, 90.95067743767261 84.5, 90.44189267344701 85.0, 89.93210396048346 85.5, 89.42125201209522 86.0, 88.90927647516028 86.5, 88.39611585686434 87.0, 87.88170744805184 87.5, 87.36598724289607 88.0, 86.84888985457656 88.5, 86.33034842662634 89.0, 85.81029453958361 89.5, 85.28865811255088 90.0, 84.76536729923012 90.5, 84.24034837796378 91.0, 83.7135256352685 91.5, 83.18482124230098 92.0, 82.65415512364191 92.5, 82.1214448177245 93.0, 81.586605328168 93.5, 81.04954896520246 94.0, 80.51018517628697 94.5, 79.9684203649314 95.0, 79.4241576966256 95.5, 78.87729689066221 96.0, 78.3277339965057 96.5, 77.77536115320905 97.0, 77.22006633020882 97.5, 76.66173304763518 98.0, 76.10024007405238 98.5, 75.53546109929422 99.0, 74.9672643797706 99.5, 74.39551235329262 100.0, 73.82006122008505 100.5, 73.24076048622001 101.0, 72.6574524652028 101.5, 72.06997173285995 102.0, 71.4781445300039 102.5, 70.88178810656282 103.0, 70.2807099999469 103.5, 69.67470723934565 104.0, 69.06356546638744 104.5, 68.44705796109893 105.0, 67.82494456033578 105.5, 67.19697045375386 106.0, 66.56286483988141 106.5, 65.92233942184416 107.0, 65.2750867186722 107.5, 64.62077816373221 108.0, 63.95906195649552 108.5, 63.28956062733205 109.0, 62.61186826700397 109.5, 61.925547362618346 110.0, 61.230125169462355 110.5, 60.5250895326914 111.0, 59.8098840533485 111.5, 59.08390246842201 112.0, 58.34648208291761 112.5, 57.59689605092595 113.0, 56.83434424922232 113.5, 56.05794241657102 114.0, 55.26670913828824 114.5, 54.45955012963009 115.0, 53.63523909991939 115.5, 52.7923942422922 116.0, 51.92944906179493 116.5, 51.04461578158237 117.0, 50.13583888141001 117.5, 49.20073530925875 118.0, 48.23651637597456 118.5, 47.239883972559696 119.0, 46.206889977299944 119.5, 45.13274152385848 120.0, 44.01152425006829 120.5, 42.83579690749865 121.0, 41.595975739288235 121.5, 40.27935777614158 122.0, 38.868484723903215 122.5, 37.33820512483125 123.0, 35.649889120671574 123.5, 33.738459536019775 124.0, 31.476925776411164 124.5, 28.53715732647653 125.0, 21.46018366025517" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
 <circle cx="25.0" cy="178.53981633974485" r="3" fill="red" stroke="red"/>
 <circle cx="125.0" cy="21.46018366025517" r="3" fill="red" stroke="red"/>
 </svg>
 <figcaption>The graph of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}x\)</span>.</figcaption></figure>
-<p>The graph of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is the reflection of the graph of <span class="math-tex" data-type="tex">\(\operatorname{Sin}\)</span> in the line <span class="math-tex" data-type="tex">\(y=x\)</span>. The domain of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>(the range of <span class="math-tex" data-type="tex">\(\operatorname{Sin}\)</span>), and the range of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]\)</span> (the domain of <span class="math-tex" data-type="tex">\(\operatorname{Sin}\)</span>).</p>
+<p>The graph of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is the reflection of the graph of <span class="math-tex" data-type="tex">\(\operatorname{Sin}\)</span> in the line <span class="math-tex" data-type="tex">\(y=x\)</span>. The domain of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>(the range of <span class="math-tex" data-type="tex">\(\operatorname{Sin}\)</span>), and the range of <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi }{2},\frac{\uppi }{2}\right]\)</span> (the domain of <span class="math-tex" data-type="tex">\(\operatorname{Sin}\)</span>).</p>
 <div data-type="example">
 <h1></h1>
 <p>Simplify the expression <span class="math-tex" data-type="tex">\(\tan\left(\operatorname{Arcsin} x\right)\)</span>.</p>
@@ -8575,13 +8425,13 @@ y=ℯ^{g\left(x\right)\ln f\left(x\right)}
 </div>
 <p>Because both sides of the above equation are odd functions of <span class="math-tex" data-type="tex">\(x\)</span>, the same result holds for <span class="math-tex" data-type="tex">\(0&gt; x&gt;-1\)</span>.</p>
 </div>
-<p>Now let us use implicit differentiation to find the derivative of the inverse sine function. If<span class="math-tex" data-type="tex">\(y=\operatorname{Arcsin}x\)</span>, then <span class="math-tex" data-type="tex">\(x=\sin y\)</span> and <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}\)</span>. Differentiating with respect to <span class="math-tex" data-type="tex">\(x\)</span>, we obtain</p>
+<p>Now let us use implicit differentiation to find the derivative of the inverse sine function. If<span class="math-tex" data-type="tex">\(y=\operatorname{Arcsin}x\)</span>, then <span class="math-tex" data-type="tex">\(x=\sin y\)</span> and <span class="math-tex" data-type="tex">\(-\frac{\uppi }{2}\le y\le\frac{\uppi }{2}\)</span>. Differentiating with respect to <span class="math-tex" data-type="tex">\(x\)</span>, we obtain</p>
 <div class="math-tex" data-type="equation">
 \[
 1=\cos y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}\)</span>, we know that <span class="math-tex" data-type="tex">\(\cos y\ge 0\)</span>. Therefore,</p>
+<p>Since <span class="math-tex" data-type="tex">\(-\frac{\uppi }{2}\le y\le\frac{\uppi }{2}\)</span>, we know that <span class="math-tex" data-type="tex">\(\cos y\ge 0\)</span>. Therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
 \cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
@@ -8609,11 +8459,11 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 </li>
 <li>
 <p>Where is <span class="math-tex" data-type="tex">\(f\)</span> differentiable? Where is <span class="math-tex" data-type="tex">\(f\)</span> continuous?</p>
-<p><span class="math-tex" data-type="tex">\(f\)</span> is differentiable at all points where <span class="math-tex" data-type="tex">\(\cos x\ne0\)</span>, that is, everywhere except at odd multiples of <span class="math-tex" data-type="tex">\(\frac{\uppi}{2}\)</span>.<br/>Since <span class="math-tex" data-type="tex">\(\sin\)</span> is continuous everywhere and has values in <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>, and since <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is continuous on<span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>, we have that <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the whole real line.</p>
+<p><span class="math-tex" data-type="tex">\(f\)</span> is differentiable at all points where <span class="math-tex" data-type="tex">\(\cos x\ne0\)</span>, that is, everywhere except at odd multiples of <span class="math-tex" data-type="tex">\(\frac{\uppi }{2}\)</span>.<br/>Since <span class="math-tex" data-type="tex">\(\sin\)</span> is continuous everywhere and has values in <span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>, and since <span class="math-tex" data-type="tex">\(\operatorname{Arcsin}\)</span> is continuous on<span class="math-tex" data-type="tex">\(\left[-1,1\right]\)</span>, we have that <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the whole real line.</p>
 </li>
 <li>
 <p>Use the previous results to sketch the graph of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between <span class="math-tex" data-type="tex">\(1\)</span> and <span class="math-tex" data-type="tex">\(-1\)</span> on intervals between consecutive odd multiples of <span class="math-tex" data-type="tex">\(\frac{\uppi}{2}\)</span>. Since <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=1\)</span> on the interval <span class="math-tex" data-type="tex">\(\left]-1,1\right[\)</span>, the graph must be as shown below</p>
+<p>Since <span class="math-tex" data-type="tex">\(f\)</span> is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between <span class="math-tex" data-type="tex">\(1\)</span> and <span class="math-tex" data-type="tex">\(-1\)</span> on intervals between consecutive odd multiples of <span class="math-tex" data-type="tex">\(\frac{\uppi }{2}\)</span>. Since <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=1\)</span> on the interval <span class="math-tex" data-type="tex">\(\left]-1,1\right[\)</span>, the graph must be as shown below</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="560" height="160">
 <defs>
@@ -8633,20 +8483,20 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 <line x1="0" y1="80" x2="557" y2="80" stroke="black" marker-end="url(#arrow)"/>
 <line x1="217.16814692820412" y1="77" x2="217.16814692820412" y2="83" stroke="black"/>
 <foreignObject x="203.16814692820412" y="80" width="28" height="36">
-\(-\frac{\uppi}{2}\)
+\(-\frac{\uppi }{2}\)
 </foreignObject>
 <line x1="342.8318530717959" y1="77" x2="342.8318530717959" y2="83" stroke="black"/>
 <foreignObject x="335.8318530717959" y="80" width="14" height="36">
-\(\frac{\uppi}{2}\)
+\(\frac{\uppi }{2}\)
 </foreignObject>
 <line x1="280" y1="160" x2="280" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="277" y1="142.83185307179588" x2="283" y2="142.83185307179588" stroke="black"/>
 <foreignObject x="252" y="133.83185307179588" width="28" height="36">
-\(-\frac{\uppi}{2}\)
+\(-\frac{\uppi }{2}\)
 </foreignObject>
 <line x1="277" y1="17.168146928204138" x2="283" y2="17.168146928204138" stroke="black"/>
 <foreignObject x="266" y="8.168146928204138" width="14" height="36">
-\(\frac{\uppi}{2}\)
+\(\frac{\uppi }{2}\)
 </foreignObject>
 <polyline points="0.0, 108.67258771281655 0.39999999999997726, 108.27258771281655 0.7999999999999545, 107.87258771281657 1.1999999999999886, 107.47258771281653 1.6000000000000227, 107.07258771281654 2.0, 106.67258771281655 2.3999999999999773, 106.27258771281656 2.8000000000000114, 105.87258771281654 3.1999999999999886, 105.47258771281653 3.6000000000000227, 105.07258771281656 4.0, 104.67258771281655 4.400000000000034, 104.27258771281653 4.800000000000011, 103.87258771281654 5.199999999999989, 103.47258771281655 5.599999999999966, 103.07258771281656 6.0, 102.67258771281652 6.399999999999977, 102.27258771281655 6.800000000000011, 101.87258771281654 7.199999999999989, 101.47258771281656 7.600000000000023, 101.07258771281653 8.0, 100.67258771281654 8.399999999999977, 100.27258771281655 8.800000000000011, 99.87258771281655 9.200000000000045, 99.47258771281653 9.600000000000023, 99.07258771281653 10.0, 98.67258771281655 10.399999999999977, 98.27258771281655 10.799999999999955, 97.87258771281657 11.199999999999989, 97.47258771281653 11.600000000000023, 97.07258771281654 12.0, 96.67258771281655 12.399999999999977, 96.27258771281656 12.800000000000011, 95.87258771281653 13.199999999999989, 95.47258771281653 13.600000000000023, 95.07258771281654 14.0, 94.67258771281655 14.400000000000034, 94.27258771281653 14.800000000000011, 93.87258771281654 15.199999999999989, 93.47258771281655 15.599999999999966, 93.07258771281656 16.0, 92.67258771281652 16.399999999999977, 92.27258771281653 16.80000000000001, 91.87258771281654 17.19999999999999, 91.47258771281655 17.600000000000023, 91.07258771281653 18.0, 90.67258771281654 18.399999999999977, 90.27258771281655 18.80000000000001, 89.87258771281655 19.200000000000045, 89.47258771281652 19.600000000000023, 89.07258771281653 20.0, 88.67258771281654 20.399999999999977, 88.27258771281655 20.799999999999955, 87.87258771281655 21.19999999999999, 87.47258771281653 21.600000000000023, 87.07258771281654 22.0, 86.67258771281655 22.399999999999977, 86.27258771281656 22.80000000000001, 85.87258771281653 23.19999999999999, 85.47258771281653 23.600000000000023, 85.07258771281654 24.0, 84.67258771281655 24.400000000000006, 84.27258771281653 24.80000000000001, 83.87258771281654 25.19999999999999, 83.47258771281655 25.599999999999994, 83.07258771281656 26.0, 82.67258771281652 26.400000000000006, 82.27258771281653 26.80000000000001, 81.87258771281654 27.19999999999999, 81.47258771281655 27.600000000000023, 81.07258771281653 28.0, 80.67258771281654 28.400000000000006, 80.27258771281655 28.799999999999983, 79.87258771281655 29.200000000000017, 79.47258771281652 29.600000000000023, 79.07258771281653 30.0, 78.67258771281654 30.399999999999977, 78.27258771281655 30.799999999999983, 77.87258771281655 31.200000000000017, 77.47258771281653 31.599999999999994, 77.07258771281654 32.0, 76.67258771281655 32.39999999999998, 76.27258771281656 32.80000000000001, 75.87258771281653 33.19999999999999, 75.47258771281653 33.599999999999994, 75.07258771281654 34.0, 74.67258771281655 34.400000000000006, 74.27258771281653 34.80000000000001, 73.87258771281654 35.19999999999999, 73.47258771281655 35.599999999999994, 73.07258771281656 36.0, 72.67258771281652 36.400000000000006, 72.27258771281653 36.80000000000001, 71.87258771281654 37.19999999999999, 71.47258771281655 37.60000000000002, 71.07258771281653 38.0, 70.67258771281654 38.400000000000006, 70.27258771281655 38.79999999999998, 69.87258771281655 39.20000000000002, 69.47258771281652 39.60000000000002, 69.07258771281653 40.0, 68.67258771281654 40.39999999999998, 68.27258771281655 40.79999999999998, 67.87258771281655 41.20000000000002, 67.47258771281653 41.599999999999994, 67.07258771281654 42.0, 66.67258771281655 42.39999999999998, 66.27258771281656 42.80000000000001, 65.87258771281653 43.19999999999999, 65.47258771281653 43.599999999999994, 65.07258771281654 44.0, 64.67258771281655 44.400000000000006, 64.27258771281653 44.80000000000001, 63.87258771281654 45.19999999999999, 63.47258771281655 45.599999999999994, 63.072587712816556 46.0, 62.67258771281653 46.400000000000006, 62.27258771281653 46.80000000000001, 61.87258771281655 47.19999999999999, 61.47258771281655 47.60000000000002, 61.07258771281653 48.0, 60.67258771281654 48.400000000000006, 60.272587712816545 48.79999999999998, 59.872587712816554 49.20000000000002, 59.47258771281653 49.60000000000002, 59.072587712816535 50.0, 58.672587712816544 50.39999999999998, 58.27258771281655 50.79999999999998, 57.872587712816554 51.20000000000002, 57.472587712816534 51.599999999999994, 57.072587712816535 52.0, 56.67258771281655 52.39999999999998, 56.27258771281656 52.80000000000001, 55.87258771281653 53.19999999999999, 55.47258771281654 53.599999999999994, 55.07258771281655 54.0, 54.67258771281656 54.400000000000006, 54.272587712816524 54.80000000000001, 53.87258771281654 55.19999999999999, 53.47258771281655 55.599999999999994, 53.072587712816556 56.0, 52.67258771281652 56.400000000000006, 52.27258771281654 56.80000000000001, 51.87258771281655 57.19999999999999, 51.47258771281655 57.60000000000002, 51.07258771281653 58.0, 50.67258771281654 58.400000000000006, 50.27258771281654 58.79999999999998, 49.87258771281655 59.20000000000002, 49.47258771281653 59.60000000000002, 49.07258771281653 60.0, 48.672587712816544 60.39999999999998, 48.27258771281655 60.79999999999998, 47.87258771281656 61.20000000000002, 47.472587712816534 61.599999999999994, 47.07258771281654 62.0, 46.67258771281655 62.39999999999998, 46.27258771281656 62.80000000000001, 45.87258771281653 63.19999999999999, 45.47258771281654 63.599999999999994, 45.07258771281655 64.0, 44.67258771281656 64.4, 44.27258771281653 64.80000000000001, 43.87258771281653 65.19999999999999, 43.47258771281654 65.6, 43.07258771281655 66.0, 42.67258771281652 66.4, 42.27258771281654 66.80000000000001, 41.87258771281655 67.19999999999999, 41.472587712816555 67.60000000000002, 41.07258771281653 68.0, 40.67258771281654 68.4, 40.272587712816545 68.79999999999998, 39.872587712816554 69.20000000000002, 39.47258771281653 69.60000000000002, 39.072587712816535 70.0, 38.672587712816544 70.39999999999998, 38.27258771281655 70.79999999999998, 37.87258771281656 71.20000000000002, 37.472587712816534 71.6, 37.07258771281655 72.0, 36.67258771281655 72.39999999999998, 36.27258771281656 72.80000000000001, 35.87258771281653 73.19999999999999, 35.47258771281654 73.6, 35.07258771281655 74.0, 34.67258771281656 74.4, 34.27258771281654 74.80000000000001, 33.872587712816525 75.19999999999999, 33.472587712816555 75.6, 33.07258771281654 76.0, 32.67258771281653 76.4, 32.27258771281654 76.80000000000001, 31.872587712816546 77.19999999999999, 31.472587712816555 77.60000000000002, 31.072587712816528 78.0, 30.672587712816537 78.4, 30.27258771281653 78.79999999999998, 29.87258771281654 79.20000000000002, 29.472587712816534 79.60000000000002, 29.072587712816535 80.0, 28.672587712816544 80.39999999999998, 28.27258771281656 80.79999999999998, 27.872587712816568 81.20000000000002, 27.47258771281654 81.6, 27.07258771281655 82.0, 26.672587712816537 82.39999999999998, 26.27258771281656 82.80000000000001, 25.87258771281654 83.19999999999999, 25.47258771281654 83.6, 25.072587712816542 84.0, 24.67258771281655 84.4, 24.272587712816517 84.80000000000001, 23.872587712816525 85.19999999999999, 23.472587712816534 85.6, 23.072587712816542 86.0, 22.672587712816522 86.4, 22.27258771281653 86.80000000000001, 21.872587712816546 87.19999999999999, 21.472587712816555 87.60000000000002, 21.0725877128165 88.0, 20.672587712816537 88.4, 20.272587712816552 88.79999999999998, 19.87258771281654 89.20000000000002, 19.472587712816548 89.60000000000002, 19.072587712816535 90.0, 18.672587712816494 90.39999999999998, 18.272587712816488 90.79999999999998, 17.872587712816554 91.20000000000002, 17.47258771281639 91.6, 17.263706143591662 92.0, 17.663706143591902 92.39999999999998, 18.0637061435918 92.80000000000001, 18.463706143591708 93.19999999999999, 18.863706143591713 93.6, 19.26370614359169 94.0, 19.663706143591682 94.4, 20.063706143591745 94.80000000000001, 20.463706143591722 95.19999999999999, 20.863706143591727 95.6, 21.26370614359169 96.0, 21.663706143591746 96.4, 22.063706143591723 96.80000000000001, 22.463706143591715 97.19999999999999, 22.863706143591706 97.60000000000002, 23.26370614359174 98.0, 23.66370614359174 98.4, 24.063706143591723 98.79999999999998, 24.463706143591715 99.20000000000002, 24.86370614359175 99.60000000000002, 25.263706143591733 100.0, 25.66370614359174 100.39999999999998, 26.063706143591723 100.79999999999998, 26.463706143591708 101.20000000000002, 26.863706143591735 101.6, 27.263706143591726 102.0, 27.663706143591718 102.39999999999998, 28.06370614359171 102.80000000000001, 28.463706143591743 103.19999999999999, 28.863706143591735 103.6, 29.26370614359172 104.0, 29.66370614359171 104.4, 30.063706143591737 104.80000000000001, 30.463706143591736 105.19999999999999, 30.86370614359172 105.6, 31.263706143591712 106.0, 31.66370614359174 106.4, 32.06370614359174 106.80000000000001, 32.46370614359173 107.19999999999999, 32.86370614359172 107.60000000000002, 33.26370614359174 108.0, 33.66370614359174 108.4, 34.06370614359172 108.79999999999998, 34.463706143591715 109.20000000000002, 34.86370614359174 109.60000000000002, 35.26370614359173 110.0, 35.66370614359173 110.39999999999998, 36.063706143591716 110.79999999999998, 36.46370614359171 111.20000000000002, 36.863706143591735 111.6, 37.263706143591726 112.0, 37.66370614359172 112.39999999999998, 38.063706143591716 112.80000000000001, 38.463706143591736 113.19999999999999, 38.86370614359173 113.6, 39.263706143591726 114.0, 39.66370614359171 114.4, 40.063706143591745 114.80000000000001, 40.463706143591736 115.19999999999999, 40.86370614359172 115.6, 41.26370614359171 116.0, 41.663706143591746 116.4, 42.06370614359173 116.80000000000001, 42.46370614359173 117.19999999999999, 42.86370614359172 117.60000000000002, 43.26370614359175 118.0, 43.66370614359174 118.4, 44.06370614359172 118.79999999999998, 44.46370614359172 119.20000000000002, 44.86370614359175 119.60000000000002, 45.26370614359174 120.0, 45.66370614359173 120.39999999999998, 46.06370614359172 120.80000000000001, 46.46370614359173 121.19999999999999, 46.86370614359173 121.6, 47.26370614359173 122.0, 47.663706143591725 122.4, 48.06370614359173 122.79999999999998, 48.46370614359172 123.19999999999999, 48.86370614359173 123.6, 49.26370614359172 124.0, 49.66370614359173 124.4, 50.06370614359172 124.80000000000001, 50.463706143591736 125.19999999999999, 50.86370614359173 125.6, 51.26370614359173 126.0, 51.66370614359173 126.4, 52.06370614359173 126.80000000000001, 52.46370614359172 127.20000000000002, 52.86370614359174 127.6, 53.263706143591726 128.0, 53.66370614359174 128.4, 54.06370614359173 128.8, 54.463706143591736 129.2, 54.863706143591735 129.60000000000002, 55.26370614359173 130.0, 55.66370614359173 130.39999999999998, 56.06370614359172 130.8, 56.46370614359173 131.2, 56.86370614359172 131.6, 57.263706143591726 132.0, 57.663706143591725 132.4, 58.06370614359174 132.79999999999998, 58.46370614359173 133.2, 58.863706143591735 133.6, 59.26370614359172 134.0, 59.66370614359173 134.4, 60.06370614359172 134.8, 60.463706143591736 135.2, 60.86370614359173 135.6, 61.26370614359173 136.0, 61.663706143591725 136.4, 62.06370614359173 136.8, 62.46370614359173 137.20000000000002, 62.863706143591735 137.6, 63.263706143591726 138.0, 63.66370614359174 138.4, 64.06370614359173 138.8, 64.46370614359174 139.2, 64.86370614359173 139.60000000000002, 65.26370614359173 140.0, 65.66370614359172 140.39999999999998, 66.06370614359172 140.8, 66.46370614359174 141.2, 66.86370614359171 141.6, 67.26370614359173 142.0, 67.66370614359172 142.4, 68.06370614359173 142.79999999999998, 68.46370614359172 143.2, 68.86370614359173 143.6, 69.26370614359172 144.0, 69.66370614359172 144.4, 70.06370614359173 144.8, 70.46370614359174 145.2, 70.86370614359173 145.6, 71.26370614359173 146.0, 71.66370614359172 146.4, 72.06370614359173 146.8, 72.46370614359172 147.20000000000002, 72.86370614359174 147.6, 73.26370614359173 148.0, 73.66370614359174 148.4, 74.06370614359173 148.8, 74.46370614359174 149.2, 74.86370614359173 149.60000000000002, 75.26370614359173 150.0, 75.66370614359172 150.39999999999998, 76.06370614359172 150.8, 76.46370614359174 151.2, 76.86370614359173 151.6, 77.26370614359173 152.0, 77.66370614359172 152.4, 78.06370614359173 152.8, 78.46370614359172 153.2, 78.86370614359173 153.6, 79.26370614359172 154.0, 79.66370614359174 154.39999999999998, 80.06370614359173 154.8, 80.46370614359174 155.2, 80.86370614359173 155.60000000000002, 81.26370614359173 156.0, 81.66370614359172 156.4, 82.06370614359173 156.8, 82.46370614359172 157.2, 82.86370614359174 157.6, 83.26370614359173 158.0, 83.66370614359174 158.4, 84.06370614359173 158.8, 84.46370614359174 159.2, 84.86370614359173 159.60000000000002, 85.26370614359173 160.0, 85.66370614359172 160.39999999999998, 86.06370614359172 160.8, 86.46370614359174 161.2, 86.86370614359173 161.6, 87.26370614359173 162.0, 87.66370614359172 162.4, 88.06370614359173 162.8, 88.46370614359172 163.2, 88.86370614359173 163.6, 89.26370614359172 164.0, 89.66370614359174 164.39999999999998, 90.06370614359173 164.8, 90.46370614359174 165.2, 90.86370614359173 165.60000000000002, 91.26370614359173 166.0, 91.66370614359172 166.4, 92.06370614359173 166.8, 92.46370614359172 167.2, 92.86370614359174 167.6, 93.26370614359172 168.0, 93.66370614359174 168.4, 94.06370614359173 168.8, 94.46370614359174 169.2, 94.86370614359173 169.60000000000002, 95.26370614359173 170.0, 95.66370614359172 170.39999999999998, 96.06370614359172 170.8, 96.46370614359174 171.2, 96.86370614359171 171.6, 97.26370614359173 172.0, 97.66370614359172 172.4, 98.06370614359173 172.8, 98.46370614359172 173.2, 98.86370614359173 173.6, 99.26370614359172 174.0, 99.66370614359172 174.39999999999998, 100.06370614359173 174.8, 100.46370614359174 175.2, 100.86370614359173 175.60000000000002, 101.26370614359173 176.0, 101.66370614359172 176.4, 102.06370614359173 176.8, 102.46370614359174 177.2, 102.86370614359174 177.6, 103.26370614359172 178.0, 103.66370614359174 178.4, 104.06370614359173 178.8, 104.46370614359174 179.2, 104.86370614359173 179.60000000000002, 105.26370614359173 180.0, 105.66370614359172 180.39999999999998, 106.06370614359172 180.8, 106.46370614359174 181.2, 106.86370614359171 181.6, 107.26370614359173 182.0, 107.66370614359172 182.4, 108.06370614359173 182.8, 108.46370614359174 183.2, 108.86370614359173 183.6, 109.26370614359172 184.0, 109.66370614359172 184.39999999999998, 110.06370614359173 184.8, 110.46370614359174 185.2, 110.86370614359173 185.60000000000002, 111.26370614359175 186.0, 111.66370614359172 186.4, 112.06370614359173 186.8, 112.46370614359174 187.2, 112.86370614359174 187.6, 113.26370614359172 188.0, 113.66370614359174 188.4, 114.06370614359173 188.8, 114.46370614359174 189.2, 114.86370614359173 189.60000000000002, 115.26370614359173 190.0, 115.66370614359172 190.39999999999998, 116.06370614359172 190.8, 116.46370614359174 191.2, 116.86370614359171 191.6, 117.26370614359172 192.0, 117.66370614359172 192.4, 118.06370614359173 192.8, 118.46370614359172 193.2, 118.86370614359174 193.6, 119.26370614359172 194.0, 119.66370614359172 194.39999999999998, 120.06370614359173 194.8, 120.46370614359174 195.2, 120.86370614359171 195.60000000000002, 121.26370614359173 196.0, 121.66370614359172 196.4, 122.06370614359173 196.8, 122.46370614359172 197.2, 122.86370614359173 197.6, 123.26370614359173 198.0, 123.66370614359172 198.4, 124.06370614359173 198.8, 124.46370614359174 199.2, 124.86370614359173 199.60000000000002, 125.26370614359173 200.0, 125.66370614359172 200.4, 126.06370614359173 200.8, 126.46370614359172 201.2, 126.86370614359174 201.6, 127.26370614359173 202.0, 127.66370614359174 202.4, 128.06370614359173 202.8, 128.46370614359174 203.2, 128.86370614359174 203.60000000000002, 129.26370614359172 204.0, 129.66370614359172 204.4, 130.06370614359173 204.8, 130.46370614359174 205.2, 130.86370614359174 205.6, 131.26370614359172 206.0, 131.66370614359172 206.39999999999998, 132.06370614359173 206.8, 132.4637061435917 207.2, 132.8637061435917 207.6, 133.26370614359172 208.0, 133.66370614359172 208.4, 134.06370614359173 208.8, 134.4637061435917 209.2, 134.86370614359174 209.6, 135.26370614359172 210.0, 135.66370614359172 210.4, 136.06370614359173 210.8, 136.4637061435917 211.2, 136.86370614359174 211.6, 137.26370614359172 212.0, 137.66370614359172 212.4, 138.06370614359173 212.8, 138.46370614359174 213.2, 138.86370614359174 213.60000000000002, 139.26370614359172 214.0, 139.66370614359175 214.4, 140.06370614359173 214.8, 140.46370614359174 215.2, 140.86370614359168 215.6, 141.26370614359172 216.0, 141.66370614359167 216.4, 142.06370614359167 216.8, 142.46370614359188 217.2, 142.7999999999995 217.6, 142.40000000000003 218.0, 142.00000000000006 218.4, 141.6 218.8, 141.2 219.2, 140.79999999999998 219.6, 140.4 220.0, 140.0 220.4, 139.60000000000002 220.8, 139.2 221.2, 138.8 221.6, 138.4 222.0, 138.0 222.4, 137.6 222.8, 137.2 223.2, 136.79999999999998 223.6, 136.4 224.0, 136.0 224.4, 135.60000000000002 224.8, 135.2 225.2, 134.8 225.6, 134.4 226.0, 134.0 226.4, 133.6 226.8, 133.2 227.2, 132.8 227.6, 132.39999999999998 228.0, 132.0 228.4, 131.6 228.8, 131.2 229.2, 130.8 229.6, 130.4 230.0, 130.0 230.4, 129.6 230.8, 129.2 231.2, 128.8 231.6, 128.4 232.0, 127.99999999999999 232.4, 127.6 232.8, 127.19999999999999 233.2, 126.8 233.6, 126.39999999999999 234.0, 126.0 234.4, 125.6 234.8, 125.19999999999999 235.2, 124.80000000000001 235.6, 124.39999999999999 236.0, 124.0 236.4, 123.6 236.8, 123.2 237.2, 122.80000000000001 237.6, 122.4 238.0, 122.00000000000001 238.4, 121.6 238.8, 121.2 239.2, 120.8 239.6, 120.4 240.0, 120.0 240.4, 119.6 240.8, 119.2 241.2, 118.8 241.6, 118.4 242.0, 118.0 242.4, 117.6 242.8, 117.2 243.2, 116.80000000000001 243.6, 116.4 244.0, 116.0 244.4, 115.6 244.8, 115.2 245.2, 114.8 245.6, 114.4 246.0, 114.0 246.4, 113.6 246.8, 113.2 247.2, 112.8 247.6, 112.4 248.0, 112.0 248.4, 111.6 248.8, 111.19999999999999 249.2, 110.8 249.6, 110.4 250.0, 110.0 250.4, 109.6 250.8, 109.2 251.2, 108.8 251.6, 108.4 252.0, 108.0 252.4, 107.6 252.8, 107.2 253.2, 106.8 253.6, 106.4 254.0, 106.0 254.4, 105.60000000000001 254.8, 105.2 255.2, 104.8 255.6, 104.4 256.0, 104.0 256.4, 103.6 256.8, 103.2 257.2, 102.8 257.6, 102.4 258.0, 102.0 258.4, 101.6 258.8, 101.2 259.2, 100.8 259.6, 100.4 260.0, 100.0 260.4, 99.6 260.8, 99.19999999999999 261.2, 98.8 261.6, 98.4 262.0, 98.0 262.4, 97.6 262.8, 97.2 263.2, 96.8 263.6, 96.4 264.0, 96.0 264.4, 95.6 264.8, 95.2 265.2, 94.8 265.6, 94.4 266.0, 94.0 266.4, 93.6 266.8, 93.2 267.2, 92.8 267.6, 92.4 268.0, 92.0 268.4, 91.6 268.8, 91.2 269.2, 90.8 269.6, 90.4 270.0, 90.0 270.4, 89.6 270.8, 89.2 271.2, 88.8 271.6, 88.4 272.0, 88.0 272.4, 87.6 272.8, 87.2 273.2, 86.8 273.6, 86.4 274.0, 86.0 274.4, 85.6 274.8, 85.2 275.2, 84.8 275.6, 84.4 276.0, 84.0 276.4, 83.6 276.8, 83.2 277.2, 82.8 277.6, 82.4 278.0, 82.0 278.4, 81.6 278.8, 81.2 279.2, 80.8 279.6, 80.4 280.0, 80.0 280.4, 79.6 280.8, 79.2 281.2, 78.8 281.6, 78.4 282.0, 78.0 282.4, 77.6 282.8, 77.2 283.2, 76.8 283.6, 76.4 284.0, 76.0 284.4, 75.6 284.8, 75.2 285.2, 74.8 285.6, 74.4 286.0, 74.0 286.4, 73.6 286.8, 73.2 287.2, 72.8 287.6, 72.4 288.0, 72.0 288.4, 71.6 288.8, 71.2 289.2, 70.8 289.6, 70.4 290.0, 70.0 290.4, 69.6 290.8, 69.2 291.2, 68.8 291.6, 68.4 292.0, 68.0 292.4, 67.6 292.8, 67.2 293.2, 66.8 293.6, 66.4 294.0, 66.0 294.4, 65.6 294.8, 65.2 295.2, 64.8 295.6, 64.4 296.0, 64.0 296.4, 63.6 296.8, 63.2 297.2, 62.8 297.6, 62.4 298.0, 62.0 298.4, 61.599999999999994 298.8, 61.2 299.2, 60.800000000000004 299.6, 60.4 300.0, 60.0 300.4, 59.6 300.8, 59.2 301.2, 58.8 301.6, 58.4 302.0, 58.0 302.4, 57.6 302.8, 57.2 303.2, 56.8 303.6, 56.400000000000006 304.0, 56.0 304.4, 55.599999999999994 304.8, 55.2 305.2, 54.8 305.6, 54.39999999999999 306.0, 54.0 306.4, 53.599999999999994 306.8, 53.2 307.2, 52.8 307.6, 52.400000000000006 308.0, 52.0 308.4, 51.6 308.8, 51.2 309.2, 50.8 309.6, 50.4 310.0, 50.0 310.4, 49.6 310.8, 49.2 311.2, 48.800000000000004 311.6, 48.4 312.0, 48.0 312.4, 47.599999999999994 312.8, 47.2 313.2, 46.8 313.6, 46.4 314.0, 46.0 314.4, 45.6 314.8, 45.2 315.2, 44.8 315.6, 44.400000000000006 316.0, 44.0 316.4, 43.599999999999994 316.8, 43.199999999999996 317.2, 42.8 317.6, 42.400000000000006 318.0, 42.0 318.4, 41.6 318.8, 41.2 319.2, 40.8 319.6, 40.4 320.0, 40.0 320.4, 39.6 320.8, 39.2 321.2, 38.8 321.6, 38.4 322.0, 37.999999999999986 322.4, 37.599999999999994 322.8, 37.199999999999996 323.2, 36.8 323.6, 36.4 324.0, 36.0 324.4, 35.60000000000001 324.8, 35.199999999999996 325.2, 34.800000000000004 325.6, 34.40000000000001 326.0, 34.0 326.4, 33.60000000000001 326.8, 33.2 327.2, 32.800000000000004 327.6, 32.400000000000006 328.0, 32.000000000000014 328.4, 31.599999999999994 328.8, 31.19999999999999 329.2, 30.799999999999997 329.6, 30.400000000000006 330.0, 30.0 330.4, 29.6 330.8, 29.200000000000003 331.2, 28.80000000000001 331.6, 28.4 332.0, 28.000000000000007 332.4, 27.60000000000001 332.8, 27.200000000000003 333.2, 26.799999999999997 333.6, 26.4 334.0, 26.0 334.4, 25.599999999999987 334.8, 25.200000000000003 335.2, 24.80000000000001 335.6, 24.39999999999999 336.0, 24.000000000000014 336.4, 23.599999999999994 336.8, 23.20000000000001 337.2, 22.80000000000001 337.6, 22.400000000000013 338.0, 22.000000000000014 338.4, 21.599999999999994 338.8, 21.19999999999998 339.2, 20.80000000000001 339.6, 20.39999999999999 340.0, 19.999999999999993 340.4, 19.599999999999994 340.8, 19.20000000000001 341.2, 18.80000000000001 341.6, 18.4 342.0, 17.999999999999943 342.4, 17.59999999999998 342.8, 17.200000000000493 343.2, 17.536293856408136 343.6, 17.936293856408327 344.0, 18.33629385640834 344.4, 18.736293856408288 344.8, 19.136293856408315 345.2, 19.536293856408264 345.6, 19.93629385640827 346.0, 20.336293856408254 346.4, 20.736293856408267 346.8, 21.13629385640826 347.2, 21.53629385640827 347.6, 21.936293856408284 348.0, 22.336293856408282 348.4, 22.736293856408274 348.8, 23.136293856408265 349.2, 23.536293856408278 349.6, 23.936293856408277 350.0, 24.33629385640827 350.4, 24.736293856408267 350.8, 25.136293856408265 351.2, 25.536293856408278 351.6, 25.93629385640827 352.0, 26.336293856408275 352.4, 26.73629385640828 352.8, 27.136293856408287 353.2, 27.536293856408278 353.6, 27.936293856408277 354.0, 28.336293856408275 354.4, 28.736293856408267 354.8, 29.136293856408273 355.2, 29.53629385640827 355.6, 29.93629385640827 356.0, 30.336293856408275 356.4, 30.736293856408267 356.8, 31.136293856408273 357.2, 31.536293856408264 357.6, 31.93629385640827 358.0, 32.33629385640826 358.4, 32.73629385640827 358.8, 33.136293856408265 359.2, 33.53629385640828 359.6, 33.93629385640827 360.0, 34.33629385640827 360.4, 34.73629385640827 360.8, 35.13629385640827 361.2, 35.53629385640826 361.6, 35.93629385640828 362.0, 36.33629385640827 362.4, 36.73629385640827 362.8, 37.13629385640827 363.2, 37.53629385640828 363.6, 37.93629385640826 364.0, 38.336293856408275 364.4, 38.73629385640827 364.8, 39.13629385640828 365.2, 39.536293856408264 365.6, 39.93629385640827 366.0, 40.336293856408275 366.4, 40.73629385640828 366.8, 41.136293856408265 367.2, 41.53629385640828 367.6, 41.93629385640826 368.0, 42.336293856408275 368.4, 42.736293856408274 368.8, 43.13629385640828 369.2, 43.53629385640827 369.6, 43.936293856408284 370.0, 44.336293856408275 370.4, 44.73629385640827 370.8, 45.13629385640827 371.2, 45.536293856408264 371.6, 45.93629385640827 372.0, 46.33629385640826 372.4, 46.73629385640828 372.8, 47.136293856408265 373.2, 47.53629385640827 373.6, 47.93629385640826 374.0, 48.336293856408275 374.4, 48.73629385640826 374.8, 49.13629385640827 375.2, 49.536293856408264 375.6, 49.93629385640828 376.0, 50.33629385640827 376.4, 50.73629385640828 376.8, 51.13629385640827 377.2, 51.53629385640827 377.6, 51.93629385640826 378.0, 52.336293856408275 378.4, 52.73629385640827 378.8, 53.13629385640829 379.2, 53.536293856408264 379.6, 53.936293856408284 380.0, 54.336293856408275 380.4, 54.73629385640827 380.8, 55.13629385640827 381.2, 55.536293856408264 381.6, 55.93629385640827 382.0, 56.33629385640826 382.4, 56.73629385640828 382.8, 57.136293856408265 383.2, 57.53629385640827 383.6, 57.93629385640827 384.0, 58.336293856408275 384.4, 58.73629385640827 384.8, 59.13629385640827 385.2, 59.536293856408264 385.6, 59.93629385640828 386.0, 60.33629385640827 386.4, 60.736293856408274 386.8, 61.13629385640827 387.2, 61.53629385640828 387.6, 61.93629385640827 388.0, 62.336293856408275 388.4, 62.73629385640827 388.8, 63.13629385640828 389.2, 63.53629385640827 389.6, 63.936293856408284 390.0, 64.33629385640828 390.4, 64.73629385640827 390.8, 65.13629385640827 391.2, 65.53629385640826 391.6, 65.93629385640827 392.0, 66.33629385640826 392.4, 66.73629385640828 392.8, 67.13629385640826 393.2, 67.53629385640828 393.6, 67.93629385640827 394.0, 68.33629385640828 394.4, 68.73629385640827 394.8, 69.13629385640827 395.2, 69.53629385640826 395.6, 69.93629385640827 396.0, 70.33629385640826 396.4, 70.73629385640828 396.8, 71.13629385640827 397.2, 71.53629385640828 397.6, 71.93629385640827 398.0, 72.33629385640828 398.4, 72.73629385640827 398.8, 73.13629385640827 399.2, 73.53629385640826 399.6, 73.93629385640828 400.0, 74.33629385640828 400.4, 74.73629385640827 400.8, 75.13629385640827 401.2, 75.53629385640826 401.6, 75.93629385640827 402.0, 76.33629385640826 402.4, 76.73629385640827 402.8, 77.13629385640826 403.2, 77.53629385640828 403.6, 77.93629385640827 404.0, 78.33629385640828 404.4, 78.73629385640827 404.8, 79.13629385640827 405.2, 79.53629385640826 405.6, 79.93629385640827 406.0, 80.33629385640826 406.4, 80.73629385640828 406.8, 81.13629385640827 407.2, 81.53629385640828 407.6, 81.93629385640827 408.0, 82.33629385640828 408.4, 82.73629385640827 408.8, 83.13629385640827 409.2, 83.53629385640826 409.6, 83.93629385640828 410.0, 84.33629385640828 410.4, 84.73629385640827 410.8, 85.13629385640827 411.2, 85.53629385640826 411.6, 85.93629385640827 412.0, 86.33629385640826 412.4, 86.73629385640827 412.79999999999995, 87.13629385640826 413.2, 87.53629385640828 413.6, 87.93629385640827 414.0, 88.33629385640828 414.4, 88.73629385640827 414.8, 89.13629385640827 415.2, 89.53629385640826 415.6, 89.93629385640827 416.0, 90.33629385640828 416.4, 90.73629385640828 416.8, 91.13629385640827 417.20000000000005, 91.53629385640828 417.6, 91.93629385640827 418.0, 92.33629385640828 418.4, 92.73629385640827 418.8, 93.13629385640829 419.2, 93.53629385640826 419.6, 93.93629385640828 420.0, 94.33629385640828 420.4, 94.73629385640827 420.8, 95.13629385640827 421.2, 95.53629385640826 421.6, 95.93629385640827 422.0, 96.33629385640826 422.4, 96.73629385640828 422.79999999999995, 97.13629385640826 423.2, 97.53629385640826 423.6, 97.93629385640827 424.0, 98.33629385640828 424.4, 98.73629385640827 424.8, 99.13629385640827 425.2, 99.53629385640826 425.6, 99.93629385640827 426.0, 100.33629385640828 426.4, 100.73629385640828 426.8, 101.13629385640826 427.20000000000005, 101.53629385640826 427.6, 101.93629385640827 428.0, 102.33629385640828 428.4, 102.73629385640828 428.8, 103.13629385640829 429.2, 103.53629385640826 429.6, 103.93629385640827 430.0, 104.33629385640828 430.4, 104.73629385640827 430.8, 105.13629385640826 431.2, 105.53629385640826 431.6, 105.93629385640827 432.0, 106.33629385640826 432.4, 106.73629385640828 432.79999999999995, 107.13629385640826 433.2, 107.53629385640828 433.6, 107.93629385640827 434.0, 108.33629385640828 434.4, 108.73629385640827 434.8, 109.13629385640827 435.2, 109.53629385640826 435.6, 109.93629385640827 436.0, 110.33629385640828 436.4, 110.73629385640828 436.8, 111.13629385640827 437.20000000000005, 111.53629385640828 437.6, 111.93629385640827 438.0, 112.33629385640828 438.4, 112.73629385640827 438.8, 113.13629385640827 439.2, 113.53629385640826 439.6, 113.93629385640827 440.0, 114.33629385640828 440.4, 114.73629385640825 440.79999999999995, 115.13629385640826 441.20000000000005, 115.53629385640828 441.6, 115.93629385640827 442.0, 116.33629385640826 442.4, 116.73629385640825 442.8, 117.13629385640829 443.2, 117.53629385640826 443.6, 117.93629385640827 444.0, 118.33629385640825 444.4, 118.73629385640828 444.8, 119.13629385640829 445.2, 119.53629385640826 445.6, 119.93629385640826 446.0, 120.33629385640829 446.4, 120.73629385640828 446.8, 121.13629385640827 447.2, 121.53629385640826 447.6, 121.93629385640828 448.0, 122.33629385640828 448.4, 122.73629385640828 448.79999999999995, 123.13629385640826 449.20000000000005, 123.53629385640829 449.6, 123.93629385640828 450.0, 124.33629385640828 450.4, 124.73629385640827 450.79999999999995, 125.13629385640826 451.20000000000005, 125.53629385640829 451.6, 125.93629385640827 452.0, 126.33629385640826 452.4, 126.73629385640825 452.8, 127.13629385640829 453.2, 127.53629385640826 453.6, 127.93629385640827 454.0, 128.33629385640825 454.4, 128.73629385640828 454.8, 129.1362938564083 455.2, 129.53629385640826 455.6, 129.93629385640827 456.0, 130.3362938564083 456.4, 130.73629385640828 456.8, 131.13629385640826 457.2, 131.53629385640826 457.6, 131.9362938564083 458.0, 132.33629385640828 458.4, 132.73629385640828 458.79999999999995, 133.13629385640826 459.20000000000005, 133.5362938564083 459.6, 133.93629385640827 460.0, 134.33629385640825 460.4, 134.73629385640828 460.79999999999995, 135.13629385640826 461.20000000000005, 135.5362938564083 461.6, 135.93629385640827 462.0, 136.33629385640825 462.4, 136.73629385640825 462.8, 137.1362938564083 463.2, 137.5362938564083 463.6, 137.93629385640827 464.0, 138.33629385640825 464.4, 138.7362938564083 464.8, 139.13629385640826 465.2, 139.5362938564083 465.6, 139.93629385640827 466.0, 140.3362938564083 466.4, 140.7362938564083 466.8, 141.1362938564083 467.2, 141.5362938564083 467.6, 141.9362938564082 468.0, 142.3362938564081 468.4, 142.73629385640834 468.79999999999995, 142.5274122871836 469.20000000000005, 142.12741228718346 469.6, 141.7274122871835 470.0, 141.3274122871835 470.4, 140.92741228718347 470.79999999999995, 140.52741228718344 471.20000000000005, 140.12741228718346 471.6, 139.72741228718345 472.0, 139.32741228718345 472.4, 138.9274122871835 472.8, 138.52741228718344 473.2, 138.12741228718346 473.6, 137.72741228718348 474.0, 137.32741228718348 474.4, 136.92741228718347 474.8, 136.52741228718347 475.2, 136.12741228718346 475.6, 135.72741228718348 476.0, 135.32741228718345 476.4, 134.92741228718347 476.8, 134.52741228718347 477.2, 134.12741228718346 477.6, 133.72741228718343 478.0, 133.32741228718345 478.4, 132.92741228718344 478.79999999999995, 132.52741228718347 479.20000000000005, 132.12741228718343 479.6, 131.72741228718343 480.0, 131.32741228718345 480.4, 130.92741228718347 480.79999999999995, 130.52741228718347 481.20000000000005, 130.12741228718346 481.6, 129.72741228718348 482.0, 129.32741228718345 482.4, 128.92741228718347 482.8, 128.52741228718344 483.2, 128.12741228718346 483.6, 127.72741228718345 484.0, 127.32741228718348 484.4, 126.92741228718346 484.8, 126.52741228718344 485.2, 126.12741228718347 485.6, 125.72741228718345 486.0, 125.32741228718345 486.4, 124.92741228718344 486.8, 124.52741228718347 487.2, 124.12741228718346 487.6, 123.72741228718344 488.0, 123.32741228718345 488.4, 122.92741228718344 488.79999999999995, 122.52741228718347 489.20000000000005, 122.12741228718343 489.6, 121.72741228718345 490.0, 121.32741228718345 490.4, 120.92741228718347 490.79999999999995, 120.52741228718347 491.20000000000005, 120.12741228718345 491.6, 119.72741228718345 492.0, 119.32741228718346 492.4, 118.92741228718347 492.8, 118.52741228718344 493.2, 118.12741228718346 493.6, 117.72741228718345 494.0, 117.32741228718348 494.4, 116.92741228718344 494.8, 116.52741228718347 495.2, 116.12741228718346 495.6, 115.72741228718347 496.0, 115.32741228718345 496.4, 114.92741228718344 496.8, 114.52741228718347 497.2, 114.12741228718346 497.6, 113.72741228718344 498.0, 113.32741228718345 498.4, 112.92741228718346 498.79999999999995, 112.52741228718347 499.20000000000005, 112.12741228718343 499.6, 111.72741228718345 500.0, 111.32741228718345 500.4, 110.92741228718347 500.79999999999995, 110.52741228718347 501.20000000000005, 110.12741228718346 501.6, 109.72741228718345 502.0, 109.32741228718346 502.4, 108.92741228718347 502.8, 108.52741228718345 503.2, 108.12741228718346 503.6, 107.72741228718345 504.0, 107.32741228718348 504.4, 106.92741228718344 504.8, 106.52741228718345 505.2, 106.12741228718346 505.6, 105.72741228718348 506.0, 105.32741228718345 506.4, 104.92741228718344 506.8, 104.52741228718347 507.2, 104.12741228718346 507.6, 103.72741228718344 508.0, 103.32741228718345 508.4, 102.92741228718347 508.79999999999995, 102.52741228718347 509.20000000000005, 102.12741228718345 509.6, 101.72741228718345 510.0, 101.32741228718345 510.4, 100.92741228718347 510.79999999999995, 100.52741228718347 511.20000000000005, 100.12741228718345 511.6, 99.72741228718345 512.0, 99.32741228718346 512.4, 98.92741228718347 512.8, 98.52741228718345 513.2, 98.12741228718346 513.6, 97.72741228718347 514.0, 97.32741228718348 514.4, 96.92741228718344 514.8, 96.52741228718345 515.2, 96.12741228718346 515.6, 95.72741228718347 516.0, 95.32741228718345 516.4, 94.92741228718346 516.8, 94.52741228718347 517.2, 94.12741228718347 517.6, 93.72741228718344 518.0, 93.32741228718345 518.4, 92.92741228718346 518.8, 92.52741228718347 519.2, 92.12741228718345 519.6, 91.72741228718345 520.0, 91.32741228718346 520.4, 90.92741228718347 520.8, 90.52741228718348 521.2, 90.12741228718345 521.6, 89.72741228718345 522.0, 89.32741228718346 522.4, 88.92741228718347 522.8, 88.52741228718345 523.2, 88.12741228718346 523.6, 87.72741228718347 524.0, 87.32741228718348 524.4, 86.92741228718344 524.8, 86.52741228718345 525.2, 86.12741228718346 525.6, 85.72741228718347 526.0, 85.32741228718345 526.4, 84.92741228718346 526.8, 84.52741228718347 527.2, 84.12741228718347 527.6, 83.72741228718344 528.0, 83.32741228718345 528.4, 82.92741228718346 528.8, 82.52741228718347 529.2, 82.12741228718345 529.6, 81.72741228718345 530.0, 81.32741228718346 530.4, 80.92741228718347 530.8, 80.52741228718348 531.2, 80.12741228718345 531.6, 79.72741228718345 532.0, 79.32741228718346 532.4, 78.92741228718347 532.8, 78.52741228718345 533.2, 78.12741228718346 533.6, 77.72741228718347 534.0, 77.32741228718348 534.4, 76.92741228718344 534.8, 76.52741228718345 535.2, 76.12741228718346 535.6, 75.72741228718347 536.0, 75.32741228718345 536.4, 74.92741228718346 536.8, 74.52741228718347 537.2, 74.12741228718347 537.6, 73.72741228718344 538.0, 73.32741228718345 538.4, 72.92741228718346 538.8, 72.52741228718347 539.2, 72.12741228718345 539.6, 71.72741228718345 540.0, 71.32741228718346 540.4, 70.92741228718347 540.8, 70.52741228718348 541.2, 70.12741228718345 541.6, 69.72741228718345 542.0, 69.32741228718346 542.4, 68.92741228718347 542.8, 68.52741228718345 543.2, 68.12741228718346 543.6, 67.72741228718347 544.0, 67.32741228718348 544.4000000000001, 66.92741228718344 544.8, 66.52741228718345 545.2, 66.12741228718346 545.5999999999999, 65.72741228718347 546.0, 65.32741228718345 546.4, 64.92741228718346 546.8, 64.52741228718347 547.2, 64.12741228718347 547.6, 63.72741228718344 548.0, 63.32741228718345 548.4, 62.92741228718346 548.8, 62.527412287183466 549.2, 62.12741228718344 549.6, 61.72741228718345 550.0, 61.327412287183456 550.4, 60.927412287183465 550.8, 60.52741228718347 551.2, 60.127412287183446 551.6, 59.727412287183455 552.0, 59.32741228718346 552.4, 58.92741228718347 552.8, 58.527412287183445 553.2, 58.12741228718345 553.6, 57.72741228718346 554.0, 57.32741228718347 554.4000000000001, 56.92741228718345 554.8, 56.52741228718345 555.2, 56.12741228718347 555.5999999999999, 55.72741228718347 556.0, 55.32741228718344 556.4, 54.92741228718345 556.8, 54.52741228718346 557.2, 54.12741228718347 557.6, 53.72741228718344 558.0, 53.32741228718345 558.4, 52.92741228718346 558.8, 52.527412287183466 559.2, 52.12741228718344 559.6, 51.727412287183455 560.0, 51.327412287183456" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
 <circle cx="217.16814692820412" cy="142.83185307179588" r="3" fill="red"/>
@@ -8663,16 +8513,16 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
+\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\uppi }{2}\le x\le\frac{\uppi }{2}\,.
 \]
 </div>
 </div>
-<p>The inverse of the function <span class="math-tex" data-type="tex">\(\operatorname{Tan}\)</span> is called the inverse tangent function and is denoted <span class="math-tex" data-type="tex">\(\operatorname{Arctan}\)</span> (or <span class="math-tex" data-type="tex">\(\operatorname{arctan}\)</span>,  <span class="math-tex" data-type="tex">\(\operatorname{atan}\)</span>, or <span class="math-tex" data-type="tex">\(\operatorname{Tan}^{-1}\)</span>). The domain of <span class="math-tex" data-type="tex">\(\operatorname{Arctan}\)</span> is the whole real line (the range of <span class="math-tex" data-type="tex">\(\operatorname{Tan}\)</span>). Its range is the open interval <span class="math-tex" data-type="tex">\(\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[\)</span>.</p>
+<p>The inverse of the function <span class="math-tex" data-type="tex">\(\operatorname{Tan}\)</span> is called the inverse tangent function and is denoted <span class="math-tex" data-type="tex">\(\operatorname{Arctan}\)</span> (or <span class="math-tex" data-type="tex">\(\operatorname{arctan}\)</span>,  <span class="math-tex" data-type="tex">\(\operatorname{atan}\)</span>, or <span class="math-tex" data-type="tex">\(\operatorname{Tan}^{-1}\)</span>). The domain of <span class="math-tex" data-type="tex">\(\operatorname{Arctan}\)</span> is the whole real line (the range of <span class="math-tex" data-type="tex">\(\operatorname{Tan}\)</span>). Its range is the open interval <span class="math-tex" data-type="tex">\(\left]-\frac{\uppi }{2},\frac{\uppi }{2}\right[\)</span>.</p>
 <div data-type="definition">
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\forall y\in\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
+\forall y\in\left]-\frac{\uppi }{2},\frac{\uppi }{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
 \]
 </div>
 </div>
@@ -8682,18 +8532,18 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 1 = \sec^2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+\tan^2 y\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+x^2\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
 \]
 </div>
-<p>The function <span class="math-tex" data-type="tex">\(\cos x\)</span> is bijective on the interval <span class="math-tex" data-type="tex">\(\left[0,\uppi\right]\)</span>, so we could define the inverse cosine function, <span class="math-tex" data-type="tex">\(\operatorname{Arccos}\)</span> (or <span class="math-tex" data-type="tex">\(\operatorname{arccos}\)</span>,  <span class="math-tex" data-type="tex">\(\operatorname{acos}\)</span>, or <span class="math-tex" data-type="tex">\(\operatorname{Cos}^{-1}\)</span>), so that</p>
+<p>The function <span class="math-tex" data-type="tex">\(\cos x\)</span> is bijective on the interval <span class="math-tex" data-type="tex">\(\left[0,\uppi \right]\)</span>, so we could define the inverse cosine function, <span class="math-tex" data-type="tex">\(\operatorname{Arccos}\)</span> (or <span class="math-tex" data-type="tex">\(\operatorname{arccos}\)</span>,  <span class="math-tex" data-type="tex">\(\operatorname{acos}\)</span>, or <span class="math-tex" data-type="tex">\(\operatorname{Cos}^{-1}\)</span>), so that</p>
 <div class="math-tex" data-type="equation">
 \[
-\forall y\in\left[0,\uppi\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
+\forall y\in\left[0,\uppi \right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
 \]
 </div>
-<p>However, <span class="math-tex" data-type="tex">\(\cos y=\sin\left(\frac{\uppi}{2}-y\right)\)</span>, and <span class="math-tex" data-type="tex">\(\frac{\uppi}{2}-y\)</span> is in the interval <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]\)</span> when <span class="math-tex" data-type="tex">\(y\in\left[0,\uppi\right]\)</span>.</p>
+<p>However, <span class="math-tex" data-type="tex">\(\cos y=\sin\left(\frac{\uppi }{2}-y\right)\)</span>, and <span class="math-tex" data-type="tex">\(\frac{\uppi }{2}-y\)</span> is in the interval <span class="math-tex" data-type="tex">\(\left[-\frac{\uppi }{2},\frac{\uppi }{2}\right]\)</span> when <span class="math-tex" data-type="tex">\(y\in\left[0,\uppi \right]\)</span>.</p>
 <div data-type="definition">
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\operatorname{Arccos}x=\frac{\uppi}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
+\operatorname{Arccos}x=\frac{\uppi }{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
 \]
 </div>
 </div>
@@ -9777,7 +9627,7 @@ x-2.5&\textrm{if } 2.5&lt; x\le 3.5\,.
 \[
 \begin{aligned}
 \int_{0.5}^{3.5}f\left(x\right)\,\mathrm{d}\kern-0.5pt x&=\int_{0.5}^{1.5}\sqrt{1-\left(x-0.5\right)^2}\,\mathrm{d}\kern-0.5pt x+\int_{1.5}^{2.5}2\,\mathrm{d}\kern-0.5pt x+\int_{2.5}^{3.5}\left(x-2.5\right)\,\mathrm{d}\kern-0.5pt x\\
-&=\left(\frac{1}{4}\times\uppi^2\times 1^2\right)+\left(2\times 1\right)+\left(\frac{1}{2}\times1\times 1\right)=\frac{\uppi+10}{4}\,.
+&=\left(\frac{1}{4}\times\uppi ^2\times 1^2\right)+\left(2\times 1\right)+\left(\frac{1}{2}\times1\times 1\right)=\frac{\uppi +10}{4}\,.
 \end{aligned}
 \]
 </div>
@@ -10243,7 +10093,7 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 <p>The substitutions considered in the beginning of this section were direct substitutions in the sense that we simplified an integrand by replacing an expression appearing in it with a single variable. In this section we consider the reverse approach: we replace the variable of integration with a function of a new variable. Such substitutions, called <i>inverse substitutions</i>, would appear on the surface to make the integral more complicated.</p>
 <p>As we will see, however, sometimes such substitutions can actually simplify an integrand, transforming the integral into one that can be evaluated by inspection or to which other techniques can readily be applied. In any event, inverse substitutions can often be used to convert integrands to rational functions.</p>
 <p>(1) Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\sin\theta\)</span>.</p>
-<p>Observe that <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> makes sense only if <span class="math-tex" data-type="tex">\(-a\le x\le a\)</span>, which corresponds to <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}\)</span>. Since <span class="math-tex" data-type="tex">\(\cos\theta\ge0\)</span> for such <span class="math-tex" data-type="tex">\(\theta\)</span>, we have</p>
+<p>Observe that <span class="math-tex" data-type="tex">\(\sqrt{a^2-x^2}\)</span> makes sense only if <span class="math-tex" data-type="tex">\(-a\le x\le a\)</span>, which corresponds to <span class="math-tex" data-type="tex">\(-\frac{\uppi }{2}\le\theta\le\frac{\uppi }{2}\)</span>. Since <span class="math-tex" data-type="tex">\(\cos\theta\ge0\)</span> for such <span class="math-tex" data-type="tex">\(\theta\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
 \sqrt{a^2-x^2}=\sqrt{a^2\left(1-\sin^2 \theta\right)}=\sqrt{a^2\cos^2\theta}=a\cos\theta\,.
@@ -10263,7 +10113,7 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 </div>
 </div>
 <p>(2) Integrals involving <span class="math-tex" data-type="tex">\(\sqrt{a^2+x^2}\)</span> or <span class="math-tex" data-type="tex">\(\frac{1}{x^2+x^2}\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) can frequently be reduced to a simpler form by means of the substitution <span class="math-tex" data-type="tex">\(x=a\tan\theta\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(x\)</span> can take any real value, we have <span class="math-tex" data-type="tex">\(-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}\)</span>, so <span class="math-tex" data-type="tex">\(\sec\theta&gt;0\)</span> and</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\)</span> can take any real value, we have <span class="math-tex" data-type="tex">\(-\frac{\uppi }{2}&lt;\theta&lt;\frac{\uppi }{2}\)</span>, so <span class="math-tex" data-type="tex">\(\sec\theta&gt;0\)</span> and</p>
 <div class="math-tex" data-type="equation">
 \[
 \sqrt{a^2+x^2}=a\sqrt{1+\tan^2\theta}=a\sec\theta\,.
@@ -10409,7 +10259,7 @@ I=\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,,
 \begin{aligned}
 \int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x&=\int_{-\infty}^0 \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x+\int_0^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
 &=2\lim_{R\to\infty}\int_0^R \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
-&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\uppi}{2}=\uppi\,.
+&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\uppi }{2}=\uppi \,.
 \end{aligned}
 \]
 </div>
@@ -10457,13 +10307,13 @@ A = \lim_{c\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d}\kern-0.5pt x=\lim_{c\to 
 <p>There is no “rule” for integrating <span class="math-tex" data-type="tex">\(\int_a^b \left|f\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\)</span> one must break the integral into a sum<br/>of integrals over intervals where <span class="math-tex" data-type="tex">\(f\left(x\right)&gt; 0\)</span>.</p>
 <div data-type="example">
 <h1></h1>
-<p>The area bounded by <span class="math-tex" data-type="tex">\(y=\cos x\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=0\)</span>, and <span class="math-tex" data-type="tex">\(x=\frac{3\uppi}{2}\)</span> is</p>
+<p>The area bounded by <span class="math-tex" data-type="tex">\(y=\cos x\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=0\)</span>, and <span class="math-tex" data-type="tex">\(x=\frac{3\uppi }{2}\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=\int_0^\frac{3\uppi}{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
-&=\int_0^\frac{\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\uppi}{2}^\frac{3\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
-&=\left.\sin x\right|_0^\frac{\uppi}{2}-\left.\sin x\right|_\frac{\uppi}{2}^\frac{3\uppi}{2}\\
+A&=\int_0^\frac{3\uppi }{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
+&=\int_0^\frac{\uppi }{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\uppi }{2}^\frac{3\uppi }{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
+&=\left.\sin x\right|_0^\frac{\uppi }{2}-\left.\sin x\right|_\frac{\uppi }{2}^\frac{3\uppi }{2}\\
 &=\left(1-0\right)-\left(-1-1\right)=3\,\textrm{square units.}
 \end{aligned}
 \]
@@ -10506,13 +10356,13 @@ A = \int_a^b \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt
 <p>In order to evaluate this integral, we have to determine the intervals on which  <span class="math-tex" data-type="tex">\(f\left(x\right)&gt; g\left(x\right)\)</span> or <span class="math-tex" data-type="tex">\(f\left(x\right)&lt; g\left(x\right)\)</span>, and break the integral into a sum of integrals over each of these intervals.</p>
 <div data-type="example">
 <h1></h1>
-<p>Find the total area <span class="math-tex" data-type="tex">\(A\)</span> lying between <span class="math-tex" data-type="tex">\(y=\sin x\)</span> and <span class="math-tex" data-type="tex">\(y=\cos x\)</span> from <span class="math-tex" data-type="tex">\(x=0\)</span> to <span class="math-tex" data-type="tex">\(x=2\uppi\)</span>.</p>
-<p>Between <span class="math-tex" data-type="tex">\(0\)</span> and <span class="math-tex" data-type="tex">\(2\uppi\)</span> the graphs of sine and cosine cross at <span class="math-tex" data-type="tex">\(x=\frac{\uppi}{4}\)</span> and <span class="math-tex" data-type="tex">\(x=\frac{5\uppi}{4}\)</span>. The required area is</p>
+<p>Find the total area <span class="math-tex" data-type="tex">\(A\)</span> lying between <span class="math-tex" data-type="tex">\(y=\sin x\)</span> and <span class="math-tex" data-type="tex">\(y=\cos x\)</span> from <span class="math-tex" data-type="tex">\(x=0\)</span> to <span class="math-tex" data-type="tex">\(x=2\uppi \)</span>.</p>
+<p>Between <span class="math-tex" data-type="tex">\(0\)</span> and <span class="math-tex" data-type="tex">\(2\uppi \)</span> the graphs of sine and cosine cross at <span class="math-tex" data-type="tex">\(x=\frac{\uppi }{4}\)</span> and <span class="math-tex" data-type="tex">\(x=\frac{5\uppi }{4}\)</span>. The required area is</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\uppi}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\uppi}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
-&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\uppi}{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\uppi}{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\uppi}{4}^{2\uppi}\\
+A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\uppi }{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\uppi }\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
+&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\uppi }{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\uppi }{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\uppi }{4}^{2\uppi }\\
 &=\left(\sqrt 2-1\right)+\left(\sqrt 2+\sqrt 2\right)+\left(1+\sqrt 2\right)=4\sqrt 2\,\textrm{square units.}
 \end{aligned}
 \]
@@ -10539,10 +10389,10 @@ V = \int_a^b A\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 <p>Many common solids have circular cross-sections in planes perpendicular to some axis. Such solids are called solids of revolution because they can be generated by rotating a plane region about an axis in that plane so that it sweeps out the solid.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>If the region <span class="math-tex" data-type="tex">\(R\)</span> bounded by <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=a\)</span>, and <span class="math-tex" data-type="tex">\(x=b\)</span> is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, then the cross-section of the solid generated in the plane perpendicular to the <span class="math-tex" data-type="tex">\(x\)</span>-axis at <span class="math-tex" data-type="tex">\(x\)</span> is a circular disk of radius <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\)</span>. The area of this cross-section is <span class="math-tex" data-type="tex">\(A\left(x\right)=\uppi\left(f\left(x\right)\right)^2\)</span>, so the volume of the solid of revolution is</p>
+<p>If the region <span class="math-tex" data-type="tex">\(R\)</span> bounded by <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, <span class="math-tex" data-type="tex">\(y=0\)</span>, <span class="math-tex" data-type="tex">\(x=a\)</span>, and <span class="math-tex" data-type="tex">\(x=b\)</span> is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, then the cross-section of the solid generated in the plane perpendicular to the <span class="math-tex" data-type="tex">\(x\)</span>-axis at <span class="math-tex" data-type="tex">\(x\)</span> is a circular disk of radius <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\)</span>. The area of this cross-section is <span class="math-tex" data-type="tex">\(A\left(x\right)=\uppi \left(f\left(x\right)\right)^2\)</span>, so the volume of the solid of revolution is</p>
 <div class="math-tex" data-type="equation">
 \[
-V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
+V=\uppi \int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
 </div>
@@ -10552,7 +10402,7 @@ V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
 <p>The line from <span class="math-tex" data-type="tex">\(\left(0,0\right)\)</span> to <span class="math-tex" data-type="tex">\(\left(h,r\right)\)</span> has equation <span class="math-tex" data-type="tex">\(y=\frac{r}{h}x\)</span>. Thus the volume of the cone is</p>
 <div class="math-tex" data-type="equation">
 \[
-V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi r^2h\ \textrm{cubic units.}
+V=\uppi \int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi \left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi  r^2h\ \textrm{cubic units.}
 \]
 </div>
 </div>
@@ -10561,17 +10411,17 @@ V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi\
 <p>The volume of the solid obtained by rotating the plane region <span class="math-tex" data-type="tex">\(0\le y\le f\left(x\right)\)</span>, <span class="math-tex" data-type="tex">\(0\le a&lt;x&lt;b\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis is</p>
 <div class="math-tex" data-type="equation">
 \[
-V=2\uppi\int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+V=2\uppi \int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
 </div>
 <div data-type="example">
 <h1></h1>
 <p>Find the volume of a bowl obtained by revolving the parabolic arc <span class="math-tex" data-type="tex">\(y=x^2\)</span>, <span class="math-tex" data-type="tex">\(0\le x\le1\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis.</p>
-<p>The interior of the bowl corresponds to revolving the region given by <span class="math-tex" data-type="tex">\(x^2 \le y\le 1\)</span>, <span class="math-tex" data-type="tex">\(0\le x\le 1\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis. The area element at position <span class="math-tex" data-type="tex">\(x\)</span> has height <span class="math-tex" data-type="tex">\(1-x^2\)</span> and generates a cylindrical shell of volume <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V=2\uppi x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x\)</span>. Thus, the volume of the bowl is</p>
+<p>The interior of the bowl corresponds to revolving the region given by <span class="math-tex" data-type="tex">\(x^2 \le y\le 1\)</span>, <span class="math-tex" data-type="tex">\(0\le x\le 1\)</span> about the <span class="math-tex" data-type="tex">\(y\)</span>-axis. The area element at position <span class="math-tex" data-type="tex">\(x\)</span> has height <span class="math-tex" data-type="tex">\(1-x^2\)</span> and generates a cylindrical shell of volume <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt V=2\uppi  x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x\)</span>. Thus, the volume of the bowl is</p>
 <div class="math-tex" data-type="equation">
 \[
-V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi}{2}\ \textrm{cubic units.}
+V=2\uppi \int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi \left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi }{2}\ \textrm{cubic units.}
 \]
 </div>
 </div>
@@ -10650,10 +10500,10 @@ s=&\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^
 <section data-type="sect2">
 <h2>Areas of Surfaces of Revolution</h2>
 <p>When a plane curve is rotated (in three dimensions) about a line in the plane of the curve, it sweeps out a surface of revolution. For instance, a sphere of radius <span class="math-tex" data-type="tex">\(a\)</span> is generated by rotating a semicircle of radius <span class="math-tex" data-type="tex">\(a\)</span> about the diameter of that semicircle.</p>
-<p>The area of a surface of revolution can be found by integrating an area element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt S\)</span> constructed by rotating the arc length element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> of the curve about the given line. If the radius of rotation of the element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> is <span class="math-tex" data-type="tex">\(r\)</span>, then it generates, on rotation, a circular band of width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> and length (circumference) <span class="math-tex" data-type="tex">\(2\uppi r\)</span>. The area of this band is, therefore,</p>
+<p>The area of a surface of revolution can be found by integrating an area element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt S\)</span> constructed by rotating the arc length element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> of the curve about the given line. If the radius of rotation of the element <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> is <span class="math-tex" data-type="tex">\(r\)</span>, then it generates, on rotation, a circular band of width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span> and length (circumference) <span class="math-tex" data-type="tex">\(2\uppi  r\)</span>. The area of this band is, therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt S=2\uppi r\,\mathrm{d}\kern-0.5pt s\,.
+\mathrm{d}\kern-0.5pt S=2\uppi  r\,\mathrm{d}\kern-0.5pt s\,.
 \]
 </div>
 <p>The areas of surfaces of revolution around various lines can be obtained by integrating <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt S\)</span> with appropriate choices of <span class="math-tex" data-type="tex">\(r\)</span>. Here are some important special cases.</p>
@@ -10662,13 +10512,13 @@ s=&\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^
 <p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> is continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and the curve <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, the area of the surface of revolution so generated is</p>
 <div class="math-tex" data-type="equation">
 \[
-S=2\uppi\int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+S=2\uppi \int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\uppi \int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
 <p>If the rotation is about the <span class="math-tex" data-type="tex">\(y\)</span>-axis, the surface area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+S=2\uppi \int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi \int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
 </div>
@@ -10679,10 +10529,10 @@ S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\ri
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
+S=&2\uppi \int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
 &\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
-=&\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
-=&\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
+=&\frac{\uppi }{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+=&\left.\frac{\uppi }{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi }{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
 \end{aligned}
 \]
 </div>
@@ -11037,13 +10887,13 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\l
 <p>is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, the area <span class="math-tex" data-type="tex">\(S\)</span> of the surface so generated is given by</p>
 <div class="math-tex" data-type="equation">
 \[
-S=2\uppi\int_{t=a}^{t=b}\left|y\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|g\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
+S=2\uppi \int_{t=a}^{t=b}\left|y\right|\mathrm{d}\kern-0.5pt s=2\uppi \int_a^b\left|g\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
 \]
 </div>
 <p>If the rotation is about the <span class="math-tex" data-type="tex">\(y\)</span>-axis, then the area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
+S=2\uppi \int_{t=a}^{t=b}\left|x\right|\mathrm{d}\kern-0.5pt s=2\uppi \int_a^b\left|f\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
 \]
 </div>
 <div data-type="example">
@@ -11097,7 +10947,7 @@ x=a\cos^3 t\quad\textrm{and}\quad y=a\sin^3 t\,,\quad\textrm{where }a&gt;0\,
 <polyline points="225.0, 125.0 224.9850008749746, 124.99990000499989 224.94001399837344, 124.99920015998613 224.86507085647392, 124.9973012147631 224.76022389591998, 124.99360511822542 224.62554647802352, 124.9875156165391 224.46113281484335, 124.97843884968727 224.26709788709968, 124.96578394583753 224.0435773439972, 124.94896361299041 223.79072738504684, 124.92739472736994 223.5087246239921, 124.90049891802138 223.19776593496192, 124.8677031470836 222.85806828098833, 124.8284402852083 222.4898685250419, 124.78214968160192 222.09342322375548, 124.72827772817152 221.66900840402008, 124.66627841726081 221.21691932265412, 124.59561389246862 220.73747020936085, 124.51575499204799 220.23099399320472, 124.42618178439102 219.697842012852, 124.32638409511169 219.1383837108351, 124.2158620252463 218.55300631211492, 124.09412646009928 217.94211448722956, 123.96069956827064 217.3061300003308, 123.81511529041006 216.64549134242458, 123.65691981725173 215.96065335014387, 123.48567205649414 215.2520868103954, 123.30094408809862 214.52027805123546, 123.10232160759122 213.76572851934048, 122.88940435696296 212.98895434445234, 122.66180654277497 212.19048589118705, 122.41915724108662 211.37086729861096, 122.16110078883617 210.53065600799448, 121.88729716131613 209.67042227916872, 121.59742233539788 208.7907486959172, 121.29116863817299 207.89222966084657, 120.96824508069157 206.9754708801886, 120.62837767649194 206.04108883899528, 120.27130974462904 205.0897102671972, 119.89680219692337 204.12197159700423, 119.50463380916628 203.13851841213324, 119.09460147603187 202.14000488935795, 118.66652044946072 201.12709323288036, 118.22022456029514 200.10045310203031, 117.75556642296101 199.06076103280657, 117.27241762300666 198.00869985377682, 116.7706688873242 196.94495809686026, 116.250230236895 195.87022940352045, 115.71103112191614 194.78521192689993, 115.15302053918094 193.6906077304324, 114.57616713160267 192.5871221834705, 113.98045926978614 191.47546335447112, 113.36590511556884 190.3563414022804, 112.7325326674689 189.23046796606477, 112.08038978799375 188.09855555443255, 111.40954421277961 186.9613169342946, 110.72008354154853 185.81946452000943, 110.01211521088564 184.6737097633607, 109.28576644885625 183.5247625449121, 108.54118421149832 182.37333056728454, 107.77853510124235 181.22011875089868, 106.99800526732723 180.06582863272288, 106.19980028829634 178.91115776856452, 105.38414503667497 177.75679913943935, 104.55128352594555 176.6034405625495, 103.70147873995371 175.451764107397, 102.83501244489376 174.30244551755447, 101.95218498403771 173.15615363860988, 101.05331505538805 172.0135498527968, 100.13873947244934 170.875287520815, 99.20881290832935 169.7420114313402, 98.263907623395 168.6143572587145, 97.30441317672401 167.49295102930182, 96.3307361216066 166.37840859698474, 95.34329968536755 165.27133512827086, 94.34254343379129 164.1723245974681, 93.32892292044798 163.08195929237925, 92.30290932123171 162.00080933095674, 91.26498905443502 160.92943218934823, 90.2156633866974 159.86837224175412, 89.15544802517786 158.81816031250628, 88.08487269631456 157.77931324076744, 87.00448071154592 156.7523334582387, 85.91482852038011 155.73770858025043, 84.81648525121065 154.73591101060086, 83.7100322402876 153.7473975604931, 82.59606254926346 152.7726090819095, 81.47518047174475 151.81197011574852, 80.34800102928845 150.8658885550365, 79.2151494572935 149.93475532351286, 78.07726068124586 149.0189440698733, 76.93497878378449 148.11881087794163, 75.78895646306421 147.23469399302638, 74.63985448289894 146.36691356470396, 73.48834111517647 145.5157714062547, 72.33509157504277 144.681550770964, 71.18078744936058 143.86451614548488, 70.0261161189529 143.06491306044285, 68.87177017514784 142.2829679184492, 67.71844683114648 141.51888783967198, 66.5668473287396 140.77286052509936, 65.41767634090445 140.04505413761277, 64.2716413708151 139.33561720097254, 63.1294521478045 138.64467851680132, 61.99182002081811 137.97234709963516, 60.859457349902016 137.31871213009597, 59.73307689626999 136.68384292622153, 58.61339121149514 136.06778893297462, 57.50111202637267 135.47057972993474, 56.396949640001225 134.89222505716094, 55.30161230962895 134.33271485919667, 54.215805641811116 133.79201934717221, 53.14023198542385 133.27008907894316, 52.07558982707761 132.76685505718777, 51.022573189472126 132.2822288453694, 49.98187103323065 131.81610270145418, 48.95416666275018 131.3683497292586, 47.94013713659915 130.93882404728467, 46.940452682990625 130.52736097488605, 45.955776120855234 130.13377723559137, 44.98676228703137 129.75787117739685, 44.034057470086736 129.39942300982412, 43.09829885127786 129.05819505752442, 42.180113953148805 128.7339320301952, 41.280120096262536 128.4263613085612, 40.3989238645524 128.13519324615612, 39.53712057977245 127.86012148662843, 38.69529378551721 127.60082329627971, 37.874014741273996 127.35695991153074, 37.07384192696041 127.12817690099675, 36.29532055839158 126.91410454184054, 35.53898211411118 126.71435821005878, 34.805343874010305 126.52853878434456, 34.09490847014763 126.35623306315723, 33.408163450173674 126.19701419461798, 32.74558085375044 126.05044211883876, 32.10761680234569 125.91606402228066, 31.494711102770253 125.79341480372688, 30.9072868648133 125.68201755144511, 30.345750133318134 125.58138403110435, 29.81048953502922 125.49101518400057, 29.30187594052576 125.41040163513783, 28.820262141546152 125.33902421070074, 28.365982543991592 125.2763544644476, 27.939352876884655 125.2218552125439, 27.540669917543823 125.1749810763492, 27.170211233219646 125.13517903266313, 26.828234939425045 125.10188897092905, 26.51497947517602 125.07454425688825, 26.230663395344095 125.0525723021713, 25.975485180307032 125.03539513930822, 25.749623063068498 125.02243000163365, 25.55323487400112 125.01308990755956, 25.38645790335302 125.0067842486835, 25.249408781640227 125.00291938119717, 25.14218337803294 125.00089922005714, 25.06485671682624 125.00012583537695, 25.01748291207042 125.00000005049796, 25.000095120419445 124.99992204119467, 25.012705512239847 124.99929193546922, 25.055305261005998 124.9975104133895, 25.127864550991106 124.99397930642482, 25.230332603247334 124.98810219573379, 25.362637719851463 124.97928500886032, 25.524687346376524 124.96693661429431, 25.716368152533505 124.95046941335623, 25.937546130910548 124.92929992886695, 26.188066713721483 124.90284939006698, 26.467754907458527 124.87054431325271, 26.77641544532908 124.83181707760136, 27.11383295733914 124.78610649566016, 27.479772157871565 124.7328583779807, 27.87397805059048 124.67152609138402, 28.29617615048852 124.60157111034846, 28.746072722877415 124.52246356101773, 29.22335503910793 124.43368275733411, 29.72769164878993 124.33471772880789, 30.258732668268195 124.22506773944264, 30.816110085095687 124.10424279734305, 31.39943807823117 123.97176415454103, 32.00831335367404 123.82716479658433, 32.64231549523569 123.66998992144113, 33.301007330132705 123.49979740728388, 33.98393530907438 123.31615826872545, 34.69062990050365 123.11865710109127, 35.42060599863824 122.90689251232179, 36.17336334494597 122.68047754211065, 36.948386962676864 122.43904006789589, 37.74514760406207 122.18222319733265, 38.56310220977926 121.90968564688869, 39.40169438027229 121.62110210621623, 40.260354858502964 121.31616358796641, 41.13850202370223 120.99457776272584, 42.03554239567808 120.65606927876823, 42.95087114922865 120.30038006632765, 43.88387263819921 119.92726962611381, 44.83392092871331 119.53651530180439, 45.80038034110103 119.12791253626318, 46.7826060000378 118.70127511124824, 47.779944392401646 118.25643537038864, 48.79173393234866 117.79324442522346, 49.81730553310072 117.31157234411242, 50.855983184933066 116.81130832384228, 51.90708453884399 116.29236084376933, 52.96992149538417 115.7546578023539, 54.04380079811769 115.19814663595827, 55.128024631183905 114.62279441979591, 56.221891220424496 114.02858795093604, 57.32469543753756 113.4155338132828, 58.43572940671805 112.78365842446614, 59.554283113241 112.13300806459605, 60.679645013443235 111.46364888684995, 61.81110264555658 110.77566690987729, 62.94794324084726 110.06916799202452, 64.08945433451282 109.34427778739682, 65.23492437579152 108.60114168379249, 66.3836433367366 107.83992472255949, 67.53490331911237 107.06081150044227, 68.68799915886771 106.26400605350133, 69.84222902764753 105.44973172320555, 70.99689503080262 104.6182310048123, 72.1513038013652 103.76976537816763, 73.30476708945679 102.90461512107281, 74.45660234660312 102.02307910538151, 75.6061333044329 101.12547457600513, 76.75269054724346 100.21213691302148, 77.89561207792136 99.28341937709499, 79.03424387671308 98.33969283843402, 80.1679404523453 97.38134548952337, 81.29606538500414 96.40878254188678, 82.41799186068695 95.42242590714707, 83.53310319645101 94.42271386266691, 84.640793356089 93.41010070206576, 85.74046745577253 92.38505637092416, 86.83154225921132 91.34806608799788, 87.91344666188706 90.29962995227831, 88.98562216393077 89.24026253624942, 90.04752333122072 88.17049246570141, 91.098618244292 87.09086198647651, 92.13838893465612 86.00192651853115, 93.1663318081437 84.90425419771296, 94.1819580548925 83.79842540565942, 95.18479404561691 82.68503228823843, 96.17438171380583 81.564678262959, 97.15027892351057 80.4379775157922, 98.11205982239473 79.30555448785037, 99.05931517973428 78.16804335238359, 99.99165270906707 77.026087482559, 100.90869737520678 75.88033891049949, 101.81009168534885 74.73145777806312, 102.69549596401208 73.58011177985561, 103.56458861157174 72.42697559897161, 104.41706634615787 71.2727303359706, 105.25264442870429 70.1180629315962, 106.07105687095188 68.96366558375594, 106.87205662622264 67.81023515928192, 107.65541576279875 66.65847260099895, 108.42092561975453 65.50908233062941, 109.1683969451068 64.36277164806974, 109.89766001616381 63.22025012757565, 110.6085647419693 62.082229011395185, 111.30098074775532 60.94942060139405, 111.97479744133165 59.82253764921529, 112.6299240613585 58.70229274552088, 113.26628970746296 57.589397708860616, 113.88384335217823 56.48456297471613, 114.4825538346993 55.38849698526566, 115.06240983646656 54.30190558041764, 115.62341983860402 53.2254913906564, 116.16561206125621 52.15995323224499, 116.68903438488312 51.105985505325606, 117.19375425358992 50.064277595457725, 117.67985856058324 49.03551327912837, 118.14745351586305 48.02037013376868, 118.59666449627403 47.01951895280361, 119.02763587805735 46.03362316625969, 119.44053085205863 45.06333826744931, 119.8355312217641 44.10931124624575, 120.212837184352 43.17218002945536, 120.5726670949621 42.25257292879017, 120.91525721440074 41.35110809693346, 121.24086144051415 40.46839299218746, 121.54975102347746 39.60502385218116, 121.84221426526103 38.76158517711151, 122.11855620355063 37.93864922297989, 122.3790982804108 37.13677550527818, 122.62417799599636 36.35651031356977, 122.85414854762824 35.59838623739968, 123.06937845456514 34.86292170395983, 123.27025116881366 34.1506205279223, 123.45716467233356 33.461971473845736, 123.6305310610059 32.797447831545696, 123.79077611574446 32.157507004810725, 123.93833886114234 31.54259011383148, 124.07367111205645 30.953121611701178, 124.19723700854396 30.389508915328832, 124.30951253957517 29.852142051098383, 124.41098505595693 29.341393315589528, 124.50215277291132 28.85761695166586, 124.58352426276258 28.40114884021952, 124.65561793819522 27.97230620784967, 124.71896152655387 27.571387350736217, 124.77409153566414 27.198671374956618, 124.821552711661 26.854417953478602, 124.86189748931857 26.538867100046573, 124.89568543538196 26.25223896016449, 124.92348268540805 25.994733619362577, 124.9458613746279 25.766530928919963, 124.96339906334912 25.567790349199072, 124.97667815742109 25.39865081073293, 124.98628532429066 25.25923059318896, 124.99281090517977 25.149627222318998, 124.99684832391998 25.069917384986752, 124.99899349298192 25.020156862349822, 124.99984421724031 25.000380481255604, 124.99999959601669 25.010602083894725, 125.00005942394466 25.050814515739845, 125.00062359120217 25.120989631779523, 125.00229148365693 25.22107832104264, 125.00566138347075 25.351010549390807, 125.01132987070821 25.510695420540344, 125.019891226494 25.7000212552596, 125.03193683826234 25.91885568866998, 125.04805460763953 26.167045785563914, 125.06882836149839 26.44441817363621, 125.09483726672089 26.750779194509192, 125.12665524920129 27.08591507241647, 125.16485041761894 27.449592100393758, 125.20998449250493 27.841556843810437, 125.26261224112278 28.261536361058376, 125.32328091867728 28.70923844120111, 125.3925297163606 29.184351858369922, 125.4708892167382 29.686546642678408, 125.55888085697069 30.215474367413336, 125.65701640036046 30.770768452243587, 125.76579741670484 31.352044482176254, 125.88571477192909 31.95890054197268, 126.01724812746446 32.590917565726045, 126.16086544982801 33.247659701285826, 126.31702253085095 33.92867468920386, 126.48616251899351 34.63349425586041, 126.66871546217378 35.36163452042017, 126.86509786252786 36.11259641525102, 127.0757122435078 36.88586611943076, 127.30094672971266 37.680915504951756, 127.54117463983678 38.49720259522461, 127.79675409310718 39.33417203546898, 128.06802762956997 40.191255574570974, 128.3553218445737 41.06787255797407, 128.65894703778346 41.963430431163445, 128.97919687704842 42.87732525329045, 129.31634807742972 43.80894222047928, 129.67066009568458 44.75765619834458, 130.04237484048585 45.72283226324517, 130.43171639864468 46.703826251786566, 130.83889077758738 47.699985318082284, 131.2640856643243 48.71064849827259, 131.707470201133 49.73514728179673, 132.16919477816313 50.77280618890522, 132.64939084315526 51.82294335389676, 133.14817072845048 52.884871113555604, 133.66562749545164 53.95789660026301, 134.2018347966818 55.041322339252645, 134.75684675556954 56.13444684947268, 135.33069786407466 57.23656524751945, 135.9234028982516 58.34696985409907, 136.53495685183202 59.464950802476466, 137.16533488789202 60.589796648365066, 137.81449230865164 61.72079498071306, 138.4823645434407 62.85723303283759, 139.16886715484554 63.998398293361845, 139.87389586303726 65.14357911640633, 140.59732658826425 66.29206533049032, 141.33901551147628 67.44314884559668, 142.09879915303026 68.59612425785878, 142.8764944694124 69.7502894513268, 143.67189896789424 70.90494619627707, 144.48479083902504 72.05940074352736, 145.31492910684526 73.21296441422875, 146.16205379669228 74.36495418460456, 147.02588612045076 75.51469326511605, 147.90612867908706 76.66151167353459, 148.80246568228938 77.80474680141087, 149.71456318502135 78.94374397343239, 150.64206934078055 80.07785699917198, 151.5846146713392 81.20644871673258, 152.54181235272839 82.32889152780396, 153.51325851721353 83.44456792365344, 154.4985325709942 84.55287100158085, 155.49719752734597 85.6532049713775, 156.50880035491028 86.74498565133639, 157.53287234082222 87.82764095337255, 158.568929468355 88.90061135681952, 159.61647280874453 89.96335037048149, 160.67498892684696 91.01532498252729, 161.74395030026736 92.05601609782765, 162.82281575158805 93.08491896234482, 163.91103089330997 94.10154357419799, 165.00802858511304 95.10541508103768, 166.11322940302603 96.0960741633776, 167.2260421200898 97.0730774035414, 168.34586419808375 98.03599763989845, 169.47208228987824 98.98442430607324, 170.6040727519643 99.91796375482782, 171.74120216670295 100.83623956633136, 172.88282787382946 101.73889284054235, 174.0282985107361 102.62558247344637, 175.17695456105298 103.49598541690446, 176.3281289110348 104.3497969218842, 177.48114741325958 105.1867307648579, 178.63532945713217 106.00651945717004, 179.7899885456857 106.80891443718988, 180.94443287816392 107.59368624508103, 182.0979659378636 108.36062468003652, 183.24988708471287 109.10953893984136, 184.39949215205388 109.84025774264315, 185.54607404709708 110.55262943082523, 186.68892335450948 111.24652205689533, 187.8273289425985 111.92182345131538, 188.9605785715466 112.5784412722186, 190.0879595031547 113.21630303697266, 191.20875911154755 113.83535613556708, 192.3222654942953 114.43556782581659, 193.42776808340363 115.01692521039107, 194.52455825562595 115.57943519569727, 195.61192994155113 116.12312443265533, 196.68918023292213 116.64803923942785, 197.75560998764064 117.15424550617698, 198.8105244319172 117.64182858194022, 199.85323375902635 118.11089314373271, 200.88305372413248 118.56156304799836, 201.89930623465142 118.99398116454968, 202.901319935621 119.40830919315061, 203.88843078955435 119.80472746291373, 204.85998265025918 120.18343471469686, 205.81532783010596 120.54464786670113, 206.75382766023927 120.88860176348678, 207.67485304322847 121.21554890863823, 208.5777849976651 121.52575918132445, 209.46201519421604 121.81951953701544, 210.32694648265428 122.0971336926298, 211.17199340939433 122.35892179640219, 211.9965827250682 122.60522008277401, 212.80015388168823 122.83638051262282, 213.58215951894954 123.05277039916055, 214.34206593923756 123.25477201984263, 215.07935357091452 123.4427822146433, 215.7935174194701 123.61721197106402, 216.48406750613046 123.77848599625463, 217.15052929353473 123.9270422766377, 217.79244409809507 124.06333162543882, 218.40936948867278 124.187817218535, 219.0008796712116 124.30097411904556, 219.56656585898384 124.40328879109865, 220.10603662811775 124.49525860321707, 220.61891825808726 124.57739132177628, 221.1048550568586 124.650204594996, 221.5635096704025 124.71422542793611, 221.99456337629437 124.76998964897493, 222.39771636113966 124.81804136825608, 222.77268798157522 124.8589324285971, 223.11921700861245 124.89322184936015, 223.4370618551041 124.92147526379081, 223.7260007861297 124.94426435033786, 223.98583211211184 124.96216625847116, 224.21637436448944 124.97576302952085, 224.41746645379123 124.98564101306472, 224.58896780996693 124.99239027939511, 224.7307585048512 124.99660402859998, 224.8427393566495 124.99887799679598, 224.92483201635312 124.99980986005384, 224.9769790360055 124.99999863655849, 224.9991439187583 125.00004408754793, 224.99131115067317 125.00054611757602, 224.95348621423972 125.00210417464483, 224.88569558359848 125.00531665075235, 224.78798670147242 125.01078028340129, 224.66042793782822 125.01908955861312, 224.5031085303039 125.0308361159911, 224.31613850645678 125.04660815637324, 224.09964858790084 125.06698985261461, 223.85379007641998 125.09256076403503, 223.5787347221592 125.12389525506512, 223.27467457401144 125.16156191861998, 222.94182181233475 125.2061230047252, 222.5804085641496 125.25813385491558, 222.19068670098198 125.31814234292133, 221.77292761953356 125.38668832215129, 221.32742200537564 125.46430308047593, 220.85447957987842 125.55150880280736, 220.35442883060318 125.6488180419652, 219.8276167253983 125.75673319831095, 219.2744084104561 125.87574600862494, 218.6951868926005 126.0063370446915, 218.09035270609118 126.1489752220498, 217.46032356424215 126.3041173193581, 216.8055339961676 126.47220750881002, 216.12643496898028 126.65367689803097, 215.42349349578154 126.8489430838732, 214.6971922297936 127.05840971851656, 213.94802904499932 127.28246608827143, 213.1765166036633 127.52148670546859, 212.38318191112415 127.77583091380907, 211.56856585825528 128.0458425075349, 210.73322275200536 128.3318493647694, 209.87771983443824 128.6341630953623, 209.00263679070463 128.95307870356294, 208.1085652463851 129.2888742658298, 207.19610825465622 129.6418106240735, 206.2658797737379 130.0121310946134, 205.31850413509164 130.40006119311624, 204.3546155028452 130.80580837576983, 203.37485732492877 131.22956179693034, 202.3798817764134 131.6714920834667, 201.37034919555163 132.1317511260105, 200.34692751302453 132.6104718873057, 199.31029167490715 133.10776822783464, 198.2611230598689 133.62373474888457, 197.2001088911307 134.15844665319952, 196.127941643706 134.7119596233498, 195.04531844745662 135.2843097179329, 193.95294048649757 135.87551328570567, 192.85151239548844 136.48556689772923, 191.74174165335302 137.11444729759398, 190.6243379749689 137.76211136977383, 189.50001270137238 138.4284961261447, 188.36947818902337 139.1135187106831, 187.23344719867913 139.81707642234713, 186.0926322844213 140.53904675612318, 184.9477451833854 141.2792874622082, 183.79949620673642 142.03763662327745, 182.6485936324379 142.81391274977494, 181.4957431003558 143.60791489314445, 180.3416470102402 144.4194227769059, 179.18700392312041 145.24819694546193, 178.03250796665245 146.09397893050814, 176.8788482449476 146.95649143489953, 175.7267082534118 147.83543853381536, 174.57676529911714 148.7305058930437, 173.4296899272254 149.6413610041957, 172.28614535397483 150.56765343664176, 171.14678690673733 151.50901510594804, 170.01226147164667 152.46506055857668, 168.88320694928967 153.4353872725972, 167.7602517189484 154.41957597414427, 166.64401411187015 155.4171909693403, 165.53510189403616 156.42778049139065, 164.43411175888988 157.4508770625411, 163.34162883047821 158.48599787057867, 162.25822617744836 159.53264515953913, 161.1844643383337 160.59030663427666, 160.12089085855132 161.65845587853306, 159.0680398395249 162.73655278613666, 158.026431500333 163.8240440049458, 156.996571752275 164.92036339314313, 155.9789517867303 166.02493248747226, 154.97404767668093 167.13716098300108, 153.98231999224873 168.25644722398317, 153.00421343059122 169.38217870538082, 152.04015646048205 170.5137325846003, 151.09056098189433 171.65047620298472, 150.15582200088645 172.7917676165979, 149.2363173200798 173.9369561358264, 148.33240724500092 175.08538287331675, 147.44443430654968 176.2363812997594, 146.57272299983651 177.38927780702284, 145.71757953962046 178.54339227813418, 144.87929163256322 179.69803866359797, 144.05812826649796 180.85252556353706, 143.25433951690002 182.00615681513563, 142.46815637072677 183.15823208485907, 141.69979056778175 184.30804746492205, 140.94943445973942 185.45489607346968, 140.21726088695416 186.59806865793644, 139.50342307315805 187.73685420104218, 138.80805453813778 188.8705405288844, 138.13126902846395 189.99841492058098, 137.4731604663302 191.1197647189193, 136.83380291654316 192.23387794146404, 136.21325057168764 193.34004389157857, 135.61153775547476 194.4375537688108, 135.02867894426598 195.52570127809867, 134.46466880674723 196.60378323724893, 133.91948226171294 197.6711001821469, 133.39307455390193 198.7269569691528, 132.8853813478125 199.77066337414794, 132.39631883940626 200.8015346876918, 131.92578388559514 201.81889230575962, 131.47365415138904 202.82206431552896, 131.03978827456746 203.8103860756923, 130.6240260477201 204.78320079077474, 130.2261886174881 205.73986007894305, 129.84607870082075 206.6797245327975, 129.4834808180472 207.60216427264302, 129.1381615425487 208.50655949174546, 128.80986976680003 209.3923009930828, 128.49833698453654 210.2587907171123, 128.20327758878534 211.10544226007886, 127.92438918548865 211.9316813824011, 127.66135292243021 212.73694650667932, 127.41383383316374 213.52068920487943, 127.18148119562754 214.2823746742557, 126.96392890511767 215.02148220158574, 126.76079586127747 215.73750561530215, 126.57168636875015 216.42995372511587, 126.39619055112728 217.09835074873547, 126.23388477781589 217.74223672530246, 126.08433210343323 218.3611679151694, 125.94708271932878 218.95471718566466, 125.82167441682058 219.52247438249682, 125.70763306172394 220.0640466864657, 125.60447307973885 220.57905895516083, 125.51169795225417 221.0671540493411, 125.42880072211571 221.52799314370196, 125.355264508898 221.96125602175303, 125.29056303320942 222.36664135454032, 125.23416114955342 222.74386696296432, 125.18551538725994 223.09267006345834, 125.14407449899491 223.4128074968064, 125.10928001634748 223.70405593989636, 125.08056681198975 223.96621210021755, 125.05736366789668 224.1990928929295, 125.03909384910908 224.40253560034205, 125.02517568251724 224.57639801366435, 125.01502314013844 224.7205585568957, 125.00804642635748 224.83491639274692, 125.00365256859556 224.9193915104973, 125.00124601087025 224.97392479570865, 125.00022920970615 224.99847808173342, 125.00000323185418" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
 </svg>
 <figcaption>An astroid.</figcaption></figure>
-<p>The curve is symmetric about both coordinate axes. The entire surface will be generated by rotating the upper half of the curve; in fact, we need only rotate the first quadrant part and multiply by <span class="math-tex" data-type="tex">\(2\)</span>. The first quadrant part of the curve corresponds to <span class="math-tex" data-type="tex">\(0\le t\le\frac{\uppi}{2}\)</span>. We have</p>
+<p>The curve is symmetric about both coordinate axes. The entire surface will be generated by rotating the upper half of the curve; in fact, we need only rotate the first quadrant part and multiply by <span class="math-tex" data-type="tex">\(2\)</span>. The first quadrant part of the curve corresponds to <span class="math-tex" data-type="tex">\(0\le t\le\frac{\uppi }{2}\)</span>. We have</p>
 <div class="math-tex" data-type="equation">
 \[
 \frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=-3a\cos^2 t\sin t\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=3a\sin^2 t\cos t\,.
@@ -11112,7 +10962,7 @@ x=a\cos^3 t\quad\textrm{and}\quad y=a\sin^3 t\,,\quad\textrm{where }a&gt;0\,
 <p>Therefore, the required surface area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d}\kern-0.5pt t=\frac{12}{5}\uppi a\ \textrm{square units.}
+S = 2 \times 2\uppi \int_0^\frac{\uppi }{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d}\kern-0.5pt t=\frac{12}{5}\uppi  a\ \textrm{square units.}
 \]
 </div>
 </div>
@@ -11167,15 +11017,15 @@ A=\begin{cases}
 <p>Find the area bounded by the ellipse</p>
 <div class="math-tex" data-type="equation">
 \[
-x=a\cos s\quad\textrm{and}\quad y=b\sin s\quad\textrm{for } 0\le s\le 2\uppi\,,\quad\textrm{where }a&gt;0, b&gt;0\,.
+x=a\cos s\quad\textrm{and}\quad y=b\sin s\quad\textrm{for } 0\le s\le 2\uppi \,,\quad\textrm{where }a&gt;0, b&gt;0\,.
 \]
 </div>
 <p>This ellipse is traversed counterclockwise. The area enclosed is</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d}\kern-0.5pt s=\frac{ab}{2}\int_0^{2\uppi}\left(1-\cos 2s\right)\,\mathrm{d}\kern-0.5pt s\\
-&=\left.\frac{ab}{2}s\right|_0^{2\uppi}-\left.\frac{ab}{4}\sin 2s\right|_0^{2\uppi}=\uppi ab\ \textrm{square units.}
+A&=-\int_0^{2\uppi }b\sin s\left(-a\sin s\right)\,\mathrm{d}\kern-0.5pt s=\frac{ab}{2}\int_0^{2\uppi }\left(1-\cos 2s\right)\,\mathrm{d}\kern-0.5pt s\\
+&=\left.\frac{ab}{2}s\right|_0^{2\uppi }-\left.\frac{ab}{4}\sin 2s\right|_0^{2\uppi }=\uppi  ab\ \textrm{square units.}
 \end{aligned}
 \]
 </div>
@@ -11211,19 +11061,19 @@ A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d}\kern-0.5pt s=\frac{a
 <circle cx="150" cy="150" r="90" stroke="black" fill="none" stroke-width="0.5"/>
 <circle cx="150" cy="150" r="120" stroke="black" fill="none" stroke-width="0.5"/>
 <foreignObject x="270.9110991546882" y="108.9417145876975" width="14" height="36">
-\(\frac{\uppi}{12}\)
+\(\frac{\uppi }{12}\)
 </foreignObject>
 <foreignObject x="257.92304845413264" y="78.0" width="14" height="36">
-\(\frac{\uppi}{6}\)
+\(\frac{\uppi }{6}\)
 </foreignObject>
 <foreignObject x="236.8528137423857" y="51.14718625761431" width="14" height="36">
-\(\frac{\uppi}{4}\)
+\(\frac{\uppi }{4}\)
 </foreignObject>
 <foreignObject x="210.0" y="28.076951545867374" width="14" height="36">
-\(\frac{\uppi}{3}\)
+\(\frac{\uppi }{3}\)
 </foreignObject>
 <foreignObject x="179.0582854123025" y="12.088900845311798" width="14" height="36">
-\(\frac{5\uppi}{12}\)
+\(\frac{5\uppi }{12}\)
 </foreignObject>
 <defs>
 <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
@@ -11259,14 +11109,14 @@ A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d}\kern-0.5pt s=\frac{a
 <line x1="150" y1="300" x2="150" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <circle cx="227.94228634059948" cy="105.0" r="3" stroke="red" fill="red"/>
 <foreignObject x="207.94228634059948" y="80.0" width="42" height="36">
-\(\left(3,\frac{\uppi}{6}\right)_P\)
+\(\left(3,\frac{\uppi }{6}\right)_P\)
 </foreignObject>
 </svg>
 <figcaption>Polar coordinates.</figcaption></figure>
-<p>Unlike rectangular coordinates, the polar coordinates of a point are not unique. The polar coordinates <span class="math-tex" data-type="tex">\(\left(r,\theta_1\right)_P\)</span> and <span class="math-tex" data-type="tex">\(\left(r,\theta_2\right)_P\)</span> represent the same point provided <span class="math-tex" data-type="tex">\(\theta_1\)</span> and <span class="math-tex" data-type="tex">\(\theta_2\)</span> differ by an integer multiple of <span class="math-tex" data-type="tex">\(2\uppi\)</span>. For instance, the polar coordinates</p>
+<p>Unlike rectangular coordinates, the polar coordinates of a point are not unique. The polar coordinates <span class="math-tex" data-type="tex">\(\left(r,\theta_1\right)_P\)</span> and <span class="math-tex" data-type="tex">\(\left(r,\theta_2\right)_P\)</span> represent the same point provided <span class="math-tex" data-type="tex">\(\theta_1\)</span> and <span class="math-tex" data-type="tex">\(\theta_2\)</span> differ by an integer multiple of <span class="math-tex" data-type="tex">\(2\uppi \)</span>. For instance, the polar coordinates</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(3,\frac{\uppi}{6}\right)_P=\left(3,\frac{13\uppi}{6}\right)_P=\left(3,\frac{-11\uppi}{6}\right)_P=\left(-3,\frac{7\uppi}{6}\right)_P=\left(-3,\frac{-5\uppi}{6}\right)_P
+\left(3,\frac{\uppi }{6}\right)_P=\left(3,\frac{13\uppi }{6}\right)_P=\left(3,\frac{-11\uppi }{6}\right)_P=\left(-3,\frac{7\uppi }{6}\right)_P=\left(-3,\frac{-5\uppi }{6}\right)_P
 \]
 </div>
 <p>all represent the same point with Cartesian coordinates <span class="math-tex" data-type="tex">\(\left(\frac{3\sqrt 3}{2}, \frac{3}{2}\right)\)</span>. In addition, the origin <span class="math-tex" data-type="tex">\(O\)</span> has polar coordinates <span class="math-tex" data-type="tex">\(\left(0,\theta\right)_P\)</span> for any value of <span class="math-tex" data-type="tex">\(\theta\)</span>. (If we go zero distance from <span class="math-tex" data-type="tex">\(O\)</span>, it doesn’t matter in what direction we go.)</p>
@@ -11363,7 +11213,7 @@ x^2+y^2=2ax\\
 \tan\psi=\frac{f\left(\theta\right)}{f^\prime\left(\theta\right)}\,.
 \]
 </div>
-<p>In particular, <span class="math-tex" data-type="tex">\(\psi=\frac{\uppi}{2}\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\left(\theta\right)=0\)</span>. If <span class="math-tex" data-type="tex">\(f\left(\theta_0\right)=0\)</span> and the curve has a tangent line at <span class="math-tex" data-type="tex">\(\theta_0\)</span>, then that tangent line has equation <span class="math-tex" data-type="tex">\(\theta=\theta_0\)</span>.</p>
+<p>In particular, <span class="math-tex" data-type="tex">\(\psi=\frac{\uppi }{2}\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\left(\theta\right)=0\)</span>. If <span class="math-tex" data-type="tex">\(f\left(\theta_0\right)=0\)</span> and the curve has a tangent line at <span class="math-tex" data-type="tex">\(\theta_0\)</span>, then that tangent line has equation <span class="math-tex" data-type="tex">\(\theta=\theta_0\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -11423,18 +11273,18 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 \(\phi\)
 </foreignObject>
 </svg>
-<figcaption><span class="math-tex" data-type="tex">\(\psi+\theta=\phi+\uppi\,.\)</span></figcaption></figure>
+<figcaption><span class="math-tex" data-type="tex">\(\psi+\theta=\phi+\uppi \,.\)</span></figcaption></figure>
 <p>The figure shows the relation between <span class="math-tex" data-type="tex">\(\theta\)</span>, <span class="math-tex" data-type="tex">\(\psi\)</span> and <span class="math-tex" data-type="tex">\(\phi\)</span>, the angle between the tangent to the curve at <span class="math-tex" data-type="tex">\(P\)</span> and the <span class="math-tex" data-type="tex">\(x\)</span>-axis</p>
 <div class="math-tex" data-type="equation">
 \[
-\psi+\theta=\phi+\uppi\,,
+\psi+\theta=\phi+\uppi \,,
 \]
 </div>
 <p>so,</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\tan\left(\psi+\theta\right)&=\tan\left(\phi+\uppi\right)=\tan\left(\phi\right)\\
+\tan\left(\psi+\theta\right)&=\tan\left(\phi+\uppi \right)=\tan\left(\phi\right)\\
 \frac{\tan\psi+\tan\theta}{1-\tan\psi\tan\theta}&=\frac{\frac{r\left(\theta\right)}{r^\prime\left(\theta\right)}+\tan\theta}{1-\frac{r\left(\theta\right)}{r^\prime\left(\theta\right)}\tan\theta}\,.
 \end{aligned}
 \]
@@ -11450,7 +11300,7 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 <p>A suitable area element in this case is a sector of angular width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt \theta\)</span>. For infinitesimal <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt \theta\)</span> this is just a sector of a circle of radius <span class="math-tex" data-type="tex">\(r=f\left(\theta\right)\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt A=r^2\uppi\frac{1}{2\uppi}\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}r^2\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}\left(f\left(\theta\right)\right)^2\,\mathrm{d}\kern-0.5pt\theta\,.
+\mathrm{d}\kern-0.5pt A=r^2\uppi \frac{1}{2\uppi }\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}r^2\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}\left(f\left(\theta\right)\right)^2\,\mathrm{d}\kern-0.5pt\theta\,.
 \]
 </div>
 <div data-type="theorem">
@@ -11504,7 +11354,7 @@ A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\ke
 <polyline points="51.51542571392248, 120.08484857116534 48.00399957868486, 120.23995200287987 45.31408163501426, 120.44070977181457 43.05205513646777, 120.67827958224426 41.065836493791345, 120.94749788851246 39.27768504957826, 121.24483305532657 37.64160806168462, 121.56764876548392 36.127784424981726, 121.91386189447846 34.715616635676824, 122.28175858032844 33.39020286607031, 122.66988526969318 32.1403725777791, 123.0769795231956 30.95751412919042, 123.50192369727091 29.83483602787413, 123.9437126348805 28.766880630583877, 124.40143036825637 27.749192288472187, 124.87423285603789 26.77808394545609, 125.36133489747273 25.850468707900447, 125.86200002020165 24.963735577697705, 126.3755325362542 24.11565598282639, 126.9012712121661 23.304312270170776, 127.43858416272883 22.528042171765307, 127.98686468731334 21.785395093919, 128.5455278426629 21.07509729529611, 129.114007598483 20.39602384298307, 129.69175445952746 19.747175803247394, 130.2782334649714 19.127661522274884, 130.8729224958022 18.536681136550904, 131.47531083584013 17.973513658450543, 132.08489794324865 17.43750613368664, 132.7011923979909 16.928064479506318, 133.323710997337 16.444645696863716, 133.95197797670863 15.98675121383782, 134.58552433723253 15.553921166669639, 135.22388726461614 15.145729462792211, 135.86660962655407 14.761779499880227, 136.51323953796555 14.401700438271078, 137.16332998506215 14.065143942594794, 137.81643850063148 13.751781323201037, 138.47212688406418 13.461301019821072, 139.12996096059183 13.193406379480088, 139.7895103749887 12.947813688462169, 140.4503484156421 12.724250424495494, 141.1120518654459 12.522453700557257, 141.77420087643324 12.342168876017858, 142.43637886545616 12.18314831442951, 143.09817242855144 12.04515027025252, 143.75917127191636 11.927937889314116, 144.4189681576591 11.831278309897101, 145.07715886269824 11.754941853129687, 145.73334214936324 11.698701292850032, 146.38711974640466 11.662331196396174, 147.03809633925454 11.645607328860244, 147.6858795684956 11.648306114278022, 148.33008003559794 11.670204148023544, 148.97031131507032 11.711077755366965, 149.60618997224992 11.77070259174733, 150.23733558602228 11.848853280826013, 150.8633707758203 11.945303086832325, 151.4839212323045 12.059823618100914, 152.09861575117029 12.19218455903843, 152.7070862695681 12.342153428052839, 153.30896790465576 12.509495359237214, 153.90389899383297 12.693972905827295, 154.49152113623367 12.895345863651436, 155.07147923507347 13.113371112967975, 155.64342154046983 13.34780247723949, 156.2069996923674 13.598390597531427, 156.76186876321566 13.864882821343286, 157.30768730005587 14.147023104788516, 157.8441173656844 14.444551927134512, 158.37082457856377 14.757206216799062, 158.88747815116 15.08471928797465, 159.39375092638468 15.42682078711944, 159.88931941182193 15.78323664861297, 160.37386381141818 16.153689058927903, 160.8470680543098 16.537896428716287, 161.30861982045764 16.9355733722509, 161.75821056274967 17.34643069369895, 162.19553552522413 17.770175379739207, 162.62029375705288 18.20651059806218, 163.0321881219109 18.655135701318983, 163.43092530234117 19.115746236106872, 163.8162157987042 19.58803395659904, 164.18777392228014 20.07168684244354, 164.54531778206524 20.56638912057003, 164.88856926477598 21.071821290555413, 165.21725400754087 21.58766015320942, 165.53110136272412 22.11357884204837, 165.82984435428233 22.649246857332216, 166.11321962501052 23.194330102341752, 166.38096737397913 23.74849092157661, 166.63283128340623 24.31138814055307, 166.86855843414173 24.88267710687945, 167.08789920886684 25.462009732281672, 167.29060718202652 26.0490345352463, 167.47643899541953 26.64339668393876, 167.6451542182634 27.244738039045444, 167.79651519043168 27.85269719617242, 167.93028684742484 28.46690952742044, 168.0462365254827 29.087007221734552, 168.1441337450718 29.712619323607015, 168.22374997078427 30.34337176968411, 168.28485834545856 30.97888742279989, 168.3272333960779 31.618786102925178, 168.35065070870863 32.26268461448108, 168.35488656940683 32.910196769422825, 168.33971756763756 33.560933405447216, 168.30492015831024 34.214502398620255, 168.25027017802594 34.87050866965514, 168.17554231054459 35.528554182993204, 168.08050949580118 36.18823793775494, 167.96494227600968 36.84915594952746, 167.8286080714734 37.51090122183943, 167.6712703776456 38.17306370604332, 167.492687873723 38.83523024817001, 167.29261343157316 39.49698452114498, 167.07079301204448 40.15790694055005, 166.82696443363568 40.81757456187315, 166.56085599603318 41.47556095691115, 166.27218493807982 42.13143606666118, 165.9606557062052 42.784766027650385, 165.6259580050916 43.43511296819792, 165.26776459719844 44.08203477056246, 164.88572881150122 44.72508479428272, 164.4794817141422 45.36381155524782, 164.04862888426774 45.9977583541063, 163.5927467266826 46.626462846498015, 163.1113782384562 47.24945654622954, 162.60402812846658 47.86626425084183, 162.070157165975 48.47640337696177, 161.5091756052415 49.079383190279806, 160.92043549594604 49.67470391181, 160.303221641084 50.26185567808224, 159.65674090132399 50.84031732783092, 158.98010946233865 51.409554981230265, 158.27233757194986 51.969020369307316, 157.5323111064409 52.518148860157844, 156.75876912460035 53.0563571140441, 155.9502762910456 53.58304027998274, 155.10518866258653 54.09756862000586, 154.22161077982327 54.59928341087431, 153.29734120775015 55.087491922019204, 152.3298024907108 55.56146119568877, 151.31594970972998 56.020410249185545, 150.25214908391163 56.46350016078228, 149.13401369632334 56.88982125832707, 147.9561762801222 57.298376246240316, 146.71196687051514 57.68805747900581, 145.39294166099828 58.05761551782635, 143.98816950928625 58.405614184481145, 142.4831039424452 58.73036366057429, 140.8577022146707 59.029815641557036, 139.08306822946466 59.30138746443705, 137.11489663603402 59.5416379401078, 134.8789544985439 59.745579395142364, 132.23215659299996 59.904817968518664, 128.8158069962331 59.99809320895233, 122.39448258784644" fill="none" stroke="green" stroke-width="1" stroke-dasharray=""/>
 <polyline points="60.0, 120.0 60.6, 119.4 61.2, 118.8 61.8, 118.2 62.4, 117.6 63.0, 117.0 63.6, 116.4 64.2, 115.8 64.8, 115.2 65.4, 114.6 66.0, 114.0 66.6, 113.4 67.2, 112.8 67.8, 112.2 68.4, 111.6 69.0, 111.0 69.6, 110.4 70.2, 109.8 70.8, 109.2 71.4, 108.6 72.0, 108.0 72.6, 107.4 73.2, 106.8 73.8, 106.2 74.4, 105.6 75.0, 105.0 75.6, 104.4 76.2, 103.8 76.8, 103.2 77.4, 102.6 78.0, 102.0 78.6, 101.4 79.2, 100.8 79.8, 100.2 80.4, 99.6 81.0, 99.0 81.6, 98.4 82.2, 97.8 82.8, 97.2 83.4, 96.6 84.0, 96.0 84.6, 95.4 85.2, 94.8 85.8, 94.2 86.4, 93.6 87.0, 93.0 87.6, 92.4 88.2, 91.8 88.8, 91.2 89.4, 90.6 90.0, 90.0 90.6, 89.4 91.2, 88.8 91.8, 88.2 92.4, 87.6 93.0, 87.0 93.6, 86.4 94.19999999999999, 85.80000000000001 94.8, 85.2 95.4, 84.6 96.0, 84.0 96.6, 83.4 97.2, 82.8 97.8, 82.2 98.4, 81.6 99.0, 81.0 99.6, 80.4 100.2, 79.8 100.80000000000001, 79.19999999999999 101.4, 78.6 102.0, 78.0 102.6, 77.4 103.19999999999999, 76.80000000000001 103.8, 76.2 104.4, 75.6 105.0, 75.0 105.6, 74.4 106.2, 73.8 106.80000000000001, 73.19999999999999 107.4, 72.6 108.0, 72.0 108.6, 71.4 109.19999999999999, 70.80000000000001 109.8, 70.2 110.4, 69.6 111.0, 69.0 111.6, 68.4 112.2, 67.8 112.8, 67.2 113.4, 66.6 114.0, 66.0 114.6, 65.4 115.2, 64.8 115.80000000000001, 64.19999999999999 116.4, 63.6 117.0, 63.0 117.6, 62.400000000000006 118.19999999999999, 61.800000000000004 118.8, 61.2 119.4, 60.6 120.0, 60.0" fill="none" stroke="black" stroke-width="1.5" stroke-dasharray="1"/>
 <foreignObject x="120" y="45.0" width="14" height="36">
-\(\frac{\uppi}{4}\)
+\(\frac{\uppi }{4}\)
 </foreignObject>
 </svg>
 <figcaption>The area between two polar curves.</figcaption></figure>
@@ -11514,13 +11364,13 @@ A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\ke
 2\sin^2\theta=\sin2\theta=2\sin\theta\cos\theta\,.
 \]
 </div>
-<p>Thus, <span class="math-tex" data-type="tex">\(\sin\theta=\cos\theta\)</span> and <span class="math-tex" data-type="tex">\(\theta=\frac{\uppi}{4}\)</span>. The required area is</p>
+<p>Thus, <span class="math-tex" data-type="tex">\(\sin\theta=\cos\theta\)</span> and <span class="math-tex" data-type="tex">\(\theta=\frac{\uppi }{4}\)</span>. The required area is</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d}\kern-0.5pt \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d}\kern-0.5pt \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
-&= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
+A&=\frac{1}{2}\int_0^\frac{\uppi }{4}2\sin^2\theta\,\mathrm{d}\kern-0.5pt \theta+\frac{1}{2}\int_\frac{\uppi }{4}^\frac{\uppi }{2}2\sin2\theta\,\mathrm{d}\kern-0.5pt \theta\\
+&=\int_0^\frac{\uppi }{4}\frac{1-\cos2\theta}{2}\,\mathrm{d}\kern-0.5pt \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi }{4}^\frac{\uppi }{2}\\
+&= \frac{\uppi }{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi }{4}+\frac{1}{4}=\frac{\uppi }{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi }{8}\ \textrm{square units.}
 \end{aligned}
 \]
 </div>
@@ -11600,15 +11450,15 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 <polyline points="200.0, 120.0 199.99400014999816, 119.20003333276667 199.97600239988267, 118.400266648534 199.94601214866358, 117.60089986231128 199.9040383924915, 116.80213275315118 199.85009372135917, 116.0041648962363 199.7841943144855, 115.20719559504383 199.70635993438395, 114.41142381361396 199.61661391961732, 113.61704810894817 199.5149831762422, 112.82426656356307 199.40149816794587, 112.03327671822565 199.27619290487996, 111.24427550489563 199.13910493119522, 110.45745917990054 198.99027531128178, 109.67302325736911 198.8297486147209, 108.89116244294827 198.6575728999538, 108.11207056782924 198.4737996966739, 107.33594052310781 198.27848398694937, 106.56296419450388 198.07168418508354, 105.79333239746524 197.853462116221, 105.02723481268032 197.62388299370735, 104.26485992202454 197.3830153952121, 103.50639494496461 197.13093123762349, 102.75202577544523 196.8677057507255, 102.00193691928206 196.59341744966684, 101.25631143208496 196.30814810623323, 100.51533085773502 196.01198271893355, 99.77917516743906 195.7050094819121, 99.04802269938449 195.38731975269914, 98.32205009901779 195.05900801881162, 97.6014322599691 194.7201718632178, 96.88634226564571 194.37091192867922, 96.17695133151616 194.0113318809835, 95.47342874810745 193.6415383710828, 94.77594182473659 193.26164099615238, 94.08465583399806 192.87175225958492, 93.39973395702812 192.4719875299353, 92.72133722956694 192.06246499883315, 92.04962448883862 191.6433056378785, 91.38475232126967 191.2146331545381, 90.72687501106535 190.7765739470587, 90.07614448966352 190.3292570584165, 89.43271028608515 189.8728141293185, 88.7967194782 189.40737935027644, 88.16831664492604 188.93308941277013, 87.54764381938062 188.45008345952036, 86.93484044300112 187.95850303389028, 86.3300433206519 187.45849202843513, 85.73338657673497 186.9501966326205, 85.14500161232073 186.4337652797292, 84.56501706331427 185.90934859297772, 83.99355875967396 185.37709933086302, 83.43074968569644 184.83717233176156, 82.87670994138375 184.289724457801, 82.3315567049064 183.73491453802777, 81.79540419617652 183.17290331089177, 81.26836364154492 182.6038533660709, 80.75054323963457 182.0279290856579, 80.24204812832356 181.44529658473294, 79.74298035288972 180.8561236513442, 79.25343883532824 180.26057968592062, 78.77351934485407 179.65883564014013, 78.3033144695994 179.05106395527687, 77.84291358951702 178.43743850005185, 77.3924028504989 177.81813450801081, 76.95186513971981 177.19332851445398, 76.52138006221456 176.56319829294205, 76.10102391869734 175.92792279140315, 75.69086968463122 175.2876820678655, 75.29098699055493 174.64265722584094, 74.90144210367409 173.99303034938436, 74.52229791072315 173.33898443785404, 74.15361390210414 172.6807033403987, 73.79544615730735 172.0183716901962, 73.44784733161919 171.35217483846972, 73.11086664412139 170.6822987883069, 72.78454986698554 170.00893012830778, 72.46893931606628 169.33225596608708, 72.16407384279614 168.65246386165643, 71.86998882738428 167.96974176071328, 71.5867161733209 167.28427792786084, 71.314284303189 166.59626087978646, 71.05271815578382 165.9058793184233, 70.80203918454069 165.21332206412148, 70.56226535727076 164.5187779888549, 70.3334111572041 163.8224359494888, 70.11548758533891 163.12448472113482, 69.9085021640949 162.42511293061852, 69.71245894226873 161.7245089900856, 69.52735850128886 161.0228610307722, 69.35319796276616 160.32035683696483, 69.18997099733676 159.6171837801758, 69.03766783479284 158.9135287535589, 68.89627527549641 158.20957810659152, 68.76577670307063 157.50551758004724, 68.64615209836353 156.80153224128526, 68.53737805467676 156.0978064198803, 68.43942779425358 155.39452364361884, 68.35227118601799 154.6918665748856, 68.27587476455781 153.99001694746516, 68.21020175034297 153.28915550378275, 68.1552120711705 152.5894619326082, 68.11086238482685 151.89111480724773, 68.07710610295788 151.19429152424618, 68.05389341613639 150.49916824262397, 68.04117132011612 149.80591982367193, 68.03888364326184 149.11471977132695, 68.04697107514302 148.42574017315113, 68.06537119627981 147.73915164193735, 68.09401850902844 147.0551232579633, 68.13284446959302 146.37382251191616, 68.18177752115078 145.69541524850968, 68.24074312807637 145.0200656108149, 68.3096638112514 144.34793598532625, 68.38845918444444 143.6791869477834, 68.47704599174622 143.0139772097698, 68.57533814604476 142.35246356610787, 68.6832467685243 141.69480084307116, 68.80068022917204 141.04114184743287, 68.92754418827566 140.39163731636995, 69.06374163889461 139.74643586824203, 69.20917295028792 139.10568395426338, 69.36373591228055 138.4695258110864, 69.52732578054989 137.83810341431425, 69.69983532281425 137.21155643296044, 69.88115486590421 136.59002218487205, 70.07117234369743 135.97363559313376, 70.26977334589773 135.3625291434683, 70.47684116763824 134.75683284265006, 70.69225685988847 134.1566741779468, 70.91589928064468 133.56217807760456, 71.14764514688301 132.97346687239073, 71.38736908725387 132.3906602582093, 71.63494369549642 131.81387525980188, 71.89023958455131 131.24322619554854, 72.1531254413498 130.67882464338044, 72.42346808225705 130.12077940781762, 72.701132509147 129.5691964881433, 72.9859819660864 129.0241790477267, 73.2778779966045 128.4858273845052, 73.57668050152608 127.95423890263646, 73.8822477973435 127.42950808533111, 74.19443667510491 126.9117264688749, 74.51310245979457 126.40098261785043, 74.83809907018116 125.89736210156633, 75.16927907911034 125.40094747170285, 75.5064937742168 124.91181824118112, 75.84959321903187 124.43005086426359, 76.19842631446134 123.95571871789225, 76.55284086060973 123.48889208427127, 76.91268361892514 123.02963813469921, 77.27780037464048 122.57802091465669, 77.64803599948547 122.13410133015398, 78.02323451464464 121.69793713534271, 78.40323915393557 121.26958292139574, 78.78789242718257 120.84909010665811, 79.17703618375991 120.43650692807213, 79.57051167627944 120.03187843387855, 79.96815962439689 119.6352464775957, 80.36982027871147 119.24664971327788, 80.77533348473307 118.86612359205338, 81.1845387468914 118.49370035994275, 81.59727529256169 118.12940905695658, 82.01338213608122 117.77327551747221, 82.43269814273106 117.42532237188806, 82.85506209265759 117.08556904955334, 83.28031274470823 116.75403178297134, 83.70828890015574 116.4307236132729, 84.13882946628618 116.11565439695696, 84.57177351982455 115.80883081389428, 85.0069603701732 115.5102563765898, 85.44422962243789 115.21993144069891, 85.88342124021617 114.93785321679212, 86.32437560812329 114.66401578336216, 86.76693359403075 114.3984101010674, 87.21093661099255 114.14102402820438, 87.65622667883491 113.89184233740232, 88.10264648538481 113.65084673353157, 88.55003944731278 113.41801587281776, 88.99824977056655 113.19332538315282, 89.44712251037069 112.97674788559358, 89.89650363076925 112.768253017038, 90.34624006368736 112.56780745406915, 90.79617976748861 112.3753749379558, 91.246171785005 112.19091630079875, 91.69606630101654 112.01438949281132, 92.14571469915788 111.84574961072157, 92.59496961822919 111.68494892728411, 93.04368500788965 111.53193692188842, 93.49171618371105 111.38666031225009, 93.93891988157007 111.24906308717152, 94.38515431135781 111.11908654035754, 94.83027920998545 110.99666930527133, 95.27415589366518 110.8817473910157, 95.71664730944585 110.77425421922415, 96.15761808598322 110.67412066194572, 96.5969345835247 110.58127508050762, 97.03446494308938 110.49564336533864, 97.47007913482359 110.41714897673664, 97.9036490055136 110.34571298656235, 98.33504832523649 110.28125412084206, 98.76415283313129 110.22368880326071, 99.19084028227246 110.17293119952716, 99.61499048362796 110.12889326259254, 100.03648534908555 110.09148477870289, 100.45520893352963 110.0606134142661, 100.87104747595319 110.03618476351372, 101.28388943958845 110.01810239693724, 101.69362555104077 110.0062679104787, 102.10014883841083 110.0005809754545, 102.5033546683903 110.00093938919171, 102.90314078231681 110.00723912635542, 103.29940733117415 110.01937439094561, 103.69205690952472 110.03723766894166, 104.08099458836077 110.06071978157243, 104.46612794686229 110.08970993918965, 104.84736710304918 110.12409579572189, 105.22462474331644 110.16376350368643, 105.59781615084053 110.20859776973606, 105.9668592328472 110.25848191071745, 106.33167454672943 110.31329791021778, 106.69218532500672 110.37292647557597, 107.04831749911553 110.43724709533484, 107.39999972202287 110.50613809710998, 107.74716338965395 110.57947670585163, 108.08974266112668 110.65713910247484, 108.42767447778509 110.73900048283387, 108.76089858102529 110.82493511701614, 109.08935752890704 110.91481640893107, 109.41299671154573 111.00851695616909, 109.73176436527851 111.10590861010594, 110.0456115856005 111.20686253622733, 110.35449233886607 111.31124927464882, 110.6583634727518 111.41893880080595, 110.95718472547719 111.52980058628943, 111.25091873378062 111.64370365980002, 111.53953103964824 111.76051666819814, 111.82299009579344 111.88010793762251, 112.1012672698862 112.00234553465302, 112.37433684753083 112.12709732749201, 112.64217603399227 112.25423104713911, 112.90476495467078 112.38361434853391, 113.16208665432579 112.51511487164149, 113.41412709505022 112.64860030245552, 113.66087515299681 112.78393843389347, 113.90232261385857 112.92099722655922, 114.1384641671065 113.05964486934744, 114.36929739898709 113.1997498398653, 114.59482278428399 113.34118096464599, 114.81504367684771 113.48380747912975, 115.02996629889802 113.62749908738718, 115.23959972910451 113.77212602156064, 115.44395588945085 113.91755910099883, 115.6430495308889 114.06366979106052, 115.83689821778967 114.2103302615629, 116.02552231119785 114.35741344485072, 116.20894495089797 114.50479309346214, 116.38719203630028 114.65234383736758, 116.56029220615467 114.79994124075802, 116.72827681710226 114.94746185835935, 116.89117992107364 115.09478329124966, 117.0490382415445 115.24178424215627, 117.2018911486583 115.38834457021018, 117.34978063322794 115.53434534513492, 117.49275127962689 115.67966890084787, 117.63085023758241 115.82419888845178, 117.76412719288273 115.967820328595, 117.89263433701113 116.1104196631784, 118.01642633572013 116.25188480638839, 118.13556029655923 116.39210519503432, 118.25009573537056 116.53097183817025, 118.36009454176656 116.66837736598023, 118.46562094360486 116.80421607790734, 118.56674147047555 116.93838399000637, 118.66352491621635 117.0707788815011, 118.75604230047206 117.20130034052666, 118.84436682931457 117.32984980903854, 118.92857385494031 117.4563306268695, 119.0087408344624 117.5806480749166, 119.08494728781503 117.70270941744032, 119.15727475478806 117.82242394345867, 119.22580675121023 117.93970300721911, 119.29062872429932 118.05446006773182, 119.35182800719872 118.16661072734802, 119.40949377271923 118.27607276936739, 119.46371698630608 118.38276619465958, 119.51459035825097 118.48661325728425, 119.56220829516941 118.58753849909537, 119.60666685076386 118.68546878331557, 119.64806367589361 118.78033332706661, 119.68649796797253 118.87206373284276, 119.72207041971585 118.96059401891421, 119.75488316725803 119.04586064864787, 119.78503973766324 119.1278025587338, 119.81264499585085 119.20636118630541, 119.83780509095826 119.28148049494256, 119.86062740216364 119.35310699954672, 119.88122048399154 119.4211897900782, 119.89969401112427 119.48568055414542, 119.91615872274247 119.54653359843724, 119.93072636641811 119.6037058689895, 119.94350964158383 119.65715697027733, 119.954622142602 119.7068491831255, 119.96417830145799 119.75274748142964, 119.9722933301012 119.79481954768104, 119.97908316245851 119.83303578728925, 119.98466439614442 119.86736934169598, 119.98915423389232 119.89779610027556, 119.99267042473143 119.92429471101651, 119.99533120493447 119.94684658998031, 119.99725523876057 119.96543592953317, 119.99856155901831 119.98004970534755, 119.9993695074741 119.99067768217067, 119.99979867513073 119.9973124183574, 119.99996884240126 119.99994926916592, 119.99999991920329 119.99858638881463, 120.00001188499895 119.9932247312995, 120.00012472880562 119.98386804997175, 120.00045838920259 119.97052289587543, 120.00113269435904 119.95319861484653, 120.00226730210822 119.93190734337374, 120.00398164009333 119.90666400322344, 120.00639484600995 119.87748629483067, 120.00962570797037 119.84439468945878, 120.01379260501463 119.80741242013113, 120.01901344779347 119.76656547133862, 120.02540561944802 119.72188256752696, 120.0330859167111 119.67339516036868, 120.04217049125472 119.621137414825, 120.05277479130882 119.56514619400323, 120.06501350357534 119.505461042816, 120.07900049546237 119.4421241704488, 120.09484875766252 119.3751804316435, 120.11267034709971 119.30467730680476, 120.13257633026844 119.23066488093829, 120.15467672698921 119.15319582142902, 120.17908045460402 119.07232535466851, 120.20589527263525 118.98811124154116, 120.23522772793127 118.90061375177935, 120.26718310032207 118.80989563719773, 120.3018653488075 118.71602210381806, 120.33937705830108 118.61906078289566, 120.3798193869519 118.51908170085949, 120.42329201406635 118.41615724817828, 120.46989308865246 118.31036214716528, 120.51971917860784 118.20177341873494, 120.57286522057316 118.0904703481253, 120.62942447047223 117.97653444959965, 120.68948845475958 117.86004943014272, 120.75314692239624 117.74110115216543, 120.82048779757416 117.61977759523424, 120.89159713320902 117.49616881684027, 120.9665590652215 117.3703669122246, 121.04545576762631 117.24246597327607, 121.12836740844794 117.11256204651862, 121.21537210648205 116.98075309020508, 121.30654588892088 116.84713893053551, 121.40196264986064 116.71182121701753, 121.50169410970877 116.57490337698744, 121.60580977550819 116.43649056931044, 121.71437690219571 116.29668963727921, 121.82746045481103 116.15560906073009, 121.94512307167265 116.01335890739638, 122.06742502853648 115.87005078351916, 122.19442420375238 115.72579778373546, 122.32617604443412 115.58071444026459, 122.46273353365669 115.4349166714136, 122.60414715869577 115.28852172942287, 122.75046488032264 115.14164814767318, 122.90173210316827 114.99441568727647, 123.05799164716906 114.84694528307148, 123.2192837201072 114.69935898904724, 123.38564589125703 114.55177992321626, 123.5571130661497 114.40433221196058, 123.73371746246657 114.25714093387315, 123.91548858707253 114.1103320631181, 124.10245321419897 113.96403241233266, 124.29463536478664 113.81836957509498, 124.49205628699713 113.67347186798065, 124.69473443790223 113.52946827223273, 124.90268546635902 113.38648837506844, 125.11592219707904 113.24466231064737, 125.33445461589825 113.10412070072522, 125.55828985625529 112.96499459501753, 125.78743218688379 112.82741541129813, 126.02188300072514 112.69151487525697, 126.26164080506669 112.55742496014199, 126.5067012129104 112.42527782621022, 126.75705693557644 112.2952057600129, 127.01269777654537 112.16734111353972, 127.27361062654245 112.04181624324738, 127.53977945986685 111.9187634489976, 127.81118533196832 111.79831491292985, 128.08780637827272 111.68060263829406, 128.36961781425833 111.56575838826863, 128.65659193678334 111.45391362478895, 128.94869812666505 111.34519944741196, 129.24590285251048 111.23974653224168, 129.54816967579802 111.1376850709416, 129.85545925720817 111.03914470985845, 130.16772936420278 110.94425448928325, 130.4849348798495 110.85314278287444, 130.80702781288926 110.76593723726828, 131.13395730904375 110.68276471190168, 131.46566966355834 110.60375121907235, 131.80210833497742 110.5290218642612, 132.14321396014608 110.45870078674179, 132.48892437043406 110.39291110050146, 132.83917460917542 110.33177483549892, 133.19389695031813 110.27541287928229, 133.55302091827676 110.22394491899254, 133.91647330898095 110.17748938377598, 134.284178212112 110.13616338762994, 134.6560570345195 110.10008267270558, 135.03202852480925 110.06936155309151, 135.41200879909317 110.0441128591014, 135.795911367892 110.02444788208938, 136.18364716417994 110.01047631981564, 136.57512457256178 110.00230622238587, 136.9702494595703 110.00004393878645, 137.36892520507334 110.00379406403832, 137.77105273477792 110.01365938699136, 138.17653055382 110.02974083878156, 138.5852547814257 110.05213744197212, 138.99711918663206 110.08094626040047, 139.41201522505244 110.11626234975182, 139.82983207667354 110.1581787088804, 140.2504566846685 110.20678623189876, 140.67377379521199 110.2621736610554, 141.09966599828073 110.32442754042071, 141.52801376942543 110.39363217040074, 141.95869551249592 110.46986956309811, 142.39158760330463 110.55321939853913, 142.82656443420996 110.64375898178544, 143.26349845960382 110.74156320094883, 143.70226024228396 110.84670448612675, 144.14271850069434 110.95925276927626, 144.58474015701395 111.07927544504363, 145.02819038607672 111.20683733256618, 145.47293266510164 111.34200063826296, 145.9188288242152 111.48482491963011, 146.3657390977454 111.63536705005667, 146.81352217626727 111.793681184676, 147.26203525938018 111.95981872726749, 147.7111341091954 112.13382829822312, 148.16067310451317 112.31575570359271, 148.61050529566785 112.50564390522149, 149.0604824600203 112.70353299199294, 149.5104551580741 112.90946015218981, 149.96027279019526 113.12345964698505, 150.4097836539113 113.34556278507527, 150.85883500176874 113.57579789846694, 151.3072730997249 113.81419031942724, 151.7549432860514 114.06076235860905, 152.20169003072584 114.31553328436088, 152.64735699528904 114.57851930323031, 153.09178709314241 114.84973354167063, 153.53482255026356 115.12918602895874, 153.97630496631413 115.41688368133259, 154.41607537611742 115.71283028735552, 154.85397431148004 116.01702649451457, 155.28984186333366 116.32946979705932, 155.72351774417191 116.65015452508754, 156.15484135075815 116.97907183488279, 156.58365182707834 117.31620970050919, 157.00978812751458 117.66155290666826, 157.43308908021396 118.01508304282119, 157.85339345062727 118.37677849858086, 158.27054000519297 118.74661446037611, 158.68436757514004 119.12456290939085, 159.09471512038493 119.51059262078024, 159.5014217934969 119.90466916416558, 159.90432700370616 120.3067549054082, 160.3032704809296 120.71680900966378, 160.69809233978796 121.13478744571624, 161.0886331435889 121.5606429915915, 161.47473396825131 121.99432524144913, 161.8562364661438 122.43578061375125, 162.23298292981303 122.88495236070567, 162.60481635557565 123.34178057898183, 162.97158050694875 123.80620222169532, 163.33311997789323 124.27815111165815, 163.6892802558445 124.7575579558901, 164.03990778450563 125.2443503613874, 164.3848500263777 125.73845285214249, 164.72395552500166 126.23978688741013, 165.0570739668874 126.74827088121333, 165.38405624310462 127.26382022308277, 165.70475451051107 127.78634730002231, 166.01902225259335 128.315761519693, 166.32671433989557 128.85196933480796, 166.62768709001188 129.39487426872873, 166.9217983271184 129.94437694225505, 167.20890744102093 130.50037510159774, 167.48887544569385 131.0627636475249, 167.76156503728737 131.63143466567084, 168.02684065157928 132.2062774579975, 168.28456852084796 132.78717857539579, 168.53461673014385 133.37402185141585, 168.7768552729363 133.9666884371134, 169.01115610611345 134.565056837, 169.23739320431292 135.16900294608334, 169.45544261356105 135.77840008798415, 169.66518250419892 136.3931190541157, 169.86649322307397 137.01302814391164, 170.05925734497558 137.63799320608646, 170.2433597232939 138.26787768091413, 170.41868753988138 138.90254264350807, 170.58513035409624 139.5418468480877, 170.74258015100864 140.18564677321362, 170.8909313887491 140.83379666797526, 171.03008104498016 141.48614859911314, 171.15992866247228 142.14255249905878, 171.2803763937654 142.80285621487317, 171.39132904489747 143.46690555806612, 171.49269411818244 144.13454435527726, 171.58438185401982 144.80561449979947, 171.66630527171884 145.47995600392588, 171.7383802093201 146.15740705209947, 171.80052536239873 146.83780405484626, 171.8526623218324 147.5209817034705, 171.8947156105192 148.20677302549234, 171.9266127190296 148.8950094408054, 171.94828414017817 149.58552081853418, 171.95966340250038 150.2781355345684, 171.96068710262043 150.97268052975377, 171.95129493649708 151.66898136871546, 171.9314297295337 152.3668622992927, 171.90103746554058 153.06614631256133, 171.86006731453662 153.766655203422, 171.8084716593795 154.46820963172985, 171.74620612121217 155.1706291839428, 171.67322958371537 155.87373243526469, 171.58950421615575 156.57733701225976, 171.4949954952197 157.2812596559137, 171.38967222562337 157.9853162851174, 171.27350655949 158.68932206054927, 171.14647401448622 159.39309144893136, 171.0085534907094 160.09643828763404, 170.85972728631833 160.79917584960526, 170.6999811119005 161.5011169085987, 170.5293041035693 162.20207380467568, 170.34768883478563 162.9018585099564, 170.15513132689756 163.60028269459386, 169.95163105839413 164.29715779294594, 169.73719097286795 164.99229506991963, 169.5118174856833 165.6855056874623, 169.27552048934558 166.3766007711735, 169.02831335756971 167.0653914770125, 168.7702129480453 167.7516890580745, 168.50123960389556 168.43530493141142, 168.22141715382975 169.11605074486968, 167.93077291098768 169.79373844392026, 167.62933767047593 170.4681803384543, 167.31714570559598 171.13918916951954, 166.99423476276496 171.80657817597034, 166.66064605513026 172.47016116100644, 166.3164242548792 173.12975255857407, 165.9616174842468 173.7851674996046, 165.59627730522357 174.43622187806338, 165.2204587079667 175.08273241678506, 164.83422009791917 175.72451673306813, 164.4376232816397 176.36139340400462, 164.03073345134925 176.9931820315186, 163.61361916819914 177.6197033070886, 163.1863523442663 178.24077907612894, 162.74900822328215 178.85623240200442, 162.30166536010182 179.4658876296546, 161.84440559892073 180.0695704488013, 161.3773140502467 180.66710795671645, 160.90047906663557 181.25832872052422, 160.413992217199 181.84306283901498, 159.9179482608939 182.42114200394553, 159.41244511860276 182.9923995608023, 158.8975838440157 183.55667056900415, 158.37346859332442 184.11379186152095, 157.8402065937389 184.66360210388495, 157.29790811083927 185.20594185257178, 156.746686414774 185.74065361272827, 156.18665774531777 186.26758189522525, 155.61794127580086 186.7865732730122, 155.04065907592448 187.29747643675245, 154.45493607347535 187.8001422497165, 153.86090001495413 188.2944238019136, 153.25868142513153 188.78017646343852, 152.6484135655485 189.2572579370141, 152.030232391975 189.72552830970838, 151.40427651084383 190.184850103807, 150.7706871346754 190.6350883268198, 150.12960803651086 191.0761105206031, 149.48118550336997 191.5077868095782, 148.8255682887519 191.92998994802696, 148.1629075641964 192.34259536644686, 147.49335686992362 192.7454812169462, 146.81707206457162 193.13852841766314, 146.13421127405016 193.5216206961899, 145.4449348395303 193.89464463198618, 144.7494052645892 194.2574896977649, 144.04778716153078 194.61004829983372, 143.34024719690163 194.9522158173773, 142.62695403622405 195.28389064066448, 141.90807828796574 195.60497420816546, 141.18379244676862 195.91537104256494, 140.45427083595789 196.21498878565632, 139.71968954935303 196.50373823210435, 138.98022639240293 196.78153336206236, 138.23606082266772 197.0482913726313, 137.48737388966995 197.30393270814875, 136.73434817413784 197.54838108929582, 135.97716772666334 197.7815635410104, 135.2160180057997 198.00341041919614, 134.45108581562033 198.21385543621668, 133.68255924276465 198.41283568516494, 132.91062759299294 198.60029166289823, 132.13548132727612 198.77616729183026, 131.357311997444 198.94040994047094, 130.57631218141668 199.0929704427069, 129.79267541804364 199.23380311581423, 129.0065961415758 199.36286577719716, 128.21826961579532 199.48011975984565, 127.42789186782832 199.58552992650596, 126.63565962166604 199.67906468255904, 125.84177023141908 199.76069598760094, 125.0464216143313 199.83039936572143, 124.2498121835782 199.8881539144766, 123.45214078087602 199.93394231255158, 122.65360660892628 199.96775082611111, 121.85440916372312 199.98956931383464, 121.05474816674798 199.99939123063447, 120.25482349707856" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
 </svg>
 <figcaption>Another cardioid.</figcaption></figure>
-<p>The total length is twice the length from <span class="math-tex" data-type="tex">\(\theta=0\)</span> to <span class="math-tex" data-type="tex">\(\theta=\uppi\)</span>. See figure.</p>
+<p>The total length is twice the length from <span class="math-tex" data-type="tex">\(\theta=0\)</span> to <span class="math-tex" data-type="tex">\(\theta=\uppi \)</span>. See figure.</p>
 <p>Since <span class="math-tex" data-type="tex">\(r^\prime\left(\theta\right)=-a\sin\theta\)</span>, the arc length is</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d}\kern-0.5pt \theta\\
-&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d}\kern-0.5pt \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
-&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d}\kern-0.5pt \theta\\
-&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d}\kern-0.5pt \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
+s&=2\int_0^\uppi \sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d}\kern-0.5pt \theta\\
+&=2\int_0^\uppi \sqrt{2a^2+a^2\cos\theta}\,\mathrm{d}\kern-0.5pt \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+&= 2\sqrt 2a\int_0^\uppi \sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d}\kern-0.5pt \theta\\
+&= 4a\int_0^\uppi \cos\left(\frac{\theta}{2}\right)\,\mathrm{d}\kern-0.5pt \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi =8a\ \textrm{units.}
 \end{aligned}
 \]
 </div>

@@ -146,19 +146,19 @@ Suppose that an object moves around in the ``xy``-plane so that the coordinates 
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\,.
 ```
 
-The path followed by the object is a curve ``\mathcal C`` in the plane that is specified by the two equations above. We call these equations *parametric equations* of ``\mathcal C``. A curve specified by a particular pair of parametric equations is called a *parametric curve*.
+The path followed by the object is a curve ``𝒞`` in the plane that is specified by the two equations above. We call these equations *parametric equations* of ``𝒞``. A curve specified by a particular pair of parametric equations is called a *parametric curve*.
 
 !!! definition
 
-	A *parametric curve* ``\mathcal C`` in the plane consists of an ordered pair ``\left(f, g\right)`` of continuous functions each defined on the same interval ``I``. The equations
+	A *parametric curve* ``𝒞`` in the plane consists of an ordered pair ``\left(f, g\right)`` of continuous functions each defined on the same interval ``I``. The equations
 
 	```math
 	x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\in I\,,
 	```
 
-	are called *parametric equations* of the curve ``\mathcal C``. The independent variable ``t`` is called the *parameter*.
+	are called *parametric equations* of the curve ``𝒞``. The independent variable ``t`` is called the *parameter*.
 
-Note that the parametric curve ``\mathcal C`` was not defined as a set of points in the plane, but rather as the ordered pair of functions whose range is that set of points. Different pairs of functions can give the same set of points in the plane, but we may still want to regard them as different parametric curves.
+Note that the parametric curve ``𝒞`` was not defined as a set of points in the plane, but rather as the ordered pair of functions whose range is that set of points. Different pairs of functions can give the same set of points in the plane, but we may still want to regard them as different parametric curves.
 
 We will usually denote the parameter by ``t``; in many applications the parameter represents time, but this need not always be the case. 
 
@@ -248,7 +248,7 @@ Although the curve in this example is more easily identified when the parameter 
 
 !!! definition
 
-	A plane curve is a set of points ``\left(x,y\right)`` in the plane such that ``x=f\left(t\right)`` and ``y=g\left(t\right)`` for some ``t`` in an interval ``I``, where ``f`` and ``g`` are continuous functions defined on ``I``. Any such interval ``I`` and function pair ``\left(f, g\right)`` that generate the points of ``\mathcal C`` is called a *parametrization* of ``\mathcal C``.
+	A plane curve is a set of points ``\left(x,y\right)`` in the plane such that ``x=f\left(t\right)`` and ``y=g\left(t\right)`` for some ``t`` in an interval ``I``, where ``f`` and ``g`` are continuous functions defined on ``I``. Any such interval ``I`` and function pair ``\left(f, g\right)`` that generate the points of ``𝒞`` is called a *parametrization* of ``𝒞``.
 
 Since a plane curve does not involve any specific parametrization, it has no specific direction.
 
@@ -264,7 +264,7 @@ Since a plane curve does not involve any specific parametrization, it has no spe
 
 We say that a plane curve is *smooth* if it has a tangent line at each point ``P`` and this tangent turns in a continuous way as ``P`` moves along the curve.
 
-If the curve ``\mathcal C`` is the graph of function ``f``; then ``\mathcal C`` is certainly smooth on any interval where the derivative ``f^\prime\left(x\right)`` exists and is a continuous function of ``x``. It may also be smooth on intervals containing isolated singular points; for example, the curve ``y=x^⅓`` is smooth everywhere even though ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` does not exist at ``x=0``.
+If the curve ``𝒞`` is the graph of function ``f``; then ``𝒞`` is certainly smooth on any interval where the derivative ``f^\prime\left(x\right)`` exists and is a continuous function of ``x``. It may also be smooth on intervals containing isolated singular points; for example, the curve ``y=x^⅓`` is smooth everywhere even though ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` does not exist at ``x=0``.
 
 For parametric curves ``x=f\left(t\right), y = g\left(t\right)`` the situation is more complicated. Even if ``f`` and ``g`` have continuous derivatives everywhere, such curves may fail to be smooth at certain points, specifically points where ``f^\prime\left(t\right)=g^\prime\left(t\right)=0``.
 
@@ -300,13 +300,13 @@ The following theorem confirms that a parametric curve is smooth at points where
 
 !!! theorem
 
-	Let ``\mathcal C`` be the parametric curve 
+	Let ``𝒞`` be the parametric curve 
 	
 	```math
 	x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\in I\,,
 	```
 	
-	where ``f^\prime\left(t\right)`` and ``g^\prime\left(t\right)`` are continuous on the interval ``I``. If ``f^\prime\left(t\right)\ne 0`` on ``I``, then ``\mathcal C`` is smooth and has at each ``t`` a tangent line with slope
+	where ``f^\prime\left(t\right)`` and ``g^\prime\left(t\right)`` are continuous on the interval ``I``. If ``f^\prime\left(t\right)\ne 0`` on ``I``, then ``𝒞`` is smooth and has at each ``t`` a tangent line with slope
 
 	```math
 	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
@@ -326,9 +326,9 @@ The following theorem confirms that a parametric curve is smooth at points where
 	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=g^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}f^{-1}\left(x\right)=\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
 	```
 
-	This slope is a continuous function of ``t``, so the tangent to ``\mathcal C`` turns continuously for ``t`` in ``I``.
+	This slope is a continuous function of ``t``, so the tangent to ``𝒞`` turns continuously for ``t`` in ``I``.
 
-If ``f^\prime`` and ``g^\prime`` are continuous, and both vanish at some point ``t_0``, then the curve ``\mathcal C`` *may or may not* be smooth around ``t_0``.
+If ``f^\prime`` and ``g^\prime`` are continuous, and both vanish at some point ``t_0``, then the curve ``𝒞`` *may or may not* be smooth around ``t_0``.
 
 The concavity of a parametric curve can be determined using the second derivatives of the parametric equations. The procedure is just to calculate the second derivative of ``y`` with respect to ``x`` using the Chain Rule:
 
@@ -343,7 +343,7 @@ The concavity of a parametric curve can be determined using the second derivativ
 
 ## Arc Lengths and Areas for Parametric Curves
 
-Let ``\mathcal C`` be a smooth parametric curve with equations
+Let ``𝒞`` be a smooth parametric curve with equations
 
 ```math
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b\,.
@@ -355,7 +355,7 @@ We assume that ``f^\prime\left(t\right)`` and ``g^\prime\left(t\right)`` are con
 \mathrm{d}\kern-0.5pt s=\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
 ```
 
-The length of the curve ``\mathcal C`` is given by
+The length of the curve ``𝒞`` is given by
 
 ```math
 s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
@@ -446,13 +446,13 @@ S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\lef
 	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d}\kern-0.5pt t=\frac{12}{5}\uppi a\ \textrm{square units.}
 	```
 
-Consider the parametric curve ``\mathcal C`` with equations
+Consider the parametric curve ``𝒞`` with equations
 
 ```math
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b\,,
 ```
 
-where ``f`` is differentiable and ``g`` is continuous on ``\left[a,b\right]``. For the moment, let us also assume that ``f^\prime\left(t\right)\ge 0`` and ``g\left(t\right)\ge 0`` on ``\left[a,b\right]``, so ``\mathcal C`` has no points below the ``x``-axis and is traversed from left to right as ``t`` increases from ``a`` to ``b``.
+where ``f`` is differentiable and ``g`` is continuous on ``\left[a,b\right]``. For the moment, let us also assume that ``f^\prime\left(t\right)\ge 0`` and ``g\left(t\right)\ge 0`` on ``\left[a,b\right]``, so ``𝒞`` has no points below the ``x``-axis and is traversed from left to right as ``t`` increases from ``a`` to ``b``.
 
 The region under ``C`` and above the ``x``-axis has area element given by
 
@@ -474,18 +474,18 @@ Similar arguments can be given for three other cases:
 
 - if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
 
-where ``A``  is the (positive) area bounded by ``\mathcal C``, the ``x``-axis, and the vertical lines ``x=f\left(a\right)`` and ``x=f\left(b\right)``. Combining these results we can see that
+where ``A``  is the (positive) area bounded by ``𝒞``, the ``x``-axis, and the vertical lines ``x=f\left(a\right)`` and ``x=f\left(b\right)``. Combining these results we can see that
 
 ```math
 \int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t=A_1-A_2\,,
 ```
 
-where ``A_1`` is the area lying vertically between ``\mathcal C`` and that part of the ``x``-axis consisting of points ``x=f\left(t\right)`` such that ``g\left(t\right)f^\prime\left(t\right)\ge 0``, and ``A_2`` is a similar area corresponding to points where ``g\left(t\right)f^\prime\left(t\right)&lt; 0``. This formula is valid for arbitrary continuous ``g`` and differentiable ``f``. In particular, if ``\mathcal C`` is a non–self-intersecting closed curve, then the area of the region bounded by ``\mathcal C`` is given by
+where ``A_1`` is the area lying vertically between ``𝒞`` and that part of the ``x``-axis consisting of points ``x=f\left(t\right)`` such that ``g\left(t\right)f^\prime\left(t\right)\ge 0``, and ``A_2`` is a similar area corresponding to points where ``g\left(t\right)f^\prime\left(t\right)&lt; 0``. This formula is valid for arbitrary continuous ``g`` and differentiable ``f``. In particular, if ``𝒞`` is a non–self-intersecting closed curve, then the area of the region bounded by ``𝒞`` is given by
 
 ```math
 A=\begin{cases}
-\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }\mathcal C\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
--\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }\mathcal C\textrm{ is traversed counterclockwise.}
+\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
+-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed counterclockwise.}
 \end{cases}
 ```
 
@@ -627,7 +627,7 @@ The graph of an equation of the form ``r=f\left(\theta\right)`` is called the po
 
 !!! proof
 
-	The curve ``\mathcal C`` with equations
+	The curve ``𝒞`` with equations
 
 	```math
 	x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = h\left(\theta\right)=r\left(\theta\right)\sin\theta\quad\textrm{having parameter }\theta\,,
@@ -761,7 +761,7 @@ A suitable area element in this case is a sector of angular width ``\mathrm{d}\k
 
 The arc length element for the polar curve ``r=f\left(\theta\right)`` can be derived from that for a parametric curve.
 
-The curve ``\mathcal C`` with equations
+The curve ``𝒞`` with equations
 
 ```math
 x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = h\left(\theta\right)=r\left(\theta\right)\sin\theta\quad\textrm{having parameter }\theta\,,
@@ -777,7 +777,7 @@ has differential arc length element
 \end{aligned}
 ```
 
-The length of the curve ``\mathcal C`` for ``\theta`` between ``\alpha`` and ``\beta`` is then given by
+The length of the curve ``𝒞`` for ``\theta`` between ``\alpha`` and ``\beta`` is then given by
 
 ```math
 s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d}\kern-0.5pt \theta\,.

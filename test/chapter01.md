@@ -111,7 +111,7 @@ The basic rules, called laws, governing propositions are stated in the following
 	7. ``𝒫\vee \lnot 𝒫\equiv \top`` and ``𝒫\wedge \lnot 𝒫\equiv \bot`` (*complement laws*)
 	8. ``\lnot \top \equiv \bot`` and ``\lnot \bot \equiv \top`` (*complement laws*)
 	9. ``\lnot \left(\lnot 𝒫\right)\equiv 𝒫`` (*involution law*)
-	10. ``\lnot \left(𝒫\vee 𝒬\right)\equiv \lnot 𝒫\wedge \lnot 𝒬`` and ``\lnot \left(𝒫\wedge 𝒬\right)\equiv \lnot 𝒫\vee \lnot 𝒬`` (*DeMorgan's laws*)
+	10. ``\lnot \left(𝒫\vee 𝒬\right)\equiv \lnot 𝒫\wedge \lnot 𝒬`` and ``\lnot \left(𝒫\wedge 𝒬\right)\equiv \lnot 𝒫\vee \lnot 𝒬`` (*De Morgan's laws*)
 
 !!! exercise
 	Use a truth table to show the logical equivalence of the other propositions.
@@ -200,13 +200,13 @@ The set consisting of all elements of ``\Omega`` which do not belong to ``A`` is
 	7. ``A\cup A^c =\Omega`` and ``A\cap A^c =\emptyset`` (*complement laws*)
 	8. ``\Omega^c =\emptyset`` and ``\emptyset^c =\Omega`` (*complement laws*)
 	9. ``\left(A^c \right)^c =A`` (*involution law*)
-	10. ``\left(A\cup B\right)^c =A^c \cap B^c`` and ``\left(A\cap B\right)^c =A^c \cup B^c`` (*DeMorgan's laws*)
+	10. ``\left(A\cup B\right)^c =A^c \cap B^c`` and ``\left(A\cap B\right)^c =A^c \cup B^c`` (*De Morgan's laws*)
 	11. ``A\setminus B=A\cap B^c``
 	12. If ``A\subset B``, then ``B^c \subset A^c``
 	13. ``A=\left(A\cap B\right)\cup \left(A\cap B^c \right)``
 
 !!! example
-	Proof the first law of DeMorgan.
+	Proof the first law of De Morgan.
 
 !!! proof
 
@@ -348,7 +348,7 @@ or, when ``𝒫\left(x\right)`` denotes "``x`` is an engineer",
 
 The above is true for any proposition ``𝒫\left(x\right)``.
 
-!!! theorem "DeMorgan 1"
+!!! theorem "De Morgan 1"
 
 	``\lnot \left(\forall x\in A:𝒫\left(x\right)\right)\equiv \exists x\in A:\lnot 𝒫\left(x\right)``.
 
@@ -359,7 +359,7 @@ In other words, the following two statements are equivalent:
 
 There is an analogous theorem for the negation of a proposition which contains the existential quantifier.
 
-!!! theorem "DeMorgan 2"
+!!! theorem "De Morgan 2"
 
 	``\lnot \left(\exists x\in A:𝒫\left(x\right)\right)\equiv \forall x\in A:\lnot 𝒫\left(x\right)``.
 
@@ -396,7 +396,7 @@ Observe that the only difference between both examples is the order of the quant
 	3. ``\exists x\in A,\forall y\in B:𝒫\left(x,y\right)~\implies ~\forall y\in B,\exists x\in A:𝒫\left(x,y\right)``.
 	4. ``\forall x\in A,\exists y\in B:𝒫\left(x,y\right)~\mathrel{\rlap{\implies}\ \,/\quad}~\exists y\in B,\forall x\in A:𝒫\left(x,y\right)``.
 
-Quantified statements with more than one variable may be negated by successively applying the theorems of DeMorgan. Thus each ``\forall`` is changed to ``\exists``, and each ``\exists`` is changed to ``\forall`` as the negation symbol ``\lnot`` passes through the statement from left to right.
+Quantified statements with more than one variable may be negated by successively applying the theorems of De Morgan. Thus each ``\forall`` is changed to ``\exists``, and each ``\exists`` is changed to ``\forall`` as the negation symbol ``\lnot`` passes through the statement from left to right.
 
 !!! example
 
