@@ -99,7 +99,7 @@ Following properties can be derived from the algebraic properties.
 	6. ``ab=0 \implies a=0 \vee b=0``
 
 !!! example
-	Proof the second property.
+	Prove the second property.
 
 !!! proof
     Let ``a\in ℚ``.
@@ -112,7 +112,7 @@ Following properties can be derived from the algebraic properties.
     Therefore, ``a\cdot 0 = 0``
 
 !!! exercise
-	Proof the other properties.
+	Prove the other properties.
 
 The associative property allows to write in an unambiguous way ``a+b+c`` and ``abc``. More generally, the sum of ``a_1,a_2,\dots,a_n\in ℚ`` is unambiguously defined. To present this sum concisely, we use the *sigma notation*:
 
@@ -184,7 +184,7 @@ Following properties can be derived from the order properties.
 	7. ``0&lt;a&lt;b\implies 0&lt;b^{-1}&lt;a^{-1}``
 
 !!! example
-	Proof the fifth property.
+	Prove the fifth property.
 
 !!! proof "by contradiction"
     By the totality property is ``0\le1 \vee 1\le0``. Suppose ``1\le0``.
@@ -198,7 +198,7 @@ Following properties can be derived from the order properties.
     Therefore, ``0\le 1`` and ``0\ne 1``, that is, ``0 &lt; 1``.
 
 !!! exercise
-	Proof the other properties.
+	Prove the other properties.
 
 ### Decimal Expansions
 
@@ -503,7 +503,7 @@ When we have to find an element in a sorted array, we apply intuitively a *binar
 
 The same methodology can be used to prove some important theorems in calculus. We call such a procedure, the *bisection method*.
 
-!!! template "Proof by bisection"
+!!! template "Prove by bisection"
 	Begin with a closed interval ``I_0=\left[a_0,b_0\right]``.
 
 	STEP 1: Bisect ``I_0`` to obtain two closed intervals ``\left[a_0, \frac{a_0+b_0}{2}\right]`` and ``\left[\frac{a_0+b_0}{2}, b_0\right]``.
@@ -1071,7 +1071,7 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 	\quad\quad\quad\quad=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
 	\end{gathered}
 	```
-	Since ``\cos^2x+\sin^2x=1``, this reduces to ``\cos\left(s-t\right)=\cos s\cos t+\sin s\sin t``.
+	Since ``\cos^2x+\sin^2x=1``, this reduces to ``\cos\left(s-t\right)=\cos s\,\cos t+\sin s\,\sin t``.
 
 !!! exercise
 	Prove the other formulas using the even/odd behavior of the cosine and sine functions and the complementary angles relations.

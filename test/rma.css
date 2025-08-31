@@ -355,6 +355,7 @@ p[data-type="author"] {
     position: absolute;
     bottom: 200px;
     min-width: 100%;
+    line-height: 125%;
 }
 
 nav, section[data-type="preface"] {
@@ -484,7 +485,7 @@ body {
     font-size: 10pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;
-    line-height: 135%;
+    line-height: 140%;
 }
 
 h1,
