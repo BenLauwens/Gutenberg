@@ -366,7 +366,7 @@ The absolute value has the following properties.
     ```math
     \begin{aligned}
     \left|a\pm b\right|^2&=\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
-    &\le&\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
+    &\le\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
     \end{aligned}
     ```
 
