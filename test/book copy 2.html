@@ -7,20 +7,34 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="rma.css" />
+
 <script>
 MathJax = {
-    startup: {typeset: false},
+    startup: {
+        whenReady() {
+            console.log("Ready!");
+            window.PagedPolyfill.preview();
+        }
+    },
     tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
+        inlineMath: [           
             ['\\(', '\\)']
         ],
         displayMath: [
             ['\\[', '\\]']
         ]
-    }
+    },
+    output: {
+        font: 'mathjax-fira'
+  }
 };
 </script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml-nofont.js"></script>
+<script>
+    window.PagedConfig = {
+      auto: false
+    };
+  </script>
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
@@ -29,19 +43,6 @@ class handlers extends Paged.Handler {
     }
 
     beforeParsed(content) {
-        for (let el of content.querySelectorAll('div[data-type="equation"]')) {
-            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true });
-            el.classList.remove("math-tex");
-        }
-        for (let el of content.querySelectorAll('foreignObject')) {
-            el.innerHTML = MathJax.tex2mml(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false });
-        }
-        for (let el of content.querySelectorAll('span[data-type="tex"]')) {
-            const math = document.createRange().createContextualFragment(
-                MathJax.tex2mml(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false })
-            ).firstElementChild;
-            el.replaceWith(math);
-        }
         for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);
         }
@@ -85,18 +86,9 @@ class handlers extends Paged.Handler {
             nav.appendChild(toc);
         }
     }
-
-    afterRendered(pages) {
-        const element = document.getElementById('tag');
-        if (element) {
-            element.scrollIntoView();
-        }
-    }
 }
-
 Paged.registerHandlers(handlers);
 </script>
-
 </head>
 <body data-type="book">
 <section data-type="titlepage">

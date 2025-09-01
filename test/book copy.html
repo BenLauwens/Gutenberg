@@ -9,12 +9,7 @@
 <link rel="stylesheet" href="rma.css" />
 <script>
 MathJax = {
-    startup: {
-        pageReady() {
-            const doc = MathJax.startup.document;
-            doc.menu.menu.findID('Options', 'AssistiveMml').disable();
-        }
-    },
+    startup: {typeset: false},
     loader: {load: ['[tex]/upgreek']},
     tex: {
         inlineMath: [              // start/end delimiter pairs for in-line math
@@ -25,28 +20,9 @@ MathJax = {
         ],
         packages: {'[+]': ['upgreek']}
     },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
 };
 </script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-svg-nofont.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml-nofont.js"></script>
 <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
@@ -54,16 +30,16 @@ class handlers extends Paged.Handler {
         super(chunker, polisher, caller);
     }
 
-    async beforeParsed(content) {
+    async beforeParsed(content) {    
         for (let el of content.querySelectorAll('div[data-type="equation"]')) {
-            await MathJax.tex2mmlPromise(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true }).then((result) => { el.innerHTML = result;});
+            await MathJax.tex2mmlPromise(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: true }).then((result) => {el.innerHTML = result;});
             el.classList.remove("math-tex");
         }
         for (let el of content.querySelectorAll('foreignObject')) {
-            await MathJax.tex2mmlPromise(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false }).then((result) => { el.innerHTML = result;});
+            await MathJax.tex2mmlPromise(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false }).then((result) => {el.innerHTML = result;});
         }
         for (let el of content.querySelectorAll('span[data-type="tex"]')) {
-            await MathJax.tex2mmlPromise(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false }).then((result) => { 
+            await MathJax.tex2mmlPromise(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { display: false }).then((result) => {
                 const math = document.createRange().createContextualFragment(result).firstElementChild;
                 el.replaceWith(math);
             });
@@ -111,18 +87,9 @@ class handlers extends Paged.Handler {
             nav.appendChild(toc);
         }
     }
-
-    afterRendered(pages) {
-        const element = document.getElementById('tag');
-        if (element) {
-            element.scrollIntoView();
-        }
-    }
-}
-
+};
 Paged.registerHandlers(handlers);
 </script>
-
 </head>
 <body data-type="book">
 <section data-type="titlepage">
