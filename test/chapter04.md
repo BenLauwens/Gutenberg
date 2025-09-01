@@ -756,7 +756,6 @@ Thus, we have proved the following Quotient Rule.
 	\left(\frac{f}{g}\right)^\prime=\frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 	```
 
-{.pagebreak}
 ### Chain Rule
 
 Although we can differentiate ``\sqrt x`` and ``x^2+1``, we cannot yet differentiate ``\sqrt{x^2+1}``. To do this, we need a rule that tells us how to differentiate composites of functions whose derivatives we already know. This rule is known as the Chain Rule and is the most often used of all the differentiation rules.
@@ -846,7 +845,6 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 	\end{aligned}
 	```
 
-{.pagebreak}
 ## Derivatives of Trigonometric Functions
 
 In this section we will calculate the derivatives of the six trigonometric functions. We only have to work hard for one of them, sine; the others then follow from known identities and the differentiation rules
