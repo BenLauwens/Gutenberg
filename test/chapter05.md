@@ -135,7 +135,7 @@ An *exponential function* is a function of the form ``f\left(x\right)=a^x``, whe
 	```
 	In this definition, ``\sqrt[n]{a}`` is the number ``b&gt;0`` that satisfies ``b^n=a``.
 
-How should we define ``a^x`` if ``x`` is not rational? For example, what does ``2^\uppi`` mean? In order to calculate a derivative of ``a^x``, we will want the function to be defined for all real numbers ``x``, not just rational ones.
+How should we define ``a^x`` if ``x`` is not rational? For example, what does ``2^\textup{π}`` mean? In order to calculate a derivative of ``a^x``, we will want the function to be defined for all real numbers ``x``, not just rational ones.
 
 {cell=chap display=false output=false}
 ```julia
@@ -260,7 +260,7 @@ Corresponding to the asymptotic behaviour of the exponential functions, the loga
 
 ## The Natural Logarithm and the Exponential Function
 
-In this section we are going to define a function ``\ln x``, called the natural logarithm of ``x``, in a way that does not at first seem to have anything to do with the logarithms considered in the previous section. We will show, however, that it has the same properties as those logarithms, and in the end we will see that ``\ln x=\log_ℯ``, the logarithm of ``x`` to a certain specific base ``ℯ``. We will show that ``\ln x`` is a bijective function, defined for all positive real numbers. It must therefore have an inverse, ``ℯ^x``, that we will call the exponential function. Our final goal is to arrive at a definition of the exponential functions ``a^x`` (for any ``a&gt;0``) that is valid for any real number ``x`` instead of just rational numbers, and that is known to be continuous and even differentiable without our having to assume those properties.
+In this section we are going to define a function ``\ln x``, called the natural logarithm of ``x``, in a way that does not at first seem to have anything to do with the logarithms considered in the previous section. We will show, however, that it has the same properties as those logarithms, and in the end we will see that ``\ln x=\log_\textup{e}``, the logarithm of ``x`` to a certain specific base ``\textup{e}``. We will show that ``\ln x`` is a bijective function, defined for all positive real numbers. It must therefore have an inverse, ``\textup{e}^x``, that we will call the exponential function. Our final goal is to arrive at a definition of the exponential functions ``a^x`` (for any ``a&gt;0``) that is valid for any real number ``x`` instead of just rational numbers, and that is known to be continuous and even differentiable without our having to assume those properties.
 
 ### The Natural Logarithm
 
@@ -418,7 +418,7 @@ The function ``\ln x`` is bijective on its domain, the interval ``\left]0,\infty
 
 Since ``\ln 1=0``, we have ``\exp 0=1``. The domain of ``\exp`` is ``\left]-\infty,\infty\right[``, the range of ``\ln``. The range of ``\exp`` is ``\left]0,\infty\right[``, the domain of ``\ln``. We have cancellation identities
 ```math
-\forall x\in ℝ:\ln\left(\exp x\right)=x\quad\textrm{and}\quad\forall x&gt;0:\exp\left(\ln x\right)=x\,.
+\forall x\in \mathbb{R}:\ln\left(\exp x\right)=x\quad\textrm{and}\quad\forall x&gt;0:\exp\left(\ln x\right)=x\,.
 ```
 
 We can deduce various properties of ``\exp`` from corresponding properties of ``\ln``. Not surprisingly, they are properties we would expect an exponential function to have.
@@ -444,13 +444,13 @@ Now we make an important definition!
 
 !!! definition
 
-	Let ``ℯ=\exp\left(1\right)``.
+	Let ``\textup{e}=\exp\left(1\right)``.
 
-The number ``ℯ`` satisfies ``\ln ℯ = 1``, so the area bounded by the curve ``y=\frac{1}{t}``, the ``t``-axis, and the vertical lines ``t=1`` and ``t=ℯ`` must be equal to ``1`` square unit.
+The number ``\textup{e}`` satisfies ``\ln \textup{e} = 1``, so the area bounded by the curve ``y=\frac{1}{t}``, the ``t``-axis, and the vertical lines ``t=1`` and ``t=\textup{e}`` must be equal to ``1`` square unit.
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", "The definition of " * tex("ℯ") * "." ) do
+Figure("", "The definition of " * tex("\\textup{e}") * "." ) do
 	scale = 50
 	Drawing(width=5.5scale, height=5.5scale) do
 		xmid = 0.5scale
@@ -459,48 +459,48 @@ Figure("", "The definition of " * tex("ℯ") * "." ) do
 		h = ℯ - 1
 		path = "$(xmid+x*scale), $ymid " * mapreduce(elem->"$(elem[1]), $(elem[2]) ", *, zip(xmid .+ (x*scale:0.01scale:(x+h)*scale), ymid .- scale ./ (x:0.01:x+h))) * "$(xmid+(x+h)*scale), $ymid"
 		polygon(points=path, fill="lightblue", stroke="none")
-		axis_xy(5.5scale,5.5scale,xmid,ymid,scale,(x, x+h), tuple(1/(x+h), 1/x); symbol_x="t", xs=("1", "ℯ"), ys=("\\frac{1}{ℯ}", "1"), yl=(1, 1), yh=(2, 1))
+		axis_xy(5.5scale,5.5scale,xmid,ymid,scale,(x, x+h), tuple(1/(x+h), 1/x); symbol_x="t", xs=("1", "\\textup{e}"), ys=("\\frac{1}{\\textup{e}}", "1"), yl=(1, 1), yh=(2, 1))
 		plot_xy(x->1/x, 0.01:0.01:5, tuple(x, x+h), xmid, ymid, scale; width=1)
 		latex("\\textrm{Area}=1", x=xmid+1.25scale, y=ymid-0.35scale, width=4font_x, height=1font_y)
 	end
 end
 ```
 
-The number ``ℯ`` is one of the most important numbers in mathematics. Like ``\uppi``, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins
+The number ``\textup{e}`` is one of the most important numbers in mathematics. Like ``\textup{π}``, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins
 
 ```math
-ℯ=2.718281828459045\dots\,.
+\textup{e}=2.718281828459045\dots\,.
 ```
 
 Later on we will learn that
 ```math
-ℯ=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\cdots\,,
+\textup{e}=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\cdots\,,
 ```
-a formula from which the value of ``ℯ`` can be calculated to any desired precision.
+a formula from which the value of ``\textup{e}`` can be calculated to any desired precision.
 
-The first property of the previous theorem shows that ``\exp r=\exp\left(1r\right)=\left(\exp 1\right)^r=ℯ^r`` holds for any rational number ``r``. Now here is a crucial observation. We only know what ``ℯ^r`` means if ``r`` is a rational number (if ``r=\frac{m}{n}``, then ``ℯ^r=\sqrt[n]{ℯ^m}``). But ``\exp x`` is defined for all real ``x``, rational or not. Since ``ℯ^r=\exp r`` when ``r`` is rational, we can use ``\exp x`` as a definition of what ``ℯ^x`` means for any real number ``x``, and there will be no contradiction if ``x`` happens to be rational.
+The first property of the previous theorem shows that ``\exp r=\exp\left(1r\right)=\left(\exp 1\right)^r=\textup{e}^r`` holds for any rational number ``r``. Now here is a crucial observation. We only know what ``\textup{e}^r`` means if ``r`` is a rational number (if ``r=\frac{m}{n}``, then ``\textup{e}^r=\sqrt[n]{\textup{e}^m}``). But ``\exp x`` is defined for all real ``x``, rational or not. Since ``\textup{e}^r=\exp r`` when ``r`` is rational, we can use ``\exp x`` as a definition of what ``\textup{e}^x`` means for any real number ``x``, and there will be no contradiction if ``x`` happens to be rational.
 
 !!! definition
 
 	Let
 	```math
-	ℯ^x=\exp x
+	\textup{e}^x=\exp x
 	```
 	for all real ``x``.
 
-The last theorem can now be restated in terms of ``ℯ^x``:
+The last theorem can now be restated in terms of ``\textup{e}^x``:
 ```math
 \begin{align}
-&\left(ℯ^x\right)^y=ℯ^{xy}&&ℯ^{x+y}=ℯ^xℯ^y\\
-&ℯ^{-x}=\frac{1}{ℯ^x}&&ℯ^{x-y}=\frac{ℯ^x}{ℯ^y}
+&\left(\textup{e}^x\right)^y=\textup{e}^{xy}&&\textup{e}^{x+y}=\textup{e}^x\textup{e}^y\\
+&\textup{e}^{-x}=\frac{1}{\textup{e}^x}&&\textup{e}^{x-y}=\frac{\textup{e}^x}{\textup{e}^y}
 \end{align}
 ```
 
-The graph of ``ℯ^x`` is the reflection of the graph of its inverse, ``\ln x``, in the line ``y=x``.
+The graph of ``\textup{e}^x`` is the reflection of the graph of its inverse, ``\ln x``, in the line ``y=x``.
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", "The graph of " * tex("ℯ^x") * " and " * tex("\\ln x") * "." ) do
+Figure("", "The graph of " * tex("\\textup{e}^x") * " and " * tex("\\ln x") * "." ) do
 	scale = 50
 	Drawing(width=5scale, height=5scale) do
 		xmid = 2.5scale
@@ -513,61 +513,61 @@ Figure("", "The graph of " * tex("ℯ^x") * " and " * tex("\\ln x") * "." ) do
 end
 ```
 
-Observe that the ``x``-axis is a horizontal asymptote of the graph of ``y=ℯ^x`` as ``x\to-\infty``. We have
+Observe that the ``x``-axis is a horizontal asymptote of the graph of ``y=\textup{e}^x`` as ``x\to-\infty``. We have
 ```math
-\lim_{x\to-\infty}ℯ^x=0\quad\textrm{and}\quad\lim_{x\to\infty}ℯ^x=\infty\,.
+\lim_{x\to-\infty}\textup{e}^x=0\quad\textrm{and}\quad\lim_{x\to\infty}\textup{e}^x=\infty\,.
 ```
 
-Since ``\exp x=ℯ^x`` actually is an exponential function, its inverse must actually be a logarithm:
+Since ``\exp x=\textup{e}^x`` actually is an exponential function, its inverse must actually be a logarithm:
 ```math
-\ln x=\log_ℯx\,.
+\ln x=\log_\textup{e}x\,.
 ```
 
-The derivative of ``y=ℯ^x`` is calculated by implicit differentiation:
+The derivative of ``y=\textup{e}^x`` is calculated by implicit differentiation:
 ```math
 \begin{aligned}
-y=ℯ^x&\implies x=\ln y\\
+y=\textup{e}^x&\implies x=\ln y\\
 &\implies 1=\frac{1}{y}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\\
-&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=ℯ^x\,.
+&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=\textup{e}^x\,.
 \end{aligned}
 ```
 
 Thus, the exponential function has the remarkable property that it is its own derivative and, therefore, also its own antiderivative:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}ℯ^x=ℯ^x\quad\textrm{and}\quad\int ℯ^x\, \mathrm{d}\kern-0.5pt x=ℯ^x+C\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^x=\textup{e}^x\quad\textrm{and}\quad\int \textup{e}^x\, \mathrm{d}\kern-0.5pt x=\textup{e}^x+C\,.
 ```
 
 ### General Exponentials and Logarithms
 
-We can use the fact that ``ℯ^x`` is now defined for all real ``x`` to define the arbitrary exponential ``a^x`` (where ``a&gt;0``) for all real ``x``. If ``r`` is rational, then ``\ln\left(a^r\right)=r\ln a``; therefore, ``a^r=ℯ^{r\ln a}``. However, ``ℯ^{x\ln a}`` is defined for all real ``x``, so we can use it as a definition of ``a^x`` with no possibility of contradiction arising if ``x`` is rational.
+We can use the fact that ``\textup{e}^x`` is now defined for all real ``x`` to define the arbitrary exponential ``a^x`` (where ``a&gt;0``) for all real ``x``. If ``r`` is rational, then ``\ln\left(a^r\right)=r\ln a``; therefore, ``a^r=\textup{e}^{r\ln a}``. However, ``\textup{e}^{x\ln a}`` is defined for all real ``x``, so we can use it as a definition of ``a^x`` with no possibility of contradiction arising if ``x`` is rational.
 
 !!! definition
 
 	Let
 	```math
-	\forall x\in ℝ,\forall a&gt;0:a^x=ℯ^{x\ln a}\,.
+	\forall x\in \mathbb{R},\forall a&gt;0:a^x=\textup{e}^{x\ln a}\,.
 	```
 
-The laws of exponents for ``a^x`` can now be obtained from those for ``ℯ^x``, as can the derivative:
+The laws of exponents for ``a^x`` can now be obtained from those for ``\textup{e}^x``, as can the derivative:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}ℯ^{x\ln a}=ℯ^{x\ln a}\ln a=a^x\ln a\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{x\ln a}=\textup{e}^{x\ln a}\ln a=a^x\ln a\,.
 ```
 
 We can also verify the General Power Rule for ``x^a``, where ``a`` is any real number, provided ``x&gt;0``:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}ℯ^{a\ln x}=ℯ^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{a\ln x}=\textup{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
 ```
 
 !!! example
 
 	Find the critical point of ``y=x^x``.
 
-	We can’t differentiate ``x^x`` by treating it as a power (like ``x^a``) because the exponent varies. We can’t treat it as an exponential (like ``a^x``) because the base varies. We can differentiate it if we first write it in terms of the exponential function, ``x^x=ℯ^{x\ln x}``, and then use the Chain Rule and the Product Rule:
+	We can’t differentiate ``x^x`` by treating it as a power (like ``x^a``) because the exponent varies. We can’t treat it as an exponential (like ``a^x``) because the base varies. We can differentiate it if we first write it in terms of the exponential function, ``x^x=\textup{e}^{x\ln x}``, and then use the Chain Rule and the Product Rule:
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}ℯ^{x\ln x}=ℯ^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{x\ln x}=\textup{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
 	```
 
-	Now ``x^x`` is defined only for ``x&gt;0`` and is itself never ``0``. (Why?) Therefore, the critical point occurs where ``1+\ln x=0``; that is, ``\ln x=-1``, or ``x=\frac{1}{ℯ}``.
+	Now ``x^x`` is defined only for ``x&gt;0`` and is itself never ``0``. (Why?) Therefore, the critical point occurs where ``1+\ln x=0``; that is, ``\ln x=-1``, or ``x=\frac{1}{\textup{e}}``.
 
 Finally, observe that ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a`` is negative for all ``x`` if ``0&lt;a&lt;1`` and is positive for all ``x`` if ``a&gt;1``. Thus, ``a^x`` is bijective and has an inverse function, ``\log_a x``, provided ``a&gt;0`` and ``a\ne1``. If ``y=\log_a x``, then ``x=a^y`` and, differentiating implicitly with respect to ``x``, we get
 ```math
@@ -579,7 +579,7 @@ Thus, the derivative of ``\log_a x`` is given by
 \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\log_a x=\frac{1}{x\ln a}\,.
 ```
 
-Since ``\log_a x`` can be expressed in terms of logarithms to any other base, say ``ℯ``,
+Since ``\log_a x`` can be expressed in terms of logarithms to any other base, say ``\textup{e}``,
 ```math
 \log_a x=\frac{\ln x}{\ln a}\,,
 ```
@@ -595,7 +595,7 @@ y=\left(f\left(x\right)\right)^{g\left(x\right)}\quad\textrm{for }f\left(x\right
 
 Since the variable appears in both the base and the exponent, neither the general power rule, ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=ax^{a-1}``, nor the exponential rule, ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a`` can be directly applied. One method for finding the derivative of such a function is to express it in the form
 ```math
-y=ℯ^{g\left(x\right)\ln f\left(x\right)}
+y=\textup{e}^{g\left(x\right)\ln f\left(x\right)}
 ```
 and then differentiate, using the Product Rule to handle the exponent. This is the method used in previous example.
 
@@ -635,16 +635,16 @@ The six trigonometric functions are periodic and, hence, not one-to-one. However
 
 ### The Inverse Sine (or Arcsine) Function
 
-Let us define a function ``\operatorname{Sin} x`` (note the capital letter) to be ``\sin x``, restricted so that its domain is the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]``:
+Let us define a function ``\operatorname{Sin} x`` (note the capital letter) to be ``\sin x``, restricted so that its domain is the interval ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]``:
 
 !!! definition
 
 	```math
-	\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
+	\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\textup{π}}{2}\le x\le\frac{\textup{π}}{2}\,.
 	```
 
-Since its derivative ``\cos x`` is positive on the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]``, the function ``\operatorname{Sin} x`` is
-increasing on its domain, so it is a bijective function. It has domain ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` and range ``\left[-1,1\right]``.
+Since its derivative ``\cos x`` is positive on the interval ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]``, the function ``\operatorname{Sin} x`` is
+increasing on its domain, so it is a bijective function. It has domain ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]`` and range ``\left[-1,1\right]``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -653,7 +653,7 @@ Figure("", "The graph of " * tex("\\operatorname{Sin}x") * "." ) do
 	Drawing(width=10scale, height=3scale) do
 		xmid = 5scale
 		ymid = 1.5scale
-		axis_xy(10scale,3scale,xmid,ymid,scale,(-pi/2,pi/2), (-1, 1); xs=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),xl=(2, 1), xh=(2, 2))
+		axis_xy(10scale,3scale,xmid,ymid,scale,(-pi/2,pi/2), (-1, 1); xs=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"),xl=(2, 1), xh=(2, 2))
 		plot_xy(x->sin(x), -5:0.01:5, tuple(), xmid, ymid, scale; width=1, color="RoyalBlue", dashed="3")
 		plot_xy(x->sin(x), -pi/2:0.01:pi/2, (-pi/2, pi/2), xmid, ymid, scale; width=1)
 	end
@@ -665,7 +665,7 @@ Being bijective, ``\operatorname{Sin}`` has an inverse function which is denoted
 !!! definition
 
 	```math
-	\forall y\in\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
+	\forall y\in\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
 	```
 
 {cell=chap display=false output=false}
@@ -675,13 +675,13 @@ Figure("", "The graph of " * tex("\\operatorname{Arcsin}x") * "." ) do
 	Drawing(width=3scale, height=4scale) do
 		xmid = 1.5scale
 		ymid = 2scale
-		axis_xy(3scale,4scale,xmid,ymid,scale,(-1, 1),(-pi/2,pi/2); ys=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),yl=(2, 1), yh=(2, 2))
+		axis_xy(3scale,4scale,xmid,ymid,scale,(-1, 1),(-pi/2,pi/2); ys=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"),yl=(2, 1), yh=(2, 2))
 		plot_xy(x->asin(x), -1:0.01:1, tuple(-1, 1), xmid, ymid, scale; width=1)
 	end
 end
 ```
 
-The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\operatorname{Sin}`` in the line ``y=x``. The domain of ``\operatorname{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\operatorname{Sin}``), and the range of ``\operatorname{Arcsin}`` is ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` (the domain of ``\operatorname{Sin}``).
+The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\operatorname{Sin}`` in the line ``y=x``. The domain of ``\operatorname{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\operatorname{Sin}``), and the range of ``\operatorname{Arcsin}`` is ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]`` (the domain of ``\operatorname{Sin}``).
 
 !!! example
 
@@ -695,11 +695,11 @@ The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\oper
 
 	Because both sides of the above equation are odd functions of ``x``, the same result holds for ``0&gt; x&gt;-1``.
 
-Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``. Differentiating with respect to ``x``, we obtain
+Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\textup{π}}{2}\le y\le\frac{\textup{π}}{2}``. Differentiating with respect to ``x``, we obtain
 ```math
 1=\cos y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
 ```
-Since ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``, we know that ``\cos y\ge 0``. Therefore,
+Since ``-\frac{\textup{π}}{2}\le y\le\frac{\textup{π}}{2}``, we know that ``\cos y\ge 0``. Therefore,
 ```math
 \cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
 ```
@@ -725,12 +725,12 @@ Note that the inverse sine function is differentiable only on the open interval 
 	   ```
 	2. Where is ``f`` differentiable? Where is ``f`` continuous?
 
-	   ``f`` is differentiable at all points where ``\cos x\ne0``, that is, everywhere except at odd multiples of ``\frac{\uppi}{2}``.
+	   ``f`` is differentiable at all points where ``\cos x\ne0``, that is, everywhere except at odd multiples of ``\frac{\textup{π}}{2}``.
        Since ``\sin`` is continuous everywhere and has values in ``\left[-1,1\right]``, and since ``\operatorname{Arcsin}`` is continuous on``\left[-1,1\right]``, we have that ``f`` is continuous on the whole real line.
 
 	3. Use the previous results to sketch the graph of ``f``.
 
-       Since ``f`` is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between ``1`` and ``-1`` on intervals between consecutive odd multiples of ``\frac{\uppi}{2}``. Since ``f^\prime\left(x\right)=1`` on the interval ``\left]-1,1\right[``, the graph must be as shown below
+       Since ``f`` is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between ``1`` and ``-1`` on intervals between consecutive odd multiples of ``\frac{\textup{π}}{2}``. Since ``f^\prime\left(x\right)=1`` on the interval ``\left]-1,1\right[``, the graph must be as shown below
 
 	   {cell=chap display=false output=false}
 	   ```julia
@@ -739,7 +739,7 @@ Note that the inverse sine function is differentiable only on the open interval 
 			Drawing(width=14scale, height=4scale) do
 				xmid = 7scale
 				ymid = 2scale
-				axis_xy(14scale,4scale,xmid,ymid,scale,(-pi/2,pi/2), (-pi/2,pi/2); xs=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),xl=(2, 1), xh=(2, 2), ys=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"), yl=(2, 1), yh=(2, 2))
+				axis_xy(14scale,4scale,xmid,ymid,scale,(-pi/2,pi/2), (-pi/2,pi/2); xs=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"),xl=(2, 1), xh=(2, 2), ys=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"), yl=(2, 1), yh=(2, 2))
 				plot_xy(x->asin(sin(x)), -7:0.01:7, (-pi/2, pi/2), xmid, ymid, scale; width=1)
 			end
 	   end
@@ -752,15 +752,15 @@ The inverse tangent function is defined in a manner similar to the inverse sine.
 !!! definition
 
 	```math
-	\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
+	\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\textup{π}}{2}\le x\le\frac{\textup{π}}{2}\,.
 	```
 
-The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent function and is denoted ``\operatorname{Arctan}`` (or ``\operatorname{arctan}``,  ``\operatorname{atan}``, or ``\operatorname{Tan}^{-1}``). The domain of ``\operatorname{Arctan}`` is the whole real line (the range of ``\operatorname{Tan}``). Its range is the open interval ``\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[``.
+The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent function and is denoted ``\operatorname{Arctan}`` (or ``\operatorname{arctan}``,  ``\operatorname{atan}``, or ``\operatorname{Tan}^{-1}``). The domain of ``\operatorname{Arctan}`` is the whole real line (the range of ``\operatorname{Tan}``). Its range is the open interval ``\left]-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right[``.
 
 !!! definition
 
 	```math
-	\forall y\in\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
+	\forall y\in\left]-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
 	```
 
 The derivative of the inverse tangent function is also found by implicit differentiation: if ``y=\operatorname{Arctan}x``, then ``x=\operatorname{Tan}y`` and
@@ -768,18 +768,18 @@ The derivative of the inverse tangent function is also found by implicit differe
 1 = \sec^2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+\tan^2 y\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+x^2\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
 ```
 
-The function ``\cos x`` is bijective on the interval ``\left[0,\uppi\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
+The function ``\cos x`` is bijective on the interval ``\left[0,\textup{π}\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
 
 ```math
-\forall y\in\left[0,\uppi\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
+\forall y\in\left[0,\textup{π}\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
 ```
 
-However, ``\cos y=\sin\left(\frac{\uppi}{2}-y\right)``, and ``\frac{\uppi}{2}-y`` is in the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` when ``y\in\left[0,\uppi\right]``.
+However, ``\cos y=\sin\left(\frac{\textup{π}}{2}-y\right)``, and ``\frac{\textup{π}}{2}-y`` is in the interval ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]`` when ``y\in\left[0,\textup{π}\right]``.
 
 !!! definition
 
 	```math
-	\operatorname{Arccos}x=\frac{\uppi}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
+	\operatorname{Arccos}x=\frac{\textup{π}}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
 	```
 
 The derivative of ``\operatorname{Arccos}x`` is the negative of that of ``\operatorname{Arcsin}x``.
@@ -791,7 +791,7 @@ The derivative of ``\operatorname{Arccos}x`` is the negative of that of ``\opera
 	For any real ``x`` the hyperbolic cosine, ``\cosh x``, and the hyperbolic sine, ``\sinh x``, are defined by
 
 	```math
-	\cosh x=\frac{ℯ^x+ℯ^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{ℯ^x-ℯ^{-x}}{2}\,.
+	\cosh x=\frac{\textup{e}^x+\textup{e}^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{\textup{e}^x-\textup{e}^{-x}}{2}\,.
 	```
 
 Recall that cosine and sine are called circular functions because, for any ``t``, the point ``\left(\cos t, \sin t\right)`` lies on the circle with equation ``x^2+y^2=1``. Similarly, ``\cosh`` and ``\sinh`` are called hyperbolic functions because the point ``\left(\cosh t, \sinh t\right)`` lies on the rectangular hyperbola with equations ``x^2-y^2=1``,
@@ -859,8 +859,8 @@ Many other properties of the hyperbolic functions resemble those of the correspo
 
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{ℯ^x+ℯ^{-x}}{2}=\frac{ℯ^x+ℯ^{-x}\left(-1\right)}{2}=\sinh x\\
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{ℯ^x-ℯ^{-x}}{2}=\frac{ℯ^x-ℯ^{-x}\left(-1\right)}{2}=\cosh x\,.
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\textup{e}^x+\textup{e}^{-x}}{2}=\frac{\textup{e}^x+\textup{e}^{-x}\left(-1\right)}{2}=\sinh x\\
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\textup{e}^x-\textup{e}^{-x}}{2}=\frac{\textup{e}^x-\textup{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
 	\end{aligned}
 	```
 
@@ -879,7 +879,7 @@ By analogy with the trigonometric functions, other hyperbolic functions can be d
 !!! definition
 
 	```math
-	\tanh x=\frac{\sinh x}{\cosh x}=\frac{ℯ^x-ℯ^{-x}}{ℯ^x+ℯ^{-x}}=\frac{1-ℯ^{-2x}}{1+ℯ^{-2x}}=\frac{ℯ^{2x}-1}{ℯ^{2x}+1}\,.
+	\tanh x=\frac{\sinh x}{\cosh x}=\frac{\textup{e}^x-\textup{e}^{-x}}{\textup{e}^x+\textup{e}^{-x}}=\frac{1-\textup{e}^{-2x}}{1+\textup{e}^{-2x}}=\frac{\textup{e}^{2x}-1}{\textup{e}^{2x}+1}\,.
 	```
 
 {cell=chap display=false output=false}
@@ -905,19 +905,19 @@ Since the hyperbolic functions are defined in terms of exponentials, it is not s
 
 	Let ``y=\operatorname{arcsinh} x``. Then
 	```math
-	x = \sinh y=\frac{ℯ^y-ℯ^{-y}}{2}=\frac{ℯ^{2y}-1}{2ℯ^{2y}}\,.
+	x = \sinh y=\frac{\textup{e}^y-\textup{e}^{-y}}{2}=\frac{\textup{e}^{2y}-1}{2\textup{e}^{2y}}\,.
 	```
 	Therefore,
 	```math
-	\left(ℯ^y\right)^2-2xℯ^y-1=0\,.
+	\left(\textup{e}^y\right)^2-2x\textup{e}^y-1=0\,.
 	```
-	This is a quadratic equation in ``ℯ^y``, and it can be solved by the quadratic formula:
+	This is a quadratic equation in ``\textup{e}^y``, and it can be solved by the quadratic formula:
 	```math
-	ℯ^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
+	\textup{e}^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
 	```
-	Note that ``\sqrt{x^2+1}&gt;x``. Since ``ℯ^y`` cannot be negative, we need to use the positive sign:
+	Note that ``\sqrt{x^2+1}&gt;x``. Since ``\textup{e}^y`` cannot be negative, we need to use the positive sign:
 	```math
-	ℯ^y=x+\sqrt{x^2+1}\,.
+	\textup{e}^y=x+\sqrt{x^2+1}\,.
 	```
 	Hence, ``y=\ln\left(x+\sqrt{x^2+1}\right)``, and we have
 	```math
@@ -926,11 +926,11 @@ Since the hyperbolic functions are defined in terms of exponentials, it is not s
 
 	Now let ``y=\operatorname{arctanh} x``. Then
 	```math
-	x=\tanh y=\frac{ℯ^y-ℯ^{-y}}{ℯ^y+ℯ^{-y}}=\frac{ℯ^{2y}-1}{ℯ^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
+	x=\tanh y=\frac{\textup{e}^y-\textup{e}^{-y}}{\textup{e}^y+\textup{e}^{-y}}=\frac{\textup{e}^{2y}-1}{\textup{e}^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
 	```
 	or
 	```math
-	ℯ^{2y}=\frac{1+x}{1-x}.
+	\textup{e}^{2y}=\frac{1+x}{1-x}.
 	```
 	Thus,
 	```math

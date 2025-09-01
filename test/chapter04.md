@@ -459,15 +459,15 @@ The three derivative formulas calculated in this example are special cases of th
 Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If ``y=f\left(x\right)``, we can use the dependent variable ``y`` to represent the function, and we can denote the derivative of the function with respect to ``x`` in any of the following ways:
 
 ```math
-𝖣_x\kern-0.5pt y=y\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f\prime\left(x\right)=𝖣_x\kern-0.5pt f\left(x\right)=𝖣\kern-0.5pt f\left(x\right)\,.
+\mathsf{D}_x\kern-0.5pt y=y\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
 ```
 
-(In the forms using “``𝖣_x``,” we can omit the subscript ``x`` if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable ``x`` is to write ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` in front of that expression. The symbol ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` is a differential operator and should be read “the derivative with respect to ``x`` of ``\dots``”.
+(In the forms using “``\mathsf{D}_x``,” we can omit the subscript ``x`` if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable ``x`` is to write ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` in front of that expression. The symbol ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` is a differential operator and should be read “the derivative with respect to ``x`` of ``\dots``”.
 
 The value of the derivative of a function at a particular number ``x_0`` in its domain can also be expressed in several ways:
 
 ```math
-\left.𝖣_x\kern-0.5pt y\right|_{x=x_0}=\left.y\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f\prime\left(x_0\right)=𝖣_x\kern-0.5pt f\left(x_0\right)\,.
+\left.\mathsf{D}_x\kern-0.5pt y\right|_{x=x_0}=\left.y\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f\prime\left(x_0\right)=\mathsf{D}_x\kern-0.5pt f\left(x_0\right)\,.
 ```
 
 The symbol ``\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}`` is called an *evaluation symbol*. It signifies that the expression preceding it should be evaluated at ``x=x_0``. Do not confuse ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)`` and ``\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}``. The first expression represents a *function*, ``f\prime\left(x\right)``. The second represents a *number* ``f\prime\left(x_0\right)``.
@@ -921,11 +921,11 @@ The graph of the function ``\displaystyle\frac{\sin\theta}{\theta}`` is shown in
 ```julia
 Figure("", tex(raw"\displaystyle\lim_{\theta\to 0}\frac{\sin\theta}{\theta}=1") ) do
 	scale = 40
-	Drawing(width=14scale, height=2scale) do
+	Drawing(width=14scale, height=2.2scale) do
 		xmid = 7scale
 		ymid = 1.5scale
 		f = x->sin(x)/x
-		axis_xy(14scale,2scale,xmid,ymid,scale,(-2pi,-pi,-pi/2,pi/2,pi,2pi),(1,),xs=("-2\\uppi", "-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","2\\uppi"), xl=(3, 2, 2, 1, 1, 2), xh=(1,1,2,2,1,1))
+		axis_xy(14scale,2scale,xmid,ymid,scale,(-2pi,-pi,-pi/2,pi/2,pi,2pi),(1,),xs=("-2\\textup{π}", "-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","2\\textup{π}"), xl=(3, 2, 2, 1, 1, 2), xh=(1,1,2,2,1,1))
 		plot_xy(f, -7:0.01:-0.01, tuple(), xmid, ymid, scale, width=1)
 		plot_xy(f, 0.01:0.01:7, tuple(), xmid, ymid, scale, width=1)
 		circle(cx=xmid, cy=ymid-scale, fill="white", stroke="red", r=3)
@@ -1028,7 +1028,7 @@ To calculate the derivative of ``\sin x``, we need the addition formula for sine
 !!! proof
 	We make use of the complementary angle identities, and the Chain rule:
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\textup{π}}{2}-x\right)=\left(-1\right)\cos\left(\frac{\textup{π}}{2}-x\right)=-\sin x\,.
 	```
 
 Because ``\sin x`` and ``\cos x`` are differentiable everywhere, the functions
@@ -1061,12 +1061,12 @@ are differentiable at every value of ``x`` at which they are defined (i.e., wher
 
 If the derivative ``y\prime=f\prime\left(x\right)`` of a function ``y=f\left(x\right)`` is itself differentiable at ``x``, we can calculate its derivative, which we call the second derivative of ``f`` and denote by ``y\prime\prime=f\prime\prime\left(x\right)``. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are
 ```math
-y\prime\prime=f\prime\prime\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=𝖣_x^2y=𝖣_x^2f\left(x\right)\,.
+y\prime\prime=f\prime\prime\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
 ```
 
 Similarly, you can consider third-, fourth-, and in general ``n``th-order derivatives. The prime notation is inconvenient for derivatives of high order, so we denote the order by a superscript in parentheses (to distinguish it from an exponent): the ``n``th derivative of ``y=f\left(x\right)`` is
 ```math
-y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=𝖣_x^ny=𝖣_x^nf\left(x\right)\,,
+y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
 ```
 and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f\prime\prime\prime``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
 

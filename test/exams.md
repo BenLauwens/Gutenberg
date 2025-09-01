@@ -403,7 +403,7 @@ Determine the limit ``L`` for the given ``a``, and prove that it is the limit by
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -624,7 +624,7 @@ A continuous function on ``\left[a,b\right]`` attains both an absolute maximum a
 
     Since ``f`` is continuous on ``\left[a,b\right]``, by the Boundness theorem ``f`` is bounded on ``\left[a,b\right]``.
 
-    Since ``f`` is bounded, its image set is a nonempty subset of ``ℝ`` which is bounded above, so by the Completeness axiom it has a least upper bound.
+    Since ``f`` is bounded, its image set is a nonempty subset of ``\mathbb{R}`` which is bounded above, so by the Completeness axiom it has a least upper bound.
 
     Let ``M=\sup f\left(\left[a,b\right]\right)``. By definition of ``M``, ``f\left(x\right)\le M`` for all ``x\in\left[a,b\right]``.
 
@@ -670,7 +670,7 @@ Show that
 {class = pagebreak}
 ## Explain the proof!
 
-Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 !!! proof "by bisection and contradiction"
 
@@ -684,13 +684,13 @@ Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\r
 
 	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``𝒪``.
 
-	By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+	By the nested intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
 	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``𝒪``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
 
 	Since ``\left]c_i, d_i\right[`` is open, there exists an ``\delta &gt;0`` such that ``\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[``.
 
-	Since ``x\in \bigcap_{n\in ℕ}I_n``, there exists ``N\in ℕ`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
+	Since ``x\in \bigcap_{n\in \mathbb{N}}I_n``, there exists ``N\in \mathbb{N}`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
 
 	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``𝒪``.
 
@@ -757,7 +757,7 @@ If ``a_1&lt;a_2&lt;\cdots&lt;a_n``, find the minimum values of ``\displaystyle f
 {class = pagebreak}
 ## Explain the proof!
 
-Let ``x\in ℝ`` and ``\varepsilon\in ℝ^+``. The interval ``\left]x-\varepsilon,x+\varepsilon\right[`` contains a rational number.
+Let ``x\in \mathbb{R}`` and ``\varepsilon\in \mathbb{R}^+``. The interval ``\left]x-\varepsilon,x+\varepsilon\right[`` contains a rational number.
 
 !!! proof "by bisection"
     If ``x`` is rational we are done, so let ``x`` be irrational.
@@ -768,9 +768,9 @@ Let ``x\in ℝ`` and ``\varepsilon\in ℝ^+``. The interval ``\left]x-\varepsilo
 
     Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` contains ``x`` and has rational endpoints.
 
-    By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{y\right\}`` where ``y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``. Since ``x\in I_n`` for all ``n\in ℕ``, ``y=x``.
+    By the nested intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{y\right\}`` where ``y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``. Since ``x\in I_n`` for all ``n\in \mathbb{N}``, ``y=x``.
 
-    Since ``x=\sup\left\{a_n\right\}``, by the previous lemma, the open interval ``\left]x-\varepsilon,x+\varepsilon\right[`` contains ``a_m\in ℚ`` for some ``m\in ℕ``.
+    Since ``x=\sup\left\{a_n\right\}``, by the previous lemma, the open interval ``\left]x-\varepsilon,x+\varepsilon\right[`` contains ``a_m\in \mathbb{Q}`` for some ``m\in \mathbb{N}``.
 
 {data-type = unnumbered, class = page.reset}
 # Exam: ES111 Calculus – Series 14
@@ -885,7 +885,7 @@ If ``f`` is continous on ``\left[a,b\right]``, then ``f`` is bounded on ``\left[
 
     Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` is unbounded and repeat.
 
-    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+    By the Nested Intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
     Since ``f`` is continuous at ``c``, ``f`` is bounded on some open interval containing ``c``. However, as we have seen, such an open interval contains one of the intervals ``I_N``, which is a contradiction since ``f`` is unbounded on each ``I_n``.
 
@@ -924,7 +924,7 @@ A continuous function on ``\left[a,b\right]`` attains both an absolute maximum a
 
     Since ``f`` is continuous on ``\left[a,b\right]``, by the Boundness theorem ``f`` is bounded on ``\left[a,b\right]``.
 
-    Since ``f`` is bounded, its image set is a nonempty subset of ``ℝ`` which is bounded above, so by the Completeness axiom it has a least upper bound.
+    Since ``f`` is bounded, its image set is a nonempty subset of ``\mathbb{R}`` which is bounded above, so by the Completeness axiom it has a least upper bound.
 
     Let ``M=\sup f\left(\left[a,b\right]\right)``. By definition of ``M``, ``f\left(x\right)\le M`` for all ``x\in\left[a,b\right]``.
 
@@ -972,7 +972,7 @@ Suppose ``h`` is a function such that ``h^\prime\left(x\right) = \sin\left(sin\l
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -1385,16 +1385,16 @@ Suppose that ``g`` is a differentiable function on ``\left[a,b\right]`` that sat
 
 ## Do some calculations!
 
-If ``f`` is integrable on ``\left[-\uppi,\uppi\right]``, show that the minimum value of
+If ``f`` is integrable on ``\left[-\textup{π},\textup{π}\right]``, show that the minimum value of
 
 ```math
-\int_{-\uppi}^\uppi\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d\kern-0.5pt x
+\int_{-\textup{π}}^\textup{π}\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d\kern-0.5pt x
 ```
 
 occurs when
 
 ```math
-a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d\kern-0.5pt x
+a=\frac{1}{\textup{π}}\int_{-\textup{π}}^\textup{π} f\left(x\right)\cos nx\,\mathrm d\kern-0.5pt x
 ```
 
 (Bring ``a`` outside the integral sign, obtaining a quadratic expression in ``a``.)
@@ -1404,7 +1404,7 @@ a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d\kern-0.5p
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -1461,7 +1461,7 @@ s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5p
 
 Use logarithmic differentiation to find ``f^\prime\left(x\right)`` for each of the following.
 
-1. ``\displaystyle f\left(x\right)=\left(1+x\right)\left(1+ℯ^{x^2}\right)\,.``
+1. ``\displaystyle f\left(x\right)=\left(1+x\right)\left(1+\textup{e}^{x^2}\right)\,.``
 
 2. ``\displaystyle f\left(x\right)=\left(\sin x\right)^{\cos x}+\left(\cos x\right)^{\sin x}\,.``
 
@@ -1562,7 +1562,7 @@ Find the following limits by l'Hôpital's Rule.
 
 1. ``\displaystyle \lim_{x\to 0}\left(1-x\right)^\frac{1}{x}\,.``
 
-2. ``\displaystyle \lim_{x\to \frac{\uppi}{4}}\left(\tan x\right)^{\tan 2x}\,.``
+2. ``\displaystyle \lim_{x\to \frac{\textup{π}}{4}}\left(\tan x\right)^{\tan 2x}\,.``
 
 3. ``\displaystyle \lim_{x\to 0}\left(\cos x\right)^\frac{1}{x^2}\,.``
 
@@ -1628,7 +1628,7 @@ If ``f`` is a continuous function at the point ``L`` and if ``\displaystyle\lim_
 Find all continuous functions ``f`` satisfying
 
 ```math
-\int_0^{x^2}f\left(x\right)\,\mathrm d\kern-0.5pt x=1-ℯ^{2x^2}\,.
+\int_0^{x^2}f\left(x\right)\,\mathrm d\kern-0.5pt x=1-\textup{e}^{2x^2}\,.
 ```
 
 {class = pagebreak}
@@ -1718,7 +1718,7 @@ Let ``f`` be a continuous function defined on ``\left[a,b\right]``. If ``f\left(
 
     Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` changes sign and repeat.
 
-    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+    By the Nested Intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
     Suppose ``f\left(c\right)&gt;0``. By the Aura theorem, ``f`` must be positive on an open interval containing ``c``. Since ``c=\sup\left\{a_n\right\}``, by the Capture theorem this open interval must contain some ``a_m``. But ``f\left(a_m\right)&lt;0`` which is a contradiction.
 
@@ -1737,22 +1737,22 @@ Last Name: ……………………………………………………………
 
 ## Create a proof!
 
-Let ``A`` be a nonempty subset of ``ℝ``. If ``A`` is bounded below, than any open interval containing ``\inf A`` contains an element of ``A``.
+Let ``A`` be a nonempty subset of ``\mathbb{R}``. If ``A`` is bounded below, than any open interval containing ``\inf A`` contains an element of ``A``.
 
 ## Do some calculations!
 
 Suppose that ``f^{\prime\prime}`` is continuous and that
 
 ```math
-\int_0^\uppi\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d\kern-0.5pt x=2\,.
+\int_0^\textup{π}\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d\kern-0.5pt x=2\,.
 ```
 
-Given that ``f\left(\uppi\right) = 1``, compute ``f\left(0\right)``.
+Given that ``f\left(\textup{π}\right) = 1``, compute ``f\left(0\right)``.
 
 {class = pagebreak}
 ## Explain the proof!
 
-Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 !!! proof "by bisection and contradiction"
 
@@ -1766,13 +1766,13 @@ Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\r
 
 	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``𝒪``.
 
-	By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+	By the nested intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
 	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``𝒪``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
 
 	Since ``\left]c_i, d_i\right[`` is open, there exists an ``\delta &gt;0`` such that ``\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[``.
 
-	Since ``x\in \bigcap_{n\in ℕ}I_n``, there exists ``N\in ℕ`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
+	Since ``x\in \bigcap_{n\in \mathbb{N}}I_n``, there exists ``N\in \mathbb{N}`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
 
 	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``𝒪``.
 
@@ -1811,7 +1811,7 @@ Let ``a&gt;0`` and ``S`` a set of real numbers. Show that ``\inf aS=a\inf S``.
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 This theorem is used in the proof of the following theorem.
 
@@ -1854,7 +1854,7 @@ Let
 
 ```math
 f\left(x\right) = \begin{cases}
-\frac{ℯ^x-1}{x}\,,&x\ne 0\\
+\frac{\textup{e}^x-1}{x}\,,&x\ne 0\\
 1\,,&x=0\,.
 \end{cases}
 ```
@@ -1865,9 +1865,9 @@ f\left(x\right) = \begin{cases}
 
 ## Explain the proof!
 
-If ``\forall n\in ℕ``, we have a closed interval
+If ``\forall n\in \mathbb{N}``, we have a closed interval
 ```math
-I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a_n\le x\le b_n\right\}
+I_n=\left[a_n, b_n\right]=\left\{x\mid x\in \mathbb{R}\wedge a_n\le x\le b_n\right\}
 ```
 such that
 ```math
@@ -1875,7 +1875,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 ```
 then
 ```math
-\bigcap_{n\in ℕ}I_n\ne\emptyset
+\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset
 ```
 and if, in addition,
 ```math
@@ -1883,22 +1883,22 @@ and if, in addition,
 ```
 then
 ```math
-\bigcap_{n\in ℕ}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
+\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
 ```
 
 !!! proof
 
     We split the proof in four parts.
 
-    - We prove first that ``\bigcap_{n\in ℕ}I_n\ne\emptyset``.
+    - We prove first that ``\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset``.
     
       Since the intervals are nested, ``a_m \le b_n`` for all ``m`` and ``n``. This shows that every ``b_n`` is an upper bound for the set ``\left\{a_m\right\}`` and every ``a_m`` is a lower bound for the set ``\left\{b_n\right\}``. Let ``a = \sup\{a_n\}`` and ``b = \inf\{b_n\}``. 
     
-      By definition, ``a_n \le a`` for all ``n``, and since ``b_n`` is an upper bound for ``\left\{a_n\right\}``, we have ``a_n\le a\le b_n``, which says that ``a\in I_n`` for every ``n`` and so ``a\in\bigcap_{n\in ℕ}I_n``. 
+      By definition, ``a_n \le a`` for all ``n``, and since ``b_n`` is an upper bound for ``\left\{a_n\right\}``, we have ``a_n\le a\le b_n``, which says that ``a\in I_n`` for every ``n`` and so ``a\in\bigcap_{n\in \mathbb{N}}I_n``. 
         
-      Similarly, ``b\in\bigcap_{n\in ℕ}I_n``.
+      Similarly, ``b\in\bigcap_{n\in \mathbb{N}}I_n``.
 
-      Therefore, ``\bigcap_{n\in ℕ}I_n\ne\emptyset``
+      Therefore, ``\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset``
 
     - Secondly, we prove by contradiction that ``a\le b``.
 
@@ -1918,16 +1918,16 @@ then
 
       Therefore, ``a=b``.
 
-    - Finally, we prove that ``\bigcap_{n\in ℕ}I_n=\left\{a\right\}``.
+    - Finally, we prove that ``\bigcap_{n\in \mathbb{N}}I_n=\left\{a\right\}``.
 
-      Let ``y\in\bigcap_{n\in ℕ}I_n``. Then, ``a_n\le y\le b_n`` for all ``n``.
+      Let ``y\in\bigcap_{n\in \mathbb{N}}I_n``. Then, ``a_n\le y\le b_n`` for all ``n``.
 
       The first inequality implies that ``y`` is an upper bound for ``a_n``, hence ``a\le y``.
 
       The second inequality implies that ``y`` is an lower bound for ``b_n``, hence ``y\le b=a``.
 
-      Combining both inequalities ``a\le y\le a``, we have ``y=a``, so ``\bigcap_{n\in ℕ}I_n \subset \left\{a\right\}``.
+      Combining both inequalities ``a\le y\le a``, we have ``y=a``, so ``\bigcap_{n\in \mathbb{N}}I_n \subset \left\{a\right\}``.
 
-      We also have ``\left\{a\right\} \subset \bigcap_{n\in ℕ}I_n``.
+      We also have ``\left\{a\right\} \subset \bigcap_{n\in \mathbb{N}}I_n``.
 
-      Therefore, ``\bigcap_{n\in ℕ}I_n=\left\{a\right\}``.
+      Therefore, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{a\right\}``.

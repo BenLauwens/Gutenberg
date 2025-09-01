@@ -176,17 +176,17 @@ We now introduce terminology used to describe various properties of sequences.
 
 !!! definition
 
-	- The sequence ``\left(a_n\right)`` is *bounded below* by ``L``, and ``L`` is a *lower bound* for ``\left(a_n\right)``, if ``a_n\ge L`` for every ``\left.n\inℕ\right.``. The sequence is *bounded above* by ``M`` and ``M`` is an upper bound, if ``a_n\le M`` for every ``n\inℕ``.
+	- The sequence ``\left(a_n\right)`` is *bounded below* by ``L``, and ``L`` is a *lower bound* for ``\left(a_n\right)``, if ``a_n\ge L`` for every ``\left.n\in\mathbb{N}\right.``. The sequence is *bounded above* by ``M`` and ``M`` is an upper bound, if ``a_n\le M`` for every ``n\in\mathbb{N}``.
 
-	  The sequence ``\left(a_n\right)`` is *bounded* if it is both bounded above and bounded below. In this case there is a constant ``K`` such that ``\left|a_n\right|\le K`` for every ``n\inℕ``.
+	  The sequence ``\left(a_n\right)`` is *bounded* if it is both bounded above and bounded below. In this case there is a constant ``K`` such that ``\left|a_n\right|\le K`` for every ``n\in\mathbb{N}``.
 	  
-	- The sequence ``\left(a_n\right)`` is *positive* if it is bounded below by zero, that is, if ``a_n\ge 0`` for every ``n\inℕ``; it is *negative* if ``a_n\le 0 `` for every ``n\inℕ``.
+	- The sequence ``\left(a_n\right)`` is *positive* if it is bounded below by zero, that is, if ``a_n\ge 0`` for every ``n\in\mathbb{N}``; it is *negative* if ``a_n\le 0 `` for every ``n\in\mathbb{N}``.
 
-	- The sequence ``\left(a_n\right)`` is *increasing* if ``a_{n+1}\ge a_n`` for every ``n\inℕ``; it is *decreasing* if ``a_{n+1}\le a_n`` for every ``n\inℕ``. The sequence is said to be *monotonic* if it is either increasing or decreasing.
+	- The sequence ``\left(a_n\right)`` is *increasing* if ``a_{n+1}\ge a_n`` for every ``n\in\mathbb{N}``; it is *decreasing* if ``a_{n+1}\le a_n`` for every ``n\in\mathbb{N}``. The sequence is said to be *monotonic* if it is either increasing or decreasing.
 
-	- The sequence ``\left(a_n\right)`` is *alternating* if ``a_na_{n+1}&lt;0`` for every ``n\inℕ``, that is, if any two consecutive terms have opposite signs. Note that this definition requires ``a_n\ne0`` for every ``n\inℕ``.
+	- The sequence ``\left(a_n\right)`` is *alternating* if ``a_na_{n+1}&lt;0`` for every ``n\in\mathbb{N}``, that is, if any two consecutive terms have opposite signs. Note that this definition requires ``a_n\ne0`` for every ``n\in\mathbb{N}``.
 
-When you want to show that a sequence is increasing, you can try to show that the inequality ``a_{n+1}-a_n \ge 0`` holds for every ``n\inℕ``. Alternatively, if  ``a_n=f\left(n\right)`` for a differentiable function ``f\left(x\right)`` you can show that ``f`` is a nondecreasing function on ``\left[0,\infty\right[`` by showing that ``f^\prime\left(x\right)\ge0`` there. Similar approaches are useful for showing that a sequence is decreasing.
+When you want to show that a sequence is increasing, you can try to show that the inequality ``a_{n+1}-a_n \ge 0`` holds for every ``n\in\mathbb{N}``. Alternatively, if  ``a_n=f\left(n\right)`` for a differentiable function ``f\left(x\right)`` you can show that ``f`` is a nondecreasing function on ``\left[0,\infty\right[`` by showing that ``f^\prime\left(x\right)\ge0`` there. Similar approaches are useful for showing that a sequence is decreasing.
 
 The adverb *ultimately* is used to describe any termwise property of a sequence that the terms have from some point on, but not necessarily at the beginning of the sequence.
 
@@ -246,7 +246,7 @@ The limits of many explicitly defined sequences can be evaluated using these pro
 
 	1. ``\displaystyle \lim_{n\to\infty}\frac{2n^2-n-1}{5n^2+n-3}=\lim_{n\to\infty}\frac{2-\frac{1}{n}-\frac{1}{n^2}}{5+\frac{1}{n}-\frac{3}{n^2}}=\frac{2}{5}\,.``
 
-	2. Since ``\left|\cos n\right|\le 1`` for ``n\inℕ``, we have
+	2. Since ``\left|\cos n\right|\le 1`` for ``n\in\mathbb{N}``, we have
 
 	   ```math
 	   -\frac{1}{n}\le\frac{\cos n}{n}\le\frac{1}{n}\quad\textrm{for }n\ge 1\,.
@@ -273,7 +273,7 @@ The limits of many explicitly defined sequences can be evaluated using these pro
 
 	For ``\varepsilon = 1`` there exists a number ``N`` such that if ``n&gt; N``, then ``\left|a_n-L\right|&lt1``; therefore ``\left|a_n\right|&lt;1+\left| L\right|`` for such ``n``.
 
-	If ``K`` denotes the largest of the numbers ``\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|``, and ``1+\left| L\right|``, then ``\left|a_n\right|\le K`` for every ``n\in ℕ``. 
+	If ``K`` denotes the largest of the numbers ``\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|``, and ``1+\left| L\right|``, then ``\left|a_n\right|\le K`` for every ``n\in \mathbb{N}``. 
 	
 	Hence, ``\left(a_n\right)`` is bounded.
 
@@ -352,7 +352,7 @@ Thus, a series converges if and only if the sequence of its partial sums converg
 
 !!! definition
 
-	A series of the form ``\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots``, whose ``n``th term is ``a_n=ar^n``, is called a *geometric series*. The number ``a`` is the first term. The number ``r`` is called the common ratio of the series, since it is the value of the ratio of the ``\left(n+1\right)``th term to the ``n``th term for any ``n\in ℕ``:
+	A series of the form ``\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots``, whose ``n``th term is ``a_n=ar^n``, is called a *geometric series*. The number ``a`` is the first term. The number ``r`` is called the common ratio of the series, since it is the value of the ratio of the ``\left(n+1\right)``th term to the ``n``th term for any ``n\in \mathbb{N}``:
 
 	```math
 	\frac{a_{n+1}}{a_n}=\frac{ar^{n+1}}{ar^n}=r\,.
@@ -443,7 +443,7 @@ The following theorem asserts that it is only the ultimate behaviour of ``a_n`` 
 
 	2. ``\sum_{n=0}^\infty\left(a_n\pm b_n\right)`` converges to ``A\pm B``;
 
-	3. if ``a_n \le b_n`` for all ``n\in ℕ``, then ``A\le B``.
+	3. if ``a_n \le b_n`` for all ``n\in \mathbb{N}``, then ``A\le B``.
 
 !!! exercise
 
@@ -566,7 +566,7 @@ The integral test provides a means for determining whether an ultimately positiv
 	a_{N+2}&\le ra_{N+1}\le r^2a_N\\
 	a_{N+3}&\le ra_{N+2}\le r^3a_N\\
 	&\vdots\\
-	a_{N+k}&\le r^ka_N\quad\textrm{for }k\in ℕ\,.
+	a_{N+k}&\le r^ka_N\quad\textrm{for }k\in \mathbb{N}\,.
 	\end{aligned}
 	```
 
@@ -777,7 +777,7 @@ The series ``\sum_{n=0}^\infty c_nx^n`` is called the *Cauchy product* of the se
 	\frac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{n=0}^\infty x^n
 	```
 
-	holds for ``x\in\left]-1, 1\right[``, we can determine a power series representation for ``\frac{1}{\left(1-x\right)^2}`` by taking the Cauchy product of this series with itself. Since ``a_n=b_n=1`` for ``n\inℕ``, we have
+	holds for ``x\in\left]-1, 1\right[``, we can determine a power series representation for ``\frac{1}{\left(1-x\right)^2}`` by taking the Cauchy product of this series with itself. Since ``a_n=b_n=1`` for ``n\in\mathbb{N}``, we have
 
 	```math
 	c_n=\sum_{i=0}^n1=n+1
@@ -880,7 +880,7 @@ If a power series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` has a positive rad
 	If the series ``\sum_{n=0}^\infty a_n\left(x-c\right)^n`` converges to ``f\left(x\right)`` for ``x\in\left]c-R,c+R\right[``, where ``R&gt;0``, then
 
 	```math
-	a_n=\frac{f^{\left(n\right)}\left(c\right)}{n!}\quad\textrm{for }n\in ℕ\,.
+	a_n=\frac{f^{\left(n\right)}\left(c\right)}{n!}\quad\textrm{for }n\in \mathbb{N}\,.
 	```
 
 !!! proof
@@ -920,18 +920,18 @@ Most, but not all, of the elementary functions encountered in calculus are analy
 
 !!! example
 
-	Find the Taylor series for ``ℯ^x`` about ``x=c``. Where does the series converge to ``ℯ^x``? Where is ``ℯ^x`` analytic? What is the Maclaurin series for ``ℯ^x``?
+	Find the Taylor series for ``\textup{e}^x`` about ``x=c``. Where does the series converge to ``\textup{e}^x``? Where is ``\textup{e}^x`` analytic? What is the Maclaurin series for ``\textup{e}^x``?
 
-	Since all the derivatives of ``f\left(x\right)=ℯ^x`` are ``ℯ^x``, we have ``f^{\left(n\right)}\left(c\right)=ℯ^c`` for ``n\inℕ``. Thus, the taylorseries for ``ℯ^x`` about ``x=c`` is
+	Since all the derivatives of ``f\left(x\right)=\textup{e}^x`` are ``\textup{e}^x``, we have ``f^{\left(n\right)}\left(c\right)=\textup{e}^c`` for ``n\in\mathbb{N}``. Thus, the taylorseries for ``\textup{e}^x`` about ``x=c`` is
 
 	```math
-	\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
+	\sum_{n=0}^\infty \frac{\textup{e}^c}{n!}\left(x-c\right)^n\,.
 	```
 
 	The radius of convergence ``R`` of this series is given by
 
 	```math
-	\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{ℯ^c}{\left(n+1\right)!}}{\frac{ℯ^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
+	\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{\textup{e}^c}{\left(n+1\right)!}}{\frac{\textup{e}^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
 	```
 
 	Thus, the radius of convergence is ``R=\infty`` and the series converges for all ``x``.
@@ -939,26 +939,26 @@ Most, but not all, of the elementary functions encountered in calculus are analy
 	Suppose the sum is ``g\left(x\right)``:
 
 	```math
-	g\left(x\right)=ℯ^c+ℯ^c\left(x-c\right)+\frac{ℯ^c}{2!}\left(x-c\right)^2+\frac{ℯ^c}{3!}\left(x-c\right)^3+\cdots\,.
+	g\left(x\right)=\textup{e}^c+\textup{e}^c\left(x-c\right)+\frac{\textup{e}^c}{2!}\left(x-c\right)^2+\frac{\textup{e}^c}{3!}\left(x-c\right)^3+\cdots\,.
 	```
 
 	By the differentiation theorem of series, we have
 
 	```math
 	\begin{aligned}
-	g^\prime\left(x\right)&=0+ℯ^c+\frac{ℯ^c}{2!}2\left(x-c\right)+\frac{ℯ^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
-	&=ℯ^c+ℯ^c\left(x-c\right)+\frac{ℯ^c}{2!}\left(x-c\right)^2+\frac{ℯ^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
+	g^\prime\left(x\right)&=0+\textup{e}^c+\frac{\textup{e}^c}{2!}2\left(x-c\right)+\frac{\textup{e}^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
+	&=\textup{e}^c+\textup{e}^c\left(x-c\right)+\frac{\textup{e}^c}{2!}\left(x-c\right)^2+\frac{\textup{e}^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
 	\end{aligned}
 	```
 
-	Also, ``g\left(c\right)=ℯ^c+0+0+\cdots=ℯ^c``. Since ``g\left(x\right)`` satisfies the differential equation ``g^\prime\left(x\right)=g\left(x\right)``, we have ``g\left(x\right)=Cℯ^x``.  Substituting ``x=c`` gives ``ℯ^c=g\left(c\right)=Cℯ^c``, so ``C=1``. Thus, the Taylor series for ``ℯ^x`` in powers of ``x-c`` converges to ``ℯ^x`` for every real number ``x``:
+	Also, ``g\left(c\right)=\textup{e}^c+0+0+\cdots=\textup{e}^c``. Since ``g\left(x\right)`` satisfies the differential equation ``g^\prime\left(x\right)=g\left(x\right)``, we have ``g\left(x\right)=C\textup{e}^x``.  Substituting ``x=c`` gives ``\textup{e}^c=g\left(c\right)=C\textup{e}^c``, so ``C=1``. Thus, the Taylor series for ``\textup{e}^x`` in powers of ``x-c`` converges to ``\textup{e}^x`` for every real number ``x``:
 	
 	```math
-	ℯ^x=\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
+	\textup{e}^x=\sum_{n=0}^\infty \frac{\textup{e}^c}{n!}\left(x-c\right)^n\,.
 	```
 
-	In particular, ``ℯ^x`` is analytic on the whole real line. Setting ``c=0`` we obtain the Maclaurin series for ``ℯ^x``:
+	In particular, ``\textup{e}^x`` is analytic on the whole real line. Setting ``c=0`` we obtain the Maclaurin series for ``\textup{e}^x``:
 
 	```math
-	ℯ^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
+	\textup{e}^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
 	```

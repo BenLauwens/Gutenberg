@@ -286,9 +286,9 @@ To determine the number of elements belonging to a set, we need a definition for
 	4. If the successor of ``x`` equals the successor of ``y``, then ``x`` equals ``y``.
 	5. If a statement is true for ``0``, and if the truth of that statement for a natural number implies its truth for the successor of that natural number, then the statement is true for every natural number. (*Axiom of induction*)
 
-The set of natural number is denoted by ``ℕ``.
+The set of natural number is denoted by ``\mathbb{N}``.
 
-A set which is equivalent to the set ``\lbrace 0,1,2,3,\ldots,n\rbrace`` for some ``n\in ℕ`` is called *finite*; otherwise it is called *infinite*.
+A set which is equivalent to the set ``\lbrace 0,1,2,3,\ldots,n\rbrace`` for some ``n\in \mathbb{N}`` is called *finite*; otherwise it is called *infinite*.
 
 An infinite set which is equivalent to the set of natural numbers is called *denumerable*; otherwise it is called *non-denumerable*.
 
@@ -303,11 +303,11 @@ Let ``A`` be a given set. A *propositional function* defined on ``A`` is a funct
 
 !!! example
 
-	Find the truth set ``T_{𝒫}`` of each propositional function ``𝒫\left(x\right)`` defined on ``ℕ``.
+	Find the truth set ``T_{𝒫}`` of each propositional function ``𝒫\left(x\right)`` defined on ``\mathbb{N}``.
 	
-	* Let ``𝒫\left(x\right)`` be "``x+2&gt;7``". Then ``T_{𝒫} =\lbrace x\mid x\in ℕ,x+2&gt;7\rbrace =\lbrace 6,7,8,\ldots\rbrace``. 
-	* Let ``𝒫\left(x\right)`` be "``x+5 < 3``". Then ``T_{𝒫} =\lbrace x\mid x\in ℕ,x+5 < 3\rbrace =\emptyset``. In other words, ``𝒫\left(x\right)`` is false for any natural number. 
-	* Let ``𝒫\left(x\right)`` be "``x+5&gt;1``". Then ``T_{𝒫} =\lbrace x\mid x\in ℕ,x+5&gt;1\rbrace =ℕ``. Thus ``𝒫\left(x\right)`` is true for every natural number. 
+	* Let ``𝒫\left(x\right)`` be "``x+2&gt;7``". Then ``T_{𝒫} =\lbrace x\mid x\in \mathbb{N},x+2&gt;7\rbrace =\lbrace 6,7,8,\ldots\rbrace``. 
+	* Let ``𝒫\left(x\right)`` be "``x+5 < 3``". Then ``T_{𝒫} =\lbrace x\mid x\in \mathbb{N},x+5 < 3\rbrace =\emptyset``. In other words, ``𝒫\left(x\right)`` is false for any natural number. 
+	* Let ``𝒫\left(x\right)`` be "``x+5&gt;1``". Then ``T_{𝒫} =\lbrace x\mid x\in \mathbb{N},x+5&gt;1\rbrace =\mathbb{N}``. Thus ``𝒫\left(x\right)`` is true for every natural number. 
 
 Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. Consider the expression "``\forall x\in A:𝒫\left(x\right)``" which reads "For every ``x`` in ``A``, ``𝒫\left(x\right)`` is a true statement". The symbol ``\forall`` which reads "for all" or "for every" is called the *universal quantifier*. The proposition ``\forall x\in A:𝒫\left(x\right)`` expresses that the truth set of ``𝒫\left(x\right)`` is the entire set ``A``, or symbolically, ``T_{𝒫} =\lbrace x\mid x\in A,𝒫\left(x\right)\rbrace =A``.
 
@@ -315,8 +315,8 @@ Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. C
 
 	Some propositions using the universal quantifier:
 
-	* The proposition ``\forall n\in ℕ:n+4&gt;3`` is true since ``\lbrace n\mid n\in ℕ,n+4&gt;3\rbrace =ℕ``. 
-	* The proposition ``\forall n\in ℕ:n+2&gt;8`` is false since ``\lbrace n\mid n\in ℕ,n+2&gt;8\rbrace =\lbrace 7,8,9,\ldots\rbrace``. 
+	* The proposition ``\forall n\in \mathbb{N}:n+4&gt;3`` is true since ``\lbrace n\mid n\in \mathbb{N},n+4&gt;3\rbrace =\mathbb{N}``. 
+	* The proposition ``\forall n\in \mathbb{N}:n+2&gt;8`` is false since ``\lbrace n\mid n\in \mathbb{N},n+2&gt;8\rbrace =\lbrace 7,8,9,\ldots\rbrace``. 
 	* The symbol ``\forall`` can be used to define the intersection of an indexed collection ``\lbrace A_i\mid i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcap_{i\in I} A_i =\lbrace x\mid\forall i\in I:x\in A_i \rbrace``. 
 
 Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. Consider the expression "``\exists x\in A:𝒫\left(x\right)``" which reads "There exists an ``x`` in ``A`` such that ``𝒫\left(x\right)`` is a true statement". The symbol ``\exists`` which reads "there exists" or "for some" or "for at least one" is called the *existential quantifier*. The proposition ``\exists x\in A:𝒫\left(x\right)`` expresses that the truth set of ``𝒫\left(x\right)`` is not the emptyset, or symbolically, ``T_{𝒫} =\lbrace x\mid x\in A,𝒫\left(x\right)\rbrace \not= \emptyset``.
@@ -325,8 +325,8 @@ Let ``𝒫\left(x\right)`` be a propositional function defined on a set ``A``. C
 
 	Some propositions using the existential quantifier:
 
-	* The proposition ``\exists n\in ℕ:n+4 < 7`` is true since ``\lbrace n\mid n\in ℕ,n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset``. 
-	* The proposition ``\exists n\in ℕ:n+6 < 4`` is false since ``\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset``. 
+	* The proposition ``\exists n\in \mathbb{N}:n+4 < 7`` is true since ``\lbrace n\mid n\in \mathbb{N},n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset``. 
+	* The proposition ``\exists n\in \mathbb{N}:n+6 < 4`` is false since ``\lbrace n\mid n\in \mathbb{N},n+6 < 4\rbrace =\emptyset``. 
 	* The symbol ``\exists`` can be used to define the intersection of an indexed collection ``\lbrace A_i\mid i\in I\rbrace`` of sets ``A_i`` as follows: ``\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I:x\in A_i \rbrace``. 
 
 Consider the proposition: "All officers are engineers". Its negation is either of the following equivalent statements:
@@ -394,7 +394,7 @@ Observe that the only difference between both examples is the order of the quant
 	1. ``\forall x\in A,\forall y\in B:𝒫\left(x,y\right)~\iff ~\forall y\in B,\forall x\in A:𝒫\left(x,y\right)``.
 	2. ``\exists x\in A,\exists y\in B:𝒫\left(x,y\right)~\iff ~\exists y\in B,\exists x\in A:𝒫\left(x,y\right)``.
 	3. ``\exists x\in A,\forall y\in B:𝒫\left(x,y\right)~\implies ~\forall y\in B,\exists x\in A:𝒫\left(x,y\right)``.
-	4. ``\forall x\in A,\exists y\in B:𝒫\left(x,y\right)~\mathrel{\rlap{\implies}\ \,/\quad}~\exists y\in B,\forall x\in A:𝒫\left(x,y\right)``.
+	4. ``\forall x\in A,\exists y\in B:𝒫\left(x,y\right)~\cancel{\implies}~\exists y\in B,\forall x\in A:𝒫\left(x,y\right)``.
 
 Quantified statements with more than one variable may be negated by successively applying the theorems of De Morgan. Thus each ``\forall`` is changed to ``\exists``, and each ``\exists`` is changed to ``\forall`` as the negation symbol ``\lnot`` passes through the statement from left to right.
 
@@ -467,15 +467,15 @@ In proving a statement is true, we sometimes have to examine multiple cases befo
 
 !!! example
 
-	Prove the proposition "If ``n\in ℕ``, then ``1+\left(-1\right)^n \left(2n-1\right)`` is a multiple of ``4``".
+	Prove the proposition "If ``n\in \mathbb{N}``, then ``1+\left(-1\right)^n \left(2n-1\right)`` is a multiple of ``4``".
 
 !!! proof
 
     Let ``n`` be a natural number.
 
-    *CASE 1:* Suppose ``n`` is even. Then ``n=2k`` for some ``k\in ℕ``, and ``\left(-1\right)^n =1``. Thus ``1+\left(-1\right)^n \left(2n-1\right)=1+\left(1\right)\left(2\cdot 2k-1\right)=4k``, which is a multiple of ``4``.
+    *CASE 1:* Suppose ``n`` is even. Then ``n=2k`` for some ``k\in \mathbb{N}``, and ``\left(-1\right)^n =1``. Thus ``1+\left(-1\right)^n \left(2n-1\right)=1+\left(1\right)\left(2\cdot 2k-1\right)=4k``, which is a multiple of ``4``.
 
-    *CASE 2:* Suppose ``n`` is odd. Then ``n=2k+1`` for some ``k\in ℕ``, and ``\left(-1\right)^n =-1``. Thus ``1+\left(-1\right)^n \left(2n-1\right)=1-\left(2\left(2k+1\right)-1\right)=-4k``, which is a multiple of ``4``. 
+    *CASE 2:* Suppose ``n`` is odd. Then ``n=2k+1`` for some ``k\in \mathbb{N}``, and ``\left(-1\right)^n =-1``. Thus ``1+\left(-1\right)^n \left(2n-1\right)=1-\left(2\left(2k+1\right)-1\right)=-4k``, which is a multiple of ``4``. 
 
     These cases show that ``1+\left(-1\right)^n \left(2n-1\right)`` is always a multiple of ``4``.             
 
@@ -499,17 +499,17 @@ Sometimes a direct proof of ``𝒫\implies 𝒬`` is very hard. The proposition 
 
 !!! example
 
-	Prove by contraposition the proposition "Let ``x\in ℕ``. If ``x^2`` is even, then ``x`` is even".
+	Prove by contraposition the proposition "Let ``x\in \mathbb{N}``. If ``x^2`` is even, then ``x`` is even".
 
 	A direct proof would be problematic. We will proof the logically equivalent proposition "If ``x`` is not even, then ``x^2`` is not even".
 
 !!! proof "by contraposition"
 
-    Let ``x\in ℕ``. 
+    Let ``x\in \mathbb{N}``. 
 
     Suppose ``x`` is not even. 
 
-    Then ``x`` is odd and ``x=2k+1`` for some ``k\in ℕ``. Thus ``x^2=\left(2k+1\right)^2=2\left(2k^2+2k\right)+1``. Since ``k`` is a natural number, ``2k^2+2k`` is also a natural number. Consequently, ``x^2`` is odd. 
+    Then ``x`` is odd and ``x=2k+1`` for some ``k\in \mathbb{N}``. Thus ``x^2=\left(2k+1\right)^2=2\left(2k^2+2k\right)+1``. Since ``k`` is a natural number, ``2k^2+2k`` is also a natural number. Consequently, ``x^2`` is odd. 
 
     Therefore, ``x^2`` is not even.
 
@@ -535,17 +535,17 @@ A slightly unsettling feature of this method is that we may not know at the begi
 
 !!! example
 
-	Prove by contradiction the proposition "If ``a,b\in ℕ``, then ``a^2 -4b\not= 2``".
+	Prove by contradiction the proposition "If ``a,b\in \mathbb{N}``, then ``a^2 -4b\not= 2``".
 
 !!! proof "by contradiction"
 
-    Let ``a,b\in ℕ``.
+    Let ``a,b\in \mathbb{N}``.
 
     Suppose there exist ``a`` and ``b`` for which ``a^2 -4b=2``. From this equation we get ``a^2 =4b+2=2\left(2b+1\right)\,,`` so ``a^2`` is even.
 
     Because ``a^2`` is even, it follows that ``a`` is even, so ``a=2c`` for some natural number ``c``. Now plug ``a=2c`` back into the boxed equation to get ``\left(2c\right)^2 -4b=2``, so ``4c^2 -4b=2``. Dividing by ``2``, we get ``2c^2 -2b=1``.
 
-    Therefore, ``1=2\left(c^2 -b\right)``, and because ``c^2 -b\in ℕ``, it follows that ``1`` is even.
+    Therefore, ``1=2\left(c^2 -b\right)``, and because ``c^2 -b\in \mathbb{N}``, it follows that ``1`` is even.
 
     We know ``1`` is  **not** even, so something went wrong. But all the logic after the first line of the proof is correct, so it must be that the first line was incorrect. In other words, we were wrong to assume the proposition was false. Thus the proposition is true.
 
@@ -563,11 +563,11 @@ The previous two proof methods dealt exclusively with proving conditional statem
 
 !!! example
 
-	Prove by contradiction the proposition "Let ``a\in ℕ``. If ``a^2`` is even, then ``a`` is even".
+	Prove by contradiction the proposition "Let ``a\in \mathbb{N}``. If ``a^2`` is even, then ``a`` is even".
 
 !!! proof "by contradiction"
 
-    Let ``a\in ℕ``.
+    Let ``a\in \mathbb{N}``.
 
     Suppose ``a^2`` is even and ``a`` is not even.
 
@@ -585,7 +585,7 @@ Some propositions have the form ``𝒫\iff 𝒬``. We know that this is logicall
 
 !!! proof
 
-    Let ``n\in ℕ``.
+    Let ``n\in \mathbb{N}``.
 
     First we show that ``n`` being odd implies that ``n^2`` is odd. 
 
@@ -627,15 +627,15 @@ How to disprove a universally quantified statement such as ``\forall x:𝒫\left
 
 !!! example
 
-	Disprove the proposition "For every ``n\in ℕ``, the natural number ``f\left(n\right)=n^2 -n+11`` is prime".
+	Disprove the proposition "For every ``n\in \mathbb{N}``, the natural number ``f\left(n\right)=n^2 -n+11`` is prime".
 
 !!! proof
 
-    The statement "For every ``n\in ℕ``, the natural number ``f\left(n\right)=n^2 -n+11`` is prime," is false. For a counterexample, note that for ``n=11``, the natural number ``f\left(11\right)=121=11\cdot 11`` is not prime.
+    The statement "For every ``n\in \mathbb{N}``, the natural number ``f\left(n\right)=n^2 -n+11`` is prime," is false. For a counterexample, note that for ``n=11``, the natural number ``f\left(11\right)=121=11\cdot 11`` is not prime.
 
 ### Proof by Induction
 
-Suppose the variable ``n`` represents any natural number, and there is a propositional function ``𝒫\left(n\right)`` that includes this variable as an argument. *Mathematical induction* is a proof technique that uses the axiom of induction to show that ``𝒫\left(n\right)`` is true for all ``n`` greater than or equal to some base value ``b\in ℕ``.
+Suppose the variable ``n`` represents any natural number, and there is a propositional function ``𝒫\left(n\right)`` that includes this variable as an argument. *Mathematical induction* is a proof technique that uses the axiom of induction to show that ``𝒫\left(n\right)`` is true for all ``n`` greater than or equal to some base value ``b\in \mathbb{N}``.
 
 !!! template "proof by induction"
 
@@ -651,11 +651,11 @@ Suppose the variable ``n`` represents any natural number, and there is a proposi
 
 !!! example
 
-	Prove by induction the proposition "If ``n\in ℕ\setminus \lbrace 0\rbrace``, then ``1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\,``". 
+	Prove by induction the proposition "If ``n\in \mathbb{N}\setminus \lbrace 0\rbrace``, then ``1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\,``". 
 
 !!! proof "by induction"
     
-    Let ``n\in ℕ_0``.
+    Let ``n\in \mathbb{N}_0``.
     
     Observe that if ``n=1``, this statement is ``1=\frac{1}{6}\left(1\right)\left(2\right)\left(3\right)``, which is obviously true.
     

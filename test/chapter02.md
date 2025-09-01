@@ -66,11 +66,11 @@ In this chapter, the real numbers are formally defined and some basic real funct
 
 ## Natural Numbers and Extensions
 
-The axioms of Peano define the *natural numbers*, denoted by ``ℕ``. 
+The axioms of Peano define the *natural numbers*, denoted by ``\mathbb{N}``. 
 
-To close the set of numbers under the subtraction operation, the natural numbers are extended with the negative integers to form the set of *integers*, denoted by ``ℤ``. 
+To close the set of numbers under the subtraction operation, the natural numbers are extended with the negative integers to form the set of *integers*, denoted by ``\mathbb{Z}``. 
 
-To close the set of numbers under the division operation, numbers that can be expressed as an irreducible fraction ``\frac{m}{n}``, where ``m\in ℤ`` and ``n\in ℤ\setminus \{0, 1\}`` are added to the integers to form the set of *rational numbers*, denoted by ``ℚ``.
+To close the set of numbers under the division operation, numbers that can be expressed as an irreducible fraction ``\frac{m}{n}``, where ``m\in \mathbb{Z}`` and ``n\in \mathbb{Z}\setminus \{0, 1\}`` are added to the integers to form the set of *rational numbers*, denoted by ``\mathbb{Q}``.
 
 This definition comes with the understanding that the two rational numbers ``\frac{m}{n}`` and ``\frac{a}{b}`` are equal whenever ``mb=na``.
 
@@ -91,7 +91,7 @@ Notice that the rational numbers do satisfy the field axioms.
 Following properties can be derived from the algebraic properties.
 
 !!! theorem
-	Let ``a,b,c\in ℚ``.
+	Let ``a,b,c\in \mathbb{Q}``.
 	1. ``a+c=b+c\implies a=b``
 	2. ``a\cdot 0=0``
 	3. ``\left(-a\right)\cdot b=-ab``
@@ -102,7 +102,7 @@ Following properties can be derived from the algebraic properties.
 	Prove the second property.
 
 !!! proof
-    Let ``a\in ℚ``.
+    Let ``a\in \mathbb{Q}``.
 
     Since ``0`` is the additive identity, ``0=0+0``. Then ``a\cdot 0=a\cdot\left(0+0\right)``. By the distributive property, ``a\cdot 0=a\cdot 0+a\cdot 0``. By adding ``-a\cdot 0`` to each side of this equality, one gets
     ```math
@@ -114,33 +114,33 @@ Following properties can be derived from the algebraic properties.
 !!! exercise
 	Prove the other properties.
 
-The associative property allows to write in an unambiguous way ``a+b+c`` and ``abc``. More generally, the sum of ``a_1,a_2,\dots,a_n\in ℚ`` is unambiguously defined. To present this sum concisely, we use the *sigma notation*:
+The associative property allows to write in an unambiguous way ``a+b+c`` and ``abc``. More generally, the sum of ``a_1,a_2,\dots,a_n\in \mathbb{Q}`` is unambiguously defined. To present this sum concisely, we use the *sigma notation*:
 
 ```math
 \sum_{i=1}^na_i\equiv\begin{cases} 0&\textrm{if }n=0\\
-a_1+a_2+\dots+a_n&\textrm{if }n\in ℕ_0
+a_1+a_2+\dots+a_n&\textrm{if }n\in \mathbb{N}_0
 \end{cases}\,.
 ```
 
 We call the first case ``n=0`` the *empty sum*.
 
-In a similar way we can define and represent the product of ``a_1,a_2,\dots,a_n\in ℚ``:
+In a similar way we can define and represent the product of ``a_1,a_2,\dots,a_n\in \mathbb{Q}``:
 
 ```math
 \prod_{i=1}^na_i\equiv\begin{cases} 1&\textrm{if }n=0\\
-a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
+a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in \mathbb{N}_0
 \end{cases}\,.
 ```
 
 We call the first case ``n=0`` the *empty product*.
 
-If all factors of the product have the same value ``a\in ℚ``, we use the *exponential notation*:
+If all factors of the product have the same value ``a\in \mathbb{Q}``, we use the *exponential notation*:
 
 ```math
 \Pi_{i=1}^na\equiv a^n\,.
 ```
 
-For ``a\in ℚ_0``, we can write
+For ``a\in \mathbb{Q}_0``, we can write
 
 ```math
 \left(\frac{1}{a}\right)^n=\left(a^{-1}\right)^n=a^{-n}=\left(a^n\right)^{-1}=\frac{1}{a^n}
@@ -149,7 +149,7 @@ For ``a\in ℚ_0``, we can write
 and we have the following property
 
 ```math
-\forall m,n\inℤ:a^{m+n}=a^ma^n\textrm{ and }\left(a^m\right)^n=a^{mn}\,.
+\forall m,n\in\mathbb{Z}:a^{m+n}=a^ma^n\textrm{ and }\left(a^m\right)^n=a^{mn}\,.
 ```
 
 ## Order Properties of Rational Numbers
@@ -174,7 +174,7 @@ We say that ``a`` is *positive* if ``0\le a`` and *negative* if ``a\le 0``. The 
 Following properties can be derived from the order properties.
 
 !!! theorem
-	Let ``a,b,c\in ℚ``. 
+	Let ``a,b,c\in \mathbb{Q}``. 
 	1. ``a\le b\implies -b\le -a``
 	2. ``a\le b \wedge c\le 0 \implies bc\le ac``
 	3. ``0\le a\wedge 0\le b\implies 0 \le ab``
@@ -222,7 +222,7 @@ The rational numbers have a *decimal expansion* that is either:
 
 ## Not all Numbers are Rational
 
-Geometrically, we represent the integers as points on a horizontal line by defining a starting point (the number ``0``) and a unit distance (between two consecutive integers). The unit distance can be further subdivided to represent rational numbers such as ``\frac{1}{n}`` with ``n\inℕ_0``. In this way we can uniquely represent each rational number on the *number line*.
+Geometrically, we represent the integers as points on a horizontal line by defining a starting point (the number ``0``) and a unit distance (between two consecutive integers). The unit distance can be further subdivided to represent rational numbers such as ``\frac{1}{n}`` with ``n\in\mathbb{N}_0``. In this way we can uniquely represent each rational number on the *number line*.
 
 Although the rational numbers have a rich structure, there are limitations. Not every point on the number line corresponds to a rational number, eg., we can indicate the number ``\sqrt 2`` using a simple geometric construction, based on the *Pythagorean theorem*, as a single point between the numbers ``1`` and ``2`` but it is not a rational number.
 
@@ -238,7 +238,7 @@ Figure("", "The real line.") do
 			len = length(txt)
 			latex(string(n-4), x=80n-font_x*len/2, y=mid+5, width=font_x*len, height=font_y)
 		end
-		for (txt, (val, len)) in zip(("\\displaystyle-\\frac{9}{4}", "\\displaystyle-\\frac{3}{2}", "\\displaystyle-\\frac{18}{5}", "\\displaystyle\\frac{7}{3}", "ℯ", "\\uppi "), ((-9/4, 2), (-3/2, 2), (-18/5, 3), (7/3, 1), (ℯ, 1), (π, 1)))
+		for (txt, (val, len)) in zip(("\\displaystyle-\\frac{9}{4}", "\\displaystyle-\\frac{3}{2}", "\\displaystyle-\\frac{18}{5}", "\\displaystyle\\frac{7}{3}", "\\textup{e}", "\\textup{π} "), ((-9/4, 2), (-3/2, 2), (-18/5, 3), (7/3, 1), (ℯ, 1), (π, 1)))
 			line(x1=320+80val, y1=mid-5, x2=320+80val, y2=mid+5, stroke="black")
 			latex(txt, x=320+80val-font_x*len/2, y=mid-if val < 8/3 35 else 25 end, width=font_x*len, height=font_y*if val < 8/3 2 else 1 end)
 		end
@@ -256,19 +256,19 @@ end
 ```
 
 !!! theorem
-	``\sqrt 2 \notin ℚ``.
+	``\sqrt 2 \notin \mathbb{Q}``.
 
 !!! proof "by contradiction"
-    Suppose ``\sqrt 2\in ℚ``.
+    Suppose ``\sqrt 2\in \mathbb{Q}``.
 
     Since ``\sqrt 2`` as a rational number can be represented by an irreducible fraction ``\frac{m}{n}``, we have ``\frac{m^2}{n^2}=\left(\sqrt 2\right)^2=2``, that is, ``m^2=2n^2``. Consequently, ``m^2`` is even and so is ``m`` (see previous chapter). Then ``m^2=\left(2k\right)^2=4k^2=2n^2`` or ``n^2=2k^2``, that is, ``n^2`` is even and so is ``n``.
 
-    Both ``m`` and ``n`` are even contradicts that ``\frac{m}{n}`` is an irreducible fraction. We supposed wrongly that ``\sqrt 2\in ℚ``.
+    Both ``m`` and ``n`` are even contradicts that ``\frac{m}{n}`` is an irreducible fraction. We supposed wrongly that ``\sqrt 2\in \mathbb{Q}``.
 
-    Therefore, ``\sqrt 2 \notin ℚ``.
+    Therefore, ``\sqrt 2 \notin \mathbb{Q}``.
 
 !!! exercise
-	Prove ``\sqrt 3 \notin ℚ``. What goes wrong if you try to prove ``\sqrt 4 \notin ℚ``?
+	Prove ``\sqrt 3 \notin \mathbb{Q}``. What goes wrong if you try to prove ``\sqrt 4 \notin \mathbb{Q}``?
 
 	Hint: If a prime number divides the square of an integer, it also divides the integer itself.
 
@@ -305,35 +305,35 @@ We stress that this is an axiom to be assumed without proof. It cannot be deduce
 The completeness axiom has massive consequences. 
 
 !!! lemma
-	The set of natural numbers is not bounded above or ``\forall r\in ℝ,\exists n\in ℕ:r&gt;n``.
+	The set of natural numbers is not bounded above or ``\forall r\in \mathbb{R},\exists n\in \mathbb{N}:r&gt;n``.
 
 !!! proof "by contradiction"
-    Suppose that there is an ``r\in ℝ`` such that ``\forall n\in ℕ:r&gt;n``.
+    Suppose that there is an ``r\in \mathbb{R}`` such that ``\forall n\in \mathbb{N}:r&gt;n``.
 
-    Then the set ``ℕ`` is a nonempty subset of ``ℝ`` with an upper bound, so by the completeness axiom, ``ℕ`` has a least upper bound ``M``.
+    Then the set ``\mathbb{N}`` is a nonempty subset of ``\mathbb{R}`` with an upper bound, so by the completeness axiom, ``\mathbb{N}`` has a least upper bound ``M``.
 
-    Then ``M-1&lt;M``, so ``M-1`` is not an upper bound for ``ℕ``.
+    Then ``M-1&lt;M``, so ``M-1`` is not an upper bound for ``\mathbb{N}``.
 
-    Thus, there is a ``k\in ℕ`` with the property that ``k &gt; M-1``.
+    Thus, there is a ``k\in \mathbb{N}`` with the property that ``k &gt; M-1``.
 
-    But then ``k+1`` is also in ``ℕ``, yet ``k+1&gt;\left(M-1\right)+1=M`` where ``M`` is an upper bound for ``ℕ``.
+    But then ``k+1`` is also in ``\mathbb{N}``, yet ``k+1&gt;\left(M-1\right)+1=M`` where ``M`` is an upper bound for ``\mathbb{N}``.
 
     This is a contradiction since no element of a set can be greater than an upper bound for that set.
 
-    Therefore, the assumption that ``r&gt;n`` for every ``n\in ℕ`` must be false, and for every ``r\in ℝ`` there must be at least one ``n\in ℕ`` with ``n&gt;r``.
+    Therefore, the assumption that ``r&gt;n`` for every ``n\in \mathbb{N}`` must be false, and for every ``r\in \mathbb{R}`` there must be at least one ``n\in \mathbb{N}`` with ``n&gt;r``.
 
 The Archimedean principle expresses geometrically that any line segment, no matter how long, may be covered by a finite number of line segments of a given positive length, no matter how small. This is a fundamental property of the real line.
 
 !!! theorem "Archimedean Principle"
-	``\forall a\in ℝ^+_0,\forall b\in ℝ,\exists n\in ℕ:na&gt;b``.
+	``\forall a\in \mathbb{R}^+_0,\forall b\in \mathbb{R},\exists n\in \mathbb{N}:na&gt;b``.
 
 This principle is a direct consequence of the previous lemma, just replace ``r`` by ``\frac{b}{a}``.		
 
 !!! example
-	Let ``S=\left\{\frac{1}{2^n}\mid n\in ℕ\right\}=\left\{1, \frac{1}{2},\frac{1}{4}, \ldots\right\}``. Show that ``\inf S=0``.
+	Let ``S=\left\{\frac{1}{2^n}\mid n\in \mathbb{N}\right\}=\left\{1, \frac{1}{2},\frac{1}{4}, \ldots\right\}``. Show that ``\inf S=0``.
 
-	1. ``0`` is a lower bound of ``S``, ``\forall n\in ℕ: 0&lt;\frac{1}{2^n}`` and
-	2. ``\forall \varepsilon\in ℝ^+_0:0+\varepsilon`` is no lower bound, ``\forall \varepsilon\in ℝ^+_0,\exists n\in ℕ:\frac{1}{2^n}\le\frac{1}{n+1}&lt;0+\varepsilon`` (Archimedean principle with ``x=1`` and ``y=\varepsilon``), so ``0`` is the greatest lower bound.
+	1. ``0`` is a lower bound of ``S``, ``\forall n\in \mathbb{N}: 0&lt;\frac{1}{2^n}`` and
+	2. ``\forall \varepsilon\in \mathbb{R}^+_0:0+\varepsilon`` is no lower bound, ``\forall \varepsilon\in \mathbb{R}^+_0,\exists n\in \mathbb{N}:\frac{1}{2^n}\le\frac{1}{n+1}&lt;0+\varepsilon`` (Archimedean principle with ``x=1`` and ``y=\varepsilon``), so ``0`` is the greatest lower bound.
 	
 ## Absolute Values
 
@@ -353,7 +353,7 @@ Geometrically, ``\left|x\right|`` represents the (nonnegative) distance from ``x
 The absolute value has the following properties.
 
 !!! theorem
-	Let ``a, b\in ℝ``
+	Let ``a, b\in \mathbb{R}``
 	- ``\left|-a\right|=\left|a\right|``
 	- ``\left|ab\right|=\left|a\right|\left|b\right|``
 	- ``\left|a\pm b\right|\le\left|a\right|+\left|b\right|`` (*triangle inequality*)
@@ -361,7 +361,7 @@ The absolute value has the following properties.
 !!! proof
     The first two of these properties can be checked by considering the cases where either ``a`` or ``b`` is either positive or negative. The third property follows from the first two.
 
-    Let ``a, b\in ℝ``.
+    Let ``a, b\in \mathbb{R}``.
     
     ```math
     \begin{aligned}
@@ -372,7 +372,7 @@ The absolute value has the following properties.
 
     Taking the (positive) square root of both sides, we obtain ``\left|a\pm b\right|\le\left|a\right|+\left|b\right|``.
 
-The notion of an absolute value will be generalized by a *metric* in the setting of a *metric space*<span data-type="footnote">A metric space is an ordered pair ``\left(M, d\right)`` where ``M`` is a set and ``d`` is a metric on ``M``, i.e., a function ``d:M\times M\to ℝ`` satisfying the following axioms for all points ``x,y,z\in M``:
+The notion of an absolute value will be generalized by a *metric* in the setting of a *metric space*<span data-type="footnote">A metric space is an ordered pair ``\left(M, d\right)`` where ``M`` is a set and ``d`` is a metric on ``M``, i.e., a function ``d:M\times M\to \mathbb{R}`` satisfying the following axioms for all points ``x,y,z\in M``:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;``d\left(x, x\right)=0`` and ``x\ne y\Rightarrow d\left(x, y\right) > 0`` (*positivity*)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;``d\left(x,y\right)=d\left(y,x\right)`` (*symmetry*)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;``d\left(x,z\right)\le d\left(x,y\right)+d\left(y,z\right)`` (*triangle inequality*)</span>.
@@ -395,12 +395,12 @@ If ``a`` and ``b`` are real numbers and ``a&lt;b`` we often refer to
 
 In a figure, hollow dots indicate endpoints of intervals that are not included in the intervals, and solid dots indicate endpoints that are included. The endpoints of an interval are also called *boundary points*.
 
-The already defined intervals are *finite intervals*, that is, each of them has finite length ``b-a``. Intervals can also have infinite length, in which case they are called *infinite intervals*. Note that the whole real line ``ℝ`` is an interval, denoted by ``\left]-\infty, \infty\right[``. The symbol ``\infty`` ("infinity") does **not** denote a real number.
+The already defined intervals are *finite intervals*, that is, each of them has finite length ``b-a``. Intervals can also have infinite length, in which case they are called *infinite intervals*. Note that the whole real line ``\mathbb{R}`` is an interval, denoted by ``\left]-\infty, \infty\right[``. The symbol ``\infty`` ("infinity") does **not** denote a real number.
 
 !!! theorem "Theorem of Nested intervals"
-	If ``\forall n\in ℕ``, we have a closed interval
+	If ``\forall n\in \mathbb{N}``, we have a closed interval
 	```math
-	I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a_n\le x\le b_n\right\}
+	I_n=\left[a_n, b_n\right]=\left\{x\mid x\in \mathbb{R}\wedge a_n\le x\le b_n\right\}
 	```
 	such that
 	```math
@@ -408,7 +408,7 @@ The already defined intervals are *finite intervals*, that is, each of them has 
 	```
 	then
 	```math
-	\bigcap_{n\in ℕ}I_n\ne\emptyset
+	\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset
 	```
 	and if, in addition,
 	```math
@@ -416,22 +416,22 @@ The already defined intervals are *finite intervals*, that is, each of them has 
 	```
 	then
 	```math
-	\bigcap_{n\in ℕ}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
+	\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
 	```
 
 !!! proof
 
     We split the proof in four parts.
 
-    - We prove first that ``\bigcap_{n\in ℕ}I_n\ne\emptyset``.
+    - We prove first that ``\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset``.
     
       Since the intervals are nested, ``a_m \le b_n`` for all ``m`` and ``n``. This shows that every ``b_n`` is an upper bound for the set ``\left\{a_m\right\}`` and every ``a_m`` is a lower bound for the set ``\left\{b_n\right\}``. Let ``a = \sup\{a_n\}`` and ``b = \inf\{b_n\}``. 
     
-      By definition, ``a_n \le a`` for all ``n``, and since ``b_n`` is an upper bound for ``\left\{a_n\right\}``, we have ``a_n\le a\le b_n``, which says that ``a\in I_n`` for every ``n`` and so ``a\in\bigcap_{n\in ℕ}I_n``. 
+      By definition, ``a_n \le a`` for all ``n``, and since ``b_n`` is an upper bound for ``\left\{a_n\right\}``, we have ``a_n\le a\le b_n``, which says that ``a\in I_n`` for every ``n`` and so ``a\in\bigcap_{n\in \mathbb{N}}I_n``. 
         
-      Similarly, ``b\in\bigcap_{n\in ℕ}I_n``.
+      Similarly, ``b\in\bigcap_{n\in \mathbb{N}}I_n``.
 
-      Therefore, ``\bigcap_{n\in ℕ}I_n\ne\emptyset``
+      Therefore, ``\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset``
 
     - Secondly, we prove by contradiction that ``a\le b``.
 
@@ -451,29 +451,29 @@ The already defined intervals are *finite intervals*, that is, each of them has 
 
       Therefore, ``a=b``.
 
-    - Finally, we prove that ``\bigcap_{n\in ℕ}I_n=\left\{a\right\}``.
+    - Finally, we prove that ``\bigcap_{n\in \mathbb{N}}I_n=\left\{a\right\}``.
 
-      Let ``y\in\bigcap_{n\in ℕ}I_n``. Then, ``a_n\le y\le b_n`` for all ``n``.
+      Let ``y\in\bigcap_{n\in \mathbb{N}}I_n``. Then, ``a_n\le y\le b_n`` for all ``n``.
 
       The first inequality implies that ``y`` is an upper bound for ``a_n``, hence ``a\le y``.
 
       The second inequality implies that ``y`` is an lower bound for ``b_n``, hence ``y\le b=a``.
 
-      Combining both inequalities ``a\le y\le a``, we have ``y=a``, so ``\bigcap_{n\in ℕ}I_n \subset \left\{a\right\}``.
+      Combining both inequalities ``a\le y\le a``, we have ``y=a``, so ``\bigcap_{n\in \mathbb{N}}I_n \subset \left\{a\right\}``.
 
-      We also have ``\left\{a\right\} \subset \bigcap_{n\in ℕ}I_n``.
+      We also have ``\left\{a\right\} \subset \bigcap_{n\in \mathbb{N}}I_n``.
 
-      Therefore, ``\bigcap_{n\in ℕ}I_n=\left\{a\right\}``.
+      Therefore, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{a\right\}``.
 
 A direct corollary of the nested intervals theorem is the uncountability of the real numbers.
 
 !!! corollary "The real numbers are not countable"
-	There is no surjection ``f:ℕ\rightarrowℝ``.
+	There is no surjection ``f:\mathbb{N}\rightarrow\mathbb{R}``.
 
 !!! proof
-    Let ``f:ℕ\rightarrowℝ`` be a function.
+    Let ``f:\mathbb{N}\rightarrow\mathbb{R}`` be a function.
 
-    For each ``n\in ℕ``, let ``f\left(n\right)=x_n``
+    For each ``n\in \mathbb{N}``, let ``f\left(n\right)=x_n``
 
     Choose a closed interval ``I_0=\left[a_0, b_0\right]`` not containing ``x_0``.
 
@@ -483,11 +483,11 @@ A direct corollary of the nested intervals theorem is the uncountability of the 
 
     And so on.
 
-    By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n\ne\emptyset``. But no ``x_k`` can be in the intersection since ``x_k \notin I_k``, so there exists some real number ``y\in\bigcap_{n\in ℕ}I_n`` such that ``y\ne f\left(n\right)`` for any ``n\in ℕ``.
+    By the nested intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset``. But no ``x_k`` can be in the intersection since ``x_k \notin I_k``, so there exists some real number ``y\in\bigcap_{n\in \mathbb{N}}I_n`` such that ``y\ne f\left(n\right)`` for any ``n\in \mathbb{N}``.
 
     Therefore, ``f`` is not a surjection.
 
-The cardinal number of the set of real numbers is called the *continuum*, denoted by ``\# ℝ=𝔠=ℵ_1=2^{ℵ_0}&gt;ℵ_0``.
+The cardinal number of the set of real numbers is called the *continuum*, denoted by ``\# \mathbb{R}=𝔠=ℵ_1=2^{ℵ_0}&gt;ℵ_0``.
 
 ## Bisection Method
 
@@ -514,7 +514,7 @@ The same methodology can be used to prove some important theorems in calculus. W
 
 The sequence of intervals ``I_0,I_1,I_2,I_3,\ldots`` satisfies both hypotheses of the nested intervals theorem:
 
-1. Since for each ``n`` we have ``a_n&lt;\frac{a_n+b_n}{2}&lt;b_n`` and either ``a_{n+1}=a_n`` or ``b_{n+1}=b_n``. Therefore ``a_n\le a_{n+1}`` and ``b_{n+1}\le b_n`` for all ``n\in ℕ``, so that ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0``.
+1. Since for each ``n`` we have ``a_n&lt;\frac{a_n+b_n}{2}&lt;b_n`` and either ``a_{n+1}=a_n`` or ``b_{n+1}=b_n``. Therefore ``a_n\le a_{n+1}`` and ``b_{n+1}\le b_n`` for all ``n\in \mathbb{N}``, so that ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0``.
 2. We have that ``b_n-a_n=\frac{b_0-a_0}{2^n}``, so
 
    ```math
@@ -528,7 +528,7 @@ Let's prove by the bisection method that there is a rational between any two rea
 We need following lemma.
 
 !!! lemma "Capture theorem"
-	Let ``A`` be a nonempty subset of ``ℝ``. If ``A`` is bounded above, then any open interval containing ``\sup A`` contains an element of ``A``.
+	Let ``A`` be a nonempty subset of ``\mathbb{R}``. If ``A`` is bounded above, then any open interval containing ``\sup A`` contains an element of ``A``.
 
 	Similarly, if ``A`` is bounded below, than any open interval containing ``\inf A`` contains an element of ``A``.
 
@@ -543,7 +543,7 @@ We need following lemma.
 	Prove the second statement.
 
 !!! theorem "The rational numbers are dense in the real numbers"
-	Let ``x\in ℝ`` and ``\varepsilon\in ℝ^+``. The interval ``\left]x-\delta,x+\delta\right[`` contains a rational number.
+	Let ``x\in \mathbb{R}`` and ``\varepsilon\in \mathbb{R}^+``. The interval ``\left]x-\delta,x+\delta\right[`` contains a rational number.
 
 !!! proof "by bisection"
     If ``x`` is rational we are done, so let ``x`` be irrational.
@@ -554,9 +554,9 @@ We need following lemma.
 
     Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` contains ``x`` and has rational endpoints.
 
-    By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{y\right\}`` where ``y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``. Since ``x\in I_n`` for all ``n\in ℕ``, ``y=x``.
+    By the nested intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{y\right\}`` where ``y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``. Since ``x\in I_n`` for all ``n\in \mathbb{N}``, ``y=x``.
 
-    Since ``x=\sup\left\{a_n\right\}``, by the previous lemma, the open interval ``\left]x-\delta,x+\delta\right[`` contains ``a_m\in ℚ`` for some ``m\in ℕ``.
+    Since ``x=\sup\left\{a_n\right\}``, by the previous lemma, the open interval ``\left]x-\delta,x+\delta\right[`` contains ``a_m\in \mathbb{Q}`` for some ``m\in \mathbb{N}``.
 
 The practical use of this theorem is the possibility to approximate with a given tolerance a real number by a rational number, eg. in computer science *floating point* values are rational approximations of real numbers.
 
@@ -567,7 +567,7 @@ Something stronger than the Capture theorem is actually true: for ``x=\sup\left\
 
 !!! theorem "Heine-Borel Theorem"
 
-	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in ℕ`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
+	Let ``\left[a,b\right]`` be a closed interval and ``𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}`` be an infinite set of open intervals. If ``\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[``, then there exists ``n\in \mathbb{N}`` such that ``\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[``.
 
 !!! proof "by bisection and contradiction"
 
@@ -581,13 +581,13 @@ Something stronger than the Capture theorem is actually true: for ``x=\sup\left\
 
 	Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` can't be covered by a finite subset of ``𝒪``.
 
-	By the nested intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+	By the nested intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}`` where ``x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
 	Since ``x\in\left[a,b\right]`` and ``\left[a,b\right]`` is covered by the union of ``𝒪``, there exists an open interval ``\left]c_i, d_i\right[`` such that ``x \in \left]c_i, d_i\right[``.
 
 	Since ``\left]c_i, d_i\right[`` is open, there exists an ``\delta &gt;0`` such that ``\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[``.
 
-	Since ``x\in \bigcap_{n\in ℕ}I_n``, there exists ``N\in ℕ`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
+	Since ``x\in \bigcap_{n\in \mathbb{N}}I_n``, there exists ``N\in \mathbb{N}`` such that ``I_N\subset\left]x-\delta, x+\delta\right[`` by the extension of the Capture theorem.
 
 	This means that for ``n\ge N``, ``I_n \subset \left]c_i, d_i\right[``, contradicting our assumption that no ``I_n`` can be covered by a finite subset of ``𝒪``.
 
@@ -602,7 +602,7 @@ Remember the definition of a function.
 !!! definition
 	A function ``f`` from a set ``X`` to a set ``Y``, often written ``f:X\to Y``, is a rule which assigns to each ``x\in X`` a unique element ``f\left(x\right)=y\in Y``.
 
-In this course, we will only consider functions having ``X\subset ℝ`` and ``Y\subset ℝ``.
+In this course, we will only consider functions having ``X\subset \mathbb{R}`` and ``Y\subset \mathbb{R}``.
 
 There are several ways to represent a function symbolically:
 1. by a formula such as ``y=x^2``;
@@ -764,11 +764,11 @@ In calculating ``\left(f\circ g\right)\left(x\right)=f\left(g\left(x\right)\righ
 	|Function|Formula|Domain|
 	|:------:|:-----:|:----:|
 	|``f``|``f\left(x\right)=\sqrt x``|``\left[0,\infty\right[``|
-	|``g``|``g\left(x\right)=x+1``|``ℝ``|
+	|``g``|``g\left(x\right)=x+1``|``\mathbb{R}``|
 	|``f\circ g``|``\left(f\circ g\right)\left(x\right)=\sqrt{x+1}``|``\left[-1,\infty\right[``|
 	|``g\circ f``|``\left(f\circ g\right)\left(x\right)=\sqrt{x}+1``|``\left[0,\infty\right[``|
 	|``f\circ f``|``\left(f\circ g\right)\left(x\right)=x^\frac{1}{4}``|``\left[0,\infty\right[``|
-	|``g\circ g``|``\left(f\circ g\right)\left(x\right)=x+2``|``ℝ``|
+	|``g\circ g``|``\left(f\circ g\right)\left(x\right)=x+2``|``\mathbb{R}``|
 
 	To see why, for example, the domain of ``f\circ g`` is ``\left[-1,\infty\right[``, observe that ``g\left(x\right)=x+1`` is defined for all real ``x`` but belongs to the domain of ``f`` only if ``x+1\ge 0``, that is, if ``x\ge -1``.
 
@@ -906,7 +906,7 @@ The following definition is analogous to the definition of a rational number as 
 
 !!! example
 	```math
-	R\left(x\right)=\frac{2x^3-3x^2+3x+4}{x^2+1}\textrm{ with domain }ℝ\,.
+	R\left(x\right)=\frac{2x^3-3x^2+3x+4}{x^2+1}\textrm{ with domain }\mathbb{R}\,.
 	```
 	```math
 	S\left(x\right)=\frac{1}{x^2-4}\textrm{ with domain all real numbers except }\pm 2\,.
@@ -951,7 +951,7 @@ end
 
 In calculus we need more general definitions of ``\cos t`` and ``\sin t`` as functions defined for all real numbers ``t``, not just acute angles.
 
-Let ``C`` be the circle with centre at the origin ``O`` and radius ``1``; its equation is ``x^2+y^2=1``. Let ``A`` be the point ``\left(1,0\right)`` on ``C``. For any real number ``t``, let ``P_t`` be the point on ``C`` at distance ``\left|t\right|`` from ``A``, measured along ``C`` in the counterclockwise direction if ``t>0`` and the clockwise direction if ``t<0``. For example, since ``C`` has circumference ``2\uppi ``, the point ``P_{\uppi /2}`` is one-quarter of the way counterclockwise around ``C`` from ``A``; it is the point ``\left(0,1\right)``.
+Let ``C`` be the circle with centre at the origin ``O`` and radius ``1``; its equation is ``x^2+y^2=1``. Let ``A`` be the point ``\left(1,0\right)`` on ``C``. For any real number ``t``, let ``P_t`` be the point on ``C`` at distance ``\left|t\right|`` from ``A``, measured along ``C`` in the counterclockwise direction if ``t>0`` and the clockwise direction if ``t<0``. For example, since ``C`` has circumference ``2\textup{π} ``, the point ``P_{\textup{π} /2}`` is one-quarter of the way counterclockwise around ``C`` from ``A``; it is the point ``\left(0,1\right)``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -971,9 +971,9 @@ Figure("", """Definition of cosine and sine.""") do
 		latex("t\\,\\left[\\textrm{rad}\\right]", x=xmid+scale/3-font_x, y=ymid-scale/6-font_y, width=4font_x, height=font_y)
 		latex("A", x=xmid+scale+5, y=ymid-font_y-2, width=font_x, height=font_y)
 		latex("P_t=\\left(\\cos t, \\sin t\\right)", x=xmid+scale*cos(pi/3)-5, y=ymid-scale*sin(pi/3)-font_y, width=8*font_x, height=font_y)
-		latex("P_\\uppi ", x=xmid-scale-2font_x, y=ymid-font_y-2, width=2font_x, height=font_y)
-		latex("P_{\\uppi /2}", x=xmid+7, y=ymid-scale-font_y/2-10, width=2font_x, height=font_y)
-		latex("P_{-\\uppi /2}", x=xmid+5, y=ymid+scale, width=3font_x, height=font_y)
+		latex("P_\\textup{π} ", x=xmid-scale-2font_x, y=ymid-font_y-2, width=2font_x, height=font_y)
+		latex("P_{\\textup{π} /2}", x=xmid+7, y=ymid-scale-font_y/2-10, width=2font_x, height=font_y)
+		latex("P_{-\\textup{π} /2}", x=xmid+5, y=ymid+scale, width=3font_x, height=font_y)
 	end
 end
 ```
@@ -981,20 +981,20 @@ end
 !!! definition
 	The *radian measure* of ``\angle AOP_t`` is ``t`` radians.
 
-In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle ``\frac{\uppi }{3}`` we mean ``\frac{\uppi }{3}`` radians (which is ``60°``), not ``\frac{\uppi }{3}`` degrees.
+In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle ``\frac{\textup{π} }{3}`` we mean ``\frac{\textup{π} }{3}`` radians (which is ``60°``), not ``\frac{\textup{π} }{3}`` degrees.
 
 !!! example
 	*Arc length* and *sector area*.
 
 	An arc of a circle of radius ``r`` subtends an angle ``t`` at the centre of the circle. Find the length ``s`` of the arc and the area ``A`` of the sector lying between the arc and the centre of the circle.
 
-	The length ``s`` of the arc is the same fraction of the circumference ``2\uppi  r`` of the circle that the angle ``t`` is to a complete revolution ``2\uppi `` radians. Thus,
+	The length ``s`` of the arc is the same fraction of the circumference ``2\textup{π}  r`` of the circle that the angle ``t`` is to a complete revolution ``2\textup{π} `` radians. Thus,
 	```math
-	s=\frac{t}{2\uppi }(2\uppi  r)=rt\,.
+	s=\frac{t}{2\textup{π} }(2\textup{π}  r)=rt\,.
 	```
-	Similarly, the area ``A`` of the circular sector is the same fraction of the area ``\uppi  r^2`` of the whole circle:
+	Similarly, the area ``A`` of the circular sector is the same fraction of the area ``\textup{π}  r^2`` of the whole circle:
 	```math
-	A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
+	A=\frac{t}{2\textup{π} }(\textup{π}  r^2)=\frac{r^2t}{2}\,.
 	```
 
 Using the procedure described above, we can find the point ``P_t`` corresponding to any real number ``t``.
@@ -1007,22 +1007,22 @@ Because they are defined this way, cosine and sine are often called the *circula
 Many important properties of ``\cos t`` and ``\sin t`` follow from the fact that they are coordinates of the point ``P_t`` on the circle ``C`` with equation ``x^2+y^2=1``.
 
 !!! theorem
-	Let ``t\inℝ``.
+	Let ``t\in\mathbb{R}``.
 	1. ``-1\le\cos t\le 1`` and ``-1\le\sin t\le 1``
 	2. ``\cos^2 t+\sin^2 t=1`` (Pythagorean identity)
-	3. ``\cos(t+2\uppi )=\cos t`` and ``\sin(t+2\uppi )=\sin t`` (periodicity)
+	3. ``\cos(t+2\textup{π} )=\cos t`` and ``\sin(t+2\textup{π} )=\sin t`` (periodicity)
 	4. ``\cos(-t)=\cos(t)`` and ``\sin(-t)=-\sin t`` (cosine is an *even* function, sine is an *odd* function)
-	5. ``\cos\left(\frac{\uppi }{2}-t\right)=\sin t`` and ``\sin\left(\frac{\uppi }{2}-t\right)=\cos t`` (*complementary angles*, symmetry about ``y=x``)
-	6. ``\cos(\uppi -t)=-\cos(t)`` and ``\sin(\uppi -t)=\sin t`` (*supplementary angles*, symmetry about ``x=0``)
+	5. ``\cos\left(\frac{\textup{π} }{2}-t\right)=\sin t`` and ``\sin\left(\frac{\textup{π} }{2}-t\right)=\cos t`` (*complementary angles*, symmetry about ``y=x``)
+	6. ``\cos(\textup{π} -t)=-\cos(t)`` and ``\sin(\textup{π} -t)=\sin t`` (*supplementary angles*, symmetry about ``x=0``)
 
 The next table summarizes the most important values of cosine and sine.
 
-|Radians|``0``|``\frac{\uppi }{6}``|``\frac{\uppi }{4}``|``\frac{\uppi }{3}``|``\frac{\uppi }{2}``|``\frac{2\uppi }{3}``|``\frac{3\uppi }{4}``|``\frac{5\uppi }{6}``|``\uppi ``|
+|Radians|``0``|``\frac{\textup{π} }{6}``|``\frac{\textup{π} }{4}``|``\frac{\textup{π} }{3}``|``\frac{\textup{π} }{2}``|``\frac{2\textup{π} }{3}``|``\frac{3\textup{π} }{4}``|``\frac{5\textup{π} }{6}``|``\textup{π} ``|
 |:------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Cosine|``1``|``\frac{\sqrt 3}{2}``|``\frac{\sqrt 2}{2}``|``\frac{1}{2}``|``0``|``-\frac{1}{2}``|``-\frac{\sqrt 2}{2}``|``-\frac{\sqrt 3}{2}``|``-1``|
 |Sine|``0``|``\frac{1}{2}``|``\frac{\sqrt 2}{2}``|``\frac{\sqrt 3}{2}``|``1``|``\frac{\sqrt 3}{2}``|``\frac{\sqrt 2}{2}``|``\frac{1}{2}``|``0``|
 
-Observe that the graph of ``\sin x`` is the graph of ``\cos x`` shifted to the right a distance ``\frac{\uppi }{2}``.
+Observe that the graph of ``\sin x`` is the graph of ``\cos x`` shifted to the right a distance ``\frac{\textup{π} }{2}``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -1031,7 +1031,7 @@ Figure("", """The graph of the cosine function in red and the sine function in b
 		xmid = 300
 		ymid = 80
 		scale = 50
-		axis_xy(625,155,xmid,ymid,scale,(-3pi/2,-pi,-pi/2,pi/2,pi,3pi/2,2pi),(-1,1),xs=("-\\frac{3\\uppi }{2}","-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","\\frac{3\\uppi }{2}","2\\uppi "), xl=(3, 2, 2, 1, 1, 2, 2), xh=(2,1,2,2,1,2,1))
+		axis_xy(625,155,xmid,ymid,scale,(-3pi/2,-pi,-pi/2,pi/2,pi,3pi/2,2pi),(-1,1),xs=("-\\frac{3\\textup{π} }{2}","-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","\\frac{3\\textup{π} }{2}","2\\textup{π} "), xl=(3, 2, 2, 1, 1, 2, 2), xh=(2,1,2,2,1,2,1))
 		plot_xy(x->cos(x), -6:0.01:7, tuple(), xmid, ymid, scale)
 		plot_xy(x->sin(x), -6:0.01:7, tuple(), xmid, ymid, scale; color="RoyalBlue")
 	end
@@ -1041,7 +1041,7 @@ end
 The following formulas enable us to determine the cosine and sine of a sum or difference of two angles in terms of the cosines and sines of those angles.
 
 !!! theorem
-	Let ``s,t\inℝ``.
+	Let ``s,t\in\mathbb{R}``.
 	```math
 	\begin{aligned}
 	\cos\left(s+t\right)&=\cos s\,\cos t-\sin s\,\sin t\\
@@ -1052,7 +1052,7 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 	```
 
 !!! proof
-	Let ``s,t\inℝ`` and consider the points
+	Let ``s,t\in\mathbb{R}`` and consider the points
 	```math
 	\begin{alignedat}{3}
 	P_t&=\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
@@ -1079,7 +1079,7 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 From the addition formulas, we obtain as special cases certain useful formulas called *double-angle formulas*.
 
 !!! corollary
-	Let ``t\inℝ``.
+	Let ``t\in\mathbb{R}``.
 	1. ``\sin 2t=2\sin t\,\cos t`` and
 	2. ``\cos 2t=\cos^2t-\sin^2t=2\cos^2t-1=1-2\sin^2t``.
 
@@ -1093,16 +1093,16 @@ There are four other trigonometric functions, each defined in terms of cosine an
 
 !!! definition
 	```math
-	\tan:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textrm{(tangent)}
+	\tan:\mathbb{R}\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{\sin x}{\cos x}\quad\textrm{(tangent)}
 	```
 	```math
-	\cot:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\cos x}{\sin x}\quad\textrm{(cotangent)}
+	\cot:\mathbb{R}\setminus\left\{k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{\cos x}{\sin x}\quad\textrm{(cotangent)}
 	```
 	```math
-	\sec:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\cos x}\quad\textrm{(secans)}
+	\sec:\mathbb{R}\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{1}{\cos x}\quad\textrm{(secans)}
 	```
 	```math
-	\csc:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\sin x}\quad\textrm{(cosecans)}
+	\csc:\mathbb{R}\setminus\left\{k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{1}{\sin x}\quad\textrm{(cosecans)}
 	```
 
 {cell=chap display=false output=false}
@@ -1112,7 +1112,7 @@ Figure("", """The graph of the tangent function in red and the cotangent functio
 		xmid = 240
 		ymid = 130
 		scale = 50
-		axis_xy(470,255,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2), xs=("-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","\\frac{3\\uppi }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
+		axis_xy(470,255,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2), xs=("-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","\\frac{3\\textup{π} }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
 		top = atan(130/50)
 		bottom = -atan(125/50)
 		plot_xy(x->sin(x)/cos(x), bottom-pi:0.01:top-pi, tuple(), xmid, ymid, scale)
@@ -1139,7 +1139,7 @@ Figure("", """The graph of the secans function in red and the cosecans function 
 		xmid = 240
 		ymid = 130
 		scale = 50
-		axis_xy(470,260,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2),xs=("-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","\\frac{3\\uppi }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
+		axis_xy(470,260,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2),xs=("-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","\\frac{3\\textup{π} }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
 		right = acos(50/130)
 		left = -right
 		plot_xy(x->1/cos(x), left-pi:0.01:right-pi, tuple(), xmid, ymid, scale)

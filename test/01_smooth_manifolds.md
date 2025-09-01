@@ -232,13 +232,13 @@ If we are given more than two maps, the composition of maps satisfies the associ
 
 !!! definition
 
-    Given a topological space ``\left(M, 𝒯_M\right)`` we define a *chart* of ``M`` to be a pair ``\left(U_\alpha,\phi_\alpha\right)``, with ``U_\alpha`` an element of ``𝒯_M`` and ``\phi_\alpha`` a homeomorphism of ``U_\alpha`` into an open set of ``ℝ^n``, the space of the ``n``-tuples of real numbers ``\left(x^i\right)_{i=1,2,\dots,n}``. The numbers ``x^1, x^2, \dots x^n`` constituting the image of a point ``p\in U_\alpha`` under the map ``\phi_\alpha`` are called the *local coordinates* of ``p``. A family of charts ``𝒜 = \left\lbrace\left(U_\alpha,\phi_\alpha\right)\mid \alpha\in A\right\rbrace`` on ``M`` is said to form an *atlas* on ``M`` if
+    Given a topological space ``\left(M, 𝒯_M\right)`` we define a *chart* of ``M`` to be a pair ``\left(U_\alpha,\phi_\alpha\right)``, with ``U_\alpha`` an element of ``𝒯_M`` and ``\phi_\alpha`` a homeomorphism of ``U_\alpha`` into an open set of ``\mathbb{R}^n``, the space of the ``n``-tuples of real numbers ``\left(x^i\right)_{i=1,2,\dots,n}``. The numbers ``x^1, x^2, \dots x^n`` constituting the image of a point ``p\in U_\alpha`` under the map ``\phi_\alpha`` are called the *local coordinates* of ``p``. A family of charts ``𝒜 = \left\lbrace\left(U_\alpha,\phi_\alpha\right)\mid \alpha\in A\right\rbrace`` on ``M`` is said to form an *atlas* on ``M`` if
 
     ```math
     \bigcup_{\alpha\in A}U_\alpha=M\,.
     ```
 
-Let ``\left(U_\alpha,\phi_\alpha\right)`` and ``\left(U_\beta,\phi_\beta\right)`` be two charts on ``M`` with ``U_\alpha\cap U_\beta\ne\emptyset``. A point ``p\in U_\alpha\cap U_\beta`` can be expressed in terms of its two images in ``ℝ^n`` as:
+Let ``\left(U_\alpha,\phi_\alpha\right)`` and ``\left(U_\beta,\phi_\beta\right)`` be two charts on ``M`` with ``U_\alpha\cap U_\beta\ne\emptyset``. A point ``p\in U_\alpha\cap U_\beta`` can be expressed in terms of its two images in ``\mathbb{R}^n`` as:
 
 ```math
 p=\phi_\alpha^{-1}\left(x\right)=\phi_\beta^{-1}\left(y\right)
@@ -250,13 +250,13 @@ where we put ``x = \left(x^i\right)_{i=1,2,\dots,n}`` and ``y = \left(y^i\right)
 \phi_\beta\circ\phi_\alpha^{-1}:\phi_\alpha\left(U_\alpha\cap U_\beta\right)\to\phi_\beta\left(U_\alpha\cap U_\beta\right)
 ```
 
-is a homeomorphism between open sets of ``ℝ^n``. The inverse map is given by
+is a homeomorphism between open sets of ``\mathbb{R}^n``. The inverse map is given by
 
 ```math
 \left(\phi_\beta\circ\phi_\alpha^{-1}\right)^{-1}=\phi_\alpha\circ\phi_\beta^{-1}\,.
 ```
 
-An atlas on ``M`` is a ``C^r``-atlas if ``\phi_\beta\circ\phi_\alpha^{-1}`` (and its inverse) for any pair ``\left(\alpha,\beta\right)`` is an ``ℝ^n``-valued ``C^r``-function of ``n`` variables (i.e. has a continuous ``r``-th derivative). The composite maps are called coordinate transformations in ``M`` and can be written as
+An atlas on ``M`` is a ``C^r``-atlas if ``\phi_\beta\circ\phi_\alpha^{-1}`` (and its inverse) for any pair ``\left(\alpha,\beta\right)`` is an ``\mathbb{R}^n``-valued ``C^r``-function of ``n`` variables (i.e. has a continuous ``r``-th derivative). The composite maps are called coordinate transformations in ``M`` and can be written as
 
 ```math
 y = \phi_\beta\circ\phi_\alpha^{-1}\left(x\right)
@@ -274,10 +274,10 @@ x = \phi_\alpha\circ\phi_\beta^{-1}\left(y\right)\,.
 
     A *differentiable manifold* of class ``C^r`` and dimension ``n`` is a Hausdorff topological space with a ``C^r``-atlas. Any point in a ``C^r``-differentiable manifold has a neighbourhood which is also a coordinate neighbourhood of ``M``. Hereafter, a ``C^r``-differentiable manifold will be simply referred to as a (smooth) manifold unless stated otherwise.
 
-A map ``\mathsf f:M\to ℝ`` is said to be a ``C^k``-function at ``p\in M``, if for any chart ``\left(U_\alpha,\phi_\alpha\right)``, there exists a neighbourhood ``B`` of ``p`` such that the composite map
+A map ``\mathsf f:M\to \mathbb{R}`` is said to be a ``C^k``-function at ``p\in M``, if for any chart ``\left(U_\alpha,\phi_\alpha\right)``, there exists a neighbourhood ``B`` of ``p`` such that the composite map
 
 ```math
-f_\alpha:\phi_\alpha\left(B\right)\subset ℝ^n\to ℝ:f_\alpha\left(x^1,x^2,\dots,x^n\right)=\mathsf f\circ\phi_\alpha^{-1}\left(x\right)
+f_\alpha:\phi_\alpha\left(B\right)\subset \mathbb{R}^n\to \mathbb{R}:f_\alpha\left(x^1,x^2,\dots,x^n\right)=\mathsf f\circ\phi_\alpha^{-1}\left(x\right)
 ```
 
 is a ``C^k``-differentiable function in ``\phi_\alpha\left(B\right)``.

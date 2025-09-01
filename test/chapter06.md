@@ -634,7 +634,10 @@ Now, we will prove the additive dependency of an integral on the interval of int
 	Hint: for any interval ``\left[x_{i-1},x_i\right]\in\left[a,b\right]``, we have
 
 	```math
-	\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
+	\begin{gathered}
+	\sup\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{\left|f\left(x\right)\right|\mid x\in \left[x_{i-1},x_i\right]\right\}\\
+	\le\sup\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}-\inf\left\{f\left(x\right)\mid x\in \left[x_{i-1},x_i\right]\right\}\,.
+	\end{gathered}
 	```
 
 ### Mean-Value Theorem for Integrals
@@ -784,7 +787,7 @@ This is reasonable because there are continuous functions (extensions) on ``\lef
 	```math
 	\begin{aligned}
 	\int_{0.5}^{3.5}f\left(x\right)\,\mathrm{d}\kern-0.5pt x&=\int_{0.5}^{1.5}\sqrt{1-\left(x-0.5\right)^2}\,\mathrm{d}\kern-0.5pt x+\int_{1.5}^{2.5}2\,\mathrm{d}\kern-0.5pt x+\int_{2.5}^{3.5}\left(x-2.5\right)\,\mathrm{d}\kern-0.5pt x\\
-	&=\left(\frac{1}{4}\times\uppi^2\times 1^2\right)+\left(2\times 1\right)+\left(\frac{1}{2}\times1\times 1\right)=\frac{\uppi+10}{4}\,.
+	&=\left(\frac{1}{4}\times\textup{π}^2\times 1^2\right)+\left(2\times 1\right)+\left(\frac{1}{2}\times1\times 1\right)=\frac{\textup{π}+10}{4}\,.
 	\end{aligned}
 
 ## The Fundamental Theorem of Calculus
@@ -933,13 +936,13 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 
 !!! example
 
-	Find the derivative of ``\displaystyle F\left(x\right)=\int_{x^2}^{x^3}ℯ^{-t^2}\,\mathrm{d}\kern-0.5pt t``.
+	Find the derivative of ``\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t``.
 
 	```math
 	\begin{aligned}
-	F\left(x\right)&=\int_{0}^{x^3}ℯ^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}ℯ^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
-	F^\prime\left(x\right)&=ℯ^{-\left(x^3\right)^2}\left(3x^2\right)-ℯ^{-\left(x^2\right)^2}\left(2x\right)\\
-	&=3x^2ℯ^{-x^6}-2xℯ^{-x^4}\,.
+	F\left(x\right)&=\int_{0}^{x^3}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
+	F^\prime\left(x\right)&=\textup{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\textup{e}^{-\left(x^2\right)^2}\left(2x\right)\\
+	&=3x^2\textup{e}^{-x^6}-2x\textup{e}^{-x^4}\,.
 	\end{aligned}
 	```
 
@@ -966,7 +969,7 @@ Let us begin by assembling a table of some known indefinite integrals. These res
 &\int \sin ax\,\mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sin ax+C\\
 &\int \sec^2 ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cot ax+C\\
 &\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}\kern-0.5pt x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
-&\int ℯ^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}ℯ^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
+&\int \textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\textup{e}^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
 &\int \sinh ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sinh ax+C
 \end{align}
 ```
@@ -1117,12 +1120,12 @@ The above formula serves as a pattern for carrying out integration by parts. We 
 
 !!! example
 
-	Evaluate ``\displaystyle \int xℯ^x\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int x\textup{e}^x\,\mathrm{d}\kern-0.5pt x``.
 
 	```math
 	\begin{aligned}
-	\int xℯ^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=ℯ^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=ℯ^x\\
-	=&\,xℯ^x-\int ℯ^x\,\mathrm{d}\kern-0.5pt x=xℯ^x-ℯ^x+C\,.
+	\int x\textup{e}^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=\textup{e}^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=\textup{e}^x\\
+	=&\,x\textup{e}^x-\int \textup{e}^x\,\mathrm{d}\kern-0.5pt x=x\textup{e}^x-\textup{e}^x+C\,.
 	\end{aligned}
 	```
 
@@ -1142,28 +1145,28 @@ The following example illustrates a frequently occurring and very useful phenome
 
 !!! example
 
-	Evaluate ``\displaystyle \int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x``.
 
 	```math
 	\begin{aligned}
-	\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=ℯ^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=aℯ^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
-	=&\,\frac{1}{b}ℯ^{ax}\sin bx-\frac{a}{b}\int ℯ^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
-	&\quad\textrm{Let }U=ℯ^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=aℯ^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
-	=&\,\frac{1}{b}ℯ^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}ℯ^{ax}\cos bx+\frac{a}{b}\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
-	=&\,\frac{1}{b}ℯ^{ax}\sin bx+\frac{a}{b^2}ℯ^{ax}\cos bx-\frac{a^2}{b^2}\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
+	\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=\textup{e}^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
+	=&\,\frac{1}{b}\textup{e}^{ax}\sin bx-\frac{a}{b}\int \textup{e}^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
+	&\quad\textrm{Let }U=\textup{e}^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
+	=&\,\frac{1}{b}\textup{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\textup{e}^{ax}\cos bx+\frac{a}{b}\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
+	=&\,\frac{1}{b}\textup{e}^{ax}\sin bx+\frac{a}{b^2}\textup{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
 	\end{aligned}
 	```
 
 	Thus,
 
 	```math
-	\left(1+\frac{a^2}{b^2}\right)\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}ℯ^{ax}\sin bx+\frac{a}{b^2}ℯ^{ax}\cos bx+C_1
+	\left(1+\frac{a^2}{b^2}\right)\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}\textup{e}^{ax}\sin bx+\frac{a}{b^2}\textup{e}^{ax}\cos bx+C_1
 	```
 
 	and
 
 	```math
-	\int ℯ^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{bℯ^{ax}\sin bx+aℯ^{ax}\cos bx}{a^2+b^2}+C\,.
+	\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{b\textup{e}^{ax}\sin bx+a\textup{e}^{ax}\cos bx}{a^2+b^2}+C\,.
 	```
 
 Observe that after the first integration by parts we had an integral that was different from, but no simpler than, the original integral. At this point we might have become discouraged and given up on this method. However, perseverance proved worthwhile; a second integration by parts returned the original integral in an equation that could be solved for the integral.
@@ -1249,7 +1252,7 @@ As we will see, however, sometimes such substitutions can actually simplify an i
 
 (1) Integrals involving ``\sqrt{a^2-x^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\sin\theta``.
 
-Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corresponds to ``-\frac{\uppi}{2}\le\theta\le\frac{\uppi}{2}``. Since ``\cos\theta\ge0`` for such ``\theta``, we have
+Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corresponds to ``-\frac{\textup{π}}{2}\le\theta\le\frac{\textup{π}}{2}``. Since ``\cos\theta\ge0`` for such ``\theta``, we have
 
 ```math
 \sqrt{a^2-x^2}=\sqrt{a^2\left(1-\sin^2 \theta\right)}=\sqrt{a^2\cos^2\theta}=a\cos\theta\,.
@@ -1269,7 +1272,7 @@ Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corr
 
 (2) Integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\tan\theta``.
 
-Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}``, so ``\sec\theta&gt;0`` and
+Since ``x`` can take any real value, we have ``-\frac{\textup{π}}{2}&lt;\theta&lt;\frac{\textup{π}}{2}``, so ``\sec\theta&gt;0`` and
 
 ```math
 \sqrt{a^2+x^2}=a\sqrt{1+\tan^2\theta}=a\sec\theta\,.
@@ -1419,7 +1422,7 @@ The integral on the left converges if and only if both integrals on the right co
 	\begin{aligned}
 	\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x&=\int_{-\infty}^0 \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x+\int_0^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
 	&=2\lim_{R\to\infty}\int_0^R \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
-	&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\uppi}{2}=\uppi\,.
+	&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\textup{π}}{2}=\textup{π}\,.
 	\end{aligned}
 	```
 
@@ -1472,13 +1475,13 @@ of integrals over intervals where ``f\left(x\right)&gt; 0``.
 
 !!! example
 
-	The area bounded by ``y=\cos x``, ``y=0``, ``x=0``, and ``x=\frac{3\uppi}{2}`` is
+	The area bounded by ``y=\cos x``, ``y=0``, ``x=0``, and ``x=\frac{3\textup{π}}{2}`` is
 
 	```math
 	\begin{aligned}
-	A&=\int_0^\frac{3\uppi}{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
-	&=\int_0^\frac{\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\uppi}{2}^\frac{3\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
-	&=\left.\sin x\right|_0^\frac{\uppi}{2}-\left.\sin x\right|_\frac{\uppi}{2}^\frac{3\uppi}{2}\\
+	A&=\int_0^\frac{3\textup{π}}{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
+	&=\int_0^\frac{\textup{π}}{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\textup{π}}{2}^\frac{3\textup{π}}{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
+	&=\left.\sin x\right|_0^\frac{\textup{π}}{2}-\left.\sin x\right|_\frac{\textup{π}}{2}^\frac{3\textup{π}}{2}\\
 	&=\left(1-0\right)-\left(-1-1\right)=3\,\textrm{square units.}
 	\end{aligned}
 	```
@@ -1523,14 +1526,14 @@ In order to evaluate this integral, we have to determine the intervals on which 
 
 !!! example
 
-	Find the total area ``A`` lying between ``y=\sin x`` and ``y=\cos x`` from ``x=0`` to ``x=2\uppi``.
+	Find the total area ``A`` lying between ``y=\sin x`` and ``y=\cos x`` from ``x=0`` to ``x=2\textup{π}``.
 
-	Between ``0`` and ``2\uppi`` the graphs of sine and cosine cross at ``x=\frac{\uppi}{4}`` and ``x=\frac{5\uppi}{4}``. The required area is
+	Between ``0`` and ``2\textup{π}`` the graphs of sine and cosine cross at ``x=\frac{\textup{π}}{4}`` and ``x=\frac{5\textup{π}}{4}``. The required area is
 
 	```math
 	\begin{aligned}
-	A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\uppi}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\uppi}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
-	&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\uppi}{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\uppi}{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\uppi}{4}^{2\uppi}\\
+	A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\textup{π}}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\textup{π}}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
+	&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\textup{π}}{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\textup{π}}{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\textup{π}}{4}^{2\textup{π}}\\
 	&=\left(\sqrt 2-1\right)+\left(\sqrt 2+\sqrt 2\right)+\left(1+\sqrt 2\right)=4\sqrt 2\,\textrm{square units.}
 	\end{aligned}
 	```
@@ -1559,10 +1562,10 @@ Many common solids have circular cross-sections in planes perpendicular to some 
 
 !!! theorem
 
-	If the region ``R`` bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b`` is rotated about the ``x``-axis, then the cross-section of the solid generated in the plane perpendicular to the ``x``-axis at ``x`` is a circular disk of radius ``\left|f\left(x\right)\right|``. The area of this cross-section is ``A\left(x\right)=\uppi\left(f\left(x\right)\right)^2``, so the volume of the solid of revolution is
+	If the region ``R`` bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b`` is rotated about the ``x``-axis, then the cross-section of the solid generated in the plane perpendicular to the ``x``-axis at ``x`` is a circular disk of radius ``\left|f\left(x\right)\right|``. The area of this cross-section is ``A\left(x\right)=\textup{π}\left(f\left(x\right)\right)^2``, so the volume of the solid of revolution is
 
 	```math
-	V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
+	V=\textup{π}\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
 	```
 
 !!! example
@@ -1572,7 +1575,7 @@ Many common solids have circular cross-sections in planes perpendicular to some 
 	The line from ``\left(0,0\right)`` to ``\left(h,r\right)`` has equation ``y=\frac{r}{h}x``. Thus the volume of the cone is
 
 	```math
-	V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi r^2h\ \textrm{cubic units.}
+	V=\textup{π}\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\textup{π}\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\textup{π} r^2h\ \textrm{cubic units.}
 	```
 
 !!! theorem
@@ -1580,17 +1583,17 @@ Many common solids have circular cross-sections in planes perpendicular to some 
 	The volume of the solid obtained by rotating the plane region ``0\le y\le f\left(x\right)``, ``0\le a&lt;x&lt;b`` about the ``y``-axis is
 
 	```math
-	V=2\uppi\int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	V=2\textup{π}\int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 	```
 
 !!! example
 
 	Find the volume of a bowl obtained by revolving the parabolic arc ``y=x^2``, ``0\le x\le1`` about the ``y``-axis.
 
-	The interior of the bowl corresponds to revolving the region given by ``x^2 \le y\le 1``, ``0\le x\le 1`` about the ``y``-axis. The area element at position ``x`` has height ``1-x^2`` and generates a cylindrical shell of volume ``\mathrm{d}\kern-0.5pt V=2\uppi x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x``. Thus, the volume of the bowl is
+	The interior of the bowl corresponds to revolving the region given by ``x^2 \le y\le 1``, ``0\le x\le 1`` about the ``y``-axis. The area element at position ``x`` has height ``1-x^2`` and generates a cylindrical shell of volume ``\mathrm{d}\kern-0.5pt V=2\textup{π} x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x``. Thus, the volume of the bowl is
 
 	```math
-	V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi}{2}\ \textrm{cubic units.}
+	V=2\textup{π}\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\textup{π}\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\textup{π}}{2}\ \textrm{cubic units.}
 	```
 
 We have described two methods for determining the volume of a solid of revolution, slicing and cylindrical shells. The choice of method for a particular solid is usually dictated by the form of the equations defining the region being rotated and by the axis of rotation.
@@ -1673,10 +1676,10 @@ Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right
 
 When a plane curve is rotated (in three dimensions) about a line in the plane of the curve, it sweeps out a surface of revolution. For instance, a sphere of radius ``a`` is generated by rotating a semicircle of radius ``a`` about the diameter of that semicircle.
 
-The area of a surface of revolution can be found by integrating an area element ``\mathrm{d}\kern-0.5pt S`` constructed by rotating the arc length element ``\mathrm{d}\kern-0.5pt s`` of the curve about the given line. If the radius of rotation of the element ``\mathrm{d}\kern-0.5pt s`` is ``r``, then it generates, on rotation, a circular band of width ``\mathrm{d}\kern-0.5pt s`` and length (circumference) ``2\uppi r``. The area of this band is, therefore,
+The area of a surface of revolution can be found by integrating an area element ``\mathrm{d}\kern-0.5pt S`` constructed by rotating the arc length element ``\mathrm{d}\kern-0.5pt s`` of the curve about the given line. If the radius of rotation of the element ``\mathrm{d}\kern-0.5pt s`` is ``r``, then it generates, on rotation, a circular band of width ``\mathrm{d}\kern-0.5pt s`` and length (circumference) ``2\textup{π} r``. The area of this band is, therefore,
 
 ```math
-\mathrm{d}\kern-0.5pt S=2\uppi r\,\mathrm{d}\kern-0.5pt s\,.
+\mathrm{d}\kern-0.5pt S=2\textup{π} r\,\mathrm{d}\kern-0.5pt s\,.
 ```
 
 The areas of surfaces of revolution around various lines can be obtained by integrating ``\mathrm{d}\kern-0.5pt S`` with appropriate choices of ``r``. Here are some important special cases.
@@ -1686,13 +1689,13 @@ The areas of surfaces of revolution around various lines can be obtained by inte
 	If ``f^\prime\left(x\right)`` is continuous on ``\left[a,b\right]`` and the curve ``y=f\left(x\right)`` is rotated about the ``x``-axis, the area of the surface of revolution so generated is
 
 	```math
-	S=2\uppi\int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	S=2\textup{π}\int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\textup{π}\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
 	```
 
 	If the rotation is about the ``y``-axis, the surface area is
 
 	```math
-	S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	S=2\textup{π}\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\textup{π}\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
 	```
 
 !!! example
@@ -1703,9 +1706,9 @@ The areas of surfaces of revolution around various lines can be obtained by inte
 
 	```math
 	\begin{aligned}
-	S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
+	S=&2\textup{π}\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
 	&\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
-	=&\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
-	=&\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
+	=&\frac{\textup{π}}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+	=&\left.\frac{\textup{π}}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\textup{π}}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
 	\end{aligned}
 	```

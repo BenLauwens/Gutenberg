@@ -22,7 +22,7 @@ We need the following lemma to prove the boundedness property.
 
     Let ``I_1=\left[a_1, b_1\right]`` be the subinterval on which ``f`` is unbounded and repeat.
 
-    By the Nested Intervals theorem, ``\bigcap_{n\in ℕ}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
+    By the Nested Intervals theorem, ``\bigcap_{n\in \mathbb{N}}I_n=\left\{c\right\}``, where ``c=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}``.
 
     Since ``f`` is continuous at ``c``, ``f`` is bounded on some open interval containing ``c``. However, as we have seen by the extension of the Capture theorem, such an open interval contains one of the intervals ``I_N``, which is a contradiction since ``f`` is unbounded on each ``I_n``.
 
