@@ -30,7 +30,7 @@ Prove
 If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(x\right)`` is differentiable at ``x``, then the composite function ``f\circ g\left(x\right)=f\left(g\left(x\right)\right)`` is differentiable at ``x``, and
 
 ```math
-\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+\left(f\circ g\right)^\prime=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)
 ```
 
 !!! proof
@@ -40,25 +40,25 @@ If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(
 	```math
 	E\left(k\right)=\begin{cases}
 	0&\textrm{if }k=0\,.\\
-	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f^\prime\left(u\right)&\textrm{if }k\ne0\,.
 	\end{cases}
 	```
 
 	By the definition of derivative
 	```math
-	\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+	\lim_{k\to 0}E\left(k\right)=f^\prime\left(u\right)-f^\prime\left(u\right)=0=E\left(0\right)\,,
 	```
 	so ``E\left(k\right)`` is continuous at ``k=0``. Also, whether ``k=0`` or not, we have
 	```math
-	f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+	f\left(u+k\right)-f\left(u\right)=\left(f^\prime\left(u\right)+E\left(k\right)\right)k\,.
 	```
 	Now put ``u=g\left(x\right)`` and ``k=g\left(x+h\right)-g\left(x\right)``, so that ``u+k=g\left(x+h\right)``, and obtain
 	```math
-	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
 	```
 	Since ``g`` is differentiable at ``x``,
 	```math
-	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g^\prime\left(x\right)\,.
 	```
 	Also, ``g`` is continuous at ``x``, so 
 	```math
@@ -72,8 +72,8 @@ If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(
 	```math
 	\begin{aligned}
 	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
-	&= \left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
-	&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+	&= \left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
 	```
 	which was to be proved.
@@ -1115,7 +1115,7 @@ Find ``\left(f^{-1}\right)^\prime\left(0\right)`` if
 {class = pagebreak}
 ## Explain the proof!
 
-If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f\prime\left(c\right)`` exists, then ``f\prime\left(c\right)=0``. (Values of ``x`` where ``f\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
+If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f^\prime\left(c\right)`` exists, then ``f^\prime\left(c\right)=0``. (Values of ``x`` where ``f^\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
 
 !!! proof
 
@@ -1131,11 +1131,11 @@ If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maxi
 	```
 	Thus ``f^\prime\left(c\right)``. The proof for a minimum value at ``c`` is similar.
 
-Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]``and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``.
+Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]``and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g^\prime\left(c\right)=0``.
 
 !!! proof
 
-	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
+	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g^\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
 
 	Let us assume that ``g\left(x\right)&gt; g\left(a\right)``. (If ``g\left(x\right)&lt; g\left(a\right)``, the proof is similar.)
 
@@ -1143,7 +1143,7 @@ Suppose that the function ``g`` is continuous on the closed, finite interval ``\
 
 	Since ``g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)``, ``c`` cannot be either ``a`` or ``b``. Therefore, ``c`` is in the open interval ``\left]a,b\right[``, so ``g`` is differentiable at ``c``.
 
-	By the previous theorem, ``c`` must be a critical point of ``g``: ``g\prime\left(c\right)=0``.
+	By the previous theorem, ``c`` must be a critical point of ``g``: ``g^\prime\left(c\right)=0``.
 
 {data-type = unnumbered, class = page.reset}
 # Exam: ES111 Calculus – Series 20
@@ -1637,7 +1637,7 @@ Find all continuous functions ``f`` satisfying
 If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(x\right)`` is differentiable at ``x``, then the composite function ``f\circ g\left(x\right)=f\left(g\left(x\right)\right)`` is differentiable at ``x``, and
 
 ```math
-\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+\left(f\circ g\right)^\prime=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)
 ```
 
 !!! proof
@@ -1647,25 +1647,25 @@ If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(
 	```math
 	E\left(k\right)=\begin{cases}
 	0&\textrm{if }k=0\,.\\
-	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f^\prime\left(u\right)&\textrm{if }k\ne0\,.
 	\end{cases}
 	```
 
 	By the definition of derivative
 	```math
-	\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+	\lim_{k\to 0}E\left(k\right)=f^\prime\left(u\right)-f^\prime\left(u\right)=0=E\left(0\right)\,,
 	```
 	so ``E\left(k\right)`` is continuous at ``k=0``. Also, whether ``k=0`` or not, we have
 	```math
-	f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+	f\left(u+k\right)-f\left(u\right)=\left(f^\prime\left(u\right)+E\left(k\right)\right)k\,.
 	```
 	Now put ``u=g\left(x\right)`` and ``k=g\left(x+h\right)-g\left(x\right)``, so that ``u+k=g\left(x+h\right)``, and obtain
 	```math
-	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
 	```
 	Since ``g`` is differentiable at ``x``,
 	```math
-	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g^\prime\left(x\right)\,.
 	```
 	Also, ``g`` is continuous at ``x``, so 
 	```math
@@ -1679,8 +1679,8 @@ If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(
 	```math
 	\begin{aligned}
 	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
-	&= \left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
-	&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+	&= \left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
 	```
 	which was to be proved.

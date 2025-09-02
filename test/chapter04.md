@@ -319,28 +319,28 @@ If a curve ``C`` has a tangent line ``L`` at point ``P``, then the straight line
 A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of ``y=f\left(x\right)`` at the point ``x`` is itself a function of ``x``. At any point ``x`` where the graph has a finite slope, we say that ``f`` is *differentiable*, and we call the slope the *derivative* of ``f``. The derivative is therefore the limit of the Newton quotient.
 
 !!! definition
-	The derivative of a function ``f`` is another function ``f\prime`` defined by
+	The derivative of a function ``f`` is another function ``f^\prime`` defined by
 	```math
-	f\prime\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}
+	f^\prime\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}
 	```
-	at all points ``x`` for which the limit exists (i.e., is a finite real number). If ``f\prime`` exists, we say that ``f`` is differentiable at ``x``.
+	at all points ``x`` for which the limit exists (i.e., is a finite real number). If ``f^\prime`` exists, we say that ``f`` is differentiable at ``x``.
 
-The domain of the derivative ``f\prime`` (read “``f`` prime”) is the set of numbers ``x`` in the domain of ``f`` where the graph of ``f`` has a nonvertical tangent line, and the value ``f\prime\left(x_0\right)`` of ``f\prime`` at such a point ``x_0`` is the slope of the tangent line to ``y=f\left(x\right)`` there. Thus, the equation of the tangent line to ``y=\left(x\right)`` at ``f\left(x_0\right)`` is
+The domain of the derivative ``f^\prime`` (read “``f`` prime”) is the set of numbers ``x`` in the domain of ``f`` where the graph of ``f`` has a nonvertical tangent line, and the value ``f^\prime\left(x_0\right)`` of ``f^\prime`` at such a point ``x_0`` is the slope of the tangent line to ``y=f\left(x\right)`` there. Thus, the equation of the tangent line to ``y=\left(x\right)`` at ``f\left(x_0\right)`` is
 
 ```math
-y=f\left(x_0\right)+f\prime\left(x_0\right)\left(x-x_0\right)
+y=f\left(x_0\right)+f^\prime\left(x_0\right)\left(x-x_0\right)
 ```
 
-The domain ``f\prime`` may be smaller than the domain of ``f`` because it contains only those points in the domain of ``f`` at which ``f`` is differentiable. Values of ``x`` in the domain of ``f`` where ``f`` is not differentiable and that are not endpoints of the domain of ``f`` are *singular points* of ``f``.
+The domain ``f^\prime`` may be smaller than the domain of ``f`` because it contains only those points in the domain of ``f`` at which ``f`` is differentiable. Values of ``x`` in the domain of ``f`` where ``f`` is not differentiable and that are not endpoints of the domain of ``f`` are *singular points* of ``f``.
 
 The value of the derivative of ``f`` at a particular point ``x_0`` can be expressed as a limit in either of two ways:
 
 ```math
-f\prime\left(x_0\right)=\lim_{h\to 0}\frac{f\left(x_0+h\right)-f\left(x_0\right)}{h}=\lim_{x\to x_0}\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}
+f^\prime\left(x_0\right)=\lim_{h\to 0}\frac{f\left(x_0+h\right)-f\left(x_0\right)}{h}=\lim_{x\to x_0}\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}
 ```
 In the second limit ``x_0+h`` is replaced by ``x``, so that ``h=x-x_0`` and ``h\to 0`` is equivalent to ``x\to x_0``.
 
-The process of calculating the derivative ``f\prime`` of a given function ``f`` is called *differentiation*.
+The process of calculating the derivative ``f^\prime`` of a given function ``f`` is called *differentiation*.
 
 {cell=chap display=false output=false}
 ```julia
@@ -389,29 +389,29 @@ A function is differentiable on a set ``S`` if it is differentiable at every poi
 f_+^\prime\left(a\right)=\lim_{h\to 0^+}\frac{f\left(a+h\right)-f\left(x\right)}{h}\,,\quad f_-^\prime\left(b\right)=\lim_{h\to 0^-}\frac{f\left(b+h\right)-f\left(x\right)}{h}\,.
 ```
 
-We now say that ``f`` is differentiable on ``\left[a,b\right]`` if ``f\prime\left(x\right)`` exists for all ``x\in\left[a,b\right]`` and ``f_+^\prime\left(a\right)`` and ``f_-^\prime\left(b\right)`` both exist.
+We now say that ``f`` is differentiable on ``\left[a,b\right]`` if ``f^\prime\left(x\right)`` exists for all ``x\in\left[a,b\right]`` and ``f_+^\prime\left(a\right)`` and ``f_-^\prime\left(b\right)`` both exist.
 
 !!! example
-	Show that if ``f\left(x\right)=ax+b``, then ``f\prime\left(x\right)=a``.
+	Show that if ``f\left(x\right)=ax+b``, then ``f^\prime\left(x\right)=a``.
 
 	The result is apparent from the graph of f, but we will do the calculation using the definition:
 
 	```math
 	\begin{aligned}
-	f\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
+	f^\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{a\left(x+h\right)+b-\left(ax+b\right)}{h}\\
 	&=\lim_{h\to 0}\frac{ah}{h}=a\,.
 	\end{aligned}
 	```
 
-An important special case of this example says that the derivative of a constant function is the zero function: If ``g\left(x\right)=c``, a constant, then ``g\prime\left(x\right)=0``.
+An important special case of this example says that the derivative of a constant function is the zero function: If ``g\left(x\right)=c``, a constant, then ``g^\prime\left(x\right)=0``.
 
 !!! example
 	Use the definition of the derivative to calculate the derivatives of ``f\left(x\right)=x^2``, ``\displaystyle g\left(x\right)=\frac{1}{x}`` and ``k\left(x\right)=\sqrt x``.
 
 	```math
 	\begin{aligned}
-	f\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
+	f^\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{\left(x+h\right)^2-x^2}{h}=\lim_{h\to 0}\frac{x^2+2xh+h^2-x^2}{h}\\
 	&=\lim_{h\to 0}\frac{2xh+h^2}{h}=\lim_{h\to 0}2x+h=2x\,.
 	\end{aligned}
@@ -419,7 +419,7 @@ An important special case of this example says that the derivative of a constant
 
 	```math
 	\begin{aligned}
-	g\prime\left(x\right)&=\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+	g^\prime\left(x\right)&=\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{\frac{1}{x+h}-\frac{1}{x}}{h}=\lim_{h\to 0}\frac{\frac{x-\left(x+h\right)}{\left(x+h\right)x}}{h}\\
 	&=\lim_{h\to 0}\frac{-h}{h\left(x+h\right)x}=\lim_{h\to 0}-\frac{1}{\left(x+h\right)x}=-\frac{1}{x^2}\,.
 	\end{aligned}
@@ -433,10 +433,10 @@ An important special case of this example says that the derivative of a constant
 	\end{aligned}
 	```
 
-The three derivative formulas calculated in this example are special cases of the following *General Power Rule*: If ``f\left(x\right)=x^r``, then ``f\prime\left(x\right)=rx^{r-1}`` for all values of ``r`` and ``x`` for which ``x^{r-1}``makes sense as a real number. Eventually, we will prove all appropriate cases of the General Power Rule. 
+The three derivative formulas calculated in this example are special cases of the following *General Power Rule*: If ``f\left(x\right)=x^r``, then ``f^\prime\left(x\right)=rx^{r-1}`` for all values of ``r`` and ``x`` for which ``x^{r-1}``makes sense as a real number. Eventually, we will prove all appropriate cases of the General Power Rule. 
 
 !!! example
-	Verify that: if ``f\left(x\right)=\left|x\right|``, then ``f\prime\left(x\right)=\frac{x}{\left|x\right|}=\operatorname{sgn}x``.
+	Verify that: if ``f\left(x\right)=\left|x\right|``, then ``f^\prime\left(x\right)=\frac{x}{\left|x\right|}=\operatorname{sgn}x``.
 
 	We have
 	```math
@@ -446,9 +446,9 @@ The three derivative formulas calculated in this example are special cases of th
 	\end{cases}
 	```
 
-	Thus, from the first example, ``f\prime\left(x\right)=1`` if ``x&gt;0`` and ``f\prime\left(x\right)=-1`` if ``x&lt;0``. Also ``f`` is not differentiable at ``x=0`` (why?), which is a singular point of ``f``. Therefore,
+	Thus, from the first example, ``f^\prime\left(x\right)=1`` if ``x&gt;0`` and ``f^\prime\left(x\right)=-1`` if ``x&lt;0``. Also ``f`` is not differentiable at ``x=0`` (why?), which is a singular point of ``f``. Therefore,
 	```math
-	f\prime\left(x\right)=\begin{cases}
+	f^\prime\left(x\right)=\begin{cases}
 	\hphantom{-}1\,,&\textrm{if }x\gt0\\
 	-1\,,\textrm{if }x&lt;0
 	\end{cases}=\frac{x}{\left|x\right|}=\operatorname{sgn}x
@@ -459,7 +459,7 @@ The three derivative formulas calculated in this example are special cases of th
 Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If ``y=f\left(x\right)``, we can use the dependent variable ``y`` to represent the function, and we can denote the derivative of the function with respect to ``x`` in any of the following ways:
 
 ```math
-\mathsf{D}_x\kern-0.5pt y=y\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
+\mathsf{D}_x\kern-0.5pt y=y^\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f^\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
 ```
 
 (In the forms using “``\mathsf{D}_x``,” we can omit the subscript ``x`` if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable ``x`` is to write ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` in front of that expression. The symbol ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` is a differential operator and should be read “the derivative with respect to ``x`` of ``\dots``”.
@@ -467,12 +467,12 @@ Because functions can be written in different ways, it is useful to have more th
 The value of the derivative of a function at a particular number ``x_0`` in its domain can also be expressed in several ways:
 
 ```math
-\left.\mathsf{D}_x\kern-0.5pt y\right|_{x=x_0}=\left.y\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f\prime\left(x_0\right)=\mathsf{D}_x\kern-0.5pt f\left(x_0\right)\,.
+\left.\mathsf{D}_x\kern-0.5pt y\right|_{x=x_0}=\left.y^\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f^\prime\left(x_0\right)=\mathsf{D}_x\kern-0.5pt f\left(x_0\right)\,.
 ```
 
-The symbol ``\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}`` is called an *evaluation symbol*. It signifies that the expression preceding it should be evaluated at ``x=x_0``. Do not confuse ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)`` and ``\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}``. The first expression represents a *function*, ``f\prime\left(x\right)``. The second represents a *number* ``f\prime\left(x_0\right)``.
+The symbol ``\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}`` is called an *evaluation symbol*. It signifies that the expression preceding it should be evaluated at ``x=x_0``. Do not confuse ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)`` and ``\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}``. The first expression represents a *function*, ``f^\prime\left(x\right)``. The second represents a *number* ``f^\prime\left(x_0\right)``.
 
-The notation ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` are called Leibniz notations for the derivative; Newton used notations similar to the prime ``y\prime`` notations we use here.
+The notation ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` are called Leibniz notations for the derivative; Newton used notations similar to the prime ``y^\prime`` notations we use here.
 
 The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, can be written in the form ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}``, where ``\Delta\kern-0.5pt y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta\kern-0.5pt x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
 
@@ -512,7 +512,7 @@ end
 The Newton quotient ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` is actually the quotient of two quantities, ``\Delta\kern-0.5pt y`` and ``\Delta\kern-0.5pt x``. It is not at all clear, however, that the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, the limit of ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` as ``\Delta\kern-0.5pt x`` approaches zero, can be regarded as a quotient. If ``y`` is a continuous function of ``x``, then ``\Delta\kern-0.5pt y`` approaches zero when ``\Delta\kern-0.5pt x`` approaches zero, so ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` appears to be the meaningless quantity ``\frac{0}{0}``. Nevertheless, it is sometimes useful to be able to refer to quantities ``\mathrm d\kern-0.5pt y`` and ``\mathrm d\kern-0.5pt x`` in such a way that their quotient is the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. We can justify this by regarding ``\mathrm d\kern-0.5pt x`` as a new independent variable (called the *differential of ``x``*) and defining a new dependent variable ``\mathrm d\kern-0.5pt y`` (the *differential of ``y``*) as a function of ``x`` and ``\mathrm d\kern-0.5pt x`` by
 
 ```math
-\mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f\prime(x)\,\mathrm d\kern-0.5pt x
+\mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f^\prime(x)\,\mathrm d\kern-0.5pt x
 ```
 
 For example, if ``y=x^2``, we can write ``\mathrm{d}\kern-0.5pt y=2x\,\mathrm{d}\kern-0.5pt x`` to mean the same thing as ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=2x``. Similarly, if ``f\left(x\right)=\frac{1}{x}``, we can write ``\mathrm{d}\kern-0.5pt y=-\frac{1}{x^2}\,\mathrm{d}\kern-0.5pt x`` as the equivalent differential form of the assertion that ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{x^2}``. This *differential notation* is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.
@@ -529,11 +529,11 @@ we sometimes want to know how a change in the value of ``x`` by an amount ``\Del
 ```
 but if the change ``\Delta\kern-0.5pt x`` is small, then we can get a good approximation to ``\Delta\kern-0.5pt y`` by using the fact that ``\displaystyle\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` is approximately the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. Thus,
 ```math
-\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f\prime\left(x\right)\Delta\kern-0.5pt x\,.
+\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f^\prime\left(x\right)\Delta\kern-0.5pt x\,.
 ```
 It is often convenient to represent this approximation in terms of differentials; if we denote the change in ``x`` by ``\mathrm{d}\kern-0.5pt x`` instead of ``\Delta\kern-0.5pt x``, then the change ``\Delta\kern-0.5pt y`` in ``y`` is approximated by the differential ``\mathrm{d}\kern-0.5pt y``, that is
 ```math
-\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 ```
 
 {cell=chap display=false output=false}
@@ -570,9 +570,9 @@ end
 
 ### Some Questions
 
-Is a function ``f`` defined on an interval ``I`` necessarily the derivative of some other function defined on ``I``? The answer is no; some functions are derivatives and some are not. Although a derivative need not be a continuous function, it must, like a continuous function, have the intermediate-value property: on an interval ``\left[a,b\right]``, a derivative ``f\prime\left(x\right)`` takes on every value between ``f\prime\left(a\right)`` and ``f\prime\left(b\right)``. We will prove this in a next section.
+Is a function ``f`` defined on an interval ``I`` necessarily the derivative of some other function defined on ``I``? The answer is no; some functions are derivatives and some are not. Although a derivative need not be a continuous function, it must, like a continuous function, have the intermediate-value property: on an interval ``\left[a,b\right]``, a derivative ``f^\prime\left(x\right)`` takes on every value between ``f^\prime\left(a\right)`` and ``f^\prime\left(b\right)``. We will prove this in a next section.
 
-If ``g\left(x\right)`` is continuous on an interval ``I``, then ``g\left(x\right)=f\prime\left(x\right)`` for some function ``f`` that is differentiable on ``I`` . We will discuss this fact further in Chapter 6.
+If ``g\left(x\right)`` is continuous on an interval ``I``, then ``g\left(x\right)=f^\prime\left(x\right)`` for some function ``f`` that is differentiable on ``I`` . We will discuss this fact further in Chapter 6.
 
 ## Differentiation Rules
 
@@ -586,11 +586,11 @@ Before developing these differentiation rules we need to establish one obvious b
 !!! proof
 	Since ``f`` is differentiable at ``x``, we know that
 	```math
-	\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=f\prime\left(x\right)
+	\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=f^\prime\left(x\right)
 	```
 	exists. Using the limit rules, we have
 	```math
-	\lim_{h\to 0}f\left(x+h\right)-f\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}h=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\lim_{h\to 0}h=f\prime\left(x\right)0=0\,.
+	\lim_{h\to 0}f\left(x+h\right)-f\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}h=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\lim_{h\to 0}h=f^\prime\left(x\right)0=0\,.
 	```
 	This is equivalent to ``\lim_{h\to 0}f\left(x+h\right)=f\left(x\right)``, which says that ``f`` is continuous at ``x``.
 
@@ -602,9 +602,9 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	If functions ``f`` and ``g`` are differentiable at ``x``, and if ``C`` is a constant, then the functions ``f+g``, ``f-g``, and ``Cf`` are all differentiable at ``x`` and
 	```math
 	\begin{aligned}
-	\left(f+g\right)\prime\left(x\right)&=f\prime\left(x\right)+g\prime\left(x\right)\\
-	\left(f-g\right)\prime\left(x\right)&=f\prime\left(x\right)-g\prime\left(x\right)\\
-	\left(Cf\right)\prime\left(x\right)&=Cf\prime\left(x\right)\,.
+	\left(f+g\right)\prime\left(x\right)&=f^\prime\left(x\right)+g^\prime\left(x\right)\\
+	\left(f-g\right)\prime\left(x\right)&=f^\prime\left(x\right)-g^\prime\left(x\right)\\
+	\left(Cf\right)\prime\left(x\right)&=Cf^\prime\left(x\right)\,.
 	\end{aligned}
 	```
 
@@ -617,7 +617,7 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	\left(f+g\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(f+g\right)\left(x+h\right)-\left(f+g\right)\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{\left(f\left(x+h\right)+g\left(x+h\right)\right)-\left(f\left(x\right)+g\left(x\right)\right)}{h}\\
 	&=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}+\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
-	&=f\prime\left(x\right)+g\prime\left(x\right)\,,
+	&=f^\prime\left(x\right)+g^\prime\left(x\right)\,,
 	\end{aligned}
 	```
 	because the limit of a sum is the sum of the limits. The proof for the difference ``f-g`` is similar. 
@@ -626,7 +626,7 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	```math
 	\begin{aligned}
 	\left(Cf\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{Cf\left(x+h\right)-Cf\left(x\right)}{h}\\
-	&=C\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=Cf\prime\left(x\right)\,.
+	&=C\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=Cf^\prime\left(x\right)\,.
 	\end{aligned}
 	```
 
@@ -648,7 +648,7 @@ Then we have
 \begin{aligned}
 \left(f_1+f_2+\cdots+f_k+f_{k+1}\right)\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)\prime\\
 &=\left(f+f_{k+1}\right)\prime\\
-&=f\prime+f_{k+1}\prime\\
+&=f^\prime+f_{k+1}\prime\\
 &=f_1^\prime+f_2^\prime+\cdots+f_k^\prime+f_{k+1}\prime\,.
 \end{aligned}
 ```
@@ -662,7 +662,7 @@ The rule for differentiating a product of functions is a little more complicated
 !!! theorem
 	If functions ``f`` and ``g`` are differentiable at ``x``, then their product ``fg`` is also differentiable at ``x``, and
 	```math
-	\left(fg\right)\prime\left(x\right)=f\prime\left(x\right)g\left(x\right)+f\left(x\right)g\prime\left(x\right)
+	\left(fg\right)\prime\left(x\right)=f^\prime\left(x\right)g\left(x\right)+f\left(x\right)g^\prime\left(x\right)
 	```
 
 !!! proof
@@ -673,7 +673,7 @@ The rule for differentiating a product of functions is a little more complicated
 	&=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x+h\right)+f\left(x\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}g\left(x+h\right)+f\left(x\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
-	&=f\prime\left(x\right)g\left(x\right)+f\left(x\right)g\prime\left(x\right)\,,
+	&=f^\prime\left(x\right)g\left(x\right)+f\left(x\right)g^\prime\left(x\right)\,,
 	\end{aligned}
 	```
 	To get the last line, we have used the fact that ``f`` and ``g`` are differentiable and the fact that ``g`` is therefore continuous, as well as limit rules.
@@ -696,7 +696,7 @@ The Product Rule can be extended to products of any number of factors; for insta
 ```math
 \begin{aligned}
 \left(fgh\right)^\prime\left(x\right)&=f^\prime\left(x\right)\left(gh\right)\left(x\right)+f\left(x\right)\left(gh\right)^\prime\left(x\right)\\
-&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\prime\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\left(x\right)h\prime\left(x\right)\,.
+&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f^\prime\left(x\right)g^\prime\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\left(x\right)h^\prime\left(x\right)\,.
 \end{aligned}
 ```
 
@@ -713,7 +713,7 @@ In general, the derivative of a product of ``n`` functions will have n terms; ea
 !!! theorem
 	If ``f`` is differentiable at ``x`` and ``f\left(x\right)\ne0``, then ``\displaystyle\frac{1}{f}`` is differentiable at ``x``, and
 	```math
-	\left(\frac{1}{f}\right)^\prime\left(x\right)=\frac{-f\prime\left(x\right)}{\left(f\left(x\right)\right)^2}\,.
+	\left(\frac{1}{f}\right)^\prime\left(x\right)=\frac{-f^\prime\left(x\right)}{\left(f\left(x\right)\right)^2}\,.
 	```
 
 !!! proof
@@ -723,7 +723,7 @@ In general, the derivative of a product of ``n`` functions will have n terms; ea
 	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
 	&=\lim_{h\to 0}\frac{f\left(x\right)-f\left(x+h\right)}{hf\left(x+h\right)f\left(x\right)}\\
 	&=\lim_{h\to 0}\left(\frac{-1}{f\left(x+h\right)f\left(x\right)}\right)\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}\right)\\
-	&=\frac{-1}{\left(f\left(x\right)\right)^2}f\prime\left(x\right)
+	&=\frac{-1}{\left(f\left(x\right)\right)^2}f^\prime\left(x\right)
 	\end{aligned}
 	```
 	Again we have to use the continuity of ``f`` and the limit rules.
@@ -743,8 +743,8 @@ In general, the derivative of a product of ``n`` functions will have n terms; ea
 The Product Rule and the Reciprocal Rule can be combined to provide a rule for differentiating a quotient of two functions. Observe that
 ```math
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
-&= \frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f^\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
+&= \frac{g\left(x\right)f^\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 \end{aligned}
 ```
 
@@ -753,7 +753,7 @@ Thus, we have proved the following Quotient Rule.
 !!! theorem
 	If ``f`` and ``g`` are differentiable at ``x``, and if ``g\left(x\right)\ne0``, then the quotient ``\displaystyle\frac{f}{g}`` is differentiable at ``x`` and
 	```math
-	\left(\frac{f}{g}\right)^\prime=\frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
+	\left(\frac{f}{g}\right)^\prime=\frac{g\left(x\right)f^\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 	```
 
 ### Chain Rule
@@ -763,7 +763,7 @@ Although we can differentiate ``\sqrt x`` and ``x^2+1``, we cannot yet different
 !!! theorem
 	If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(x\right)`` is differentiable at ``x``, then the composite function ``f\circ g\left(x\right)=f\left(g\left(x\right)\right)`` is differentiable at ``x``, and
 	```math
-	\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+	\left(f\circ g\right)^\prime=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)
 	```
 
 In terms of Leibniz notation, if ``y=f\left(u\right)`` where ``u=g\left(x\right)``, then ``y=f\left(g\left(x\right)\right)`` and:
@@ -792,25 +792,25 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 	```math
 	E\left(k\right)=\begin{cases}
 	0&\textrm{if }k=0\,.\\
-	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+	\frac{f\left(u+k\right)-f\left(u\right)}{k}-f^\prime\left(u\right)&\textrm{if }k\ne0\,.
 	\end{cases}
 	```
 
 	By the definition of derivative
 	```math
-	\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+	\lim_{k\to 0}E\left(k\right)=f^\prime\left(u\right)-f^\prime\left(u\right)=0=E\left(0\right)\,,
 	```
 	so ``E\left(k\right)`` is continuous at ``k=0``. Also, whether ``k=0`` or not, we have
 	```math
-	f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+	f\left(u+k\right)-f\left(u\right)=\left(f^\prime\left(u\right)+E\left(k\right)\right)k\,.
 	```
 	Now put ``u=g\left(x\right)`` and ``k=g\left(x+h\right)-g\left(x\right)``, so that ``u+k=g\left(x+h\right)``, and obtain
 	```math
-	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+	f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
 	```
 	Since ``g`` is differentiable at ``x``,
 	```math
-	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+	\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g^\prime\left(x\right)\,.
 	```
 	Also, ``g`` is continuous at ``x``, so 
 	```math
@@ -824,8 +824,8 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 	```math
 	\begin{aligned}
 	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
-	&=\lim_{h\to 0}\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
-	&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+	&=\lim_{h\to 0}\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
 	```
 	which was to be proved.
@@ -835,13 +835,13 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 
 	Here ``y=f\left(g\left(x\right)\right)``, where ``f\left(u\right)=\sqrt u`` and ``g\left(x\right)=x^2+1``. Since the derivatives of ``f`` and ``g`` are
 	```math
-	f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\right)=2x\,,
+	f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\right)=2x\,,
 	```
 	the Chain Rules gives
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\\
-	&=\frac{1}{2\sqrt{g\left(x\right)}}g\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
+	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\\
+	&=\frac{1}{2\sqrt{g\left(x\right)}}g^\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
 	\end{aligned}
 	```
 
@@ -1059,29 +1059,29 @@ are differentiable at every value of ``x`` at which they are defined (i.e., wher
 
 ## Higher Order Derivatives
 
-If the derivative ``y\prime=f\prime\left(x\right)`` of a function ``y=f\left(x\right)`` is itself differentiable at ``x``, we can calculate its derivative, which we call the second derivative of ``f`` and denote by ``y\prime\prime=f\prime\prime\left(x\right)``. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are
+If the derivative ``y^\prime=f^\prime\left(x\right)`` of a function ``y=f\left(x\right)`` is itself differentiable at ``x``, we can calculate its derivative, which we call the second derivative of ``f`` and denote by ``y^{\prime\prime}=f^{\prime\prime}\left(x\right)``. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are
 ```math
-y\prime\prime=f\prime\prime\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
+y^{\prime\prime}=f^{\prime\prime}\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
 ```
 
 Similarly, you can consider third-, fourth-, and in general ``n``th-order derivatives. The prime notation is inconvenient for derivatives of high order, so we denote the order by a superscript in parentheses (to distinguish it from an exponent): the ``n``th derivative of ``y=f\left(x\right)`` is
 ```math
 y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
 ```
-and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f\prime\prime\prime``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
+and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f^{\prime\prime}\prime``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
 
 !!! example
 	The *velocity* of a moving object is the (instantaneous) rate of change of the position of the object with respect to time; if the object moves along the ``x``-axis and is at position ``x=f\left(t\right)`` at time ``t``, then its velocity at that time is
 	```math
-	v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f\prime\left(t\right)\,.
+	v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f^\prime\left(t\right)\,.
 	```
 	Similarly, the *acceleration* of the object is the rate of change of the velocity. Thus, the acceleration is the second derivative of the position:
 	```math
-	a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f\prime\prime\left(t\right)\,.
+	a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f^{\prime\prime}\left(t\right)\,.
 	```
 
 !!! example
-	If ``y=x^3``, then ``y\prime=3x^2``, ``y\prime\prime=6x``, ``y\prime\prime\prime=6``, ``y^{\left(4\right)}=0``, and all higher derivatives are zero.
+	If ``y=x^3``, then ``y^\prime=3x^2``, ``y^{\prime\prime}=6x``, ``y^{\prime\prime}\prime=6``, ``y^{\left(4\right)}=0``, and all higher derivatives are zero.
 
 In general, if ``f\left(x\right)=x^n`` (where ``n`` is a positive integer), then
 ```math
@@ -1154,7 +1154,7 @@ Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find
 	```math
 	\begin{aligned}
 	y+xy^\prime+2yy^\prime&=2\\
-	y^\prime+y^\prime+xy^{\prime\prime}+2\left(y\prime\right)^2+2yy^{\prime\prime}&=0\,.
+	y^\prime+y^\prime+xy^{\prime\prime}+2\left(y^\prime\right)^2+2yy^{\prime\prime}&=0\,.
 	\end{aligned}
 	```
 
@@ -1183,17 +1183,17 @@ so
 
 ## Derivatives of Inverse Functions
 
-Suppose that the function ``f`` is differentiable on an interval ``\left]a,b\right[`` and that either ``f\prime\left(x\right)&gt;0`` for ``a&lt;x&lt;b``, so that ``f`` is increasing on ``\left]a,b\right[``, or ``f\prime\left(x\right)&lt;0`` for ``a&lt;x&lt;b``, so that ``f`` is decreasing on ``\left]a,b\right[``. In either case ``f`` is bijective on ``\left]a,b\right[`` and has an inverse, ``f^{-1}`` there. Differentiating the cancellation identity
+Suppose that the function ``f`` is differentiable on an interval ``\left]a,b\right[`` and that either ``f^\prime\left(x\right)&gt;0`` for ``a&lt;x&lt;b``, so that ``f`` is increasing on ``\left]a,b\right[``, or ``f^\prime\left(x\right)&lt;0`` for ``a&lt;x&lt;b``, so that ``f`` is decreasing on ``\left]a,b\right[``. In either case ``f`` is bijective on ``\left]a,b\right[`` and has an inverse, ``f^{-1}`` there. Differentiating the cancellation identity
 ```math
 f\left(f^{-1}\left(x\right)\right)=x
 ````
 with respect to ``x``, using the chain rule, we obtain
 ```math
-f\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{\mathrm d\hphantom{x}}{\mathrm dx}x=1\,.
+f^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{\mathrm d\hphantom{x}}{\mathrm dx}x=1\,.
 ```
 Thus,
 ```math
-\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{1}{f\prime\left(f^{-1}\left(x\right)\right)}\,.
+\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{1}{f^\prime\left(f^{-1}\left(x\right)\right)}\,.
 ```
 In Leibniz notation, if ``y=f^{-1}\left(x\right)``, we have
 ```math
@@ -1235,11 +1235,11 @@ end
 
 	Show that ``f\left(x\right)=x^3+x`` is bijective on the whole real line, and, nothing that ``f\left(2\right)=10``, find ``\left(f^{-1}\right)^\prime\left(10\right)``.
 
-	Since ``f\prime\left(x\right)=3x^2+1&gt;0`` for all real numbers ``x``, ``f`` is increasing and therefore bijective and invertible. If ``y=f^{-1}\left(x\right)``, then
+	Since ``f^\prime\left(x\right)=3x^2+1&gt;0`` for all real numbers ``x``, ``f`` is increasing and therefore bijective and invertible. If ``y=f^{-1}\left(x\right)``, then
 	```math
 	\begin{aligned}
-	x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
-	&\implies y\prime=\frac{1}{3y^2+1}\,.
+	x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y^\prime\\
+	&\implies y^\prime=\frac{1}{3y^2+1}\,.
 	\end{aligned}
 	```
 	Now ``x=f\left(2\right)=10`` implies ``y=f^{-1}\left(10\right)=2``. Thus,
@@ -1288,7 +1288,7 @@ This principle is stated more precisely in the following theorem.
 !!! theorem "The Mean-Value theorem"
 	Suppose that the function ``f`` is continuous on the closed, finite interval ``\left[a,b\right]`` and that it is differentiable on the open interval ``\left]a,b\right[``. Then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that
 	```math
-	\frac{f\left(b\right)-f\left(a\right)}{b-a}=f\prime\left(c\right)\,.
+	\frac{f\left(b\right)-f\left(a\right)}{b-a}=f^\prime\left(c\right)\,.
 	```
 
 This says that the slope of the chord line joining the points ``\left(a,f\left(a\right)\right)`` and ``\left(b,f\left(b\right)\right)`` is equal to the slope of the tangent line to the curve ``f=f\left(x\right)`` at the point ``\left(c,f\left(c\right)\right)``, so the two lines are parallel.
@@ -1302,7 +1302,7 @@ We can make several observations:
 The Mean-Value theorem is one of those deep results that is based on the completeness of the real number system via the fact that a continuous function on a closed, finite interval takes on a maximum and minimum value (Extreme-Value theorem). Before giving the proof, we establish two preliminary results.
 
 !!! theorem
-	If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f\prime\left(c\right)`` exists, then ``f\prime\left(c\right)=0``. (Values of ``x`` where ``f\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
+	If ``f`` is defined on an open interval ``\left]a,b\right[`` and achieves a maximum (or minimum) value at the point ``c`` in ``\left]a,b\right[``, and if ``f^\prime\left(c\right)`` exists, then ``f^\prime\left(c\right)=0``. (Values of ``x`` where ``f^\prime\left(x\right)=0`` are called *critical points* of the function ``f``.)
 
 !!! proof
 
@@ -1320,11 +1320,11 @@ The Mean-Value theorem is one of those deep results that is based on the complet
 
 !!! theorem "Rolle's theorem"
 
-	Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]`` and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``.
+	Suppose that the function ``g`` is continuous on the closed, finite interval ``\left[a,b\right]`` and that it is differentiable on the open interval ``\left]a,b\right[``. If ``g\left(a\right)=g\left(b\right)``, then there exists a point ``c`` in the open interval ``\left]a,b\right[`` such that ``g^\prime\left(c\right)=0``.
 
 !!! proof
 
-	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
+	If ``g\left(x\right)=g\left(a\right)`` for every ``x`` in ``\left[a,b\right]``, then ``g`` is a constant function, so ``g^\prime\left(c\right)=0`` for every ``c`` in ``\left]a,b\right[``. Therefore, suppose there exists ``x`` in ``\left]a,b\right[`` such that ``g\left(x\right)\ne g\left(a\right)``.
 
 	Let us assume that ``g\left(x\right)&gt; g\left(a\right)``. (If ``g\left(x\right)&lt; g\left(a\right)``, the proof is similar.)
 
@@ -1332,7 +1332,7 @@ The Mean-Value theorem is one of those deep results that is based on the complet
 
 	Since ``g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)``, ``c`` cannot be either ``a`` or ``b``. Therefore, ``c`` is in the open interval ``\left]a,b\right[``, so ``g`` is differentiable at ``c``.
 
-	By the previous theorem, ``c`` must be a critical point of ``g``: ``g\prime\left(c\right)=0``.
+	By the previous theorem, ``c`` must be a critical point of ``g``: ``g^\prime\left(c\right)=0``.
 
 Rolle’s theorem is a special case of the Mean-Value theorem in which the chord line has slope 0, so the corresponding parallel tangent line must also have slope 0. We can deduce the Mean-Value theorem from this special case.
 
@@ -1347,35 +1347,35 @@ Rolle’s theorem is a special case of the Mean-Value theorem in which the chord
 
 	The function ``g`` is also continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[`` because ``f`` has these properties. 
 	
-	In addition, ``g\left(a\right)=g\left(b\right)=0``. By Rolle’s theorem, there is some point ``c`` in ``\left]a,b\right[`` such that ``g\prime\left(c\right)=0``. 
+	In addition, ``g\left(a\right)=g\left(b\right)=0``. By Rolle’s theorem, there is some point ``c`` in ``\left]a,b\right[`` such that ``g^\prime\left(c\right)=0``. 
 	
 	Since
 	```math
-	g\prime\left(x\right) = f\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
+	g^\prime\left(x\right) = f^\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
 	```
 	it follows that
 	```math
-	f\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
+	f^\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
 	```
 
 Many of the applications we will make of the Mean-Value theorem will actually use the following generalized version of it.
 
 !!! theorem "The Generalized Mean-Value theorem"
 	
-	If functions ``f`` and ``g`` are both continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[``, and if ``g\prime\left(x\right)\ne 0`` for every ``x\in\left]a,b\right[``, then there exists a number ``c \in \left]a,b\right[`` such that
+	If functions ``f`` and ``g`` are both continuous on ``\left[a,b\right]`` and differentiable on ``\left]a,b\right[``, and if ``g^\prime\left(x\right)\ne 0`` for every ``x\in\left]a,b\right[``, then there exists a number ``c \in \left]a,b\right[`` such that
 	```math
-	\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f\prime\left(c\right)}{g\prime\left(c\right)}\,.
+	\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}\,.
 	```
 
 !!! proof
 	
-	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g\prime\left(x\right)= 0``. Hence, neither denominator above can be zero. Apply the Mean-Value theorem to
+	Note that ``g\left(b\right)\ne g\left(a\right)`` otherwise, there would be some number in ``\left]a,b\right[`` where ``g^\prime\left(x\right)= 0``. Hence, neither denominator above can be zero. Apply the Mean-Value theorem to
 	```math
 	h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
 	```
-	Since ``h\left(a\right)=h\left(b\right)=0``, there exists ``c\in \left]a,b\right[`` such that ``h\prime\left(c\right)=0``. Thus,
+	Since ``h\left(a\right)=h\left(b\right)=0``, there exists ``c\in \left]a,b\right[`` such that ``h^\prime\left(c\right)=0``. Thus,
 	```math
-	\left(f\left(b\right)-f\left(a\right)\right)g\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f\prime\left(c\right)=0\,,
+	\left(f\left(b\right)-f\left(a\right)\right)g^\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f^\prime\left(c\right)=0\,,
 	```
 	and the result follows on division by the ``g`` factors.
 
@@ -1467,7 +1467,7 @@ Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeter
 
 ## Increasing and Decreasing Functions
 
-Intervals on which the graph of a function ``f`` has positive or negative slope provide useful information about the behaviour of ``f``. The Mean-Value theorem enables us to determine such intervals by considering the sign of the derivative ``f\prime``.
+Intervals on which the graph of a function ``f`` has positive or negative slope provide useful information about the behaviour of ``f``. The Mean-Value theorem enables us to determine such intervals by considering the sign of the derivative ``f^\prime``.
 
 !!! definition
 	
@@ -1482,10 +1482,10 @@ Note the distinction between increasing and nondecreasing. If a function is incr
 !!! theorem
 	
 	Let ``J`` be an open interval, and let ``I`` be an interval consisting of all the points in ``J`` and possibly one or both of the endpoints of ``J``: Suppose that ``f`` is continuous on ``I`` and differentiable on ``J``.
-	- If ``f\prime\left(x\right)&gt;0`` for all ``x\in J``, then ``f`` is increasing on ``I``.
-	- If ``f\prime\left(x\right)&lt;0`` for all ``x\in J``, then ``f`` is decreasing on ``I``.
-	- If ``f\prime\left(x\right)\ge 0`` for all ``x\in J``, then ``f`` is nondecreasing on ``I``.
-	- If ``f\prime\left(x\right)\le 0`` for all ``x\in J``, then ``f`` is nonincreasing on ``I``.
+	- If ``f^\prime\left(x\right)&gt;0`` for all ``x\in J``, then ``f`` is increasing on ``I``.
+	- If ``f^\prime\left(x\right)&lt;0`` for all ``x\in J``, then ``f`` is decreasing on ``I``.
+	- If ``f^\prime\left(x\right)\ge 0`` for all ``x\in J``, then ``f`` is nondecreasing on ``I``.
+	- If ``f^\prime\left(x\right)\le 0`` for all ``x\in J``, then ``f`` is nonincreasing on ``I``.
 
 !!! proof
 	
@@ -1493,20 +1493,20 @@ Note the distinction between increasing and nondecreasing. If a function is incr
 	
 	By the Mean-Value theorem there exists a point ``c \in \left]x_1,x_2\right[`` (and therefore in ``J``) such that
 	```math
-	\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f\prime\left(c\right)\,;
+	\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f^\prime\left(c\right)\,;
 	```
-	hence, ``f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f\prime\left(c\right)``. Since ``x_2-x_1&gt;0``, the difference ``\left.f\left(x_2\right)-f\left(x_1\right)\right.`` has the same sign as ``f\prime\left(c\right)`` and may be zero if ``f\prime\left(c\right)`` is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.
+	hence, ``f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f^\prime\left(c\right)``. Since ``x_2-x_1&gt;0``, the difference ``\left.f\left(x_2\right)-f\left(x_1\right)\right.`` has the same sign as ``f^\prime\left(c\right)`` and may be zero if ``f^\prime\left(c\right)`` is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.
 
 !!! example
 	On what intervals is the function ``f\left(x\right)=x^3-12x+1`` increasing? On what intervals is it decreasing?
 
-	We have ``f\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)``. Observe that ``f\prime\left(x\right)&gt;0`` if ``x&lt;-2`` or ``x&gt;2`` and ``f\prime\left(x\right)&lt;0`` if ``-2&lt;x&lt;2``. Therefore, ``f`` is increasing on the intervals ``\left]-\infty,-2\right[`` and ``\left]2, \infty\right[`` and is decreasing on the interval ``\left]-2,2\right[``.
+	We have ``f^\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)``. Observe that ``f^\prime\left(x\right)&gt;0`` if ``x&lt;-2`` or ``x&gt;2`` and ``f^\prime\left(x\right)&lt;0`` if ``-2&lt;x&lt;2``. Therefore, ``f`` is increasing on the intervals ``\left]-\infty,-2\right[`` and ``\left]2, \infty\right[`` and is decreasing on the interval ``\left]-2,2\right[``.
 
 If a function is constant on an interval, then its derivative is zero on that interval. The Mean-Value theorem provides a converse of this fact.
 
 !!! theorem
 
-	If ``f`` is continuous on an interval ``I``, and ``f\prime\left(x\right)=0`` every interior point of ``I`` (i.e., at interior point of I that is not an endpoint of ``I``), then ``f\left(x\right)=C``, a constant, on ``I``.
+	If ``f`` is continuous on an interval ``I``, and ``f^\prime\left(x\right)=0`` every interior point of ``I`` (i.e., at interior point of I that is not an endpoint of ``I``), then ``f\left(x\right)=C``, a constant, on ``I``.
 
 !!! proof
 
@@ -1514,10 +1514,10 @@ If a function is constant on an interval, then its derivative is zero on that in
 
 	If ``x`` is any other point of ``I``, then the Mean-Value theorem says that there exists a point ``c`` between ``x_0`` and ``x`` such that
 	```math
-	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f\prime\left(x\right)\,.
+	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f^\prime\left(x\right)\,.
 	```
 	The point ``c`` must belong to ``I`` because an interval contains all points between any two of its points, and ``c`` cannot be an endpoint of ``I`` since ``c\ne x_0`` and ``c\ne x``. 
-	Since ``f\prime\left(c\right)=0`` for all such points ``c``, we have ``f\left(x\right)-f\left(x_0\right)=0`` for all ``x\in I``, and ``f\left(x\right)=f\left(x_0\right)=C`` as claimed.
+	Since ``f^\prime\left(c\right)=0`` for all such points ``c``, we have ``f\left(x\right)-f\left(x_0\right)=0`` for all ``x\in I``, and ``f\left(x\right)=f\left(x_0\right)=C`` as claimed.
 
 ## Extreme Values
 
@@ -1551,8 +1551,8 @@ In addition to these extreme values, ``f`` can have several other “local” ma
 
 A function ``f`` can have local extreme values only at points ``x`` of three special types:
 
-1. critical points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)=0``),
-2. singular points of ``f`` (points ``x`` in the domain of ``f`` where ``f\prime\left(x\right)`` is not defined), and
+1. critical points of ``f`` (points ``x`` in the domain of ``f`` where ``f^\prime\left(x\right)=0``),
+2. singular points of ``f`` (points ``x`` in the domain of ``f`` where ``f^\prime\left(x\right)`` is not defined), and
 3. endpoints of the domain of ``f`` (points ``x`` in the domain of ``f`` that do not belong to any open interval contained in the domain of ``f``).
 
 !!! theorem
@@ -1563,7 +1563,7 @@ A function ``f`` can have local extreme values only at points ``x`` of three spe
 
 	Suppose that ``f`` has a local maximum value at ``x_0`` and that ``x_0`` is neither an endpoint of the domain of ``f`` nor a singular point of ``f``. 
 	
-	Then for some ``h&gt;0``, ``f\left(x\right)`` is defined on the open interval ``\left]x_0-h,x_0+h\right[`` and has an absolute maximum (for that interval) at ``x_0``. Also, ``f\prime\left(x_0\right)`` exists. By the first preliminary result of the Mean-value theorem, ``f\prime\left(x_0\right)=0``. 
+	Then for some ``h&gt;0``, ``f\left(x\right)`` is defined on the open interval ``\left]x_0-h,x_0+h\right[`` and has an absolute maximum (for that interval) at ``x_0``. Also, ``f^\prime\left(x_0\right)`` exists. By the first preliminary result of the Mean-value theorem, ``f^\prime\left(x_0\right)=0``. 
 	
 	The proof for the case where ``f`` has a local minimum value at ``x_0`` is similar.
 
@@ -1579,7 +1579,7 @@ If a function ``f`` is defined on a closed interval or a union of finitely many 
 
 	Since ``g`` is a polynomial, it can have no singular points. For critical points, we calculate
 	```math
-	g\prime\left(x\right)=3x^2-6x-9=3\left(x^2-2x-3\right)=3\left(x+1\right)\left(x-3\right)=0
+	g^\prime\left(x\right)=3x^2-6x-9=3\left(x^2-2x-3\right)=3\left(x+1\right)\left(x-3\right)=0
 	```
 	if ``x=-1`` or ``x=3``.
 
@@ -1596,7 +1596,7 @@ If a function ``f`` is defined on a closed interval or a union of finitely many 
 
 	The derivative of ``h`` is
 	```math
-	h\prime\left(x\right) = 3\left(\frac{2}{3}\right)x^{-\frac{1}{3}}-2=2\left(x^{-\frac{1}{3}}-1\right)
+	h^\prime\left(x\right) = 3\left(\frac{2}{3}\right)x^{-\frac{1}{3}}-2=2\left(x^{-\frac{1}{3}}-1\right)
 	```
 
 	Note that ``x^{-\frac{1}{3}}`` is not defined at the point ``x=0`` in the domain of ``h``, so ``x=0`` is a singular point of ``h``. Also, ``h`` has a critical point where ``x^{-\frac{1}{3}}=1``, that is, at ``x=1``, which also happens to be an endpoint of the domain of ``h``. We must therefore examine the values of ``h`` at the points ``x=0`` and ``x=1``, as well as at the other endpoint ``x=-1``. We have
@@ -1616,25 +1616,25 @@ Most functions you will encounter in elementary calculus have nonzero derivative
 
 	Suppose that ``f`` is continuous at ``x_0``, and ``x_0`` is not an endpoint of the domain of ``f``:
 
-	- If there exists an open interval ``\left]a,b\right[`` containing ``x_0`` such that ``f\prime\left(x_0\right)&gt;0`` on ``\left]a,x_0\right[`` and ``f\prime\left(x_0\right)&lt;0`` on ``\left]x_0,b\right[``, then ``f`` has a local maximum value at ``x_0``.
+	- If there exists an open interval ``\left]a,b\right[`` containing ``x_0`` such that ``f^\prime\left(x_0\right)&gt;0`` on ``\left]a,x_0\right[`` and ``f^\prime\left(x_0\right)&lt;0`` on ``\left]x_0,b\right[``, then ``f`` has a local maximum value at ``x_0``.
 
-	- If there exists an open interval ``\left]a,b\right[`` containing ``x_0`` such that ``f\prime\left(x_0\right)&lt;0`` on ``\left]a,x_0\right[`` and ``f\prime\left(x_0\right)&gt;0`` on ``\left]x_0,b\right[``, then ``f`` has a local minimum value at ``x_0``.
+	- If there exists an open interval ``\left]a,b\right[`` containing ``x_0`` such that ``f^\prime\left(x_0\right)&lt;0`` on ``\left]a,x_0\right[`` and ``f^\prime\left(x_0\right)&gt;0`` on ``\left]x_0,b\right[``, then ``f`` has a local minimum value at ``x_0``.
 
 	PART II. Testing endpoints of the domain.
 
 	Suppose ``a`` is a left endpoint of the domain of ``f`` and ``f`` is right continuous at ``a``.
 
-	- If ``f\prime\left(x_0\right)&gt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local minimum value at ``a``.
+	- If ``f^\prime\left(x_0\right)&gt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local minimum value at ``a``.
 
-	- If ``f\prime\left(x_0\right)&lt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``a``.
+	- If ``f^\prime\left(x_0\right)&lt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``a``.
 
 	Suppose ``b`` is a right endpoint of the domain of ``f`` and ``f`` is left continuous at ``b``.
 
-	- If ``f\prime\left(x_0\right)&gt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``b``.
+	- If ``f^\prime\left(x_0\right)&gt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``b``.
 
-	- If ``f\prime\left(x_0\right)&lt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local mainimum value at ``b``.
+	- If ``f^\prime\left(x_0\right)&lt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local mainimum value at ``b``.
 
-If ``f\prime`` is positive (or negative) on both sides of a critical or singular point, then ``f`` has neither a maximum nor a minimum value at that point.
+If ``f^\prime`` is positive (or negative) on both sides of a critical or singular point, then ``f`` has neither a maximum nor a minimum value at that point.
 
 ### Functions Not Defined on Closed, Finite Intervals
 

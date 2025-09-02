@@ -1064,10 +1064,10 @@ The following formulas enable us to determine the cosine and sine of a sum or di
 	\left(\cos s-\cos t\right)^2+\left(\sin s-\sin t\right)^2=\left(\cos\left(s-t\right)-1\right)^2+\sin^2\left(s-t\right)\,,
 	```
 	```math
-	\begin{gathered}
+	\begin{split}
 	\cos^2s- 2\cos s\,\cos t+\cos^2t+\sin^2s-2\sin s\,\sin t+\sin^2 t\\
 	=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
-	\end{gathered}
+	\end{split}
 	```
 	Since ``\cos^2x+\sin^2x=1``, this reduces to ``\cos\left(s-t\right)=\cos s\,\cos t+\sin s\,\sin t``.
 
