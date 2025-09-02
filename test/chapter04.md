@@ -427,7 +427,7 @@ An important special case of this example says that the derivative of a constant
 
 	```math
 	\begin{aligned}
-	k\prime\left(x\right)&=\lim_{h\to 0}\frac{k\left(x+h\right)-k\left(x\right)}{h}\\
+	k^\prime\left(x\right)&=\lim_{h\to 0}\frac{k\left(x+h\right)-k\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{\sqrt{x+h}-\sqrt x}{h}=\lim_{h\to 0}\frac{\sqrt{x+h}-\sqrt x}{h}\frac{\sqrt{x+h}+\sqrt x}{\sqrt{x+h}+\sqrt x}\\
 	&=\lim_{h\to 0}\frac{x+h-x}{h\left(\sqrt{x+h}+\sqrt x\right)}=\lim_{h\to 0}\frac{1}{\sqrt{x+h}+\sqrt x}=\frac{1}{2\sqrt x}\,.
 	\end{aligned}
