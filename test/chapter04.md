@@ -602,9 +602,9 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	If functions ``f`` and ``g`` are differentiable at ``x``, and if ``C`` is a constant, then the functions ``f+g``, ``f-g``, and ``Cf`` are all differentiable at ``x`` and
 	```math
 	\begin{aligned}
-	\left(f+g\right)\prime\left(x\right)&=f^\prime\left(x\right)+g^\prime\left(x\right)\\
-	\left(f-g\right)\prime\left(x\right)&=f^\prime\left(x\right)-g^\prime\left(x\right)\\
-	\left(Cf\right)\prime\left(x\right)&=Cf^\prime\left(x\right)\,.
+	\left(f+g\right)^\prime\left(x\right)&=f^\prime\left(x\right)+g^\prime\left(x\right)\\
+	\left(f-g\right)^\prime\left(x\right)&=f^\prime\left(x\right)-g^\prime\left(x\right)\\
+	\left(Cf\right)^\prime\left(x\right)&=Cf^\prime\left(x\right)\,.
 	\end{aligned}
 	```
 
@@ -614,7 +614,7 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	For the sum, we have
 	```math
 	\begin{aligned}
-	\left(f+g\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(f+g\right)\left(x+h\right)-\left(f+g\right)\left(x\right)}{h}\\
+	\left(f+g\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(f+g\right)\left(x+h\right)-\left(f+g\right)\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{\left(f\left(x+h\right)+g\left(x+h\right)\right)-\left(f\left(x\right)+g\left(x\right)\right)}{h}\\
 	&=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}+\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
 	&=f^\prime\left(x\right)+g^\prime\left(x\right)\,,
@@ -625,7 +625,7 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 	For the constant multiple, we have
 	```math
 	\begin{aligned}
-	\left(Cf\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{Cf\left(x+h\right)-Cf\left(x\right)}{h}\\
+	\left(Cf\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{Cf\left(x+h\right)-Cf\left(x\right)}{h}\\
 	&=C\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=Cf^\prime\left(x\right)\,.
 	\end{aligned}
 	```
@@ -633,21 +633,21 @@ The derivative of a sum (or difference) of functions is the sum (or difference) 
 The rule for differentiating sums extends to sums of any finite number of terms
 
 ```math
-\left(f_1+f_2+\cdots+f_n\right)\prime=f_1^\prime+f_2^\prime+\cdots+f_n^\prime\,.
+\left(f_1+f_2+\cdots+f_n\right)^\prime=f_1^\prime+f_2^\prime+\cdots+f_n^\prime\,.
 ```
 
 To see this we can use mathematical induction. theorem 2 shows that the case ``n=2`` is true; this is STEP 1. For STEP 2, we must show that if the formula holds for some integer ``n=h\ge2``, then it must also hold for ``n=k+1``. Therefore, *assume* that
 
 ```math
-\left(f_1+f_2+\cdots+f_k\right)\prime=f_1^\prime+f_2^\prime+\cdots+f_k^\prime\,.
+\left(f_1+f_2+\cdots+f_k\right)^\prime=f_1^\prime+f_2^\prime+\cdots+f_k^\prime\,.
 ```
 
 Then we have
 
 ```math
 \begin{aligned}
-\left(f_1+f_2+\cdots+f_k+f_{k+1}\right)\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)\prime\\
-&=\left(f+f_{k+1}\right)\prime\\
+\left(f_1+f_2+\cdots+f_k+f_{k+1}\right)^\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)^\prime\\
+&=\left(f+f_{k+1}\right)^\prime\\
 &=f^\prime+f_{k+1}\prime\\
 &=f_1^\prime+f_2^\prime+\cdots+f_k^\prime+f_{k+1}\prime\,.
 \end{aligned}
@@ -662,14 +662,14 @@ The rule for differentiating a product of functions is a little more complicated
 !!! theorem
 	If functions ``f`` and ``g`` are differentiable at ``x``, then their product ``fg`` is also differentiable at ``x``, and
 	```math
-	\left(fg\right)\prime\left(x\right)=f^\prime\left(x\right)g\left(x\right)+f\left(x\right)g^\prime\left(x\right)
+	\left(fg\right)^\prime\left(x\right)=f^\prime\left(x\right)g\left(x\right)+f\left(x\right)g^\prime\left(x\right)
 	```
 
 !!! proof
 	We set up the Newton quotient for ``fg`` and then add ``0`` to the numerator in a way that enables us to involve the Newton quotients for ``f`` and ``g`` separately:
 	```math
 	\begin{aligned}
-	\left(fg\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(fg\right)\left(x+h\right)-\left(fg\right)\left(x\right)}{h}\\
+	\left(fg\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(fg\right)\left(x+h\right)-\left(fg\right)\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x+h\right)+f\left(x\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 	&=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}g\left(x+h\right)+f\left(x\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\

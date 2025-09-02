@@ -5767,9 +5767,9 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(f+g\right)\prime\left(x\right)&=f\prime\left(x\right)+g\prime\left(x\right)\\
-\left(f-g\right)\prime\left(x\right)&=f\prime\left(x\right)-g\prime\left(x\right)\\
-\left(Cf\right)\prime\left(x\right)&=Cf\prime\left(x\right)\,.
+\left(f+g\right)^\prime\left(x\right)&=f\prime\left(x\right)+g\prime\left(x\right)\\
+\left(f-g\right)^\prime\left(x\right)&=f\prime\left(x\right)-g\prime\left(x\right)\\
+\left(Cf\right)^\prime\left(x\right)&=Cf\prime\left(x\right)\,.
 \end{aligned}
 \]
 </div>
@@ -5781,7 +5781,7 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(f+g\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(f+g\right)\left(x+h\right)-\left(f+g\right)\left(x\right)}{h}\\
+\left(f+g\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(f+g\right)\left(x+h\right)-\left(f+g\right)\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{\left(f\left(x+h\right)+g\left(x+h\right)\right)-\left(f\left(x\right)+g\left(x\right)\right)}{h}\\
 &=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}+\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
 &=f\prime\left(x\right)+g\prime\left(x\right)\,,
@@ -5793,7 +5793,7 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(Cf\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{Cf\left(x+h\right)-Cf\left(x\right)}{h}\\
+\left(Cf\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{Cf\left(x+h\right)-Cf\left(x\right)}{h}\\
 &=C\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=Cf\prime\left(x\right)\,.
 \end{aligned}
 \]
@@ -5802,21 +5802,21 @@ y=f\left(x\right)\,,
 <p>The rule for differentiating sums extends to sums of any finite number of terms</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(f_1+f_2+\cdots+f_n\right)\prime=f_1^\prime+f_2^\prime+\cdots+f_n^\prime\,.
+\left(f_1+f_2+\cdots+f_n\right)^\prime=f_1^\prime+f_2^\prime+\cdots+f_n^\prime\,.
 \]
 </div>
 <p>To see this we can use mathematical induction. theorem 2 shows that the case <span class="math-tex" data-type="tex">\(n=2\)</span> is true; this is STEP 1. For STEP 2, we must show that if the formula holds for some integer <span class="math-tex" data-type="tex">\(n=h\ge2\)</span>, then it must also hold for <span class="math-tex" data-type="tex">\(n=k+1\)</span>. Therefore, <i>assume</i> that</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(f_1+f_2+\cdots+f_k\right)\prime=f_1^\prime+f_2^\prime+\cdots+f_k^\prime\,.
+\left(f_1+f_2+\cdots+f_k\right)^\prime=f_1^\prime+f_2^\prime+\cdots+f_k^\prime\,.
 \]
 </div>
 <p>Then we have</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(f_1+f_2+\cdots+f_k+f_{k+1}\right)\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)\prime\\
-&=\left(f+f_{k+1}\right)\prime\\
+\left(f_1+f_2+\cdots+f_k+f_{k+1}\right)^\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)^\prime\\
+&=\left(f+f_{k+1}\right)^\prime\\
 &=f\prime+f_{k+1}\prime\\
 &=f_1^\prime+f_2^\prime+\cdots+f_k^\prime+f_{k+1}\prime\,.
 \end{aligned}
@@ -5831,7 +5831,7 @@ y=f\left(x\right)\,,
 <p>If functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, then their product <span class="math-tex" data-type="tex">\(fg\)</span> is also differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(fg\right)\prime\left(x\right)=f\prime\left(x\right)g\left(x\right)+f\left(x\right)g\prime\left(x\right)
+\left(fg\right)^\prime\left(x\right)=f\prime\left(x\right)g\left(x\right)+f\left(x\right)g\prime\left(x\right)
 \]
 </div>
 </div>
@@ -5841,7 +5841,7 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(fg\right)\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(fg\right)\left(x+h\right)-\left(fg\right)\left(x\right)}{h}\\
+\left(fg\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(fg\right)\left(x+h\right)-\left(fg\right)\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x+h\right)+f\left(x\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 &=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}g\left(x+h\right)+f\left(x\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
