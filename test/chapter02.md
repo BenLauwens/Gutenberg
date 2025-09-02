@@ -238,7 +238,7 @@ Figure("", "The real line.") do
 			len = length(txt)
 			latex(string(n-4), x=80n-font_x*len/2, y=mid+5, width=font_x*len, height=font_y)
 		end
-		for (txt, (val, len)) in zip(("\\displaystyle-\\frac{9}{4}", "\\displaystyle-\\frac{3}{2}", "\\displaystyle-\\frac{18}{5}", "\\displaystyle\\frac{7}{3}", "\\textup{e}", "\\textup{π} "), ((-9/4, 2), (-3/2, 2), (-18/5, 3), (7/3, 1), (ℯ, 1), (π, 1)))
+		for (txt, (val, len)) in zip(("\\displaystyle-\\frac{9}{4}", "\\displaystyle-\\frac{3}{2}", "\\displaystyle-\\frac{18}{5}", "\\displaystyle\\frac{7}{3}", "\\textup{e}", "\\uppi "), ((-9/4, 2), (-3/2, 2), (-18/5, 3), (7/3, 1), (ℯ, 1), (π, 1)))
 			line(x1=320+80val, y1=mid-5, x2=320+80val, y2=mid+5, stroke="black")
 			latex(txt, x=320+80val-font_x*len/2, y=mid-if val < 8/3 35 else 25 end, width=font_x*len, height=font_y*if val < 8/3 2 else 1 end)
 		end
@@ -774,8 +774,7 @@ In calculating ``\left(f\circ g\right)\left(x\right)=f\left(g\left(x\right)\righ
 
 Sometimes it is necessary to define a function by using different formulas on different parts of its domain. One example is the absolute value function
 ```math
-\newcommand{\abs}{\operatorname{abs}}
-\abs\left(x\right)=\left|x\right|=\begin{cases}
+\operatorname{abs}\left(x\right)=\left|x\right|=\begin{cases}
 \hphantom{-}x&\textrm{if }x\ge0\,,\\
 -x&\textrm{if }x<0\,.
 \end{cases}
@@ -784,8 +783,7 @@ Sometimes it is necessary to define a function by using different formulas on di
 !!! example
 	The *signum function* is defined as follows:
 	```math
-	\newcommand{\sgn}{\operatorname{sgn}}
-	\sgn\left(x\right)=\frac{x}{\left|x\right|}=\begin{cases}
+	\operatorname{sgn}\left(x\right)=\frac{x}{\left|x\right|}=\begin{cases}
 	\hphantom{-}1&\textrm{if }x>0\,,\\
 	-1&\textrm{if }x<0\,,\\
 	\textrm{undefined}&\textrm{if }x=0\,.
@@ -951,7 +949,7 @@ end
 
 In calculus we need more general definitions of ``\cos t`` and ``\sin t`` as functions defined for all real numbers ``t``, not just acute angles.
 
-Let ``C`` be the circle with centre at the origin ``O`` and radius ``1``; its equation is ``x^2+y^2=1``. Let ``A`` be the point ``\left(1,0\right)`` on ``C``. For any real number ``t``, let ``P_t`` be the point on ``C`` at distance ``\left|t\right|`` from ``A``, measured along ``C`` in the counterclockwise direction if ``t>0`` and the clockwise direction if ``t<0``. For example, since ``C`` has circumference ``2\textup{π} ``, the point ``P_{\textup{π} /2}`` is one-quarter of the way counterclockwise around ``C`` from ``A``; it is the point ``\left(0,1\right)``.
+Let ``C`` be the circle with centre at the origin ``O`` and radius ``1``; its equation is ``x^2+y^2=1``. Let ``A`` be the point ``\left(1,0\right)`` on ``C``. For any real number ``t``, let ``P_t`` be the point on ``C`` at distance ``\left|t\right|`` from ``A``, measured along ``C`` in the counterclockwise direction if ``t>0`` and the clockwise direction if ``t<0``. For example, since ``C`` has circumference ``2\uppi ``, the point ``P_{\uppi /2}`` is one-quarter of the way counterclockwise around ``C`` from ``A``; it is the point ``\left(0,1\right)``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -971,9 +969,9 @@ Figure("", """Definition of cosine and sine.""") do
 		latex("t\\,\\left[\\textrm{rad}\\right]", x=xmid+scale/3-font_x, y=ymid-scale/6-font_y, width=4font_x, height=font_y)
 		latex("A", x=xmid+scale+5, y=ymid-font_y-2, width=font_x, height=font_y)
 		latex("P_t=\\left(\\cos t, \\sin t\\right)", x=xmid+scale*cos(pi/3)-5, y=ymid-scale*sin(pi/3)-font_y, width=8*font_x, height=font_y)
-		latex("P_\\textup{π} ", x=xmid-scale-2font_x, y=ymid-font_y-2, width=2font_x, height=font_y)
-		latex("P_{\\textup{π} /2}", x=xmid+7, y=ymid-scale-font_y/2-10, width=2font_x, height=font_y)
-		latex("P_{-\\textup{π} /2}", x=xmid+5, y=ymid+scale, width=3font_x, height=font_y)
+		latex("P_\\uppi ", x=xmid-scale-2font_x, y=ymid-font_y-2, width=2font_x, height=font_y)
+		latex("P_{\\uppi /2}", x=xmid+7, y=ymid-scale-font_y/2-10, width=2font_x, height=font_y)
+		latex("P_{-\\uppi /2}", x=xmid+5, y=ymid+scale, width=3font_x, height=font_y)
 	end
 end
 ```
@@ -981,20 +979,20 @@ end
 !!! definition
 	The *radian measure* of ``\angle AOP_t`` is ``t`` radians.
 
-In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle ``\frac{\textup{π} }{3}`` we mean ``\frac{\textup{π} }{3}`` radians (which is ``60°``), not ``\frac{\textup{π} }{3}`` degrees.
+In calculus it is assumed that all angles are measured in radians unless degrees or other units are stated explicitly. When we talk about the angle ``\frac{\uppi }{3}`` we mean ``\frac{\uppi }{3}`` radians (which is ``60°``), not ``\frac{\uppi }{3}`` degrees.
 
 !!! example
 	*Arc length* and *sector area*.
 
 	An arc of a circle of radius ``r`` subtends an angle ``t`` at the centre of the circle. Find the length ``s`` of the arc and the area ``A`` of the sector lying between the arc and the centre of the circle.
 
-	The length ``s`` of the arc is the same fraction of the circumference ``2\textup{π}  r`` of the circle that the angle ``t`` is to a complete revolution ``2\textup{π} `` radians. Thus,
+	The length ``s`` of the arc is the same fraction of the circumference ``2\uppi  r`` of the circle that the angle ``t`` is to a complete revolution ``2\uppi `` radians. Thus,
 	```math
-	s=\frac{t}{2\textup{π} }(2\textup{π}  r)=rt\,.
+	s=\frac{t}{2\uppi }(2\uppi  r)=rt\,.
 	```
-	Similarly, the area ``A`` of the circular sector is the same fraction of the area ``\textup{π}  r^2`` of the whole circle:
+	Similarly, the area ``A`` of the circular sector is the same fraction of the area ``\uppi  r^2`` of the whole circle:
 	```math
-	A=\frac{t}{2\textup{π} }(\textup{π}  r^2)=\frac{r^2t}{2}\,.
+	A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 	```
 
 Using the procedure described above, we can find the point ``P_t`` corresponding to any real number ``t``.
@@ -1010,19 +1008,19 @@ Many important properties of ``\cos t`` and ``\sin t`` follow from the fact that
 	Let ``t\in\mathbb{R}``.
 	1. ``-1\le\cos t\le 1`` and ``-1\le\sin t\le 1``
 	2. ``\cos^2 t+\sin^2 t=1`` (Pythagorean identity)
-	3. ``\cos(t+2\textup{π} )=\cos t`` and ``\sin(t+2\textup{π} )=\sin t`` (periodicity)
+	3. ``\cos(t+2\uppi )=\cos t`` and ``\sin(t+2\uppi )=\sin t`` (periodicity)
 	4. ``\cos(-t)=\cos(t)`` and ``\sin(-t)=-\sin t`` (cosine is an *even* function, sine is an *odd* function)
-	5. ``\cos\left(\frac{\textup{π} }{2}-t\right)=\sin t`` and ``\sin\left(\frac{\textup{π} }{2}-t\right)=\cos t`` (*complementary angles*, symmetry about ``y=x``)
-	6. ``\cos(\textup{π} -t)=-\cos(t)`` and ``\sin(\textup{π} -t)=\sin t`` (*supplementary angles*, symmetry about ``x=0``)
+	5. ``\cos\left(\frac{\uppi }{2}-t\right)=\sin t`` and ``\sin\left(\frac{\uppi }{2}-t\right)=\cos t`` (*complementary angles*, symmetry about ``y=x``)
+	6. ``\cos(\uppi -t)=-\cos(t)`` and ``\sin(\uppi -t)=\sin t`` (*supplementary angles*, symmetry about ``x=0``)
 
 The next table summarizes the most important values of cosine and sine.
 
-|Radians|``0``|``\frac{\textup{π} }{6}``|``\frac{\textup{π} }{4}``|``\frac{\textup{π} }{3}``|``\frac{\textup{π} }{2}``|``\frac{2\textup{π} }{3}``|``\frac{3\textup{π} }{4}``|``\frac{5\textup{π} }{6}``|``\textup{π} ``|
+|Radians|``0``|``\frac{\uppi }{6}``|``\frac{\uppi }{4}``|``\frac{\uppi }{3}``|``\frac{\uppi }{2}``|``\frac{2\uppi }{3}``|``\frac{3\uppi }{4}``|``\frac{5\uppi }{6}``|``\uppi ``|
 |:------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Cosine|``1``|``\frac{\sqrt 3}{2}``|``\frac{\sqrt 2}{2}``|``\frac{1}{2}``|``0``|``-\frac{1}{2}``|``-\frac{\sqrt 2}{2}``|``-\frac{\sqrt 3}{2}``|``-1``|
 |Sine|``0``|``\frac{1}{2}``|``\frac{\sqrt 2}{2}``|``\frac{\sqrt 3}{2}``|``1``|``\frac{\sqrt 3}{2}``|``\frac{\sqrt 2}{2}``|``\frac{1}{2}``|``0``|
 
-Observe that the graph of ``\sin x`` is the graph of ``\cos x`` shifted to the right a distance ``\frac{\textup{π} }{2}``.
+Observe that the graph of ``\sin x`` is the graph of ``\cos x`` shifted to the right a distance ``\frac{\uppi }{2}``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -1031,7 +1029,7 @@ Figure("", """The graph of the cosine function in red and the sine function in b
 		xmid = 300
 		ymid = 80
 		scale = 50
-		axis_xy(625,155,xmid,ymid,scale,(-3pi/2,-pi,-pi/2,pi/2,pi,3pi/2,2pi),(-1,1),xs=("-\\frac{3\\textup{π} }{2}","-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","\\frac{3\\textup{π} }{2}","2\\textup{π} "), xl=(3, 2, 2, 1, 1, 2, 2), xh=(2,1,2,2,1,2,1))
+		axis_xy(625,155,xmid,ymid,scale,(-3pi/2,-pi,-pi/2,pi/2,pi,3pi/2,2pi),(-1,1),xs=("-\\frac{3\\uppi }{2}","-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","\\frac{3\\uppi }{2}","2\\uppi "), xl=(3, 2, 2, 1, 1, 2, 2), xh=(2,1,2,2,1,2,1))
 		plot_xy(x->cos(x), -6:0.01:7, tuple(), xmid, ymid, scale)
 		plot_xy(x->sin(x), -6:0.01:7, tuple(), xmid, ymid, scale; color="RoyalBlue")
 	end
@@ -1112,7 +1110,7 @@ Figure("", """The graph of the tangent function in red and the cotangent functio
 		xmid = 240
 		ymid = 130
 		scale = 50
-		axis_xy(470,255,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2), xs=("-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","\\frac{3\\textup{π} }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
+		axis_xy(470,255,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2), xs=("-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","\\frac{3\\uppi }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
 		top = atan(130/50)
 		bottom = -atan(125/50)
 		plot_xy(x->sin(x)/cos(x), bottom-pi:0.01:top-pi, tuple(), xmid, ymid, scale)
@@ -1139,7 +1137,7 @@ Figure("", """The graph of the secans function in red and the cosecans function 
 		xmid = 240
 		ymid = 130
 		scale = 50
-		axis_xy(470,260,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2),xs=("-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","\\frac{3\\textup{π} }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
+		axis_xy(470,260,xmid,ymid,scale,(-pi,-pi/2,pi/2,pi),(-2,-1,1,2),xs=("-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","\\frac{3\\uppi }{2}"), xl=(2, 2, 1, 1, 2), xh=(1,2,2,1,2))
 		right = acos(50/130)
 		left = -right
 		plot_xy(x->1/cos(x), left-pi:0.01:right-pi, tuple(), xmid, ymid, scale)

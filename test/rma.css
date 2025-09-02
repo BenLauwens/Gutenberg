@@ -463,7 +463,7 @@ div.pagedjs_footnote_content::before {
 }
 
 math {
-    font-family: "Fira Math", "Minion Math", "OldStandard-Math", "Noto Sans Math", "STIX Two Math", "Noto Sans Math", "STIX Two Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math", "FiraMath";
+    font-family: "Fira Math", "Minion Math", "OldStandard-Math", "STIX Two Math", "Noto Sans Math", "Cambria Math", "Nagwa TK Math", "TeX Gyre Schola Math", "Libertinus Math", "Minion Math", "GFS Neohellenic Math";
 }
 
 math[display="block"] {
@@ -481,7 +481,7 @@ mtd:last-of-type {
 body {
     hyphens: auto;
     font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures;
-    font-family: "Fira Sans Condensed", "Minion Pro", "Old Standard", "Noto Sans SemiCondensed", "STIX Two Text", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic", "Fira Sans";
+    font-family: "Fira Sans Condensed", "Minion Pro", "Old Standard", "STIX Two Text", "Noto Sans SemiCondensed", "Cambria", "Nagwa TK Text", "TeX Gyre Schola", "Libertinus Serif", "Minion Pro", "GFS Neohellenic";
     font-size: 10pt;
     font-weight: normal;
     counter-reset: chapternumber theoremnumber definitionnumber axiomnumber templatenumber;

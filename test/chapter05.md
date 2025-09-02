@@ -135,7 +135,7 @@ An *exponential function* is a function of the form ``f\left(x\right)=a^x``, whe
 	```
 	In this definition, ``\sqrt[n]{a}`` is the number ``b&gt;0`` that satisfies ``b^n=a``.
 
-How should we define ``a^x`` if ``x`` is not rational? For example, what does ``2^\textup{π}`` mean? In order to calculate a derivative of ``a^x``, we will want the function to be defined for all real numbers ``x``, not just rational ones.
+How should we define ``a^x`` if ``x`` is not rational? For example, what does ``2^\uppi`` mean? In order to calculate a derivative of ``a^x``, we will want the function to be defined for all real numbers ``x``, not just rational ones.
 
 {cell=chap display=false output=false}
 ```julia
@@ -466,7 +466,7 @@ Figure("", "The definition of " * tex("\\textup{e}") * "." ) do
 end
 ```
 
-The number ``\textup{e}`` is one of the most important numbers in mathematics. Like ``\textup{π}``, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins
+The number ``\textup{e}`` is one of the most important numbers in mathematics. Like ``\uppi``, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins
 
 ```math
 \textup{e}=2.718281828459045\dots\,.
@@ -635,16 +635,16 @@ The six trigonometric functions are periodic and, hence, not one-to-one. However
 
 ### The Inverse Sine (or Arcsine) Function
 
-Let us define a function ``\operatorname{Sin} x`` (note the capital letter) to be ``\sin x``, restricted so that its domain is the interval ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]``:
+Let us define a function ``\operatorname{Sin} x`` (note the capital letter) to be ``\sin x``, restricted so that its domain is the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]``:
 
 !!! definition
 
 	```math
-	\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\textup{π}}{2}\le x\le\frac{\textup{π}}{2}\,.
+	\operatorname{Sin}x=\sin x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
 	```
 
-Since its derivative ``\cos x`` is positive on the interval ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]``, the function ``\operatorname{Sin} x`` is
-increasing on its domain, so it is a bijective function. It has domain ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]`` and range ``\left[-1,1\right]``.
+Since its derivative ``\cos x`` is positive on the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]``, the function ``\operatorname{Sin} x`` is
+increasing on its domain, so it is a bijective function. It has domain ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` and range ``\left[-1,1\right]``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -653,7 +653,7 @@ Figure("", "The graph of " * tex("\\operatorname{Sin}x") * "." ) do
 	Drawing(width=10scale, height=3scale) do
 		xmid = 5scale
 		ymid = 1.5scale
-		axis_xy(10scale,3scale,xmid,ymid,scale,(-pi/2,pi/2), (-1, 1); xs=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"),xl=(2, 1), xh=(2, 2))
+		axis_xy(10scale,3scale,xmid,ymid,scale,(-pi/2,pi/2), (-1, 1); xs=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),xl=(2, 1), xh=(2, 2))
 		plot_xy(x->sin(x), -5:0.01:5, tuple(), xmid, ymid, scale; width=1, color="RoyalBlue", dashed="3")
 		plot_xy(x->sin(x), -pi/2:0.01:pi/2, (-pi/2, pi/2), xmid, ymid, scale; width=1)
 	end
@@ -665,7 +665,7 @@ Being bijective, ``\operatorname{Sin}`` has an inverse function which is denoted
 !!! definition
 
 	```math
-	\forall y\in\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
+	\forall y\in\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]: x=\sin y=\operatorname{Sin}y\implies y = \operatorname{Arcsin} x\,.
 	```
 
 {cell=chap display=false output=false}
@@ -675,13 +675,13 @@ Figure("", "The graph of " * tex("\\operatorname{Arcsin}x") * "." ) do
 	Drawing(width=3scale, height=4scale) do
 		xmid = 1.5scale
 		ymid = 2scale
-		axis_xy(3scale,4scale,xmid,ymid,scale,(-1, 1),(-pi/2,pi/2); ys=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"),yl=(2, 1), yh=(2, 2))
+		axis_xy(3scale,4scale,xmid,ymid,scale,(-1, 1),(-pi/2,pi/2); ys=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),yl=(2, 1), yh=(2, 2))
 		plot_xy(x->asin(x), -1:0.01:1, tuple(-1, 1), xmid, ymid, scale; width=1)
 	end
 end
 ```
 
-The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\operatorname{Sin}`` in the line ``y=x``. The domain of ``\operatorname{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\operatorname{Sin}``), and the range of ``\operatorname{Arcsin}`` is ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]`` (the domain of ``\operatorname{Sin}``).
+The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\operatorname{Sin}`` in the line ``y=x``. The domain of ``\operatorname{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\operatorname{Sin}``), and the range of ``\operatorname{Arcsin}`` is ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` (the domain of ``\operatorname{Sin}``).
 
 !!! example
 
@@ -695,11 +695,11 @@ The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\oper
 
 	Because both sides of the above equation are odd functions of ``x``, the same result holds for ``0&gt; x&gt;-1``.
 
-Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\textup{π}}{2}\le y\le\frac{\textup{π}}{2}``. Differentiating with respect to ``x``, we obtain
+Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``. Differentiating with respect to ``x``, we obtain
 ```math
 1=\cos y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
 ```
-Since ``-\frac{\textup{π}}{2}\le y\le\frac{\textup{π}}{2}``, we know that ``\cos y\ge 0``. Therefore,
+Since ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``, we know that ``\cos y\ge 0``. Therefore,
 ```math
 \cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
 ```
@@ -725,12 +725,12 @@ Note that the inverse sine function is differentiable only on the open interval 
 	   ```
 	2. Where is ``f`` differentiable? Where is ``f`` continuous?
 
-	   ``f`` is differentiable at all points where ``\cos x\ne0``, that is, everywhere except at odd multiples of ``\frac{\textup{π}}{2}``.
+	   ``f`` is differentiable at all points where ``\cos x\ne0``, that is, everywhere except at odd multiples of ``\frac{\uppi}{2}``.
        Since ``\sin`` is continuous everywhere and has values in ``\left[-1,1\right]``, and since ``\operatorname{Arcsin}`` is continuous on``\left[-1,1\right]``, we have that ``f`` is continuous on the whole real line.
 
 	3. Use the previous results to sketch the graph of ``f``.
 
-       Since ``f`` is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between ``1`` and ``-1`` on intervals between consecutive odd multiples of ``\frac{\textup{π}}{2}``. Since ``f^\prime\left(x\right)=1`` on the interval ``\left]-1,1\right[``, the graph must be as shown below
+       Since ``f`` is continuous, its graph has no breaks. The graph consists of straight line segments of slopes alternating between ``1`` and ``-1`` on intervals between consecutive odd multiples of ``\frac{\uppi}{2}``. Since ``f^\prime\left(x\right)=1`` on the interval ``\left]-1,1\right[``, the graph must be as shown below
 
 	   {cell=chap display=false output=false}
 	   ```julia
@@ -739,7 +739,7 @@ Note that the inverse sine function is differentiable only on the open interval 
 			Drawing(width=14scale, height=4scale) do
 				xmid = 7scale
 				ymid = 2scale
-				axis_xy(14scale,4scale,xmid,ymid,scale,(-pi/2,pi/2), (-pi/2,pi/2); xs=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"),xl=(2, 1), xh=(2, 2), ys=("-\\frac{\\textup{π}}{2}", "\\frac{\\textup{π}}{2}"), yl=(2, 1), yh=(2, 2))
+				axis_xy(14scale,4scale,xmid,ymid,scale,(-pi/2,pi/2), (-pi/2,pi/2); xs=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"),xl=(2, 1), xh=(2, 2), ys=("-\\frac{\\uppi}{2}", "\\frac{\\uppi}{2}"), yl=(2, 1), yh=(2, 2))
 				plot_xy(x->asin(sin(x)), -7:0.01:7, (-pi/2, pi/2), xmid, ymid, scale; width=1)
 			end
 	   end
@@ -752,15 +752,15 @@ The inverse tangent function is defined in a manner similar to the inverse sine.
 !!! definition
 
 	```math
-	\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\textup{π}}{2}\le x\le\frac{\textup{π}}{2}\,.
+	\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
 	```
 
-The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent function and is denoted ``\operatorname{Arctan}`` (or ``\operatorname{arctan}``,  ``\operatorname{atan}``, or ``\operatorname{Tan}^{-1}``). The domain of ``\operatorname{Arctan}`` is the whole real line (the range of ``\operatorname{Tan}``). Its range is the open interval ``\left]-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right[``.
+The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent function and is denoted ``\operatorname{Arctan}`` (or ``\operatorname{arctan}``,  ``\operatorname{atan}``, or ``\operatorname{Tan}^{-1}``). The domain of ``\operatorname{Arctan}`` is the whole real line (the range of ``\operatorname{Tan}``). Its range is the open interval ``\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[``.
 
 !!! definition
 
 	```math
-	\forall y\in\left]-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
+	\forall y\in\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[: x=\tan y=\operatorname{Tan}y\implies y = \operatorname{Arctan} x\,.
 	```
 
 The derivative of the inverse tangent function is also found by implicit differentiation: if ``y=\operatorname{Arctan}x``, then ``x=\operatorname{Tan}y`` and
@@ -768,18 +768,18 @@ The derivative of the inverse tangent function is also found by implicit differe
 1 = \sec^2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+\tan^2 y\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+x^2\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
 ```
 
-The function ``\cos x`` is bijective on the interval ``\left[0,\textup{π}\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
+The function ``\cos x`` is bijective on the interval ``\left[0,\uppi\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
 
 ```math
-\forall y\in\left[0,\textup{π}\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
+\forall y\in\left[0,\uppi\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
 ```
 
-However, ``\cos y=\sin\left(\frac{\textup{π}}{2}-y\right)``, and ``\frac{\textup{π}}{2}-y`` is in the interval ``\left[-\frac{\textup{π}}{2},\frac{\textup{π}}{2}\right]`` when ``y\in\left[0,\textup{π}\right]``.
+However, ``\cos y=\sin\left(\frac{\uppi}{2}-y\right)``, and ``\frac{\uppi}{2}-y`` is in the interval ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` when ``y\in\left[0,\uppi\right]``.
 
 !!! definition
 
 	```math
-	\operatorname{Arccos}x=\frac{\textup{π}}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
+	\operatorname{Arccos}x=\frac{\uppi}{2}-\operatorname{Arcsin}x\quad\textrm{for }-1\le x\le 1
 	```
 
 The derivative of ``\operatorname{Arccos}x`` is the negative of that of ``\operatorname{Arcsin}x``.

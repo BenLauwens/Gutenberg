@@ -202,16 +202,16 @@ The final form no longer involves division by ``h``. It approaches ``gt + \frac{
 
 ## The Area of a Circle
 
-All circles are similar geometric figures; they all have the same shape and differ only in size. The ratio of the circumference ``C`` to the diameter ``2r`` has the same value for all circles. The number ``\textup{π} `` is defined to be this common ratio:
+All circles are similar geometric figures; they all have the same shape and differ only in size. The ratio of the circumference ``C`` to the diameter ``2r`` has the same value for all circles. The number ``\uppi `` is defined to be this common ratio:
 
 ```math
-\frac{C}{2r}=\textup{π} \quad\textrm{or}\quad C=2\textup{π} r\,.
+\frac{C}{2r}=\uppi \quad\textrm{or}\quad C=2\uppi r\,.
 ```
 
-We were taught that the area ``A`` of a circle is this same number ``\textup{π} `` times the square of the radius:
+We were taught that the area ``A`` of a circle is this same number ``\uppi `` times the square of the radius:
 
 ```math
-A=\textup{π} r^2\,.
+A=\uppi r^2\,.
 ```
 
 Can we deduce this area formula from the formula for the circumference?
@@ -246,19 +246,19 @@ Figure("", """A regular polygon (green) of <span class="math-tex" data-type="tex
         latex("B", x=p[9][1]+0.25font_x, y=p[9][2]-0.75font_y, width=font_x, height=font_y)
         latex("M", x=0.5(p[1][1]+p[9][1])-1.5font_x, y=0.5(p[1][2]+p[9][2])-0.75font_y, width=font_x, height=font_y)
         path(d="M 226 151 A 75 75 0 0 0 $(75cos(-π/9)+xmid+1.5), $(75sin(-π/9)+ymid+1.75)", stroke="black", fill="none", marker_end="url(#arrow)")
-        latex("\\frac{\\textup{π} }{n}", x=xmid+80cos(-π/18), y=ymid+80sin(-π/9), width=font_x, height=2*font_y)
+        latex("\\frac{\\uppi }{n}", x=xmid+80cos(-π/18), y=ymid+80sin(-π/9), width=font_x, height=2*font_y)
     end
 end
 ```
 
 The perimeter ``P_n`` and the area ``A_n`` of the polygon are, respectively, less than the circumference ``C`` and the area ``A`` of the circle, but if ``n`` is large ``P_n`` is close to ``C`` and ``A_n`` is close to ``A``. We could expect ``P_n`` to approach the limit ``C`` and ``A_n`` to approach the limit ``A`` as ``n`` tends to infinity.
 
-Since the total angle around the point ``O`` is ``2\textup{π} `` radians, ``\angle AOB`` is ``\frac{2\textup{π} }{n}`` radians. If ``M`` is the midpoint of ``AB``, then ``O`` bisects ``\angle AOB``. We can write the length of ``AB`` and the area of ``\triangle OAB`` in terms of the radius:
+Since the total angle around the point ``O`` is ``2\uppi `` radians, ``\angle AOB`` is ``\frac{2\uppi }{n}`` radians. If ``M`` is the midpoint of ``AB``, then ``O`` bisects ``\angle AOB``. We can write the length of ``AB`` and the area of ``\triangle OAB`` in terms of the radius:
 
 ```math
 \begin{aligned}
-\left|AB\right|=&2\left|AM\right|=2r\sin\frac{\textup{π}}{n}\\
-\triangle OAB=&\frac{1}{2}\left|AB\right|\left|OM\right|=r^2\sin\frac{\textup{π}}{n}\cos\frac{\textup{π}}{n}
+\left|AB\right|=&2\left|AM\right|=2r\sin\frac{\uppi}{n}\\
+\triangle OAB=&\frac{1}{2}\left|AB\right|\left|OM\right|=r^2\sin\frac{\uppi}{n}\cos\frac{\uppi}{n}
 \end{aligned}
 ```
 
@@ -266,18 +266,18 @@ The perimeter ``P_n`` and area ``A_n`` of the polygon are ``n`` times these expr
 
 ```math
 \begin{aligned}
-P_n=&2rn\sin\frac{\textup{π}}{n}\\
-A_n=&r^2n\sin\frac{\textup{π}}{n}\cos\frac{\textup{π}}{n}
+P_n=&2rn\sin\frac{\uppi}{n}\\
+A_n=&r^2n\sin\frac{\uppi}{n}\cos\frac{\uppi}{n}
 \end{aligned}
 ```
 
-Solving the first equation for ``rn\sin\frac{\textup{π}}{n}=\frac{P_n}{2}`` and substituting into the second equation, we get
+Solving the first equation for ``rn\sin\frac{\uppi}{n}=\frac{P_n}{2}`` and substituting into the second equation, we get
 
 ```math
-A_n = \frac{1}{2}P_nr\cos\frac{\textup{π}}{n}
+A_n = \frac{1}{2}P_nr\cos\frac{\uppi}{n}
 ```
 
-Now ``\angle AOM=\frac{\textup{π}}{n}`` approaches ``0`` as ``n`` tends to infinity, so its cosine, ``\cos\frac{\textup{π}}{n}=\frac{\left|OM\right|}{\left|OA\right|}``, approaches ``1``. Since ``P_n`` approaches ``C=2\textup{π} r`` as ``n`` tends to infinity, the expression for ``A_n`` approaches ``\frac{1}{2}\left(2\textup{π} r\right)r\left(1\right)=\textup{π} r^2``, which must therefore be the area of the circle.
+Now ``\angle AOM=\frac{\uppi}{n}`` approaches ``0`` as ``n`` tends to infinity, so its cosine, ``\cos\frac{\uppi}{n}=\frac{\left|OM\right|}{\left|OA\right|}``, approaches ``1``. Since ``P_n`` approaches ``C=2\uppi r`` as ``n`` tends to infinity, the expression for ``A_n`` approaches ``\frac{1}{2}\left(2\uppi r\right)r\left(1\right)=\uppi r^2``, which must therefore be the area of the circle.
 
 ## Limits Defined
 
@@ -349,19 +349,19 @@ The examples and the previous sections suggest the following informal definition
 This definition is informal because phrases such as *close as we want* and *close enough* are imprecise; their meaning depends on the context. If we want to prove results about limits a more precise definition is needed. This precise definition is based on the idea of controlling the input ``x`` of a function ``f`` so that the output ``f\left(x\right)`` will lie in a specific interval.
 
 !!! example
-    The area of a circular disk of radius ``r\,\left[\mathrm{cm}\right]`` is ``A=\textup{π} r^2\,\left[\mathrm{cm}^2\right]``. A machinist is required to manufacture a circular metal disk having area ``400\textup{π}\,\left[\mathrm{cm}^2\right]`` within an error tolerance of ``\pm 5\,\left[\mathrm{cm}^2\right]``. How close to ``20\,\left[\mathrm{cm}\right]`` must the machinist control the radius of the disk to achieve this?
+    The area of a circular disk of radius ``r\,\left[\mathrm{cm}\right]`` is ``A=\uppi r^2\,\left[\mathrm{cm}^2\right]``. A machinist is required to manufacture a circular metal disk having area ``400\uppi\,\left[\mathrm{cm}^2\right]`` within an error tolerance of ``\pm 5\,\left[\mathrm{cm}^2\right]``. How close to ``20\,\left[\mathrm{cm}\right]`` must the machinist control the radius of the disk to achieve this?
 
-    The machinist wants ``\left|\textup{π} r^2-400\textup{π}\right|<5``, that is,
+    The machinist wants ``\left|\uppi r^2-400\uppi\right|<5``, that is,
 
     ```math
-    400\textup{π}-5<\textup{π} r^2<400\textup{π}+5
+    400\uppi-5<\uppi r^2<400\uppi+5
     ```
 
     or, equivalently,
 
     ```math
     \begin{aligned}
-        \sqrt{400-\frac{5}{\textup{π}}}<&r<\sqrt{400+\frac{5}{\textup{π}}}\\
+        \sqrt{400-\frac{5}{\uppi}}<&r<\sqrt{400+\frac{5}{\uppi}}\\
         19.96017<&r<20.03975\,.
     \end{aligned}
     ```

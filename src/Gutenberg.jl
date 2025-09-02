@@ -19,7 +19,7 @@ const TEMPLATE = """<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="rma.css" />
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script src="../assets/temml.min.js"></script>
 PAGED
 </head>
 <body data-type="BODY-TYPE">
@@ -37,15 +37,20 @@ class handlers extends Paged.Handler {
 
     beforeParsed(content) {
         for (let el of content.querySelectorAll('div[data-type="equation"]')) {
-            el.innerHTML = katex.renderToString(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { displayMode: true, output: 'mathml', throwOnError: false});
-            el.classList.remove("math-tex");
+            const math = document.createElement('span');
+            temml.render(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), math, { displayMode: true, output: 'mathml', throwOnError: false});
+            el.replaceChildren(math);
+            el.removeAttribute('class');
         }
         for (let el of content.querySelectorAll('foreignObject')) {
-            el.innerHTML = katex.renderToString(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { displayMode: false, output: 'mathml', throwOnError: false});
+            const math = document.createElement('span');
+            temml.render(el.innerHTML.slice(3, -3).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), math, { displayMode: false, output: 'mathml', throwOnError: false});
+            el.replaceChildren(math);
         }
         for (let el of content.querySelectorAll('span[data-type="tex"]')) {
-            const math = document.createRange().createContextualFragment(katex.renderToString(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), { displayMode: false, output: 'mathml', throwOnError: false})).firstElementChild;
-            el.replaceWith(math);
+            temml.render(el.innerHTML.slice(2, -2).replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&"), el, { displayMode: false, output: 'mathml', throwOnError: false});
+            el.removeAttribute('data-type');
+            el.removeAttribute('class');
         }
         for (let el of content.querySelectorAll('pre code')) {
             hljs.highlightElement(el);

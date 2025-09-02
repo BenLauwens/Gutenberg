@@ -925,7 +925,7 @@ Figure("", tex(raw"\displaystyle\lim_{\theta\to 0}\frac{\sin\theta}{\theta}=1") 
 		xmid = 7scale
 		ymid = 1.5scale
 		f = x->sin(x)/x
-		axis_xy(14scale,2scale,xmid,ymid,scale,(-2pi,-pi,-pi/2,pi/2,pi,2pi),(1,),xs=("-2\\textup{π}", "-\\textup{π} ","-\\frac{\\textup{π} }{2}","\\frac{\\textup{π} }{2}","\\textup{π} ","2\\textup{π}"), xl=(3, 2, 2, 1, 1, 2), xh=(1,1,2,2,1,1))
+		axis_xy(14scale,2scale,xmid,ymid,scale,(-2pi,-pi,-pi/2,pi/2,pi,2pi),(1,),xs=("-2\\uppi", "-\\uppi ","-\\frac{\\uppi }{2}","\\frac{\\uppi }{2}","\\uppi ","2\\uppi"), xl=(3, 2, 2, 1, 1, 2), xh=(1,1,2,2,1,1))
 		plot_xy(f, -7:0.01:-0.01, tuple(), xmid, ymid, scale, width=1)
 		plot_xy(f, 0.01:0.01:7, tuple(), xmid, ymid, scale, width=1)
 		circle(cx=xmid, cy=ymid-scale, fill="white", stroke="red", r=3)
@@ -1028,7 +1028,7 @@ To calculate the derivative of ``\sin x``, we need the addition formula for sine
 !!! proof
 	We make use of the complementary angle identities, and the Chain rule:
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\textup{π}}{2}-x\right)=\left(-1\right)\cos\left(\frac{\textup{π}}{2}-x\right)=-\sin x\,.
+	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
 	```
 
 Because ``\sin x`` and ``\cos x`` are differentiable everywhere, the functions

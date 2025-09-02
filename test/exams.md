@@ -1385,16 +1385,16 @@ Suppose that ``g`` is a differentiable function on ``\left[a,b\right]`` that sat
 
 ## Do some calculations!
 
-If ``f`` is integrable on ``\left[-\textup{π},\textup{π}\right]``, show that the minimum value of
+If ``f`` is integrable on ``\left[-\uppi,\uppi\right]``, show that the minimum value of
 
 ```math
-\int_{-\textup{π}}^\textup{π}\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d\kern-0.5pt x
+\int_{-\uppi}^\uppi\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d\kern-0.5pt x
 ```
 
 occurs when
 
 ```math
-a=\frac{1}{\textup{π}}\int_{-\textup{π}}^\textup{π} f\left(x\right)\cos nx\,\mathrm d\kern-0.5pt x
+a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d\kern-0.5pt x
 ```
 
 (Bring ``a`` outside the integral sign, obtaining a quadratic expression in ``a``.)
@@ -1562,7 +1562,7 @@ Find the following limits by l'Hôpital's Rule.
 
 1. ``\displaystyle \lim_{x\to 0}\left(1-x\right)^\frac{1}{x}\,.``
 
-2. ``\displaystyle \lim_{x\to \frac{\textup{π}}{4}}\left(\tan x\right)^{\tan 2x}\,.``
+2. ``\displaystyle \lim_{x\to \frac{\uppi}{4}}\left(\tan x\right)^{\tan 2x}\,.``
 
 3. ``\displaystyle \lim_{x\to 0}\left(\cos x\right)^\frac{1}{x^2}\,.``
 
@@ -1744,10 +1744,10 @@ Let ``A`` be a nonempty subset of ``\mathbb{R}``. If ``A`` is bounded below, tha
 Suppose that ``f^{\prime\prime}`` is continuous and that
 
 ```math
-\int_0^\textup{π}\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d\kern-0.5pt x=2\,.
+\int_0^\uppi\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d\kern-0.5pt x=2\,.
 ```
 
-Given that ``f\left(\textup{π}\right) = 1``, compute ``f\left(0\right)``.
+Given that ``f\left(\uppi\right) = 1``, compute ``f\left(0\right)``.
 
 {class = pagebreak}
 ## Explain the proof!
