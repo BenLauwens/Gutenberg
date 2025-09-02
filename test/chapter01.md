@@ -402,7 +402,7 @@ Quantified statements with more than one variable may be negated by successively
 
 	Some examples of the negation of quantified statement with more than one variable:
 
-	* ``\lnot \left(\forall x\in A,\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\lnot \left(\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv`` ``\exists x\in A,\forall y\in B,\lnot \left(\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\forall y\in B,\forall z\in C:\lnot 𝒫\left(x\right)``. 
+	* ``\begin{gathered}\lnot \left(\forall x\in A,\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\lnot \left(\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\\\equiv\exists x\in A,\forall y\in B,\lnot \left(\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\forall y\in B,\forall z\in C:\lnot 𝒫\left(x\right)\,.\end{gathered}`` 
 	* Consider the proposition: "Every student has at least one course where the lecturer is an officer". Its negation is the statement: "There is a student such that all his courses have a lecturer which is not an officer". 
 
 ## Proofs

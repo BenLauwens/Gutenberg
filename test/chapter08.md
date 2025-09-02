@@ -920,18 +920,18 @@ Most, but not all, of the elementary functions encountered in calculus are analy
 
 !!! example
 
-	Find the Taylor series for ``\textup{e}^x`` about ``x=c``. Where does the series converge to ``\textup{e}^x``? Where is ``\textup{e}^x`` analytic? What is the Maclaurin series for ``\textup{e}^x``?
+	Find the Taylor series for ``\mathcal{e}^x`` about ``x=c``. Where does the series converge to ``\mathcal{e}^x``? Where is ``\mathcal{e}^x`` analytic? What is the Maclaurin series for ``\mathcal{e}^x``?
 
-	Since all the derivatives of ``f\left(x\right)=\textup{e}^x`` are ``\textup{e}^x``, we have ``f^{\left(n\right)}\left(c\right)=\textup{e}^c`` for ``n\in\mathbb{N}``. Thus, the taylorseries for ``\textup{e}^x`` about ``x=c`` is
+	Since all the derivatives of ``f\left(x\right)=\mathcal{e}^x`` are ``\mathcal{e}^x``, we have ``f^{\left(n\right)}\left(c\right)=\mathcal{e}^c`` for ``n\in\mathbb{N}``. Thus, the taylorseries for ``\mathcal{e}^x`` about ``x=c`` is
 
 	```math
-	\sum_{n=0}^\infty \frac{\textup{e}^c}{n!}\left(x-c\right)^n\,.
+	\sum_{n=0}^\infty \frac{\mathcal{e}^c}{n!}\left(x-c\right)^n\,.
 	```
 
 	The radius of convergence ``R`` of this series is given by
 
 	```math
-	\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{\textup{e}^c}{\left(n+1\right)!}}{\frac{\textup{e}^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
+	\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{\mathcal{e}^c}{\left(n+1\right)!}}{\frac{\mathcal{e}^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
 	```
 
 	Thus, the radius of convergence is ``R=\infty`` and the series converges for all ``x``.
@@ -939,26 +939,26 @@ Most, but not all, of the elementary functions encountered in calculus are analy
 	Suppose the sum is ``g\left(x\right)``:
 
 	```math
-	g\left(x\right)=\textup{e}^c+\textup{e}^c\left(x-c\right)+\frac{\textup{e}^c}{2!}\left(x-c\right)^2+\frac{\textup{e}^c}{3!}\left(x-c\right)^3+\cdots\,.
+	g\left(x\right)=\mathcal{e}^c+\mathcal{e}^c\left(x-c\right)+\frac{\mathcal{e}^c}{2!}\left(x-c\right)^2+\frac{\mathcal{e}^c}{3!}\left(x-c\right)^3+\cdots\,.
 	```
 
 	By the differentiation theorem of series, we have
 
 	```math
 	\begin{aligned}
-	g^\prime\left(x\right)&=0+\textup{e}^c+\frac{\textup{e}^c}{2!}2\left(x-c\right)+\frac{\textup{e}^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
-	&=\textup{e}^c+\textup{e}^c\left(x-c\right)+\frac{\textup{e}^c}{2!}\left(x-c\right)^2+\frac{\textup{e}^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
+	g^\prime\left(x\right)&=0+\mathcal{e}^c+\frac{\mathcal{e}^c}{2!}2\left(x-c\right)+\frac{\mathcal{e}^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
+	&=\mathcal{e}^c+\mathcal{e}^c\left(x-c\right)+\frac{\mathcal{e}^c}{2!}\left(x-c\right)^2+\frac{\mathcal{e}^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
 	\end{aligned}
 	```
 
-	Also, ``g\left(c\right)=\textup{e}^c+0+0+\cdots=\textup{e}^c``. Since ``g\left(x\right)`` satisfies the differential equation ``g^\prime\left(x\right)=g\left(x\right)``, we have ``g\left(x\right)=C\textup{e}^x``.  Substituting ``x=c`` gives ``\textup{e}^c=g\left(c\right)=C\textup{e}^c``, so ``C=1``. Thus, the Taylor series for ``\textup{e}^x`` in powers of ``x-c`` converges to ``\textup{e}^x`` for every real number ``x``:
+	Also, ``g\left(c\right)=\mathcal{e}^c+0+0+\cdots=\mathcal{e}^c``. Since ``g\left(x\right)`` satisfies the differential equation ``g^\prime\left(x\right)=g\left(x\right)``, we have ``g\left(x\right)=C\mathcal{e}^x``.  Substituting ``x=c`` gives ``\mathcal{e}^c=g\left(c\right)=C\mathcal{e}^c``, so ``C=1``. Thus, the Taylor series for ``\mathcal{e}^x`` in powers of ``x-c`` converges to ``\mathcal{e}^x`` for every real number ``x``:
 	
 	```math
-	\textup{e}^x=\sum_{n=0}^\infty \frac{\textup{e}^c}{n!}\left(x-c\right)^n\,.
+	\mathcal{e}^x=\sum_{n=0}^\infty \frac{\mathcal{e}^c}{n!}\left(x-c\right)^n\,.
 	```
 
-	In particular, ``\textup{e}^x`` is analytic on the whole real line. Setting ``c=0`` we obtain the Maclaurin series for ``\textup{e}^x``:
+	In particular, ``\mathcal{e}^x`` is analytic on the whole real line. Setting ``c=0`` we obtain the Maclaurin series for ``\mathcal{e}^x``:
 
 	```math
-	\textup{e}^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
+	\mathcal{e}^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
 	```

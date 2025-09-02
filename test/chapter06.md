@@ -936,13 +936,13 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 
 !!! example
 
-	Find the derivative of ``\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t``.
+	Find the derivative of ``\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t``.
 
 	```math
 	\begin{aligned}
-	F\left(x\right)&=\int_{0}^{x^3}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
-	F^\prime\left(x\right)&=\textup{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\textup{e}^{-\left(x^2\right)^2}\left(2x\right)\\
-	&=3x^2\textup{e}^{-x^6}-2x\textup{e}^{-x^4}\,.
+	F\left(x\right)&=\int_{0}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
+	F^\prime\left(x\right)&=\mathcal{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\mathcal{e}^{-\left(x^2\right)^2}\left(2x\right)\\
+	&=3x^2\mathcal{e}^{-x^6}-2x\mathcal{e}^{-x^4}\,.
 	\end{aligned}
 	```
 
@@ -962,15 +962,15 @@ Let us begin by assembling a table of some known indefinite integrals. These res
 
 ```math
 \begin{align}
-&\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
-&\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
-&\int \sqrt x\,\mathrm{d}\kern-0.5pt x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C\\
-&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x=\ln\left|x\right|+C\\
-&\int \sin ax\,\mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sin ax+C\\
-&\int \sec^2 ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cot ax+C\\
-&\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}\kern-0.5pt x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
-&\int \textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\textup{e}^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
-&\int \sinh ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sinh ax+C
+\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
+\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
+\int \sqrt x\,\mathrm{d}\kern-0.5pt x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C\\
+\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x=\ln\left|x\right|+C\\
+\int \sin ax\,\mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sin ax+C\\
+\int \sec^2 ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cot ax+C\\
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}\kern-0.5pt x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
+\int \mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\mathcal{e}^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
+\int \sinh ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sinh ax+C
 \end{align}
 ```
 
@@ -1120,12 +1120,12 @@ The above formula serves as a pattern for carrying out integration by parts. We 
 
 !!! example
 
-	Evaluate ``\displaystyle \int x\textup{e}^x\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int x\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x``.
 
 	```math
 	\begin{aligned}
-	\int x\textup{e}^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=\textup{e}^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=\textup{e}^x\\
-	=&\,x\textup{e}^x-\int \textup{e}^x\,\mathrm{d}\kern-0.5pt x=x\textup{e}^x-\textup{e}^x+C\,.
+	\int x\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=\mathcal{e}^x\\
+	&=\,x\mathcal{e}^x-\int \mathcal{e}^x\,\mathrm{d}\kern-0.5pt x=x\mathcal{e}^x-\mathcal{e}^x+C\,.
 	\end{aligned}
 	```
 
@@ -1145,28 +1145,28 @@ The following example illustrates a frequently occurring and very useful phenome
 
 !!! example
 
-	Evaluate ``\displaystyle \int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x``.
 
 	```math
 	\begin{aligned}
-	\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=\textup{e}^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
-	=&\,\frac{1}{b}\textup{e}^{ax}\sin bx-\frac{a}{b}\int \textup{e}^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
-	&\quad\textrm{Let }U=\textup{e}^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
-	=&\,\frac{1}{b}\textup{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\textup{e}^{ax}\cos bx+\frac{a}{b}\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
-	=&\,\frac{1}{b}\textup{e}^{ax}\sin bx+\frac{a}{b^2}\textup{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
+	\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
+	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\int \mathcal{e}^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
+	&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
+	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\mathcal{e}^{ax}\cos bx+\frac{a}{b}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
+	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
 	\end{aligned}
 	```
 
 	Thus,
 
 	```math
-	\left(1+\frac{a^2}{b^2}\right)\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}\textup{e}^{ax}\sin bx+\frac{a}{b^2}\textup{e}^{ax}\cos bx+C_1
+	\left(1+\frac{a^2}{b^2}\right)\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx+C_1
 	```
 
 	and
 
 	```math
-	\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{b\textup{e}^{ax}\sin bx+a\textup{e}^{ax}\cos bx}{a^2+b^2}+C\,.
+	\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{b\mathcal{e}^{ax}\sin bx+a\mathcal{e}^{ax}\cos bx}{a^2+b^2}+C\,.
 	```
 
 Observe that after the first integration by parts we had an integral that was different from, but no simpler than, the original integral. At this point we might have become discouraged and given up on this method. However, perseverance proved worthwhile; a second integration by parts returned the original integral in an equation that could be solved for the integral.
@@ -1236,11 +1236,11 @@ Note that part (1) does not tell us how to find the factors of ``Q\left(x\right)
 
 	```math
 	\begin{aligned}
-	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x=&\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
+	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x&=\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
 	&\quad\textrm{Let }u=2x^2+1\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt u=4x\,\mathrm{d}\kern-0.5pt x\\
-	=&\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
-	=&\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
-	=&\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
+	&=\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
+	&=\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
+	&=\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
 	\end{aligned}
 	```
 
@@ -1265,8 +1265,8 @@ Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corr
 	```math
 	\begin{aligned}
 	\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	=&\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
-	=&\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
+	&=\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
+	&=\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
 	\end{aligned}
 	```
 
@@ -1285,11 +1285,11 @@ Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\fr
 	```math
 	\begin{aligned}
 	\int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	=&\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	=&\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
+	&=\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
+	&=\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
 	&\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
-	=&\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
-	=&\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
+	&=\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
+	&=\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
 	\end{aligned}
 	```
 
@@ -1312,8 +1312,8 @@ we cannot always drop the absolute value from the tangent.
 	```math
 	\begin{aligned}
 	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	=&\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
-	=&\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+	&=\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
+	&=\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
 	\end{aligned}
 	```
 
@@ -1332,8 +1332,8 @@ we cannot always drop the absolute value from the tangent.
 	```math
 	\begin{aligned}
 	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
-	=&\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
-	=&\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+	&=\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
+	&=\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
 	\end{aligned}
 	```
 
@@ -1665,10 +1665,10 @@ Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right
 
 	```math
 	\begin{aligned}
-	s=&\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
-	=&\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
+	s&=\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
+	&=\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
 	&\quad\textrm{Let }u=9x^\frac{2}{3}+4,\mathrm{d}\kern-0.5pt u=6x^{-\frac{2}{3}}\,\mathrm{d}\kern-0.5pt x\\
-	=&\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
+	&=\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
 	\end{aligned}
 	```
 
@@ -1706,9 +1706,9 @@ The areas of surfaces of revolution around various lines can be obtained by inte
 
 	```math
 	\begin{aligned}
-	S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
+	S&=2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
 	&\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
-	=&\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
-	=&\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
+	&=\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+	&=\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
 	\end{aligned}
 	```

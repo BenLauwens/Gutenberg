@@ -238,7 +238,7 @@ Figure("", "The real line.") do
 			len = length(txt)
 			latex(string(n-4), x=80n-font_x*len/2, y=mid+5, width=font_x*len, height=font_y)
 		end
-		for (txt, (val, len)) in zip(("\\displaystyle-\\frac{9}{4}", "\\displaystyle-\\frac{3}{2}", "\\displaystyle-\\frac{18}{5}", "\\displaystyle\\frac{7}{3}", "\\textup{e}", "\\uppi "), ((-9/4, 2), (-3/2, 2), (-18/5, 3), (7/3, 1), (ℯ, 1), (π, 1)))
+		for (txt, (val, len)) in zip(("\\displaystyle-\\frac{9}{4}", "\\displaystyle-\\frac{3}{2}", "\\displaystyle-\\frac{18}{5}", "\\displaystyle\\frac{7}{3}", "\\mathcal{e}", "\\uppi "), ((-9/4, 2), (-3/2, 2), (-18/5, 3), (7/3, 1), (ℯ, 1), (π, 1)))
 			line(x1=320+80val, y1=mid-5, x2=320+80val, y2=mid+5, stroke="black")
 			latex(txt, x=320+80val-font_x*len/2, y=mid-if val < 8/3 35 else 25 end, width=font_x*len, height=font_y*if val < 8/3 2 else 1 end)
 		end
@@ -767,7 +767,7 @@ In calculating ``\left(f\circ g\right)\left(x\right)=f\left(g\left(x\right)\righ
 	|``g``|``g\left(x\right)=x+1``|``\mathbb{R}``|
 	|``f\circ g``|``\left(f\circ g\right)\left(x\right)=\sqrt{x+1}``|``\left[-1,\infty\right[``|
 	|``g\circ f``|``\left(f\circ g\right)\left(x\right)=\sqrt{x}+1``|``\left[0,\infty\right[``|
-	|``f\circ f``|``\left(f\circ g\right)\left(x\right)=x^\frac{1}{4}``|``\left[0,\infty\right[``|
+	|``f\circ f``|``\left(f\circ g\right)\left(x\right)=x^¼``|``\left[0,\infty\right[``|
 	|``g\circ g``|``\left(f\circ g\right)\left(x\right)=x+2``|``\mathbb{R}``|
 
 	To see why, for example, the domain of ``f\circ g`` is ``\left[-1,\infty\right[``, observe that ``g\left(x\right)=x+1`` is defined for all real ``x`` but belongs to the domain of ``f`` only if ``x+1\ge 0``, that is, if ``x\ge -1``.

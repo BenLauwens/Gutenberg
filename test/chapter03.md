@@ -334,7 +334,7 @@ In order to speak meaningfully about rate of change, tangent lines, and areas bo
     Except the last value in the table, the values of ``g\left(x\right)`` seem to be approaching a certain number, ``2.71828\dots``, as ``x`` tends to ``0``. We will see in Chapter 5 that
 
     ```math
-    \lim_{x\to 0}g\left(x\right)=\lim_{x\to 0}\left(1+x^2\right)^\frac{1}{x^2}=\textup{e}=2.718281828459045\dots\,.
+    \lim_{x\to 0}g\left(x\right)=\lim_{x\to 0}\left(1+x^2\right)^\frac{1}{x^2}=\mathcal{e}=2.718281828459045\dots\,.
     ```
 
 The examples and the previous sections suggest the following informal definition of limit.

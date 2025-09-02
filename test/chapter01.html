@@ -7,48 +7,10 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="rma.css" />
-<script>
-MathJax = {
-    startup: {
-        pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-        }
-    },
-    tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
-        ],
-        displayMath: [
-            ['\\[', '\\]']
-        ]
-    },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter" class="pagereset" >
 <h1>Preliminaries</h1>
 <p>This chapter introduces mathematical logic as a tool for rigorously proving statements. An elementary introduction to set theory and functions is also included.</p>
@@ -646,8 +608,8 @@ MathJax = {
 </li>
 </ol>
 </div>
-<p>The set of natural number is denoted by <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
-<p>A set which is equivalent to the set <span class="math-tex" data-type="tex">\(\lbrace 0,1,2,3,\ldots,n\rbrace\)</span> for some <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> is called <i>finite</i>; otherwise it is called <i>infinite</i>.</p>
+<p>The set of natural number is denoted by <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span>.</p>
+<p>A set which is equivalent to the set <span class="math-tex" data-type="tex">\(\lbrace 0,1,2,3,\ldots,n\rbrace\)</span> for some <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span> is called <i>finite</i>; otherwise it is called <i>infinite</i>.</p>
 <p>An infinite set which is equivalent to the set of natural numbers is called <i>denumerable</i>; otherwise it is called <i>non-denumerable</i>.</p>
 <div data-type="definition">
 <h1></h1>
@@ -660,16 +622,16 @@ MathJax = {
 <p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a given set. A <i>propositional function</i> defined on <span class="math-tex" data-type="tex">\(A\)</span> is a function <span class="math-tex" data-type="tex">\(𝒫:A\to \lbrace T,F\rbrace\)</span> which has the property that <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true or false for each <span class="math-tex" data-type="tex">\(a\in A\)</span>. That is, <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> becomes a proposition (with a truth value) whenever any element <span class="math-tex" data-type="tex">\(a\in A\)</span> is substituted for the variable <span class="math-tex" data-type="tex">\(x.\)</span> The set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of all elements of <span class="math-tex" data-type="tex">\(a\in A\)</span> for which <span class="math-tex" data-type="tex">\(𝒫\left(a\right)\)</span> is true is called the <i>truth set</i> of <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span>.</p>
 <div data-type="example">
 <h1></h1>
-<p>Find the truth set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of each propositional function <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> defined on <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
+<p>Find the truth set <span class="math-tex" data-type="tex">\(T_{𝒫}\)</span> of each propositional function <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> defined on <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span>.</p>
 <ul>
 <li>
-<p>Let <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> be “<span class="math-tex" data-type="tex">\(x+2&gt;7\)</span>”. Then <span class="math-tex" data-type="tex">\(T_{𝒫} =\lbrace x\mid x\in ℕ,x+2&gt;7\rbrace =\lbrace 6,7,8,\ldots\rbrace\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> be “<span class="math-tex" data-type="tex">\(x+2&gt;7\)</span>”. Then <span class="math-tex" data-type="tex">\(T_{𝒫} =\lbrace x\mid x\in \mathbb{N},x+2&gt;7\rbrace =\lbrace 6,7,8,\ldots\rbrace\)</span>.</p>
 </li>
 <li>
-<p>Let <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> be “<span class="math-tex" data-type="tex">\(x+5 < 3\)</span>”. Then <span class="math-tex" data-type="tex">\(T_{𝒫} =\lbrace x\mid x\in ℕ,x+5 < 3\rbrace =\emptyset\)</span>. In other words, <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> is false for any natural number.</p>
+<p>Let <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> be “<span class="math-tex" data-type="tex">\(x+5 < 3\)</span>”. Then <span class="math-tex" data-type="tex">\(T_{𝒫} =\lbrace x\mid x\in \mathbb{N},x+5 < 3\rbrace =\emptyset\)</span>. In other words, <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> is false for any natural number.</p>
 </li>
 <li>
-<p>Let <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> be “<span class="math-tex" data-type="tex">\(x+5&gt;1\)</span>”. Then <span class="math-tex" data-type="tex">\(T_{𝒫} =\lbrace x\mid x\in ℕ,x+5&gt;1\rbrace =ℕ\)</span>. Thus <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> is true for every natural number.</p>
+<p>Let <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> be “<span class="math-tex" data-type="tex">\(x+5&gt;1\)</span>”. Then <span class="math-tex" data-type="tex">\(T_{𝒫} =\lbrace x\mid x\in \mathbb{N},x+5&gt;1\rbrace =\mathbb{N}\)</span>. Thus <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> is true for every natural number.</p>
 </li>
 </ul>
 </div>
@@ -679,10 +641,10 @@ MathJax = {
 <p>Some propositions using the universal quantifier:</p>
 <ul>
 <li>
-<p>The proposition <span class="math-tex" data-type="tex">\(\forall n\in ℕ:n+4&gt;3\)</span> is true since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+4&gt;3\rbrace =ℕ\)</span>.</p>
+<p>The proposition <span class="math-tex" data-type="tex">\(\forall n\in \mathbb{N}:n+4&gt;3\)</span> is true since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in \mathbb{N},n+4&gt;3\rbrace =\mathbb{N}\)</span>.</p>
 </li>
 <li>
-<p>The proposition <span class="math-tex" data-type="tex">\(\forall n\in ℕ:n+2&gt;8\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+2&gt;8\rbrace =\lbrace 7,8,9,\ldots\rbrace\)</span>.</p>
+<p>The proposition <span class="math-tex" data-type="tex">\(\forall n\in \mathbb{N}:n+2&gt;8\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in \mathbb{N},n+2&gt;8\rbrace =\lbrace 7,8,9,\ldots\rbrace\)</span>.</p>
 </li>
 <li>
 <p>The symbol <span class="math-tex" data-type="tex">\(\forall\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i\mid i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcap_{i\in I} A_i =\lbrace x\mid\forall i\in I:x\in A_i \rbrace\)</span>.</p>
@@ -695,10 +657,10 @@ MathJax = {
 <p>Some propositions using the existential quantifier:</p>
 <ul>
 <li>
-<p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in ℕ:n+4 < 7\)</span> is true since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset\)</span>.</p>
+<p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in \mathbb{N}:n+4 < 7\)</span> is true since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in \mathbb{N},n+4 < 7\rbrace =\lbrace 0,1,2\rbrace \not= \emptyset\)</span>.</p>
 </li>
 <li>
-<p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in ℕ:n+6 < 4\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in ℕ,n+6 < 4\rbrace =\emptyset\)</span>.</p>
+<p>The proposition <span class="math-tex" data-type="tex">\(\exists n\in \mathbb{N}:n+6 < 4\)</span> is false since <span class="math-tex" data-type="tex">\(\lbrace n\mid n\in \mathbb{N},n+6 < 4\rbrace =\emptyset\)</span>.</p>
 </li>
 <li>
 <p>The symbol <span class="math-tex" data-type="tex">\(\exists\)</span> can be used to define the intersection of an indexed collection <span class="math-tex" data-type="tex">\(\lbrace A_i\mid i\in I\rbrace\)</span> of sets <span class="math-tex" data-type="tex">\(A_i\)</span> as follows: <span class="math-tex" data-type="tex">\(\bigcup_{i\in I} A_i =\lbrace x\mid\exists i\in I:x\in A_i \rbrace\)</span>.</p>
@@ -795,7 +757,7 @@ MathJax = {
 <p><span class="math-tex" data-type="tex">\(\exists x\in A,\forall y\in B:𝒫\left(x,y\right)~\implies ~\forall y\in B,\exists x\in A:𝒫\left(x,y\right)\)</span>.</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\forall x\in A,\exists y\in B:𝒫\left(x,y\right)~\mathrel{\rlap{\implies}\ \,/\quad}~\exists y\in B,\forall x\in A:𝒫\left(x,y\right)\)</span>.</p>
+<p><span class="math-tex" data-type="tex">\(\forall x\in A,\exists y\in B:𝒫\left(x,y\right)~\cancel{\implies}~\exists y\in B,\forall x\in A:𝒫\left(x,y\right)\)</span>.</p>
 </li>
 </ol>
 </div>
@@ -805,7 +767,7 @@ MathJax = {
 <p>Some examples of the negation of quantified statement with more than one variable:</p>
 <ul>
 <li>
-<p><span class="math-tex" data-type="tex">\(\lnot \left(\forall x\in A,\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\lnot \left(\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv\)</span> <span class="math-tex" data-type="tex">\(\exists x\in A,\forall y\in B,\lnot \left(\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\forall y\in B,\forall z\in C:\lnot 𝒫\left(x\right)\)</span>.</p>
+<p><span class="math-tex" data-type="tex">\(\begin{gathered}\lnot \left(\forall x\in A,\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\lnot \left(\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\\\equiv\exists x\in A,\forall y\in B,\lnot \left(\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\forall y\in B,\forall z\in C:\lnot 𝒫\left(x\right)\,.\end{gathered}\)</span></p>
 </li>
 <li>
 <p>Consider the proposition: “Every student has at least one course where the lecturer is an officer”. Its negation is the statement: “There is a student such that all his courses have a lecturer which is not an officer”.</p>
@@ -866,13 +828,13 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Prove the proposition “If <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)\)</span> is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>”.</p>
+<p>Prove the proposition “If <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, then <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)\)</span> is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>”.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(n\)</span> be a natural number.</p>
-<p><i>CASE 1:</i> Suppose <span class="math-tex" data-type="tex">\(n\)</span> is even. Then <span class="math-tex" data-type="tex">\(n=2k\)</span> for some <span class="math-tex" data-type="tex">\(k\in ℕ\)</span>, and <span class="math-tex" data-type="tex">\(\left(-1\right)^n =1\)</span>. Thus <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)=1+\left(1\right)\left(2\cdot 2k-1\right)=4k\)</span>, which is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>.</p>
-<p><i>CASE 2:</i> Suppose <span class="math-tex" data-type="tex">\(n\)</span> is odd. Then <span class="math-tex" data-type="tex">\(n=2k+1\)</span> for some <span class="math-tex" data-type="tex">\(k\in ℕ\)</span>, and <span class="math-tex" data-type="tex">\(\left(-1\right)^n =-1\)</span>. Thus <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)=1-\left(2\left(2k+1\right)-1\right)=-4k\)</span>, which is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>.</p>
+<p><i>CASE 1:</i> Suppose <span class="math-tex" data-type="tex">\(n\)</span> is even. Then <span class="math-tex" data-type="tex">\(n=2k\)</span> for some <span class="math-tex" data-type="tex">\(k\in \mathbb{N}\)</span>, and <span class="math-tex" data-type="tex">\(\left(-1\right)^n =1\)</span>. Thus <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)=1+\left(1\right)\left(2\cdot 2k-1\right)=4k\)</span>, which is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>.</p>
+<p><i>CASE 2:</i> Suppose <span class="math-tex" data-type="tex">\(n\)</span> is odd. Then <span class="math-tex" data-type="tex">\(n=2k+1\)</span> for some <span class="math-tex" data-type="tex">\(k\in \mathbb{N}\)</span>, and <span class="math-tex" data-type="tex">\(\left(-1\right)^n =-1\)</span>. Thus <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)=1-\left(2\left(2k+1\right)-1\right)=-4k\)</span>, which is a multiple of <span class="math-tex" data-type="tex">\(4\)</span>.</p>
 <p>These cases show that <span class="math-tex" data-type="tex">\(1+\left(-1\right)^n \left(2n-1\right)\)</span> is always a multiple of <span class="math-tex" data-type="tex">\(4\)</span>.</p>
 </div>
 </section>
@@ -892,14 +854,14 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Prove by contraposition the proposition “Let <span class="math-tex" data-type="tex">\(x\in ℕ\)</span>. If <span class="math-tex" data-type="tex">\(x^2\)</span> is even, then <span class="math-tex" data-type="tex">\(x\)</span> is even”.</p>
+<p>Prove by contraposition the proposition “Let <span class="math-tex" data-type="tex">\(x\in \mathbb{N}\)</span>. If <span class="math-tex" data-type="tex">\(x^2\)</span> is even, then <span class="math-tex" data-type="tex">\(x\)</span> is even”.</p>
 <p>A direct proof would be problematic. We will proof the logically equivalent proposition “If <span class="math-tex" data-type="tex">\(x\)</span> is not even, then <span class="math-tex" data-type="tex">\(x^2\)</span> is not even”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contraposition)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(x\in ℕ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(x\in \mathbb{N}\)</span>.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(x\)</span> is not even.</p>
-<p>Then <span class="math-tex" data-type="tex">\(x\)</span> is odd and <span class="math-tex" data-type="tex">\(x=2k+1\)</span> for some <span class="math-tex" data-type="tex">\(k\in ℕ\)</span>. Thus <span class="math-tex" data-type="tex">\(x^2=\left(2k+1\right)^2=2\left(2k^2+2k\right)+1\)</span>. Since <span class="math-tex" data-type="tex">\(k\)</span> is a natural number, <span class="math-tex" data-type="tex">\(2k^2+2k\)</span> is also a natural number. Consequently, <span class="math-tex" data-type="tex">\(x^2\)</span> is odd.</p>
+<p>Then <span class="math-tex" data-type="tex">\(x\)</span> is odd and <span class="math-tex" data-type="tex">\(x=2k+1\)</span> for some <span class="math-tex" data-type="tex">\(k\in \mathbb{N}\)</span>. Thus <span class="math-tex" data-type="tex">\(x^2=\left(2k+1\right)^2=2\left(2k^2+2k\right)+1\)</span>. Since <span class="math-tex" data-type="tex">\(k\)</span> is a natural number, <span class="math-tex" data-type="tex">\(2k^2+2k\)</span> is also a natural number. Consequently, <span class="math-tex" data-type="tex">\(x^2\)</span> is odd.</p>
 <p>Therefore, <span class="math-tex" data-type="tex">\(x^2\)</span> is not even.</p>
 </div>
 </section>
@@ -920,14 +882,14 @@ MathJax = {
 <p>A slightly unsettling feature of this method is that we may not know at the beginning of the proof what the statement <span class="math-tex" data-type="tex">\(𝒞\)</span> is going to be.</p>
 <div data-type="example">
 <h1></h1>
-<p>Prove by contradiction the proposition “If <span class="math-tex" data-type="tex">\(a,b\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(a^2 -4b\not= 2\)</span>”.</p>
+<p>Prove by contradiction the proposition “If <span class="math-tex" data-type="tex">\(a,b\in \mathbb{N}\)</span>, then <span class="math-tex" data-type="tex">\(a^2 -4b\not= 2\)</span>”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(a,b\in ℕ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(a,b\in \mathbb{N}\)</span>.</p>
 <p>Suppose there exist <span class="math-tex" data-type="tex">\(a\)</span> and <span class="math-tex" data-type="tex">\(b\)</span> for which <span class="math-tex" data-type="tex">\(a^2 -4b=2\)</span>. From this equation we get <span class="math-tex" data-type="tex">\(a^2 =4b+2=2\left(2b+1\right)\,,\)</span> so <span class="math-tex" data-type="tex">\(a^2\)</span> is even.</p>
 <p>Because <span class="math-tex" data-type="tex">\(a^2\)</span> is even, it follows that <span class="math-tex" data-type="tex">\(a\)</span> is even, so <span class="math-tex" data-type="tex">\(a=2c\)</span> for some natural number <span class="math-tex" data-type="tex">\(c\)</span>. Now plug <span class="math-tex" data-type="tex">\(a=2c\)</span> back into the boxed equation to get <span class="math-tex" data-type="tex">\(\left(2c\right)^2 -4b=2\)</span>, so <span class="math-tex" data-type="tex">\(4c^2 -4b=2\)</span>. Dividing by <span class="math-tex" data-type="tex">\(2\)</span>, we get <span class="math-tex" data-type="tex">\(2c^2 -2b=1\)</span>.</p>
-<p>Therefore, <span class="math-tex" data-type="tex">\(1=2\left(c^2 -b\right)\)</span>, and because <span class="math-tex" data-type="tex">\(c^2 -b\in ℕ\)</span>, it follows that <span class="math-tex" data-type="tex">\(1\)</span> is even.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(1=2\left(c^2 -b\right)\)</span>, and because <span class="math-tex" data-type="tex">\(c^2 -b\in \mathbb{N}\)</span>, it follows that <span class="math-tex" data-type="tex">\(1\)</span> is even.</p>
 <p>We know <span class="math-tex" data-type="tex">\(1\)</span> is  <b>not</b> even, so something went wrong. But all the logic after the first line of the proof is correct, so it must be that the first line was incorrect. In other words, we were wrong to assume the proposition was false. Thus the proposition is true.</p>
 </div>
 <p>The previous two proof methods dealt exclusively with proving conditional statements, we now formalize the procedure in which contradiction is used to prove a conditional statement. Thus we need to prove that <span class="math-tex" data-type="tex">\(𝒫\implies𝒬\)</span> is true. Proof by contradiction begins with the assumption that <span class="math-tex" data-type="tex">\(\lnot \left(𝒫\implies Q\right)\)</span> is true, that is, that <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> is false. But we know that <span class="math-tex" data-type="tex">\(𝒫\implies 𝒬\)</span> being false means that it is possible that <span class="math-tex" data-type="tex">\(𝒫\)</span> can be true while <span class="math-tex" data-type="tex">\(𝒬\)</span> is false. Thus the first step in the proof is to assume <span class="math-tex" data-type="tex">\(𝒫\)</span> and <span class="math-tex" data-type="tex">\(\lnot 𝒬\)</span>.</p>
@@ -940,11 +902,11 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Prove by contradiction the proposition “Let <span class="math-tex" data-type="tex">\(a\in ℕ\)</span>. If <span class="math-tex" data-type="tex">\(a^2\)</span> is even, then <span class="math-tex" data-type="tex">\(a\)</span> is even”.</p>
+<p>Prove by contradiction the proposition “Let <span class="math-tex" data-type="tex">\(a\in \mathbb{N}\)</span>. If <span class="math-tex" data-type="tex">\(a^2\)</span> is even, then <span class="math-tex" data-type="tex">\(a\)</span> is even”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(a\in ℕ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(a\in \mathbb{N}\)</span>.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(a^2\)</span> is even and <span class="math-tex" data-type="tex">\(a\)</span> is not even.</p>
 <p>Since <span class="math-tex" data-type="tex">\(a\)</span> is odd, there exists a natural number <span class="math-tex" data-type="tex">\(c\)</span> for which <span class="math-tex" data-type="tex">\(a=2c+1\)</span>. Then <span class="math-tex" data-type="tex">\(a^2 =\left(2c+1\right)^2 =4c^2+4c+1=2\left(2c^2 +2c\right)+1\)</span>, so <span class="math-tex" data-type="tex">\(a^2\)</span> is odd.</p>
 <p>Thus <span class="math-tex" data-type="tex">\(a^2\)</span> is even and <span class="math-tex" data-type="tex">\(a^2\)</span> is not even, a contradiction.</p>
@@ -959,7 +921,7 @@ MathJax = {
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>.</p>
 <p>First we show that <span class="math-tex" data-type="tex">\(n\)</span> being odd implies that <span class="math-tex" data-type="tex">\(n^2\)</span> is odd.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(n\)</span> is odd.</p>
 <p>Then, by definition of an odd number, <span class="math-tex" data-type="tex">\(n=2a+1\)</span> for some natural number. Thus <span class="math-tex" data-type="tex">\(n^2 =\left(2a+1\right)^2 =4a^2 +4a+1=2\left(2a^2 +2a\right)+1\)</span>. This expresses <span class="math-tex" data-type="tex">\(n^2\)</span> as twice a natural number, plus 1.</p>
@@ -990,16 +952,16 @@ MathJax = {
 <p>How to disprove a universally quantified statement such as <span class="math-tex" data-type="tex">\(\forall x:𝒫\left(x\right)\)</span>? To disprove this statement, we must prove its negation. Its negation is <span class="math-tex" data-type="tex">\(\lnot\left(\forall x:𝒫\left(x\right)\implies 𝒬\left(x\right)\right)\equiv \exists x:\lnot\left(𝒫\left(x\right)\implies 𝒬\left(x\right)\right)\)</span>. The negation is an existence statement. To prove the negation is true, we just need to produce an example of an <span class="math-tex" data-type="tex">\(x\)</span> that makes <span class="math-tex" data-type="tex">\(𝒫\left(x\right)\)</span> false.</p>
 <div data-type="example">
 <h1></h1>
-<p>Disprove the proposition “For every <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(n\right)=n^2 -n+11\)</span> is prime”.</p>
+<p>Disprove the proposition “For every <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(n\right)=n^2 -n+11\)</span> is prime”.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>The statement “For every <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(n\right)=n^2 -n+11\)</span> is prime,” is false. For a counterexample, note that for <span class="math-tex" data-type="tex">\(n=11\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(11\right)=121=11\cdot 11\)</span> is not prime.</p>
+<p>The statement “For every <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(n\right)=n^2 -n+11\)</span> is prime,” is false. For a counterexample, note that for <span class="math-tex" data-type="tex">\(n=11\)</span>, the natural number <span class="math-tex" data-type="tex">\(f\left(11\right)=121=11\cdot 11\)</span> is not prime.</p>
 </div>
 </section>
 <section data-type="sect2">
 <h2>Proof by Induction</h2>
-<p>Suppose the variable <span class="math-tex" data-type="tex">\(n\)</span> represents any natural number, and there is a propositional function <span class="math-tex" data-type="tex">\(𝒫\left(n\right)\)</span> that includes this variable as an argument. <i>Mathematical induction</i> is a proof technique that uses the axiom of induction to show that <span class="math-tex" data-type="tex">\(𝒫\left(n\right)\)</span> is true for all <span class="math-tex" data-type="tex">\(n\)</span> greater than or equal to some base value <span class="math-tex" data-type="tex">\(b\in ℕ\)</span>.</p>
+<p>Suppose the variable <span class="math-tex" data-type="tex">\(n\)</span> represents any natural number, and there is a propositional function <span class="math-tex" data-type="tex">\(𝒫\left(n\right)\)</span> that includes this variable as an argument. <i>Mathematical induction</i> is a proof technique that uses the axiom of induction to show that <span class="math-tex" data-type="tex">\(𝒫\left(n\right)\)</span> is true for all <span class="math-tex" data-type="tex">\(n\)</span> greater than or equal to some base value <span class="math-tex" data-type="tex">\(b\in \mathbb{N}\)</span>.</p>
 <div data-type="template">
 <h1>&nbsp;(proof by induction)</h1>
 <p><i>SET THE CONTEXT:</i> The statement will be proved by mathematical induction on <span class="math-tex" data-type="tex">\(n\)</span> for all <span class="math-tex" data-type="tex">\(n\ge b\)</span>.</p>
@@ -1010,22 +972,22 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Prove by induction the proposition “If <span class="math-tex" data-type="tex">\(n\in ℕ\setminus \lbrace 0\rbrace\)</span>, then <span class="math-tex" data-type="tex">\(1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\,\)</span>”.</p>
+<p>Prove by induction the proposition “If <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\setminus \lbrace 0\rbrace\)</span>, then <span class="math-tex" data-type="tex">\(1^2+2^2+3^2+\cdots+n^2=\frac{1}{6}n\left(n+1\right)\left(2n+1\right)\,\)</span>”.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by induction)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(n\in ℕ_0\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(n\in \mathbb{N}_0\)</span>.</p>
 <p>Observe that if <span class="math-tex" data-type="tex">\(n=1\)</span>, this statement is <span class="math-tex" data-type="tex">\(1=\frac{1}{6}\left(1\right)\left(2\right)\left(3\right)\)</span>, which is obviously true.</p>
 <p>Suppose that <span class="math-tex" data-type="tex">\(1^2+2^2+3^2+\cdots+k^2=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)\)</span> for some natural number <span class="math-tex" data-type="tex">\(k\ge 1\)</span>.</p>
 <p>Then,</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=&\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
-&=&\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
-&=&\frac{1}{6}\left(2k^3+9k^2+13k+6\right)\\
-&=&\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
-&=&\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
+1^2+2^2+3^2+\cdots+k^2+\left(k+1\right)^2&=\frac{1}{6}k\left(k+1\right)\left(2k+1\right)+\left(k+1\right)^2\\
+&=\frac{1}{6}\left(2k^3+\left(3+6\right)k^2+\left(1+12\right)k+6\right)\\
+&=\frac{1}{6}\left(2k^3+9k^2+13k+6\right)\\
+&=\frac{1}{6}\left(k+1\right)\left(k+2\right)\left(2k+3\right)\\
+&=\frac{1}{6}\left(k+1\right)\left(\left(k+1\right)+1\right)\left(2\left(k+1\right)+1\right)
 \end{aligned}
 \]
 </div>
@@ -1033,6 +995,7 @@ MathJax = {
 </div>
 </section>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>

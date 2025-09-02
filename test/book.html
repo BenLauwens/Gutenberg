@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Real Calculus</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
@@ -1204,7 +1205,7 @@ Paged.registerHandlers(handlers);
 <p>Some examples of the negation of quantified statement with more than one variable:</p>
 <ul>
 <li>
-<p><span class="math-tex" data-type="tex">\(\lnot \left(\forall x\in A,\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\lnot \left(\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv\)</span> <span class="math-tex" data-type="tex">\(\exists x\in A,\forall y\in B,\lnot \left(\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\forall y\in B,\forall z\in C:\lnot 𝒫\left(x\right)\)</span>.</p>
+<p><span class="math-tex" data-type="tex">\(\begin{gathered}\lnot \left(\forall x\in A,\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\lnot \left(\exists y\in B,\exists z\in C:𝒫\left(x,y,z\right)\right)\\\equiv\exists x\in A,\forall y\in B,\lnot \left(\exists z\in C:𝒫\left(x,y,z\right)\right)\equiv \exists x\in A,\forall y\in B,\forall z\in C:\lnot 𝒫\left(x\right)\,.\end{gathered}\)</span></p>
 </li>
 <li>
 <p>Consider the proposition: “Every student has at least one course where the lecturer is an officer”. Its negation is the statement: “There is a student such that all his courses have a lecturer which is not an officer”.</p>
@@ -1710,7 +1711,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in \mathbb{N}_0
 </foreignObject>
 <line x1="537.4625462767236" y1="75" x2="537.4625462767236" y2="85" stroke="black"/>
 <foreignObject x="530.4625462767236" y="55" width="14" height="18">
-\(\textup{e}\)
+\(\mathcal{e}\)
 </foreignObject>
 <line x1="571.3274122871835" y1="75" x2="571.3274122871835" y2="85" stroke="black"/>
 <foreignObject x="564.3274122871835" y="55" width="14" height="18">
@@ -2506,7 +2507,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 </tr>
 <tr>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(f\circ f\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left(f\circ g\right)\left(x\right)=x^\frac{1}{4}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left(f\circ g\right)\left(x\right)=x^¼\)</span></td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span></td>
 </tr>
 <tr>
@@ -3534,7 +3535,7 @@ f\left(x\right)=\frac{\left(x-1\right)\left(x+1\right)}{x-1}=x+1\quad\textrm{for
 <p>Except the last value in the table, the values of <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> seem to be approaching a certain number, <span class="math-tex" data-type="tex">\(2.71828\dots\)</span>, as <span class="math-tex" data-type="tex">\(x\)</span> tends to <span class="math-tex" data-type="tex">\(0\)</span>. We will see in Chapter 5 that</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{x\to 0}g\left(x\right)=\lim_{x\to 0}\left(1+x^2\right)^\frac{1}{x^2}=\textup{e}=2.718281828459045\dots\,.
+\lim_{x\to 0}g\left(x\right)=\lim_{x\to 0}\left(1+x^2\right)^\frac{1}{x^2}=\mathcal{e}=2.718281828459045\dots\,.
 \]
 </div>
 </div>
@@ -7915,7 +7916,7 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 </ul>
 <section data-type="sect1">
 <h1>The Natural Logarithm and the Exponential Function</h1>
-<p>In this section we are going to define a function <span class="math-tex" data-type="tex">\(\ln x\)</span>, called the natural logarithm of <span class="math-tex" data-type="tex">\(x\)</span>, in a way that does not at first seem to have anything to do with the logarithms considered in the previous section. We will show, however, that it has the same properties as those logarithms, and in the end we will see that <span class="math-tex" data-type="tex">\(\ln x=\log_\textup{e}\)</span>, the logarithm of <span class="math-tex" data-type="tex">\(x\)</span> to a certain specific base <span class="math-tex" data-type="tex">\(\textup{e}\)</span>. We will show that <span class="math-tex" data-type="tex">\(\ln x\)</span> is a bijective function, defined for all positive real numbers. It must therefore have an inverse, <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>, that we will call the exponential function. Our final goal is to arrive at a definition of the exponential functions <span class="math-tex" data-type="tex">\(a^x\)</span> (for any <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) that is valid for any real number <span class="math-tex" data-type="tex">\(x\)</span> instead of just rational numbers, and that is known to be continuous and even differentiable without our having to assume those properties.</p>
+<p>In this section we are going to define a function <span class="math-tex" data-type="tex">\(\ln x\)</span>, called the natural logarithm of <span class="math-tex" data-type="tex">\(x\)</span>, in a way that does not at first seem to have anything to do with the logarithms considered in the previous section. We will show, however, that it has the same properties as those logarithms, and in the end we will see that <span class="math-tex" data-type="tex">\(\ln x=\log_\mathcal{e}\)</span>, the logarithm of <span class="math-tex" data-type="tex">\(x\)</span> to a certain specific base <span class="math-tex" data-type="tex">\(\mathcal{e}\)</span>. We will show that <span class="math-tex" data-type="tex">\(\ln x\)</span> is a bijective function, defined for all positive real numbers. It must therefore have an inverse, <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>, that we will call the exponential function. Our final goal is to arrive at a definition of the exponential functions <span class="math-tex" data-type="tex">\(a^x\)</span> (for any <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) that is valid for any real number <span class="math-tex" data-type="tex">\(x\)</span> instead of just rational numbers, and that is known to be continuous and even differentiable without our having to assume those properties.</p>
 <section data-type="sect2">
 <h2>The Natural Logarithm</h2>
 <p>We do not yet know a function whose derivative is <span class="math-tex" data-type="tex">\(x^{-1}=\frac{1}{x}\)</span>. We are going to remedy this situation by defining a function <span class="math-tex" data-type="tex">\(\ln x\)</span> in such a way that it will have derivative <span class="math-tex" data-type="tex">\(\frac{1}{x}\)</span>.</p>
@@ -8183,9 +8184,9 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 <p>Now we make an important definition!</p>
 <div data-type="definition">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(\textup{e}=\exp\left(1\right)\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\mathcal{e}=\exp\left(1\right)\)</span>.</p>
 </div>
-<p>The number <span class="math-tex" data-type="tex">\(\textup{e}\)</span> satisfies <span class="math-tex" data-type="tex">\(\ln \textup{e} = 1\)</span>, so the area bounded by the curve <span class="math-tex" data-type="tex">\(y=\frac{1}{t}\)</span>, the <span class="math-tex" data-type="tex">\(t\)</span>-axis, and the vertical lines <span class="math-tex" data-type="tex">\(t=1\)</span> and <span class="math-tex" data-type="tex">\(t=\textup{e}\)</span> must be equal to <span class="math-tex" data-type="tex">\(1\)</span> square unit.</p>
+<p>The number <span class="math-tex" data-type="tex">\(\mathcal{e}\)</span> satisfies <span class="math-tex" data-type="tex">\(\ln \mathcal{e} = 1\)</span>, so the area bounded by the curve <span class="math-tex" data-type="tex">\(y=\frac{1}{t}\)</span>, the <span class="math-tex" data-type="tex">\(t\)</span>-axis, and the vertical lines <span class="math-tex" data-type="tex">\(t=1\)</span> and <span class="math-tex" data-type="tex">\(t=\mathcal{e}\)</span> must be equal to <span class="math-tex" data-type="tex">\(1\)</span> square unit.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="275.0" height="275.0">
 <polygon points="75.0, 250 75.0, 200.0 75.5, 200.4950495049505 76.0, 200.98039215686276 76.5, 201.45631067961165 77.0, 201.92307692307693 77.5, 202.38095238095238 78.0, 202.83018867924528 78.5, 203.2710280373832 79.0, 203.7037037037037 79.5, 204.12844036697248 80.0, 204.54545454545456 80.5, 204.95495495495496 81.0, 205.35714285714286 81.5, 205.75221238938053 82.0, 206.140350877193 82.5, 206.52173913043478 83.0, 206.89655172413794 83.5, 207.26495726495727 84.0, 207.6271186440678 84.5, 207.98319327731093 85.0, 208.33333333333331 85.5, 208.6776859504132 86.0, 209.01639344262296 86.5, 209.34959349593495 87.0, 209.67741935483872 87.5, 210.0 88.0, 210.3174603174603 88.5, 210.62992125984252 89.0, 210.9375 89.5, 211.24031007751938 90.0, 211.53846153846155 90.5, 211.8320610687023 91.0, 212.12121212121212 91.5, 212.406015037594 92.0, 212.6865671641791 92.5, 212.96296296296296 93.0, 213.23529411764707 93.5, 213.5036496350365 94.0, 213.768115942029 94.5, 214.02877697841728 95.0, 214.28571428571428 95.5, 214.53900709219857 96.0, 214.7887323943662 96.5, 215.03496503496504 97.0, 215.27777777777777 97.5, 215.51724137931035 98.0, 215.75342465753425 98.5, 215.98639455782313 99.0, 216.21621621621622 99.5, 216.4429530201342 100.0, 216.66666666666666 100.5, 216.88741721854305 101.0, 217.10526315789474 101.5, 217.3202614379085 102.0, 217.53246753246754 102.5, 217.74193548387098 103.0, 217.94871794871796 103.5, 218.15286624203821 104.0, 218.35443037974684 104.5, 218.55345911949686 105.0, 218.75 105.5, 218.944099378882 106.0, 219.1358024691358 106.5, 219.32515337423314 107.0, 219.5121951219512 107.5, 219.6969696969697 108.0, 219.87951807228916 108.5, 220.05988023952096 109.0, 220.23809523809524 109.5, 220.41420118343194 110.0, 220.58823529411765 110.5, 220.76023391812865 111.0, 220.93023255813952 111.5, 221.09826589595374 112.0, 221.26436781609195 112.5, 221.42857142857142 113.0, 221.5909090909091 113.5, 221.75141242937855 114.0, 221.91011235955057 114.5, 222.06703910614524 115.0, 222.22222222222223 115.5, 222.3756906077348 116.0, 222.52747252747253 116.5, 222.6775956284153 117.0, 222.82608695652175 117.5, 222.97297297297297 118.0, 223.11827956989248 118.5, 223.2620320855615 119.0, 223.40425531914894 119.5, 223.54497354497354 120.0, 223.68421052631578 120.5, 223.82198952879583 121.0, 223.95833333333334 121.5, 224.09326424870466 122.0, 224.22680412371133 122.5, 224.35897435897436 123.0, 224.48979591836735 123.5, 224.61928934010152 124.0, 224.74747474747474 124.5, 224.87437185929647 125.0, 225.0 125.5, 225.12437810945272 126.0, 225.24752475247524 126.5, 225.36945812807883 127.0, 225.49019607843138 127.5, 225.609756097561 128.0, 225.72815533980582 128.5, 225.84541062801932 129.0, 225.96153846153845 129.5, 226.07655502392345 130.0, 226.1904761904762 130.5, 226.30331753554503 131.0, 226.41509433962264 131.5, 226.52582159624413 132.0, 226.6355140186916 132.5, 226.74418604651163 133.0, 226.85185185185185 133.5, 226.95852534562212 134.0, 227.06422018348624 134.5, 227.16894977168948 135.0, 227.27272727272728 135.5, 227.37556561085972 136.0, 227.47747747747746 136.5, 227.57847533632287 137.0, 227.67857142857144 137.5, 227.77777777777777 138.0, 227.87610619469027 138.5, 227.97356828193833 139.0, 228.0701754385965 139.5, 228.16593886462883 140.0, 228.26086956521738 140.5, 228.35497835497836 141.0, 228.44827586206895 141.5, 228.54077253218884 142.0, 228.63247863247864 142.5, 228.72340425531914 143.0, 228.8135593220339 143.5, 228.9029535864979 144.0, 228.99159663865547 144.5, 229.0794979079498 145.0, 229.16666666666669 145.5, 229.253112033195 146.0, 229.3388429752066 146.5, 229.4238683127572 147.0, 229.50819672131146 147.5, 229.59183673469389 148.0, 229.6747967479675 148.5, 229.75708502024293 149.0, 229.83870967741936 149.5, 229.91967871485943 150.0, 230.0 150.5, 230.0796812749004 151.0, 230.15873015873015 151.5, 230.23715415019763 152.0, 230.31496062992125 152.5, 230.39215686274508 153.0, 230.46875 153.5, 230.54474708171207 154.0, 230.6201550387597 154.5, 230.6949806949807 155.0, 230.76923076923077 155.5, 230.84291187739464 156.0, 230.91603053435114 156.5, 230.98859315589354 157.0, 231.06060606060606 157.5, 231.1320754716981 158.0, 231.203007518797 158.5, 231.27340823970036 159.0, 231.34328358208955 159.5, 231.41263940520446 160.0, 231.48148148148147 160.5, 231.54981549815497 160.91409142295225, 250" fill="lightblue" stroke="none"/>
@@ -8209,13 +8210,13 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 \(1\)
 </foreignObject>
 <line x1="160.91409142295225" y1="247" x2="160.91409142295225" y2="253" stroke="black"/>
-<foreignObject x="90.91409142295225" y="250" width="140" height="18">
-\(\textup{e}\)
+<foreignObject x="83.91409142295225" y="250" width="154" height="18">
+\(\mathcal{e}\)
 </foreignObject>
 <line x1="25.0" y1="275.0" x2="25.0" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <line x1="22.0" y1="231.6060279414279" x2="28.0" y2="231.6060279414279" stroke="black"/>
 <foreignObject x="11.0" y="222.6060279414279" width="14" height="36">
-\(\frac{1}{\textup{e}}\)
+\(\frac{1}{\mathcal{e}}\)
 </foreignObject>
 <line x1="22.0" y1="200.0" x2="28.0" y2="200.0" stroke="black"/>
 <foreignObject x="11.0" y="191.0" width="14" height="18">
@@ -8228,41 +8229,41 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 \(\textrm{Area}=1\)
 </foreignObject>
 </svg>
-<figcaption>The definition of <span class="math-tex" data-type="tex">\(\textup{e}\)</span>.</figcaption></figure>
-<p>The number <span class="math-tex" data-type="tex">\(\textup{e}\)</span> is one of the most important numbers in mathematics. Like <span class="math-tex" data-type="tex">\(\uppi\)</span>, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins</p>
+<figcaption>The definition of <span class="math-tex" data-type="tex">\(\mathcal{e}\)</span>.</figcaption></figure>
+<p>The number <span class="math-tex" data-type="tex">\(\mathcal{e}\)</span> is one of the most important numbers in mathematics. Like <span class="math-tex" data-type="tex">\(\uppi\)</span>, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}=2.718281828459045\dots\,.
+\mathcal{e}=2.718281828459045\dots\,.
 \]
 </div>
 <p>Later on we will learn that</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\cdots\,,
+\mathcal{e}=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\cdots\,,
 \]
 </div>
-<p>a formula from which the value of <span class="math-tex" data-type="tex">\(\textup{e}\)</span> can be calculated to any desired precision.</p>
-<p>The first property of the previous theorem shows that <span class="math-tex" data-type="tex">\(\exp r=\exp\left(1r\right)=\left(\exp 1\right)^r=\textup{e}^r\)</span> holds for any rational number <span class="math-tex" data-type="tex">\(r\)</span>. Now here is a crucial observation. We only know what <span class="math-tex" data-type="tex">\(\textup{e}^r\)</span> means if <span class="math-tex" data-type="tex">\(r\)</span> is a rational number (if <span class="math-tex" data-type="tex">\(r=\frac{m}{n}\)</span>, then <span class="math-tex" data-type="tex">\(\textup{e}^r=\sqrt[n]{\textup{e}^m}\)</span>). But <span class="math-tex" data-type="tex">\(\exp x\)</span> is defined for all real <span class="math-tex" data-type="tex">\(x\)</span>, rational or not. Since <span class="math-tex" data-type="tex">\(\textup{e}^r=\exp r\)</span> when <span class="math-tex" data-type="tex">\(r\)</span> is rational, we can use <span class="math-tex" data-type="tex">\(\exp x\)</span> as a definition of what <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> means for any real number <span class="math-tex" data-type="tex">\(x\)</span>, and there will be no contradiction if <span class="math-tex" data-type="tex">\(x\)</span> happens to be rational.</p>
+<p>a formula from which the value of <span class="math-tex" data-type="tex">\(\mathcal{e}\)</span> can be calculated to any desired precision.</p>
+<p>The first property of the previous theorem shows that <span class="math-tex" data-type="tex">\(\exp r=\exp\left(1r\right)=\left(\exp 1\right)^r=\mathcal{e}^r\)</span> holds for any rational number <span class="math-tex" data-type="tex">\(r\)</span>. Now here is a crucial observation. We only know what <span class="math-tex" data-type="tex">\(\mathcal{e}^r\)</span> means if <span class="math-tex" data-type="tex">\(r\)</span> is a rational number (if <span class="math-tex" data-type="tex">\(r=\frac{m}{n}\)</span>, then <span class="math-tex" data-type="tex">\(\mathcal{e}^r=\sqrt[n]{\mathcal{e}^m}\)</span>). But <span class="math-tex" data-type="tex">\(\exp x\)</span> is defined for all real <span class="math-tex" data-type="tex">\(x\)</span>, rational or not. Since <span class="math-tex" data-type="tex">\(\mathcal{e}^r=\exp r\)</span> when <span class="math-tex" data-type="tex">\(r\)</span> is rational, we can use <span class="math-tex" data-type="tex">\(\exp x\)</span> as a definition of what <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> means for any real number <span class="math-tex" data-type="tex">\(x\)</span>, and there will be no contradiction if <span class="math-tex" data-type="tex">\(x\)</span> happens to be rational.</p>
 <div data-type="definition">
 <h1></h1>
 <p>Let</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}^x=\exp x
+\mathcal{e}^x=\exp x
 \]
 </div>
 <p>for all real <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 </div>
-<p>The last theorem can now be restated in terms of <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>:</p>
+<p>The last theorem can now be restated in terms of <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{align}
-&\left(\textup{e}^x\right)^y=\textup{e}^{xy}&&\textup{e}^{x+y}=\textup{e}^x\textup{e}^y\\
-&\textup{e}^{-x}=\frac{1}{\textup{e}^x}&&\textup{e}^{x-y}=\frac{\textup{e}^x}{\textup{e}^y}
+&\left(\mathcal{e}^x\right)^y=\mathcal{e}^{xy}&&\mathcal{e}^{x+y}=\mathcal{e}^x\mathcal{e}^y\\
+&\mathcal{e}^{-x}=\frac{1}{\mathcal{e}^x}&&\mathcal{e}^{x-y}=\frac{\mathcal{e}^x}{\mathcal{e}^y}
 \end{align}
 \]
 </div>
-<p>The graph of <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> is the reflection of the graph of its inverse, <span class="math-tex" data-type="tex">\(\ln x\)</span>, in the line <span class="math-tex" data-type="tex">\(y=x\)</span>.</p>
+<p>The graph of <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> is the reflection of the graph of its inverse, <span class="math-tex" data-type="tex">\(\ln x\)</span>, in the line <span class="math-tex" data-type="tex">\(y=x\)</span>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250">
 <defs>
@@ -8295,69 +8296,69 @@ a^{\frac{m}{n}}&=\sqrt[n]{a^m}\quad\textrm{if }n=1,2,3,\dots\textrm{ and }m=\pm1
 <circle cx="175.0" cy="125.0" r="3" fill="RoyalBlue" stroke="RoyalBlue"/>
 <polyline points="0.0, 250.0 0.4999999999999858, 249.5 1.0, 249.0 1.4999999999999858, 248.5 2.0, 248.0 2.499999999999986, 247.5 3.0, 247.0 3.499999999999986, 246.5 4.0, 246.0 4.5, 245.5 5.0, 245.0 5.5, 244.5 6.0, 244.0 6.5, 243.5 7.0, 243.0 7.5, 242.5 8.0, 242.0 8.5, 241.5 9.000000000000014, 241.0 9.5, 240.5 10.000000000000014, 240.0 10.5, 239.5 11.000000000000014, 239.0 11.5, 238.5 12.000000000000014, 238.0 12.5, 237.5 12.999999999999986, 237.0 13.5, 236.5 13.999999999999986, 236.0 14.5, 235.5 14.999999999999986, 235.0 15.5, 234.5 15.999999999999986, 234.0 16.5, 233.5 17.0, 233.0 17.5, 232.5 18.0, 232.0 18.5, 231.5 19.0, 231.0 19.5, 230.5 20.0, 230.0 20.5, 229.5 21.0, 229.0 21.500000000000014, 228.5 22.0, 228.0 22.500000000000014, 227.5 23.0, 227.0 23.500000000000014, 226.5 24.0, 226.0 24.500000000000014, 225.5 25.0, 225.0 25.5, 224.5 26.0, 224.0 26.5, 223.5 27.0, 223.0 27.5, 222.5 28.0, 222.0 28.5, 221.5 29.0, 221.0 29.5, 220.5 30.0, 220.0 30.5, 219.5 31.0, 219.0 31.5, 218.5 32.0, 218.0 32.5, 217.5 33.0, 217.0 33.5, 216.5 34.0, 216.0 34.5, 215.5 35.0, 215.0 35.5, 214.5 36.0, 214.0 36.5, 213.5 37.0, 213.0 37.5, 212.5 38.0, 212.0 38.5, 211.5 39.0, 211.0 39.5, 210.5 40.0, 210.0 40.5, 209.5 41.0, 209.0 41.5, 208.5 42.0, 208.0 42.5, 207.5 43.0, 207.0 43.5, 206.5 44.0, 206.0 44.5, 205.5 45.0, 205.0 45.5, 204.5 46.0, 204.0 46.5, 203.5 47.0, 203.0 47.5, 202.5 48.0, 202.0 48.5, 201.5 49.0, 201.0 49.5, 200.5 50.0, 200.0 50.5, 199.5 51.0, 199.0 51.5, 198.5 52.0, 198.0 52.5, 197.5 53.0, 197.0 53.5, 196.5 54.0, 196.0 54.5, 195.5 55.0, 195.0 55.5, 194.5 56.0, 194.0 56.5, 193.5 57.0, 193.0 57.5, 192.5 58.0, 192.0 58.5, 191.5 59.0, 191.0 59.5, 190.5 60.0, 190.0 60.5, 189.5 61.0, 189.0 61.5, 188.5 62.0, 188.0 62.5, 187.5 63.0, 187.0 63.5, 186.5 64.0, 186.0 64.5, 185.5 65.0, 185.0 65.5, 184.5 66.0, 184.0 66.5, 183.5 67.0, 183.0 67.5, 182.5 68.0, 182.0 68.5, 181.5 69.0, 181.0 69.5, 180.5 70.0, 180.0 70.5, 179.5 71.0, 179.0 71.5, 178.5 72.0, 178.0 72.5, 177.5 73.0, 177.0 73.5, 176.5 74.0, 176.0 74.5, 175.5 75.0, 175.0 75.5, 174.5 76.0, 174.0 76.5, 173.5 77.0, 173.0 77.5, 172.5 78.0, 172.0 78.5, 171.5 79.0, 171.0 79.5, 170.5 80.0, 170.0 80.5, 169.5 81.0, 169.0 81.5, 168.5 82.0, 168.0 82.5, 167.5 83.0, 167.0 83.5, 166.5 84.0, 166.0 84.5, 165.5 85.0, 165.0 85.5, 164.5 86.0, 164.0 86.5, 163.5 87.0, 163.0 87.5, 162.5 88.0, 162.0 88.5, 161.5 89.0, 161.0 89.5, 160.5 90.0, 160.0 90.5, 159.5 91.0, 159.0 91.5, 158.5 92.0, 158.0 92.5, 157.5 93.0, 157.0 93.5, 156.5 94.0, 156.0 94.5, 155.5 95.0, 155.0 95.5, 154.5 96.0, 154.0 96.5, 153.5 97.0, 153.0 97.5, 152.5 98.0, 152.0 98.5, 151.5 99.0, 151.0 99.5, 150.5 100.0, 150.0 100.5, 149.5 101.0, 149.0 101.5, 148.5 102.0, 148.0 102.5, 147.5 103.0, 147.0 103.5, 146.5 104.0, 146.0 104.5, 145.5 105.0, 145.0 105.5, 144.5 106.0, 144.0 106.5, 143.5 107.0, 143.0 107.5, 142.5 108.0, 142.0 108.5, 141.5 109.0, 141.0 109.5, 140.5 110.0, 140.0 110.5, 139.5 111.0, 139.0 111.5, 138.5 112.0, 138.0 112.5, 137.5 113.0, 137.0 113.5, 136.5 114.0, 136.0 114.5, 135.5 115.0, 135.0 115.5, 134.5 116.0, 134.0 116.5, 133.5 117.0, 133.0 117.5, 132.5 118.0, 132.0 118.5, 131.5 119.0, 131.0 119.5, 130.5 120.0, 130.0 120.5, 129.5 121.0, 129.0 121.5, 128.5 122.0, 128.0 122.5, 127.5 123.0, 127.0 123.5, 126.5 124.0, 126.0 124.5, 125.5 125.0, 125.0 125.5, 124.5 126.0, 124.0 126.5, 123.5 127.0, 123.0 127.5, 122.5 128.0, 122.0 128.5, 121.5 129.0, 121.0 129.5, 120.5 130.0, 120.0 130.5, 119.5 131.0, 119.0 131.5, 118.5 132.0, 118.0 132.5, 117.5 133.0, 117.0 133.5, 116.5 134.0, 116.0 134.5, 115.5 135.0, 115.0 135.5, 114.5 136.0, 114.0 136.5, 113.5 137.0, 113.0 137.5, 112.5 138.0, 112.0 138.5, 111.5 139.0, 111.0 139.5, 110.5 140.0, 110.0 140.5, 109.5 141.0, 109.0 141.5, 108.5 142.0, 108.0 142.5, 107.5 143.0, 107.0 143.5, 106.5 144.0, 106.0 144.5, 105.5 145.0, 105.0 145.5, 104.5 146.0, 104.0 146.5, 103.5 147.0, 103.0 147.5, 102.5 148.0, 102.0 148.5, 101.5 149.0, 101.0 149.5, 100.5 150.0, 100.0 150.5, 99.5 151.0, 99.0 151.5, 98.5 152.0, 98.0 152.5, 97.5 153.0, 97.0 153.5, 96.5 154.0, 96.0 154.5, 95.5 155.0, 95.0 155.5, 94.5 156.0, 94.0 156.5, 93.5 157.0, 93.0 157.5, 92.5 158.0, 92.0 158.5, 91.5 159.0, 91.0 159.5, 90.5 160.0, 90.0 160.5, 89.5 161.0, 89.0 161.5, 88.5 162.0, 88.0 162.5, 87.5 163.0, 87.0 163.5, 86.5 164.0, 86.0 164.5, 85.5 165.0, 85.0 165.5, 84.5 166.0, 84.0 166.5, 83.5 167.0, 83.0 167.5, 82.5 168.0, 82.0 168.5, 81.5 169.0, 81.0 169.5, 80.5 170.0, 80.0 170.5, 79.5 171.0, 79.0 171.5, 78.5 172.0, 78.0 172.5, 77.5 173.0, 77.0 173.5, 76.5 174.0, 76.0 174.5, 75.5 175.0, 75.0 175.5, 74.5 176.0, 74.0 176.5, 73.5 177.0, 73.0 177.5, 72.5 178.0, 72.0 178.5, 71.5 179.0, 71.0 179.5, 70.5 180.0, 70.0 180.5, 69.5 181.0, 69.0 181.5, 68.5 182.0, 68.0 182.5, 67.5 183.0, 67.0 183.5, 66.5 184.0, 66.0 184.5, 65.5 185.0, 65.0 185.5, 64.5 186.0, 64.0 186.5, 63.5 187.0, 63.0 187.5, 62.5 188.0, 62.0 188.5, 61.5 189.0, 61.0 189.5, 60.5 190.0, 60.0 190.5, 59.5 191.0, 59.0 191.5, 58.5 192.0, 58.0 192.5, 57.5 193.0, 57.0 193.5, 56.5 194.0, 56.0 194.5, 55.5 195.0, 55.0 195.5, 54.5 196.0, 54.0 196.5, 53.5 197.0, 53.0 197.5, 52.5 198.0, 52.0 198.5, 51.5 199.0, 51.0 199.5, 50.5 200.0, 50.0 200.5, 49.5 201.0, 49.0 201.5, 48.5 202.0, 48.0 202.5, 47.5 203.0, 47.0 203.5, 46.5 204.0, 46.0 204.5, 45.5 205.0, 45.0 205.5, 44.5 206.0, 44.0 206.5, 43.5 207.0, 43.0 207.5, 42.5 208.0, 42.0 208.5, 41.5 209.0, 41.0 209.5, 40.5 210.0, 40.0 210.5, 39.5 211.0, 39.0 211.5, 38.5 212.0, 38.0 212.5, 37.5 213.0, 37.0 213.5, 36.5 214.0, 36.0 214.5, 35.5 215.0, 35.0 215.5, 34.5 216.0, 34.0 216.5, 33.5 217.0, 33.0 217.5, 32.5 218.0, 32.0 218.5, 31.5 219.0, 31.0 219.5, 30.5 220.0, 30.0 220.5, 29.5 221.0, 29.0 221.5, 28.5 222.0, 28.0 222.5, 27.5 223.0, 27.0 223.5, 26.5 224.0, 26.0 224.5, 25.5 225.0, 25.0 225.5, 24.500000000000014 226.0, 24.0 226.5, 23.500000000000014 227.0, 23.0 227.5, 22.500000000000014 228.0, 22.0 228.5, 21.500000000000014 229.0, 21.0 229.5, 20.5 230.0, 20.0 230.5, 19.5 231.0, 19.0 231.5, 18.5 232.0, 18.0 232.5, 17.5 233.0, 17.0 233.5, 16.5 234.0, 15.999999999999986 234.5, 15.5 235.0, 14.999999999999986 235.5, 14.5 236.0, 13.999999999999986 236.5, 13.5 237.0, 12.999999999999986 237.5, 12.5 238.0, 12.000000000000014 238.5, 11.5 239.0, 11.000000000000014 239.5, 10.5 240.0, 10.000000000000014 240.5, 9.5 241.0, 9.000000000000014 241.5, 8.5 242.0, 8.0 242.5, 7.5 243.0, 7.0 243.5, 6.5 244.0, 6.0 244.5, 5.5 245.0, 5.0 245.5, 4.5 246.0, 4.0 246.5, 3.499999999999986 247.0, 3.0 247.5, 2.499999999999986 248.0, 2.0 248.5, 1.4999999999999858 249.0, 1.0 249.5, 0.4999999999999858 250.0, 0.0" fill="none" stroke="black" stroke-width="1" stroke-dasharray="3"/>
 </svg>
-<figcaption>The graph of <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> and <span class="math-tex" data-type="tex">\(\ln x\)</span>.</figcaption></figure>
-<p>Observe that the <span class="math-tex" data-type="tex">\(x\)</span>-axis is a horizontal asymptote of the graph of <span class="math-tex" data-type="tex">\(y=\textup{e}^x\)</span> as <span class="math-tex" data-type="tex">\(x\to-\infty\)</span>. We have</p>
+<figcaption>The graph of <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> and <span class="math-tex" data-type="tex">\(\ln x\)</span>.</figcaption></figure>
+<p>Observe that the <span class="math-tex" data-type="tex">\(x\)</span>-axis is a horizontal asymptote of the graph of <span class="math-tex" data-type="tex">\(y=\mathcal{e}^x\)</span> as <span class="math-tex" data-type="tex">\(x\to-\infty\)</span>. We have</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{x\to-\infty}\textup{e}^x=0\quad\textrm{and}\quad\lim_{x\to\infty}\textup{e}^x=\infty\,.
+\lim_{x\to-\infty}\mathcal{e}^x=0\quad\textrm{and}\quad\lim_{x\to\infty}\mathcal{e}^x=\infty\,.
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(\exp x=\textup{e}^x\)</span> actually is an exponential function, its inverse must actually be a logarithm:</p>
+<p>Since <span class="math-tex" data-type="tex">\(\exp x=\mathcal{e}^x\)</span> actually is an exponential function, its inverse must actually be a logarithm:</p>
 <div class="math-tex" data-type="equation">
 \[
-\ln x=\log_\textup{e}x\,.
+\ln x=\log_\mathcal{e}x\,.
 \]
 </div>
-<p>The derivative of <span class="math-tex" data-type="tex">\(y=\textup{e}^x\)</span> is calculated by implicit differentiation:</p>
+<p>The derivative of <span class="math-tex" data-type="tex">\(y=\mathcal{e}^x\)</span> is calculated by implicit differentiation:</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-y=\textup{e}^x&\implies x=\ln y\\
+y=\mathcal{e}^x&\implies x=\ln y\\
 &\implies 1=\frac{1}{y}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\\
-&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=\textup{e}^x\,.
+&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=\mathcal{e}^x\,.
 \end{aligned}
 \]
 </div>
 <p>Thus, the exponential function has the remarkable property that it is its own derivative and, therefore, also its own antiderivative:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^x=\textup{e}^x\quad\textrm{and}\quad\int \textup{e}^x\, \mathrm{d}\kern-0.5pt x=\textup{e}^x+C\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^x=\mathcal{e}^x\quad\textrm{and}\quad\int \mathcal{e}^x\, \mathrm{d}\kern-0.5pt x=\mathcal{e}^x+C\,.
 \]
 </div>
 <section data-type="sect2">
 <h2>General Exponentials and Logarithms</h2>
-<p>We can use the fact that <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> is now defined for all real <span class="math-tex" data-type="tex">\(x\)</span> to define the arbitrary exponential <span class="math-tex" data-type="tex">\(a^x\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) for all real <span class="math-tex" data-type="tex">\(x\)</span>. If <span class="math-tex" data-type="tex">\(r\)</span> is rational, then <span class="math-tex" data-type="tex">\(\ln\left(a^r\right)=r\ln a\)</span>; therefore, <span class="math-tex" data-type="tex">\(a^r=\textup{e}^{r\ln a}\)</span>. However, <span class="math-tex" data-type="tex">\(\textup{e}^{x\ln a}\)</span> is defined for all real <span class="math-tex" data-type="tex">\(x\)</span>, so we can use it as a definition of <span class="math-tex" data-type="tex">\(a^x\)</span> with no possibility of contradiction arising if <span class="math-tex" data-type="tex">\(x\)</span> is rational.</p>
+<p>We can use the fact that <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> is now defined for all real <span class="math-tex" data-type="tex">\(x\)</span> to define the arbitrary exponential <span class="math-tex" data-type="tex">\(a^x\)</span> (where <span class="math-tex" data-type="tex">\(a&gt;0\)</span>) for all real <span class="math-tex" data-type="tex">\(x\)</span>. If <span class="math-tex" data-type="tex">\(r\)</span> is rational, then <span class="math-tex" data-type="tex">\(\ln\left(a^r\right)=r\ln a\)</span>; therefore, <span class="math-tex" data-type="tex">\(a^r=\mathcal{e}^{r\ln a}\)</span>. However, <span class="math-tex" data-type="tex">\(\mathcal{e}^{x\ln a}\)</span> is defined for all real <span class="math-tex" data-type="tex">\(x\)</span>, so we can use it as a definition of <span class="math-tex" data-type="tex">\(a^x\)</span> with no possibility of contradiction arising if <span class="math-tex" data-type="tex">\(x\)</span> is rational.</p>
 <div data-type="definition">
 <h1></h1>
 <p>Let</p>
 <div class="math-tex" data-type="equation">
 \[
-\forall x\in \mathbb{R},\forall a&gt;0:a^x=\textup{e}^{x\ln a}\,.
+\forall x\in \mathbb{R},\forall a&gt;0:a^x=\mathcal{e}^{x\ln a}\,.
 \]
 </div>
 </div>
-<p>The laws of exponents for <span class="math-tex" data-type="tex">\(a^x\)</span> can now be obtained from those for <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>, as can the derivative:</p>
+<p>The laws of exponents for <span class="math-tex" data-type="tex">\(a^x\)</span> can now be obtained from those for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>, as can the derivative:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{x\ln a}=\textup{e}^{x\ln a}\ln a=a^x\ln a\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{x\ln a}=\mathcal{e}^{x\ln a}\ln a=a^x\ln a\,.
 \]
 </div>
 <p>We can also verify the General Power Rule for <span class="math-tex" data-type="tex">\(x^a\)</span>, where <span class="math-tex" data-type="tex">\(a\)</span> is any real number, provided <span class="math-tex" data-type="tex">\(x&gt;0\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{a\ln x}=\textup{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{a\ln x}=\mathcal{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
 \]
 </div>
 <div data-type="example">
 <h1></h1>
 <p>Find the critical point of <span class="math-tex" data-type="tex">\(y=x^x\)</span>.</p>
-<p>We can’t differentiate <span class="math-tex" data-type="tex">\(x^x\)</span> by treating it as a power (like <span class="math-tex" data-type="tex">\(x^a\)</span>) because the exponent varies. We can’t treat it as an exponential (like <span class="math-tex" data-type="tex">\(a^x\)</span>) because the base varies. We can differentiate it if we first write it in terms of the exponential function, <span class="math-tex" data-type="tex">\(x^x=\textup{e}^{x\ln x}\)</span>, and then use the Chain Rule and the Product Rule:</p>
+<p>We can’t differentiate <span class="math-tex" data-type="tex">\(x^x\)</span> by treating it as a power (like <span class="math-tex" data-type="tex">\(x^a\)</span>) because the exponent varies. We can’t treat it as an exponential (like <span class="math-tex" data-type="tex">\(a^x\)</span>) because the base varies. We can differentiate it if we first write it in terms of the exponential function, <span class="math-tex" data-type="tex">\(x^x=\mathcal{e}^{x\ln x}\)</span>, and then use the Chain Rule and the Product Rule:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{x\ln x}=\textup{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{x\ln x}=\mathcal{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
 \]
 </div>
-<p>Now <span class="math-tex" data-type="tex">\(x^x\)</span> is defined only for <span class="math-tex" data-type="tex">\(x&gt;0\)</span> and is itself never <span class="math-tex" data-type="tex">\(0\)</span>. (Why?) Therefore, the critical point occurs where <span class="math-tex" data-type="tex">\(1+\ln x=0\)</span>; that is, <span class="math-tex" data-type="tex">\(\ln x=-1\)</span>, or <span class="math-tex" data-type="tex">\(x=\frac{1}{\textup{e}}\)</span>.</p>
+<p>Now <span class="math-tex" data-type="tex">\(x^x\)</span> is defined only for <span class="math-tex" data-type="tex">\(x&gt;0\)</span> and is itself never <span class="math-tex" data-type="tex">\(0\)</span>. (Why?) Therefore, the critical point occurs where <span class="math-tex" data-type="tex">\(1+\ln x=0\)</span>; that is, <span class="math-tex" data-type="tex">\(\ln x=-1\)</span>, or <span class="math-tex" data-type="tex">\(x=\frac{1}{\mathcal{e}}\)</span>.</p>
 </div>
 <p>Finally, observe that <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a\)</span> is negative for all <span class="math-tex" data-type="tex">\(x\)</span> if <span class="math-tex" data-type="tex">\(0&lt;a&lt;1\)</span> and is positive for all <span class="math-tex" data-type="tex">\(x\)</span> if <span class="math-tex" data-type="tex">\(a&gt;1\)</span>. Thus, <span class="math-tex" data-type="tex">\(a^x\)</span> is bijective and has an inverse function, <span class="math-tex" data-type="tex">\(\log_a x\)</span>, provided <span class="math-tex" data-type="tex">\(a&gt;0\)</span> and <span class="math-tex" data-type="tex">\(a\ne1\)</span>. If <span class="math-tex" data-type="tex">\(y=\log_a x\)</span>, then <span class="math-tex" data-type="tex">\(x=a^y\)</span> and, differentiating implicitly with respect to <span class="math-tex" data-type="tex">\(x\)</span>, we get</p>
 <div class="math-tex" data-type="equation">
@@ -8371,7 +8372,7 @@ y=\textup{e}^x&\implies x=\ln y\\
 \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\log_a x=\frac{1}{x\ln a}\,.
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(\log_a x\)</span> can be expressed in terms of logarithms to any other base, say <span class="math-tex" data-type="tex">\(\textup{e}\)</span>,</p>
+<p>Since <span class="math-tex" data-type="tex">\(\log_a x\)</span> can be expressed in terms of logarithms to any other base, say <span class="math-tex" data-type="tex">\(\mathcal{e}\)</span>,</p>
 <div class="math-tex" data-type="equation">
 \[
 \log_a x=\frac{\ln x}{\ln a}\,,
@@ -8389,7 +8390,7 @@ y=\left(f\left(x\right)\right)^{g\left(x\right)}\quad\textrm{for }f\left(x\right
 <p>Since the variable appears in both the base and the exponent, neither the general power rule, <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=ax^{a-1}\)</span>, nor the exponential rule, <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a\)</span> can be directly applied. One method for finding the derivative of such a function is to express it in the form</p>
 <div class="math-tex" data-type="equation">
 \[
-y=\textup{e}^{g\left(x\right)\ln f\left(x\right)}
+y=\mathcal{e}^{g\left(x\right)\ln f\left(x\right)}
 \]
 </div>
 <p>and then differentiate, using the Product Rule to handle the exponent. This is the method used in previous example.</p>
@@ -8668,7 +8669,7 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 <p>For any real <span class="math-tex" data-type="tex">\(x\)</span> the hyperbolic cosine, <span class="math-tex" data-type="tex">\(\cosh x\)</span>, and the hyperbolic sine, <span class="math-tex" data-type="tex">\(\sinh x\)</span>, are defined by</p>
 <div class="math-tex" data-type="equation">
 \[
-\cosh x=\frac{\textup{e}^x+\textup{e}^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{\textup{e}^x-\textup{e}^{-x}}{2}\,.
+\cosh x=\frac{\mathcal{e}^x+\mathcal{e}^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{2}\,.
 \]
 </div>
 </div>
@@ -8767,8 +8768,8 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\textup{e}^x+\textup{e}^{-x}}{2}=\frac{\textup{e}^x+\textup{e}^{-x}\left(-1\right)}{2}=\sinh x\\
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\textup{e}^x-\textup{e}^{-x}}{2}=\frac{\textup{e}^x-\textup{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathcal{e}^x+\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x+\mathcal{e}^{-x}\left(-1\right)}{2}=\sinh x\\
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x-\mathcal{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
 \end{aligned}
 \]
 </div>
@@ -8789,7 +8790,7 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\tanh x=\frac{\sinh x}{\cosh x}=\frac{\textup{e}^x-\textup{e}^{-x}}{\textup{e}^x+\textup{e}^{-x}}=\frac{1-\textup{e}^{-2x}}{1+\textup{e}^{-2x}}=\frac{\textup{e}^{2x}-1}{\textup{e}^{2x}+1}\,.
+\tanh x=\frac{\sinh x}{\cosh x}=\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{\mathcal{e}^x+\mathcal{e}^{-x}}=\frac{1-\mathcal{e}^{-2x}}{1+\mathcal{e}^{-2x}}=\frac{\mathcal{e}^{2x}-1}{\mathcal{e}^{2x}+1}\,.
 \]
 </div>
 </div>
@@ -8830,25 +8831,25 @@ f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
 <p>Let <span class="math-tex" data-type="tex">\(y=\operatorname{arcsinh} x\)</span>. Then</p>
 <div class="math-tex" data-type="equation">
 \[
-x = \sinh y=\frac{\textup{e}^y-\textup{e}^{-y}}{2}=\frac{\textup{e}^{2y}-1}{2\textup{e}^{2y}}\,.
+x = \sinh y=\frac{\mathcal{e}^y-\mathcal{e}^{-y}}{2}=\frac{\mathcal{e}^{2y}-1}{2\mathcal{e}^{2y}}\,.
 \]
 </div>
 <p>Therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(\textup{e}^y\right)^2-2x\textup{e}^y-1=0\,.
+\left(\mathcal{e}^y\right)^2-2x\mathcal{e}^y-1=0\,.
 \]
 </div>
-<p>This is a quadratic equation in <span class="math-tex" data-type="tex">\(\textup{e}^y\)</span>, and it can be solved by the quadratic formula:</p>
+<p>This is a quadratic equation in <span class="math-tex" data-type="tex">\(\mathcal{e}^y\)</span>, and it can be solved by the quadratic formula:</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
+\mathcal{e}^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
 \]
 </div>
-<p>Note that <span class="math-tex" data-type="tex">\(\sqrt{x^2+1}&gt;x\)</span>. Since <span class="math-tex" data-type="tex">\(\textup{e}^y\)</span> cannot be negative, we need to use the positive sign:</p>
+<p>Note that <span class="math-tex" data-type="tex">\(\sqrt{x^2+1}&gt;x\)</span>. Since <span class="math-tex" data-type="tex">\(\mathcal{e}^y\)</span> cannot be negative, we need to use the positive sign:</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}^y=x+\sqrt{x^2+1}\,.
+\mathcal{e}^y=x+\sqrt{x^2+1}\,.
 \]
 </div>
 <p>Hence, <span class="math-tex" data-type="tex">\(y=\ln\left(x+\sqrt{x^2+1}\right)\)</span>, and we have</p>
@@ -8860,13 +8861,13 @@ x = \sinh y=\frac{\textup{e}^y-\textup{e}^{-y}}{2}=\frac{\textup{e}^{2y}-1}{2\te
 <p>Now let <span class="math-tex" data-type="tex">\(y=\operatorname{arctanh} x\)</span>. Then</p>
 <div class="math-tex" data-type="equation">
 \[
-x=\tanh y=\frac{\textup{e}^y-\textup{e}^{-y}}{\textup{e}^y+\textup{e}^{-y}}=\frac{\textup{e}^{2y}-1}{\textup{e}^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
+x=\tanh y=\frac{\mathcal{e}^y-\mathcal{e}^{-y}}{\mathcal{e}^y+\mathcal{e}^{-y}}=\frac{\mathcal{e}^{2y}-1}{\mathcal{e}^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
 \]
 </div>
 <p>or</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}^{2y}=\frac{1+x}{1-x}.
+\mathcal{e}^{2y}=\frac{1+x}{1-x}.
 \]
 </div>
 <p>Thus,</p>
@@ -9892,13 +9893,13 @@ f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^xf\left(x_0\right)\,\mathrm{d}\kern-
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Find the derivative of <span class="math-tex" data-type="tex">\(\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\)</span>.</p>
+<p>Find the derivative of <span class="math-tex" data-type="tex">\(\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-F\left(x\right)&=\int_{0}^{x^3}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}\textup{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
-F^\prime\left(x\right)&=\textup{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\textup{e}^{-\left(x^2\right)^2}\left(2x\right)\\
-&=3x^2\textup{e}^{-x^6}-2x\textup{e}^{-x^4}\,.
+F\left(x\right)&=\int_{0}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
+F^\prime\left(x\right)&=\mathcal{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\mathcal{e}^{-\left(x^2\right)^2}\left(2x\right)\\
+&=3x^2\mathcal{e}^{-x^6}-2x\mathcal{e}^{-x^4}\,.
 \end{aligned}
 \]
 </div>
@@ -9917,15 +9918,15 @@ F^\prime\left(x\right)&=\textup{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\textu
 <div class="math-tex" data-type="equation">
 \[
 \begin{align}
-&\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
-&\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
-&\int \sqrt x\,\mathrm{d}\kern-0.5pt x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C\\
-&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x=\ln\left|x\right|+C\\
-&\int \sin ax\,\mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sin ax+C\\
-&\int \sec^2 ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cot ax+C\\
-&\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}\kern-0.5pt x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
-&\int \textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\textup{e}^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
-&\int \sinh ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sinh ax+C
+\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
+\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
+\int \sqrt x\,\mathrm{d}\kern-0.5pt x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C\\
+\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x=\ln\left|x\right|+C\\
+\int \sin ax\,\mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sin ax+C\\
+\int \sec^2 ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cot ax+C\\
+\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}\kern-0.5pt x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
+\int \mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\mathcal{e}^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
+\int \sinh ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sinh ax+C
 \end{align}
 \]
 </div>
@@ -10074,12 +10075,12 @@ I=2\int_1^3\cos u\,\mathrm{d}\kern-0.5pt u=\left.2\sin u\right|_1^3=2\sin 3-2\si
 <p>The above formula serves as a pattern for carrying out integration by parts. We break up the given integrand into a product of two pieces, <span class="math-tex" data-type="tex">\(U\)</span> and <span class="math-tex" data-type="tex">\(V^\prime\)</span>, where <span class="math-tex" data-type="tex">\(V^\prime\)</span> is readily integrated and where <span class="math-tex" data-type="tex">\(\int VU^\prime\,\mathrm{d}\kern-0.5pt x\)</span> is usually (but not always) a simpler integral than <span class="math-tex" data-type="tex">\(\int UV^\prime\,\mathrm{d}\kern-0.5pt x\)</span>. The technique is called integration by parts because it replaces one integral with the sum of an integrated term and another integral that remains to be evaluated. That is, it accomplishes only part of the original integration.</p>
 <div data-type="example">
 <h1></h1>
-<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int x\textup{e}^x\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int x\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\int x\textup{e}^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=\textup{e}^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=\textup{e}^x\\
-=&\,x\textup{e}^x-\int \textup{e}^x\,\mathrm{d}\kern-0.5pt x=x\textup{e}^x-\textup{e}^x+C\,.
+\int x\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=\mathcal{e}^x\\
+&=\,x\mathcal{e}^x-\int \mathcal{e}^x\,\mathrm{d}\kern-0.5pt x=x\mathcal{e}^x-\mathcal{e}^x+C\,.
 \end{aligned}
 \]
 </div>
@@ -10099,28 +10100,28 @@ I=2\int_1^3\cos u\,\mathrm{d}\kern-0.5pt u=\left.2\sin u\right|_1^3=2\sin 3-2\si
 <p>The following example illustrates a frequently occurring and very useful phenomenon. It may happen after one or two integrations by parts, with the possible application of some known identity, that the original integral reappears on the right-hand side. Unless its coefficient there is <span class="math-tex" data-type="tex">\(1\)</span>, we have an equation that can be solved for that integral.</p>
 <div data-type="example">
 <h1></h1>
-<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
+<p>Evaluate <span class="math-tex" data-type="tex">\(\displaystyle \int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=\textup{e}^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
-=&\,\frac{1}{b}\textup{e}^{ax}\sin bx-\frac{a}{b}\int \textup{e}^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
-&\quad\textrm{Let }U=\textup{e}^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\textup{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
-=&\,\frac{1}{b}\textup{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\textup{e}^{ax}\cos bx+\frac{a}{b}\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
-=&\,\frac{1}{b}\textup{e}^{ax}\sin bx+\frac{a}{b^2}\textup{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
+\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
+&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\int \mathcal{e}^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
+&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
+&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\mathcal{e}^{ax}\cos bx+\frac{a}{b}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
+&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
 \end{aligned}
 \]
 </div>
 <p>Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(1+\frac{a^2}{b^2}\right)\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}\textup{e}^{ax}\sin bx+\frac{a}{b^2}\textup{e}^{ax}\cos bx+C_1
+\left(1+\frac{a^2}{b^2}\right)\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx+C_1
 \]
 </div>
 <p>and</p>
 <div class="math-tex" data-type="equation">
 \[
-\int \textup{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{b\textup{e}^{ax}\sin bx+a\textup{e}^{ax}\cos bx}{a^2+b^2}+C\,.
+\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{b\mathcal{e}^{ax}\sin bx+a\mathcal{e}^{ax}\cos bx}{a^2+b^2}+C\,.
 \]
 </div>
 </div>
@@ -10195,11 +10196,11 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x=&\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
+\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x&=\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
 &\quad\textrm{Let }u=2x^2+1\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt u=4x\,\mathrm{d}\kern-0.5pt x\\
-=&\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
-=&\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
-=&\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
+&=\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
+&=\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
+&=\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
 \end{aligned}
 \]
 </div>
@@ -10222,8 +10223,8 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \[
 \begin{aligned}
 \int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
-=&\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
-=&\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
+&=\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
+&=\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
 \end{aligned}
 \]
 </div>
@@ -10242,11 +10243,11 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \[
 \begin{aligned}
 \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-=&\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
-=&\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
+&=\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
+&=\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
 &\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
-=&\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
-=&\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
+&=\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
+&=\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
 \end{aligned}
 \]
 </div>
@@ -10267,8 +10268,8 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \[
 \begin{aligned}
 \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
-=&\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
-=&\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+&=\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
+&=\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
 \end{aligned}
 \]
 </div>
@@ -10287,8 +10288,8 @@ Q\left(x\right)=K\left(x-a_1\right)^{m_1}\left(x-a_2\right)^{m_2}\cdots\left(x-a
 \[
 \begin{aligned}
 \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
-=&\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
-=&\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
+&=\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
+&=\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
 \end{aligned}
 \]
 </div>
@@ -10605,10 +10606,10 @@ s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5p
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-s=&\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
-=&\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
+s&=\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
+&=\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
 &\quad\textrm{Let }u=9x^\frac{2}{3}+4,\mathrm{d}\kern-0.5pt u=6x^{-\frac{2}{3}}\,\mathrm{d}\kern-0.5pt x\\
-=&\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
+&=\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
 \end{aligned}
 \]
 </div>
@@ -10645,10 +10646,10 @@ S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\ri
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-S=&2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
+S&=2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
 &\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
-=&\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
-=&\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
+&=\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+&=\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
 \end{aligned}
 \]
 </div>
@@ -10972,25 +10973,25 @@ s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\k
 <p>Find the length of the parametric curve</p>
 <div class="math-tex" data-type="equation">
 \[
-x=\textup{e}^t\cos t\quad\textrm{and}\quad y=\textup{e}^t\sin t\,,\quad t\in \left[0, 2\right]\,.
+x=\mathcal{e}^t\cos t\quad\textrm{and}\quad y=\mathcal{e}^t\sin t\,,\quad t\in \left[0, 2\right]\,.
 \]
 </div>
 <p>We have</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=\textup{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=\textup{e}^t\left(\sin t+\cos t\right)\,.
+\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=\mathcal{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=\mathcal{e}^t\left(\sin t+\cos t\right)\,.
 \]
 </div>
 <p>Squaring these formulas, adding and simplifying, we get</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2=\textup{e}^{2t}\left(\cos t-\sin t\right)^2+\textup{e}^{2t}\left(\sin t+\cos t\right)^2=2\textup{e}^{2t}\,.
+\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2=\mathcal{e}^{2t}\left(\cos t-\sin t\right)^2+\mathcal{e}^{2t}\left(\sin t+\cos t\right)^2=2\mathcal{e}^{2t}\,.
 \]
 </div>
 <p>The length of the curve is, therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
-s=\int_0^2\sqrt{2\textup{e}^{2t}}\,\mathrm{d}\kern-0.5pt t=\sqrt 2\int_0^2\textup{e}^t\,\mathrm{d}\kern-0.5pt t=\sqrt 2\left(\textup{e}^2-1\right)\ \textrm{units.}
+s=\int_0^2\sqrt{2\mathcal{e}^{2t}}\,\mathrm{d}\kern-0.5pt t=\sqrt 2\int_0^2\mathcal{e}^t\,\mathrm{d}\kern-0.5pt t=\sqrt 2\left(\mathcal{e}^2-1\right)\ \textrm{units.}
 \]
 </div>
 </div>
@@ -12348,45 +12349,45 @@ f^{\left(i\right)}\left(x\right)&=\sum_{n=i}^\infty n\left(n-1\right)\left(n-2\r
 <p>Most, but not all, of the elementary functions encountered in calculus are analytic wherever they have derivatives of all orders. On the other hand, whenever a power series in powers of <span class="math-tex" data-type="tex">\(x=c\)</span> converges for all <span class="math-tex" data-type="tex">\(x\)</span> in an open interval containing <span class="math-tex" data-type="tex">\(c\)</span>, then its sum <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is analytic at <span class="math-tex" data-type="tex">\(c\)</span>, and the given series is the Taylor series of <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 <div data-type="example">
 <h1></h1>
-<p>Find the Taylor series for <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span>. Where does the series converge to <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>? Where is <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> analytic? What is the Maclaurin series for <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>?</p>
-<p>Since all the derivatives of <span class="math-tex" data-type="tex">\(f\left(x\right)=\textup{e}^x\)</span> are <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>, we have <span class="math-tex" data-type="tex">\(f^{\left(n\right)}\left(c\right)=\textup{e}^c\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>. Thus, the taylorseries for <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span> is</p>
+<p>Find the Taylor series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span>. Where does the series converge to <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>? Where is <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> analytic? What is the Maclaurin series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>?</p>
+<p>Since all the derivatives of <span class="math-tex" data-type="tex">\(f\left(x\right)=\mathcal{e}^x\)</span> are <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>, we have <span class="math-tex" data-type="tex">\(f^{\left(n\right)}\left(c\right)=\mathcal{e}^c\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>. Thus, the taylorseries for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-\sum_{n=0}^\infty \frac{\textup{e}^c}{n!}\left(x-c\right)^n\,.
+\sum_{n=0}^\infty \frac{\mathcal{e}^c}{n!}\left(x-c\right)^n\,.
 \]
 </div>
 <p>The radius of convergence <span class="math-tex" data-type="tex">\(R\)</span> of this series is given by</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{\textup{e}^c}{\left(n+1\right)!}}{\frac{\textup{e}^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
+\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{\mathcal{e}^c}{\left(n+1\right)!}}{\frac{\mathcal{e}^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
 \]
 </div>
 <p>Thus, the radius of convergence is <span class="math-tex" data-type="tex">\(R=\infty\)</span> and the series converges for all <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 <p>Suppose the sum is <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-g\left(x\right)=\textup{e}^c+\textup{e}^c\left(x-c\right)+\frac{\textup{e}^c}{2!}\left(x-c\right)^2+\frac{\textup{e}^c}{3!}\left(x-c\right)^3+\cdots\,.
+g\left(x\right)=\mathcal{e}^c+\mathcal{e}^c\left(x-c\right)+\frac{\mathcal{e}^c}{2!}\left(x-c\right)^2+\frac{\mathcal{e}^c}{3!}\left(x-c\right)^3+\cdots\,.
 \]
 </div>
 <p>By the differentiation theorem of series, we have</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-g^\prime\left(x\right)&=0+\textup{e}^c+\frac{\textup{e}^c}{2!}2\left(x-c\right)+\frac{\textup{e}^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
-&=\textup{e}^c+\textup{e}^c\left(x-c\right)+\frac{\textup{e}^c}{2!}\left(x-c\right)^2+\frac{\textup{e}^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
+g^\prime\left(x\right)&=0+\mathcal{e}^c+\frac{\mathcal{e}^c}{2!}2\left(x-c\right)+\frac{\mathcal{e}^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
+&=\mathcal{e}^c+\mathcal{e}^c\left(x-c\right)+\frac{\mathcal{e}^c}{2!}\left(x-c\right)^2+\frac{\mathcal{e}^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
 \end{aligned}
 \]
 </div>
-<p>Also, <span class="math-tex" data-type="tex">\(g\left(c\right)=\textup{e}^c+0+0+\cdots=\textup{e}^c\)</span>. Since <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> satisfies the differential equation <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)=g\left(x\right)\)</span>, we have <span class="math-tex" data-type="tex">\(g\left(x\right)=C\textup{e}^x\)</span>.  Substituting <span class="math-tex" data-type="tex">\(x=c\)</span> gives <span class="math-tex" data-type="tex">\(\textup{e}^c=g\left(c\right)=C\textup{e}^c\)</span>, so <span class="math-tex" data-type="tex">\(C=1\)</span>. Thus, the Taylor series for <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> in powers of <span class="math-tex" data-type="tex">\(x-c\)</span> converges to <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> for every real number <span class="math-tex" data-type="tex">\(x\)</span>:</p>
+<p>Also, <span class="math-tex" data-type="tex">\(g\left(c\right)=\mathcal{e}^c+0+0+\cdots=\mathcal{e}^c\)</span>. Since <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> satisfies the differential equation <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)=g\left(x\right)\)</span>, we have <span class="math-tex" data-type="tex">\(g\left(x\right)=C\mathcal{e}^x\)</span>.  Substituting <span class="math-tex" data-type="tex">\(x=c\)</span> gives <span class="math-tex" data-type="tex">\(\mathcal{e}^c=g\left(c\right)=C\mathcal{e}^c\)</span>, so <span class="math-tex" data-type="tex">\(C=1\)</span>. Thus, the Taylor series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> in powers of <span class="math-tex" data-type="tex">\(x-c\)</span> converges to <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> for every real number <span class="math-tex" data-type="tex">\(x\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}^x=\sum_{n=0}^\infty \frac{\textup{e}^c}{n!}\left(x-c\right)^n\,.
+\mathcal{e}^x=\sum_{n=0}^\infty \frac{\mathcal{e}^c}{n!}\left(x-c\right)^n\,.
 \]
 </div>
-<p>In particular, <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span> is analytic on the whole real line. Setting <span class="math-tex" data-type="tex">\(c=0\)</span> we obtain the Maclaurin series for <span class="math-tex" data-type="tex">\(\textup{e}^x\)</span>:</p>
+<p>In particular, <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> is analytic on the whole real line. Setting <span class="math-tex" data-type="tex">\(c=0\)</span> we obtain the Maclaurin series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-\textup{e}^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
+\mathcal{e}^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
 \]
 </div>
 </div>

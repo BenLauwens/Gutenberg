@@ -260,7 +260,7 @@ Corresponding to the asymptotic behaviour of the exponential functions, the loga
 
 ## The Natural Logarithm and the Exponential Function
 
-In this section we are going to define a function ``\ln x``, called the natural logarithm of ``x``, in a way that does not at first seem to have anything to do with the logarithms considered in the previous section. We will show, however, that it has the same properties as those logarithms, and in the end we will see that ``\ln x=\log_\textup{e}``, the logarithm of ``x`` to a certain specific base ``\textup{e}``. We will show that ``\ln x`` is a bijective function, defined for all positive real numbers. It must therefore have an inverse, ``\textup{e}^x``, that we will call the exponential function. Our final goal is to arrive at a definition of the exponential functions ``a^x`` (for any ``a&gt;0``) that is valid for any real number ``x`` instead of just rational numbers, and that is known to be continuous and even differentiable without our having to assume those properties.
+In this section we are going to define a function ``\ln x``, called the natural logarithm of ``x``, in a way that does not at first seem to have anything to do with the logarithms considered in the previous section. We will show, however, that it has the same properties as those logarithms, and in the end we will see that ``\ln x=\log_\mathcal{e}``, the logarithm of ``x`` to a certain specific base ``\mathcal{e}``. We will show that ``\ln x`` is a bijective function, defined for all positive real numbers. It must therefore have an inverse, ``\mathcal{e}^x``, that we will call the exponential function. Our final goal is to arrive at a definition of the exponential functions ``a^x`` (for any ``a&gt;0``) that is valid for any real number ``x`` instead of just rational numbers, and that is known to be continuous and even differentiable without our having to assume those properties.
 
 ### The Natural Logarithm
 
@@ -444,13 +444,13 @@ Now we make an important definition!
 
 !!! definition
 
-	Let ``\textup{e}=\exp\left(1\right)``.
+	Let ``\mathcal{e}=\exp\left(1\right)``.
 
-The number ``\textup{e}`` satisfies ``\ln \textup{e} = 1``, so the area bounded by the curve ``y=\frac{1}{t}``, the ``t``-axis, and the vertical lines ``t=1`` and ``t=\textup{e}`` must be equal to ``1`` square unit.
+The number ``\mathcal{e}`` satisfies ``\ln \mathcal{e} = 1``, so the area bounded by the curve ``y=\frac{1}{t}``, the ``t``-axis, and the vertical lines ``t=1`` and ``t=\mathcal{e}`` must be equal to ``1`` square unit.
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", "The definition of " * tex("\\textup{e}") * "." ) do
+Figure("", "The definition of " * tex("\\mathcal{e}") * "." ) do
 	scale = 50
 	Drawing(width=5.5scale, height=5.5scale) do
 		xmid = 0.5scale
@@ -459,48 +459,48 @@ Figure("", "The definition of " * tex("\\textup{e}") * "." ) do
 		h = ℯ - 1
 		path = "$(xmid+x*scale), $ymid " * mapreduce(elem->"$(elem[1]), $(elem[2]) ", *, zip(xmid .+ (x*scale:0.01scale:(x+h)*scale), ymid .- scale ./ (x:0.01:x+h))) * "$(xmid+(x+h)*scale), $ymid"
 		polygon(points=path, fill="lightblue", stroke="none")
-		axis_xy(5.5scale,5.5scale,xmid,ymid,scale,(x, x+h), tuple(1/(x+h), 1/x); symbol_x="t", xs=("1", "\\textup{e}"), ys=("\\frac{1}{\\textup{e}}", "1"), yl=(1, 1), yh=(2, 1))
+		axis_xy(5.5scale,5.5scale,xmid,ymid,scale,(x, x+h), tuple(1/(x+h), 1/x); symbol_x="t", xs=("1", "\\mathcal{e}"), ys=("\\frac{1}{\\mathcal{e}}", "1"), yl=(1, 1), yh=(2, 1))
 		plot_xy(x->1/x, 0.01:0.01:5, tuple(x, x+h), xmid, ymid, scale; width=1)
 		latex("\\textrm{Area}=1", x=xmid+1.25scale, y=ymid-0.35scale, width=4font_x, height=1font_y)
 	end
 end
 ```
 
-The number ``\textup{e}`` is one of the most important numbers in mathematics. Like ``\uppi``, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins
+The number ``\mathcal{e}`` is one of the most important numbers in mathematics. Like ``\uppi``, it is irrational and not a zero of any polynomial with rational coefficients. Its value is between 2 and 3 and begins
 
 ```math
-\textup{e}=2.718281828459045\dots\,.
+\mathcal{e}=2.718281828459045\dots\,.
 ```
 
 Later on we will learn that
 ```math
-\textup{e}=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\cdots\,,
+\mathcal{e}=1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\frac{1}{4!}+\cdots\,,
 ```
-a formula from which the value of ``\textup{e}`` can be calculated to any desired precision.
+a formula from which the value of ``\mathcal{e}`` can be calculated to any desired precision.
 
-The first property of the previous theorem shows that ``\exp r=\exp\left(1r\right)=\left(\exp 1\right)^r=\textup{e}^r`` holds for any rational number ``r``. Now here is a crucial observation. We only know what ``\textup{e}^r`` means if ``r`` is a rational number (if ``r=\frac{m}{n}``, then ``\textup{e}^r=\sqrt[n]{\textup{e}^m}``). But ``\exp x`` is defined for all real ``x``, rational or not. Since ``\textup{e}^r=\exp r`` when ``r`` is rational, we can use ``\exp x`` as a definition of what ``\textup{e}^x`` means for any real number ``x``, and there will be no contradiction if ``x`` happens to be rational.
+The first property of the previous theorem shows that ``\exp r=\exp\left(1r\right)=\left(\exp 1\right)^r=\mathcal{e}^r`` holds for any rational number ``r``. Now here is a crucial observation. We only know what ``\mathcal{e}^r`` means if ``r`` is a rational number (if ``r=\frac{m}{n}``, then ``\mathcal{e}^r=\sqrt[n]{\mathcal{e}^m}``). But ``\exp x`` is defined for all real ``x``, rational or not. Since ``\mathcal{e}^r=\exp r`` when ``r`` is rational, we can use ``\exp x`` as a definition of what ``\mathcal{e}^x`` means for any real number ``x``, and there will be no contradiction if ``x`` happens to be rational.
 
 !!! definition
 
 	Let
 	```math
-	\textup{e}^x=\exp x
+	\mathcal{e}^x=\exp x
 	```
 	for all real ``x``.
 
-The last theorem can now be restated in terms of ``\textup{e}^x``:
+The last theorem can now be restated in terms of ``\mathcal{e}^x``:
 ```math
 \begin{align}
-&\left(\textup{e}^x\right)^y=\textup{e}^{xy}&&\textup{e}^{x+y}=\textup{e}^x\textup{e}^y\\
-&\textup{e}^{-x}=\frac{1}{\textup{e}^x}&&\textup{e}^{x-y}=\frac{\textup{e}^x}{\textup{e}^y}
+&\left(\mathcal{e}^x\right)^y=\mathcal{e}^{xy}&&\mathcal{e}^{x+y}=\mathcal{e}^x\mathcal{e}^y\\
+&\mathcal{e}^{-x}=\frac{1}{\mathcal{e}^x}&&\mathcal{e}^{x-y}=\frac{\mathcal{e}^x}{\mathcal{e}^y}
 \end{align}
 ```
 
-The graph of ``\textup{e}^x`` is the reflection of the graph of its inverse, ``\ln x``, in the line ``y=x``.
+The graph of ``\mathcal{e}^x`` is the reflection of the graph of its inverse, ``\ln x``, in the line ``y=x``.
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", "The graph of " * tex("\\textup{e}^x") * " and " * tex("\\ln x") * "." ) do
+Figure("", "The graph of " * tex("\\mathcal{e}^x") * " and " * tex("\\ln x") * "." ) do
 	scale = 50
 	Drawing(width=5scale, height=5scale) do
 		xmid = 2.5scale
@@ -513,61 +513,61 @@ Figure("", "The graph of " * tex("\\textup{e}^x") * " and " * tex("\\ln x") * ".
 end
 ```
 
-Observe that the ``x``-axis is a horizontal asymptote of the graph of ``y=\textup{e}^x`` as ``x\to-\infty``. We have
+Observe that the ``x``-axis is a horizontal asymptote of the graph of ``y=\mathcal{e}^x`` as ``x\to-\infty``. We have
 ```math
-\lim_{x\to-\infty}\textup{e}^x=0\quad\textrm{and}\quad\lim_{x\to\infty}\textup{e}^x=\infty\,.
+\lim_{x\to-\infty}\mathcal{e}^x=0\quad\textrm{and}\quad\lim_{x\to\infty}\mathcal{e}^x=\infty\,.
 ```
 
-Since ``\exp x=\textup{e}^x`` actually is an exponential function, its inverse must actually be a logarithm:
+Since ``\exp x=\mathcal{e}^x`` actually is an exponential function, its inverse must actually be a logarithm:
 ```math
-\ln x=\log_\textup{e}x\,.
+\ln x=\log_\mathcal{e}x\,.
 ```
 
-The derivative of ``y=\textup{e}^x`` is calculated by implicit differentiation:
+The derivative of ``y=\mathcal{e}^x`` is calculated by implicit differentiation:
 ```math
 \begin{aligned}
-y=\textup{e}^x&\implies x=\ln y\\
+y=\mathcal{e}^x&\implies x=\ln y\\
 &\implies 1=\frac{1}{y}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\\
-&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=\textup{e}^x\,.
+&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=\mathcal{e}^x\,.
 \end{aligned}
 ```
 
 Thus, the exponential function has the remarkable property that it is its own derivative and, therefore, also its own antiderivative:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^x=\textup{e}^x\quad\textrm{and}\quad\int \textup{e}^x\, \mathrm{d}\kern-0.5pt x=\textup{e}^x+C\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^x=\mathcal{e}^x\quad\textrm{and}\quad\int \mathcal{e}^x\, \mathrm{d}\kern-0.5pt x=\mathcal{e}^x+C\,.
 ```
 
 ### General Exponentials and Logarithms
 
-We can use the fact that ``\textup{e}^x`` is now defined for all real ``x`` to define the arbitrary exponential ``a^x`` (where ``a&gt;0``) for all real ``x``. If ``r`` is rational, then ``\ln\left(a^r\right)=r\ln a``; therefore, ``a^r=\textup{e}^{r\ln a}``. However, ``\textup{e}^{x\ln a}`` is defined for all real ``x``, so we can use it as a definition of ``a^x`` with no possibility of contradiction arising if ``x`` is rational.
+We can use the fact that ``\mathcal{e}^x`` is now defined for all real ``x`` to define the arbitrary exponential ``a^x`` (where ``a&gt;0``) for all real ``x``. If ``r`` is rational, then ``\ln\left(a^r\right)=r\ln a``; therefore, ``a^r=\mathcal{e}^{r\ln a}``. However, ``\mathcal{e}^{x\ln a}`` is defined for all real ``x``, so we can use it as a definition of ``a^x`` with no possibility of contradiction arising if ``x`` is rational.
 
 !!! definition
 
 	Let
 	```math
-	\forall x\in \mathbb{R},\forall a&gt;0:a^x=\textup{e}^{x\ln a}\,.
+	\forall x\in \mathbb{R},\forall a&gt;0:a^x=\mathcal{e}^{x\ln a}\,.
 	```
 
-The laws of exponents for ``a^x`` can now be obtained from those for ``\textup{e}^x``, as can the derivative:
+The laws of exponents for ``a^x`` can now be obtained from those for ``\mathcal{e}^x``, as can the derivative:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{x\ln a}=\textup{e}^{x\ln a}\ln a=a^x\ln a\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{x\ln a}=\mathcal{e}^{x\ln a}\ln a=a^x\ln a\,.
 ```
 
 We can also verify the General Power Rule for ``x^a``, where ``a`` is any real number, provided ``x&gt;0``:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{a\ln x}=\textup{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
+\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{a\ln x}=\mathcal{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
 ```
 
 !!! example
 
 	Find the critical point of ``y=x^x``.
 
-	We can’t differentiate ``x^x`` by treating it as a power (like ``x^a``) because the exponent varies. We can’t treat it as an exponential (like ``a^x``) because the base varies. We can differentiate it if we first write it in terms of the exponential function, ``x^x=\textup{e}^{x\ln x}``, and then use the Chain Rule and the Product Rule:
+	We can’t differentiate ``x^x`` by treating it as a power (like ``x^a``) because the exponent varies. We can’t treat it as an exponential (like ``a^x``) because the base varies. We can differentiate it if we first write it in terms of the exponential function, ``x^x=\mathcal{e}^{x\ln x}``, and then use the Chain Rule and the Product Rule:
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\textup{e}^{x\ln x}=\textup{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{x\ln x}=\mathcal{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
 	```
 
-	Now ``x^x`` is defined only for ``x&gt;0`` and is itself never ``0``. (Why?) Therefore, the critical point occurs where ``1+\ln x=0``; that is, ``\ln x=-1``, or ``x=\frac{1}{\textup{e}}``.
+	Now ``x^x`` is defined only for ``x&gt;0`` and is itself never ``0``. (Why?) Therefore, the critical point occurs where ``1+\ln x=0``; that is, ``\ln x=-1``, or ``x=\frac{1}{\mathcal{e}}``.
 
 Finally, observe that ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a`` is negative for all ``x`` if ``0&lt;a&lt;1`` and is positive for all ``x`` if ``a&gt;1``. Thus, ``a^x`` is bijective and has an inverse function, ``\log_a x``, provided ``a&gt;0`` and ``a\ne1``. If ``y=\log_a x``, then ``x=a^y`` and, differentiating implicitly with respect to ``x``, we get
 ```math
@@ -579,7 +579,7 @@ Thus, the derivative of ``\log_a x`` is given by
 \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\log_a x=\frac{1}{x\ln a}\,.
 ```
 
-Since ``\log_a x`` can be expressed in terms of logarithms to any other base, say ``\textup{e}``,
+Since ``\log_a x`` can be expressed in terms of logarithms to any other base, say ``\mathcal{e}``,
 ```math
 \log_a x=\frac{\ln x}{\ln a}\,,
 ```
@@ -595,7 +595,7 @@ y=\left(f\left(x\right)\right)^{g\left(x\right)}\quad\textrm{for }f\left(x\right
 
 Since the variable appears in both the base and the exponent, neither the general power rule, ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=ax^{a-1}``, nor the exponential rule, ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a`` can be directly applied. One method for finding the derivative of such a function is to express it in the form
 ```math
-y=\textup{e}^{g\left(x\right)\ln f\left(x\right)}
+y=\mathcal{e}^{g\left(x\right)\ln f\left(x\right)}
 ```
 and then differentiate, using the Product Rule to handle the exponent. This is the method used in previous example.
 
@@ -791,7 +791,7 @@ The derivative of ``\operatorname{Arccos}x`` is the negative of that of ``\opera
 	For any real ``x`` the hyperbolic cosine, ``\cosh x``, and the hyperbolic sine, ``\sinh x``, are defined by
 
 	```math
-	\cosh x=\frac{\textup{e}^x+\textup{e}^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{\textup{e}^x-\textup{e}^{-x}}{2}\,.
+	\cosh x=\frac{\mathcal{e}^x+\mathcal{e}^{-x}}{2}\quad\textrm{and}\quad\sinh x=\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{2}\,.
 	```
 
 Recall that cosine and sine are called circular functions because, for any ``t``, the point ``\left(\cos t, \sin t\right)`` lies on the circle with equation ``x^2+y^2=1``. Similarly, ``\cosh`` and ``\sinh`` are called hyperbolic functions because the point ``\left(\cosh t, \sinh t\right)`` lies on the rectangular hyperbola with equations ``x^2-y^2=1``,
@@ -859,8 +859,8 @@ Many other properties of the hyperbolic functions resemble those of the correspo
 
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\textup{e}^x+\textup{e}^{-x}}{2}=\frac{\textup{e}^x+\textup{e}^{-x}\left(-1\right)}{2}=\sinh x\\
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\textup{e}^x-\textup{e}^{-x}}{2}=\frac{\textup{e}^x-\textup{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathcal{e}^x+\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x+\mathcal{e}^{-x}\left(-1\right)}{2}=\sinh x\\
+	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x-\mathcal{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
 	\end{aligned}
 	```
 
@@ -879,7 +879,7 @@ By analogy with the trigonometric functions, other hyperbolic functions can be d
 !!! definition
 
 	```math
-	\tanh x=\frac{\sinh x}{\cosh x}=\frac{\textup{e}^x-\textup{e}^{-x}}{\textup{e}^x+\textup{e}^{-x}}=\frac{1-\textup{e}^{-2x}}{1+\textup{e}^{-2x}}=\frac{\textup{e}^{2x}-1}{\textup{e}^{2x}+1}\,.
+	\tanh x=\frac{\sinh x}{\cosh x}=\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{\mathcal{e}^x+\mathcal{e}^{-x}}=\frac{1-\mathcal{e}^{-2x}}{1+\mathcal{e}^{-2x}}=\frac{\mathcal{e}^{2x}-1}{\mathcal{e}^{2x}+1}\,.
 	```
 
 {cell=chap display=false output=false}
@@ -905,19 +905,19 @@ Since the hyperbolic functions are defined in terms of exponentials, it is not s
 
 	Let ``y=\operatorname{arcsinh} x``. Then
 	```math
-	x = \sinh y=\frac{\textup{e}^y-\textup{e}^{-y}}{2}=\frac{\textup{e}^{2y}-1}{2\textup{e}^{2y}}\,.
+	x = \sinh y=\frac{\mathcal{e}^y-\mathcal{e}^{-y}}{2}=\frac{\mathcal{e}^{2y}-1}{2\mathcal{e}^{2y}}\,.
 	```
 	Therefore,
 	```math
-	\left(\textup{e}^y\right)^2-2x\textup{e}^y-1=0\,.
+	\left(\mathcal{e}^y\right)^2-2x\mathcal{e}^y-1=0\,.
 	```
-	This is a quadratic equation in ``\textup{e}^y``, and it can be solved by the quadratic formula:
+	This is a quadratic equation in ``\mathcal{e}^y``, and it can be solved by the quadratic formula:
 	```math
-	\textup{e}^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
+	\mathcal{e}^y=\frac{2x\pm\sqrt{4x^2+4}}{2}=x\pm\sqrt{x^2+1}\,.
 	```
-	Note that ``\sqrt{x^2+1}&gt;x``. Since ``\textup{e}^y`` cannot be negative, we need to use the positive sign:
+	Note that ``\sqrt{x^2+1}&gt;x``. Since ``\mathcal{e}^y`` cannot be negative, we need to use the positive sign:
 	```math
-	\textup{e}^y=x+\sqrt{x^2+1}\,.
+	\mathcal{e}^y=x+\sqrt{x^2+1}\,.
 	```
 	Hence, ``y=\ln\left(x+\sqrt{x^2+1}\right)``, and we have
 	```math
@@ -926,11 +926,11 @@ Since the hyperbolic functions are defined in terms of exponentials, it is not s
 
 	Now let ``y=\operatorname{arctanh} x``. Then
 	```math
-	x=\tanh y=\frac{\textup{e}^y-\textup{e}^{-y}}{\textup{e}^y+\textup{e}^{-y}}=\frac{\textup{e}^{2y}-1}{\textup{e}^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
+	x=\tanh y=\frac{\mathcal{e}^y-\mathcal{e}^{-y}}{\mathcal{e}^y+\mathcal{e}^{-y}}=\frac{\mathcal{e}^{2y}-1}{\mathcal{e}^{2y}+1}\quad\textrm{for }-1&lt;x&lt;1
 	```
 	or
 	```math
-	\textup{e}^{2y}=\frac{1+x}{1-x}.
+	\mathcal{e}^{2y}=\frac{1+x}{1-x}.
 	```
 	Thus,
 	```math

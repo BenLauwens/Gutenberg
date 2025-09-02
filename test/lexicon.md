@@ -9,7 +9,7 @@ axioms of Peano: axiomes de Peano (m), de axioma's van Peano
 
 bijection: bijection (f), de bijectie
 
-cardinal number: nobre cardinal (m), het cardinaalgetal
+cardinal number: nombre cardinal (m), het cardinaalgetal
 
 cartesian product: produit cartésien (m), het cartesisch product
 

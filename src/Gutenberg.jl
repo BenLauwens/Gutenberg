@@ -13,13 +13,13 @@ const TIMEOUT = 1000
 const TEMPLATE = """<!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TITLE</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="rma.css" />
-<script src="../assets/temml.min.js"></script>
 PAGED
 </head>
 <body data-type="BODY-TYPE">
@@ -28,7 +28,8 @@ BODY
 </html>
 """
 
-const PAGED = """<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+const PAGED = """<script src="../assets/temml.min.js"></script>
+<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
     constructor(chunker, polisher, caller) {
@@ -477,7 +478,8 @@ function watch_and_tohtml(file::String)
         if body === ""
             body = join(next, "\n") * """<div id="tag"></div>\n"""
         end
-        html = replace(TEMPLATE, "TITLE" => name, "PAGED" => "", "BODY-TYPE" => "article", "BODY" => body)
+        html = replace(TEMPLATE, "TITLE" => name, "PAGED" => "<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
+", "BODY-TYPE" => "article", "BODY" => body)
         open(joinpath(path, name * ".html"), "w") do out
             write(out, html)
         end

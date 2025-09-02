@@ -1461,7 +1461,7 @@ s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5p
 
 Use logarithmic differentiation to find ``f^\prime\left(x\right)`` for each of the following.
 
-1. ``\displaystyle f\left(x\right)=\left(1+x\right)\left(1+\textup{e}^{x^2}\right)\,.``
+1. ``\displaystyle f\left(x\right)=\left(1+x\right)\left(1+\mathcal{e}^{x^2}\right)\,.``
 
 2. ``\displaystyle f\left(x\right)=\left(\sin x\right)^{\cos x}+\left(\cos x\right)^{\sin x}\,.``
 
@@ -1628,7 +1628,7 @@ If ``f`` is a continuous function at the point ``L`` and if ``\displaystyle\lim_
 Find all continuous functions ``f`` satisfying
 
 ```math
-\int_0^{x^2}f\left(x\right)\,\mathrm d\kern-0.5pt x=1-\textup{e}^{2x^2}\,.
+\int_0^{x^2}f\left(x\right)\,\mathrm d\kern-0.5pt x=1-\mathcal{e}^{2x^2}\,.
 ```
 
 {class = pagebreak}
@@ -1854,7 +1854,7 @@ Let
 
 ```math
 f\left(x\right) = \begin{cases}
-\frac{\textup{e}^x-1}{x}\,,&x\ne 0\\
+\frac{\mathcal{e}^x-1}{x}\,,&x\ne 0\\
 1\,,&x=0\,.
 \end{cases}
 ```

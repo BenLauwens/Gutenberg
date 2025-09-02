@@ -366,25 +366,25 @@ s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\k
 	Find the length of the parametric curve
 
 	```math
-	x=\textup{e}^t\cos t\quad\textrm{and}\quad y=\textup{e}^t\sin t\,,\quad t\in \left[0, 2\right]\,.
+	x=\mathcal{e}^t\cos t\quad\textrm{and}\quad y=\mathcal{e}^t\sin t\,,\quad t\in \left[0, 2\right]\,.
 	```
 
 	We have
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=\textup{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=\textup{e}^t\left(\sin t+\cos t\right)\,.
+	\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=\mathcal{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=\mathcal{e}^t\left(\sin t+\cos t\right)\,.
 	```
 
 	Squaring these formulas, adding and simplifying, we get
 
 	```math
-	\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2=\textup{e}^{2t}\left(\cos t-\sin t\right)^2+\textup{e}^{2t}\left(\sin t+\cos t\right)^2=2\textup{e}^{2t}\,.
+	\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2=\mathcal{e}^{2t}\left(\cos t-\sin t\right)^2+\mathcal{e}^{2t}\left(\sin t+\cos t\right)^2=2\mathcal{e}^{2t}\,.
 	```
 
 	The length of the curve is, therefore,
 
 	```math
-	s=\int_0^2\sqrt{2\textup{e}^{2t}}\,\mathrm{d}\kern-0.5pt t=\sqrt 2\int_0^2\textup{e}^t\,\mathrm{d}\kern-0.5pt t=\sqrt 2\left(\textup{e}^2-1\right)\ \textrm{units.}
+	s=\int_0^2\sqrt{2\mathcal{e}^{2t}}\,\mathrm{d}\kern-0.5pt t=\sqrt 2\int_0^2\mathcal{e}^t\,\mathrm{d}\kern-0.5pt t=\sqrt 2\left(\mathcal{e}^2-1\right)\ \textrm{units.}
 	```
 
 Parametric curves can be rotated around various axes to generate surfaces of revolution. The areas of these surfaces can be found by the same procedure used for graphs of functions, with the appropriate version of ``\mathrm{d}\kern-0.5pt s``. If the curve
