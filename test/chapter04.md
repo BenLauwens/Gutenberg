@@ -442,7 +442,7 @@ The three derivative formulas calculated in this example are special cases of th
 	```math
 	f\left(x\right)=\begin{cases}
 	\hphantom{-}x\,,&\textrm{if }x\ge0\,,\\
-	-x\,,\textrm{if }x&lt;0\,.
+	-x\,,&\textrm{if }x&lt;0\,.
 	\end{cases}
 	```
 
@@ -450,7 +450,7 @@ The three derivative formulas calculated in this example are special cases of th
 	```math
 	f^\prime\left(x\right)=\begin{cases}
 	\hphantom{-}1\,,&\textrm{if }x\gt0\\
-	-1\,,\textrm{if }x&lt;0
+	-1\,,&\textrm{if }x&lt;0
 	\end{cases}=\frac{x}{\left|x\right|}=\operatorname{sgn}x
 	```
 

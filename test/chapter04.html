@@ -1,53 +1,18 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>chapter04</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
 <link rel="stylesheet" href="rma.css" />
-<script>
-MathJax = {
-    startup: {
-        pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-        }
-    },
-    tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
-        ],
-        displayMath: [
-            ['\\[', '\\]']
-        ]
-    },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -314,29 +279,29 @@ y=-4\left(x-4\right)+2\quad\textrm{or}\quad 4x+y-18=0
 <p>A straight line has the property that its slope is the same at all points. For any other graph, however, the slope may vary from point to point. Thus, the slope of the graph of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> at the point <span class="math-tex" data-type="tex">\(x\)</span> is itself a function of <span class="math-tex" data-type="tex">\(x\)</span>. At any point <span class="math-tex" data-type="tex">\(x\)</span> where the graph has a finite slope, we say that <span class="math-tex" data-type="tex">\(f\)</span> is <i>differentiable</i>, and we call the slope the <i>derivative</i> of <span class="math-tex" data-type="tex">\(f\)</span>. The derivative is therefore the limit of the Newton quotient.</p>
 <div data-type="definition">
 <h1></h1>
-<p>The derivative of a function <span class="math-tex" data-type="tex">\(f\)</span> is another function <span class="math-tex" data-type="tex">\(f\prime\)</span> defined by</p>
+<p>The derivative of a function <span class="math-tex" data-type="tex">\(f\)</span> is another function <span class="math-tex" data-type="tex">\(f^\prime\)</span> defined by</p>
 <div class="math-tex" data-type="equation">
 \[
-f\prime\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}
+f^\prime\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}
 \]
 </div>
-<p>at all points <span class="math-tex" data-type="tex">\(x\)</span> for which the limit exists (i.e., is a finite real number). If <span class="math-tex" data-type="tex">\(f\prime\)</span> exists, we say that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>at all points <span class="math-tex" data-type="tex">\(x\)</span> for which the limit exists (i.e., is a finite real number). If <span class="math-tex" data-type="tex">\(f^\prime\)</span> exists, we say that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 </div>
-<p>The domain of the derivative <span class="math-tex" data-type="tex">\(f\prime\)</span> (read “<span class="math-tex" data-type="tex">\(f\)</span> prime”) is the set of numbers <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where the graph of <span class="math-tex" data-type="tex">\(f\)</span> has a nonvertical tangent line, and the value <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)\)</span> of <span class="math-tex" data-type="tex">\(f\prime\)</span> at such a point <span class="math-tex" data-type="tex">\(x_0\)</span> is the slope of the tangent line to <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> there. Thus, the equation of the tangent line to <span class="math-tex" data-type="tex">\(y=\left(x\right)\)</span> at <span class="math-tex" data-type="tex">\(f\left(x_0\right)\)</span> is</p>
+<p>The domain of the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> (read “<span class="math-tex" data-type="tex">\(f\)</span> prime”) is the set of numbers <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where the graph of <span class="math-tex" data-type="tex">\(f\)</span> has a nonvertical tangent line, and the value <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)\)</span> of <span class="math-tex" data-type="tex">\(f^\prime\)</span> at such a point <span class="math-tex" data-type="tex">\(x_0\)</span> is the slope of the tangent line to <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> there. Thus, the equation of the tangent line to <span class="math-tex" data-type="tex">\(y=\left(x\right)\)</span> at <span class="math-tex" data-type="tex">\(f\left(x_0\right)\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-y=f\left(x_0\right)+f\prime\left(x_0\right)\left(x-x_0\right)
+y=f\left(x_0\right)+f^\prime\left(x_0\right)\left(x-x_0\right)
 \]
 </div>
-<p>The domain <span class="math-tex" data-type="tex">\(f\prime\)</span> may be smaller than the domain of <span class="math-tex" data-type="tex">\(f\)</span> because it contains only those points in the domain of <span class="math-tex" data-type="tex">\(f\)</span> at which <span class="math-tex" data-type="tex">\(f\)</span> is differentiable. Values of <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\)</span> is not differentiable and that are not endpoints of the domain of <span class="math-tex" data-type="tex">\(f\)</span> are <i>singular points</i> of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
+<p>The domain <span class="math-tex" data-type="tex">\(f^\prime\)</span> may be smaller than the domain of <span class="math-tex" data-type="tex">\(f\)</span> because it contains only those points in the domain of <span class="math-tex" data-type="tex">\(f\)</span> at which <span class="math-tex" data-type="tex">\(f\)</span> is differentiable. Values of <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\)</span> is not differentiable and that are not endpoints of the domain of <span class="math-tex" data-type="tex">\(f\)</span> are <i>singular points</i> of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
 <p>The value of the derivative of <span class="math-tex" data-type="tex">\(f\)</span> at a particular point <span class="math-tex" data-type="tex">\(x_0\)</span> can be expressed as a limit in either of two ways:</p>
 <div class="math-tex" data-type="equation">
 \[
-f\prime\left(x_0\right)=\lim_{h\to 0}\frac{f\left(x_0+h\right)-f\left(x_0\right)}{h}=\lim_{x\to x_0}\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}
+f^\prime\left(x_0\right)=\lim_{h\to 0}\frac{f\left(x_0+h\right)-f\left(x_0\right)}{h}=\lim_{x\to x_0}\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}
 \]
 </div>
 <p>In the second limit <span class="math-tex" data-type="tex">\(x_0+h\)</span> is replaced by <span class="math-tex" data-type="tex">\(x\)</span>, so that <span class="math-tex" data-type="tex">\(h=x-x_0\)</span> and <span class="math-tex" data-type="tex">\(h\to 0\)</span> is equivalent to <span class="math-tex" data-type="tex">\(x\to x_0\)</span>.</p>
-<p>The process of calculating the derivative <span class="math-tex" data-type="tex">\(f\prime\)</span> of a given function <span class="math-tex" data-type="tex">\(f\)</span> is called <i>differentiation</i>.</p>
+<p>The process of calculating the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span> of a given function <span class="math-tex" data-type="tex">\(f\)</span> is called <i>differentiation</i>.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="520" height="360">
 <defs>
@@ -499,29 +464,29 @@ f\prime\left(x_0\right)=\lim_{h\to 0}\frac{f\left(x_0+h\right)-f\left(x_0\right)
 f_+^\prime\left(a\right)=\lim_{h\to 0^+}\frac{f\left(a+h\right)-f\left(x\right)}{h}\,,\quad f_-^\prime\left(b\right)=\lim_{h\to 0^-}\frac{f\left(b+h\right)-f\left(x\right)}{h}\,.
 \]
 </div>
-<p>We now say that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> if <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\)</span> exists for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(f_+^\prime\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f_-^\prime\left(b\right)\)</span> both exist.</p>
+<p>We now say that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> if <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> exists for all <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(f_+^\prime\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f_-^\prime\left(b\right)\)</span> both exist.</p>
 <div data-type="example">
 <h1></h1>
-<p>Show that if <span class="math-tex" data-type="tex">\(f\left(x\right)=ax+b\)</span>, then <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=a\)</span>.</p>
+<p>Show that if <span class="math-tex" data-type="tex">\(f\left(x\right)=ax+b\)</span>, then <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=a\)</span>.</p>
 <p>The result is apparent from the graph of f, but we will do the calculation using the definition:</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-f\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
+f^\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{a\left(x+h\right)+b-\left(ax+b\right)}{h}\\
 &=\lim_{h\to 0}\frac{ah}{h}=a\,.
 \end{aligned}
 \]
 </div>
 </div>
-<p>An important special case of this example says that the derivative of a constant function is the zero function: If <span class="math-tex" data-type="tex">\(g\left(x\right)=c\)</span>, a constant, then <span class="math-tex" data-type="tex">\(g\prime\left(x\right)=0\)</span>.</p>
+<p>An important special case of this example says that the derivative of a constant function is the zero function: If <span class="math-tex" data-type="tex">\(g\left(x\right)=c\)</span>, a constant, then <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)=0\)</span>.</p>
 <div data-type="example">
 <h1></h1>
 <p>Use the definition of the derivative to calculate the derivatives of <span class="math-tex" data-type="tex">\(f\left(x\right)=x^2\)</span>, <span class="math-tex" data-type="tex">\(\displaystyle g\left(x\right)=\frac{1}{x}\)</span> and <span class="math-tex" data-type="tex">\(k\left(x\right)=\sqrt x\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-f\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
+f^\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{\left(x+h\right)^2-x^2}{h}=\lim_{h\to 0}\frac{x^2+2xh+h^2-x^2}{h}\\
 &=\lim_{h\to 0}\frac{2xh+h^2}{h}=\lim_{h\to 0}2x+h=2x\,.
 \end{aligned}
@@ -530,7 +495,7 @@ f\prime\left(x\right)&=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-g\prime\left(x\right)&=\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+g^\prime\left(x\right)&=\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{\frac{1}{x+h}-\frac{1}{x}}{h}=\lim_{h\to 0}\frac{\frac{x-\left(x+h\right)}{\left(x+h\right)x}}{h}\\
 &=\lim_{h\to 0}\frac{-h}{h\left(x+h\right)x}=\lim_{h\to 0}-\frac{1}{\left(x+h\right)x}=-\frac{1}{x^2}\,.
 \end{aligned}
@@ -546,25 +511,25 @@ k^\prime\left(x\right)&=\lim_{h\to 0}\frac{k\left(x+h\right)-k\left(x\right)}{h}
 \]
 </div>
 </div>
-<p>The three derivative formulas calculated in this example are special cases of the following <i>General Power Rule</i>: If <span class="math-tex" data-type="tex">\(f\left(x\right)=x^r\)</span>, then <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=rx^{r-1}\)</span> for all values of <span class="math-tex" data-type="tex">\(r\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> for which <span class="math-tex" data-type="tex">\(x^{r-1}\)</span>makes sense as a real number. Eventually, we will prove all appropriate cases of the General Power Rule.</p>
+<p>The three derivative formulas calculated in this example are special cases of the following <i>General Power Rule</i>: If <span class="math-tex" data-type="tex">\(f\left(x\right)=x^r\)</span>, then <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=rx^{r-1}\)</span> for all values of <span class="math-tex" data-type="tex">\(r\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> for which <span class="math-tex" data-type="tex">\(x^{r-1}\)</span>makes sense as a real number. Eventually, we will prove all appropriate cases of the General Power Rule.</p>
 <div data-type="example">
 <h1></h1>
-<p>Verify that: if <span class="math-tex" data-type="tex">\(f\left(x\right)=\left|x\right|\)</span>, then <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=\frac{x}{\left|x\right|}=\operatorname{sgn}x\)</span>.</p>
+<p>Verify that: if <span class="math-tex" data-type="tex">\(f\left(x\right)=\left|x\right|\)</span>, then <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=\frac{x}{\left|x\right|}=\operatorname{sgn}x\)</span>.</p>
 <p>We have</p>
 <div class="math-tex" data-type="equation">
 \[
 f\left(x\right)=\begin{cases}
 \hphantom{-}x\,,&\textrm{if }x\ge0\,,\\
--x\,,\textrm{if }x&lt;0\,.
+-x\,,&\textrm{if }x&lt;0\,.
 \end{cases}
 \]
 </div>
-<p>Thus, from the first example, <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=1\)</span> if <span class="math-tex" data-type="tex">\(x&gt;0\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=-1\)</span> if <span class="math-tex" data-type="tex">\(x&lt;0\)</span>. Also <span class="math-tex" data-type="tex">\(f\)</span> is not differentiable at <span class="math-tex" data-type="tex">\(x=0\)</span> (why?), which is a singular point of <span class="math-tex" data-type="tex">\(f\)</span>. Therefore,</p>
+<p>Thus, from the first example, <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=1\)</span> if <span class="math-tex" data-type="tex">\(x&gt;0\)</span> and <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=-1\)</span> if <span class="math-tex" data-type="tex">\(x&lt;0\)</span>. Also <span class="math-tex" data-type="tex">\(f\)</span> is not differentiable at <span class="math-tex" data-type="tex">\(x=0\)</span> (why?), which is a singular point of <span class="math-tex" data-type="tex">\(f\)</span>. Therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
-f\prime\left(x\right)=\begin{cases}
+f^\prime\left(x\right)=\begin{cases}
 \hphantom{-}1\,,&\textrm{if }x\gt0\\
--1\,,\textrm{if }x&lt;0
+-1\,,&\textrm{if }x&lt;0
 \end{cases}=\frac{x}{\left|x\right|}=\operatorname{sgn}x
 \]
 </div>
@@ -574,18 +539,18 @@ f\prime\left(x\right)=\begin{cases}
 <p>Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, we can use the dependent variable <span class="math-tex" data-type="tex">\(y\)</span> to represent the function, and we can denote the derivative of the function with respect to <span class="math-tex" data-type="tex">\(x\)</span> in any of the following ways:</p>
 <div class="math-tex" data-type="equation">
 \[
-𝖣_x\kern-0.5pt y=y\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f\prime\left(x\right)=𝖣_x\kern-0.5pt f\left(x\right)=𝖣\kern-0.5pt f\left(x\right)\,.
+\mathsf{D}_x\kern-0.5pt y=y^\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f^\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
 \]
 </div>
-<p>(In the forms using “<span class="math-tex" data-type="tex">\(𝖣_x\)</span>,” we can omit the subscript <span class="math-tex" data-type="tex">\(x\)</span> if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable <span class="math-tex" data-type="tex">\(x\)</span> is to write <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\)</span> in front of that expression. The symbol <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\)</span> is a differential operator and should be read “the derivative with respect to <span class="math-tex" data-type="tex">\(x\)</span> of <span class="math-tex" data-type="tex">\(\dots\)</span>”.</p>
+<p>(In the forms using “<span class="math-tex" data-type="tex">\(\mathsf{D}_x\)</span>,” we can omit the subscript <span class="math-tex" data-type="tex">\(x\)</span> if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable <span class="math-tex" data-type="tex">\(x\)</span> is to write <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\)</span> in front of that expression. The symbol <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\)</span> is a differential operator and should be read “the derivative with respect to <span class="math-tex" data-type="tex">\(x\)</span> of <span class="math-tex" data-type="tex">\(\dots\)</span>”.</p>
 <p>The value of the derivative of a function at a particular number <span class="math-tex" data-type="tex">\(x_0\)</span> in its domain can also be expressed in several ways:</p>
 <div class="math-tex" data-type="equation">
 \[
-\left.𝖣_x\kern-0.5pt y\right|_{x=x_0}=\left.y\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f\prime\left(x_0\right)=𝖣_x\kern-0.5pt f\left(x_0\right)\,.
+\left.\mathsf{D}_x\kern-0.5pt y\right|_{x=x_0}=\left.y^\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f^\prime\left(x_0\right)=\mathsf{D}_x\kern-0.5pt f\left(x_0\right)\,.
 \]
 </div>
-<p>The symbol <span class="math-tex" data-type="tex">\(\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}\)</span> is called an <i>evaluation symbol</i>. It signifies that the expression preceding it should be evaluated at <span class="math-tex" data-type="tex">\(x=x_0\)</span>. Do not confuse <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}\)</span>. The first expression represents a <i>function</i>, <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\)</span>. The second represents a <i>number</i> <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)\)</span>.</p>
-<p>The notation <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> are called Leibniz notations for the derivative; Newton used notations similar to the prime <span class="math-tex" data-type="tex">\(y\prime\)</span> notations we use here.</p>
+<p>The symbol <span class="math-tex" data-type="tex">\(\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}\)</span> is called an <i>evaluation symbol</i>. It signifies that the expression preceding it should be evaluated at <span class="math-tex" data-type="tex">\(x=x_0\)</span>. Do not confuse <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}\)</span>. The first expression represents a <i>function</i>, <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span>. The second represents a <i>number</i> <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)\)</span>.</p>
+<p>The notation <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> are called Leibniz notations for the derivative; Newton used notations similar to the prime <span class="math-tex" data-type="tex">\(y^\prime\)</span> notations we use here.</p>
 <p>The Leibniz notation is suggested by the definition of derivative. The Newton quotient <span class="math-tex" data-type="tex">\(\frac{f\left(x+h\right)-f\left(x\right)}{h}\)</span>, whose limit we take to find the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, can be written in the form <span class="math-tex" data-type="tex">\(\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span>, where <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y=f\left(x+h\right)-f\left(x\right)\)</span> is the increment in <span class="math-tex" data-type="tex">\(y\)</span>, and <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x=h\)</span> is the corresponding increment in <span class="math-tex" data-type="tex">\(x\)</span> as we pass from the point <span class="math-tex" data-type="tex">\(\left(x,f\left(x\right)\right)\)</span> to the point <span class="math-tex" data-type="tex">\(\left(x+h,f\left(x+h\right)\right)\)</span> on the graph of <span class="math-tex" data-type="tex">\(f\)</span>. <span class="math-tex" data-type="tex">\(\Delta\)</span> is the uppercase Greek letter Delta. Using symbols:</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -640,7 +605,7 @@ f\prime\left(x\right)=\begin{cases}
 <p>The Newton quotient <span class="math-tex" data-type="tex">\(\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span> is actually the quotient of two quantities, <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> and <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span>. It is not at all clear, however, that the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, the limit of <span class="math-tex" data-type="tex">\(\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span> as <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> approaches zero, can be regarded as a quotient. If <span class="math-tex" data-type="tex">\(y\)</span> is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>, then <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> approaches zero when <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> approaches zero, so <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> appears to be the meaningless quantity <span class="math-tex" data-type="tex">\(\frac{0}{0}\)</span>. Nevertheless, it is sometimes useful to be able to refer to quantities <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt y\)</span> and <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt x\)</span> in such a way that their quotient is the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>. We can justify this by regarding <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt x\)</span> as a new independent variable (called the <i>differential of <span class="math-tex" data-type="tex">\(x\)</span></i>) and defining a new dependent variable <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt y\)</span> (the <i>differential of <span class="math-tex" data-type="tex">\(y\)</span></i>) as a function of <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt x\)</span> by</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f\prime(x)\,\mathrm d\kern-0.5pt x
+\mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f^\prime(x)\,\mathrm d\kern-0.5pt x
 \]
 </div>
 <p>For example, if <span class="math-tex" data-type="tex">\(y=x^2\)</span>, we can write <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y=2x\,\mathrm{d}\kern-0.5pt x\)</span> to mean the same thing as <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=2x\)</span>. Similarly, if <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{1}{x}\)</span>, we can write <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y=-\frac{1}{x^2}\,\mathrm{d}\kern-0.5pt x\)</span> as the equivalent differential form of the assertion that <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{x^2}\)</span>. This <i>differential notation</i> is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.</p>
@@ -661,13 +626,13 @@ y=f\left(x\right)\,,
 <p>but if the change <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> is small, then we can get a good approximation to <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> by using the fact that <span class="math-tex" data-type="tex">\(\displaystyle\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span> is approximately the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>. Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
-\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f\prime\left(x\right)\Delta\kern-0.5pt x\,.
+\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f^\prime\left(x\right)\Delta\kern-0.5pt x\,.
 \]
 </div>
 <p>It is often convenient to represent this approximation in terms of differentials; if we denote the change in <span class="math-tex" data-type="tex">\(x\)</span> by <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x\)</span> instead of <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span>, then the change <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> in <span class="math-tex" data-type="tex">\(y\)</span> is approximated by the differential <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y\)</span>, that is</p>
 <div class="math-tex" data-type="equation">
 \[
-\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
 \]
 </div>
 <figure>
@@ -724,8 +689,8 @@ y=f\left(x\right)\,,
 <figcaption><span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y\)</span>, the change in height to the tangent line, approximates <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span>, the change in height to the graph of f</figcaption></figure>
 <section data-type="sect2">
 <h2>Some Questions</h2>
-<p>Is a function <span class="math-tex" data-type="tex">\(f\)</span> defined on an interval <span class="math-tex" data-type="tex">\(I\)</span> necessarily the derivative of some other function defined on <span class="math-tex" data-type="tex">\(I\)</span>? The answer is no; some functions are derivatives and some are not. Although a derivative need not be a continuous function, it must, like a continuous function, have the intermediate-value property: on an interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, a derivative <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\)</span> takes on every value between <span class="math-tex" data-type="tex">\(f\prime\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(b\right)\)</span>. We will prove this in a next section.</p>
-<p>If <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> is continuous on an interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(g\left(x\right)=f\prime\left(x\right)\)</span> for some function <span class="math-tex" data-type="tex">\(f\)</span> that is differentiable on <span class="math-tex" data-type="tex">\(I\)</span> . We will discuss this fact further in Chapter 6.</p>
+<p>Is a function <span class="math-tex" data-type="tex">\(f\)</span> defined on an interval <span class="math-tex" data-type="tex">\(I\)</span> necessarily the derivative of some other function defined on <span class="math-tex" data-type="tex">\(I\)</span>? The answer is no; some functions are derivatives and some are not. Although a derivative need not be a continuous function, it must, like a continuous function, have the intermediate-value property: on an interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, a derivative <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> takes on every value between <span class="math-tex" data-type="tex">\(f^\prime\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f^\prime\left(b\right)\)</span>. We will prove this in a next section.</p>
+<p>If <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> is continuous on an interval <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(g\left(x\right)=f^\prime\left(x\right)\)</span> for some function <span class="math-tex" data-type="tex">\(f\)</span> that is differentiable on <span class="math-tex" data-type="tex">\(I\)</span> . We will discuss this fact further in Chapter 6.</p>
 <section data-type="sect1">
 <h1>Differentiation Rules</h1>
 <p>If every derivative had to be calculated directly from the definition of derivative as in the examples of the previou section, calculus would indeed be a painful subject. Fortunately, there is an easier way. We will develop several general differentiation rules that enable us to calculate the derivatives of complicated combinations of functions easily if we already know the derivatives of the elementary functions from which they are constructed.</p>
@@ -739,13 +704,13 @@ y=f\left(x\right)\,,
 <p>Since <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, we know that</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=f\prime\left(x\right)
+\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=f^\prime\left(x\right)
 \]
 </div>
 <p>exists. Using the limit rules, we have</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{h\to 0}f\left(x+h\right)-f\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}h=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\lim_{h\to 0}h=f\prime\left(x\right)0=0\,.
+\lim_{h\to 0}f\left(x+h\right)-f\left(x\right)=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}h=\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}\lim_{h\to 0}h=f^\prime\left(x\right)0=0\,.
 \]
 </div>
 <p>This is equivalent to <span class="math-tex" data-type="tex">\(\lim_{h\to 0}f\left(x+h\right)=f\left(x\right)\)</span>, which says that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>.</p>
@@ -759,9 +724,9 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(f+g\right)^\prime\left(x\right)&=f\prime\left(x\right)+g\prime\left(x\right)\\
-\left(f-g\right)^\prime\left(x\right)&=f\prime\left(x\right)-g\prime\left(x\right)\\
-\left(Cf\right)^\prime\left(x\right)&=Cf\prime\left(x\right)\,.
+\left(f+g\right)^\prime\left(x\right)&=f^\prime\left(x\right)+g^\prime\left(x\right)\\
+\left(f-g\right)^\prime\left(x\right)&=f^\prime\left(x\right)-g^\prime\left(x\right)\\
+\left(Cf\right)^\prime\left(x\right)&=Cf^\prime\left(x\right)\,.
 \end{aligned}
 \]
 </div>
@@ -776,7 +741,7 @@ y=f\left(x\right)\,,
 \left(f+g\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{\left(f+g\right)\left(x+h\right)-\left(f+g\right)\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{\left(f\left(x+h\right)+g\left(x+h\right)\right)-\left(f\left(x\right)+g\left(x\right)\right)}{h}\\
 &=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}+\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
-&=f\prime\left(x\right)+g\prime\left(x\right)\,,
+&=f^\prime\left(x\right)+g^\prime\left(x\right)\,,
 \end{aligned}
 \]
 </div>
@@ -786,7 +751,7 @@ y=f\left(x\right)\,,
 \[
 \begin{aligned}
 \left(Cf\right)^\prime\left(x\right)&=\lim_{h\to 0}\frac{Cf\left(x+h\right)-Cf\left(x\right)}{h}\\
-&=C\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=Cf\prime\left(x\right)\,.
+&=C\lim_{h\to 0}\frac{f\left(x+h\right)-f\left(x\right)}{h}=Cf^\prime\left(x\right)\,.
 \end{aligned}
 \]
 </div>
@@ -809,7 +774,7 @@ y=f\left(x\right)\,,
 \begin{aligned}
 \left(f_1+f_2+\cdots+f_k+f_{k+1}\right)^\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)^\prime\\
 &=\left(f+f_{k+1}\right)^\prime\\
-&=f\prime+f_{k+1}\prime\\
+&=f^\prime+f_{k+1}\prime\\
 &=f_1^\prime+f_2^\prime+\cdots+f_k^\prime+f_{k+1}\prime\,.
 \end{aligned}
 \]
@@ -823,7 +788,7 @@ y=f\left(x\right)\,,
 <p>If functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, then their product <span class="math-tex" data-type="tex">\(fg\)</span> is also differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(fg\right)^\prime\left(x\right)=f\prime\left(x\right)g\left(x\right)+f\left(x\right)g\prime\left(x\right)
+\left(fg\right)^\prime\left(x\right)=f^\prime\left(x\right)g\left(x\right)+f\left(x\right)g^\prime\left(x\right)
 \]
 </div>
 </div>
@@ -837,7 +802,7 @@ y=f\left(x\right)\,,
 &=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 &=\lim_{h\to 0}\frac{f\left(x+h\right)g\left(x+h\right)-f\left(x\right)g\left(x+h\right)+f\left(x\right)g\left(x+h\right)-f\left(x\right)g\left(x\right)}{h}\\
 &=\lim_{h\to 0}\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}g\left(x+h\right)+f\left(x\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\right)\\
-&=f\prime\left(x\right)g\left(x\right)+f\left(x\right)g\prime\left(x\right)\,,
+&=f^\prime\left(x\right)g\left(x\right)+f\left(x\right)g^\prime\left(x\right)\,,
 \end{aligned}
 \]
 </div>
@@ -865,7 +830,7 @@ y=f\left(x\right)\,,
 \[
 \begin{aligned}
 \left(fgh\right)^\prime\left(x\right)&=f^\prime\left(x\right)\left(gh\right)\left(x\right)+f\left(x\right)\left(gh\right)^\prime\left(x\right)\\
-&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\prime\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\left(x\right)h\prime\left(x\right)\,.
+&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f^\prime\left(x\right)g^\prime\left(x\right)h\left(x\right)+f^\prime\left(x\right)g\left(x\right)h^\prime\left(x\right)\,.
 \end{aligned}
 \]
 </div>
@@ -886,7 +851,7 @@ y=f\left(x\right)\,,
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(f\left(x\right)\ne0\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle\frac{1}{f}\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(\frac{1}{f}\right)^\prime\left(x\right)=\frac{-f\prime\left(x\right)}{\left(f\left(x\right)\right)^2}\,.
+\left(\frac{1}{f}\right)^\prime\left(x\right)=\frac{-f^\prime\left(x\right)}{\left(f\left(x\right)\right)^2}\,.
 \]
 </div>
 </div>
@@ -899,7 +864,7 @@ y=f\left(x\right)\,,
 \frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
 &=\lim_{h\to 0}\frac{f\left(x\right)-f\left(x+h\right)}{hf\left(x+h\right)f\left(x\right)}\\
 &=\lim_{h\to 0}\left(\frac{-1}{f\left(x+h\right)f\left(x\right)}\right)\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}\right)\\
-&=\frac{-1}{\left(f\left(x\right)\right)^2}f\prime\left(x\right)
+&=\frac{-1}{\left(f\left(x\right)\right)^2}f^\prime\left(x\right)
 \end{aligned}
 \]
 </div>
@@ -926,8 +891,8 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
-&= \frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
+\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f^\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
+&= \frac{g\left(x\right)f^\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 \end{aligned}
 \]
 </div>
@@ -937,11 +902,11 @@ y=f\left(x\right)\,,
 <p>If <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and if <span class="math-tex" data-type="tex">\(g\left(x\right)\ne0\)</span>, then the quotient <span class="math-tex" data-type="tex">\(\displaystyle\frac{f}{g}\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span> and</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(\frac{f}{g}\right)^\prime=\frac{g\left(x\right)f\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
+\left(\frac{f}{g}\right)^\prime=\frac{g\left(x\right)f^\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 \]
 </div>
 </div>
-<section data-type="sect2" class="pagebreak" >
+<section data-type="sect2">
 <h2>Chain Rule</h2>
 <p>Although we can differentiate <span class="math-tex" data-type="tex">\(\sqrt x\)</span> and <span class="math-tex" data-type="tex">\(x^2+1\)</span>, we cannot yet differentiate <span class="math-tex" data-type="tex">\(\sqrt{x^2+1}\)</span>. To do this, we need a rule that tells us how to differentiate composites of functions whose derivatives we already know. This rule is known as the Chain Rule and is the most often used of all the differentiation rules.</p>
 <div data-type="theorem">
@@ -949,7 +914,7 @@ y=f\left(x\right)\,,
 <p>If <span class="math-tex" data-type="tex">\(f\left(u\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span>, and <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, then the composite function <span class="math-tex" data-type="tex">\(f\circ g\left(x\right)=f\left(g\left(x\right)\right)\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, and</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(f\circ g\right)^\prime=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)
+\left(f\circ g\right)^\prime=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)
 \]
 </div>
 </div>
@@ -984,32 +949,32 @@ y=f\left(x\right)\,,
 \[
 E\left(k\right)=\begin{cases}
 0&\textrm{if }k=0\,.\\
-\frac{f\left(u+k\right)-f\left(u\right)}{k}-f\prime\left(u\right)&\textrm{if }k\ne0\,.
+\frac{f\left(u+k\right)-f\left(u\right)}{k}-f^\prime\left(u\right)&\textrm{if }k\ne0\,.
 \end{cases}
 \]
 </div>
 <p>By the definition of derivative</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{k\to 0}E\left(k\right)=f\prime\left(u\right)-f\prime\left(u\right)=0=E\left(0\right)\,,
+\lim_{k\to 0}E\left(k\right)=f^\prime\left(u\right)-f^\prime\left(u\right)=0=E\left(0\right)\,,
 \]
 </div>
 <p>so <span class="math-tex" data-type="tex">\(E\left(k\right)\)</span> is continuous at <span class="math-tex" data-type="tex">\(k=0\)</span>. Also, whether <span class="math-tex" data-type="tex">\(k=0\)</span> or not, we have</p>
 <div class="math-tex" data-type="equation">
 \[
-f\left(u+k\right)-f\left(u\right)=\left(f\prime\left(u\right)+E\left(k\right)\right)k\,.
+f\left(u+k\right)-f\left(u\right)=\left(f^\prime\left(u\right)+E\left(k\right)\right)k\,.
 \]
 </div>
 <p>Now put <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(k=g\left(x+h\right)-g\left(x\right)\)</span>, so that <span class="math-tex" data-type="tex">\(u+k=g\left(x+h\right)\)</span>, and obtain</p>
 <div class="math-tex" data-type="equation">
 \[
-f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
+f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\left(g\left(x+h\right)-g\left(x\right)\right)\,.
 \]
 </div>
 <p>Since <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>,</p>
 <div class="math-tex" data-type="equation">
 \[
-\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g\prime\left(x\right)\,.
+\lim_{h\to 0}\frac{g\left(x+h\right)-g\left(x\right)}{h}=g^\prime\left(x\right)\,.
 \]
 </div>
 <p>Also, <span class="math-tex" data-type="tex">\(g\)</span> is continuous at <span class="math-tex" data-type="tex">\(x\)</span>, so</p>
@@ -1029,8 +994,8 @@ f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left
 \[
 \begin{aligned}
 \frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
-&=\lim_{h\to 0}\left(f\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
-&=\left(f\prime\left(g\left(x\right)\right)+0\right)g\prime\left(x\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\,,
+&=\lim_{h\to 0}\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
+&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 \end{aligned}
 \]
 </div>
@@ -1042,20 +1007,20 @@ f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f\prime\left
 <p>Here <span class="math-tex" data-type="tex">\(y=f\left(g\left(x\right)\right)\)</span>, where <span class="math-tex" data-type="tex">\(f\left(u\right)=\sqrt u\)</span> and <span class="math-tex" data-type="tex">\(g\left(x\right)=x^2+1\)</span>. Since the derivatives of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are</p>
 <div class="math-tex" data-type="equation">
 \[
-f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\right)=2x\,,
+f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\right)=2x\,,
 \]
 </div>
 <p>the Chain Rules gives</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f\prime\left(g\left(x\right)\right)g\prime\left(x\right)\\
-&=\frac{1}{2\sqrt{g\left(x\right)}}g\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
+\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\\
+&=\frac{1}{2\sqrt{g\left(x\right)}}g^\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
 \end{aligned}
 \]
 </div>
 </div>
-<section data-type="sect1" class="pagebreak" >
+<section data-type="sect1">
 <h1>Derivatives of Trigonometric Functions</h1>
 <p>In this section we will calculate the derivatives of the six trigonometric functions. We only have to work hard for one of them, sine; the others then follow from known identities and the differentiation rules</p>
 <p>First, we have to establish some trigonometric limits that we will need to calculate the derivative of sine. It is assumed throughout that the arguments of the trigonometric functions are measured in radians.</p>
@@ -1179,7 +1144,7 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 </div>
 <p>The graph of the function <span class="math-tex" data-type="tex">\(\displaystyle\frac{\sin\theta}{\theta}\)</span> is shown in the next figure. Although it is not defined at <span class="math-tex" data-type="tex">\(\theta=0\)</span>, this function appears to have limit <span class="math-tex" data-type="tex">\(1\)</span> as <span class="math-tex" data-type="tex">\(\theta\)</span> approaches <span class="math-tex" data-type="tex">\(0\)</span>.</p>
 <figure>
-<svg xmlns="http://www.w3.org/2000/svg" width="560" height="80">
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="88.0">
 <defs>
 <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse">
 <path d="M 0 0 L 6 3 L 0 6 z" fill="black"/>
@@ -1423,37 +1388,37 @@ f\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g\prime\left(x\ri
 </div>
 <section data-type="sect1">
 <h1>Higher Order Derivatives</h1>
-<p>If the derivative <span class="math-tex" data-type="tex">\(y\prime=f\prime\left(x\right)\)</span> of a function <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is itself differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, we can calculate its derivative, which we call the second derivative of <span class="math-tex" data-type="tex">\(f\)</span> and denote by <span class="math-tex" data-type="tex">\(y\prime\prime=f\prime\prime\left(x\right)\)</span>. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are</p>
+<p>If the derivative <span class="math-tex" data-type="tex">\(y^\prime=f^\prime\left(x\right)\)</span> of a function <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is itself differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, we can calculate its derivative, which we call the second derivative of <span class="math-tex" data-type="tex">\(f\)</span> and denote by <span class="math-tex" data-type="tex">\(y^{\prime\prime}=f^{\prime\prime}\left(x\right)\)</span>. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are</p>
 <div class="math-tex" data-type="equation">
 \[
-y\prime\prime=f\prime\prime\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=𝖣_x^2y=𝖣_x^2f\left(x\right)\,.
+y^{\prime\prime}=f^{\prime\prime}\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
 \]
 </div>
 <p>Similarly, you can consider third-, fourth-, and in general <span class="math-tex" data-type="tex">\(n\)</span>th-order derivatives. The prime notation is inconvenient for derivatives of high order, so we denote the order by a superscript in parentheses (to distinguish it from an exponent): the <span class="math-tex" data-type="tex">\(n\)</span>th derivative of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=𝖣_x^ny=𝖣_x^nf\left(x\right)\,,
+y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
 \]
 </div>
-<p>and it is defined to be the derivative of the <span class="math-tex" data-type="tex">\(\left(n-1\right)\)</span>st derivative. For <span class="math-tex" data-type="tex">\(n=1,2,3\)</span> primes are still normally used: <span class="math-tex" data-type="tex">\(f^{\left(3\right)}=f\prime\prime\prime\)</span>. It is convenient to denote <span class="math-tex" data-type="tex">\(f^{\left(0\right)}=f\)</span>, that is, to regard a function as its own zeroth-order derivative.</p>
+<p>and it is defined to be the derivative of the <span class="math-tex" data-type="tex">\(\left(n-1\right)\)</span>st derivative. For <span class="math-tex" data-type="tex">\(n=1,2,3\)</span> primes are still normally used: <span class="math-tex" data-type="tex">\(f^{\left(3\right)}=f^{\prime\prime}\prime\)</span>. It is convenient to denote <span class="math-tex" data-type="tex">\(f^{\left(0\right)}=f\)</span>, that is, to regard a function as its own zeroth-order derivative.</p>
 <div data-type="example">
 <h1></h1>
 <p>The <i>velocity</i> of a moving object is the (instantaneous) rate of change of the position of the object with respect to time; if the object moves along the <span class="math-tex" data-type="tex">\(x\)</span>-axis and is at position <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> at time <span class="math-tex" data-type="tex">\(t\)</span>, then its velocity at that time is</p>
 <div class="math-tex" data-type="equation">
 \[
-v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f\prime\left(t\right)\,.
+v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f^\prime\left(t\right)\,.
 \]
 </div>
 <p>Similarly, the <i>acceleration</i> of the object is the rate of change of the velocity. Thus, the acceleration is the second derivative of the position:</p>
 <div class="math-tex" data-type="equation">
 \[
-a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f\prime\prime\left(t\right)\,.
+a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f^{\prime\prime}\left(t\right)\,.
 \]
 </div>
 </div>
 <div data-type="example">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(y=x^3\)</span>, then <span class="math-tex" data-type="tex">\(y\prime=3x^2\)</span>, <span class="math-tex" data-type="tex">\(y\prime\prime=6x\)</span>, <span class="math-tex" data-type="tex">\(y\prime\prime\prime=6\)</span>, <span class="math-tex" data-type="tex">\(y^{\left(4\right)}=0\)</span>, and all higher derivatives are zero.</p>
+<p>If <span class="math-tex" data-type="tex">\(y=x^3\)</span>, then <span class="math-tex" data-type="tex">\(y^\prime=3x^2\)</span>, <span class="math-tex" data-type="tex">\(y^{\prime\prime}=6x\)</span>, <span class="math-tex" data-type="tex">\(y^{\prime\prime}\prime=6\)</span>, <span class="math-tex" data-type="tex">\(y^{\left(4\right)}=0\)</span>, and all higher derivatives are zero.</p>
 </div>
 <p>In general, if <span class="math-tex" data-type="tex">\(f\left(x\right)=x^n\)</span> (where <span class="math-tex" data-type="tex">\(n\)</span> is a positive integer), then</p>
 <div class="math-tex" data-type="equation">
@@ -1534,7 +1499,7 @@ x^2+y^2=25
 \[
 \begin{aligned}
 y+xy^\prime+2yy^\prime&=2\\
-y^\prime+y^\prime+xy^{\prime\prime}+2\left(y\prime\right)^2+2yy^{\prime\prime}&=0\,.
+y^\prime+y^\prime+xy^{\prime\prime}+2\left(y^\prime\right)^2+2yy^{\prime\prime}&=0\,.
 \end{aligned}
 \]
 </div>
@@ -1569,7 +1534,7 @@ ny^{n-1}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=mx^{m-1}\,,
 </div>
 <section data-type="sect1">
 <h1>Derivatives of Inverse Functions</h1>
-<p>Suppose that the function <span class="math-tex" data-type="tex">\(f\)</span> is differentiable on an interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and that either <span class="math-tex" data-type="tex">\(f\prime\left(x\right)&gt;0\)</span> for <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>, so that <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, or <span class="math-tex" data-type="tex">\(f\prime\left(x\right)&lt;0\)</span> for <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>, so that <span class="math-tex" data-type="tex">\(f\)</span> is decreasing on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. In either case <span class="math-tex" data-type="tex">\(f\)</span> is bijective on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and has an inverse, <span class="math-tex" data-type="tex">\(f^{-1}\)</span> there. Differentiating the cancellation identity</p>
+<p>Suppose that the function <span class="math-tex" data-type="tex">\(f\)</span> is differentiable on an interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and that either <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)&gt;0\)</span> for <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>, so that <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, or <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)&lt;0\)</span> for <span class="math-tex" data-type="tex">\(a&lt;x&lt;b\)</span>, so that <span class="math-tex" data-type="tex">\(f\)</span> is decreasing on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. In either case <span class="math-tex" data-type="tex">\(f\)</span> is bijective on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and has an inverse, <span class="math-tex" data-type="tex">\(f^{-1}\)</span> there. Differentiating the cancellation identity</p>
 <div class="math-tex" data-type="equation">
 \[
 f\left(f^{-1}\left(x\right)\right)=x
@@ -1578,13 +1543,13 @@ f\left(f^{-1}\left(x\right)\right)=x
 <p>with respect to <span class="math-tex" data-type="tex">\(x\)</span>, using the chain rule, we obtain</p>
 <div class="math-tex" data-type="equation">
 \[
-f\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{\mathrm d\hphantom{x}}{\mathrm dx}x=1\,.
+f^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{\mathrm d\hphantom{x}}{\mathrm dx}x=1\,.
 \]
 </div>
 <p>Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{1}{f\prime\left(f^{-1}\left(x\right)\right)}\,.
+\frac{\mathrm d\hphantom{x}}{\mathrm dx}f^{-1}\left(x\right)=\frac{1}{f^\prime\left(f^{-1}\left(x\right)\right)}\,.
 \]
 </div>
 <p>In Leibniz notation, if <span class="math-tex" data-type="tex">\(y=f^{-1}\left(x\right)\)</span>, we have</p>
@@ -1637,12 +1602,12 @@ f\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm d\hphantom{x}}{\mathrm dx}
 <div data-type="example">
 <h1></h1>
 <p>Show that <span class="math-tex" data-type="tex">\(f\left(x\right)=x^3+x\)</span> is bijective on the whole real line, and, nothing that <span class="math-tex" data-type="tex">\(f\left(2\right)=10\)</span>, find <span class="math-tex" data-type="tex">\(\left(f^{-1}\right)^\prime\left(10\right)\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=3x^2+1&gt;0\)</span> for all real numbers <span class="math-tex" data-type="tex">\(x\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is increasing and therefore bijective and invertible. If <span class="math-tex" data-type="tex">\(y=f^{-1}\left(x\right)\)</span>, then</p>
+<p>Since <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=3x^2+1&gt;0\)</span> for all real numbers <span class="math-tex" data-type="tex">\(x\)</span>, <span class="math-tex" data-type="tex">\(f\)</span> is increasing and therefore bijective and invertible. If <span class="math-tex" data-type="tex">\(y=f^{-1}\left(x\right)\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
-&\implies y\prime=\frac{1}{3y^2+1}\,.
+x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y^\prime\\
+&\implies y^\prime=\frac{1}{3y^2+1}\,.
 \end{aligned}
 \]
 </div>
@@ -1716,7 +1681,7 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <p>Suppose that the function <span class="math-tex" data-type="tex">\(f\)</span> is continuous on the closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and that it is differentiable on the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. Then there exists a point <span class="math-tex" data-type="tex">\(c\)</span> in the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{f\left(b\right)-f\left(a\right)}{b-a}=f\prime\left(c\right)\,.
+\frac{f\left(b\right)-f\left(a\right)}{b-a}=f^\prime\left(c\right)\,.
 \]
 </div>
 </div>
@@ -1736,7 +1701,7 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 <p>The Mean-Value theorem is one of those deep results that is based on the completeness of the real number system via the fact that a continuous function on a closed, finite interval takes on a maximum and minimum value (Extreme-Value theorem). Before giving the proof, we establish two preliminary results.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(f\)</span> is defined on an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and achieves a maximum (or minimum) value at the point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if <span class="math-tex" data-type="tex">\(f\prime\left(c\right)\)</span> exists, then <span class="math-tex" data-type="tex">\(f\prime\left(c\right)=0\)</span>. (Values of <span class="math-tex" data-type="tex">\(x\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=0\)</span> are called <i>critical points</i> of the function <span class="math-tex" data-type="tex">\(f\)</span>.)</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is defined on an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> and achieves a maximum (or minimum) value at the point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)\)</span> exists, then <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)=0\)</span>. (Values of <span class="math-tex" data-type="tex">\(x\)</span> where <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=0\)</span> are called <i>critical points</i> of the function <span class="math-tex" data-type="tex">\(f\)</span>.)</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -1757,15 +1722,15 @@ x=f\left(y\right)=y^3+y &\implies 1=(3y^2+1)y\prime\\
 </div>
 <div data-type="theorem">
 <h1>&nbsp;(Rolle's theorem)</h1>
-<p>Suppose that the function <span class="math-tex" data-type="tex">\(g\)</span> is continuous on the closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and that it is differentiable on the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. If <span class="math-tex" data-type="tex">\(g\left(a\right)=g\left(b\right)\)</span>, then there exists a point <span class="math-tex" data-type="tex">\(c\)</span> in the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span>.</p>
+<p>Suppose that the function <span class="math-tex" data-type="tex">\(g\)</span> is continuous on the closed, finite interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and that it is differentiable on the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. If <span class="math-tex" data-type="tex">\(g\left(a\right)=g\left(b\right)\)</span>, then there exists a point <span class="math-tex" data-type="tex">\(c\)</span> in the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g^\prime\left(c\right)=0\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(g\left(x\right)=g\left(a\right)\)</span> for every <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(g\)</span> is a constant function, so <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span> for every <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. Therefore, suppose there exists <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\left(x\right)\ne g\left(a\right)\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(g\left(x\right)=g\left(a\right)\)</span> for every <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(g\)</span> is a constant function, so <span class="math-tex" data-type="tex">\(g^\prime\left(c\right)=0\)</span> for every <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>. Therefore, suppose there exists <span class="math-tex" data-type="tex">\(x\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\left(x\right)\ne g\left(a\right)\)</span>.</p>
 <p>Let us assume that <span class="math-tex" data-type="tex">\(g\left(x\right)&gt; g\left(a\right)\)</span>. (If <span class="math-tex" data-type="tex">\(g\left(x\right)&lt; g\left(a\right)\)</span>, the proof is similar.)</p>
 <p>By the Extreme-Value theorem, being continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, <span class="math-tex" data-type="tex">\(g\)</span> must have a maximum value at some point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(g\left(c\right)\ge g\left(x\right)&gt; g\left(a\right)=g\left(b\right)\)</span>, <span class="math-tex" data-type="tex">\(c\)</span> cannot be either <span class="math-tex" data-type="tex">\(a\)</span> or <span class="math-tex" data-type="tex">\(b\)</span>. Therefore, <span class="math-tex" data-type="tex">\(c\)</span> is in the open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, so <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(c\)</span>.</p>
-<p>By the previous theorem, <span class="math-tex" data-type="tex">\(c\)</span> must be a critical point of <span class="math-tex" data-type="tex">\(g\)</span>: <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span>.</p>
+<p>By the previous theorem, <span class="math-tex" data-type="tex">\(c\)</span> must be a critical point of <span class="math-tex" data-type="tex">\(g\)</span>: <span class="math-tex" data-type="tex">\(g^\prime\left(c\right)=0\)</span>.</p>
 </div>
 <p>Rolle’s theorem is a special case of the Mean-Value theorem in which the chord line has slope 0, so the corresponding parallel tangent line must also have slope 0. We can deduce the Mean-Value theorem from this special case.</p>
 <div data-type="proof">
@@ -1778,42 +1743,42 @@ g\left(x\right) = f\left(x\right)-\left(f\left(a\right)+\frac{f\left(b\right)-f\
 \]
 </div>
 <p>The function <span class="math-tex" data-type="tex">\(g\)</span> is also continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and differentiable on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> because <span class="math-tex" data-type="tex">\(f\)</span> has these properties.</p>
-<p>In addition, <span class="math-tex" data-type="tex">\(g\left(a\right)=g\left(b\right)=0\)</span>. By Rolle’s theorem, there is some point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g\prime\left(c\right)=0\)</span>.</p>
+<p>In addition, <span class="math-tex" data-type="tex">\(g\left(a\right)=g\left(b\right)=0\)</span>. By Rolle’s theorem, there is some point <span class="math-tex" data-type="tex">\(c\)</span> in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(g^\prime\left(c\right)=0\)</span>.</p>
 <p>Since</p>
 <div class="math-tex" data-type="equation">
 \[
-g\prime\left(x\right) = f\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
+g^\prime\left(x\right) = f^\prime\left(x\right)-\frac{f\left(b\right)-f\left(a\right)}{b-a}\,,
 \]
 </div>
 <p>it follows that</p>
 <div class="math-tex" data-type="equation">
 \[
-f\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
+f^\prime\left(c\right)=\frac{f\left(b\right)-f\left(a\right)}{b-a}\,.
 \]
 </div>
 </div>
 <p>Many of the applications we will make of the Mean-Value theorem will actually use the following generalized version of it.</p>
 <div data-type="theorem">
 <h1>&nbsp;(The Generalized Mean-Value theorem)</h1>
-<p>If functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are both continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and differentiable on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if <span class="math-tex" data-type="tex">\(g\prime\left(x\right)\ne 0\)</span> for every <span class="math-tex" data-type="tex">\(x\in\left]a,b\right[\)</span>, then there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,b\right[\)</span> such that</p>
+<p>If functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are both continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and differentiable on <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and if <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne 0\)</span> for every <span class="math-tex" data-type="tex">\(x\in\left]a,b\right[\)</span>, then there exists a number <span class="math-tex" data-type="tex">\(c \in \left]a,b\right[\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f\prime\left(c\right)}{g\prime\left(c\right)}\,.
+\frac{f\left(b\right)-f\left(a\right)}{g\left(b\right)-g\left(a\right)}=\frac{f^\prime\left(c\right)}{g^\prime\left(c\right)}\,.
 \]
 </div>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Note that <span class="math-tex" data-type="tex">\(g\left(b\right)\ne g\left(a\right)\)</span> otherwise, there would be some number in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> where <span class="math-tex" data-type="tex">\(g\prime\left(x\right)= 0\)</span>. Hence, neither denominator above can be zero. Apply the Mean-Value theorem to</p>
+<p>Note that <span class="math-tex" data-type="tex">\(g\left(b\right)\ne g\left(a\right)\)</span> otherwise, there would be some number in <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> where <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)= 0\)</span>. Hence, neither denominator above can be zero. Apply the Mean-Value theorem to</p>
 <div class="math-tex" data-type="equation">
 \[
 h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right)-g\left(a\right)\right)-\left(g\left(b\right)-g\left(a\right)\right)\left(f\left(x\right)-f\left(a\right)\right)\,.
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(h\left(a\right)=h\left(b\right)=0\)</span>, there exists <span class="math-tex" data-type="tex">\(c\in \left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(h\prime\left(c\right)=0\)</span>. Thus,</p>
+<p>Since <span class="math-tex" data-type="tex">\(h\left(a\right)=h\left(b\right)=0\)</span>, there exists <span class="math-tex" data-type="tex">\(c\in \left]a,b\right[\)</span> such that <span class="math-tex" data-type="tex">\(h^\prime\left(c\right)=0\)</span>. Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(f\left(b\right)-f\left(a\right)\right)g\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f\prime\left(c\right)=0\,,
+\left(f\left(b\right)-f\left(a\right)\right)g^\prime\left(c\right)-\left(g\left(b\right)-g\left(a\right)\right)f^\prime\left(c\right)=0\,,
 \]
 </div>
 <p>and the result follows on division by the <span class="math-tex" data-type="tex">\(g\)</span> factors.</p>
@@ -1920,7 +1885,7 @@ G\left(x\right)=\begin{cases}
 <p>Do not try to use l’Hôpital’s Rules to evaluate limits that are not indeterminate of type <span class="math-tex" data-type="tex">\(\left[\frac{0}{0}\right]\)</span> or <span class="math-tex" data-type="tex">\(\left[\frac{\infty}{\infty}\right]\)</span>; such attempts will almost always lead to false conclusions.</p>
 <section data-type="sect1">
 <h1>Increasing and Decreasing Functions</h1>
-<p>Intervals on which the graph of a function <span class="math-tex" data-type="tex">\(f\)</span> has positive or negative slope provide useful information about the behaviour of <span class="math-tex" data-type="tex">\(f\)</span>. The Mean-Value theorem enables us to determine such intervals by considering the sign of the derivative <span class="math-tex" data-type="tex">\(f\prime\)</span>.</p>
+<p>Intervals on which the graph of a function <span class="math-tex" data-type="tex">\(f\)</span> has positive or negative slope provide useful information about the behaviour of <span class="math-tex" data-type="tex">\(f\)</span>. The Mean-Value theorem enables us to determine such intervals by considering the sign of the derivative <span class="math-tex" data-type="tex">\(f^\prime\)</span>.</p>
 <div data-type="definition">
 <h1></h1>
 <p>Suppose that the function <span class="math-tex" data-type="tex">\(f\)</span> is defined on an interval <span class="math-tex" data-type="tex">\(I\)</span> and that <span class="math-tex" data-type="tex">\(x_1\)</span> and <span class="math-tex" data-type="tex">\(x_2\)</span> are two points of <span class="math-tex" data-type="tex">\(I\)</span>.</p>
@@ -1945,16 +1910,16 @@ G\left(x\right)=\begin{cases}
 <p>Let <span class="math-tex" data-type="tex">\(J\)</span> be an open interval, and let <span class="math-tex" data-type="tex">\(I\)</span> be an interval consisting of all the points in <span class="math-tex" data-type="tex">\(J\)</span> and possibly one or both of the endpoints of <span class="math-tex" data-type="tex">\(J\)</span>: Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous on <span class="math-tex" data-type="tex">\(I\)</span> and differentiable on <span class="math-tex" data-type="tex">\(J\)</span>.</p>
 <ul>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x\right)&gt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)&gt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is increasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x\right)&lt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is decreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)&lt;0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is decreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\ge 0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is nondecreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\ge 0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is nondecreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\le 0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is nonincreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\le 0\)</span> for all <span class="math-tex" data-type="tex">\(x\in J\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> is nonincreasing on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 </ul>
 </div>
@@ -1964,20 +1929,20 @@ G\left(x\right)=\begin{cases}
 <p>By the Mean-Value theorem there exists a point <span class="math-tex" data-type="tex">\(c \in \left]x_1,x_2\right[\)</span> (and therefore in <span class="math-tex" data-type="tex">\(J\)</span>) such that</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f\prime\left(c\right)\,;
+\frac{f\left(x_2\right)-f\left(x_1\right)}{x_2-x_1}=f^\prime\left(c\right)\,;
 \]
 </div>
-<p>hence, <span class="math-tex" data-type="tex">\(f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f\prime\left(c\right)\)</span>. Since <span class="math-tex" data-type="tex">\(x_2-x_1&gt;0\)</span>, the difference <span class="math-tex" data-type="tex">\(\left.f\left(x_2\right)-f\left(x_1\right)\right.\)</span> has the same sign as <span class="math-tex" data-type="tex">\(f\prime\left(c\right)\)</span> and may be zero if <span class="math-tex" data-type="tex">\(f\prime\left(c\right)\)</span> is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.</p>
+<p>hence, <span class="math-tex" data-type="tex">\(f\left(x_2\right)-f\left(x_1\right)=\left(x_2-x_1\right)f^\prime\left(c\right)\)</span>. Since <span class="math-tex" data-type="tex">\(x_2-x_1&gt;0\)</span>, the difference <span class="math-tex" data-type="tex">\(\left.f\left(x_2\right)-f\left(x_1\right)\right.\)</span> has the same sign as <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)\)</span> and may be zero if <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)\)</span> is zero. Thus, all four conclusions follow from the corresponding parts of the previous definition.</p>
 </div>
 <div data-type="example">
 <h1></h1>
 <p>On what intervals is the function <span class="math-tex" data-type="tex">\(f\left(x\right)=x^3-12x+1\)</span> increasing? On what intervals is it decreasing?</p>
-<p>We have <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)\)</span>. Observe that <span class="math-tex" data-type="tex">\(f\prime\left(x\right)&gt;0\)</span> if <span class="math-tex" data-type="tex">\(x&lt;-2\)</span> or <span class="math-tex" data-type="tex">\(x&gt;2\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x\right)&lt;0\)</span> if <span class="math-tex" data-type="tex">\(-2&lt;x&lt;2\)</span>. Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is increasing on the intervals <span class="math-tex" data-type="tex">\(\left]-\infty,-2\right[\)</span> and <span class="math-tex" data-type="tex">\(\left]2, \infty\right[\)</span> and is decreasing on the interval <span class="math-tex" data-type="tex">\(\left]-2,2\right[\)</span>.</p>
+<p>We have <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=3x^2-12=3\left(x-2\right)\left(x+2\right)\)</span>. Observe that <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)&gt;0\)</span> if <span class="math-tex" data-type="tex">\(x&lt;-2\)</span> or <span class="math-tex" data-type="tex">\(x&gt;2\)</span> and <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)&lt;0\)</span> if <span class="math-tex" data-type="tex">\(-2&lt;x&lt;2\)</span>. Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is increasing on the intervals <span class="math-tex" data-type="tex">\(\left]-\infty,-2\right[\)</span> and <span class="math-tex" data-type="tex">\(\left]2, \infty\right[\)</span> and is decreasing on the interval <span class="math-tex" data-type="tex">\(\left]-2,2\right[\)</span>.</p>
 </div>
 <p>If a function is constant on an interval, then its derivative is zero on that interval. The Mean-Value theorem provides a converse of this fact.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on an interval <span class="math-tex" data-type="tex">\(I\)</span>, and <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=0\)</span> every interior point of <span class="math-tex" data-type="tex">\(I\)</span> (i.e., at interior point of I that is not an endpoint of <span class="math-tex" data-type="tex">\(I\)</span>), then <span class="math-tex" data-type="tex">\(f\left(x\right)=C\)</span>, a constant, on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\)</span> is continuous on an interval <span class="math-tex" data-type="tex">\(I\)</span>, and <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=0\)</span> every interior point of <span class="math-tex" data-type="tex">\(I\)</span> (i.e., at interior point of I that is not an endpoint of <span class="math-tex" data-type="tex">\(I\)</span>), then <span class="math-tex" data-type="tex">\(f\left(x\right)=C\)</span>, a constant, on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -1985,10 +1950,10 @@ G\left(x\right)=\begin{cases}
 <p>If <span class="math-tex" data-type="tex">\(x\)</span> is any other point of <span class="math-tex" data-type="tex">\(I\)</span>, then the Mean-Value theorem says that there exists a point <span class="math-tex" data-type="tex">\(c\)</span> between <span class="math-tex" data-type="tex">\(x_0\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f\prime\left(x\right)\,.
+\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f^\prime\left(x\right)\,.
 \]
 </div>
-<p>The point <span class="math-tex" data-type="tex">\(c\)</span> must belong to <span class="math-tex" data-type="tex">\(I\)</span> because an interval contains all points between any two of its points, and <span class="math-tex" data-type="tex">\(c\)</span> cannot be an endpoint of <span class="math-tex" data-type="tex">\(I\)</span> since <span class="math-tex" data-type="tex">\(c\ne x_0\)</span> and <span class="math-tex" data-type="tex">\(c\ne x\)</span>.<br/>Since <span class="math-tex" data-type="tex">\(f\prime\left(c\right)=0\)</span> for all such points <span class="math-tex" data-type="tex">\(c\)</span>, we have <span class="math-tex" data-type="tex">\(f\left(x\right)-f\left(x_0\right)=0\)</span> for all <span class="math-tex" data-type="tex">\(x\in I\)</span>, and <span class="math-tex" data-type="tex">\(f\left(x\right)=f\left(x_0\right)=C\)</span> as claimed.</p>
+<p>The point <span class="math-tex" data-type="tex">\(c\)</span> must belong to <span class="math-tex" data-type="tex">\(I\)</span> because an interval contains all points between any two of its points, and <span class="math-tex" data-type="tex">\(c\)</span> cannot be an endpoint of <span class="math-tex" data-type="tex">\(I\)</span> since <span class="math-tex" data-type="tex">\(c\ne x_0\)</span> and <span class="math-tex" data-type="tex">\(c\ne x\)</span>.<br/>Since <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)=0\)</span> for all such points <span class="math-tex" data-type="tex">\(c\)</span>, we have <span class="math-tex" data-type="tex">\(f\left(x\right)-f\left(x_0\right)=0\)</span> for all <span class="math-tex" data-type="tex">\(x\in I\)</span>, and <span class="math-tex" data-type="tex">\(f\left(x\right)=f\left(x_0\right)=C\)</span> as claimed.</p>
 </div>
 <section data-type="sect1">
 <h1>Extreme Values</h1>
@@ -2017,10 +1982,10 @@ G\left(x\right)=\begin{cases}
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span> can have local extreme values only at points <span class="math-tex" data-type="tex">\(x\)</span> of three special types:</p>
 <ol>
 <li>
-<p>critical points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)=0\)</span>),</p>
+<p>critical points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=0\)</span>),</p>
 </li>
 <li>
-<p>singular points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f\prime\left(x\right)\)</span> is not defined), and</p>
+<p>singular points of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> where <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> is not defined), and</p>
 </li>
 <li>
 <p>endpoints of the domain of <span class="math-tex" data-type="tex">\(f\)</span> (points <span class="math-tex" data-type="tex">\(x\)</span> in the domain of <span class="math-tex" data-type="tex">\(f\)</span> that do not belong to any open interval contained in the domain of <span class="math-tex" data-type="tex">\(f\)</span>).</p>
@@ -2033,7 +1998,7 @@ G\left(x\right)=\begin{cases}
 <div data-type="proof">
 <h1></h1>
 <p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span> and that <span class="math-tex" data-type="tex">\(x_0\)</span> is neither an endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> nor a singular point of <span class="math-tex" data-type="tex">\(f\)</span>.</p>
-<p>Then for some <span class="math-tex" data-type="tex">\(h&gt;0\)</span>, <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is defined on the open interval <span class="math-tex" data-type="tex">\(\left]x_0-h,x_0+h\right[\)</span> and has an absolute maximum (for that interval) at <span class="math-tex" data-type="tex">\(x_0\)</span>. Also, <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)\)</span> exists. By the first preliminary result of the Mean-value theorem, <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)=0\)</span>.</p>
+<p>Then for some <span class="math-tex" data-type="tex">\(h&gt;0\)</span>, <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is defined on the open interval <span class="math-tex" data-type="tex">\(\left]x_0-h,x_0+h\right[\)</span> and has an absolute maximum (for that interval) at <span class="math-tex" data-type="tex">\(x_0\)</span>. Also, <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)\)</span> exists. By the first preliminary result of the Mean-value theorem, <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)=0\)</span>.</p>
 <p>The proof for the case where <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span> is similar.</p>
 </div>
 <p>Although a function cannot have extreme values anywhere other than at endpoints, critical points, and singular points, it need not have extreme values at such points.</p>
@@ -2046,7 +2011,7 @@ G\left(x\right)=\begin{cases}
 <p>Since <span class="math-tex" data-type="tex">\(g\)</span> is a polynomial, it can have no singular points. For critical points, we calculate</p>
 <div class="math-tex" data-type="equation">
 \[
-g\prime\left(x\right)=3x^2-6x-9=3\left(x^2-2x-3\right)=3\left(x+1\right)\left(x-3\right)=0
+g^\prime\left(x\right)=3x^2-6x-9=3\left(x^2-2x-3\right)=3\left(x+1\right)\left(x-3\right)=0
 \]
 </div>
 <p>if <span class="math-tex" data-type="tex">\(x=-1\)</span> or <span class="math-tex" data-type="tex">\(x=3\)</span>.</p>
@@ -2064,7 +2029,7 @@ g\left(-2\right)=0\,\quad g\left(-1\right)=7\,\quad g\left(2\right)=-20\,.
 <p>The derivative of <span class="math-tex" data-type="tex">\(h\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-h\prime\left(x\right) = 3\left(\frac{2}{3}\right)x^{-\frac{1}{3}}-2=2\left(x^{-\frac{1}{3}}-1\right)
+h^\prime\left(x\right) = 3\left(\frac{2}{3}\right)x^{-\frac{1}{3}}-2=2\left(x^{-\frac{1}{3}}-1\right)
 \]
 </div>
 <p>Note that <span class="math-tex" data-type="tex">\(x^{-\frac{1}{3}}\)</span> is not defined at the point <span class="math-tex" data-type="tex">\(x=0\)</span> in the domain of <span class="math-tex" data-type="tex">\(h\)</span>, so <span class="math-tex" data-type="tex">\(x=0\)</span> is a singular point of <span class="math-tex" data-type="tex">\(h\)</span>. Also, <span class="math-tex" data-type="tex">\(h\)</span> has a critical point where <span class="math-tex" data-type="tex">\(x^{-\frac{1}{3}}=1\)</span>, that is, at <span class="math-tex" data-type="tex">\(x=1\)</span>, which also happens to be an endpoint of the domain of <span class="math-tex" data-type="tex">\(h\)</span>. We must therefore examine the values of <span class="math-tex" data-type="tex">\(h\)</span> at the points <span class="math-tex" data-type="tex">\(x=0\)</span> and <span class="math-tex" data-type="tex">\(x=1\)</span>, as well as at the other endpoint <span class="math-tex" data-type="tex">\(x=-1\)</span>. We have</p>
@@ -2084,33 +2049,33 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 <p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is continuous at <span class="math-tex" data-type="tex">\(x_0\)</span>, and <span class="math-tex" data-type="tex">\(x_0\)</span> is not an endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span>:</p>
 <ul>
 <li>
-<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
 </li>
 <li>
-<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
+<p>If there exists an open interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span> containing <span class="math-tex" data-type="tex">\(x_0\)</span> such that <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]a,x_0\right[\)</span> and <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;0\)</span> on <span class="math-tex" data-type="tex">\(\left]x_0,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
 </li>
 </ul>
 <p>PART II. Testing endpoints of the domain.</p>
 <p>Suppose <span class="math-tex" data-type="tex">\(a\)</span> is a left endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is right continuous at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 <ul>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 </li>
 </ul>
 <p>Suppose <span class="math-tex" data-type="tex">\(b\)</span> is a right endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is left continuous at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
 <ul>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&gt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\left(x_0\right)&lt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local mainimum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local mainimum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
 </li>
 </ul>
 </div>
-<p>If <span class="math-tex" data-type="tex">\(f\prime\)</span> is positive (or negative) on both sides of a critical or singular point, then <span class="math-tex" data-type="tex">\(f\)</span> has neither a maximum nor a minimum value at that point.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\)</span> is positive (or negative) on both sides of a critical or singular point, then <span class="math-tex" data-type="tex">\(f\)</span> has neither a maximum nor a minimum value at that point.</p>
 <section data-type="sect2">
 <h2>Functions Not Defined on Closed, Finite Intervals</h2>
 <p>If the function <span class="math-tex" data-type="tex">\(f\)</span> is not defined on a closed, finite interval, then the extended Extreme-value theorem cannot be used to guarantee the existence of maximum and minimum values for <span class="math-tex" data-type="tex">\(f\)</span>. Of course, <span class="math-tex" data-type="tex">\(f\)</span> may still have such extreme values. In many applied situations we will want to find extreme values of functions defined on infinite and/or open intervals.</p>
@@ -2554,7 +2519,6 @@ F^\prime\left(x\right)=f\left(x\right)
 </div>
 <p>For the moment, <span class="math-tex" data-type="tex">\(r\)</span> must be rational, but this restriction will be removed in the next chapter.</p>
 <p>The rule for differentiating sums and constant multiples of functions translates into a similar rule for antiderivatives</p>
-<div id="tag"></div>
 <p>The graphs of the different antiderivatives of the same function on the same interval are vertically displaced versions of the same curve. In general, only one of these curves will pass through any given point, so we can obtain a unique antiderivative of a given function on an interval by requiring the antiderivative to take a prescribed value at a particular point <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 <div data-type="example">
 <h1></h1>
