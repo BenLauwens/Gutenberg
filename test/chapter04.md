@@ -459,30 +459,30 @@ The three derivative formulas calculated in this example are special cases of th
 Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If ``y=f\left(x\right)``, we can use the dependent variable ``y`` to represent the function, and we can denote the derivative of the function with respect to ``x`` in any of the following ways:
 
 ```math
-\mathsf{D}_x\kern-0.5pt y=y^\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f^\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
+\mathsf{D}_x y=y^\prime=\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)=f^\prime\left(x\right)=\mathsf{D}_x f\left(x\right)=\mathsf{D} f\left(x\right)\,.
 ```
 
-(In the forms using “``\mathsf{D}_x``,” we can omit the subscript ``x`` if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable ``x`` is to write ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` in front of that expression. The symbol ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}`` is a differential operator and should be read “the derivative with respect to ``x`` of ``\dots``”.
+(In the forms using “``\mathsf{D}_x``,” we can omit the subscript ``x`` if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable ``x`` is to write ``\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}`` in front of that expression. The symbol ``\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}`` is a differential operator and should be read “the derivative with respect to ``x`` of ``\dots``”.
 
 The value of the derivative of a function at a particular number ``x_0`` in its domain can also be expressed in several ways:
 
 ```math
-\left.\mathsf{D}_x\kern-0.5pt y\right|_{x=x_0}=\left.y^\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f^\prime\left(x_0\right)=\mathsf{D}_x\kern-0.5pt f\left(x_0\right)\,.
+\left.\mathsf{D}_x y\right|_{x=x_0}=\left.y^\prime\right|_{x=x_0}=\left.\frac{\mathrm{d} y}{\mathrm{d} x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)\right|_{x=x_0}=f^\prime\left(x_0\right)=\mathsf{D}_x f\left(x_0\right)\,.
 ```
 
-The symbol ``\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}`` is called an *evaluation symbol*. It signifies that the expression preceding it should be evaluated at ``x=x_0``. Do not confuse ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)`` and ``\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}``. The first expression represents a *function*, ``f^\prime\left(x\right)``. The second represents a *number* ``f^\prime\left(x_0\right)``.
+The symbol ``\left.\vphantom{\frac{\mathrm{d} y}{\mathrm{d} x}}\right|_{x=x_0}`` is called an *evaluation symbol*. It signifies that the expression preceding it should be evaluated at ``x=x_0``. Do not confuse ``\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)`` and ``\left.\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)\right|_{x=x_0}``. The first expression represents a *function*, ``f^\prime\left(x\right)``. The second represents a *number* ``f^\prime\left(x_0\right)``.
 
-The notation ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` are called Leibniz notations for the derivative; Newton used notations similar to the prime ``y^\prime`` notations we use here.
+The notation ``\frac{\mathrm{d} y}{\mathrm{d} x}`` are called Leibniz notations for the derivative; Newton used notations similar to the prime ``y^\prime`` notations we use here.
 
-The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, can be written in the form ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}``, where ``\Delta\kern-0.5pt y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta\kern-0.5pt x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
+The Leibniz notation is suggested by the definition of derivative. The Newton quotient ``\frac{f\left(x+h\right)-f\left(x\right)}{h}``, whose limit we take to find the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``, can be written in the form ``\frac{\Delta y}{\Delta x}``, where ``\Delta y=f\left(x+h\right)-f\left(x\right)`` is the increment in ``y``, and ``\Delta x=h`` is the corresponding increment in ``x`` as we pass from the point ``\left(x,f\left(x\right)\right)`` to the point ``\left(x+h,f\left(x+h\right)\right)`` on the graph of ``f``. ``\Delta`` is the uppercase Greek letter Delta. Using symbols:
 
 ```math
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta\kern-0.5pt x\to 0}\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}.
 ```
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", tex(raw"\displaystyle\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta\kern-0.5pt x\to 0}\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}") ) do
+Figure("", tex(raw"\displaystyle\frac{\mathrm{d} y}{\mathrm{d} x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}") ) do
     scale = 40
     Drawing(width=6scale, height=5.5scale) do
         xmid = 1scale
@@ -503,19 +503,19 @@ Figure("", tex(raw"\displaystyle\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0
 		line(x1=xmid+x*scale, y1=ymid-fx*scale, x2=xmid+x*scale, y2=ymid, stroke="black", stroke_dasharray = "3")
 		line(x1=xmid+x0*scale, y1=ymid-fx0*scale, x2=xmid+x*scale, y2=ymid-fx0*scale, stroke="black", stroke_dasharray = "3")
 		latex("y=f\\left(x\\right)", x=xmid+3.5scale, y=ymid-2.5scale, width=4font_x, height=font_y)
-		latex("\\Delta\\kern-0.5pt x", x=xmid+2.1scale, y=ymid-2.85scale, width=2font_x, height=font_y)
-		latex("\\Delta\\kern-0.5pt y", x=xmid+3.5scale, y=ymid-3.5scale, width=2font_x, height=font_y)
+		latex("\\Delta x", x=xmid+2.1scale, y=ymid-2.85scale, width=2font_x, height=font_y)
+		latex("\\Delta y", x=xmid+3.5scale, y=ymid-3.5scale, width=2font_x, height=font_y)
     end
 end
 ```
 
-The Newton quotient ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` is actually the quotient of two quantities, ``\Delta\kern-0.5pt y`` and ``\Delta\kern-0.5pt x``. It is not at all clear, however, that the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, the limit of ``\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` as ``\Delta\kern-0.5pt x`` approaches zero, can be regarded as a quotient. If ``y`` is a continuous function of ``x``, then ``\Delta\kern-0.5pt y`` approaches zero when ``\Delta\kern-0.5pt x`` approaches zero, so ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` appears to be the meaningless quantity ``\frac{0}{0}``. Nevertheless, it is sometimes useful to be able to refer to quantities ``\mathrm d\kern-0.5pt y`` and ``\mathrm d\kern-0.5pt x`` in such a way that their quotient is the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. We can justify this by regarding ``\mathrm d\kern-0.5pt x`` as a new independent variable (called the *differential of ``x``*) and defining a new dependent variable ``\mathrm d\kern-0.5pt y`` (the *differential of ``y``*) as a function of ``x`` and ``\mathrm d\kern-0.5pt x`` by
+The Newton quotient ``\frac{\Delta y}{\Delta x}`` is actually the quotient of two quantities, ``\Delta y`` and ``\Delta x``. It is not at all clear, however, that the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``, the limit of ``\frac{\Delta y}{\Delta x}`` as ``\Delta x`` approaches zero, can be regarded as a quotient. If ``y`` is a continuous function of ``x``, then ``\Delta y`` approaches zero when ``\Delta x`` approaches zero, so ``\frac{\mathrm{d} y}{\mathrm{d} x}`` appears to be the meaningless quantity ``\frac{0}{0}``. Nevertheless, it is sometimes useful to be able to refer to quantities ``\mathrm d y`` and ``\mathrm d x`` in such a way that their quotient is the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``. We can justify this by regarding ``\mathrm d x`` as a new independent variable (called the *differential of ``x``*) and defining a new dependent variable ``\mathrm d y`` (the *differential of ``y``*) as a function of ``x`` and ``\mathrm d x`` by
 
 ```math
-\mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f^\prime(x)\,\mathrm d\kern-0.5pt x
+\mathrm{d} y=\frac{\mathrm{d} y}{\mathrm{d} x}\mathrm d x=f^\prime(x)\,\mathrm d x
 ```
 
-For example, if ``y=x^2``, we can write ``\mathrm{d}\kern-0.5pt y=2x\,\mathrm{d}\kern-0.5pt x`` to mean the same thing as ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=2x``. Similarly, if ``f\left(x\right)=\frac{1}{x}``, we can write ``\mathrm{d}\kern-0.5pt y=-\frac{1}{x^2}\,\mathrm{d}\kern-0.5pt x`` as the equivalent differential form of the assertion that ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{x^2}``. This *differential notation* is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.
+For example, if ``y=x^2``, we can write ``\mathrm{d} y=2x\,\mathrm{d} x`` to mean the same thing as ``\frac{\mathrm{d} y}{\mathrm{d} x}=2x``. Similarly, if ``f\left(x\right)=\frac{1}{x}``, we can write ``\mathrm{d} y=-\frac{1}{x^2}\,\mathrm{d} x`` as the equivalent differential form of the assertion that ``\frac{\mathrm{d} y}{\mathrm{d} x}=-\frac{1}{x^2}``. This *differential notation* is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.
 
 ### Approximation by Differentials
 
@@ -523,22 +523,22 @@ If one quantity, say ``y``, is a function of another quantity ``x``, that is,
 ```math
 y=f\left(x\right)\,,
 ```
-we sometimes want to know how a change in the value of ``x`` by an amount ``\Delta\kern-0.5pt x`` will affect the value of ``y``. The exact change ``\Delta\kern-0.5pt y`` in ``y`` is given by
+we sometimes want to know how a change in the value of ``x`` by an amount ``\Delta x`` will affect the value of ``y``. The exact change ``\Delta y`` in ``y`` is given by
 ```math
-\Delta\kern-0.5pt y=f\left(x+\Delta\kern-0.5pt x\right)-f\left(x\right)\,,
+\Delta y=f\left(x+\Delta x\right)-f\left(x\right)\,,
 ```
-but if the change ``\Delta\kern-0.5pt x`` is small, then we can get a good approximation to ``\Delta\kern-0.5pt y`` by using the fact that ``\displaystyle\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}`` is approximately the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``. Thus,
+but if the change ``\Delta x`` is small, then we can get a good approximation to ``\Delta y`` by using the fact that ``\displaystyle\frac{\Delta y}{\Delta x}`` is approximately the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``. Thus,
 ```math
-\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f^\prime\left(x\right)\Delta\kern-0.5pt x\,.
+\Delta y=\frac{\Delta y}{\Delta x}\Delta x\approx\frac{\mathrm{d} y}{\mathrm{d} x}\Delta x=f^\prime\left(x\right)\Delta x\,.
 ```
-It is often convenient to represent this approximation in terms of differentials; if we denote the change in ``x`` by ``\mathrm{d}\kern-0.5pt x`` instead of ``\Delta\kern-0.5pt x``, then the change ``\Delta\kern-0.5pt y`` in ``y`` is approximated by the differential ``\mathrm{d}\kern-0.5pt y``, that is
+It is often convenient to represent this approximation in terms of differentials; if we denote the change in ``x`` by ``\mathrm{d} x`` instead of ``\Delta x``, then the change ``\Delta y`` in ``y`` is approximated by the differential ``\mathrm{d} y``, that is
 ```math
-\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\Delta y\approx\mathrm{d} y=f^\prime\left(x\right)\,\mathrm{d} x\,.
 ```
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the tangent line, approximates " * tex(raw"\Delta\kern-0.5pt y") * ", the change in height to the graph of f" ) do
+Figure("", tex(raw"\mathrm{d} y") * ", the change in height to the tangent line, approximates " * tex(raw"\Delta y") * ", the change in height to the graph of f" ) do
     scale = 40
     Drawing(width=6scale, height=3.5scale) do
         xmid = 1scale
@@ -548,7 +548,7 @@ Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the ta
 		fx0 = f(x0)
 		x = 3.5
 		fx = f(x)
-        axis_xy(6scale,3.5scale,xmid,ymid,scale,(x0, x),tuple(), xs=("x","x+\\mathrm{d}\\kern-0.5pt y"))
+        axis_xy(6scale,3.5scale,xmid,ymid,scale,(x0, x),tuple(), xs=("x","x+\\mathrm{d} y"))
         plot_xy(f, -1:0.01:5, (2, 3.5), xmid, ymid, scale, width=1)
 		m = 0.2(x0+0.5)
 		plot_xy(x->m*(x-x0)+fx0, -1:0.01:5, tuple(), xmid, ymid, scale, width=1, color = "RoyalBlue")
@@ -559,11 +559,11 @@ Figure("", tex(raw"\mathrm{d}\kern-0.5pt y") * ", the change in height to the ta
 		line(x1=xmid+x*scale, y1=ymid-(m*(x-x0)+fx0)*scale, x2=xmid+5*scale, y2=ymid-(m*(x-x0)+fx0)*scale, stroke="black", stroke_dasharray = "3")
 		latex("y=f\\left(x\\right)", x=xmid+2.5scale, y=ymid-3scale, width=4font_x, height=font_y)
 		line(x1=xmid+x0*scale+3, y1=ymid-scale, x2=xmid+x*scale-3, y2=ymid-scale, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
-		latex("\\Delta\\kern-0.5pt x=\\mathrm{d}\\kern-0.5pt x", x=xmid+1.85scale, y=ymid-1scale, width=5font_x, height=font_y)
+		latex("\\Delta x=\\mathrm{d} x", x=xmid+1.85scale, y=ymid-1scale, width=5font_x, height=font_y)
 		line(x1=xmid+3.6scale, y1=ymid-(m*(x-x0)+fx0)*scale+3, x2=xmid+3.6scale, y2=ymid-fx0*scale-3, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
-		latex("\\mathrm{d}\\kern-0.5pt y", x=xmid+3.5scale, y=ymid-1.7scale, width=2font_x, height=font_y)
+		latex("\\mathrm{d} y", x=xmid+3.5scale, y=ymid-1.7scale, width=2font_x, height=font_y)
 		line(x1=xmid+4.25scale, y1=ymid-fx*scale+3, x2=xmid+4.25scale, y2=ymid-fx0*scale-3, marker_end="url(#arrow)", marker_start="url(#arrow)", stroke="black")
-		latex("\\Delta\\kern-0.5pt y", x=xmid+4.25scale, y=ymid-1.7scale, width=2font_x, height=font_y)
+		latex("\\Delta y", x=xmid+4.25scale, y=ymid-1.7scale, width=2font_x, height=font_y)
     end
 end
 ```
@@ -679,15 +679,15 @@ The rule for differentiating a product of functions is a little more complicated
 	To get the last line, we have used the fact that ``f`` and ``g`` are differentiable and the fact that ``g`` is therefore continuous, as well as limit rules.
 
 !!! example
-	Use mathematical induction to verify the formula ``\displaystyle \frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^n=nx^{n-1}`` for all positive integers ``n``.
+	Use mathematical induction to verify the formula ``\displaystyle \frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^n=nx^{n-1}`` for all positive integers ``n``.
 
-	For ``n=1`` the formula says that ``\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^1=1x^0``, so the formula is true in this case. We must show that if the formula is true for ``n=k\ge1``, then it is also true for ``n=k+1``. Therefore, assume that
+	For ``n=1`` the formula says that ``\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^1=1x^0``, so the formula is true in this case. We must show that if the formula is true for ``n=k\ge1``, then it is also true for ``n=k+1``. Therefore, assume that
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^k=kx^{k-1}
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^k=kx^{k-1}
 	```
 	Using the Product Rule we calculate
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{k+1}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(x^kx\right)=kx^{k-1}x+x^k 1=\left(k+1\right)x^k=\left(k+1\right)x^{\left(k+1\right)-1}
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^{k+1}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(x^kx\right)=kx^{k-1}x+x^k 1=\left(k+1\right)x^k=\left(k+1\right)x^{\left(k+1\right)-1}
 	```
 	Thus, the formula is true for ``n=k+1`` also. The formula is true for all integers ``n\ge1`` by induction.
 
@@ -720,7 +720,7 @@ In general, the derivative of a product of ``n`` functions will have n terms; ea
 	Using the definition of the derivative, we calculate
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
 	&=\lim_{h\to 0}\frac{f\left(x\right)-f\left(x+h\right)}{hf\left(x+h\right)f\left(x\right)}\\
 	&=\lim_{h\to 0}\left(\frac{-1}{f\left(x+h\right)f\left(x\right)}\right)\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}\right)\\
 	&=\frac{-1}{\left(f\left(x\right)\right)^2}f^\prime\left(x\right)
@@ -731,11 +731,11 @@ In general, the derivative of a product of ``n`` functions will have n terms; ea
 !!! example
 	Confirm the General Power Rule for negative integers:
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{-n}=-nx^{-n-1}\,.
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^{-n}=-nx^{-n-1}\,.
 	```
 	Since we have already proved the rule for positive integers, we have
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{-n}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{x^n}=\frac{-nx^{n-1}}{{\left(x^n\right)^2}}=-nx^{-n-1}\,.
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^{-n}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\frac{1}{x^n}=\frac{-nx^{n-1}}{{\left(x^n\right)^2}}=-nx^{-n-1}\,.
 	```
 
 ### Quotient Rule
@@ -743,7 +743,7 @@ In general, the derivative of a product of ``n`` functions will have n terms; ea
 The Product Rule and the Reciprocal Rule can be combined to provide a rule for differentiating a quotient of two functions. Observe that
 ```math
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f^\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f^\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
 &= \frac{g\left(x\right)f^\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 \end{aligned}
 ```
@@ -768,22 +768,22 @@ Although we can differentiate ``\sqrt x`` and ``x^2+1``, we cannot yet different
 
 In terms of Leibniz notation, if ``y=f\left(u\right)`` where ``u=g\left(x\right)``, then ``y=f\left(g\left(x\right)\right)`` and:
 
-- at ``u``, ``y`` is changing ``\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}`` times as fast as ``u`` is changing;
-- at ``x``, ``u`` is changing ``\displaystyle \frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}`` times as fast as ``x`` is changing.
+- at ``u``, ``y`` is changing ``\displaystyle \frac{\mathrm{d} y}{\mathrm{d} u}`` times as fast as ``u`` is changing;
+- at ``x``, ``u`` is changing ``\displaystyle \frac{\mathrm{d} u}{\mathrm{d} x}`` times as fast as ``x`` is changing.
 
-Therefore, at ``x``, ``y=f\left(u\right)=f\left(g\left(x\right)\right)`` is changing ``\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}`` times as fast as ``x`` is changing. That is,
+Therefore, at ``x``, ``y=f\left(u\right)=f\left(g\left(x\right)\right)`` is changing ``\displaystyle \frac{\mathrm{d} y}{\mathrm{d} u}\frac{\mathrm{d} u}{\mathrm{d} x}`` times as fast as ``x`` is changing. That is,
 
 ```math
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\,,\quad\textrm{where }\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\textrm{ is evaluated at }u=g\left(x\right)\,.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{\mathrm{d} y}{\mathrm{d} u}\frac{\mathrm{d} u}{\mathrm{d} x}\,,\quad\textrm{where }\frac{\mathrm{d} y}{\mathrm{d} u}\textrm{ is evaluated at }u=g\left(x\right)\,.
 ```
 
-It appears as though the symbol ``\mathrm{d}\kern-0.5pt u`` cancels from the numerator and denominator, but this is not meaningful because ``\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}`` was not defined as the quotient of two quantities, but rather as a single quantity, the derivative of ``y`` with respect to ``u``.
+It appears as though the symbol ``\mathrm{d} u`` cancels from the numerator and denominator, but this is not meaningful because ``\displaystyle \frac{\mathrm{d} y}{\mathrm{d} u}`` was not defined as the quotient of two quantities, but rather as a single quantity, the derivative of ``y`` with respect to ``u``.
 
 We would like to prove this theorem by writing
 ```math
-\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}=\frac{\Delta\kern-0.5pt y}{\Delta u}\frac{\Delta u}{\Delta\kern-0.5pt x}
+\frac{\Delta y}{\Delta x}=\frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}
 ```
-and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.
+and taking the limit as ``\Delta x \to 0``. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.
 
 !!! proof
 	Suppose that ``f`` is differentiable at the point ``u=g\left(x\right)`` and that ``g`` is differentiable at ``x``.
@@ -823,7 +823,7 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 	Hence,
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
 	&=\lim_{h\to 0}\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
@@ -840,7 +840,7 @@ and taking the limit as ``\Delta\kern-0.5pt x \to 0``. Such a proof is valid for
 	the Chain Rules gives
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\\
+	\frac{\mathrm{d} y}{\mathrm{d} x}&=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\\
 	&=\frac{1}{2\sqrt{g\left(x\right)}}g^\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
 	\end{aligned}
 	```
@@ -1008,13 +1008,13 @@ To calculate the derivative of ``\sin x``, we need the addition formula for sine
 ```
 
 !!! theorem
-	``\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,.``
+	``\displaystyle\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin x=\cos x\,.``
 
 !!! proof
 	We use the definition of derivative, the addition formula for sine, the rules for combining limits, and the previous theorem:
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin x&=\lim_{h\to 0}\frac{\sin\left(x+h\right)-\sin x}{h}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin x&=\lim_{h\to 0}\frac{\sin\left(x+h\right)-\sin x}{h}\\
 	&=\lim_{h\to 0}\frac{\sin x\cos h+\cos x\sin h-\sin x}{h}\\
 	&=\lim_{h\to 0}\frac{\sin x\left(\cos h-1\right)+\cos x\sin h}{h}\\
 	&=\lim_{h\to 0}\sin x\lim_{h\to 0}\frac{\cos h-1}{h}+\lim_{h\to 0}\cos x\lim_{h\to 0}\frac{\sin h}{h}\\
@@ -1023,12 +1023,12 @@ To calculate the derivative of ``\sin x``, we need the addition formula for sine
 	```
 
 !!! theorem
-	``\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=-\sin x\,.``
+	``\displaystyle\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cos x=-\sin x\,.``
 
 !!! proof
 	We make use of the complementary angle identities, and the Chain rule:
 	```math
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cos x=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
 	```
 
 Because ``\sin x`` and ``\cos x`` are differentiable everywhere, the functions
@@ -1038,8 +1038,8 @@ Because ``\sin x`` and ``\cos x`` are differentiable everywhere, the functions
 are differentiable at every value of ``x`` at which they are defined (i.e., where their denominators are not zero). Their derivatives can be calculated by the Quotient and Reciprocal Rules and are as follows:
 ```math
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\tan(x)=\sec^2 x\,,\quad&\quad\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cot x=-\csc^2 x\,,\\
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sec(x)=\sec x\tan x\,,\quad&\quad\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\csc x=-\csc x\cot x\,.
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\tan(x)=\sec^2 x\,,\quad&\quad\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cot x=-\csc^2 x\,,\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sec(x)=\sec x\tan x\,,\quad&\quad\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\csc x=-\csc x\cot x\,.
 \end{aligned}
 ```
 
@@ -1048,7 +1048,7 @@ are differentiable at every value of ``x`` at which they are defined (i.e., wher
 
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\tan(x)&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{\sin x}{\cos x}\right)=\frac{\cos x\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin(x)-\sin x\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos(x)}{\cos^2 x}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\tan(x)&=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(\frac{\sin x}{\cos x}\right)=\frac{\cos x\displaystyle\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin(x)-\sin x\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cos(x)}{\cos^2 x}\\
 	&=\frac{\cos x\cos(x)-\sin x\left(-\sin x\right)}{\cos^2 x}=\frac{\cos^2 x+\sin^2 x}{\cos^2 x}\\
 	&=\frac{1}{\cos^2 x}=\sec^2 x\,.
 	\end{aligned}
@@ -1061,23 +1061,23 @@ are differentiable at every value of ``x`` at which they are defined (i.e., wher
 
 If the derivative ``y^\prime=f^\prime\left(x\right)`` of a function ``y=f\left(x\right)`` is itself differentiable at ``x``, we can calculate its derivative, which we call the second derivative of ``f`` and denote by ``y^{\prime\prime}=f^{\prime\prime}\left(x\right)``. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are
 ```math
-y^{\prime\prime}=f^{\prime\prime}\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
+y^{\prime\prime}=f^{\prime\prime}\left(x\right)=\frac{\mathrm{d}^2 y}{\mathrm{d} x^2}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{ y}}{\mathrm{d} x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
 ```
 
 Similarly, you can consider third-, fourth-, and in general ``n``th-order derivatives. The prime notation is inconvenient for derivatives of high order, so we denote the order by a superscript in parentheses (to distinguish it from an exponent): the ``n``th derivative of ``y=f\left(x\right)`` is
 ```math
-y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
+y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n y}{\mathrm{d} x^n}=\frac{\mathrm{d}^n\hphantom{ y}}{\mathrm{d} x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
 ```
 and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f^{\prime\prime}\prime``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
 
 !!! example
 	The *velocity* of a moving object is the (instantaneous) rate of change of the position of the object with respect to time; if the object moves along the ``x``-axis and is at position ``x=f\left(t\right)`` at time ``t``, then its velocity at that time is
 	```math
-	v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f^\prime\left(t\right)\,.
+	v=\frac{\mathrm{d} x}{\mathrm{d} t}=f^\prime\left(t\right)\,.
 	```
 	Similarly, the *acceleration* of the object is the rate of change of the velocity. Thus, the acceleration is the second derivative of the position:
 	```math
-	a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f^{\prime\prime}\left(t\right)\,.
+	a=\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}=f^{\prime\prime}\left(t\right)\,.
 	```
 
 !!! example
@@ -1121,29 +1121,29 @@ x^2+y^2=25
 ```
 so ``F\left(x,y\right)=x^2+y^2-25`` for that circle.
 
-Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find explicit formulas for one or more functions ``y=f\left(x\right)`` defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of ``x`` implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` of these implicit solutions by a technique called *implicit differentiation*. The idea is to differentiate the given equation with respect to ``x``, regarding ``y`` as a function of ``x`` having derivative ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, or ``y^\prime``.
+Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find explicit formulas for one or more functions ``y=f\left(x\right)`` defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of ``x`` implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}`` of these implicit solutions by a technique called *implicit differentiation*. The idea is to differentiate the given equation with respect to ``x``, regarding ``y`` as a function of ``x`` having derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``, or ``y^\prime``.
 
 !!! example
 
-	Find ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` if ``y^2=x``.
+	Find ``\frac{\mathrm{d} y}{\mathrm{d} x}`` if ``y^2=x``.
 
 	The equation ``y^2=x`` defines two differentiable functions of ``x``; in this case we know them explicitly. They are ``y_1=\sqrt x`` and ``y_2=-\sqrt x``, having derivatives defined for ``x&gt;0`` by
 	```math
-	\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{2\sqrt x}\,.
+	\frac{\mathrm{d} y_1}{\mathrm{d} x}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d} y_2}{\mathrm{d} x}=-\frac{1}{2\sqrt x}\,.
 	```
 
-	However, we can find the slope of the curve ``y^2=x`` at any point ``\left(x,y\right)`` satisfying that equation without first solving the equation for ``y``. To find ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}``, we simply differentiate both sides of the equation ``y^2=x`` with respect to ``x``, treating ``y`` as a differentiable function of ``x`` and using the Chain Rule to differentiate ``y^2``:
+	However, we can find the slope of the curve ``y^2=x`` at any point ``\left(x,y\right)`` satisfying that equation without first solving the equation for ``y``. To find ``\frac{\mathrm{d} y}{\mathrm{d} x}``, we simply differentiate both sides of the equation ``y^2=x`` with respect to ``x``, treating ``y`` as a differentiable function of ``x`` and using the Chain Rule to differentiate ``y^2``:
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(y^2\right)&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(x\right)\\
-	2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=1\\
-	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{1}{2y}\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(y^2\right)&=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(x\right)\\
+	2y\frac{\mathrm{d} y}{\mathrm{d} x}&=1\\
+	\frac{\mathrm{d} y}{\mathrm{d} x}&=\frac{1}{2y}\,.
 	\end{aligned}
 	```
 
 	Observe that this agrees with the derivatives we calculated above for both of the explicit solutions ``y_1=\sqrt x`` and ``y_2=-\sqrt x``:
 	```math
-	\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_1}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_2}=-\frac{1}{2\sqrt x}\,.
+	\frac{\mathrm{d} y_1}{\mathrm{d} x}=\frac{1}{2y_1}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d} y_2}{\mathrm{d} x}=\frac{1}{2y_2}=-\frac{1}{2\sqrt x}\,.
 	```
 
 !!! example
@@ -1168,17 +1168,17 @@ Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find
 
 Until now, we have only proven the General Power Rule
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^r=rx^{r-1}
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}x^r=rx^{r-1}
 ```
 for integer exponents ``r`` and a few special rational exponents such as ``r=\frac{1}{2}``. Using implicit differentiation, we can give the proof for any rational exponent ``r=\frac{m}{n}``, where ``m`` and ``n`` are integers, and ``n\ne0``.
 
 If ``y=x^\frac{m}{n}``, then ``y^n=x^m``. Differentiating implicitly with respect to ``x``, we obtain
 ```math
-ny^{n-1}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=mx^{m-1}\,,
+ny^{n-1}\frac{\mathrm{d} y}{\mathrm{d} x}=mx^{m-1}\,,
 ```
 so
 ```math
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
 ```
 
 ## Derivatives of Inverse Functions
@@ -1729,11 +1729,11 @@ The tangent to the graph ``y=f\left(x\right)`` at ``x=a`` describes the behaviou
 
 We have already made use of linearization in a previous section, where it was disguised as the formula
 ```math
-\Delta\kern-0.5pt y = \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt y
+\Delta y = \frac{\mathrm{d} y}{\mathrm{d} x}\Delta y
 ```
-and used to approximate a small change ``\Delta\kern-0.5pt y=f\left(a+\Delta\kern-0.5pt x\right)-f\left(a\right)`` in the values of function ``f`` corresponding to the small change in the argument of the function from ``a`` to ``a+\Delta\kern-0.5pt x``. This is just the linear approximation
+and used to approximate a small change ``\Delta y=f\left(a+\Delta x\right)-f\left(a\right)`` in the values of function ``f`` corresponding to the small change in the argument of the function from ``a`` to ``a+\Delta x``. This is just the linear approximation
 ```math
-f\left(a+\Delta\kern-0.5pt x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+f\left(a+\Delta x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
 ```
 
 In any approximation, the *error* is defined by
@@ -1928,7 +1928,7 @@ We begin by defining an *antiderivative* of a function ``f`` to be a function ``
 
 Antiderivatives are not unique; since a constant has derivative zero, you can always add any constant to an antiderivative ``F`` of a function ``f`` on an interval and get another antiderivative of ``f`` on that interval. More importantly, all antiderivatives of ``f`` on an interval can be obtained by adding constants to any particular one. If ``F`` and ``G`` are both antiderivatives of ``f`` on an interval ``I``, then
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(G\left(x\right)-F\left(x\right)\right)=f\left(x\right)-f\left(x\right)=0
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(G\left(x\right)-F\left(x\right)\right)=f\left(x\right)-f\left(x\right)=0
 ```
 on ``I``, so ``G\left(x\right)-F\left(x\right)=C`` (a constant) on I. Thus, ``G\left(x\right)=F\left(x\right)+C`` on ``I``.
 
@@ -1941,32 +1941,32 @@ Note that this conclusion is not valid over a set that is not an interval. For e
 ```
 is ``0`` for all ``x\ne0``, but ``\operatorname{sgn}\left(x\right)`` is not constant for all ``x\ne 0``.
 
-The general antiderivative of a function  ``f\left(x\right)`` on an interval ``I`` is ``F\left(x\right)+C``, where ``F\left(x\right)`` is any particular antiderivative of ``f\left(x\right)`` on ``I`` and ``C`` is a constant. This general antiderivative is called the *indefinite integral* of ``f\left(x\right)`` on ``I`` and is denoted ``\int f\left(x\right)\,\mathrm d\kern-0.5pt x``.
+The general antiderivative of a function  ``f\left(x\right)`` on an interval ``I`` is ``F\left(x\right)+C``, where ``F\left(x\right)`` is any particular antiderivative of ``f\left(x\right)`` on ``I`` and ``C`` is a constant. This general antiderivative is called the *indefinite integral* of ``f\left(x\right)`` on ``I`` and is denoted ``\int f\left(x\right)\,\mathrm d x``.
 
 !!! definition
 
 	The indefinite integral of ``f\left(x\right)`` on interval ``I`` is
 	```math
-	\int f\left(x\right)\,\mathrm d\kern-0.5pt x=F\left(x\right)+C
+	\int f\left(x\right)\,\mathrm d x=F\left(x\right)+C
 	```
 	on ``I``, provided ``F^\prime\left(x\right)=f\left(x\right)`` for all ``x\in I``.
 
-The symbol ``\int`` is called an *integral sign*. It is shaped like an elongated “S” for reasons that will only become apparent when we study the definite integral in Chapter 6. Just as you regard ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` as a single symbol representing the derivative of ``y`` with respect to ``x``, so you should regard ``\int f\left(x\right)\,\mathrm d\kern-0.5pt x`` as a single symbol representing the indefinite integral (general antiderivative) of ``f`` with respect to ``x``. The constant ``C`` is called a *constant of integration*.
+The symbol ``\int`` is called an *integral sign*. It is shaped like an elongated “S” for reasons that will only become apparent when we study the definite integral in Chapter 6. Just as you regard ``\frac{\mathrm{d} y}{\mathrm{d} x}`` as a single symbol representing the derivative of ``y`` with respect to ``x``, so you should regard ``\int f\left(x\right)\,\mathrm d x`` as a single symbol representing the indefinite integral (general antiderivative) of ``f`` with respect to ``x``. The constant ``C`` is called a *constant of integration*.
 
 Finding antiderivatives is generally more difficult than finding derivatives; many functions do not have antiderivatives that can be expressed as combinations of finitely many elementary functions. However, every formula for a derivative can be rephrased as a formula for an antiderivative. For instance,
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,;\quad\textrm{therefore,}\quad\int\cos x\,\mathrm d\kern-0.5pt x=\sin x+C\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\sin x=\cos x\,;\quad\textrm{therefore,}\quad\int\cos x\,\mathrm d x=\sin x+C\,.
 ```
 
 We will develop several techniques for finding antiderivatives in later chapters. Until then, we must content ourselves with being able to write a few simple antiderivatives based on the known derivatives of elementary functions:
 ```math
-\begin{align}
-&\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
-&\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
-&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C&&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
-&\int \sin x\,\mathrm{d}\kern-0.5pt x=-\cos x+C&&\int\cos x\, \mathrm{d}\kern-0.5pt x=\sin x+C\\
-&\int \sec^2 x\,\mathrm{d}\kern-0.5pt x=\tan x+C&&\int\csc^2 x\, \mathrm{d}\kern-0.5pt x=-\cot x+C
-\end{align}
+\begin{aligned}
+&\int \mathrm{d} x=\int 1\,\mathrm{d} x=x+C&&\int x\,\mathrm{d} x=\frac{x^2}{2}+C\\
+&\int x^2\,\mathrm{d} x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d} x=\frac{1}{x}+C\\
+&\int \frac{1}{\sqrt x}\,\mathrm{d} x=2\sqrt x+C&&\int x^r\, \mathrm{d} x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
+&\int \sin x\,\mathrm{d} x=-\cos x+C&&\int\cos x\, \mathrm{d} x=\sin x+C\\
+&\int \sec^2 x\,\mathrm{d} x=\tan x+C&&\int\csc^2 x\, \mathrm{d} x=-\cot x+C
+\end{aligned}
 ```
 
 For the moment, ``r`` must be rational, but this restriction will be removed in the next chapter.
@@ -1981,7 +1981,7 @@ The graphs of the different antiderivatives of the same function on the same int
 
 	Since ``f^\prime\left(x\right)=6x^2-1``, we have
 	```math
-	f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d}\kern-0.5pt x=2x^3-x+C
+	f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d} x=2x^3-x+C
 	```
 	for some constant ``C``. Since ``f\left(2\right)=10``, we have
 	```math

@@ -226,7 +226,7 @@ x=t\quad\textrm{and}\quad y=f\left(t\right)\,,\quad t\in I\,.
 <section data-type="sect1">
 <h1>Smooth Parametric Curves and Their Slopes</h1>
 <p>We say that a plane curve is <i>smooth</i> if it has a tangent line at each point <span class="math-tex" data-type="tex">\(P\)</span> and this tangent turns in a continuous way as <span class="math-tex" data-type="tex">\(P\)</span> moves along the curve.</p>
-<p>If the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> is the graph of function <span class="math-tex" data-type="tex">\(f\)</span>; then <span class="math-tex" data-type="tex">\(𝒞\)</span> is certainly smooth on any interval where the derivative <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> exists and is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>. It may also be smooth on intervals containing isolated singular points; for example, the curve <span class="math-tex" data-type="tex">\(y=x^⅓\)</span> is smooth everywhere even though <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> does not exist at <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
+<p>If the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> is the graph of function <span class="math-tex" data-type="tex">\(f\)</span>; then <span class="math-tex" data-type="tex">\(𝒞\)</span> is certainly smooth on any interval where the derivative <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> exists and is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>. It may also be smooth on intervals containing isolated singular points; for example, the curve <span class="math-tex" data-type="tex">\(y=x^⅓\)</span> is smooth everywhere even though <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span> does not exist at <span class="math-tex" data-type="tex">\(x=0\)</span>.</p>
 <p>For parametric curves <span class="math-tex" data-type="tex">\(x=f\left(t\right), y = g\left(t\right)\)</span> the situation is more complicated. Even if <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> have continuous derivatives everywhere, such curves may fail to be smooth at certain points, specifically points where <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)=g^\prime\left(t\right)=0\)</span>.</p>
 <div data-type="example">
 <h1></h1>
@@ -289,7 +289,7 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\i
 <p>where <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\left(t\right)\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(I\)</span>. If <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ne 0\)</span> on <span class="math-tex" data-type="tex">\(I\)</span>, then <span class="math-tex" data-type="tex">\(𝒞\)</span> is smooth and has at each <span class="math-tex" data-type="tex">\(t\)</span> a tangent line with slope</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
 \]
 </div>
 </div>
@@ -304,7 +304,7 @@ y = g\left(t\right)=g\left(f^{-1}\left(x\right)\right)
 <p>with slope</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=g^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}f^{-1}\left(x\right)=\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
+\frac{\mathrm{d} y}{\mathrm{d} x}=g^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}f^{-1}\left(x\right)=\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
 \]
 </div>
 <p>This slope is a continuous function of <span class="math-tex" data-type="tex">\(t\)</span>, so the tangent to <span class="math-tex" data-type="tex">\(𝒞\)</span> turns continuously for <span class="math-tex" data-type="tex">\(t\)</span> in <span class="math-tex" data-type="tex">\(I\)</span>.</p>
@@ -314,7 +314,7 @@ y = g\left(t\right)=g\left(f^{-1}\left(x\right)\right)
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}\\
+\frac{\mathrm{d}^2 y}{\mathrm{d} x^2}=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{\mathrm{d} y}{\mathrm{d} x}&=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}\\
 &=\frac{f^\prime\left(f^{-1}\left(x\right)\right)g^{\prime\prime}\left(f^{-1}\left(x\right)\right)-g^\prime\left(f^{-1}\left(x\right)\right)f^{\prime\prime}\left(f^{-1}\left(x\right)\right)}{\left(f^\prime\left(f^{-1}\left(x\right)\right)\right)^2}\frac{1}{f^\prime\left(f^{-1}\left(x\right)\right)}\\
 &=\frac{f^\prime\left(f^{-1}\left(x\right)\right)g^{\prime\prime}\left(f^{-1}\left(x\right)\right)-g^\prime\left(f^{-1}\left(x\right)\right)f^{\prime\prime}\left(f^{-1}\left(x\right)\right)}{\left(f^\prime\left(f^{-1}\left(x\right)\right)\right)^3}\\
 &=\frac{f^\prime\left(t\right)g^{\prime\prime}\left(t\right)-g^\prime\left(t\right)f^{\prime\prime}\left(t\right)}{\left(f^\prime\left(t\right)\right)^3}\,.
@@ -330,16 +330,16 @@ y = g\left(t\right)=g\left(f^{-1}\left(x\right)\right)
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b\,.
 \]
 </div>
-<p>We assume that <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\left(t\right)\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span> and are never both zero. From the differential triangle with legs <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x\)</span> and <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y\)</span> and hypotenuse <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span>, we obtain <span class="math-tex" data-type="tex">\(\left(\mathrm{d}\kern-0.5pt s\right)^2=\left(\mathrm{d}\kern-0.5pt x\right)^2+\left(\mathrm{d}\kern-0.5pt y\right)^2\)</span>, so we have</p>
+<p>We assume that <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(g^\prime\left(t\right)\)</span> are continuous on the interval <span class="math-tex" data-type="tex">\(\left[a, b\right]\)</span> and are never both zero. From the differential triangle with legs <span class="math-tex" data-type="tex">\(\mathrm{d} x\)</span> and <span class="math-tex" data-type="tex">\(\mathrm{d} y\)</span> and hypotenuse <span class="math-tex" data-type="tex">\(\mathrm{d} s\)</span>, we obtain <span class="math-tex" data-type="tex">\(\left(\mathrm{d} s\right)^2=\left(\mathrm{d} x\right)^2+\left(\mathrm{d} y\right)^2\)</span>, so we have</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt s=\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
+\mathrm{d} s=\frac{\mathrm{d} s}{\mathrm{d} t}\mathrm{d} t=\sqrt{\left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2}\mathrm{d} t=\sqrt{\left(\frac{\mathrm{d} x}{\mathrm{d} t}\right)^2+\left(\frac{\mathrm{d} y}{\mathrm{d} t}\right)^2}\mathrm{d} t\,.
 \]
 </div>
 <p>The length of the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> is given by</p>
 <div class="math-tex" data-type="equation">
 \[
-s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
+s=\int_{t=a}^{t=b}\mathrm{d} s=\int_a^b\sqrt{\left(\frac{\mathrm{d} x}{\mathrm{d} t}\right)^2+\left(\frac{\mathrm{d} y}{\mathrm{d} t}\right)^2}\mathrm{d} t\,.
 \]
 </div>
 <div data-type="example">
@@ -353,23 +353,23 @@ x=ℯ^t\cos t\quad\textrm{and}\quad y=ℯ^t\sin t\,,\quad t\in \left[0, 2\right]
 <p>We have</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=ℯ^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=ℯ^t\left(\sin t+\cos t\right)\,.
+\frac{\mathrm{d} x}{\mathrm{d} t}=ℯ^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} t}=ℯ^t\left(\sin t+\cos t\right)\,.
 \]
 </div>
 <p>Squaring these formulas, adding and simplifying, we get</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2=ℯ^{2t}\left(\cos t-\sin t\right)^2+ℯ^{2t}\left(\sin t+\cos t\right)^2=2ℯ^{2t}\,.
+\left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2=ℯ^{2t}\left(\cos t-\sin t\right)^2+ℯ^{2t}\left(\sin t+\cos t\right)^2=2ℯ^{2t}\,.
 \]
 </div>
 <p>The length of the curve is, therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
-s=\int_0^2\sqrt{2ℯ^{2t}}\,\mathrm{d}\kern-0.5pt t=\sqrt 2\int_0^2ℯ^t\,\mathrm{d}\kern-0.5pt t=\sqrt 2\left(ℯ^2-1\right)\ \textrm{units.}
+s=\int_0^2\sqrt{2ℯ^{2t}}\,\mathrm{d} t=\sqrt 2\int_0^2ℯ^t\,\mathrm{d} t=\sqrt 2\left(ℯ^2-1\right)\ \textrm{units.}
 \]
 </div>
 </div>
-<p>Parametric curves can be rotated around various axes to generate surfaces of revolution. The areas of these surfaces can be found by the same procedure used for graphs of functions, with the appropriate version of <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt s\)</span>. If the curve</p>
+<p>Parametric curves can be rotated around various axes to generate surfaces of revolution. The areas of these surfaces can be found by the same procedure used for graphs of functions, with the appropriate version of <span class="math-tex" data-type="tex">\(\mathrm{d} s\)</span>. If the curve</p>
 <div class="math-tex" data-type="equation">
 \[
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b
@@ -378,13 +378,13 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\l
 <p>is rotated about the <span class="math-tex" data-type="tex">\(x\)</span>-axis, the area <span class="math-tex" data-type="tex">\(S\)</span> of the surface so generated is given by</p>
 <div class="math-tex" data-type="equation">
 \[
-S=2\uppi\int_{t=a}^{t=b}\left|y\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|g\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
+S=2\uppi\int_{t=a}^{t=b}\left|y\right|\mathrm{d} s=2\uppi\int_a^b\left|g\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d} t\,.
 \]
 </div>
 <p>If the rotation is about the <span class="math-tex" data-type="tex">\(y\)</span>-axis, then the area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
+S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d} s=2\uppi\int_a^b\left|f\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d} t\,.
 \]
 </div>
 <div data-type="example">
@@ -441,19 +441,19 @@ x=a\cos^3 t\quad\textrm{and}\quad y=a\sin^3 t\,,\quad\textrm{where }a&gt;0\,
 <p>The curve is symmetric about both coordinate axes. The entire surface will be generated by rotating the upper half of the curve; in fact, we need only rotate the first quadrant part and multiply by <span class="math-tex" data-type="tex">\(2\)</span>. The first quadrant part of the curve corresponds to <span class="math-tex" data-type="tex">\(0\le t\le\frac{\uppi}{2}\)</span>. We have</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=-3a\cos^2 t\sin t\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=3a\sin^2 t\cos t\,.
+\frac{\mathrm{d} x}{\mathrm{d} t}=-3a\cos^2 t\sin t\quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} t}=3a\sin^2 t\cos t\,.
 \]
 </div>
 <p>Accordingly, the arc length element is</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt s=3a\cos t\sin t\mathrm{d}\kern-0.5pt t\,.
+\mathrm{d} s=3a\cos t\sin t\mathrm{d} t\,.
 \]
 </div>
 <p>Therefore, the required surface area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d}\kern-0.5pt t=\frac{12}{5}\uppi a\ \textrm{square units.}
+S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a\ \textrm{square units.}
 \]
 </div>
 </div>
@@ -467,39 +467,39 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\l
 <p>The region under <span class="math-tex" data-type="tex">\(C\)</span> and above the <span class="math-tex" data-type="tex">\(x\)</span>-axis has area element given by</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt A = y\,\mathrm{d}\kern-0.5pt x=g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\,,
+\mathrm{d} A = y\,\mathrm{d} x=g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\,,
 \]
 </div>
 <p>so its area is</p>
 <div class="math-tex" data-type="equation">
 \[
-A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\,.
 \]
 </div>
 <p>Similar arguments can be given for three other cases:</p>
 <ul>
 <li>
-<p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ge 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\le 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\)</span>,</p>
+<p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\ge 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\le 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\)</span>,</p>
 </li>
 <li>
-<p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\le 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\ge 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\)</span>,</p>
+<p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\le 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\ge 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\)</span>,</p>
 </li>
 <li>
-<p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\le 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\le 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\)</span>,</p>
+<p>if <span class="math-tex" data-type="tex">\(f^\prime\left(t\right)\le 0\)</span> and <span class="math-tex" data-type="tex">\(g\left(t\right)\le 0\)</span> on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\)</span>,</p>
 </li>
 </ul>
 <p>where <span class="math-tex" data-type="tex">\(A\)</span>  is the (positive) area bounded by <span class="math-tex" data-type="tex">\(𝒞\)</span>, the <span class="math-tex" data-type="tex">\(x\)</span>-axis, and the vertical lines <span class="math-tex" data-type="tex">\(x=f\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(x=f\left(b\right)\)</span>. Combining these results we can see that</p>
 <div class="math-tex" data-type="equation">
 \[
-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t=A_1-A_2\,,
+\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t=A_1-A_2\,,
 \]
 </div>
 <p>where <span class="math-tex" data-type="tex">\(A_1\)</span> is the area lying vertically between <span class="math-tex" data-type="tex">\(𝒞\)</span> and that part of the <span class="math-tex" data-type="tex">\(x\)</span>-axis consisting of points <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> such that <span class="math-tex" data-type="tex">\(g\left(t\right)f^\prime\left(t\right)\ge 0\)</span>, and <span class="math-tex" data-type="tex">\(A_2\)</span> is a similar area corresponding to points where <span class="math-tex" data-type="tex">\(g\left(t\right)f^\prime\left(t\right)&lt; 0\)</span>. This formula is valid for arbitrary continuous <span class="math-tex" data-type="tex">\(g\)</span> and differentiable <span class="math-tex" data-type="tex">\(f\)</span>. In particular, if <span class="math-tex" data-type="tex">\(𝒞\)</span> is a non–self-intersecting closed curve, then the area of the region bounded by <span class="math-tex" data-type="tex">\(𝒞\)</span> is given by</p>
 <div class="math-tex" data-type="equation">
 \[
 A=\begin{cases}
-\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
--\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed counterclockwise.}
+\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t&\textrm{if }𝒞\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
+-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t&\textrm{if }𝒞\textrm{ is traversed counterclockwise.}
 \end{cases}
 \]
 </div>
@@ -515,7 +515,7 @@ x=a\cos s\quad\textrm{and}\quad y=b\sin s\quad\textrm{for } 0\le s\le 2\uppi\,,\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d}\kern-0.5pt s=\frac{ab}{2}\int_0^{2\uppi}\left(1-\cos 2s\right)\,\mathrm{d}\kern-0.5pt s\\
+A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d} s=\frac{ab}{2}\int_0^{2\uppi}\left(1-\cos 2s\right)\,\mathrm{d} s\\
 &=\left.\frac{ab}{2}s\right|_0^{2\uppi}-\left.\frac{ab}{4}\sin 2s\right|_0^{2\uppi}=\uppi ab\ \textrm{square units.}
 \end{aligned}
 \]
@@ -718,7 +718,7 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\tan\phi&=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{h^\prime\left(\theta\right)}{g^\prime\left(\theta\right)}=\frac{r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta}{r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta}\\
+\tan\phi&=\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{h^\prime\left(\theta\right)}{g^\prime\left(\theta\right)}=\frac{r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta}{r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta}\\
 &=\frac{r^\prime\left(\theta\right)\tan\theta+r\left(\theta\right)}{r^\prime\left(\theta\right)-r\tan\theta}=\frac{\tan\theta+\frac{r\left(\theta\right)}{r^\prime\left(\theta\right)}}{1-\frac{r\left(\theta\right)}{r^\prime\left(\theta\right)}\tan\theta}\,.
 \end{aligned}
 \]
@@ -788,10 +788,10 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 </div>
 </div>
 <p>The basic area problem in polar coordinates is that of finding the area <span class="math-tex" data-type="tex">\(A\)</span> of the region <span class="math-tex" data-type="tex">\(R\)</span> bounded by the polar graph <span class="math-tex" data-type="tex">\(r=f\left(\theta\right)\)</span> and the two rays <span class="math-tex" data-type="tex">\(\theta=\alpha\)</span> and <span class="math-tex" data-type="tex">\(\theta=\beta\)</span>. We assume that <span class="math-tex" data-type="tex">\(\beta&gt;\alpha\)</span> and that <span class="math-tex" data-type="tex">\(f\)</span> is continuous for <span class="math-tex" data-type="tex">\(\alpha\le\theta\le\beta\)</span>.</p>
-<p>A suitable area element in this case is a sector of angular width <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt \theta\)</span>. For infinitesimal <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt \theta\)</span> this is just a sector of a circle of radius <span class="math-tex" data-type="tex">\(r=f\left(\theta\right)\)</span>:</p>
+<p>A suitable area element in this case is a sector of angular width <span class="math-tex" data-type="tex">\(\mathrm{d} \theta\)</span>. For infinitesimal <span class="math-tex" data-type="tex">\(\mathrm{d} \theta\)</span> this is just a sector of a circle of radius <span class="math-tex" data-type="tex">\(r=f\left(\theta\right)\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt A=r^2\uppi\frac{1}{2\uppi}\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}r^2\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}\left(f\left(\theta\right)\right)^2\,\mathrm{d}\kern-0.5pt\theta\,.
+\mathrm{d} A=r^2\uppi\frac{1}{2\uppi}\,\mathrm{d}\theta=\frac{1}{2}r^2\,\mathrm{d}\theta=\frac{1}{2}\left(f\left(\theta\right)\right)^2\,\mathrm{d}\theta\,.
 \]
 </div>
 <div data-type="theorem">
@@ -799,7 +799,7 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 <p>The region bounded by <span class="math-tex" data-type="tex">\(r=f\left(\theta\right)\)</span> and two rays <span class="math-tex" data-type="tex">\(\theta=\alpha\)</span> and <span class="math-tex" data-type="tex">\(\theta=\beta\)</span>, <span class="math-tex" data-type="tex">\(\beta&gt;\alpha\)</span>, has area</p>
 <div class="math-tex" data-type="equation">
 \[
-A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\kern-0.5pt\theta\,.
+A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\theta\,.
 \]
 </div>
 </div>
@@ -859,8 +859,8 @@ A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\ke
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d}\kern-0.5pt \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d}\kern-0.5pt \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
+A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d} \theta\\
+&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d} \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
 &= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
 \end{aligned}
 \]
@@ -877,16 +877,16 @@ x=g\left(\theta\right)=r\left(\theta\right)\cos\theta\quad\textrm{and}\quad y = 
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\mathrm{d}\kern-0.5pt s&=\sqrt{\left(\mathrm{d}\kern-0.5pt x\right)^2+\left(\mathrm{d}\kern-0.5pt y\right)^2}=\sqrt{\left(g^\prime\left(\theta\right)\mathrm{d}\kern-0.5pt \theta\right)^2+\left(h^\prime\left(\theta\right)\mathrm{d}\kern-0.5pt \theta\right)^2}\\
-&=\sqrt{\left(r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta\right)^2+\left(r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta\right)^2}\,\mathrm{d}\kern-0.5pt \theta\\
-&=\sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d}\kern-0.5pt \theta\,.
+\mathrm{d} s&=\sqrt{\left(\mathrm{d} x\right)^2+\left(\mathrm{d} y\right)^2}=\sqrt{\left(g^\prime\left(\theta\right)\mathrm{d} \theta\right)^2+\left(h^\prime\left(\theta\right)\mathrm{d} \theta\right)^2}\\
+&=\sqrt{\left(r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta\right)^2+\left(r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta\right)^2}\,\mathrm{d} \theta\\
+&=\sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d} \theta\,.
 \end{aligned}
 \]
 </div>
 <p>The length of the curve <span class="math-tex" data-type="tex">\(𝒞\)</span> for <span class="math-tex" data-type="tex">\(\theta\)</span> between <span class="math-tex" data-type="tex">\(\alpha\)</span> and <span class="math-tex" data-type="tex">\(\beta\)</span> is then given by</p>
 <div class="math-tex" data-type="equation">
 \[
-s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d}\kern-0.5pt \theta\,.
+s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d} \theta\,.
 \]
 </div>
 <div data-type="example">
@@ -946,10 +946,10 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d}\kern-0.5pt \theta\\
-&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d}\kern-0.5pt \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
-&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d}\kern-0.5pt \theta\\
-&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d}\kern-0.5pt \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
+s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d} \theta\\
+&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d} \theta\\
+&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d} \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
 \end{aligned}
 \]
 </div>

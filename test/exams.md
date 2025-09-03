@@ -71,7 +71,7 @@ If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(
 	Hence,
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
 	&= \left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
@@ -270,7 +270,7 @@ Describe the graph of ``g`` in terms of the graph of ``f`` if
 If ``g`` is a continuous function on ``\left[a,b\right]`` that is differentiable on ``\left]a,b\right[``, and if ``g^\prime`` is integrable on ``\left[a,b\right]``, then
 
 ```math
-\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
+\int_a^b g^\prime\left(x\right)\,\mathrm{d} x=g\left(b\right)-g\left(a\right)\,.
 ```
 
 !!! proof
@@ -302,19 +302,19 @@ If ``g`` is a continuous function on ``\left[a,b\right]`` that is differentiable
 	We also have that
 
 	```math
-	L\left(g^\prime,P\right)\le \int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\le U\left(g^\prime,P\right)\,,
+	L\left(g^\prime,P\right)\le \int_a^b g^\prime\left(x\right)\,\mathrm{d} x\le U\left(g^\prime,P\right)\,,
 	```
 
 	so the Darboux integrability criterion implies
 
 	```math
-	\left|\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x-\left(g\left(b\right)-g\left(a\right)\right)\right|&lt;\varepsilon\,.
+	\left|\int_a^b g^\prime\left(x\right)\,\mathrm{d} x-\left(g\left(b\right)-g\left(a\right)\right)\right|&lt;\varepsilon\,.
 	```
 
 	This is true for all ``\varepsilon``, so
 
 	```math
-	\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
+	\int_a^b g^\prime\left(x\right)\,\mathrm{d} x=g\left(b\right)-g\left(a\right)\,.
 	```
 
 {data-type = unnumbered, class = page.reset}
@@ -346,7 +346,7 @@ Determine the limit ``L`` for the given ``a``, and prove that it is the limit by
 If ``f`` is continuous on ``\left[a,b\right]``, then there exists a point ``c\in\left[a,b\right]`` such that
 
 ```math
-\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\left(b-a\right)f\left(c\right)\,.
+\int_a^bf\left(x\right)\,\mathrm{d} x=\left(b-a\right)f\left(c\right)\,.
 ```
 
 !!! proof
@@ -360,19 +360,19 @@ If ``f`` is continuous on ``\left[a,b\right]``, then there exists a point ``c\in
 	For the partition ``P`` of ``\left[a,b\right]`` having ``x_0=a`` and ``x_1=b``, we have
 
 	```math
-	m\left(b-a\right)=L\left(f,P\right)\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le U\left(f,P\right)=M\left(b-a\right)\,.
+	m\left(b-a\right)=L\left(f,P\right)\le\int_a^bf\left(x\right)\,\mathrm{d} x\le U\left(f,P\right)=M\left(b-a\right)\,.
 	```
 
 	Therefore,
 
 	```math
-	f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le M=f\left(u\right)\,.
+	f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d} x\le M=f\left(u\right)\,.
 	```
 
 	By the Intermediate-Value theorem, ``f\left(x\right)`` must take on every value between the two values ``f\left(l\right)`` and ``f\left(u\right)``. Hence, there is a number ``c`` between ``l`` and ``u`` such that
 
 	```math
-	f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 {data-type = unnumbered, class = page.reset}
@@ -454,7 +454,7 @@ Give examples to show that the following definitions of ``\lim_{x\to a} f(x) = L
 Let ``f`` be an integrable function on ``\left[a,b\right]``. For ``x\in\left[a,b\right]``, let
 
 ```math
-F\left(x\right)=\int_a^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+F\left(x\right)=\int_a^xf\left(t\right)\,\mathrm{d} t\,.
 ```
 
 Then ``F`` is continuous on ``\left[a,b\right]``. If ``f`` is continuous at ``x_0\in\left]a,b\right[``, then ``F`` is differentiable at ``x_0`` and
@@ -470,7 +470,7 @@ F^\prime\left(x_0\right)=f\left(x_0\right)\,.
 	Let ``\varepsilon &gt;0``. If ``\left|x-y\right|&lt;\frac{\epsilon}{B}`` for ``a\le x&lt; y\le b``, then
 
 	```math
-	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d}\kern-0.5pt t\le\int_y^xB,\mathrm{d}\kern-0.5pt t=B\left(y-x\right)&lt;\varepsilon\,.
+	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d} t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_y^xB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
 	```
 
 	This shows that ``F`` is (uniformly) continuous on ``\left[a,b\right]``.
@@ -478,19 +478,19 @@ F^\prime\left(x_0\right)=f\left(x_0\right)\,.
 	Suppose ``f`` is continuous at ``x_0\in\left]a,b\right[``. We have
 
 	```math
-	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}=\frac{1}{x-x_0}\int_{x_0}^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t
+	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}=\frac{1}{x-x_0}\int_{x_0}^xf\left(t\right)\,\mathrm{d} t
 	```
 
 	for ``x\ne x_0`` and
 
 	```math
-	f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^xf\left(x_0\right)\,\mathrm{d}\kern-0.5pt t\,.
+	f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^xf\left(x_0\right)\,\mathrm{d} t\,.
 	```
 
 	Therefore,
 
 	```math
-	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}-f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^x\left(f\left(t\right)-f\left(x_0\right)\right)\,\mathrm{d}\kern-0.5pt t\,.
+	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}-f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^x\left(f\left(t\right)-f\left(x_0\right)\right)\,\mathrm{d} t\,.
 	```
 
 	Let ``\varepsilon &gt;0``. Since ``f`` is continuous at ``x_0``, there exists ``\delta&gt;0`` such that for ``t\in\left]a,b\right[``
@@ -536,7 +536,7 @@ Prove that there is some number ``x`` such that ``\sin x=x-1``.
 Let ``f`` be integrable on an interval containing the points ``a``, ``b``, and ``c``. Then
 
 ```math
-\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.
 ```
 
 !!! proof
@@ -569,8 +569,8 @@ Let ``f`` be integrable on an interval containing the points ``a``, ``b``, and `
 
 	```math
 	\begin{aligned}
-	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
-	&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+	\int_a^cf\left(x\right)\,\mathrm{d} x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
+	&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x+\varepsilon
 	\end{aligned}
 	```
 
@@ -578,15 +578,15 @@ Let ``f`` be integrable on an interval containing the points ``a``, ``b``, and `
 
 	```math
 	\begin{aligned}
-	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
-	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	\int_a^cf\left(x\right)\,\mathrm{d} x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
+	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x-\varepsilon
 	\end{aligned}
 	```
 
 	are true for all ``\varepsilon``, we have
 
 	```math
-	\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 {data-type = unnumbered, class = page.reset}
@@ -725,14 +725,14 @@ If ``f`` is continuous on ``\left[a,b\right]``, then ``f`` is integrable on ``\l
 
 	Let ``\varepsilon&gt;0``. Since ``f`` is continuous, it is uniformly continuous on ``\left[a,b\right]``, so corresponding to ``\frac{\varepsilon}{b-a}&gt;0`` there exists ``\delta&gt; 0`` such that for all ``x, y\in\left[a,b\right]``, ``\left|x-y\right|&lt;\delta`` implies ``\left|f\left(x\right)-f\left(y\right)\right|&lt;\frac{\varepsilon}{b-a}``.
 
-	Choose a partition ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}`` for which each subinterval ``\left[x_{i-1},x_i\right]`` has length ``\Delta\kern-0.5pt x_i&lt;\delta``.
+	Choose a partition ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}`` for which each subinterval ``\left[x_{i-1},x_i\right]`` has length ``\Delta x_i&lt;\delta``.
 
 	By the Extreme-Value Theorem, the least upper bound, ``M_i``, and the greatest lower bound ``m_i`` of the set of values of ``f\left(x\right)`` on ``\left[x_{i-1},x_i\right]`` satisfy ``M_i-m_i&lt;\frac{\varepsilon}{b-a}``.
 
 	Accordingly,
 
 	```math
-	U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{b-a}\sum_{i=1}^{n\left(P\right)}\Delta\kern-0.5pt x_i=\frac{\varepsilon}{b-a}\left(b-a\right)=\varepsilon\,.
+	U\left(f,P\right)-L\left(f,P\right)&lt;\frac{\varepsilon}{b-a}\sum_{i=1}^{n\left(P\right)}\Delta x_i=\frac{\varepsilon}{b-a}\left(b-a\right)=\varepsilon\,.
 	```
 
 	Thus, ``f`` is integrable on ``\left[a,b\right]``.
@@ -854,7 +854,7 @@ Last Name: ……………………………………………………………
 Prove that
 
 ```math
-\int_{ca}^{cb}f\left(t\right)\,\mathrm d\kern-0.5pt t=c\int_a^bf\left(ct\right)\,\mathrm d\kern-0.5pt t\,.
+\int_{ca}^{cb}f\left(t\right)\,\mathrm d t=c\int_a^bf\left(ct\right)\,\mathrm d t\,.
 ```
 
 ## Do some calculations!
@@ -954,7 +954,7 @@ Last Name: ……………………………………………………………
 Suppose that ``f`` is continuous on ``\left[a, b\right]`` and that ``g`` is integrable and nonnegative on ``\left[a, b\right]``. Prove that
 
 ```math
-\int_a^bf\left(x\right)g\left(x\right)\,\mathrm d\kern-0.5pt x=f\left(c\right)\int_a^bg\left(x\right)\,\mathrm d\kern-0.5pt x
+\int_a^bf\left(x\right)g\left(x\right)\,\mathrm d x=f\left(c\right)\int_a^bg\left(x\right)\,\mathrm d x
 ```
 
 for some ``c`` in ``\left[a, b\right]``.
@@ -1022,12 +1022,12 @@ Last Name: ……………………………………………………………
 Suppose that ``f`` is integrable on ``\left[a, b\right]``. Prove that there is a number ``x`` in ``\left]a, b\right[`` such that
 
 ```math
-\int_a^xf\left(t\right)\,\mathrm d\kern-0.5pt t=\int_x^bf\left(t\right)\,\mathrm d\kern-0.5pt t\,.
+\int_a^xf\left(t\right)\,\mathrm d t=\int_x^bf\left(t\right)\,\mathrm d t\,.
 ```
 
 ## Do some calculations!
 
-Prove that ``\displaystyle \int_0^bx^3\,\mathrm d\kern-0.5pt x=\frac{b^4}{4}``, by considering partitions into ``n`` equal subintervals, using the formula ``\displaystyle \sum_{i=1}^ni^3= \left(\sum_{i=1}^ni\right)^2``.
+Prove that ``\displaystyle \int_0^bx^3\,\mathrm d x=\frac{b^4}{4}``, by considering partitions into ``n`` equal subintervals, using the formula ``\displaystyle \sum_{i=1}^ni^3= \left(\sum_{i=1}^ni\right)^2``.
 
 {class = pagebreak}
 ## Explain the proof!
@@ -1099,7 +1099,7 @@ Last Name: ……………………………………………………………
 Prove that if ``h`` is continuous, ``f`` and ``g`` are differentiable, and
 
 ```math
-F\left(x\right)=\int_{f\left(x\right)}^{g\left(x\right)}h\left(t\right)\,\mathrm d\kern-0.5pt t\,,
+F\left(x\right)=\int_{f\left(x\right)}^{g\left(x\right)}h\left(t\right)\,\mathrm d t\,,
 ```
 
 then ``F^\prime\left(x\right)=h\left(g\left(x\right)\right)g^\prime\left(x\right)-h\left(f\left(x\right)\right)f^\prime\left(x\right)``.
@@ -1108,9 +1108,9 @@ then ``F^\prime\left(x\right)=h\left(g\left(x\right)\right)g^\prime\left(x\right
 
 Find ``\left(f^{-1}\right)^\prime\left(0\right)`` if
 
-1. ``\displaystyle f\left(x\right) = \int_0^x\left(1+\sin\left(\sin t\right)\right)\,\mathrm d\kern-0.5pt t\,.``
+1. ``\displaystyle f\left(x\right) = \int_0^x\left(1+\sin\left(\sin t\right)\right)\,\mathrm d t\,.``
 
-2. ``\displaystyle f\left(x\right) = \int_0^x\cos\left(\cos t\right)\,\mathrm d\kern-0.5pt t\,.``
+2. ``\displaystyle f\left(x\right) = \int_0^x\cos\left(\cos t\right)\,\mathrm d t\,.``
 
 {class = pagebreak}
 ## Explain the proof!
@@ -1166,7 +1166,7 @@ Hint: for any interval ``\left[x_{i-1},x_i\right]\in\left[a,b\right]``, we have
 
 ## Do some calculations!
 
-Find ``F^\prime\left(x\right)`` if ``\displaystyle F\left(x\right)=\int_0^xxf\left(t\right)\,\mathrm d\kern-0.5pt t``. (The answer is not ``xf\left(x\right)``.)
+Find ``F^\prime\left(x\right)`` if ``\displaystyle F\left(x\right)=\int_0^xxf\left(t\right)\,\mathrm d t``. (The answer is not ``xf\left(x\right)``.)
 
 {class = pagebreak}
 ## Explain the proof!
@@ -1223,7 +1223,7 @@ If ``f`` is continuous at ``a``, then ``f`` is bounded on some open interval con
 
 ## Do some calculations!
 
-If ``f`` is continuous on ``\left[0, 1\right]``, compute ``\displaystyle \lim_{x\to0^+}x\int_x^1\frac{f\left(t\right)}{t}\,\mathrm d\kern-0.5pt t``.
+If ``f`` is continuous on ``\left[0, 1\right]``, compute ``\displaystyle \lim_{x\to0^+}x\int_x^1\frac{f\left(t\right)}{t}\,\mathrm d t``.
 
 {class = pagebreak}
 ## Explain the proof!
@@ -1313,7 +1313,7 @@ indicating any restrictions on ``\alpha`` and ``\beta``.
 Let ``f`` be integrable on an interval containing the points ``a``, ``b``, and ``c``. Then
 
 ```math
-\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.
 ```
 
 !!! proof
@@ -1346,8 +1346,8 @@ Let ``f`` be integrable on an interval containing the points ``a``, ``b``, and `
 
 	```math
 	\begin{aligned}
-	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
-	&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+	\int_a^cf\left(x\right)\,\mathrm{d} x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
+	&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x+\varepsilon
 	\end{aligned}
 	```
 
@@ -1355,15 +1355,15 @@ Let ``f`` be integrable on an interval containing the points ``a``, ``b``, and `
 
 	```math
 	\begin{aligned}
-	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
-	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	\int_a^cf\left(x\right)\,\mathrm{d} x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
+	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x-\varepsilon
 	\end{aligned}
 	```
 
 	are true for all ``\varepsilon``, we have
 
 	```math
-	\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 {data-type = unnumbered, class = page.reset}
@@ -1380,7 +1380,7 @@ Last Name: ……………………………………………………………
 Suppose that ``g`` is a differentiable function on ``\left[a,b\right]`` that satisfies ``g\left(a\right)=A`` and ``g\left(b\right)=B``. Also suppose that ``f`` is continuous on the range of ``g``. Then
 
 ```math
-\int_a^b f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_A^B f^\prime\left(u\right)\,\mathrm{d}\kern-0.5pt u\,.
+\int_a^b f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d} x=\int_A^B f^\prime\left(u\right)\,\mathrm{d} u\,.
 ```
 
 ## Do some calculations!
@@ -1388,13 +1388,13 @@ Suppose that ``g`` is a differentiable function on ``\left[a,b\right]`` that sat
 If ``f`` is integrable on ``\left[-\uppi,\uppi\right]``, show that the minimum value of
 
 ```math
-\int_{-\uppi}^\uppi\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d\kern-0.5pt x
+\int_{-\uppi}^\uppi\left(f\left(x\right)-a\cos nx\right)^2\,\mathrm d x
 ```
 
 occurs when
 
 ```math
-a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d\kern-0.5pt x
+a=\frac{1}{\uppi}\int_{-\uppi}^\uppi f\left(x\right)\cos nx\,\mathrm d x
 ```
 
 (Bring ``a`` outside the integral sign, obtaining a quadratic expression in ``a``.)
@@ -1454,7 +1454,7 @@ Last Name: ……………………………………………………………
 The arc length ``s`` of the curve ``y=f\left(x\right)`` from ``x=a`` to ``x=b`` is given by
 
 ```math
-s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x=\int_a^b\sqrt{1+\left(\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x=\int_a^b\sqrt{1+\left(\frac{\mathrm d y}{\mathrm d x}\right)^2}\,\mathrm{d} x\,.
 ```
 
 ## Do some calculations!
@@ -1471,7 +1471,7 @@ Use logarithmic differentiation to find ``f^\prime\left(x\right)`` for each of t
 Let ``f`` and ``g`` be integrable on an interval containing the points ``a`` and ``b``. Then
 
 ```math
-\displaystyle\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\displaystyle\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x\,.
 ```
 
 !!! proof
@@ -1517,8 +1517,8 @@ Let ``f`` and ``g`` be integrable on an interval containing the points ``a`` and
 
 	```math
 	\begin{aligned}
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I^\star\left(f+g\right)\le U\left(f+g,P\right)\le U\left(f,P\right)+ U\left(g,P\right)\\
-	&&lt;L\left(f,P\right)+ L\left(g,P\right)+\varepsilon\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x&=I^\star\left(f+g\right)\le U\left(f+g,P\right)\le U\left(f,P\right)+ U\left(g,P\right)\\
+	&&lt;L\left(f,P\right)+ L\left(g,P\right)+\varepsilon\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x+\varepsilon
 	\end{aligned}
 	```
 
@@ -1526,15 +1526,15 @@ Let ``f`` and ``g`` be integrable on an interval containing the points ``a`` and
 
 	```math
 	\begin{aligned}
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
-	&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
+	&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x-\varepsilon
 	\end{aligned}
 	```
 
 	are true for all ``\varepsilon``, we have
 
 	```math
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x\,.
 	```
 
 {data-type = unnumbered, class = page.reset}
@@ -1551,7 +1551,7 @@ Last Name: ……………………………………………………………
 Prove the integrability of a constant times an integrable function
 
 ```math
-\displaystyle\int_a^b\left(Af\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\displaystyle\int_a^b\left(Af\left(x\right)\right)\,\mathrm{d} x=A\int_a^bf\left(x\right)\,\mathrm{d} x\,.
 ```
 
 Hint: consider the cases ``A`` positive and negative.
@@ -1628,7 +1628,7 @@ If ``f`` is a continuous function at the point ``L`` and if ``\displaystyle\lim_
 Find all continuous functions ``f`` satisfying
 
 ```math
-\int_0^{x^2}f\left(x\right)\,\mathrm d\kern-0.5pt x=1-\mathcal{e}^{2x^2}\,.
+\int_0^{x^2}f\left(x\right)\,\mathrm d x=1-\mathcal{e}^{2x^2}\,.
 ```
 
 {class = pagebreak}
@@ -1678,7 +1678,7 @@ If ``f\left(u\right)`` is differentiable at ``u=g\left(x\right)``, and ``g\left(
 	Hence,
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
 	&= \left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
@@ -1703,7 +1703,7 @@ If ``\lim_{x\to a}f\left(x\right)=L`` and ``k`` is a constant, then ``\lim_{x\to
 Find all continuous functions ``f`` satisfying
 
 ```math
-\int_0^xf\left(t\right)\frac{t}{1+t^2}\,\mathrm d\kern-0.5pt t=\left(f\left(x\right)\right)^2\,.
+\int_0^xf\left(t\right)\frac{t}{1+t^2}\,\mathrm d t=\left(f\left(x\right)\right)^2\,.
 ```
 
 {class = pagebreak}
@@ -1744,7 +1744,7 @@ Let ``A`` be a nonempty subset of ``\mathbb{R}``. If ``A`` is bounded below, tha
 Suppose that ``f^{\prime\prime}`` is continuous and that
 
 ```math
-\int_0^\uppi\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d\kern-0.5pt x=2\,.
+\int_0^\uppi\left(f\left(x\right)+f^{\prime\prime}\left(x\right)\right)\sin x\,\mathrm d x=2\,.
 ```
 
 Given that ``f\left(\uppi\right) = 1``, compute ``f\left(0\right)``.
@@ -1796,7 +1796,7 @@ Let ``a&gt;0`` and ``S`` a set of real numbers. Show that ``\inf aS=a\inf S``.
 1. Prove that
 
    ```math
-   \int_a^bf\left(x\right)\,\mathrm d\kern-0.5pt x=\int_a^bf\left(a+b-x\right)\,\mathrm d\kern-0.5pt x
+   \int_a^bf\left(x\right)\,\mathrm d x=\int_a^bf\left(a+b-x\right)\,\mathrm d x
    ```
 
 2. The graph of ``f(x) = 1/x``, ``x \ge 1`` is revolved around the horizontal axis.
@@ -1861,7 +1861,7 @@ f\left(x\right) = \begin{cases}
 
 1. Find the Taylor polynomial of degree ``n`` for ``f`` at ``0``, compute ``f^{\left(k\right)}\left(0\right)``, and give an estimate for the remainder term ``E_n\left(x\right)``.
 
-2. Compute ``\displaystyle\int_0^1f\left(x\right)\,\mathrm d\kern-0.5pt x``, with an error of less than ``10^{-4}``.
+2. Compute ``\displaystyle\int_0^1f\left(x\right)\,\mathrm d x``, with an error of less than ``10^{-4}``.
 
 ## Explain the proof!
 

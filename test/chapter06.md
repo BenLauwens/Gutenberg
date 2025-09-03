@@ -134,16 +134,16 @@ We are going to consider how to find the area of a region ``R`` lying under the 
 a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b
 ```
 
-Denote by ``\Delta\kern-0.5pt x_i`` the length of the ``i``th subinterval ``\left[x_{i-1},x_i\right]``:
+Denote by ``\Delta x_i`` the length of the ``i``th subinterval ``\left[x_{i-1},x_i\right]``:
 
 ```math
-\Delta\kern-0.5pt x_i=x_i-x_{i-1},\quad\forall i\in\left\{1,2,3,\dots,n\right\}\,.
+\Delta x_i=x_i-x_{i-1},\quad\forall i\in\left\{1,2,3,\dots,n\right\}\,.
 ```
 
-Vertically above each subinterval ``\left[x_{i-1},x_i\right]`` build a rectangle whose base has length ``\Delta\kern-0.5pt x_i`` and whose height is ``f\left(x_i\right)``. The area of this rectangle is ``f\left(x_i\right)\Delta\kern-0.5pt x_i``. Form the sum of these areas:
+Vertically above each subinterval ``\left[x_{i-1},x_i\right]`` build a rectangle whose base has length ``\Delta x_i`` and whose height is ``f\left(x_i\right)``. The area of this rectangle is ``f\left(x_i\right)\Delta x_i``. Form the sum of these areas:
 
 ```math
-S_n=\sum_{i=1}^n f\left(x_i\right)\Delta\kern-0.5pt x_i\,.
+S_n=\sum_{i=1}^n f\left(x_i\right)\Delta x_i\,.
 ```
 
 {cell=chap display=false output=false}
@@ -164,14 +164,14 @@ Figure("", "Approximating the area under the graph of a decreasing function usin
 end
 ```
 
-The rectangles are shown shaded in the figure for a decreasing function ``f``. For an increasing function, the tops of the rectangles would lie above the graph of ``f`` rather than below it. Evidently, ``S_n`` is an approximation to the area of the region ``R``, and the approximation gets better as ``n`` increases, provided we choose the points ``a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b`` in such a way that the width ``\Delta\kern-0.5pt x_i`` of the widest rectangle approaches zero.
+The rectangles are shown shaded in the figure for a decreasing function ``f``. For an increasing function, the tops of the rectangles would lie above the graph of ``f`` rather than below it. Evidently, ``S_n`` is an approximation to the area of the region ``R``, and the approximation gets better as ``n`` increases, provided we choose the points ``a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b`` in such a way that the width ``\Delta x_i`` of the widest rectangle approaches zero.
 
-Subdividing a subinterval into two smaller subintervals reduces the error in the approximation by reducing that part of the area under the curve that is not contained in the rectangles. It is reasonable, therefore, to calculate the area of ``R`` by finding the limit of ``S_n`` as ``n`` with the restriction that the largest of the subinterval widths ``\Delta\kern-0.5pt x_i`` must approach zero:
+Subdividing a subinterval into two smaller subintervals reduces the error in the approximation by reducing that part of the area under the curve that is not contained in the rectangles. It is reasonable, therefore, to calculate the area of ``R`` by finding the limit of ``S_n`` as ``n`` with the restriction that the largest of the subinterval widths ``\Delta x_i`` must approach zero:
 
 ```math
 \textrm{Area of }R=\lim_{
 	\begin{aligned}n&\to\infty\\
-\max &\Delta\kern-0.5pt x_i\to 0
+\max &\Delta x_i\to 0
 \end{aligned}
 }S_n\,.
 ```
@@ -180,7 +180,7 @@ Subdividing a subinterval into two smaller subintervals reduces the error in the
 
 We generalize and make more precise the procedure used for finding areas developed in the previous section, and we use it to define the *definite integral* of a function *f* on an interval *I*:
 
-Let a partition ``P`` of ``\left[a,b\right]`` be a finite, ordered set of points ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}`` , where ``a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b``. Such a partition subdivides ``\left[a,b\right]`` into ``n`` subintervals ``\left[x_{i-1},x_i\right]``, where ``n=n\left(P\right)`` depends on the partition. The length of the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` is ``\Delta\kern-0.5pt x_i=x_i-x_{i-1}``.
+Let a partition ``P`` of ``\left[a,b\right]`` be a finite, ordered set of points ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}`` , where ``a=x_0&lt;x_1&lt;x_2&lt;x_3&lt;\cdots&lt;x_{n-1}&lt;x_n=b``. Such a partition subdivides ``\left[a,b\right]`` into ``n`` subintervals ``\left[x_{i-1},x_i\right]``, where ``n=n\left(P\right)`` depends on the partition. The length of the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` is ``\Delta x_i=x_i-x_{i-1}``.
 
 Suppose that the function ``f`` is bounded on ``\left[a,b\right]``. Given any partition ``P``, the ``n`` sets ``S_i=\left\{f\left(x\right)\mid x_{i-1}\le x\le x_i\right\}`` have least upper bounds ``M_i`` and greatest lower bounds ``m_i``, so that
 
@@ -191,7 +191,7 @@ m_j\le f\left(x\right)\le M_i\quad\forall x\in\left[x_{i-1},x_i\right]\,.
 We define *upper* and *lower Riemann sums* for ``f`` corresponding to the partition ``P`` to be
 
 ```math
-U\left(f,P\right)=\sum_{i=1}^{n\left(P\right)}M_i\Delta\kern-0.5pt x_i\quad\textrm{and}\quad L\left(f,P\right)=\sum_{i=1}^{n\left(P\right)}m_i\Delta\kern-0.5pt x_i\,.
+U\left(f,P\right)=\sum_{i=1}^{n\left(P\right)}M_i\Delta x_i\quad\textrm{and}\quad L\left(f,P\right)=\sum_{i=1}^{n\left(P\right)}m_i\Delta x_i\,.
 ```
 
 {cell=chap display=false output=false}
@@ -235,11 +235,11 @@ Note that if ``f`` is continuous on ``\left[a,b\right]``, then ``m_i`` and ``M_i
 
 	Calculate the lower and upper Riemann sums for the function ``f\left(x\right)=x^2`` on the interval ``\left[0,a\right]`` (where ``a &gt; 0``), corresponding to the partition ``P_n`` of ``\left[0,a\right]`` into ``n`` subintervals of equal length.
 
-	Each subinterval of ``P_n`` has length ``\Delta\kern-0.5pt x=\frac{a}{n}``, and the division points are given by ``x_i=\frac{ia}{n}`` for ``i= 0, 1, 2,\dots, n``. Since ``x^2`` is increasing on ``\left[0,a\right]``, its minimum and maximum values over the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` occur at ``l_i=x_{i-1}`` and ``u_i=x_i``, respectively. Thus, the lower Riemann sum of ``f`` for ``P_n`` is
+	Each subinterval of ``P_n`` has length ``\Delta x=\frac{a}{n}``, and the division points are given by ``x_i=\frac{ia}{n}`` for ``i= 0, 1, 2,\dots, n``. Since ``x^2`` is increasing on ``\left[0,a\right]``, its minimum and maximum values over the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` occur at ``l_i=x_{i-1}`` and ``u_i=x_i``, respectively. Thus, the lower Riemann sum of ``f`` for ``P_n`` is
 
 	```math
 	\begin{aligned}
-	L\left(f,P_n\right)&=\sum_{i=1}^nx_{i-1}^2\Delta\kern-0.5pt x=\frac{a^3}{n^3}\sum_{i=1}^n\left(i-1\right)^2\\
+	L\left(f,P_n\right)&=\sum_{i=1}^nx_{i-1}^2\Delta x=\frac{a^3}{n^3}\sum_{i=1}^n\left(i-1\right)^2\\
 	&=\frac{a^3}{n^3}\sum_{j=0}^{n-1}j^2=\frac{a^3}{n^3}\frac{\left(n-1\right)n\left(2\left(n-1\right)+1\right)}{6}=\frac{\left(n-1\right)\left(2n-1\right)a^3}{6n^2}
 	\end{aligned}
 	```
@@ -254,7 +254,7 @@ Note that if ``f`` is continuous on ``\left[a,b\right]``, then ``m_i`` and ``M_i
 
 	```math
 	\begin{aligned}
-	U\left(f,P_n\right)&=\sum_{i=1}^nx_i^2\Delta\kern-0.5pt x\\
+	U\left(f,P_n\right)&=\sum_{i=1}^nx_i^2\Delta x\\
 	&=\frac{a^3}{n^3}\sum_{i=1}^ni^2=\frac{a^3}{n^3}\frac{n\left(n+1\right)\left(2n+1\right)}{6}=\frac{\left(n+1\right)\left(2n+1\right)a^3}{6n^2}\,.
 	\end{aligned}
 	```
@@ -330,7 +330,7 @@ The last theorem shows that the set of values of ``L\left(f, P\right)`` for fixe
 	If ``f`` is bounded on ``\left[a,b\right]`` and ``I_\star=I^\star``, then we say that ``f`` is *Darboux integrable*, or simply integrable on ``\left[a,b\right]``, and denote by
 
 	```math
-	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=I_\star=I^\star
+	\int_a^b f\left(x\right)\,\mathrm{d} x=I_\star=I^\star
 	```
 
 	the (*Darboux*) *integral* of ``f`` on ``\left[a,b\right]\,.``
@@ -338,10 +338,10 @@ The last theorem shows that the set of values of ``L\left(f, P\right)`` for fixe
 The definite integral of ``f\left(x\right)`` over ``\left[a,b\right]`` is a number; it is not a function of ``x``. It depends on the numbers ``a`` and ``b`` and on the particular function ``f``, but not on the variable ``x`` (which is a *dummy variable* like the variable ``i`` in the sum ``\sum_{i=1}^nf\left(i\right)``). Replacing ``x`` with another variable does not change the value of the integral:
 
 ```math
-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^b f\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+\int_a^b f\left(x\right)\,\mathrm{d} x=\int_a^b f\left(t\right)\,\mathrm{d} t\,.
 ```
 
-The various parts of the symbol ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` have their own names:
+The various parts of the symbol ``\int_a^b f\left(x\right)\,\mathrm{d} x`` have their own names:
 
 - ``\int`` is called the *integral sign*; it resembles the letter ``S`` since it represents the limit of a sum.
 
@@ -349,14 +349,14 @@ The various parts of the symbol ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5p
 
 - The function ``f`` is the *integrand*; ``x`` is the *variable of integration*.
 
-- ``\mathrm{d}\kern-0.5pt x`` is the *differential of ``x``*. It replaces ``x`` in the Riemann sums. If an integrand depends on more than one variable, the differential tells you which one is the variable of integration.
+- ``\mathrm{d} x`` is the *differential of ``x``*. It replaces ``x`` in the Riemann sums. If an integrand depends on more than one variable, the differential tells you which one is the variable of integration.
 
 !!! example
 
 	Show that ``f\left(x\right)=x^2`` is integrable over the interval ``\left[0,a\right]`` (where ``a &gt; 0``), and evaluate
 
 	```math
-	I=\int_0^a f\left(x\right)\,\mathrm{d}\kern-0.5pt x
+	I=\int_0^a f\left(x\right)\,\mathrm{d} x
 	```
 
 	We evaluate the limits as ``n\to\infty`` of the lower and upper sums of ``f`` over ``\left[0,a\right]`` obtained in the previous example.
@@ -371,15 +371,15 @@ The various parts of the symbol ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5p
 	Since ``L\left(f,P_n\right)\le I\le U\left(f,P_n\right)``, we must have ``I=\frac{a^3}{3}``. Thus, ``f\left(x\right)=x^2`` is integrable over ``\left[0,a\right]``, and
 
 	```math
-	\int_0^a f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_0^a x^2\,\mathrm{d}\kern-0.5pt x=\frac{a^3}{3}\,.
+	\int_0^a f\left(x\right)\,\mathrm{d} x=\int_0^a x^2\,\mathrm{d} x=\frac{a^3}{3}\,.
 	```
 
 Let ``P=\left\{x_0,x_1,x_2,\dots,x_n\right\}``, where ``a=x_0&lt;x_1&lt;x_2&lt;\dots&lt;x_n=b``, be a partition of ``\left[a,b\right]``. In each subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` pick a point ``c_i`` (called a *tag*). Let ``c=\left(c_1,c_2,\dots,c_n\right)`` denote the list of these tags. The sum
 
 ```math
 \begin{aligned}
-R\left(f,P,c\right)&=\sum_{i=1}^nf\left(c_i\right)\Delta\kern-0.5pt x\\
-&=f\left(c_1\right)\Delta\kern-0.5pt x_1+f\left(c_2\right)\Delta\kern-0.5pt x_2+\cdots+f\left(c_n\right)\Delta\kern-0.5pt x_n
+R\left(f,P,c\right)&=\sum_{i=1}^nf\left(c_i\right)\Delta x\\
+&=f\left(c_1\right)\Delta x_1+f\left(c_2\right)\Delta x_2+\cdots+f\left(c_n\right)\Delta x_n
 \end{aligned}
 ```
 
@@ -394,7 +394,7 @@ L\left(f,P\right)\le R\left(f,P,c\right)\le U\left(f,P\right)
 Therefore, if ``f`` is integrable on ``\left[a,b\right]``, then its integral is the limit of such Riemann sums, where the limit is taken as the number ``n\left(P\right)`` of subintervals of ``P`` increases to infinity in such a way that the lengths of all the subintervals approach zero. That is,
 
 ```math
-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{\begin{aligned}n&\to\infty\\\max &\Delta\kern-0.5pt x_i\to 0\end{aligned}}\sum_{i=1}^n f\left(c_i\right)\Delta\kern-0.5pt x_i\,,
+\int_a^b f\left(x\right)\,\mathrm{d} x=\lim_{\begin{aligned}n&\to\infty\\\max &\Delta x_i\to 0\end{aligned}}\sum_{i=1}^n f\left(c_i\right)\Delta x_i\,,
 ```
 
 where ``c_i`` is an arbitrary point in ``\left[x_{i-1},x_i\right]``. The Darboux integral is easier to use than the more intuitive *Riemann integral* but many applications of integration depend on recognizing that a limit of Riemann sums is a definite integral.
@@ -465,7 +465,7 @@ We are now in a position to prove that a continuous function is integrable.
 
 ## Properties of the Definite Integral
 
-It is convenient to extend the definition of the definite integral ``\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x`` to allow ``a=b`` and ``a&gt;b`` as well as ``a&lt; b``. The extension still involves partitions ``P`` having ``x_0=a`` and ``x_n=b`` with intermediate points occurring in order between these end points, so that if ``a=b``, then we must have ``\Delta\kern-0.5pt x_i=0`` for every ``i``, and hence the integral is zero. If ``a&gt;b``, we have ``\Delta\kern-0.5pt x_i&lt; 0`` for each ``i``, so the integral will be negative for positive functions ``f`` and vice versa.
+It is convenient to extend the definition of the definite integral ``\int_a^bf\left(x\right)\,\mathrm{d} x`` to allow ``a=b`` and ``a&gt;b`` as well as ``a&lt; b``. The extension still involves partitions ``P`` having ``x_0=a`` and ``x_n=b`` with intermediate points occurring in order between these end points, so that if ``a=b``, then we must have ``\Delta x_i=0`` for every ``i``, and hence the integral is zero. If ``a&gt;b``, we have ``\Delta x_i&lt; 0`` for each ``i``, so the integral will be negative for positive functions ``f`` and vice versa.
 
 ### Basic Properties
 
@@ -475,22 +475,22 @@ Some of the most important properties of the definite integral are summarized in
 
 	Let ``f`` and ``g`` be integrable on an interval containing the points ``a``, ``b``, and ``c``.
 
-	1. ``\displaystyle\int_a^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=0\,.``
+	1. ``\displaystyle\int_a^af\left(x\right)\,\mathrm{d} x=0\,.``
 
-	2. ``\displaystyle\int_b^af\left(x\right)\,\mathrm{d}\kern-0.5pt x=-\displaystyle\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
+	2. ``\displaystyle\int_b^af\left(x\right)\,\mathrm{d} x=-\displaystyle\int_a^bf\left(x\right)\,\mathrm{d} x\,.``
 
-	3. ``\displaystyle\int_a^b\left(Af\left(x\right)+Bg\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+B\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
+	3. ``\displaystyle\int_a^b\left(Af\left(x\right)+Bg\left(x\right)\right)\,\mathrm{d} x=A\int_a^bf\left(x\right)\,\mathrm{d} x+B\int_a^bg\left(x\right)\,\mathrm{d} x\,.``
 
-	4. ``\displaystyle\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
+	4. ``\displaystyle\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.``
 
-	5. If ``a\le b`` and ``f\left(x\right)\le g\left(x\right)`` for ``x\in\left[a,b\right]``, then ``\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.``
+	5. If ``a\le b`` and ``f\left(x\right)\le g\left(x\right)`` for ``x\in\left[a,b\right]``, then ``\int_a^bf\left(x\right)\,\mathrm{d} x\le\int_a^bg\left(x\right)\,\mathrm{d} x\,.``
 
-	6. If ``a\le b``, ``\displaystyle\left|\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\right|\le\int_a^b\left|f\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x`` (*triangle inequality*).
+	6. If ``a\le b``, ``\displaystyle\left|\int_a^bf\left(x\right)\,\mathrm{d} x\right|\le\int_a^b\left|f\left(x\right)\right|\,\mathrm{d} x`` (*triangle inequality*).
 	
 The proofs of parts (1) and (2) are suggested in the first paragraph of this section. The other proofs are more challenging. We will start with the integrability of the sum of two integrable functions
 
 ```math
-\displaystyle\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\displaystyle\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x\,.
 ```
 
 !!! proof
@@ -539,9 +539,9 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 
 	```math
 	\begin{aligned}
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I^\star\left(f+g\right)\le U\left(f+g,P\right)\le U\left(f,P\right)+ U\left(g,P\right)\\
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x&=I^\star\left(f+g\right)\le U\left(f+g,P\right)\le U\left(f,P\right)+ U\left(g,P\right)\\
 	&&lt;L\left(f,P\right)+ L\left(g,P\right)+\varepsilon\\
-	&\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+	&\le I_\star\left(f\right)+I_\star\left(g\right)+\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x+\varepsilon
 	\end{aligned}
 	```
 
@@ -549,16 +549,16 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 
 	```math
 	\begin{aligned}
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x&=I_\star\left(f+g\right)\ge L\left(f+g,P\right)\ge L\left(f,P\right)+ L\left(g,P\right)\\
 	&&gt;U\left(f,P\right)+ U\left(g,P\right)-\varepsilon\\
-	&\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	&\ge I^\star\left(f\right)+I^\star\left(g\right)-\varepsilon=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x-\varepsilon
 	\end{aligned}
 	```
 
 	are true for all ``\varepsilon``, we have
 
 	```math
-	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^b\left(f\left(x\right)+g\left(x\right)\right)\,\mathrm{d} x=\int_a^bf\left(x\right)\,\mathrm{d} x+\int_a^bg\left(x\right)\,\mathrm{d} x\,.
 	```
 
 !!! exercise
@@ -566,7 +566,7 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 	Prove the integrability of a constant times an integrable function
 
 	```math
-	\displaystyle\int_a^b\left(Af\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\displaystyle\int_a^b\left(Af\left(x\right)\right)\,\mathrm{d} x=A\int_a^bf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 	Hint: consider the cases ``A`` positive and negative.
@@ -574,7 +574,7 @@ The proofs of parts (1) and (2) are suggested in the first paragraph of this sec
 Now, we will prove the additive dependency of an integral on the interval of integration
 
 ```math
-\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.
 ```
 
 !!! proof
@@ -607,8 +607,8 @@ Now, we will prove the additive dependency of an integral on the interval of int
 
 	```math
 	\begin{aligned}
-	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
-	&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\varepsilon
+	\int_a^cf\left(x\right)\,\mathrm{d} x&\le U_a^c\left(f, P\right)=U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)\\
+	&&lt;L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)+\varepsilon\le\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x+\varepsilon
 	\end{aligned}
 	```
 
@@ -616,15 +616,15 @@ Now, we will prove the additive dependency of an integral on the interval of int
 
 	```math
 	\begin{aligned}
-	\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
-	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x-\varepsilon
+	\int_a^cf\left(x\right)\,\mathrm{d} x&\ge L_a^c\left(f, P\right)=L_a^b\left(f,P_1\right)+L_b^c\left(f,P_2\right)\\
+	&&gt;U_a^b\left(f,P_1\right)+U_b^c\left(f,P_2\right)-\varepsilon\ge\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x-\varepsilon
 	\end{aligned}
 	```
 
 	are true for all ``\varepsilon``, we have
 
 	```math
-	\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_b^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^cf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^bf\left(x\right)\,\mathrm{d} x+\int_b^cf\left(x\right)\,\mathrm{d} x=\int_a^cf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 !!! exercise
@@ -649,7 +649,7 @@ A simple but very useful result is the Mean-Value theorem for integrals.
 	If ``f`` is continuous on ``\left[a,b\right]``, then there exists a point ``c\in\left[a,b\right]`` such that
 
 	```math
-	\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x=\left(b-a\right)f\left(c\right)\,.
+	\int_a^bf\left(x\right)\,\mathrm{d} x=\left(b-a\right)f\left(c\right)\,.
 	```
 
 !!! proof
@@ -663,22 +663,22 @@ A simple but very useful result is the Mean-Value theorem for integrals.
 	For the partition ``P`` of ``\left[a,b\right]`` having ``x_0=a`` and ``x_1=b``, we have
 
 	```math
-	m\left(b-a\right)=L\left(f,P\right)\le\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le U\left(f,P\right)=M\left(b-a\right)\,.
+	m\left(b-a\right)=L\left(f,P\right)\le\int_a^bf\left(x\right)\,\mathrm{d} x\le U\left(f,P\right)=M\left(b-a\right)\,.
 	```
 
 	Therefore,
 
 	```math
-	f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\le M=f\left(u\right)\,.
+	f\left(l\right)=m\le\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d} x\le M=f\left(u\right)\,.
 	```
 
 	By the Intermediate-Value theorem, ``f\left(x\right)`` must take on every value between the two values ``f\left(l\right)`` and ``f\left(u\right)``. Hence, there is a number ``c`` between ``l`` and ``u`` such that
 
 	```math
-	f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	f\left(c\right)=\frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d} x\,.
 	```
 
-The integral ``\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x`` is equal to the area ``\left(b-a\right)f\left(c\right)`` of a rectangle with base width ``b-a`` and height ``f\left(c\right)`` for some ``c\in \left[a,b\right]``.
+The integral ``\int_a^bf\left(x\right)\,\mathrm{d} x`` is equal to the area ``\left(b-a\right)f\left(c\right)`` of a rectangle with base width ``b-a`` and height ``f\left(c\right)`` for some ``c\in \left[a,b\right]``.
 
 {cell=chap display=false output=false}
 ```julia
@@ -715,7 +715,7 @@ Observe in the figure that the area below the curve ``y=f\left(x\right)`` and ab
 	If ``f`` is integrable on ``\left[a,b\right]``, then the *average value* or *mean value* of ``f`` on ``\left[a,b\right]``, denoted by ``\bar f``, is
 
 	```math
-	\bar f = \frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\bar f = \frac{1}{b-a}\int_a^bf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 ### Piecewise Continuous Functions
@@ -751,7 +751,7 @@ end
 Consider the graph ``y=f\left(x\right)`` shown above. Although ``f`` is not continuous at all points in ``\left[a,b\right]`` (it is discontinuous at ``c_1`` and ``c_2``), clearly the region lying under the graph and above the ``x``-axis between ``x= a`` and ``x= b`` does have an area. We would like to represent this area as
 
 ```math
-\int_a^{c_1}f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_{c_1}^{c_2}f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_{c_2}^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int_a^{c_1}f\left(x\right)\,\mathrm{d} x+\int_{c_1}^{c_2}f\left(x\right)\,\mathrm{d} x+\int_{c_2}^bf\left(x\right)\,\mathrm{d} x\,.
 ```
 
 This is reasonable because there are continuous functions (extensions) on ``\left[a,c_1\right]``, ``\left[c_1,c_2\right]``, and ``\left[c_2,b\right]`` equal to  ``f\left(x\right)`` on the corresponding open intervals, ``\left]a,c_1\right[``, ``\left]c_1,c_2\right[``, and ``\left]c_2,b\right[``.
@@ -767,12 +767,12 @@ This is reasonable because there are continuous functions (extensions) on ``\lef
 	In this case, we define the definite integral of ``f`` from ``c_0`` to ``c_n`` to be
 
 	```math
-	\int_{c_0}^{c_n}f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\sum_{i=1}^n\int_{c_{i-1}}^{c_i}F_i\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_{c_0}^{c_n}f\left(x\right)\,\mathrm{d} x=\sum_{i=1}^n\int_{c_{i-1}}^{c_i}F_i\left(x\right)\,\mathrm{d} x\,.
 	```
 
 !!! example
 
-	Find ``\displaystyle\int_{0.5}^{3.5}f\left(x\right)\,\mathrm{d}\kern-0.5pt x``, where
+	Find ``\displaystyle\int_{0.5}^{3.5}f\left(x\right)\,\mathrm{d} x``, where
 
 	```math
 	f\left(x\right)=\begin{cases}
@@ -786,7 +786,7 @@ This is reasonable because there are continuous functions (extensions) on ``\lef
 
 	```math
 	\begin{aligned}
-	\int_{0.5}^{3.5}f\left(x\right)\,\mathrm{d}\kern-0.5pt x&=\int_{0.5}^{1.5}\sqrt{1-\left(x-0.5\right)^2}\,\mathrm{d}\kern-0.5pt x+\int_{1.5}^{2.5}2\,\mathrm{d}\kern-0.5pt x+\int_{2.5}^{3.5}\left(x-2.5\right)\,\mathrm{d}\kern-0.5pt x\\
+	\int_{0.5}^{3.5}f\left(x\right)\,\mathrm{d} x&=\int_{0.5}^{1.5}\sqrt{1-\left(x-0.5\right)^2}\,\mathrm{d} x+\int_{1.5}^{2.5}2\,\mathrm{d} x+\int_{2.5}^{3.5}\left(x-2.5\right)\,\mathrm{d} x\\
 	&=\left(\frac{1}{4}\times\uppi^2\times 1^2\right)+\left(2\times 1\right)+\left(\frac{1}{2}\times1\times 1\right)=\frac{\uppi+10}{4}\,.
 	\end{aligned}
 
@@ -799,7 +799,7 @@ In this section we demonstrate the relationship between the definite integral de
 	If ``g`` is a continuous function on ``\left[a,b\right]`` that is differentiable on ``\left]a,b\right[``, and if ``g^\prime`` is integrable on ``\left[a,b\right]``, then
 
 	```math
-	\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
+	\int_a^b g^\prime\left(x\right)\,\mathrm{d} x=g\left(b\right)-g\left(a\right)\,.
 	```
 
 !!! proof
@@ -831,19 +831,19 @@ In this section we demonstrate the relationship between the definite integral de
 	We also have that
 
 	```math
-	L\left(g^\prime,P\right)\le \int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\le U\left(g^\prime,P\right)\,,
+	L\left(g^\prime,P\right)\le \int_a^b g^\prime\left(x\right)\,\mathrm{d} x\le U\left(g^\prime,P\right)\,,
 	```
 
 	so the Darboux integrability criterion implies
 
 	```math
-	\left|\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x-\left(g\left(b\right)-g\left(a\right)\right)\right|&lt;\varepsilon\,.
+	\left|\int_a^b g^\prime\left(x\right)\,\mathrm{d} x-\left(g\left(b\right)-g\left(a\right)\right)\right|&lt;\varepsilon\,.
 	```
 
 	This is true for all ``\varepsilon``, so
 
 	```math
-	\int_a^b g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=g\left(b\right)-g\left(a\right)\,.
+	\int_a^b g^\prime\left(x\right)\,\mathrm{d} x=g\left(b\right)-g\left(a\right)\,.
 	```
 
 To facilitate the evaluation of definite integrals using the Fundamental theorem of Calculus Part 1, we define the *evaluation symbol*
@@ -855,10 +855,10 @@ To facilitate the evaluation of definite integrals using the Fundamental theorem
 Thus,
 
 ```math
-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\left.\left(\int f\left(x\right)\,\mathrm{d}\kern-0.5pt x\right)\right|_a^b\,,
+\int_a^b f\left(x\right)\,\mathrm{d} x=\left.\left(\int f\left(x\right)\,\mathrm{d} x\right)\right|_a^b\,,
 ```
 
-where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes the indefinite integral or general antiderivative of ``f``. When evaluating a definite integral this way, we will omit the constant of integration (``C``) from the indefinite integral because it cancels out in the subtraction:
+where ``\displaystyle \int f\left(x\right)\,\mathrm{d} x`` denotes the indefinite integral or general antiderivative of ``f``. When evaluating a definite integral this way, we will omit the constant of integration (``C``) from the indefinite integral because it cancels out in the subtraction:
 
 ```math
 \left.\left(F\left(x\right)+C\right)\right|_a^b=F\left(b\right)+C-\left(F\left(a\right)+C\right)=F\left(b\right)-F\left(a\right)=\left.F\left(x\right)\right|_a^b\,.
@@ -866,16 +866,16 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 	
 !!! example
 
-	Evaluate ``\displaystyle \int_0^a x^2\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int_0^a x^2\,\mathrm{d} x``.
 
-	``\displaystyle \int_0^a x^2\,\mathrm{d}\kern-0.5pt x=\left.\frac{1}{3}x^3\right|_0^a=\frac{1}{3}a^3-\frac{1}{3}0^3=\frac{a^3}{3}`` because ``\displaystyle \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{x^3}{3}=x^2``.
+	``\displaystyle \int_0^a x^2\,\mathrm{d} x=\left.\frac{1}{3}x^3\right|_0^a=\frac{1}{3}a^3-\frac{1}{3}0^3=\frac{a^3}{3}`` because ``\displaystyle \frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{x^3}{3}=x^2``.
 
 !!! theorem "Fundamental theorem of Calculus Part 2"
 
 	Let ``f`` be an integrable function on ``\left[a,b\right]``. For ``x\in\left[a,b\right]``, let
 
 	```math
-	F\left(x\right)=\int_a^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+	F\left(x\right)=\int_a^xf\left(t\right)\,\mathrm{d} t\,.
 	```
 
 	Then ``F`` is continuous on ``\left[a,b\right]``. If ``f`` is continuous at ``x_0\in\left]a,b\right[``, then ``F`` is differentiable at ``x_0`` and
@@ -891,7 +891,7 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 	Let ``\varepsilon &gt;0``. If ``\left|x-y\right|&lt;\frac{\epsilon}{B}`` for ``a\le x&lt; y\le b``, then
 
 	```math
-	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d}\kern-0.5pt t\le\int_y^xB,\mathrm{d}\kern-0.5pt t=B\left(y-x\right)&lt;\varepsilon\,.
+	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d} t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_y^xB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
 	```
 
 	This shows that ``F`` is (uniformly) continuous on ``\left[a,b\right]``.
@@ -899,19 +899,19 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 	Suppose ``f`` is continuous at ``x_0\in\left]a,b\right[``. We have
 
 	```math
-	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}=\frac{1}{x-x_0}\int_{x_0}^xf\left(t\right)\,\mathrm{d}\kern-0.5pt t
+	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}=\frac{1}{x-x_0}\int_{x_0}^xf\left(t\right)\,\mathrm{d} t
 	```
 
 	for ``x\ne x_0`` and
 
 	```math
-	f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^xf\left(x_0\right)\,\mathrm{d}\kern-0.5pt t\,.
+	f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^xf\left(x_0\right)\,\mathrm{d} t\,.
 	```
 
 	Therefore,
 
 	```math
-	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}-f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^x\left(f\left(t\right)-f\left(x_0\right)\right)\,\mathrm{d}\kern-0.5pt t\,.
+	\frac{F\left(x\right)-F\left(x_0\right)}{x-x_0}-f\left(x_0\right)=\frac{1}{x-x_0}\int_{x_0}^x\left(f\left(t\right)-f\left(x_0\right)\right)\,\mathrm{d} t\,.
 	```
 
 	Let ``\varepsilon &gt;0``. Since ``f`` is continuous at ``x_0``, there exists ``\delta&gt;0`` such that for ``t\in\left]a,b\right[``
@@ -936,11 +936,11 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 
 !!! example
 
-	Find the derivative of ``\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t``.
+	Find the derivative of ``\displaystyle F\left(x\right)=\int_{x^2}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d} t``.
 
 	```math
 	\begin{aligned}
-	F\left(x\right)&=\int_{0}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t-\int_{0}^{x^2}\mathcal{e}^{-t^2}\,\mathrm{d}\kern-0.5pt t\\
+	F\left(x\right)&=\int_{0}^{x^3}\mathcal{e}^{-t^2}\,\mathrm{d} t-\int_{0}^{x^2}\mathcal{e}^{-t^2}\,\mathrm{d} t\\
 	F^\prime\left(x\right)&=\mathcal{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\mathcal{e}^{-\left(x^2\right)^2}\left(2x\right)\\
 	&=3x^2\mathcal{e}^{-x^6}-2x\mathcal{e}^{-x^4}\,.
 	\end{aligned}
@@ -949,7 +949,7 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` denotes th
 We can build the Chain Rule into the Fundamental theorem of Calculus part 2
 
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\int^{g\left(x\right)}_{h\left(x\right)}f\left(t\right)\,\mathrm{d}\kern-0.5pt t=f\left(g\left(x\right)\right)g^\prime\left(x\right)-f\left(h\left(x\right)\right)h^\prime\left(x\right)\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\int^{g\left(x\right)}_{h\left(x\right)}f\left(t\right)\,\mathrm{d} t=f\left(g\left(x\right)\right)g^\prime\left(x\right)-f\left(h\left(x\right)\right)h^\prime\left(x\right)\,.
 ```
 
 You should remember both conclusions of the Fundamental theorem; they are both useful. Part 1 concerns the integral of a derivative; it tells you how to evaluate a definite integral if you can find an antiderivative of the integrand. Part 2 concerns the derivative of an integral; it tells you how to differentiate a definite integral with respect to its upper limit.
@@ -961,23 +961,23 @@ As we have seen, the evaluation of definite integrals is most easily carried out
 Let us begin by assembling a table of some known indefinite integrals. These results have all emerged during our development of differentiation formulas for elementary functions. You should *memorize* them.
 
 ```math
-\begin{align}
-\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
-\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
-\int \sqrt x\,\mathrm{d}\kern-0.5pt x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C\\
-\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x=\ln\left|x\right|+C\\
-\int \sin ax\,\mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sin ax+C\\
-\int \sec^2 ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d}\kern-0.5pt x=-\frac{1}{a}\cot ax+C\\
-\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d}\kern-0.5pt x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
-\int \mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\mathcal{e}^{ax}+C&&\int b^{ax}\,\mathrm{d}\kern-0.5pt x=\frac{1}{a\ln b}b^{ax}+C\\
-\int \sinh ax\,\mathrm{d}\kern-0.5pt x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d}\kern-0.5pt x=\frac{1}{a}\sinh ax+C
-\end{align}
+\begin{aligned}
+&\int \mathrm{d} x=\int 1\,\mathrm{d} x=x+C&&\int x\,\mathrm{d} x=\frac{x^2}{2}+C\\
+&\int x^2\,\mathrm{d} x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d} x=\frac{1}{x}+C\\
+&\int \sqrt x\,\mathrm{d} x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d} x=2\sqrt x+C\\
+&\int x^r\, \mathrm{d} x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d} x=\ln\left|x\right|+C\\
+&\int \sin ax\,\mathrm{d} x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d} x=\frac{1}{a}\sin ax+C\\
+&\int \sec^2 ax\,\mathrm{d} x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d} x=-\frac{1}{a}\cot ax+C\\
+&\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d} x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d} x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
+&\int \mathcal{e}^{ax}\,\mathrm{d} x=\frac{1}{a}\mathcal{e}^{ax}+C&&\int b^{ax}\,\mathrm{d} x=\frac{1}{a\ln b}b^{ax}+C\\
+&\int \sinh ax\,\mathrm{d} x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d} x=\frac{1}{a}\sinh ax+C
+\end{aligned}
 ```
 
 The linearity formula
 
 ```math
-\int_a^b\left(Af\left(x\right)+Bg\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x=A\int_a^bf\left(x\right)\,\mathrm{d}\kern-0.5pt x+B\int_a^bg\left(x\right)\,\mathrm{d}\kern-0.5pt x
+\int_a^b\left(Af\left(x\right)+Bg\left(x\right)\right)\,\mathrm{d} x=A\int_a^bf\left(x\right)\,\mathrm{d} x+B\int_a^bg\left(x\right)\,\mathrm{d} x
 ```
 
 makes it possible to integrate sums and constant multiples of functions.
@@ -987,29 +987,29 @@ makes it possible to integrate sums and constant multiples of functions.
 When an integral cannot be evaluated by inspection, awe require one or more special techniques. The most important of these techniques is the method of substitution, the integral version of the Chain Rule. If we rewrite the Chain Rule,
 
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 ```
 
 in integral form, we obtain
 
 ```math
-\int f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=f\left(g\left(x\right)\right)+C\,.
+\int f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d} x=f\left(g\left(x\right)\right)+C\,.
 ```
 
-Observe that the following formalism would produce this latter formula even if we did not already know it was true. Let ``u=g\left(x\right)``. Then ``\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}=g^\prime\left(x\right)``, or in differential form, ``\mathrm d\kern-0.5pt u=g^\prime\left(x\right)\mathrm d\kern-0.5pt x``. Thus,
+Observe that the following formalism would produce this latter formula even if we did not already know it was true. Let ``u=g\left(x\right)``. Then ``\frac{\mathrm{d} u}{\mathrm{d} x}=g^\prime\left(x\right)``, or in differential form, ``\mathrm d u=g^\prime\left(x\right)\mathrm d x``. Thus,
 
 ```math
-\int f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int f^\prime\left(u\right)\,\mathrm{d}\kern-0.5pt u=f\left(u\right)+C=f\left(g\left(x\right)\right)+C\,.
+\int f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d} x=\int f^\prime\left(u\right)\,\mathrm{d} u=f\left(u\right)+C=f\left(g\left(x\right)\right)+C\,.
 ```
 
 !!! example
 
-	Find the indefinite integral ``\displaystyle \int \frac{\sin\left(3\ln x\right)}{x}\,\mathrm{d}\kern-0.5pt x``.
+	Find the indefinite integral ``\displaystyle \int \frac{\sin\left(3\ln x\right)}{x}\,\mathrm{d} x``.
 
-	Let ``u=3\ln x``. Then ``\mathrm{d}\kern-0.5pt u=\frac{3}{x}\,\mathrm{d}\kern-0.5pt x`` and
+	Let ``u=3\ln x``. Then ``\mathrm{d} u=\frac{3}{x}\,\mathrm{d} x`` and
 
 	```math
-	\int \frac{\sin\left(3\ln x\right)}{x}\,\mathrm{d}\kern-0.5pt x=\frac{1}{3}\int \sin u\,\mathrm{d}\kern-0.5pt u=-\frac{1}{3}\cos u+C=-\frac{1}{3}\cos\left(3\ln x\right)+C\,.
+	\int \frac{\sin\left(3\ln x\right)}{x}\,\mathrm{d} x=\frac{1}{3}\int \sin u\,\mathrm{d} u=-\frac{1}{3}\cos u+C=-\frac{1}{3}\cos\left(3\ln x\right)+C\,.
 	```
 
 !!! theorem
@@ -1017,7 +1017,7 @@ Observe that the following formalism would produce this latter formula even if w
 	Suppose that ``g`` is a differentiable function on ``\left[a,b\right]`` that satisfies ``g\left(a\right)=A`` and ``g\left(b\right)=B``. Also suppose that ``f`` is continuous on the range of ``g``. Then
 
 	```math
-	\int_a^b f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_A^B f^\prime\left(u\right)\,\mathrm{d}\kern-0.5pt u\,.
+	\int_a^b f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d} x=\int_A^B f^\prime\left(u\right)\,\mathrm{d} u\,.
 	```
 
 !!! proof
@@ -1025,34 +1025,34 @@ Observe that the following formalism would produce this latter formula even if w
 	Let ``F`` be an antiderivative of ``f``, ``F^\prime\left(u\right)=f\left(u\right)``. Then
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}F\left(g\left(x\right)\right)=F^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)=f\left(g\left(x\right)\right)g^\prime\left(x\right)\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}F\left(g\left(x\right)\right)=F^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)=f\left(g\left(x\right)\right)g^\prime\left(x\right)\,.
 	```
 
 	Thus,
 
 	```math
 	\begin{aligned}
-	\int_a^bf\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x&=\left.F\left(g\left(x\right)\right)\right|_a^b=F\left(g\left(b\right)\right)-F\left(g\left(a\right)\right)\\
-	&=F\left(B\right)-F\left(A\right)=\left.F\left(u\right)\right|_A^B=\int_A^B f^\prime\left(u\right)\,\mathrm{d}\kern-0.5pt u\,.
+	\int_a^bf\left(g\left(x\right)\right)g^\prime\left(x\right)\,\mathrm{d} x&=\left.F\left(g\left(x\right)\right)\right|_a^b=F\left(g\left(b\right)\right)-F\left(g\left(a\right)\right)\\
+	&=F\left(B\right)-F\left(A\right)=\left.F\left(u\right)\right|_A^B=\int_A^B f^\prime\left(u\right)\,\mathrm{d} u\,.
 	\end{aligned}
 	```
 
 !!! example
 
-	Evaluate the integral ``\displaystyle I=\int_0^8\frac{\cos\sqrt{x+1}}{\sqrt{x+1}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate the integral ``\displaystyle I=\int_0^8\frac{\cos\sqrt{x+1}}{\sqrt{x+1}}\,\mathrm{d} x``.
 
-	Let ``u=\sqrt{x+1}``. Then ``\mathrm{d}\kern-0.5pt u=\frac{1}{2\sqrt{x+1}}\,\mathrm{d}\kern-0.5pt x``. If ``x=0``, then ``u=1``; if ``x=8``, then ``u=3``. Thus,
+	Let ``u=\sqrt{x+1}``. Then ``\mathrm{d} u=\frac{1}{2\sqrt{x+1}}\,\mathrm{d} x``. If ``x=0``, then ``u=1``; if ``x=8``, then ``u=3``. Thus,
 
 	```math
-	I=2\int_1^3\cos u\,\mathrm{d}\kern-0.5pt u=\left.2\sin u\right|_1^3=2\sin 3-2\sin 1\,.
+	I=2\int_1^3\cos u\,\mathrm{d} u=\left.2\sin u\right|_1^3=2\sin 3-2\sin 1\,.
 	```
 
 The method of substitution is often useful for evaluating trigonometric integrals. We begin by listing the integrals of the four trigonometric functions whose integrals we have not yet seen. They arise often in applications and should be memorized.
 
 ```math
 \begin{aligned}
-\int \tan x\,\mathrm{d}\kern-0.5pt x&=\ln\left|\sec x\right|+C\\
-\int \cot x\,\mathrm{d}\kern-0.5pt x&=\ln\left|\sin x\right|+C
+\int \tan x\,\mathrm{d} x&=\ln\left|\sec x\right|+C\\
+\int \cot x\,\mathrm{d} x&=\ln\left|\sin x\right|+C
 \end{aligned}
 ```
 
@@ -1060,8 +1060,8 @@ All of these can, of course, be checked by differentiating the right-hand sides.
 
 ```math
 \begin{aligned}
-\int \tan x\,\mathrm{d}\kern-0.5pt x&=\int \frac{\sin x}{\cos x}\,\mathrm{d}\kern-0.5pt x\quad\textrm{Let }u=\cos x\textrm{, then }\mathrm{d}\kern-0.5pt u=-\sin x\,\mathrm{d}\kern-0.5pt x\\
-&=-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=-\ln\left|u\right|+C\\
+\int \tan x\,\mathrm{d} x&=\int \frac{\sin x}{\cos x}\,\mathrm{d} x\quad\textrm{Let }u=\cos x\textrm{, then }\mathrm{d} u=-\sin x\,\mathrm{d} x\\
+&=-\int\frac{1}{u}\,\mathrm{d} u=-\ln\left|u\right|+C\\
 &=-\ln\left|\cos x\right|+C=\ln\left|\frac{1}{\cos x}\right|+C=\ln\left|\sec x\right|+C
 \end{aligned}
 ```
@@ -1069,13 +1069,13 @@ All of these can, of course, be checked by differentiating the right-hand sides.
 We now consider integrals of the form
 
 ```math
-\int \sin^m x\cos^n x\,\mathrm{d}\kern-0.5pt x\,.
+\int \sin^m x\cos^n x\,\mathrm{d} x\,.
 ```
 
 If either ``m`` or ``n`` is an odd, positive integer, the integral can be done easily by substitution. If, say, ``n=2k+1`` where ``k`` is an integer, then we can use the identity ``\sin^2 x + \cos^2 x = 1`` to rewrite the integral in the form
 
 ```math
-\int \sin^m x\left(1-\sin^2 x\right)^k\cos x\,\mathrm{d}\kern-0.5pt x\,,
+\int \sin^m x\left(1-\sin^2 x\right)^k\cos x\,\mathrm{d} x\,,
 ```
 
 which can be integrated using the substitution ``u=\sin x``. Similarly, ``u=\cos x`` can be used if ``m`` is an odd integer.
@@ -1088,13 +1088,13 @@ If the powers of ``\sin x`` and ``\cos x`` are both even, then we can make use o
 
 !!! example
 
-	Evaluate ``\displaystyle\int \sin^4 x\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle\int \sin^4 x\,\mathrm{d} x``.
 
 	```math
 	\begin{aligned}
-	\int \sin^4 x\,\mathrm{d}\kern-0.5pt x&=\frac{1}{4}\int \left(1-\cos 2x\right)^2\,\mathrm{d}\kern-0.5pt x\\
-	&=\frac{1}{4}\int \left(1-2\cos 2x+\cos^2 2x\right)\,\mathrm{d}\kern-0.5pt x\\
-	&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{1}{8}\int \left(1+\cos 4x\right)\,\mathrm{d}\kern-0.5pt x\\
+	\int \sin^4 x\,\mathrm{d} x&=\frac{1}{4}\int \left(1-\cos 2x\right)^2\,\mathrm{d} x\\
+	&=\frac{1}{4}\int \left(1-2\cos 2x+\cos^2 2x\right)\,\mathrm{d} x\\
+	&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{1}{8}\int \left(1+\cos 4x\right)\,\mathrm{d} x\\
 	&=\frac{x}{4}-\frac{1}{4}\sin 2x+\frac{x}{8}+\frac{1}{32}\sin 4x+C\\
 	&=\frac{3}{8}x-\frac{1}{4}\sin 2x+\frac{1}{32}\sin 4x+C
 	\end{aligned}
@@ -1107,37 +1107,37 @@ Our next general method for antidifferentiation is called *integration by parts*
 Suppose that ``U\left(x\right)`` and ``V\left(x\right)`` are two differentiable functions. According to the Product Rule,
 
 ```math
-\frac{\mathrm d\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(U\left(x\right)V\left(x\right)\right)=U\left(x\right)\frac{\mathrm{d}\kern-0.5pt V}{\mathrm{d}\kern-0.5pt x}\left(x\right)+V\left(x\right)\frac{\mathrm{d}\kern-0.5pt U}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,.
+\frac{\mathrm d \hphantom{x}}{\mathrm{d} x}\left(U\left(x\right)V\left(x\right)\right)=U\left(x\right)\frac{\mathrm{d} V}{\mathrm{d} x}\left(x\right)+V\left(x\right)\frac{\mathrm{d} U}{\mathrm{d} x}\left(x\right)\,.
 ```
 
 Integrating both sides of this equation and transposing terms, we obtain
 
 ```math
-\int U\left(x\right)\frac{\mathrm{d}\kern-0.5pt V}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,\mathrm{d}\kern-0.5pt x=U\left(x\right)V\left(x\right)-\int V\left(x\right)\frac{\mathrm{d}\kern-0.5pt U}{\mathrm{d}\kern-0.5pt x}\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int U\left(x\right)\frac{\mathrm{d} V}{\mathrm{d} x}\left(x\right)\,\mathrm{d} x=U\left(x\right)V\left(x\right)-\int V\left(x\right)\frac{\mathrm{d} U}{\mathrm{d} x}\left(x\right)\,\mathrm{d} x\,.
 ```
 
-The above formula serves as a pattern for carrying out integration by parts. We break up the given integrand into a product of two pieces, ``U`` and ``V^\prime``, where ``V^\prime`` is readily integrated and where ``\int VU^\prime\,\mathrm{d}\kern-0.5pt x`` is usually (but not always) a simpler integral than ``\int UV^\prime\,\mathrm{d}\kern-0.5pt x``. The technique is called integration by parts because it replaces one integral with the sum of an integrated term and another integral that remains to be evaluated. That is, it accomplishes only part of the original integration.
+The above formula serves as a pattern for carrying out integration by parts. We break up the given integrand into a product of two pieces, ``U`` and ``V^\prime``, where ``V^\prime`` is readily integrated and where ``\int VU^\prime\,\mathrm{d} x`` is usually (but not always) a simpler integral than ``\int UV^\prime\,\mathrm{d} x``. The technique is called integration by parts because it replaces one integral with the sum of an integrated term and another integral that remains to be evaluated. That is, it accomplishes only part of the original integration.
 
 !!! example
 
-	Evaluate ``\displaystyle \int x\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int x\mathcal{e}^x\,\mathrm{d} x``.
 
 	```math
 	\begin{aligned}
-	\int x\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=x,\mathrm{d}\kern-0.5pt V=\mathcal{e}^x\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=\mathrm{d}\kern-0.5pt x,V=\mathcal{e}^x\\
-	&=\,x\mathcal{e}^x-\int \mathcal{e}^x\,\mathrm{d}\kern-0.5pt x=x\mathcal{e}^x-\mathcal{e}^x+C\,.
+	\int x\mathcal{e}^x\,\mathrm{d} x&\quad\textrm{Let }U=x,\mathrm{d} V=\mathcal{e}^x\,\mathrm{d} x\textrm{, then }\mathrm{d} U=\mathrm{d} x,V=\mathcal{e}^x\\
+	&=\,x\mathcal{e}^x-\int \mathcal{e}^x\,\mathrm{d} x=x\mathcal{e}^x-\mathcal{e}^x+C\,.
 	\end{aligned}
 	```
 
-Note the form in which the integration by parts is carried out. We indicate at the side what choices we are making for ``U`` and ``\mathrm{d}\kern-0.5pt V`` and then calculate ``\mathrm{d}\kern-0.5pt U`` and ``V`` from these. However, we do not actually substitute ``U`` and ``V`` into the integral; instead, we use the formula ``\int U\,\mathrm{d}\kern-0.5pt V=UV-\int V\,\mathrm{d}\kern-0.5pt U`` as a pattern or mnemonic device to replace the given integral by the equivalent partially integrated form on the second line.
+Note the form in which the integration by parts is carried out. We indicate at the side what choices we are making for ``U`` and ``\mathrm{d} V`` and then calculate ``\mathrm{d} U`` and ``V`` from these. However, we do not actually substitute ``U`` and ``V`` into the integral; instead, we use the formula ``\int U\,\mathrm{d} V=UV-\int V\,\mathrm{d} U`` as a pattern or mnemonic device to replace the given integral by the equivalent partially integrated form on the second line.
 
 In general, do not include a constant of integration with ``V`` or on the right-hand side until the last integral has been evaluated because that constant would cancel out in the next step.
 
-The following are two useful rules of thumb for choosing ``U`` and ``\mathrm{d}\kern-0.5pt V``:
+The following are two useful rules of thumb for choosing ``U`` and ``\mathrm{d} V``:
 
-1. If the integrand involves a polynomial multiplied by an exponential, a sine or a cosine, or some other readily integrable function, try ``U`` equals the polynomial and ``\mathrm{d}\kern-0.5pt V`` equals the rest.
+1. If the integrand involves a polynomial multiplied by an exponential, a sine or a cosine, or some other readily integrable function, try ``U`` equals the polynomial and ``\mathrm{d} V`` equals the rest.
 
-2. If the integrand involves a logarithm, an inverse trigonometric function, or some other function that is not readily integrable but whose derivative is readily calculated, try that function for ``U`` and let ``\mathrm{d}\kern-0.5pt V`` equal the rest.
+2. If the integrand involves a logarithm, an inverse trigonometric function, or some other function that is not readily integrable but whose derivative is readily calculated, try that function for ``U`` and let ``\mathrm{d} V`` equal the rest.
 
 Of course, these “rules” come with no guarantee.
 
@@ -1145,28 +1145,28 @@ The following example illustrates a frequently occurring and very useful phenome
 
 !!! example
 
-	Evaluate ``\displaystyle \int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int \mathcal{e}^{ax}\cos bx\,\mathrm{d} x``.
 
 	```math
 	\begin{aligned}
-	\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d}\kern-0.5pt V=\cos bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=\frac{1}{b}\sin bx\\
-	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\int \mathcal{e}^{ax}\sin bx\,\mathrm{d}\kern-0.5pt x\\
-	&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d}\kern-0.5pt V=\sin bx\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt U=a\mathcal{e}^{ax}\,\mathrm{d}\kern-0.5pt x,V=-\frac{1}{b}\cos bx\\
-	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\mathcal{e}^{ax}\cos bx+\frac{a}{b}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\right)\\
-	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x\,.
+	\int \mathcal{e}^{ax}\cos bx\,\mathrm{d} x&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d} V=\cos bx\,\mathrm{d} x\textrm{, then }\mathrm{d} U=a\mathcal{e}^{ax}\,\mathrm{d} x,V=\frac{1}{b}\sin bx\\
+	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\int \mathcal{e}^{ax}\sin bx\,\mathrm{d} x\\
+	&\quad\textrm{Let }U=\mathcal{e}^{ax},\mathrm{d} V=\sin bx\,\mathrm{d} x\textrm{, then }\mathrm{d} U=a\mathcal{e}^{ax}\,\mathrm{d} x,V=-\frac{1}{b}\cos bx\\
+	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx-\frac{a}{b}\left(-\frac{1}{b}\mathcal{e}^{ax}\cos bx+\frac{a}{b}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d} x\right)\\
+	&=\,\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx-\frac{a^2}{b^2}\int \mathcal{e}^{ax}\cos bx\,\mathrm{d} x\,.
 	\end{aligned}
 	```
 
 	Thus,
 
 	```math
-	\left(1+\frac{a^2}{b^2}\right)\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx+C_1
+	\left(1+\frac{a^2}{b^2}\right)\int \mathcal{e}^{ax}\cos bx\,\mathrm{d} x=\frac{1}{b}\mathcal{e}^{ax}\sin bx+\frac{a}{b^2}\mathcal{e}^{ax}\cos bx+C_1
 	```
 
 	and
 
 	```math
-	\int \mathcal{e}^{ax}\cos bx\,\mathrm{d}\kern-0.5pt x=\frac{b\mathcal{e}^{ax}\sin bx+a\mathcal{e}^{ax}\cos bx}{a^2+b^2}+C\,.
+	\int \mathcal{e}^{ax}\cos bx\,\mathrm{d} x=\frac{b\mathcal{e}^{ax}\sin bx+a\mathcal{e}^{ax}\cos bx}{a^2+b^2}+C\,.
 	```
 
 Observe that after the first integration by parts we had an integral that was different from, but no simpler than, the original integral. At this point we might have become discouraged and given up on this method. However, perseverance proved worthwhile; a second integration by parts returned the original integral in an equation that could be solved for the integral.
@@ -1209,7 +1209,7 @@ Note that part (1) does not tell us how to find the factors of ``Q\left(x\right)
 
 !!! example
 
-	Evaluate ``\displaystyle \int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d} x``.
 
 	The denominator factors to ``x\left(2x^2+1\right)^2``, so the appropriate partial fraction decomposition is
 
@@ -1236,9 +1236,9 @@ Note that part (1) does not tell us how to find the factors of ``Q\left(x\right)
 
 	```math
 	\begin{aligned}
-	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d}\kern-0.5pt x&=\,2\int\frac{1}{x}\,\mathrm{d}\kern-0.5pt x-4\int\frac{x}{2x^2+1}\,\mathrm{d}\kern-0.5pt x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
-	&\quad\textrm{Let }u=2x^2+1\,\mathrm{d}\kern-0.5pt x\textrm{, then }\mathrm{d}\kern-0.5pt u=4x\,\mathrm{d}\kern-0.5pt x\\
-	&=\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d}\kern-0.5pt u\\
+	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d} x&=\,2\int\frac{1}{x}\,\mathrm{d} x-4\int\frac{x}{2x^2+1}\,\mathrm{d} x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
+	&\quad\textrm{Let }u=2x^2+1\,\mathrm{d} x\textrm{, then }\mathrm{d} u=4x\,\mathrm{d} x\\
+	&=\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d} u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d} u\\
 	&=\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
 	&=\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
 	\end{aligned}
@@ -1260,13 +1260,13 @@ Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corr
 
 !!! example
 
-	Evaluate ``\displaystyle\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d} x``.
 
 	```math
 	\begin{aligned}
-	\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=\sqrt 5\cos\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
+	\int\frac{1}{\left(5-x^2\right)^\frac{3}{2}}\,\mathrm{d} x&\quad\textrm{Let }x=\sqrt 5\sin\theta\textrm{, then }\mathrm{d} x=\sqrt 5\cos\theta\,\mathrm{d} \theta\\
+	&=\,\int\frac{\sqrt 5\cos\theta}{\left(\sqrt 5\cos\theta\right)^3}\,\mathrm{d} \theta\\
+	&=\,\frac{1}{5}\int\sec^2\theta\,\mathrm{d} \theta=\frac{1}{5}\tan\theta+C=\frac{1}{5}\frac{x}{\sqrt{5-x^2}}+C\,.
 	\end{aligned}
 	```
 
@@ -1280,15 +1280,15 @@ Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\fr
 
 !!! example
 
-	Evaluate ``\displaystyle \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d} x``.
 
 	```math
 	\begin{aligned}
-	\int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=2\sec^2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d}\kern-0.5pt \theta=\int\sec\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d}\kern-0.5pt \theta\\
-	&\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d}\kern-0.5pt u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\,\int\frac{1}{u}\,\mathrm{d}\kern-0.5pt u=\ln\left|u\right|+C\\
+	\int\frac{1}{\sqrt{4+x^2}}\,\mathrm{d} x&\quad\textrm{Let }x=2\tan\theta\textrm{, then }\mathrm{d} x=2\sec^2\theta\,\mathrm{d} \theta\\
+	&=\,\int\frac{2\sec^2\theta}{2\sec\theta}\,\mathrm{d} \theta=\int\sec\theta\,\mathrm{d} \theta\\
+	&=\,\int\frac{\sec\theta\left(\sec\theta+\tan\theta\right)}{\sec\theta+\tan\theta}\,\mathrm{d} \theta\\
+	&\quad\textrm{Let }u=\sec\theta+\tan\theta\textrm{, then }\mathrm{d} u=\sec\theta\left(\sec\theta+\tan\theta\right)\,\mathrm{d} \theta\\
+	&=\,\int\frac{1}{u}\,\mathrm{d} u=\ln\left|u\right|+C\\
 	&=\,\ln\left|\sec\theta+\tan\theta\right|+C=\ln\left|\frac{\sqrt{4+x^2}}{2}+\frac{x}{2}\right|+C\,.
 	\end{aligned}
 	```
@@ -1305,14 +1305,14 @@ we cannot always drop the absolute value from the tangent.
 
 !!! example
 	
-	Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d} x``.
 	
 	Assume ``x\ge a``.
 	
 	```math
 	\begin{aligned}
-	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sec\theta\tan\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\,\int\sec\theta\,\mathrm{d}\kern-0.5pt x=\ln\left|\sec\theta+\tan\theta\right| + C\\
+	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d} x&\quad\textrm{Let }x=a\sec\theta\textrm{, then }\mathrm{d} x=a\sec\theta\tan\theta\,\mathrm{d} \theta\\
+	&=\,\int\sec\theta\,\mathrm{d} x=\ln\left|\sec\theta+\tan\theta\right| + C\\
 	&=\,\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
 	\end{aligned}
 	```
@@ -1325,19 +1325,19 @@ we cannot always drop the absolute value from the tangent.
 
 !!! example
 
-	Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle \int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d} x``.
 
 	Assume ``x\ge a``.
 
 	```math
 	\begin{aligned}
-	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d}\kern-0.5pt x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d}\kern-0.5pt x=a\sinh u\,\mathrm{d}\kern-0.5pt u\\
-	&=\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d}\kern-0.5pt u=u + C\\
+	\int\frac{1}{\sqrt{x^2-a^2}}\,\mathrm{d} x&\quad\textrm{Let }x=a\cosh u\textrm{, then }\mathrm{d} x=a\sinh u\,\mathrm{d} u\\
+	&=\,\int\frac{a\sinh u}{a\sinh u}\,\mathrm{d} u=u + C\\
 	&=\,\operatorname{Arccosh}\frac{x}{a}+C=\ln\left|\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}\right| + C\,.
 	\end{aligned}
 	```
 
-(5) Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}``. In this case we have ``\mathrm{d}\kern-0.5pt x = a\cosh u\,\mathrm{d}\kern-0.5pt u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
+(5) Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}``. In this case we have ``\mathrm{d} x = a\cosh u\,\mathrm{d} u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
 
 ```math
 \operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
@@ -1362,10 +1362,10 @@ so
 \end{aligned}
 ```
 
-Also, ``\mathrm{d}\kern-0.5pt x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt \theta``, so
+Also, ``\mathrm{d} x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d} \theta``, so
 
 ```math
-\mathrm{d}\kern-0.5pt \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d}\kern-0.5pt x=\frac{2}{1+x^2}\,\mathrm{d}\kern-0.5pt x\,.
+\mathrm{d} \theta=2\cos^2\frac{\theta}{2}\,\mathrm{d} x=\frac{2}{1+x^2}\,\mathrm{d} x\,.
 ```
 
 ## Improper Integrals
@@ -1373,7 +1373,7 @@ Also, ``\mathrm{d}\kern-0.5pt x=\frac{1}{2}\sec^2\frac{\theta}{2}\,\mathrm{d}\ke
 Up to this point, we have considered definite integrals of the form
 
 ```math
-I=\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,,
+I=\int_a^b f\left(x\right)\,\mathrm{d} x\,,
 ```
 
 where the integrand ``f`` is continuous on the closed, finite interval ``\left[a,b\right]``. Since such a function is necessarily bounded, the integral I is necessarily a finite number; for positive f it corresponds to the area of a bounded region of the plane, a region contained inside some disk of finite radius with centre at the origin. Such integrals are also called *proper integrals*. 
@@ -1393,35 +1393,35 @@ Integrals satisfying (1) are called *improper integrals of type I*; integrals sa
 	If ``f`` is continuous on ``\left[a,\infty\right[``, we define the improper integral of ``f`` over ``\left[a,\infty\right[`` as a limit of proper integrals:
 
 	```math
-	\int_a^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{R\to\infty}\int_a^R f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^\infty f\left(x\right)\,\mathrm{d} x=\lim_{R\to\infty}\int_a^R f\left(x\right)\,\mathrm{d} x\,.
 	```
 
 	Similarly, if ``f`` is continuous on ``\left]-\infty, b\right]``, then we define
 
 	```math
-	\int_{-\infty}^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{R\to-\infty}\int_R^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_{-\infty}^b f\left(x\right)\,\mathrm{d} x=\lim_{R\to-\infty}\int_R^b f\left(x\right)\,\mathrm{d} x\,.
 	```
 
 	In either case, if the limit exists (is a finite number), we say that the improper integral converges; if the limit does not exist, we say that the improper integral diverges. If the limit is ``\infty`` (or ``-\infty``), we say the improper integral diverges to infinity (or diverges to negative infinity).
 
-The integral ``\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` is, for ``f`` continuous on the real line, improper of type I at both endpoints. We break it into two separate integrals:
+The integral ``\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d} x`` is, for ``f`` continuous on the real line, improper of type I at both endpoints. We break it into two separate integrals:
 
 ```math
-\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_{-\infty}^0 f\left(x\right)\,\mathrm{d}\kern-0.5pt x+\int_0^\infty f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\int_{-\infty}^\infty f\left(x\right)\,\mathrm{d} x=\int_{-\infty}^0 f\left(x\right)\,\mathrm{d} x+\int_0^\infty f\left(x\right)\,\mathrm{d} x\,.
 ```
 
 The integral on the left converges if and only if both integrals on the right converge.
 
 !!! example
 
-	Evaluate ``\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x``.
+	Evaluate ``\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d} x``.
 
 	By the even symmetry of the integrand, we have
 
 	```math
 	\begin{aligned}
-	\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x&=\int_{-\infty}^0 \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x+\int_0^\infty \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
-	&=2\lim_{R\to\infty}\int_0^R \frac{1}{1+x^2}\,\mathrm{d}\kern-0.5pt x\\
+	\int_{-\infty}^\infty \frac{1}{1+x^2}\,\mathrm{d} x&=\int_{-\infty}^0 \frac{1}{1+x^2}\,\mathrm{d} x+\int_0^\infty \frac{1}{1+x^2}\,\mathrm{d} x\\
+	&=2\lim_{R\to\infty}\int_0^R \frac{1}{1+x^2}\,\mathrm{d} x\\
 	&=2\lim_{R\to\infty}\operatorname{Arctan}R=2\frac{\uppi}{2}=\uppi\,.
 	\end{aligned}
 	```
@@ -1433,13 +1433,13 @@ The integral on the left converges if and only if both integrals on the right co
 	If ``f`` is continuous on the interval ``\left]a,b\right]`` and is possibly unbounded near ``a``, we define the improper integral
 
 	```math
-	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to a^+}\int_c^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^b f\left(x\right)\,\mathrm{d} x=\lim_{c\to a^+}\int_c^b f\left(x\right)\,\mathrm{d} x\,.
 	```
 
 	Similarly, if ``f`` is continuous on ``\left[a,b\right[`` and is possibly unbounded near ``b``, we define
 
 	```math
-	\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\lim_{c\to b^-}\int_a^c f\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	\int_a^b f\left(x\right)\,\mathrm{d} x=\lim_{c\to b^-}\int_a^c f\left(x\right)\,\mathrm{d} x\,.
 	```
 
 	These improper integrals may converge, diverge, diverge to infinity, or diverge to negative infinity.
@@ -1453,7 +1453,7 @@ While improper integrals of type I are always easily recognized because of the i
 	The area ``A`` is given by
 
 	```math
-	A=\int_0^1\frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x\,,
+	A=\int_0^1\frac{1}{\sqrt x}\,\mathrm{d} x\,,
 	```
 
 	which is an improper integral of type II since the integrand is unbounded near ``x=0``. The region ``S`` has a “spike” extending to infinity along the ``y``-axis, a vertical asymptote of the integrand.
@@ -1461,16 +1461,16 @@ While improper integrals of type I are always easily recognized because of the i
 	We express such integrals as limits of proper integrals:
 
 	```math
-	A = \lim_{c\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d}\kern-0.5pt x=\lim_{c\to 0^+}\left.2x^{\frac{1}{2}}\right|_c^1=\lim_{c\to 0^+}\left(2-2\sqrt c\right)=2\,.
+	A = \lim_{c\to 0^+}\int_c^1x^{-\frac{1}{2}}\,\mathrm{d} x=\lim_{c\to 0^+}\left.2x^{\frac{1}{2}}\right|_c^1=\lim_{c\to 0^+}\left(2-2\sqrt c\right)=2\,.
 	```
 
 	This integral converges, and ``S`` has a finite area of ``2`` square units.
 
 ## Areas of Plane Regions
 
-In this section we review and extend the use of definite integrals to represent plane areas. Recall that the integral  ``\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x`` measures the area between the graph of ``f`` and the ``x``-axis from ``x=a`` to ``x=b``, but treats as negative any part of this area that lies below the ``x``-axis. (We are assuming that ``a&lt;b``.) In order to express the total area bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b``, counting all of the area positively, we should integrate the absolute value of ``f``.
+In this section we review and extend the use of definite integrals to represent plane areas. Recall that the integral  ``\int_a^b f\left(x\right)\,\mathrm{d} x`` measures the area between the graph of ``f`` and the ``x``-axis from ``x=a`` to ``x=b``, but treats as negative any part of this area that lies below the ``x``-axis. (We are assuming that ``a&lt;b``.) In order to express the total area bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b``, counting all of the area positively, we should integrate the absolute value of ``f``.
 
-There is no “rule” for integrating ``\int_a^b \left|f\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x`` one must break the integral into a sum
+There is no “rule” for integrating ``\int_a^b \left|f\left(x\right)\right|\,\mathrm{d} x`` one must break the integral into a sum
 of integrals over intervals where ``f\left(x\right)&gt; 0``.
 
 !!! example
@@ -1479,8 +1479,8 @@ of integrals over intervals where ``f\left(x\right)&gt; 0``.
 
 	```math
 	\begin{aligned}
-	A&=\int_0^\frac{3\uppi}{2}\left|\cos x\right|\,\mathrm{d}\kern-0.5pt x\\
-	&=\int_0^\frac{\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x-\int_\frac{\uppi}{2}^\frac{3\uppi}{2}\cos x\,\mathrm{d}\kern-0.5pt x\\
+	A&=\int_0^\frac{3\uppi}{2}\left|\cos x\right|\,\mathrm{d} x\\
+	&=\int_0^\frac{\uppi}{2}\cos x\,\mathrm{d} x-\int_\frac{\uppi}{2}^\frac{3\uppi}{2}\cos x\,\mathrm{d} x\\
 	&=\left.\sin x\right|_0^\frac{\uppi}{2}-\left.\sin x\right|_\frac{\uppi}{2}^\frac{3\uppi}{2}\\
 	&=\left(1-0\right)-\left(-1-1\right)=3\,\textrm{square units.}
 	\end{aligned}
@@ -1493,33 +1493,33 @@ Suppose that a plane region ``R`` is bounded by the graphs of two continuous fun
 Assume that ``a&lt;b`` and that ``f\left(x\right)\le g\left(x\right)`` on ``\left[a,b\right]``, so the graph of ``f`` lies below that of ``g``. If ``f\left(x\right)\ge 0`` on ``\left[a,b\right]`` then the area ``A`` of ``R`` is the area above the ``x``-axis and under the graph of ``g`` minus the area above the ``x``-axis and under the graph of ``f``:
 
 ```math
-A=\int_a^b g\left(x\right)\,\mathrm{d}\kern-0.5pt x-\int_a^b f\left(x\right)\,\mathrm{d}\kern-0.5pt x=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,.
+A=\int_a^b g\left(x\right)\,\mathrm{d} x-\int_a^b f\left(x\right)\,\mathrm{d} x=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d} x\,.
 ```
 
 It is useful to regard this formula as expressing ``A`` as the “sum” (i.e., the integral) of infinitely many *area elements*
 
 ```math
-\mathrm{d}\kern-0.5pt A = \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,,
+\mathrm{d} A = \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d} x\,,
 ```
 
-corresponding to values of ``x`` between ``a`` and ``b``. Each such area element is the area of an infinitely thin vertical rectangle of width ``\mathrm{d}\kern-0.5pt x`` and height ``g\left(x\right)-f\left(x\right)`` located at position ``x``. Even if ``f`` and ``g`` can take on negative values on ``\left[a,b\right]``, this interpretation and the resulting area formula
+corresponding to values of ``x`` between ``a`` and ``b``. Each such area element is the area of an infinitely thin vertical rectangle of width ``\mathrm{d} x`` and height ``g\left(x\right)-f\left(x\right)`` located at position ``x``. Even if ``f`` and ``g`` can take on negative values on ``\left[a,b\right]``, this interpretation and the resulting area formula
 
 ```math
-A=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d}\kern-0.5pt x\,.
+A=\int_a^b \left(g\left(x\right)-f\left(x\right)\right)\,\mathrm{d} x\,.
 ```
 
-remain valid, provided that ``f\left(x\right)\le g\left(x\right)`` on ``\left[a,b\right]`` so that all the area elements ``\mathrm{d}\kern-0.5pt A`` have positive area. Using integrals to represent a quantity as a *sum of differential elements* is a very helpful approach. Of course, what we are really doing is identifying the integral as a limit of a suitable Riemann sum.
+remain valid, provided that ``f\left(x\right)\le g\left(x\right)`` on ``\left[a,b\right]`` so that all the area elements ``\mathrm{d} A`` have positive area. Using integrals to represent a quantity as a *sum of differential elements* is a very helpful approach. Of course, what we are really doing is identifying the integral as a limit of a suitable Riemann sum.
 
-More generally, if the restriction ``f\left(x\right)\le g\left(x\right)``  is removed, then the vertical rectangle of width ``\mathrm{d}\kern-0.5pt x`` at position ``x`` extending between the graphs of ``f`` and ``g`` has height ``\left|f\left(x\right)-g\left(x\right)\right|`` and hence area
+More generally, if the restriction ``f\left(x\right)\le g\left(x\right)``  is removed, then the vertical rectangle of width ``\mathrm{d} x`` at position ``x`` extending between the graphs of ``f`` and ``g`` has height ``\left|f\left(x\right)-g\left(x\right)\right|`` and hence area
 
 ```math
-\mathrm{d}\kern-0.5pt A = \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\,.
+\mathrm{d} A = \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d} x\,.
 ```
 
 Hence, the total area lying between the graphs ``y=f\left(x\right)`` and ``y=g\left(x\right)`` between the vertical lines ``x=a`` and ``x=b&gt;a`` is given by
 
 ```math
-A = \int_a^b \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d}\kern-0.5pt x\,.
+A = \int_a^b \left|f\left(x\right)-g\left(x\right)\right|\,\mathrm{d} x\,.
 ```
 
 In order to evaluate this integral, we have to determine the intervals on which  ``f\left(x\right)&gt; g\left(x\right)`` or ``f\left(x\right)&lt; g\left(x\right)``, and break the integral into a sum of integrals over each of these intervals.
@@ -1532,7 +1532,7 @@ In order to evaluate this integral, we have to determine the intervals on which 
 
 	```math
 	\begin{aligned}
-	A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{\uppi}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d}\kern-0.5pt x+\int_\frac{5\pi}{4}^{2\uppi}\left(\cos x-\sin x\right)\,\mathrm{d}\kern-0.5pt x\\
+	A &= \int_0^\frac{\pi}{4}\left(\cos x-\sin x\right)\,\mathrm{d} x+\int_\frac{\uppi}{4}^\frac{5\pi}{4}\left(\sin x-\cos x\right)\,\mathrm{d} x+\int_\frac{5\pi}{4}^{2\uppi}\left(\cos x-\sin x\right)\,\mathrm{d} x\\
 	&=\left.\left(\sin x+\cos x\right)\right|_0^\frac{\uppi}{4}-\left.\left(\cos x+\sin x\right)\right|_\frac{\uppi}{4}^\frac{5\pi}{4}+\left.\left(\sin x+\cos x\right)\right|_\frac{5\uppi}{4}^{2\uppi}\\
 	&=\left(\sqrt 2-1\right)+\left(\sqrt 2+\sqrt 2\right)+\left(1+\sqrt 2\right)=4\sqrt 2\,\textrm{square units.}
 	\end{aligned}
@@ -1553,7 +1553,7 @@ Knowing the volume of a cylinder enables us to determine the volumes of some mor
 	The volume ``V`` of a solid between ``x=a`` and ``x=b`` having cross-sectional area ``A\left(x\right)`` at position ``x`` is
 
 	```math
-	V = \int_a^b A\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	V = \int_a^b A\left(x\right)\,\mathrm{d} x\,.
 	```
 
 ### Solids of Revolution
@@ -1565,7 +1565,7 @@ Many common solids have circular cross-sections in planes perpendicular to some 
 	If the region ``R`` bounded by ``y=f\left(x\right)``, ``y=0``, ``x=a``, and ``x=b`` is rotated about the ``x``-axis, then the cross-section of the solid generated in the plane perpendicular to the ``x``-axis at ``x`` is a circular disk of radius ``\left|f\left(x\right)\right|``. The area of this cross-section is ``A\left(x\right)=\uppi\left(f\left(x\right)\right)^2``, so the volume of the solid of revolution is
 
 	```math
-	V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d}\kern-0.5pt x\,.
+	V=\uppi\int_a^b\left(f\left(x\right)\right)^2\,\mathrm{d} x\,.
 	```
 
 !!! example
@@ -1575,7 +1575,7 @@ Many common solids have circular cross-sections in planes perpendicular to some 
 	The line from ``\left(0,0\right)`` to ``\left(h,r\right)`` has equation ``y=\frac{r}{h}x``. Thus the volume of the cone is
 
 	```math
-	V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d}\kern-0.5pt x=\left.\uppi\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi r^2h\ \textrm{cubic units.}
+	V=\uppi\int_0^h\left(\frac{r}{h}x\right)^2\,\mathrm{d} x=\left.\uppi\left(\frac{r}{h}\right)^2\frac{x^3}{3}\right|_0^h=\frac{1}{3}\uppi r^2h\ \textrm{cubic units.}
 	```
 
 !!! theorem
@@ -1583,17 +1583,17 @@ Many common solids have circular cross-sections in planes perpendicular to some 
 	The volume of the solid obtained by rotating the plane region ``0\le y\le f\left(x\right)``, ``0\le a&lt;x&lt;b`` about the ``y``-axis is
 
 	```math
-	V=2\uppi\int_a^bxf\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+	V=2\uppi\int_a^bxf\left(x\right)\,\mathrm{d} x\,.
 	```
 
 !!! example
 
 	Find the volume of a bowl obtained by revolving the parabolic arc ``y=x^2``, ``0\le x\le1`` about the ``y``-axis.
 
-	The interior of the bowl corresponds to revolving the region given by ``x^2 \le y\le 1``, ``0\le x\le 1`` about the ``y``-axis. The area element at position ``x`` has height ``1-x^2`` and generates a cylindrical shell of volume ``\mathrm{d}\kern-0.5pt V=2\uppi x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x``. Thus, the volume of the bowl is
+	The interior of the bowl corresponds to revolving the region given by ``x^2 \le y\le 1``, ``0\le x\le 1`` about the ``y``-axis. The area element at position ``x`` has height ``1-x^2`` and generates a cylindrical shell of volume ``\mathrm{d} V=2\uppi x\left(1-x^2\right)\,\mathrm{d} x``. Thus, the volume of the bowl is
 
 	```math
-	V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d}\kern-0.5pt x=\left.2\uppi\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi}{2}\ \textrm{cubic units.}
+	V=2\uppi\int_0^1 x\left(1-x^2\right)\,\mathrm{d} x=\left.2\uppi\left(\frac{x^2}{2}-\frac{x^4}{4}\right)\right|_0^1=\frac{\uppi}{2}\ \textrm{cubic units.}
 	```
 
 We have described two methods for determining the volume of a solid of revolution, slicing and cylindrical shells. The choice of method for a particular solid is usually dictated by the form of the equations defining the region being rotated and by the axis of rotation.
@@ -1631,11 +1631,11 @@ let ``P_i`` be the point ``\left(x_i,f\left(x_i\right)\right)``, ``\left(0\le i\
 ```math
 \begin{aligned}
 L_n=\sum_{i=1}^n\left|P_{i-1}P_i\right|&=\sum_{i=1}^n\sqrt{\left(x_i-x_{i-1}\right)^2+\left(f\left(x_i\right)-f\left(x_{i-1}\right)\right)^2}\\
-&=\sum_{i=1}^n\sqrt{1+\left(\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}\right)^2}\Delta\kern-0.5pt x_i\,,
+&=\sum_{i=1}^n\sqrt{1+\left(\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}\right)^2}\Delta x_i\,,
 \end{aligned}
 ```
 
-where ``\Delta\kern-0.5pt x_i=x_i-x_{i-1}``. By the Mean-Value theorem there exists a number ``c_i`` in the interval ``\left[x_{i-1},x_i\right]`` such that
+where ``\Delta x_i=x_i-x_{i-1}``. By the Mean-Value theorem there exists a number ``c_i`` in the interval ``\left[x_{i-1},x_i\right]`` such that
 
 ```math
 \frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}=f^\prime\left(c_i\right)\,,
@@ -1647,28 +1647,28 @@ so we have
 L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\,.
 ```
 
-Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x``. Being the limit of such Riemann sums as ``n\to\infty`` in such a way that ``\max\Delta\kern-0.5pt x_i \to 0``, that integral is the length of the curve ``C``.
+Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x``. Being the limit of such Riemann sums as ``n\to\infty`` in such a way that ``\max\Delta x_i \to 0``, that integral is the length of the curve ``C``.
 
 !!! theorem
 
 	The arc length ``s`` of the curve ``y=f\left(x\right)`` from ``x=a`` to ``x=b`` is given by
 
 	```math
-	s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x=\int_a^b\sqrt{1+\left(\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	s = \int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x=\int_a^b\sqrt{1+\left(\frac{\mathrm d y}{\mathrm d x}\right)^2}\,\mathrm{d} x\,.
 	```
 
 !!! example
 
 	Find the length of the curve ``y=x^\frac{2}{3}`` from ``x=1`` to ``x=8``.
 
-	Since ``\frac{\mathrm d\kern-0.5pt y}{\mathrm d\kern-0.5pt x}=\frac{2}{3}x^{-\frac{1}{3}}`` is continuous between ``x=1`` and ``x=8``, the length of the curve is given by
+	Since ``\frac{\mathrm d y}{\mathrm d x}=\frac{2}{3}x^{-\frac{1}{3}}`` is continuous between ``x=1`` and ``x=8``, the length of the curve is given by
 
 	```math
 	\begin{aligned}
-	s&=\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d}\kern-0.5pt x\\
-	&=\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d}\kern-0.5pt x\\
-	&\quad\textrm{Let }u=9x^\frac{2}{3}+4,\mathrm{d}\kern-0.5pt u=6x^{-\frac{2}{3}}\,\mathrm{d}\kern-0.5pt x\\
-	&=\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
+	s&=\int_1^8\sqrt{1+\frac{4}{9}x^{-\frac{2}{3}}}\,\mathrm{d} x=\int_1^8\sqrt{\frac{9x^\frac{2}{3}+4}{9x^\frac{2}{3}}}\,\mathrm{d} x\\
+	&=\int_1^8\frac{\sqrt{9x^\frac{2}{3}+4}}{3x^\frac{1}{3}}\,\mathrm{d} x\\
+	&\quad\textrm{Let }u=9x^\frac{2}{3}+4,\mathrm{d} u=6x^{-\frac{2}{3}}\,\mathrm{d} x\\
+	&=\frac{1}{18}\int_{13}^{40}u^\frac{1}{2}\,\mathrm{d} u=\left.\frac{1}{27}u^\frac{3}{2}\right|_{13}^{40}=\frac{40\sqrt{40}-13\sqrt{13}}{27}\ \textrm{units.}
 	\end{aligned}
 	```
 
@@ -1676,39 +1676,39 @@ Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right
 
 When a plane curve is rotated (in three dimensions) about a line in the plane of the curve, it sweeps out a surface of revolution. For instance, a sphere of radius ``a`` is generated by rotating a semicircle of radius ``a`` about the diameter of that semicircle.
 
-The area of a surface of revolution can be found by integrating an area element ``\mathrm{d}\kern-0.5pt S`` constructed by rotating the arc length element ``\mathrm{d}\kern-0.5pt s`` of the curve about the given line. If the radius of rotation of the element ``\mathrm{d}\kern-0.5pt s`` is ``r``, then it generates, on rotation, a circular band of width ``\mathrm{d}\kern-0.5pt s`` and length (circumference) ``2\uppi r``. The area of this band is, therefore,
+The area of a surface of revolution can be found by integrating an area element ``\mathrm{d} S`` constructed by rotating the arc length element ``\mathrm{d} s`` of the curve about the given line. If the radius of rotation of the element ``\mathrm{d} s`` is ``r``, then it generates, on rotation, a circular band of width ``\mathrm{d} s`` and length (circumference) ``2\uppi r``. The area of this band is, therefore,
 
 ```math
-\mathrm{d}\kern-0.5pt S=2\uppi r\,\mathrm{d}\kern-0.5pt s\,.
+\mathrm{d} S=2\uppi r\,\mathrm{d} s\,.
 ```
 
-The areas of surfaces of revolution around various lines can be obtained by integrating ``\mathrm{d}\kern-0.5pt S`` with appropriate choices of ``r``. Here are some important special cases.
+The areas of surfaces of revolution around various lines can be obtained by integrating ``\mathrm{d} S`` with appropriate choices of ``r``. Here are some important special cases.
 
 !!! theorem
 
 	If ``f^\prime\left(x\right)`` is continuous on ``\left[a,b\right]`` and the curve ``y=f\left(x\right)`` is rotated about the ``x``-axis, the area of the surface of revolution so generated is
 
 	```math
-	S=2\uppi\int_a^b\left|y\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	S=2\uppi\int_a^b\left|y\right|\,\mathrm{d} s=2\uppi\int_a^b\left|f\left(x\right)\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x\,.
 	```
 
 	If the rotation is about the ``y``-axis, the surface area is
 
 	```math
-	S=2\uppi\int_a^b\left|x\right|\,\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d}\kern-0.5pt x\,.
+	S=2\uppi\int_a^b\left|x\right|\,\mathrm{d} s=2\uppi\int_a^b\left|x\right|\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x\,.
 	```
 
 !!! example
 
 	Find the surface area of a parabolic reflector whose shape is obtained by rotating the parabolic arc ``y=x^2``, ``\left(0 \le x \le 1\right)``, about the ``y``-axis.
 
-	The arc length element for the parabola ``y=x^2`` is ``\mathrm{d}\kern-0.5pt s=\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x``, so the required surface area is
+	The arc length element for the parabola ``y=x^2`` is ``\mathrm{d} s=\sqrt{1+4x^2}\,\mathrm{d} x``, so the required surface area is
 
 	```math
 	\begin{aligned}
-	S&=2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d}\kern-0.5pt x\\
-	&\quad\textrm{Let }u=1+4x^2,\mathrm{d}\kern-0.5pt u=8x\,\mathrm{d}\kern-0.5pt x\\
-	&=\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d}\kern-0.5pt u\\
+	S&=2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d} x\\
+	&\quad\textrm{Let }u=1+4x^2,\mathrm{d} u=8x\,\mathrm{d} x\\
+	&=\frac{\uppi}{4}\int_1^5u^\frac{1}{2}\,\mathrm{d} u\\
 	&=\left.\frac{\uppi}{6}u^\frac{3}{2}\right|_{1}^{5}=\frac{\uppi}{6}\left(5\sqrt 5-1\right)\ \textrm{square units.}
 	\end{aligned}
 	```

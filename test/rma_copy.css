@@ -609,7 +609,6 @@ li {
 
 code {
     font-family: "JuliaMono";
-    font-size: 10pt;
 }
 
 div[data-type="theorem"]>h1:before {
@@ -669,6 +668,7 @@ div[data-type="example"]>h1,
 div[data-type="exercise"]>h1,
 div[data-type="proof"]>h1,
 div[data-type="template"]>h1 {
+    font-size: 10pt;
     font-weight: 500;
     font-style: normal;
     margin: 0;
@@ -685,29 +685,6 @@ div[data-type="corollary"]>h1 {
     font-style: italic;
 }
 
-div[data-type="theorem"],
-div[data-type="lemma"],
-div[data-type="corollary"],
-div[data-type="definition"],
-div[data-type="axiom"],
-div[data-type="theorem"]>h1,
-div[data-type="lemma"]>h1,
-div[data-type="corollary"]>h1,
-div[data-type="definition"]>h1,
-div[data-type="axiom"]>h1 {
-    font-size: 10pt;
-}
-
-div[data-type="example"],
-div[data-type="exercise"],
-div[data-type="proof"],
-div[data-type="template"],
-div[data-type="example"]>h1,
-div[data-type="exercise"]>h1,
-div[data-type="proof"]>h1,
-div[data-type="template"]>h1 {
-    font-size: 10pt
-}
 
 div[data-type="theorem"],
 div[data-type="lemma"],
@@ -738,7 +715,6 @@ div[data-type="corollary"] {
     counter-increment: theoremnumber;
     background-color: hsla(189, 100%, 50%, 10%);
     border-left-color: hsla(189, 100%, 50%, 80%);
-    font-size: 10pt;
     font-style: italic;
 }
 
@@ -746,39 +722,33 @@ div[data-type="definition"] {
     counter-increment: definitionnumber;
     background-color: hsla(180, 100%, 25%, 10%);
     border-left-color: hsla(180, 100%, 25%, 80%);
-    font-size: 10pt;
 }
 
 div[data-type="axiom"] {
     counter-increment: axiomnumber;
     background-color: hsla(300, 100%, 25%, 10%);
     border-left-color: hsla(300, 100%, 25%, 80%);
-    font-size: 10pt;
 }
 
 div[data-type="example"] {
     background-color: hsla(39, 100%, 50%, 10%);
     border-left-color: hsla(39, 100%, 50%, 80%);
-    font-size: 10pt;
 }
 
 div[data-type="exercise"] {
     background-color: hsla(60, 100%, 50%, 10%);
     border-left-color: hsla(60, 100%, 50%, 80%);
-    font-size: 10pt;
 }
 
 div[data-type="proof"] {
     background-color: hsla(0, 100%, 0%, 10%);
     border-left-color: hsla(0, 100%, 0%, 80%);
-    font-size: 10pt;
 }
 
 div[data-type="template"] {
     counter-increment: templatenumber;
     background-color: hsla(300, 76%, 72%, 10%);
     border-left-color: hsla(300, 76%, 72%, 80%);
-    font-size: 10pt;
 }
 
 div[data-type="theorem"]>p:first-of-type,
@@ -860,7 +830,6 @@ table {
     margin-right: auto;
     border-collapse: collapse;
     page-break-inside: avoid;
-    font-size: 10pt;
 }
 
 thead,

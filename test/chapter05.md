@@ -158,11 +158,11 @@ Exponential functions satisfy several identities called *laws of exponents*:
 
 	If ``a&gt;0`` and ``b&gt;0``, and ``x`` and ``y`` are any real numbers, then
 	```math
-	\begin{align}
+	\begin{aligned}
 	&a^0=1&&a^{x+y}=a^xa^y\\
 	&a^{-x}=\frac{1}{a^x}&&a^{x-y}=\frac{a^x}{a^y}\\
 	&\left(a^x\right)^y=a^{xy}&&\left(ab\right)^x=a^xb^x
-	\end{align}
+	\end{aligned}
 	```
 
 These identities can be proved for rational exponents using the definitions above. They remain true for irrational exponents, but we can’t show that until the next section.
@@ -246,11 +246,11 @@ From the laws of exponents we can derive the following laws of logarithms:
 
 	If ``x&gt;0``, ``y&gt;0``, ``a&gt;0``, ``b&gt;0``, ``a\ne 1`` and ``b\ne 1``, then
 	```math
-	\begin{align}
+	\begin{aligned}
 	&\log_a 1=0&&\log_a\left(xy\right)=\log_a x+\log_a y\\
 	&\log_a\left(\frac{1}{x}\right)=-\log_a x&&\log_a\left(\frac{x}{y}\right)=\log_a x-\log_a y\\
 	&\log_a\left(x^y\right)=ylog_a x&&\log_a x=\frac{\log_b x}{\log_b a}
-	\end{align}
+	\end{aligned}
 	```
 
 Corresponding to the asymptotic behaviour of the exponential functions, the logarithmic functions also exhibit asymptotic behaviour. Their graphs are all asymptotic to the ``y``-axis as ``x\to0`` from the right:
@@ -309,7 +309,7 @@ The definition implies that ``\ln 1=0``, that ``\ln x&gt;0`` if ``x&gt;1``, that
 
 	If ``x&gt;0``, then
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln x=\frac{1}{x}\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln x=\frac{1}{x}\,.
 	```
 
 !!! proof
@@ -364,15 +364,15 @@ The definition implies that ``\ln 1=0``, that ``\ln x&gt;0`` if ``x&gt;1``, that
 	\lim_{h\to0}\frac{\ln\left(x+h\right)-\ln x}{h}=\frac{1}{x}\,.
 	```
 
-The two properties ``\displaystyle \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln x=\frac{1}{x}`` and ``\ln 1=0`` are sufficient to determine the function ``\ln x`` completely. We can deduce from these two properties that ``\ln x`` satisfies the appropriate laws of logarithms:
+The two properties ``\displaystyle \frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln x=\frac{1}{x}`` and ``\ln 1=0`` are sufficient to determine the function ``\ln x`` completely. We can deduce from these two properties that ``\ln x`` satisfies the appropriate laws of logarithms:
 
 !!! theorem
 
 	```math
-	\begin{align}
+	\begin{aligned}
 	&\ln\left(xy\right)=\ln x+\ln y&&\ln\left(\frac{1}{x}\right)=-\ln x\\
 	&\ln\left(\frac{x}{y}\right)=\ln x-\ln y&&\ln\left(x^r\right)=r\ln x
-	\end{align}
+	\end{aligned}
 	```
 
 	Because we do not want to assume that exponentials are continuous, we should regard the last property for the moment as only valid for exponents ``r`` that are rational numbers.
@@ -381,32 +381,32 @@ The two properties ``\displaystyle \frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\ma
 
 	We will only prove the first property because the other parts are proved by the same method. If ``y&gt;0`` is a constant, then by the Chain Rule,
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(\ln\left(xy\right)-\ln x\right)=\frac{y}{xy}-\frac{1}{x}=0
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(\ln\left(xy\right)-\ln x\right)=\frac{y}{xy}-\frac{1}{x}=0
 	```
 	for all ``x&gt;0``. So, ``\ln\left(xy\right)-\ln x=C`` (a constant). Putting ``x=1``, we get ``C=\ln y`` and the first property follows.
 
-The last property shows that ``\ln\left(2^n\right)=n\ln 2\to\infty`` as ``n\to\infty``. Therefore, we also have ``\ln\left(\frac{1}{2}\right)^n=-n\ln 2\to-\infty`` as ``n\to\infty``. Since ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln x=\frac{1}{x}&gt;0`` for ``x&gt;0``, it follows that ``\ln x`` is increasing, so we must have
+The last property shows that ``\ln\left(2^n\right)=n\ln 2\to\infty`` as ``n\to\infty``. Therefore, we also have ``\ln\left(\frac{1}{2}\right)^n=-n\ln 2\to-\infty`` as ``n\to\infty``. Since ``\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln x=\frac{1}{x}&gt;0`` for ``x&gt;0``, it follows that ``\ln x`` is increasing, so we must have
 ```math
 \lim_{x\to\infty}\ln x=\infty\quad\textrm{and}\quad \lim_{x\to-\infty}\ln x=-\infty\,.
 ```
 
 !!! example
 
-	Show that ``\displaystyle\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln \left|x\right|=\frac{1}{x}`` for any ``x\ne 0``. Hence find ``\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x``.
+	Show that ``\displaystyle\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln \left|x\right|=\frac{1}{x}`` for any ``x\ne 0``. Hence find ``\int\frac{1}{x}\, \mathrm{d} x``.
 
 	If ``x&gt;0``, then
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln \left|x\right|=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln x=\frac{1}{x}\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln \left|x\right|=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln x=\frac{1}{x}\,.
 	```
 
 	If ``x&lt;0``, then
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln \left|x\right|=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln \left(-x\right)=\frac{1}{-x}\left(-1\right)=\frac{1}{x}\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln \left|x\right|=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln \left(-x\right)=\frac{1}{-x}\left(-1\right)=\frac{1}{x}\,.
 	```
 
-	Therefore, ``\displaystyle\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\ln \left|x\right|=\frac{1}{x}``, and on any interval not containing ``x=0``,
+	Therefore, ``\displaystyle\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln \left|x\right|=\frac{1}{x}``, and on any interval not containing ``x=0``,
 	```math
-	\int\frac{1}{x}\, \mathrm{d}\kern-0.5pt x=\ln\left|x\right|+C\,.
+	\int\frac{1}{x}\, \mathrm{d} x=\ln\left|x\right|+C\,.
 	```
 
 ### The Exponential Function
@@ -426,10 +426,10 @@ We can deduce various properties of ``\exp`` from corresponding properties of ``
 !!! theorem
 
 	```math
-	\begin{align}
+	\begin{aligned}
 	&\left(\exp x\right)^r=\exp\left(rx\right)&&\exp\left(x+y\right)=\exp x\exp y\\
 	&\exp\left(-x\right)=\frac{1}{\exp x}&&\exp\left(x-y\right)=\frac{\exp x}{\exp y}
-	\end{align}
+	\end{aligned}
 	```
 
 	For the moment, the first property is asserted only for rational numbers ``r``.
@@ -490,10 +490,10 @@ The first property of the previous theorem shows that ``\exp r=\exp\left(1r\righ
 
 The last theorem can now be restated in terms of ``\mathcal{e}^x``:
 ```math
-\begin{align}
+\begin{aligned}
 &\left(\mathcal{e}^x\right)^y=\mathcal{e}^{xy}&&\mathcal{e}^{x+y}=\mathcal{e}^x\mathcal{e}^y\\
 &\mathcal{e}^{-x}=\frac{1}{\mathcal{e}^x}&&\mathcal{e}^{x-y}=\frac{\mathcal{e}^x}{\mathcal{e}^y}
-\end{align}
+\end{aligned}
 ```
 
 The graph of ``\mathcal{e}^x`` is the reflection of the graph of its inverse, ``\ln x``, in the line ``y=x``.
@@ -527,14 +527,14 @@ The derivative of ``y=\mathcal{e}^x`` is calculated by implicit differentiation:
 ```math
 \begin{aligned}
 y=\mathcal{e}^x&\implies x=\ln y\\
-&\implies 1=\frac{1}{y}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\\
-&\implies \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=y=\mathcal{e}^x\,.
+&\implies 1=\frac{1}{y}\frac{\mathrm{d} y}{\mathrm{d} x}\\
+&\implies \frac{\mathrm{d} y}{\mathrm{d} x}=y=\mathcal{e}^x\,.
 \end{aligned}
 ```
 
 Thus, the exponential function has the remarkable property that it is its own derivative and, therefore, also its own antiderivative:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^x=\mathcal{e}^x\quad\textrm{and}\quad\int \mathcal{e}^x\, \mathrm{d}\kern-0.5pt x=\mathcal{e}^x+C\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\mathcal{e}^x=\mathcal{e}^x\quad\textrm{and}\quad\int \mathcal{e}^x\, \mathrm{d} x=\mathcal{e}^x+C\,.
 ```
 
 ### General Exponentials and Logarithms
@@ -550,12 +550,12 @@ We can use the fact that ``\mathcal{e}^x`` is now defined for all real ``x`` to 
 
 The laws of exponents for ``a^x`` can now be obtained from those for ``\mathcal{e}^x``, as can the derivative:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{x\ln a}=\mathcal{e}^{x\ln a}\ln a=a^x\ln a\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}a^x=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\mathcal{e}^{x\ln a}=\mathcal{e}^{x\ln a}\ln a=a^x\ln a\,.
 ```
 
 We can also verify the General Power Rule for ``x^a``, where ``a`` is any real number, provided ``x&gt;0``:
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{a\ln x}=\mathcal{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}x^a=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\mathcal{e}^{a\ln x}=\mathcal{e}^{a\ln x}\frac{a}{x}=\frac{ax^a}{x}=ax^{a-1}\,.
 ```
 
 !!! example
@@ -564,19 +564,19 @@ We can also verify the General Power Rule for ``x^a``, where ``a`` is any real n
 
 	We can’t differentiate ``x^x`` by treating it as a power (like ``x^a``) because the exponent varies. We can’t treat it as an exponential (like ``a^x``) because the base varies. We can differentiate it if we first write it in terms of the exponential function, ``x^x=\mathcal{e}^{x\ln x}``, and then use the Chain Rule and the Product Rule:
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^x=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\mathcal{e}^{x\ln x}=\mathcal{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}x^x=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\mathcal{e}^{x\ln x}=\mathcal{e}^{x\ln x}\left(\ln x+x\frac{1}{x}\right)=x^x\left(1+\ln x\right)\,.
 	```
 
 	Now ``x^x`` is defined only for ``x&gt;0`` and is itself never ``0``. (Why?) Therefore, the critical point occurs where ``1+\ln x=0``; that is, ``\ln x=-1``, or ``x=\frac{1}{\mathcal{e}}``.
 
-Finally, observe that ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a`` is negative for all ``x`` if ``0&lt;a&lt;1`` and is positive for all ``x`` if ``a&gt;1``. Thus, ``a^x`` is bijective and has an inverse function, ``\log_a x``, provided ``a&gt;0`` and ``a\ne1``. If ``y=\log_a x``, then ``x=a^y`` and, differentiating implicitly with respect to ``x``, we get
+Finally, observe that ``\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}a^x=a^x\ln a`` is negative for all ``x`` if ``0&lt;a&lt;1`` and is positive for all ``x`` if ``a&gt;1``. Thus, ``a^x`` is bijective and has an inverse function, ``\log_a x``, provided ``a&gt;0`` and ``a\ne1``. If ``y=\log_a x``, then ``x=a^y`` and, differentiating implicitly with respect to ``x``, we get
 ```math
-1=a^y\ln a\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=x\ln a\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
+1=a^y\ln a\frac{\mathrm{d} y}{\mathrm{d} x}=x\ln a\frac{\mathrm{d} y}{\mathrm{d} x}\,.
 ```
 
 Thus, the derivative of ``\log_a x`` is given by
 ```math
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\log_a x=\frac{1}{x\ln a}\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\log_a x=\frac{1}{x\ln a}\,.
 ```
 
 Since ``\log_a x`` can be expressed in terms of logarithms to any other base, say ``\mathcal{e}``,
@@ -593,7 +593,7 @@ Suppose we want to differentiate a function of the form
 y=\left(f\left(x\right)\right)^{g\left(x\right)}\quad\textrm{for }f\left(x\right)&gt;0\,.
 ```
 
-Since the variable appears in both the base and the exponent, neither the general power rule, ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^a=ax^{a-1}``, nor the exponential rule, ``\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}a^x=a^x\ln a`` can be directly applied. One method for finding the derivative of such a function is to express it in the form
+Since the variable appears in both the base and the exponent, neither the general power rule, ``\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}x^a=ax^{a-1}``, nor the exponential rule, ``\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}a^x=a^x\ln a`` can be directly applied. One method for finding the derivative of such a function is to express it in the form
 ```math
 y=\mathcal{e}^{g\left(x\right)\ln f\left(x\right)}
 ```
@@ -603,8 +603,8 @@ The derivative in the example can also be obtained by taking natural logarithms 
 ```math
 \begin{aligned}
 \ln y&=x\ln x\\
-\frac{1}{y}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\ln x+\frac{x}{x}=1+\ln x\\
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=y\left(1+\ln x\right)=x^x\left(1+\ln x\right)
+\frac{1}{y}\frac{\mathrm{d} y}{\mathrm{d} x}&=\ln x+\frac{x}{x}=1+\ln x\\
+\frac{\mathrm{d} y}{\mathrm{d} x}&=y\left(1+\ln x\right)=x^x\left(1+\ln x\right)
 \end{aligned}
 ```
 
@@ -614,18 +614,18 @@ Logarithmic differentiation is also useful for finding the derivatives of functi
 
 !!! example
 
-	Find ``\displaystyle\left.\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\right|_{x=1}`` if ``u=\sqrt{\left(x+1\right)\left(x^2+1\right)\left(x^3+1\right)}``.
+	Find ``\displaystyle\left.\frac{\mathrm{d} u}{\mathrm{d} x}\right|_{x=1}`` if ``u=\sqrt{\left(x+1\right)\left(x^2+1\right)\left(x^3+1\right)}``.
 
 	```math
 	\begin{aligned}
 	\ln u&=\frac{1}{2}\left(\ln\left(x+1\right)+\ln\left(x^2+1\right)+\ln\left(x^3+1\right)\right)\\
-	\frac{1}{u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}&=\frac{1}{2}\left(\frac{1}{x+1}+\frac{2x}{x^2+1}+\frac{3x^2}{x^3+1}\right)\,.
+	\frac{1}{u}\frac{\mathrm{d} u}{\mathrm{d} x}&=\frac{1}{2}\left(\frac{1}{x+1}+\frac{2x}{x^2+1}+\frac{3x^2}{x^3+1}\right)\,.
 	\end{aligned}
 	```
 
 	At ``x=1`` we have ``u=\sqrt 8=2\sqrt 2``. Hence
 	```math
-	\left.\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\right|_{x=1}=\sqrt 2\left(\frac{1}{2}+1+\frac{3}{2}\right)=3\sqrt 2\,.
+	\left.\frac{\mathrm{d} u}{\mathrm{d} x}\right|_{x=1}=\sqrt 2\left(\frac{1}{2}+1+\frac{3}{2}\right)=3\sqrt 2\,.
 	```
 
 
@@ -697,11 +697,11 @@ The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\oper
 
 Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``. Differentiating with respect to ``x``, we obtain
 ```math
-1=\cos y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
+1=\cos y\frac{\mathrm{d} y}{\mathrm{d} x}\,.
 ```
 Since ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``, we know that ``\cos y\ge 0``. Therefore,
 ```math
-\cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
+\cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
 ```
 
 Note that the inverse sine function is differentiable only on the open interval ``\left]-1,1\right[``; the slope of its graph approaches infinity as ``x\to -1^+`` or as ``x\to 1^-``.
@@ -765,7 +765,7 @@ The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent
 
 The derivative of the inverse tangent function is also found by implicit differentiation: if ``y=\operatorname{Arctan}x``, then ``x=\operatorname{Tan}y`` and
 ```math
-1 = \sec^2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+\tan^2 y\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\left(1+x^2\right)\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\,.
+1 = \sec^2y\frac{\mathrm{d} y}{\mathrm{d} x}=\left(1+\tan^2 y\right)\frac{\mathrm{d} y}{\mathrm{d} x}=\left(1+x^2\right)\frac{\mathrm{d} y}{\mathrm{d} x}\,.
 ```
 
 The function ``\cos x`` is bijective on the interval ``\left[0,\uppi\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
@@ -852,15 +852,15 @@ Many other properties of the hyperbolic functions resemble those of the correspo
 	Show that
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x=\sinh x\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sinh x=\cosh x
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\cosh x=\sinh x\quad\textrm{and}\quad\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\sinh x=\cosh x
 	```
 
 	We have
 
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\cosh x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathcal{e}^x+\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x+\mathcal{e}^{-x}\left(-1\right)}{2}=\sinh x\\
-	\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x-\mathcal{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\cosh x&=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{\mathcal{e}^x+\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x+\mathcal{e}^{-x}\left(-1\right)}{2}=\sinh x\\
+	\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\sin x&=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{\mathcal{e}^x-\mathcal{e}^{-x}}{2}=\frac{\mathcal{e}^x-\mathcal{e}^{-x}\left(-1\right)}{2}=\cosh x\,.
 	\end{aligned}
 	```
 

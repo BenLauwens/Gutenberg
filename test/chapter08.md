@@ -458,7 +458,7 @@ The integral test provides a means for determining whether an ultimately positiv
 	Suppose that ``a_n=f\left(n\right)``, where ``f`` is positive, continuous, and nonincreasing on an interval ``\left[N,\infty\right[`` for some positive integer ``N``. If
 
 	```math
-	\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t
+	\int_N^\infty f\left(t\right)\,\mathrm{d} t
 	```
 
 	converges, then
@@ -479,11 +479,11 @@ The integral test provides a means for determining whether an ultimately positiv
 	\begin{aligned}
 	s_n&=s_N+a_{N+1}+a_{N+2}+\cdots+a_n\\
 	&=s_N+f\left(N+1\right)+f\left(N+2\right)+\cdots+f\left(n\right)\\
-	&\le s_N+\int_N^\infty f\left(t\right)\,\mathrm d\kern-0.5pt t\,.
+	&\le s_N+\int_N^\infty f\left(t\right)\,\mathrm d t\,.
 	\end{aligned}
 	```
 
-	If the improper integral ``\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t`` converges, then the sequence ``\left(s_n\right)`` is bounded above and ``\sum_{n=0}^\infty a_n`` converges.
+	If the improper integral ``\int_N^\infty f\left(t\right)\,\mathrm{d} t`` converges, then the sequence ``\left(s_n\right)`` is bounded above and ``\sum_{n=0}^\infty a_n`` converges.
 
 !!! example
 
@@ -498,7 +498,7 @@ The integral test provides a means for determining whether an ultimately positiv
 	By the integral test
 
 	```math
-	\int_1^\infty t^{-p}\,\mathrm{d}\kern-0.5pt t=\lim_{x\to\infty}\left(-px^{-p-1}\right)-\left(-p1^{-p-1}\right)=p\quad\textrm{if }p&gt;1
+	\int_1^\infty t^{-p}\,\mathrm{d} t=\lim_{x\to\infty}\left(-px^{-p-1}\right)-\left(-p1^{-p-1}\right)=p\quad\textrm{if }p&gt;1
 	```
 
 	the series converges for ``p&gt;1``.
@@ -812,7 +812,7 @@ If a power series has a positive radius of convergence, it can be differentiated
 	Also, ``f`` is integrable over any closed subinterval of ``\left]-R, R\right[`` and if ``\left|x\right|&lt;R``, then
 
 	```math
-	\int_0^x f\left(t\right)\,\mathrm{d}\kern-0.5pt t=\sum_{n=0}^\infty \frac{a_n}{n+1}x^{n+1}=a_0x+\frac{a_1}{2}x^2+\frac{a_2}{3}x^3+\frac{a_3}{4}x^4+\cdots\,.
+	\int_0^x f\left(t\right)\,\mathrm{d} t=\sum_{n=0}^\infty \frac{a_n}{n+1}x^{n+1}=a_0x+\frac{a_1}{2}x^2+\frac{a_2}{3}x^3+\frac{a_3}{4}x^4+\cdots\,.
 	```
 
 Together, these results imply that the termwise differentiated or integrated series have the same radius of convergence as the given series. In fact, as the following examples illustrate, the interval of convergence of the differentiated series is the same as that of the original series except for the possible loss of one or both endpoints if the original series converges at endpoints of its interval of convergence. Similarly, the integrated series will converge everywhere on the interval of convergence of the original series and possibly at one or both endpoints of that interval, even if the original series does not converge at the endpoints.
@@ -847,7 +847,7 @@ Together, these results imply that the termwise differentiated or integrated ser
 
 	```math
 	\begin{aligned}
-	\ln\left(1+x\right)&=\int_0^x\frac{1}{1+t}\,\,\mathrm{d}\kern-0.5pt t=\sum_{n=0}^\infty \left(-1\right)^n\int_0^xt^n\,\,\mathrm{d}\kern-0.5pt t\\
+	\ln\left(1+x\right)&=\int_0^x\frac{1}{1+t}\,\,\mathrm{d} t=\sum_{n=0}^\infty \left(-1\right)^n\int_0^xt^n\,\,\mathrm{d} t\\
 	&=\sum_{n=0}^\infty \left(-1\right)^n\frac{x^{n+1}}{n+1}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots\,,\quad x\in\left]-R, R\right[\,.
 	\end{aligned}
 	```

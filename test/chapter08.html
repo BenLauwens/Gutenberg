@@ -373,7 +373,7 @@ s_n=\sum_{i=0}^n ar^i=\begin{cases}
 <p>Suppose that <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> is positive, continuous, and nonincreasing on an interval <span class="math-tex" data-type="tex">\(\left[N,\infty\right[\)</span> for some positive integer <span class="math-tex" data-type="tex">\(N\)</span>. If</p>
 <div class="math-tex" data-type="equation">
 \[
-\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t
+\int_N^\infty f\left(t\right)\,\mathrm{d} t
 \]
 </div>
 <p>converges, then</p>
@@ -393,11 +393,11 @@ s_n=\sum_{i=0}^n ar^i=\begin{cases}
 \begin{aligned}
 s_n&=s_N+a_{N+1}+a_{N+2}+\cdots+a_n\\
 &=s_N+f\left(N+1\right)+f\left(N+2\right)+\cdots+f\left(n\right)\\
-&\le s_N+\int_N^\infty f\left(t\right)\,\mathrm d\kern-0.5pt t\,.
+&\le s_N+\int_N^\infty f\left(t\right)\,\mathrm d t\,.
 \end{aligned}
 \]
 </div>
-<p>If the improper integral <span class="math-tex" data-type="tex">\(\int_N^\infty f\left(t\right)\,\mathrm{d}\kern-0.5pt t\)</span> converges, then the sequence <span class="math-tex" data-type="tex">\(\left(s_n\right)\)</span> is bounded above and <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges.</p>
+<p>If the improper integral <span class="math-tex" data-type="tex">\(\int_N^\infty f\left(t\right)\,\mathrm{d} t\)</span> converges, then the sequence <span class="math-tex" data-type="tex">\(\left(s_n\right)\)</span> is bounded above and <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\)</span> converges.</p>
 </div>
 <div data-type="example">
 <h1></h1>
@@ -411,7 +411,7 @@ s_n&=s_N+a_{N+1}+a_{N+2}+\cdots+a_n\\
 <p>By the integral test</p>
 <div class="math-tex" data-type="equation">
 \[
-\int_1^\infty t^{-p}\,\mathrm{d}\kern-0.5pt t=\lim_{x\to\infty}\left(-px^{-p-1}\right)-\left(-p1^{-p-1}\right)=p\quad\textrm{if }p&gt;1
+\int_1^\infty t^{-p}\,\mathrm{d} t=\lim_{x\to\infty}\left(-px^{-p-1}\right)-\left(-p1^{-p-1}\right)=p\quad\textrm{if }p&gt;1
 \]
 </div>
 <p>the series converges for <span class="math-tex" data-type="tex">\(p&gt;1\)</span>.</p>
@@ -712,7 +712,7 @@ f^\prime\left(x\right)=\sum_{n=1}^\infty na_nx^n=a_1x+2a_2x^2+3a_3x^3+\cdots\,,\
 <p>Also, <span class="math-tex" data-type="tex">\(f\)</span> is integrable over any closed subinterval of <span class="math-tex" data-type="tex">\(\left]-R, R\right[\)</span> and if <span class="math-tex" data-type="tex">\(\left|x\right|&lt;R\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
-\int_0^x f\left(t\right)\,\mathrm{d}\kern-0.5pt t=\sum_{n=0}^\infty \frac{a_n}{n+1}x^{n+1}=a_0x+\frac{a_1}{2}x^2+\frac{a_2}{3}x^3+\frac{a_3}{4}x^4+\cdots\,.
+\int_0^x f\left(t\right)\,\mathrm{d} t=\sum_{n=0}^\infty \frac{a_n}{n+1}x^{n+1}=a_0x+\frac{a_1}{2}x^2+\frac{a_2}{3}x^3+\frac{a_3}{4}x^4+\cdots\,.
 \]
 </div>
 </div>
@@ -747,7 +747,7 @@ f^\prime\left(x\right)=\sum_{n=1}^\infty na_nx^n=a_1x+2a_2x^2+3a_3x^3+\cdots\,,\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\ln\left(1+x\right)&=\int_0^x\frac{1}{1+t}\,\,\mathrm{d}\kern-0.5pt t=\sum_{n=0}^\infty \left(-1\right)^n\int_0^xt^n\,\,\mathrm{d}\kern-0.5pt t\\
+\ln\left(1+x\right)&=\int_0^x\frac{1}{1+t}\,\,\mathrm{d} t=\sum_{n=0}^\infty \left(-1\right)^n\int_0^xt^n\,\,\mathrm{d} t\\
 &=\sum_{n=0}^\infty \left(-1\right)^n\frac{x^{n+1}}{n+1}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots\,,\quad x\in\left]-R, R\right[\,.
 \end{aligned}
 \]

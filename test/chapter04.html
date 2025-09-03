@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
-<link rel="stylesheet" href="rma.css" />
+<link rel="stylesheet" href="rma_copy.css" />
 <script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
@@ -539,22 +539,22 @@ f^\prime\left(x\right)=\begin{cases}
 <p>Because functions can be written in different ways, it is useful to have more than one notation for derivatives. If <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span>, we can use the dependent variable <span class="math-tex" data-type="tex">\(y\)</span> to represent the function, and we can denote the derivative of the function with respect to <span class="math-tex" data-type="tex">\(x\)</span> in any of the following ways:</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathsf{D}_x\kern-0.5pt y=y^\prime=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=f^\prime\left(x\right)=\mathsf{D}_x\kern-0.5pt f\left(x\right)=\mathsf{D}\kern-0.5pt f\left(x\right)\,.
+\mathsf{D}_x y=y^\prime=\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)=f^\prime\left(x\right)=\mathsf{D}_x f\left(x\right)=\mathsf{D} f\left(x\right)\,.
 \]
 </div>
-<p>(In the forms using “<span class="math-tex" data-type="tex">\(\mathsf{D}_x\)</span>,” we can omit the subscript <span class="math-tex" data-type="tex">\(x\)</span> if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable <span class="math-tex" data-type="tex">\(x\)</span> is to write <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\)</span> in front of that expression. The symbol <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\)</span> is a differential operator and should be read “the derivative with respect to <span class="math-tex" data-type="tex">\(x\)</span> of <span class="math-tex" data-type="tex">\(\dots\)</span>”.</p>
+<p>(In the forms using “<span class="math-tex" data-type="tex">\(\mathsf{D}_x\)</span>,” we can omit the subscript <span class="math-tex" data-type="tex">\(x\)</span> if the variable of differentiation is obvious.) Often the most convenient way of referring to the derivative of a function given explicitly as an expression in the variable <span class="math-tex" data-type="tex">\(x\)</span> is to write <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\)</span> in front of that expression. The symbol <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\)</span> is a differential operator and should be read “the derivative with respect to <span class="math-tex" data-type="tex">\(x\)</span> of <span class="math-tex" data-type="tex">\(\dots\)</span>”.</p>
 <p>The value of the derivative of a function at a particular number <span class="math-tex" data-type="tex">\(x_0\)</span> in its domain can also be expressed in several ways:</p>
 <div class="math-tex" data-type="equation">
 \[
-\left.\mathsf{D}_x\kern-0.5pt y\right|_{x=x_0}=\left.y^\prime\right|_{x=x_0}=\left.\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}=f^\prime\left(x_0\right)=\mathsf{D}_x\kern-0.5pt f\left(x_0\right)\,.
+\left.\mathsf{D}_x y\right|_{x=x_0}=\left.y^\prime\right|_{x=x_0}=\left.\frac{\mathrm{d} y}{\mathrm{d} x}\right|_{x=x_0}=\left.\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)\right|_{x=x_0}=f^\prime\left(x_0\right)=\mathsf{D}_x f\left(x_0\right)\,.
 \]
 </div>
-<p>The symbol <span class="math-tex" data-type="tex">\(\left.\vphantom{\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}}\right|_{x=x_0}\)</span> is called an <i>evaluation symbol</i>. It signifies that the expression preceding it should be evaluated at <span class="math-tex" data-type="tex">\(x=x_0\)</span>. Do not confuse <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(\left.\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)\right|_{x=x_0}\)</span>. The first expression represents a <i>function</i>, <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span>. The second represents a <i>number</i> <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)\)</span>.</p>
-<p>The notation <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> are called Leibniz notations for the derivative; Newton used notations similar to the prime <span class="math-tex" data-type="tex">\(y^\prime\)</span> notations we use here.</p>
-<p>The Leibniz notation is suggested by the definition of derivative. The Newton quotient <span class="math-tex" data-type="tex">\(\frac{f\left(x+h\right)-f\left(x\right)}{h}\)</span>, whose limit we take to find the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, can be written in the form <span class="math-tex" data-type="tex">\(\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span>, where <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y=f\left(x+h\right)-f\left(x\right)\)</span> is the increment in <span class="math-tex" data-type="tex">\(y\)</span>, and <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x=h\)</span> is the corresponding increment in <span class="math-tex" data-type="tex">\(x\)</span> as we pass from the point <span class="math-tex" data-type="tex">\(\left(x,f\left(x\right)\right)\)</span> to the point <span class="math-tex" data-type="tex">\(\left(x+h,f\left(x+h\right)\right)\)</span> on the graph of <span class="math-tex" data-type="tex">\(f\)</span>. <span class="math-tex" data-type="tex">\(\Delta\)</span> is the uppercase Greek letter Delta. Using symbols:</p>
+<p>The symbol <span class="math-tex" data-type="tex">\(\left.\vphantom{\frac{\mathrm{d} y}{\mathrm{d} x}}\right|_{x=x_0}\)</span> is called an <i>evaluation symbol</i>. It signifies that the expression preceding it should be evaluated at <span class="math-tex" data-type="tex">\(x=x_0\)</span>. Do not confuse <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)\)</span> and <span class="math-tex" data-type="tex">\(\left.\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)\right|_{x=x_0}\)</span>. The first expression represents a <i>function</i>, <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span>. The second represents a <i>number</i> <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)\)</span>.</p>
+<p>The notation <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span> are called Leibniz notations for the derivative; Newton used notations similar to the prime <span class="math-tex" data-type="tex">\(y^\prime\)</span> notations we use here.</p>
+<p>The Leibniz notation is suggested by the definition of derivative. The Newton quotient <span class="math-tex" data-type="tex">\(\frac{f\left(x+h\right)-f\left(x\right)}{h}\)</span>, whose limit we take to find the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span>, can be written in the form <span class="math-tex" data-type="tex">\(\frac{\Delta y}{\Delta x}\)</span>, where <span class="math-tex" data-type="tex">\(\Delta y=f\left(x+h\right)-f\left(x\right)\)</span> is the increment in <span class="math-tex" data-type="tex">\(y\)</span>, and <span class="math-tex" data-type="tex">\(\Delta x=h\)</span> is the corresponding increment in <span class="math-tex" data-type="tex">\(x\)</span> as we pass from the point <span class="math-tex" data-type="tex">\(\left(x,f\left(x\right)\right)\)</span> to the point <span class="math-tex" data-type="tex">\(\left(x+h,f\left(x+h\right)\right)\)</span> on the graph of <span class="math-tex" data-type="tex">\(f\)</span>. <span class="math-tex" data-type="tex">\(\Delta\)</span> is the uppercase Greek letter Delta. Using symbols:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta\kern-0.5pt x\to 0}\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}.
 \]
 </div>
 <figure>
@@ -595,20 +595,20 @@ f^\prime\left(x\right)=\begin{cases}
 \(y=f\left(x\right)\)
 </foreignObject>
 <foreignObject x="124.0" y="86.0" width="28" height="18">
-\(\Delta\kern-0.5pt x\)
+\(\Delta x\)
 </foreignObject>
 <foreignObject x="180.0" y="60.0" width="28" height="18">
-\(\Delta\kern-0.5pt y\)
+\(\Delta y\)
 </foreignObject>
 </svg>
-<figcaption><span class="math-tex" data-type="tex">\(\displaystyle\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\lim_{\Delta\kern-0.5pt x\to 0}\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span></figcaption></figure>
-<p>The Newton quotient <span class="math-tex" data-type="tex">\(\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span> is actually the quotient of two quantities, <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> and <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span>. It is not at all clear, however, that the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, the limit of <span class="math-tex" data-type="tex">\(\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span> as <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> approaches zero, can be regarded as a quotient. If <span class="math-tex" data-type="tex">\(y\)</span> is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>, then <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> approaches zero when <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> approaches zero, so <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> appears to be the meaningless quantity <span class="math-tex" data-type="tex">\(\frac{0}{0}\)</span>. Nevertheless, it is sometimes useful to be able to refer to quantities <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt y\)</span> and <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt x\)</span> in such a way that their quotient is the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>. We can justify this by regarding <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt x\)</span> as a new independent variable (called the <i>differential of <span class="math-tex" data-type="tex">\(x\)</span></i>) and defining a new dependent variable <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt y\)</span> (the <i>differential of <span class="math-tex" data-type="tex">\(y\)</span></i>) as a function of <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(\mathrm d\kern-0.5pt x\)</span> by</p>
+<figcaption><span class="math-tex" data-type="tex">\(\displaystyle\frac{\mathrm{d} y}{\mathrm{d} x}=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}\)</span></figcaption></figure>
+<p>The Newton quotient <span class="math-tex" data-type="tex">\(\frac{\Delta y}{\Delta x}\)</span> is actually the quotient of two quantities, <span class="math-tex" data-type="tex">\(\Delta y\)</span> and <span class="math-tex" data-type="tex">\(\Delta x\)</span>. It is not at all clear, however, that the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span>, the limit of <span class="math-tex" data-type="tex">\(\frac{\Delta y}{\Delta x}\)</span> as <span class="math-tex" data-type="tex">\(\Delta x\)</span> approaches zero, can be regarded as a quotient. If <span class="math-tex" data-type="tex">\(y\)</span> is a continuous function of <span class="math-tex" data-type="tex">\(x\)</span>, then <span class="math-tex" data-type="tex">\(\Delta y\)</span> approaches zero when <span class="math-tex" data-type="tex">\(\Delta x\)</span> approaches zero, so <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span> appears to be the meaningless quantity <span class="math-tex" data-type="tex">\(\frac{0}{0}\)</span>. Nevertheless, it is sometimes useful to be able to refer to quantities <span class="math-tex" data-type="tex">\(\mathrm d y\)</span> and <span class="math-tex" data-type="tex">\(\mathrm d x\)</span> in such a way that their quotient is the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span>. We can justify this by regarding <span class="math-tex" data-type="tex">\(\mathrm d x\)</span> as a new independent variable (called the <i>differential of <span class="math-tex" data-type="tex">\(x\)</span></i>) and defining a new dependent variable <span class="math-tex" data-type="tex">\(\mathrm d y\)</span> (the <i>differential of <span class="math-tex" data-type="tex">\(y\)</span></i>) as a function of <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(\mathrm d x\)</span> by</p>
 <div class="math-tex" data-type="equation">
 \[
-\mathrm{d}\kern-0.5pt y=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\mathrm d\kern-0.5pt x=f^\prime(x)\,\mathrm d\kern-0.5pt x
+\mathrm{d} y=\frac{\mathrm{d} y}{\mathrm{d} x}\mathrm d x=f^\prime(x)\,\mathrm d x
 \]
 </div>
-<p>For example, if <span class="math-tex" data-type="tex">\(y=x^2\)</span>, we can write <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y=2x\,\mathrm{d}\kern-0.5pt x\)</span> to mean the same thing as <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=2x\)</span>. Similarly, if <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{1}{x}\)</span>, we can write <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y=-\frac{1}{x^2}\,\mathrm{d}\kern-0.5pt x\)</span> as the equivalent differential form of the assertion that <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{x^2}\)</span>. This <i>differential notation</i> is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.</p>
+<p>For example, if <span class="math-tex" data-type="tex">\(y=x^2\)</span>, we can write <span class="math-tex" data-type="tex">\(\mathrm{d} y=2x\,\mathrm{d} x\)</span> to mean the same thing as <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}=2x\)</span>. Similarly, if <span class="math-tex" data-type="tex">\(f\left(x\right)=\frac{1}{x}\)</span>, we can write <span class="math-tex" data-type="tex">\(\mathrm{d} y=-\frac{1}{x^2}\,\mathrm{d} x\)</span> as the equivalent differential form of the assertion that <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}=-\frac{1}{x^2}\)</span>. This <i>differential notation</i> is useful in applications, and especially for the interpretation and manipulation of integrals. Note that, defined as above, differentials are merely variables that may or may not be small in absolute value.</p>
 <section data-type="sect2">
 <h2>Approximation by Differentials</h2>
 <p>If one quantity, say <span class="math-tex" data-type="tex">\(y\)</span>, is a function of another quantity <span class="math-tex" data-type="tex">\(x\)</span>, that is,</p>
@@ -617,22 +617,22 @@ f^\prime\left(x\right)=\begin{cases}
 y=f\left(x\right)\,,
 \]
 </div>
-<p>we sometimes want to know how a change in the value of <span class="math-tex" data-type="tex">\(x\)</span> by an amount <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> will affect the value of <span class="math-tex" data-type="tex">\(y\)</span>. The exact change <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> in <span class="math-tex" data-type="tex">\(y\)</span> is given by</p>
+<p>we sometimes want to know how a change in the value of <span class="math-tex" data-type="tex">\(x\)</span> by an amount <span class="math-tex" data-type="tex">\(\Delta x\)</span> will affect the value of <span class="math-tex" data-type="tex">\(y\)</span>. The exact change <span class="math-tex" data-type="tex">\(\Delta y\)</span> in <span class="math-tex" data-type="tex">\(y\)</span> is given by</p>
 <div class="math-tex" data-type="equation">
 \[
-\Delta\kern-0.5pt y=f\left(x+\Delta\kern-0.5pt x\right)-f\left(x\right)\,,
+\Delta y=f\left(x+\Delta x\right)-f\left(x\right)\,,
 \]
 </div>
-<p>but if the change <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span> is small, then we can get a good approximation to <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> by using the fact that <span class="math-tex" data-type="tex">\(\displaystyle\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\)</span> is approximately the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>. Thus,</p>
+<p>but if the change <span class="math-tex" data-type="tex">\(\Delta x\)</span> is small, then we can get a good approximation to <span class="math-tex" data-type="tex">\(\Delta y\)</span> by using the fact that <span class="math-tex" data-type="tex">\(\displaystyle\frac{\Delta y}{\Delta x}\)</span> is approximately the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span>. Thus,</p>
 <div class="math-tex" data-type="equation">
 \[
-\Delta\kern-0.5pt y=\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}\Delta\kern-0.5pt x\approx\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt x=f^\prime\left(x\right)\Delta\kern-0.5pt x\,.
+\Delta y=\frac{\Delta y}{\Delta x}\Delta x\approx\frac{\mathrm{d} y}{\mathrm{d} x}\Delta x=f^\prime\left(x\right)\Delta x\,.
 \]
 </div>
-<p>It is often convenient to represent this approximation in terms of differentials; if we denote the change in <span class="math-tex" data-type="tex">\(x\)</span> by <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt x\)</span> instead of <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x\)</span>, then the change <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span> in <span class="math-tex" data-type="tex">\(y\)</span> is approximated by the differential <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y\)</span>, that is</p>
+<p>It is often convenient to represent this approximation in terms of differentials; if we denote the change in <span class="math-tex" data-type="tex">\(x\)</span> by <span class="math-tex" data-type="tex">\(\mathrm{d} x\)</span> instead of <span class="math-tex" data-type="tex">\(\Delta x\)</span>, then the change <span class="math-tex" data-type="tex">\(\Delta y\)</span> in <span class="math-tex" data-type="tex">\(y\)</span> is approximated by the differential <span class="math-tex" data-type="tex">\(\mathrm{d} y\)</span>, that is</p>
 <div class="math-tex" data-type="equation">
 \[
-\Delta\kern-0.5pt y\approx\mathrm{d}\kern-0.5pt y=f^\prime\left(x\right)\,\mathrm{d}\kern-0.5pt x\,.
+\Delta y\approx\mathrm{d} y=f^\prime\left(x\right)\,\mathrm{d} x\,.
 \]
 </div>
 <figure>
@@ -658,7 +658,7 @@ y=f\left(x\right)\,,
 </foreignObject>
 <line x1="180.0" y1="117" x2="180.0" y2="123" stroke="black"/>
 <foreignObject x="5.0" y="120" width="350" height="18">
-\(x+\mathrm{d}\kern-0.5pt y\)
+\(x+\mathrm{d} y\)
 </foreignObject>
 <line x1="40" y1="140.0" x2="40" y2="3" stroke="black" marker-end="url(#arrow)"/>
 <polyline points="0.0, 99.0 0.3999999999999986, 99.03960000000001 0.7999999999999972, 99.0784 1.2000000000000028, 99.1164 1.6000000000000014, 99.1536 2.0, 99.19 2.4000000000000057, 99.2256 2.799999999999997, 99.2604 3.1999999999999957, 99.2944 3.6000000000000014, 99.3276 4.0, 99.36 4.399999999999999, 99.39160000000001 4.799999999999997, 99.4224 5.200000000000003, 99.4524 5.600000000000001, 99.4816 6.0, 99.51 6.399999999999999, 99.5376 6.800000000000004, 99.5644 7.200000000000003, 99.5904 7.599999999999994, 99.6156 8.0, 99.64 8.399999999999999, 99.6636 8.799999999999997, 99.6864 9.2, 99.7084 9.600000000000001, 99.7296 10.0, 99.75 10.399999999999999, 99.7696 10.8, 99.7884 11.200000000000003, 99.8064 11.600000000000001, 99.8236 12.0, 99.84 12.400000000000002, 99.8556 12.799999999999997, 99.8704 13.2, 99.8844 13.599999999999998, 99.8976 14.0, 99.91 14.399999999999999, 99.9216 14.8, 99.9324 15.2, 99.94239999999999 15.600000000000001, 99.9516 16.0, 99.96000000000001 16.400000000000002, 99.9676 16.8, 99.9744 17.200000000000003, 99.9804 17.599999999999998, 99.9856 18.0, 99.99000000000001 18.4, 99.9936 18.799999999999997, 99.9964 19.2, 99.9984 19.6, 99.9996 20.0, 100.0 20.4, 99.9996 20.8, 99.9984 21.200000000000003, 99.9964 21.599999999999998, 99.9936 22.0, 99.99000000000001 22.4, 99.9856 22.8, 99.9804 23.2, 99.9744 23.6, 99.9676 24.0, 99.96000000000001 24.4, 99.9516 24.8, 99.94239999999999 25.2, 99.9324 25.6, 99.9216 26.0, 99.91 26.4, 99.8976 26.799999999999997, 99.8844 27.2, 99.8704 27.6, 99.8556 28.0, 99.84 28.4, 99.8236 28.799999999999997, 99.8064 29.2, 99.7884 29.6, 99.7696 30.0, 99.75 30.4, 99.7296 30.799999999999997, 99.7084 31.2, 99.6864 31.6, 99.6636 32.0, 99.64 32.4, 99.6156 32.8, 99.5904 33.2, 99.5644 33.6, 99.5376 34.0, 99.51 34.4, 99.4816 34.8, 99.4524 35.2, 99.4224 35.6, 99.39160000000001 36.0, 99.36 36.4, 99.3276 36.8, 99.2944 37.2, 99.2604 37.6, 99.2256 38.0, 99.19 38.4, 99.1536 38.8, 99.1164 39.2, 99.0784 39.6, 99.03960000000001 40.0, 99.0 40.4, 98.9596 40.8, 98.9184 41.2, 98.8764 41.6, 98.8336 42.0, 98.78999999999999 42.4, 98.7456 42.8, 98.7004 43.2, 98.6544 43.6, 98.60759999999999 44.0, 98.56 44.4, 98.5116 44.8, 98.4624 45.2, 98.41239999999999 45.6, 98.3616 46.0, 98.31 46.4, 98.2576 46.8, 98.20439999999999 47.2, 98.1504 47.6, 98.09559999999999 48.0, 98.03999999999999 48.4, 97.9836 48.8, 97.9264 49.2, 97.86840000000001 49.6, 97.8096 50.0, 97.75 50.4, 97.6896 50.8, 97.6284 51.2, 97.5664 51.6, 97.5036 52.0, 97.44 52.4, 97.37559999999999 52.8, 97.3104 53.2, 97.2444 53.6, 97.1776 54.0, 97.11 54.4, 97.0416 54.8, 96.9724 55.2, 96.9024 55.6, 96.83160000000001 56.0, 96.76 56.4, 96.6876 56.8, 96.61439999999999 57.2, 96.5404 57.6, 96.4656 58.0, 96.39 58.400000000000006, 96.31360000000001 58.8, 96.2364 59.2, 96.1584 59.6, 96.0796 60.0, 96.0 60.4, 95.9196 60.8, 95.83840000000001 61.2, 95.7564 61.6, 95.6736 62.0, 95.59 62.400000000000006, 95.5056 62.8, 95.4204 63.2, 95.33439999999999 63.599999999999994, 95.2476 64.0, 95.16 64.4, 95.07159999999999 64.8, 94.9824 65.2, 94.89240000000001 65.6, 94.8016 66.0, 94.71000000000001 66.4, 94.6176 66.8, 94.5244 67.2, 94.43039999999999 67.6, 94.3356 68.0, 94.24 68.4, 94.14359999999999 68.8, 94.0464 69.2, 93.94839999999999 69.6, 93.8496 70.0, 93.75 70.4, 93.64959999999999 70.8, 93.5484 71.2, 93.4464 71.6, 93.3436 72.0, 93.24 72.4, 93.1356 72.8, 93.0304 73.19999999999999, 92.92439999999999 73.6, 92.8176 74.0, 92.71000000000001 74.4, 92.60159999999999 74.8, 92.4924 75.2, 92.3824 75.6, 92.27159999999999 76.0, 92.16 76.4, 92.0476 76.80000000000001, 91.9344 77.2, 91.8204 77.6, 91.7056 78.0, 91.59 78.4, 91.4736 78.8, 91.35640000000001 79.2, 91.2384 79.6, 91.11959999999999 80.0, 91.0 80.4, 90.8796 80.8, 90.7584 81.2, 90.6364 81.6, 90.5136 82.0, 90.39 82.4, 90.2656 82.80000000000001, 90.1404 83.2, 90.0144 83.6, 89.88759999999999 84.0, 89.75999999999999 84.4, 89.63159999999999 84.80000000000001, 89.5024 85.19999999999999, 89.3724 85.6, 89.2416 86.0, 89.11 86.4, 88.9776 86.8, 88.8444 87.19999999999999, 88.71039999999999 87.6, 88.57560000000001 88.0, 88.44 88.4, 88.30359999999999 88.8, 88.1664 89.2, 88.0284 89.6, 87.8896 90.0, 87.75 90.4, 87.6096 90.8, 87.4684 91.2, 87.3264 91.6, 87.1836 92.0, 87.03999999999999 92.4, 86.8956 92.80000000000001, 86.7504 93.2, 86.6044 93.6, 86.4576 94.0, 86.31 94.4, 86.16159999999999 94.80000000000001, 86.0124 95.19999999999999, 85.86240000000001 95.6, 85.7116 96.0, 85.56 96.4, 85.4076 96.8, 85.2544 97.19999999999999, 85.10040000000001 97.6, 84.9456 98.0, 84.78999999999999 98.4, 84.6336 98.8, 84.4764 99.2, 84.3184 99.6, 84.1596 100.0, 84.0 100.4, 83.8396 100.8, 83.67840000000001 101.2, 83.5164 101.6, 83.3536 102.0, 83.19 102.4, 83.0256 102.80000000000001, 82.8604 103.2, 82.6944 103.6, 82.5276 104.0, 82.36 104.4, 82.1916 104.80000000000001, 82.0224 105.19999999999999, 81.8524 105.6, 81.6816 106.0, 81.50999999999999 106.39999999999999, 81.3376 106.8, 81.1644 107.2, 80.99040000000001 107.6, 80.81559999999999 108.0, 80.63999999999999 108.4, 80.4636 108.8, 80.2864 109.2, 80.1084 109.6, 79.9296 110.0, 79.75 110.4, 79.56960000000001 110.8, 79.38839999999999 111.2, 79.20639999999999 111.6, 79.0236 112.0, 78.84 112.4, 78.6556 112.8, 78.4704 113.2, 78.2844 113.60000000000001, 78.0976 114.0, 77.91 114.4, 77.7216 114.80000000000001, 77.5324 115.19999999999999, 77.3424 115.6, 77.1516 116.0, 76.96 116.39999999999999, 76.7676 116.8, 76.5744 117.2, 76.38040000000001 117.6, 76.18560000000001 118.0, 75.99 118.4, 75.7936 118.8, 75.5964 119.2, 75.3984 119.6, 75.19959999999999 120.0, 75.0 120.39999999999999, 74.7996 120.8, 74.5984 121.19999999999999, 74.3964 121.6, 74.19359999999999 122.0, 73.99000000000001 122.4, 73.7856 122.8, 73.58040000000001 123.2, 73.3744 123.6, 73.16760000000001 124.0, 72.96 124.39999999999999, 72.7516 124.80000000000001, 72.54239999999999 125.19999999999999, 72.3324 125.60000000000001, 72.12159999999999 126.0, 71.91 126.4, 71.6976 126.8, 71.4844 127.2, 71.2704 127.6, 71.0556 128.0, 70.84 128.4, 70.6236 128.8, 70.40639999999999 129.2, 70.1884 129.60000000000002, 69.9696 130.0, 69.75 130.39999999999998, 69.52960000000002 130.8, 69.3084 131.2, 69.0864 131.6, 68.86359999999999 132.0, 68.64000000000001 132.4, 68.4156 132.8, 68.19040000000001 133.2, 67.9644 133.6, 67.73759999999999 134.0, 67.50999999999999 134.39999999999998, 67.28160000000001 134.8, 67.0524 135.2, 66.8224 135.60000000000002, 66.5916 136.0, 66.35999999999999 136.4, 66.1276 136.8, 65.89439999999999 137.2, 65.6604 137.6, 65.4256 138.0, 65.19 138.4, 64.9536 138.8, 64.7164 139.2, 64.4784 139.60000000000002, 64.2396 140.0, 64.0 140.39999999999998, 63.759600000000006 140.8, 63.51839999999999 141.2, 63.27640000000001 141.6, 63.03359999999999 142.0, 62.79 142.4, 62.54559999999999 142.8, 62.30040000000001 143.2, 62.054399999999994 143.6, 61.807599999999994 144.0, 61.55999999999999 144.39999999999998, 61.311600000000006 144.8, 61.0624 145.2, 60.812400000000004 145.60000000000002, 60.5616 146.0, 60.31 146.4, 60.05759999999999 146.8, 59.8044 147.2, 59.550399999999996 147.6, 59.29559999999999 148.0, 59.03999999999999 148.4, 58.7836 148.8, 58.526399999999995 149.2, 58.2684 149.60000000000002, 58.00959999999999 150.0, 57.74999999999999 150.39999999999998, 57.4896 150.8, 57.22839999999999 151.2, 56.96640000000001 151.6, 56.703599999999994 152.0, 56.44 152.4, 56.17559999999999 152.8, 55.91040000000001 153.2, 55.64439999999999 153.6, 55.3776 154.0, 55.11 154.39999999999998, 54.8416 154.8, 54.5724 155.2, 54.302400000000006 155.60000000000002, 54.0316 156.0, 53.760000000000005 156.4, 53.4876 156.8, 53.2144 157.2, 52.9404 157.6, 52.6656 158.0, 52.389999999999986 158.4, 52.113600000000005 158.8, 51.8364 159.2, 51.55839999999999 159.60000000000002, 51.27959999999999 160.0, 51.0 160.39999999999998, 50.719600000000014 160.8, 50.4384 161.2, 50.156400000000005 161.6, 49.87359999999998 162.0, 49.59 162.4, 49.3056 162.8, 49.020399999999995 163.2, 48.734399999999994 163.6, 48.447599999999994 164.0, 48.16 164.39999999999998, 47.8716 164.8, 47.58239999999999 165.2, 47.2924 165.60000000000002, 47.001599999999996 166.0, 46.709999999999994 166.4, 46.41759999999999 166.8, 46.124399999999994 167.2, 45.8304 167.6, 45.5356 168.0, 45.239999999999995 168.4, 44.9436 168.8, 44.6464 169.2, 44.3484 169.60000000000002, 44.0496 170.0, 43.75 170.39999999999998, 43.449600000000004 170.8, 43.14840000000001 171.2, 42.84639999999999 171.6, 42.5436 172.0, 42.24000000000001 172.4, 41.935599999999994 172.79999999999998, 41.630399999999995 173.2, 41.3244 173.6, 41.0176 174.0, 40.709999999999994 174.4, 40.4016 174.8, 40.0924 175.2, 39.782399999999996 175.6, 39.471599999999995 176.0, 39.16 176.4, 38.8476 176.8, 38.53439999999999 177.20000000000002, 38.2204 177.6, 37.90559999999999 178.0, 37.59 178.4, 37.273600000000016 178.8, 36.95639999999999 179.2, 36.638400000000004 179.60000000000002, 36.319599999999994 180.0, 36.0 180.39999999999998, 35.67959999999999 180.8, 35.3584 181.2, 35.036400000000015 181.6, 34.713600000000014 182.0, 34.39 182.4, 34.06559999999999 182.79999999999998, 33.740399999999994 183.2, 33.414399999999986 183.6, 33.087599999999995 184.0, 32.75999999999999 184.4, 32.43160000000002 184.8, 32.10239999999999 185.2, 31.772400000000005 185.6, 31.44159999999998 186.0, 31.10999999999997 186.4, 30.77759999999998 186.8, 30.4444 187.20000000000002, 30.110400000000013 187.6, 29.775599999999997 188.0, 29.439999999999998 188.4, 29.1036 188.8, 28.766399999999976 189.2, 28.428399999999982 189.60000000000002, 28.08959999999999 190.0, 27.749999999999986 190.39999999999998, 27.40960000000001 190.8, 27.068399999999997 191.2, 26.726400000000012 191.6, 26.383599999999987 192.0, 26.039999999999992 192.4, 25.695599999999985 192.79999999999998, 25.35039999999998 193.2, 25.004400000000004 193.6, 24.657600000000002 194.0, 24.310000000000002 194.4, 23.96160000000002 194.8, 23.61239999999998 195.2, 23.262399999999985 195.6, 22.91159999999998 196.0, 22.559999999999988 196.4, 22.207599999999985 196.8, 21.8544 197.20000000000002, 21.500400000000013 197.6, 21.1456 198.0, 20.789999999999992 198.4, 20.4336 198.8, 20.07639999999998 199.2, 19.71839999999999 199.60000000000002, 19.359599999999972 200.0, 19.0 200.39999999999998, 18.6396 200.79999999999998, 18.27840000000002 201.20000000000002, 17.916399999999996 201.6, 17.55359999999999 202.0, 17.190000000000012 202.39999999999998, 16.82560000000001 202.8, 16.460399999999993 203.2, 16.094399999999993 203.6, 15.72760000000001 204.0, 15.360000000000014 204.4, 14.991599999999977 204.8, 14.622399999999999 205.2, 14.252400000000009 205.6, 13.881600000000006 206.0, 13.509999999999991 206.4, 13.137599999999992 206.8, 12.764400000000009 207.2, 12.390400000000014 207.60000000000002, 12.015599999999992 208.0, 11.639999999999986 208.4, 11.263599999999997 208.79999999999998, 10.886399999999995 209.20000000000002, 10.508399999999966 209.60000000000002, 10.129599999999996 210.0, 9.75 210.39999999999998, 9.369600000000005 210.79999999999998, 8.988400000000013 211.20000000000002, 8.60639999999998 211.6, 8.223600000000005 212.0, 7.840000000000003 212.39999999999998, 7.455600000000004 212.8, 7.070399999999992 213.2, 6.684399999999982 213.6, 6.2975999999999885 214.0, 5.910000000000011 214.4, 5.521599999999992 214.8, 5.132399999999976 215.2, 4.7424000000000035 215.6, 4.351600000000019 216.0, 3.9599999999999795 216.4, 3.5675999999999988 216.8, 3.1743999999999915 217.2, 2.7804000000000144 217.60000000000002, 2.3855999999999824 218.0, 1.9899999999999807 218.4, 1.593599999999995 218.79999999999998, 1.1964000000000112 219.20000000000002, 0.7983999999999725 219.60000000000002, 0.3995999999999924 220.0, 0.0 220.39999999999998, -0.40039999999999054 220.79999999999998, -0.8015999999999934 221.20000000000002, -1.2036000000000229 221.6, -1.6064000000000078 222.0, -2.010000000000005 222.39999999999998, -2.4143999999999863 222.8, -2.8196000000000083 223.2, -3.2256000000000142 223.6, -3.63239999999999 224.0, -4.039999999999992 224.4, -4.448400000000007 224.8, -4.857600000000005 225.2, -5.267600000000016 225.6, -5.678399999999982 226.0, -6.090000000000018 226.4, -6.502400000000023 226.8, -6.915600000000012 227.2, -7.329599999999985 227.60000000000002, -7.744400000000013 228.0, -8.160000000000025 228.4, -8.576400000000007 228.79999999999998, -8.993599999999986 229.20000000000002, -9.411600000000021 229.60000000000002, -9.830400000000026 230.0, -10.25 230.39999999999998, -10.670399999999972 230.79999999999998, -11.0916 231.20000000000002, -11.513600000000025 231.6, -11.93640000000002 232.0, -12.360000000000014 232.39999999999998, -12.784399999999977 232.8, -13.209600000000023 233.2, -13.63560000000001 233.6, -14.062399999999997 234.0, -14.48999999999998 234.4, -14.91840000000002 234.8, -15.3476 235.2, -15.777600000000007 235.6, -16.208399999999983 236.0, -16.640000000000015 236.4, -17.072400000000016 236.8, -17.505600000000015 237.2, -17.939599999999984 237.60000000000002, -18.374400000000037 238.0, -18.810000000000002 238.4, -19.246399999999994 238.79999999999998, -19.683599999999984 239.20000000000002, -20.1216 239.60000000000002, -20.560400000000016 240.0, -21.0" fill="none" stroke="red" stroke-width="1" stroke-dasharray=""/>
@@ -675,18 +675,18 @@ y=f\left(x\right)\,,
 </foreignObject>
 <line x1="123" y1="80" x2="177.0" y2="80" marker-end="url(#arrow)" marker-start="url(#arrow)" stroke="black"/>
 <foreignObject x="114.0" y="80" width="70" height="18">
-\(\Delta\kern-0.5pt x=\mathrm{d}\kern-0.5pt x\)
+\(\Delta x=\mathrm{d} x\)
 </foreignObject>
 <line x1="184.0" y1="48.0" x2="184.0" y2="72.0" marker-end="url(#arrow)" marker-start="url(#arrow)" stroke="black"/>
 <foreignObject x="180.0" y="52.0" width="28" height="18">
-\(\mathrm{d}\kern-0.5pt y\)
+\(\mathrm{d} y\)
 </foreignObject>
 <line x1="210.0" y1="39.0" x2="210.0" y2="72.0" marker-end="url(#arrow)" marker-start="url(#arrow)" stroke="black"/>
 <foreignObject x="210.0" y="52.0" width="28" height="18">
-\(\Delta\kern-0.5pt y\)
+\(\Delta y\)
 </foreignObject>
 </svg>
-<figcaption><span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt y\)</span>, the change in height to the tangent line, approximates <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y\)</span>, the change in height to the graph of f</figcaption></figure>
+<figcaption><span class="math-tex" data-type="tex">\(\mathrm{d} y\)</span>, the change in height to the tangent line, approximates <span class="math-tex" data-type="tex">\(\Delta y\)</span>, the change in height to the graph of f</figcaption></figure>
 <section data-type="sect2">
 <h2>Some Questions</h2>
 <p>Is a function <span class="math-tex" data-type="tex">\(f\)</span> defined on an interval <span class="math-tex" data-type="tex">\(I\)</span> necessarily the derivative of some other function defined on <span class="math-tex" data-type="tex">\(I\)</span>? The answer is no; some functions are derivatives and some are not. Although a derivative need not be a continuous function, it must, like a continuous function, have the intermediate-value property: on an interval <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, a derivative <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\)</span> takes on every value between <span class="math-tex" data-type="tex">\(f^\prime\left(a\right)\)</span> and <span class="math-tex" data-type="tex">\(f^\prime\left(b\right)\)</span>. We will prove this in a next section.</p>
@@ -810,17 +810,17 @@ y=f\left(x\right)\,,
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Use mathematical induction to verify the formula <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^n=nx^{n-1}\)</span> for all positive integers <span class="math-tex" data-type="tex">\(n\)</span>.</p>
-<p>For <span class="math-tex" data-type="tex">\(n=1\)</span> the formula says that <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^1=1x^0\)</span>, so the formula is true in this case. We must show that if the formula is true for <span class="math-tex" data-type="tex">\(n=k\ge1\)</span>, then it is also true for <span class="math-tex" data-type="tex">\(n=k+1\)</span>. Therefore, assume that</p>
+<p>Use mathematical induction to verify the formula <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^n=nx^{n-1}\)</span> for all positive integers <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>For <span class="math-tex" data-type="tex">\(n=1\)</span> the formula says that <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^1=1x^0\)</span>, so the formula is true in this case. We must show that if the formula is true for <span class="math-tex" data-type="tex">\(n=k\ge1\)</span>, then it is also true for <span class="math-tex" data-type="tex">\(n=k+1\)</span>. Therefore, assume that</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^k=kx^{k-1}
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^k=kx^{k-1}
 \]
 </div>
 <p>Using the Product Rule we calculate</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{k+1}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(x^kx\right)=kx^{k-1}x+x^k 1=\left(k+1\right)x^k=\left(k+1\right)x^{\left(k+1\right)-1}
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^{k+1}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(x^kx\right)=kx^{k-1}x+x^k 1=\left(k+1\right)x^k=\left(k+1\right)x^{\left(k+1\right)-1}
 \]
 </div>
 <p>Thus, the formula is true for <span class="math-tex" data-type="tex">\(n=k+1\)</span> also. The formula is true for all integers <span class="math-tex" data-type="tex">\(n\ge1\)</span> by induction.</p>
@@ -861,7 +861,7 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\frac{1}{f\left(x\right)}&=\lim_{h\to 0}\frac{\displaystyle\frac{1}{f\left(x+h\right)}-\frac{1}{f\left(x\right)}}{h}\\
 &=\lim_{h\to 0}\frac{f\left(x\right)-f\left(x+h\right)}{hf\left(x+h\right)f\left(x\right)}\\
 &=\lim_{h\to 0}\left(\frac{-1}{f\left(x+h\right)f\left(x\right)}\right)\left(\frac{f\left(x+h\right)-f\left(x\right)}{h}\right)\\
 &=\frac{-1}{\left(f\left(x\right)\right)^2}f^\prime\left(x\right)
@@ -875,13 +875,13 @@ y=f\left(x\right)\,,
 <p>Confirm the General Power Rule for negative integers:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{-n}=-nx^{-n-1}\,.
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^{-n}=-nx^{-n-1}\,.
 \]
 </div>
 <p>Since we have already proved the rule for positive integers, we have</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}x^{-n}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{1}{x^n}=\frac{-nx^{n-1}}{{\left(x^n\right)^2}}=-nx^{-n-1}\,.
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}x^{-n}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\frac{1}{x^n}=\frac{-nx^{n-1}}{{\left(x^n\right)^2}}=-nx^{-n-1}\,.
 \]
 </div>
 </div>
@@ -891,7 +891,7 @@ y=f\left(x\right)\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f^\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(\frac{f\left(x\right)}{g\left(x\right)}\right)=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(f\left(x\right)\frac{1}{g\left(x\right)}\right)&=f^\prime\left(x\right)\frac{1}{g\left(x\right)}+f\left(x\right)\left(-\frac{g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\right)\\
 &= \frac{g\left(x\right)f^\prime\left(x\right)-f\left(x\right)g^\prime\left(x\right)}{\left(g\left(x\right)\right)^2}\,.
 \end{aligned}
 \]
@@ -921,26 +921,26 @@ y=f\left(x\right)\,,
 <p>In terms of Leibniz notation, if <span class="math-tex" data-type="tex">\(y=f\left(u\right)\)</span> where <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span>, then <span class="math-tex" data-type="tex">\(y=f\left(g\left(x\right)\right)\)</span> and:</p>
 <ul>
 <li>
-<p>at <span class="math-tex" data-type="tex">\(u\)</span>, <span class="math-tex" data-type="tex">\(y\)</span> is changing <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\)</span> times as fast as <span class="math-tex" data-type="tex">\(u\)</span> is changing;</p>
+<p>at <span class="math-tex" data-type="tex">\(u\)</span>, <span class="math-tex" data-type="tex">\(y\)</span> is changing <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d} y}{\mathrm{d} u}\)</span> times as fast as <span class="math-tex" data-type="tex">\(u\)</span> is changing;</p>
 </li>
 <li>
-<p>at <span class="math-tex" data-type="tex">\(x\)</span>, <span class="math-tex" data-type="tex">\(u\)</span> is changing <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\)</span> times as fast as <span class="math-tex" data-type="tex">\(x\)</span> is changing.</p>
+<p>at <span class="math-tex" data-type="tex">\(x\)</span>, <span class="math-tex" data-type="tex">\(u\)</span> is changing <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d} u}{\mathrm{d} x}\)</span> times as fast as <span class="math-tex" data-type="tex">\(x\)</span> is changing.</p>
 </li>
 </ul>
-<p>Therefore, at <span class="math-tex" data-type="tex">\(x\)</span>, <span class="math-tex" data-type="tex">\(y=f\left(u\right)=f\left(g\left(x\right)\right)\)</span> is changing <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\)</span> times as fast as <span class="math-tex" data-type="tex">\(x\)</span> is changing. That is,</p>
+<p>Therefore, at <span class="math-tex" data-type="tex">\(x\)</span>, <span class="math-tex" data-type="tex">\(y=f\left(u\right)=f\left(g\left(x\right)\right)\)</span> is changing <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d} y}{\mathrm{d} u}\frac{\mathrm{d} u}{\mathrm{d} x}\)</span> times as fast as <span class="math-tex" data-type="tex">\(x\)</span> is changing. That is,</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\frac{\mathrm{d}\kern-0.5pt u}{\mathrm{d}\kern-0.5pt x}\,,\quad\textrm{where }\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\textrm{ is evaluated at }u=g\left(x\right)\,.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{\mathrm{d} y}{\mathrm{d} u}\frac{\mathrm{d} u}{\mathrm{d} x}\,,\quad\textrm{where }\frac{\mathrm{d} y}{\mathrm{d} u}\textrm{ is evaluated at }u=g\left(x\right)\,.
 \]
 </div>
-<p>It appears as though the symbol <span class="math-tex" data-type="tex">\(\mathrm{d}\kern-0.5pt u\)</span> cancels from the numerator and denominator, but this is not meaningful because <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt u}\)</span> was not defined as the quotient of two quantities, but rather as a single quantity, the derivative of <span class="math-tex" data-type="tex">\(y\)</span> with respect to <span class="math-tex" data-type="tex">\(u\)</span>.</p>
+<p>It appears as though the symbol <span class="math-tex" data-type="tex">\(\mathrm{d} u\)</span> cancels from the numerator and denominator, but this is not meaningful because <span class="math-tex" data-type="tex">\(\displaystyle \frac{\mathrm{d} y}{\mathrm{d} u}\)</span> was not defined as the quotient of two quantities, but rather as a single quantity, the derivative of <span class="math-tex" data-type="tex">\(y\)</span> with respect to <span class="math-tex" data-type="tex">\(u\)</span>.</p>
 <p>We would like to prove this theorem by writing</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\Delta\kern-0.5pt y}{\Delta\kern-0.5pt x}=\frac{\Delta\kern-0.5pt y}{\Delta u}\frac{\Delta u}{\Delta\kern-0.5pt x}
+\frac{\Delta y}{\Delta x}=\frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}
 \]
 </div>
-<p>and taking the limit as <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt x \to 0\)</span>. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.</p>
+<p>and taking the limit as <span class="math-tex" data-type="tex">\(\Delta x \to 0\)</span>. Such a proof is valid for most composite functions but not all. The next demonstration is valid in all cases.</p>
 <div data-type="proof">
 <h1></h1>
 <p>Suppose that <span class="math-tex" data-type="tex">\(f\)</span> is differentiable at the point <span class="math-tex" data-type="tex">\(u=g\left(x\right)\)</span> and that <span class="math-tex" data-type="tex">\(g\)</span> is differentiable at <span class="math-tex" data-type="tex">\(x\)</span>.</p>
@@ -993,7 +993,7 @@ f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f^\prime\lef
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
 &=\lim_{h\to 0}\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 &=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 \end{aligned}
@@ -1014,7 +1014,7 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\\
+\frac{\mathrm{d} y}{\mathrm{d} x}&=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\\
 &=\frac{1}{2\sqrt{g\left(x\right)}}g^\prime\left(x\right)=\frac{1}{2\sqrt{x^2+1}}2x=\frac{x}{\sqrt{x^2+1}}\,.
 \end{aligned}
 \]
@@ -1324,7 +1324,7 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 </div>
 <div data-type="theorem">
 <h1></h1>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,.\)</span></p>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin x=\cos x\,.\)</span></p>
 </div>
 <div data-type="proof">
 <h1></h1>
@@ -1332,7 +1332,7 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin x&=\lim_{h\to 0}\frac{\sin\left(x+h\right)-\sin x}{h}\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin x&=\lim_{h\to 0}\frac{\sin\left(x+h\right)-\sin x}{h}\\
 &=\lim_{h\to 0}\frac{\sin x\cos h+\cos x\sin h-\sin x}{h}\\
 &=\lim_{h\to 0}\frac{\sin x\left(\cos h-1\right)+\cos x\sin h}{h}\\
 &=\lim_{h\to 0}\sin x\lim_{h\to 0}\frac{\cos h-1}{h}+\lim_{h\to 0}\cos x\lim_{h\to 0}\frac{\sin h}{h}\\
@@ -1343,14 +1343,14 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 </div>
 <div data-type="theorem">
 <h1></h1>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=-\sin x\,.\)</span></p>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cos x=-\sin x\,.\)</span></p>
 </div>
 <div data-type="proof">
 <h1></h1>
 <p>We make use of the complementary angle identities, and the Chain rule:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos x=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cos x=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin\left(\frac{\uppi}{2}-x\right)=\left(-1\right)\cos\left(\frac{\uppi}{2}-x\right)=-\sin x\,.
 \]
 </div>
 </div>
@@ -1364,8 +1364,8 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\tan(x)=\sec^2 x\,,\quad&\quad\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cot x=-\csc^2 x\,,\\
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sec(x)=\sec x\tan x\,,\quad&\quad\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\csc x=-\csc x\cot x\,.
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\tan(x)=\sec^2 x\,,\quad&\quad\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cot x=-\csc^2 x\,,\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sec(x)=\sec x\tan x\,,\quad&\quad\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\csc x=-\csc x\cot x\,.
 \end{aligned}
 \]
 </div>
@@ -1375,7 +1375,7 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\tan(x)&=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\left(\frac{\sin x}{\cos x}\right)=\frac{\cos x\displaystyle\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\sin(x)-\sin x\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\cos(x)}{\cos^2 x}\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\tan(x)&=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\left(\frac{\sin x}{\cos x}\right)=\frac{\cos x\displaystyle\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\sin(x)-\sin x\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\cos(x)}{\cos^2 x}\\
 &=\frac{\cos x\cos(x)-\sin x\left(-\sin x\right)}{\cos^2 x}=\frac{\cos^2 x+\sin^2 x}{\cos^2 x}\\
 &=\frac{1}{\cos^2 x}=\sec^2 x\,.
 \end{aligned}
@@ -1391,13 +1391,13 @@ f^\prime\left(u\right)=\frac{1}{2\sqrt u}\quad\textrm{and}\quad g^\prime\left(x\
 <p>If the derivative <span class="math-tex" data-type="tex">\(y^\prime=f^\prime\left(x\right)\)</span> of a function <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is itself differentiable at <span class="math-tex" data-type="tex">\(x\)</span>, we can calculate its derivative, which we call the second derivative of <span class="math-tex" data-type="tex">\(f\)</span> and denote by <span class="math-tex" data-type="tex">\(y^{\prime\prime}=f^{\prime\prime}\left(x\right)\)</span>. As is the case for first derivatives, second derivatives can be denoted by various notations depending on the context. Some of the more common ones are</p>
 <div class="math-tex" data-type="equation">
 \[
-y^{\prime\prime}=f^{\prime\prime}\left(x\right)=\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
+y^{\prime\prime}=f^{\prime\prime}\left(x\right)=\frac{\mathrm{d}^2 y}{\mathrm{d} x^2}=\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(x\right)=\frac{\mathrm{d}^2\hphantom{ y}}{\mathrm{d} x^2}f\left(x\right)=\mathsf{D}_x^2y=\mathsf{D}_x^2f\left(x\right)\,.
 \]
 </div>
 <p>Similarly, you can consider third-, fourth-, and in general <span class="math-tex" data-type="tex">\(n\)</span>th-order derivatives. The prime notation is inconvenient for derivatives of high order, so we denote the order by a superscript in parentheses (to distinguish it from an exponent): the <span class="math-tex" data-type="tex">\(n\)</span>th derivative of <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^n}=\frac{\mathrm{d}^n\hphantom{\kern-0.5pt y}}{\mathrm{d}\kern-0.5pt x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
+y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n y}{\mathrm{d} x^n}=\frac{\mathrm{d}^n\hphantom{ y}}{\mathrm{d} x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
 \]
 </div>
 <p>and it is defined to be the derivative of the <span class="math-tex" data-type="tex">\(\left(n-1\right)\)</span>st derivative. For <span class="math-tex" data-type="tex">\(n=1,2,3\)</span> primes are still normally used: <span class="math-tex" data-type="tex">\(f^{\left(3\right)}=f^{\prime\prime}\prime\)</span>. It is convenient to denote <span class="math-tex" data-type="tex">\(f^{\left(0\right)}=f\)</span>, that is, to regard a function as its own zeroth-order derivative.</p>
@@ -1406,13 +1406,13 @@ y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n\kern-0.5pt y}{\mathrm{d}\kern-0
 <p>The <i>velocity</i> of a moving object is the (instantaneous) rate of change of the position of the object with respect to time; if the object moves along the <span class="math-tex" data-type="tex">\(x\)</span>-axis and is at position <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> at time <span class="math-tex" data-type="tex">\(t\)</span>, then its velocity at that time is</p>
 <div class="math-tex" data-type="equation">
 \[
-v=\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0pt t}=f^\prime\left(t\right)\,.
+v=\frac{\mathrm{d} x}{\mathrm{d} t}=f^\prime\left(t\right)\,.
 \]
 </div>
 <p>Similarly, the <i>acceleration</i> of the object is the rate of change of the velocity. Thus, the acceleration is the second derivative of the position:</p>
 <div class="math-tex" data-type="equation">
 \[
-a=\frac{\mathrm{d}^2\kern-0.5pt x}{\mathrm{d}\kern-0pt t^2}=f^{\prime\prime}\left(t\right)\,.
+a=\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}=f^{\prime\prime}\left(t\right)\,.
 \]
 </div>
 </div>
@@ -1464,30 +1464,30 @@ x^2+y^2=25
 \]
 </div>
 <p>so <span class="math-tex" data-type="tex">\(F\left(x,y\right)=x^2+y^2-25\)</span> for that circle.</p>
-<p>Sometimes we can solve an equation <span class="math-tex" data-type="tex">\(F\left(x,y\right)=0\)</span> for <span class="math-tex" data-type="tex">\(y\)</span> and so find explicit formulas for one or more functions <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of <span class="math-tex" data-type="tex">\(x\)</span> implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> of these implicit solutions by a technique called <i>implicit differentiation</i>. The idea is to differentiate the given equation with respect to <span class="math-tex" data-type="tex">\(x\)</span>, regarding <span class="math-tex" data-type="tex">\(y\)</span> as a function of <span class="math-tex" data-type="tex">\(x\)</span> having derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, or <span class="math-tex" data-type="tex">\(y^\prime\)</span>.</p>
+<p>Sometimes we can solve an equation <span class="math-tex" data-type="tex">\(F\left(x,y\right)=0\)</span> for <span class="math-tex" data-type="tex">\(y\)</span> and so find explicit formulas for one or more functions <span class="math-tex" data-type="tex">\(y=f\left(x\right)\)</span> defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of <span class="math-tex" data-type="tex">\(x\)</span> implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span> of these implicit solutions by a technique called <i>implicit differentiation</i>. The idea is to differentiate the given equation with respect to <span class="math-tex" data-type="tex">\(x\)</span>, regarding <span class="math-tex" data-type="tex">\(y\)</span> as a function of <span class="math-tex" data-type="tex">\(x\)</span> having derivative <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span>, or <span class="math-tex" data-type="tex">\(y^\prime\)</span>.</p>
 <div data-type="example">
 <h1></h1>
-<p>Find <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> if <span class="math-tex" data-type="tex">\(y^2=x\)</span>.</p>
+<p>Find <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span> if <span class="math-tex" data-type="tex">\(y^2=x\)</span>.</p>
 <p>The equation <span class="math-tex" data-type="tex">\(y^2=x\)</span> defines two differentiable functions of <span class="math-tex" data-type="tex">\(x\)</span>; in this case we know them explicitly. They are <span class="math-tex" data-type="tex">\(y_1=\sqrt x\)</span> and <span class="math-tex" data-type="tex">\(y_2=-\sqrt x\)</span>, having derivatives defined for <span class="math-tex" data-type="tex">\(x&gt;0\)</span> by</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=-\frac{1}{2\sqrt x}\,.
+\frac{\mathrm{d} y_1}{\mathrm{d} x}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d} y_2}{\mathrm{d} x}=-\frac{1}{2\sqrt x}\,.
 \]
 </div>
-<p>However, we can find the slope of the curve <span class="math-tex" data-type="tex">\(y^2=x\)</span> at any point <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> satisfying that equation without first solving the equation for <span class="math-tex" data-type="tex">\(y\)</span>. To find <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span>, we simply differentiate both sides of the equation <span class="math-tex" data-type="tex">\(y^2=x\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>, treating <span class="math-tex" data-type="tex">\(y\)</span> as a differentiable function of <span class="math-tex" data-type="tex">\(x\)</span> and using the Chain Rule to differentiate <span class="math-tex" data-type="tex">\(y^2\)</span>:</p>
+<p>However, we can find the slope of the curve <span class="math-tex" data-type="tex">\(y^2=x\)</span> at any point <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> satisfying that equation without first solving the equation for <span class="math-tex" data-type="tex">\(y\)</span>. To find <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span>, we simply differentiate both sides of the equation <span class="math-tex" data-type="tex">\(y^2=x\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>, treating <span class="math-tex" data-type="tex">\(y\)</span> as a differentiable function of <span class="math-tex" data-type="tex">\(x\)</span> and using the Chain Rule to differentiate <span class="math-tex" data-type="tex">\(y^2\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(y^2\right)&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(x\right)\\
-2y\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=1\\
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{1}{2y}\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(y^2\right)&=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(x\right)\\
+2y\frac{\mathrm{d} y}{\mathrm{d} x}&=1\\
+\frac{\mathrm{d} y}{\mathrm{d} x}&=\frac{1}{2y}\,.
 \end{aligned}
 \]
 </div>
 <p>Observe that this agrees with the derivatives we calculated above for both of the explicit solutions <span class="math-tex" data-type="tex">\(y_1=\sqrt x\)</span> and <span class="math-tex" data-type="tex">\(y_2=-\sqrt x\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y_1}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_1}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y_2}{\mathrm{d}\kern-0.5pt x}=\frac{1}{2y_2}=-\frac{1}{2\sqrt x}\,.
+\frac{\mathrm{d} y_1}{\mathrm{d} x}=\frac{1}{2y_1}=\frac{1}{2\sqrt x}\quad\textrm{and}\quad\frac{\mathrm{d} y_2}{\mathrm{d} x}=\frac{1}{2y_2}=-\frac{1}{2\sqrt x}\,.
 \]
 </div>
 </div>
@@ -1516,20 +1516,20 @@ y^{\prime\prime}&=-\frac{2y^\prime+2\left(y^\prime\right)^2}{x+2y}=-\frac{8}{\le
 <p>Until now, we have only proven the General Power Rule</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}x^r=rx^{r-1}
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}x^r=rx^{r-1}
 \]
 </div>
 <p>for integer exponents <span class="math-tex" data-type="tex">\(r\)</span> and a few special rational exponents such as <span class="math-tex" data-type="tex">\(r=\frac{1}{2}\)</span>. Using implicit differentiation, we can give the proof for any rational exponent <span class="math-tex" data-type="tex">\(r=\frac{m}{n}\)</span>, where <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span> are integers, and <span class="math-tex" data-type="tex">\(n\ne0\)</span>.</p>
 <p>If <span class="math-tex" data-type="tex">\(y=x^\frac{m}{n}\)</span>, then <span class="math-tex" data-type="tex">\(y^n=x^m\)</span>. Differentiating implicitly with respect to <span class="math-tex" data-type="tex">\(x\)</span>, we obtain</p>
 <div class="math-tex" data-type="equation">
 \[
-ny^{n-1}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=mx^{m-1}\,,
+ny^{n-1}\frac{\mathrm{d} y}{\mathrm{d} x}=mx^{m-1}\,,
 \]
 </div>
 <p>so</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
+\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{m}{n}x^{m-1}y^{1-n}=\frac{m}{n}x^{m-1}\left(x^\frac{m}{n}\right)^{1-n}=\frac{m}{n}x^{m-1+\frac{m}{n}-m}=\frac{m}{n}x^{\frac{m}{n}-1}\,.
 \]
 </div>
 <section data-type="sect1">
@@ -2187,13 +2187,13 @@ L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
 <p>We have already made use of linearization in a previous section, where it was disguised as the formula</p>
 <div class="math-tex" data-type="equation">
 \[
-\Delta\kern-0.5pt y = \frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\Delta\kern-0.5pt y
+\Delta y = \frac{\mathrm{d} y}{\mathrm{d} x}\Delta y
 \]
 </div>
-<p>and used to approximate a small change <span class="math-tex" data-type="tex">\(\Delta\kern-0.5pt y=f\left(a+\Delta\kern-0.5pt x\right)-f\left(a\right)\)</span> in the values of function <span class="math-tex" data-type="tex">\(f\)</span> corresponding to the small change in the argument of the function from <span class="math-tex" data-type="tex">\(a\)</span> to <span class="math-tex" data-type="tex">\(a+\Delta\kern-0.5pt x\)</span>. This is just the linear approximation</p>
+<p>and used to approximate a small change <span class="math-tex" data-type="tex">\(\Delta y=f\left(a+\Delta x\right)-f\left(a\right)\)</span> in the values of function <span class="math-tex" data-type="tex">\(f\)</span> corresponding to the small change in the argument of the function from <span class="math-tex" data-type="tex">\(a\)</span> to <span class="math-tex" data-type="tex">\(a+\Delta x\)</span>. This is just the linear approximation</p>
 <div class="math-tex" data-type="equation">
 \[
-f\left(a+\Delta\kern-0.5pt x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
+f\left(a+\Delta x\right)\approx L\left(x\right)=f\left(a\right)+f^\prime\left(a\right)\left(x-a\right)\,.
 \]
 </div>
 <p>In any approximation, the <i>error</i> is defined by</p>
@@ -2473,7 +2473,7 @@ F^\prime\left(x\right)=f\left(x\right)
 <p>Antiderivatives are not unique; since a constant has derivative zero, you can always add any constant to an antiderivative <span class="math-tex" data-type="tex">\(F\)</span> of a function <span class="math-tex" data-type="tex">\(f\)</span> on an interval and get another antiderivative of <span class="math-tex" data-type="tex">\(f\)</span> on that interval. More importantly, all antiderivatives of <span class="math-tex" data-type="tex">\(f\)</span> on an interval can be obtained by adding constants to any particular one. If <span class="math-tex" data-type="tex">\(F\)</span> and <span class="math-tex" data-type="tex">\(G\)</span> are both antiderivatives of <span class="math-tex" data-type="tex">\(f\)</span> on an interval <span class="math-tex" data-type="tex">\(I\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\left(G\left(x\right)-F\left(x\right)\right)=f\left(x\right)-f\left(x\right)=0
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\left(G\left(x\right)-F\left(x\right)\right)=f\left(x\right)-f\left(x\right)=0
 \]
 </div>
 <p>on <span class="math-tex" data-type="tex">\(I\)</span>, so <span class="math-tex" data-type="tex">\(G\left(x\right)-F\left(x\right)=C\)</span> (a constant) on I. Thus, <span class="math-tex" data-type="tex">\(G\left(x\right)=F\left(x\right)+C\)</span> on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
@@ -2487,34 +2487,34 @@ F^\prime\left(x\right)=f\left(x\right)
 \]
 </div>
 <p>is <span class="math-tex" data-type="tex">\(0\)</span> for all <span class="math-tex" data-type="tex">\(x\ne0\)</span>, but <span class="math-tex" data-type="tex">\(\operatorname{sgn}\left(x\right)\)</span> is not constant for all <span class="math-tex" data-type="tex">\(x\ne 0\)</span>.</p>
-<p>The general antiderivative of a function  <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on an interval <span class="math-tex" data-type="tex">\(I\)</span> is <span class="math-tex" data-type="tex">\(F\left(x\right)+C\)</span>, where <span class="math-tex" data-type="tex">\(F\left(x\right)\)</span> is any particular antiderivative of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(I\)</span> and <span class="math-tex" data-type="tex">\(C\)</span> is a constant. This general antiderivative is called the <i>indefinite integral</i> of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(I\)</span> and is denoted <span class="math-tex" data-type="tex">\(\int f\left(x\right)\,\mathrm d\kern-0.5pt x\)</span>.</p>
+<p>The general antiderivative of a function  <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on an interval <span class="math-tex" data-type="tex">\(I\)</span> is <span class="math-tex" data-type="tex">\(F\left(x\right)+C\)</span>, where <span class="math-tex" data-type="tex">\(F\left(x\right)\)</span> is any particular antiderivative of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(I\)</span> and <span class="math-tex" data-type="tex">\(C\)</span> is a constant. This general antiderivative is called the <i>indefinite integral</i> of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on <span class="math-tex" data-type="tex">\(I\)</span> and is denoted <span class="math-tex" data-type="tex">\(\int f\left(x\right)\,\mathrm d x\)</span>.</p>
 <div data-type="definition">
 <h1></h1>
 <p>The indefinite integral of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> on interval <span class="math-tex" data-type="tex">\(I\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-\int f\left(x\right)\,\mathrm d\kern-0.5pt x=F\left(x\right)+C
+\int f\left(x\right)\,\mathrm d x=F\left(x\right)+C
 \]
 </div>
 <p>on <span class="math-tex" data-type="tex">\(I\)</span>, provided <span class="math-tex" data-type="tex">\(F^\prime\left(x\right)=f\left(x\right)\)</span> for all <span class="math-tex" data-type="tex">\(x\in I\)</span>.</p>
 </div>
-<p>The symbol <span class="math-tex" data-type="tex">\(\int\)</span> is called an <i>integral sign</i>. It is shaped like an elongated “S” for reasons that will only become apparent when we study the definite integral in Chapter 6. Just as you regard <span class="math-tex" data-type="tex">\(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}\)</span> as a single symbol representing the derivative of <span class="math-tex" data-type="tex">\(y\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>, so you should regard <span class="math-tex" data-type="tex">\(\int f\left(x\right)\,\mathrm d\kern-0.5pt x\)</span> as a single symbol representing the indefinite integral (general antiderivative) of <span class="math-tex" data-type="tex">\(f\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>. The constant <span class="math-tex" data-type="tex">\(C\)</span> is called a <i>constant of integration</i>.</p>
+<p>The symbol <span class="math-tex" data-type="tex">\(\int\)</span> is called an <i>integral sign</i>. It is shaped like an elongated “S” for reasons that will only become apparent when we study the definite integral in Chapter 6. Just as you regard <span class="math-tex" data-type="tex">\(\frac{\mathrm{d} y}{\mathrm{d} x}\)</span> as a single symbol representing the derivative of <span class="math-tex" data-type="tex">\(y\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>, so you should regard <span class="math-tex" data-type="tex">\(\int f\left(x\right)\,\mathrm d x\)</span> as a single symbol representing the indefinite integral (general antiderivative) of <span class="math-tex" data-type="tex">\(f\)</span> with respect to <span class="math-tex" data-type="tex">\(x\)</span>. The constant <span class="math-tex" data-type="tex">\(C\)</span> is called a <i>constant of integration</i>.</p>
 <p>Finding antiderivatives is generally more difficult than finding derivatives; many functions do not have antiderivatives that can be expressed as combinations of finitely many elementary functions. However, every formula for a derivative can be rephrased as a formula for an antiderivative. For instance,</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\sin x=\cos x\,;\quad\textrm{therefore,}\quad\int\cos x\,\mathrm d\kern-0.5pt x=\sin x+C\,.
+\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\sin x=\cos x\,;\quad\textrm{therefore,}\quad\int\cos x\,\mathrm d x=\sin x+C\,.
 \]
 </div>
 <p>We will develop several techniques for finding antiderivatives in later chapters. Until then, we must content ourselves with being able to write a few simple antiderivatives based on the known derivatives of elementary functions:</p>
 <div class="math-tex" data-type="equation">
 \[
-\begin{align}
-&\int \mathrm{d}\kern-0.5pt x=\int 1\,\mathrm{d}\kern-0.5pt x=x+C&&\int x\,\mathrm{d}\kern-0.5pt x=\frac{x^2}{2}+C\\
-&\int x^2\,\mathrm{d}\kern-0.5pt x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d}\kern-0.5pt x=\frac{1}{x}+C\\
-&\int \frac{1}{\sqrt x}\,\mathrm{d}\kern-0.5pt x=2\sqrt x+C&&\int x^r\, \mathrm{d}\kern-0.5pt x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
-&\int \sin x\,\mathrm{d}\kern-0.5pt x=-\cos x+C&&\int\cos x\, \mathrm{d}\kern-0.5pt x=\sin x+C\\
-&\int \sec^2 x\,\mathrm{d}\kern-0.5pt x=\tan x+C&&\int\csc^2 x\, \mathrm{d}\kern-0.5pt x=-\cot x+C
-\end{align}
+\begin{aligned}
+&\int \mathrm{d} x=\int 1\,\mathrm{d} x=x+C&&\int x\,\mathrm{d} x=\frac{x^2}{2}+C\\
+&\int x^2\,\mathrm{d} x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d} x=\frac{1}{x}+C\\
+&\int \frac{1}{\sqrt x}\,\mathrm{d} x=2\sqrt x+C&&\int x^r\, \mathrm{d} x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)\\
+&\int \sin x\,\mathrm{d} x=-\cos x+C&&\int\cos x\, \mathrm{d} x=\sin x+C\\
+&\int \sec^2 x\,\mathrm{d} x=\tan x+C&&\int\csc^2 x\, \mathrm{d} x=-\cot x+C
+\end{aligned}
 \]
 </div>
 <p>For the moment, <span class="math-tex" data-type="tex">\(r\)</span> must be rational, but this restriction will be removed in the next chapter.</p>
@@ -2526,7 +2526,7 @@ F^\prime\left(x\right)=f\left(x\right)
 <p>Since <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)=6x^2-1\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
-f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d}\kern-0.5pt x=2x^3-x+C
+f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d} x=2x^3-x+C
 \]
 </div>
 <p>for some constant <span class="math-tex" data-type="tex">\(C\)</span>. Since <span class="math-tex" data-type="tex">\(f\left(2\right)=10\)</span>, we have</p>

@@ -264,7 +264,7 @@ Since a plane curve does not involve any specific parametrization, it has no spe
 
 We say that a plane curve is *smooth* if it has a tangent line at each point ``P`` and this tangent turns in a continuous way as ``P`` moves along the curve.
 
-If the curve ``𝒞`` is the graph of function ``f``; then ``𝒞`` is certainly smooth on any interval where the derivative ``f^\prime\left(x\right)`` exists and is a continuous function of ``x``. It may also be smooth on intervals containing isolated singular points; for example, the curve ``y=x^⅓`` is smooth everywhere even though ``\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}`` does not exist at ``x=0``.
+If the curve ``𝒞`` is the graph of function ``f``; then ``𝒞`` is certainly smooth on any interval where the derivative ``f^\prime\left(x\right)`` exists and is a continuous function of ``x``. It may also be smooth on intervals containing isolated singular points; for example, the curve ``y=x^⅓`` is smooth everywhere even though ``\frac{\mathrm{d} y}{\mathrm{d} x}`` does not exist at ``x=0``.
 
 For parametric curves ``x=f\left(t\right), y = g\left(t\right)`` the situation is more complicated. Even if ``f`` and ``g`` have continuous derivatives everywhere, such curves may fail to be smooth at certain points, specifically points where ``f^\prime\left(t\right)=g^\prime\left(t\right)=0``.
 
@@ -309,7 +309,7 @@ The following theorem confirms that a parametric curve is smooth at points where
 	where ``f^\prime\left(t\right)`` and ``g^\prime\left(t\right)`` are continuous on the interval ``I``. If ``f^\prime\left(t\right)\ne 0`` on ``I``, then ``𝒞`` is smooth and has at each ``t`` a tangent line with slope
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
+	\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
 	```
 
 !!! proof
@@ -323,7 +323,7 @@ The following theorem confirms that a parametric curve is smooth at points where
 	with slope
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=g^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}f^{-1}\left(x\right)=\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
+	\frac{\mathrm{d} y}{\mathrm{d} x}=g^\prime\left(f^{-1}\left(x\right)\right)\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}f^{-1}\left(x\right)=\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}=\frac{g^\prime\left(t\right)}{f^\prime\left(t\right)}\,.
 	```
 
 	This slope is a continuous function of ``t``, so the tangent to ``𝒞`` turns continuously for ``t`` in ``I``.
@@ -334,7 +334,7 @@ The concavity of a parametric curve can be determined using the second derivativ
 
 ```math
 \begin{aligned}
-\frac{\mathrm{d}^2\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x^2}=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}&=\frac{\mathrm{d}\kern-0.5pt \hphantom{x}}{\mathrm{d}\kern-0.5pt x}\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}\\
+\frac{\mathrm{d}^2 y}{\mathrm{d} x^2}=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{\mathrm{d} y}{\mathrm{d} x}&=\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\frac{g^\prime\left(f^{-1}\left(x\right)\right)}{f^\prime\left(f^{-1}\left(x\right)\right)}\\
 &=\frac{f^\prime\left(f^{-1}\left(x\right)\right)g^{\prime\prime}\left(f^{-1}\left(x\right)\right)-g^\prime\left(f^{-1}\left(x\right)\right)f^{\prime\prime}\left(f^{-1}\left(x\right)\right)}{\left(f^\prime\left(f^{-1}\left(x\right)\right)\right)^2}\frac{1}{f^\prime\left(f^{-1}\left(x\right)\right)}\\
 &=\frac{f^\prime\left(f^{-1}\left(x\right)\right)g^{\prime\prime}\left(f^{-1}\left(x\right)\right)-g^\prime\left(f^{-1}\left(x\right)\right)f^{\prime\prime}\left(f^{-1}\left(x\right)\right)}{\left(f^\prime\left(f^{-1}\left(x\right)\right)\right)^3}\\
 &=\frac{f^\prime\left(t\right)g^{\prime\prime}\left(t\right)-g^\prime\left(t\right)f^{\prime\prime}\left(t\right)}{\left(f^\prime\left(t\right)\right)^3}\,.
@@ -349,16 +349,16 @@ Let ``𝒞`` be a smooth parametric curve with equations
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b\,.
 ```
 
-We assume that ``f^\prime\left(t\right)`` and ``g^\prime\left(t\right)`` are continuous on the interval ``\left[a, b\right]`` and are never both zero. From the differential triangle with legs ``\mathrm{d}\kern-0.5pt x`` and ``\mathrm{d}\kern-0.5pt y`` and hypotenuse ``\mathrm{d}\kern-0.5pt s``, we obtain ``\left(\mathrm{d}\kern-0.5pt s\right)^2=\left(\mathrm{d}\kern-0.5pt x\right)^2+\left(\mathrm{d}\kern-0.5pt y\right)^2``, so we have
+We assume that ``f^\prime\left(t\right)`` and ``g^\prime\left(t\right)`` are continuous on the interval ``\left[a, b\right]`` and are never both zero. From the differential triangle with legs ``\mathrm{d} x`` and ``\mathrm{d} y`` and hypotenuse ``\mathrm{d} s``, we obtain ``\left(\mathrm{d} s\right)^2=\left(\mathrm{d} x\right)^2+\left(\mathrm{d} y\right)^2``, so we have
 
 ```math
-\mathrm{d}\kern-0.5pt s=\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t=\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
+\mathrm{d} s=\frac{\mathrm{d} s}{\mathrm{d} t}\mathrm{d} t=\sqrt{\left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2}\mathrm{d} t=\sqrt{\left(\frac{\mathrm{d} x}{\mathrm{d} t}\right)^2+\left(\frac{\mathrm{d} y}{\mathrm{d} t}\right)^2}\mathrm{d} t\,.
 ```
 
 The length of the curve ``𝒞`` is given by
 
 ```math
-s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}\right)^2+\left(\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}\right)^2}\mathrm{d}\kern-0.5pt t\,.
+s=\int_{t=a}^{t=b}\mathrm{d} s=\int_a^b\sqrt{\left(\frac{\mathrm{d} x}{\mathrm{d} t}\right)^2+\left(\frac{\mathrm{d} y}{\mathrm{d} t}\right)^2}\mathrm{d} t\,.
 ```
 
 !!! example
@@ -372,22 +372,22 @@ s=\int_{t=a}^{t=b}\mathrm{d}\kern-0.5pt s=\int_a^b\sqrt{\left(\frac{\mathrm{d}\k
 	We have
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=\mathcal{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=\mathcal{e}^t\left(\sin t+\cos t\right)\,.
+	\frac{\mathrm{d} x}{\mathrm{d} t}=\mathcal{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} t}=\mathcal{e}^t\left(\sin t+\cos t\right)\,.
 	```
 
 	Squaring these formulas, adding and simplifying, we get
 
 	```math
-	\left(\frac{\mathrm{d}\kern-0.5pt s}{\mathrm{d}\kern-0.5pt t}\right)^2=\mathcal{e}^{2t}\left(\cos t-\sin t\right)^2+\mathcal{e}^{2t}\left(\sin t+\cos t\right)^2=2\mathcal{e}^{2t}\,.
+	\left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2=\mathcal{e}^{2t}\left(\cos t-\sin t\right)^2+\mathcal{e}^{2t}\left(\sin t+\cos t\right)^2=2\mathcal{e}^{2t}\,.
 	```
 
 	The length of the curve is, therefore,
 
 	```math
-	s=\int_0^2\sqrt{2\mathcal{e}^{2t}}\,\mathrm{d}\kern-0.5pt t=\sqrt 2\int_0^2\mathcal{e}^t\,\mathrm{d}\kern-0.5pt t=\sqrt 2\left(\mathcal{e}^2-1\right)\ \textrm{units.}
+	s=\int_0^2\sqrt{2\mathcal{e}^{2t}}\,\mathrm{d} t=\sqrt 2\int_0^2\mathcal{e}^t\,\mathrm{d} t=\sqrt 2\left(\mathcal{e}^2-1\right)\ \textrm{units.}
 	```
 
-Parametric curves can be rotated around various axes to generate surfaces of revolution. The areas of these surfaces can be found by the same procedure used for graphs of functions, with the appropriate version of ``\mathrm{d}\kern-0.5pt s``. If the curve
+Parametric curves can be rotated around various axes to generate surfaces of revolution. The areas of these surfaces can be found by the same procedure used for graphs of functions, with the appropriate version of ``\mathrm{d} s``. If the curve
 
 ```math
 x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\le t\le b
@@ -396,13 +396,13 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }a\l
 is rotated about the ``x``-axis, the area ``S`` of the surface so generated is given by
 
 ```math
-S=2\uppi\int_{t=a}^{t=b}\left|y\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|g\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
+S=2\uppi\int_{t=a}^{t=b}\left|y\right|\mathrm{d} s=2\uppi\int_a^b\left|g\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d} t\,.
 ```
 
 If the rotation is about the ``y``-axis, then the area is
 
 ```math
-S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\left|f\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d}\kern-0.5pt t\,.
+S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d} s=2\uppi\int_a^b\left|f\left(t\right)\right|\sqrt{\left(f^\prime\left(t\right)\right)^2+\left(g^\prime\left(t\right)\right)^2} \,\mathrm{d} t\,.
 ```
 
 !!! example
@@ -431,19 +431,19 @@ S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d}\kern-0.5pt s=2\uppi\int_a^b\lef
 	The curve is symmetric about both coordinate axes. The entire surface will be generated by rotating the upper half of the curve; in fact, we need only rotate the first quadrant part and multiply by ``2``. The first quadrant part of the curve corresponds to ``0\le t\le\frac{\uppi}{2}``. We have
 
 	```math
-	\frac{\mathrm{d}\kern-0.5pt x}{\mathrm{d}\kern-0.5pt t}=-3a\cos^2 t\sin t\quad\textrm{and}\quad\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt t}=3a\sin^2 t\cos t\,.
+	\frac{\mathrm{d} x}{\mathrm{d} t}=-3a\cos^2 t\sin t\quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} t}=3a\sin^2 t\cos t\,.
 	```
 
 	Accordingly, the arc length element is
 
 	```math
-	\mathrm{d}\kern-0.5pt s=3a\cos t\sin t\mathrm{d}\kern-0.5pt t\,.
+	\mathrm{d} s=3a\cos t\sin t\mathrm{d} t\,.
 	```
 
 	Therefore, the required surface area is
 
 	```math
-	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d}\kern-0.5pt t=\frac{12}{5}\uppi a\ \textrm{square units.}
+	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a\ \textrm{square units.}
 	```
 
 Consider the parametric curve ``𝒞`` with equations
@@ -457,35 +457,35 @@ where ``f`` is differentiable and ``g`` is continuous on ``\left[a,b\right]``. F
 The region under ``C`` and above the ``x``-axis has area element given by
 
 ```math
-\mathrm{d}\kern-0.5pt A = y\,\mathrm{d}\kern-0.5pt x=g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\,,
+\mathrm{d} A = y\,\mathrm{d} x=g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\,,
 ```
 
 so its area is
 
 ```math
-A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t\,.
+A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t\,.
 ```
 
 Similar arguments can be given for three other cases:
 
-- if ``f^\prime\left(t\right)\ge 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
+- if ``f^\prime\left(t\right)\ge 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t``,
 
-- if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\ge 0`` on ``\left[a,b\right]``, then ``\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
+- if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\ge 0`` on ``\left[a,b\right]``, then ``\displaystyle A=-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t``,
 
-- if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t``,
+- if ``f^\prime\left(t\right)\le 0`` and ``g\left(t\right)\le 0`` on ``\left[a,b\right]``, then ``\displaystyle A=\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t``,
 
 where ``A``  is the (positive) area bounded by ``𝒞``, the ``x``-axis, and the vertical lines ``x=f\left(a\right)`` and ``x=f\left(b\right)``. Combining these results we can see that
 
 ```math
-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t=A_1-A_2\,,
+\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t=A_1-A_2\,,
 ```
 
 where ``A_1`` is the area lying vertically between ``𝒞`` and that part of the ``x``-axis consisting of points ``x=f\left(t\right)`` such that ``g\left(t\right)f^\prime\left(t\right)\ge 0``, and ``A_2`` is a similar area corresponding to points where ``g\left(t\right)f^\prime\left(t\right)&lt; 0``. This formula is valid for arbitrary continuous ``g`` and differentiable ``f``. In particular, if ``𝒞`` is a non–self-intersecting closed curve, then the area of the region bounded by ``𝒞`` is given by
 
 ```math
 A=\begin{cases}
-\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
--\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d}\kern-0.5pt t&\textrm{if }𝒞\textrm{ is traversed counterclockwise.}
+\hphantom{-}\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t&\textrm{if }𝒞\textrm{ is traversed clockwise as }t\textrm{ increases,}\\
+-\int_a^b g\left(t\right)f^\prime\left(t\right)\,\mathrm{d} t&\textrm{if }𝒞\textrm{ is traversed counterclockwise.}
 \end{cases}
 ```
 
@@ -501,7 +501,7 @@ A=\begin{cases}
 
 	```math
 	\begin{aligned}
-	A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d}\kern-0.5pt s=\frac{ab}{2}\int_0^{2\uppi}\left(1-\cos 2s\right)\,\mathrm{d}\kern-0.5pt s\\
+	A&=-\int_0^{2\uppi}b\sin s\left(-a\sin s\right)\,\mathrm{d} s=\frac{ab}{2}\int_0^{2\uppi}\left(1-\cos 2s\right)\,\mathrm{d} s\\
 	&=\left.\frac{ab}{2}s\right|_0^{2\uppi}-\left.\frac{ab}{4}\sin 2s\right|_0^{2\uppi}=\uppi ab\ \textrm{square units.}
 	\end{aligned}
 	```
@@ -637,7 +637,7 @@ The graph of an equation of the form ``r=f\left(\theta\right)`` is called the po
 
 	```math
 	\begin{aligned}
-	\tan\phi&=\frac{\mathrm{d}\kern-0.5pt y}{\mathrm{d}\kern-0.5pt x}=\frac{h^\prime\left(\theta\right)}{g^\prime\left(\theta\right)}=\frac{r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta}{r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta}\\
+	\tan\phi&=\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{h^\prime\left(\theta\right)}{g^\prime\left(\theta\right)}=\frac{r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta}{r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta}\\
 	&=\frac{r^\prime\left(\theta\right)\tan\theta+r\left(\theta\right)}{r^\prime\left(\theta\right)-r\tan\theta}=\frac{\tan\theta+\frac{r\left(\theta\right)}{r^\prime\left(\theta\right)}}{1-\frac{r\left(\theta\right)}{r^\prime\left(\theta\right)}\tan\theta}\,.
 	\end{aligned}
 	```
@@ -704,10 +704,10 @@ The graph of an equation of the form ``r=f\left(\theta\right)`` is called the po
 
 The basic area problem in polar coordinates is that of finding the area ``A`` of the region ``R`` bounded by the polar graph ``r=f\left(\theta\right)`` and the two rays ``\theta=\alpha`` and ``\theta=\beta``. We assume that ``\beta&gt;\alpha`` and that ``f`` is continuous for ``\alpha\le\theta\le\beta``.
 
-A suitable area element in this case is a sector of angular width ``\mathrm{d}\kern-0.5pt \theta``. For infinitesimal ``\mathrm{d}\kern-0.5pt \theta`` this is just a sector of a circle of radius ``r=f\left(\theta\right)``:
+A suitable area element in this case is a sector of angular width ``\mathrm{d} \theta``. For infinitesimal ``\mathrm{d} \theta`` this is just a sector of a circle of radius ``r=f\left(\theta\right)``:
 
 ```math
-\mathrm{d}\kern-0.5pt A=r^2\uppi\frac{1}{2\uppi}\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}r^2\,\mathrm{d}\kern-0.5pt\theta=\frac{1}{2}\left(f\left(\theta\right)\right)^2\,\mathrm{d}\kern-0.5pt\theta\,.
+\mathrm{d} A=r^2\uppi\frac{1}{2\uppi}\,\mathrm{d}\theta=\frac{1}{2}r^2\,\mathrm{d}\theta=\frac{1}{2}\left(f\left(\theta\right)\right)^2\,\mathrm{d}\theta\,.
 ```
 
 !!! theorem
@@ -715,7 +715,7 @@ A suitable area element in this case is a sector of angular width ``\mathrm{d}\k
 	The region bounded by ``r=f\left(\theta\right)`` and two rays ``\theta=\alpha`` and ``\theta=\beta``, ``\beta&gt;\alpha``, has area
 
 	```math
-	A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\kern-0.5pt\theta\,.
+	A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\theta\,.
 	```
 
 !!! example
@@ -753,8 +753,8 @@ A suitable area element in this case is a sector of angular width ``\mathrm{d}\k
 
 	```math
 	\begin{aligned}
-	A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d}\kern-0.5pt \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d}\kern-0.5pt \theta\\
-	&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d}\kern-0.5pt \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
+	A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d} \theta\\
+	&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d} \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
 	&= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
 	\end{aligned}
 	```
@@ -771,16 +771,16 @@ has differential arc length element
 
 ```math
 \begin{aligned}
-\mathrm{d}\kern-0.5pt s&=\sqrt{\left(\mathrm{d}\kern-0.5pt x\right)^2+\left(\mathrm{d}\kern-0.5pt y\right)^2}=\sqrt{\left(g^\prime\left(\theta\right)\mathrm{d}\kern-0.5pt \theta\right)^2+\left(h^\prime\left(\theta\right)\mathrm{d}\kern-0.5pt \theta\right)^2}\\
-&=\sqrt{\left(r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta\right)^2+\left(r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta\right)^2}\,\mathrm{d}\kern-0.5pt \theta\\
-&=\sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d}\kern-0.5pt \theta\,.
+\mathrm{d} s&=\sqrt{\left(\mathrm{d} x\right)^2+\left(\mathrm{d} y\right)^2}=\sqrt{\left(g^\prime\left(\theta\right)\mathrm{d} \theta\right)^2+\left(h^\prime\left(\theta\right)\mathrm{d} \theta\right)^2}\\
+&=\sqrt{\left(r^\prime\left(\theta\right)\cos\theta-r\left(\theta\right)\sin\theta\right)^2+\left(r^\prime\left(\theta\right)\sin\theta+r\left(\theta\right)\cos\theta\right)^2}\,\mathrm{d} \theta\\
+&=\sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d} \theta\,.
 \end{aligned}
 ```
 
 The length of the curve ``𝒞`` for ``\theta`` between ``\alpha`` and ``\beta`` is then given by
 
 ```math
-s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d}\kern-0.5pt \theta\,.
+s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\left(\theta\right)\right)^2}\,\mathrm{d} \theta\,.
 ```
 
 !!! example
@@ -813,9 +813,9 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 
 	```math
 	\begin{aligned}
-	s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d}\kern-0.5pt \theta\\
-	&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d}\kern-0.5pt \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
-	&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d}\kern-0.5pt \theta\\
-	&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d}\kern-0.5pt \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
+	s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d} \theta\\
+	&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+	&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d} \theta\\
+	&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d} \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
 	\end{aligned}
 	```
