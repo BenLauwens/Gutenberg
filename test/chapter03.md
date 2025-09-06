@@ -302,7 +302,7 @@ In order to speak meaningfully about rate of change, tangent lines, and areas bo
             xmid = 2scale
             ymid = 5scale
             axis_xy(7scale,6scale,xmid,ymid,scale,(1,),(2,))
-            plot_xy(x->(x^2-1)/(x-1), -2+eps():0.01:5.0-eps(), tuple(), xmid, ymid, scale, width=1)
+            plot_xy(x->(x^2-1)/(x-1), -2+eps():0.01:5.0-eps(), tuple(), xmid, ymid, scale)
             circle(cx=3scale, cy=3scale, r=3, fill="hsl(39, 100%, 90%)", stroke="red")
         end
     end
@@ -380,7 +380,7 @@ Figure("", "If " * tex("x\\ne a") * " and " * tex("\\left|x-a\\right|&lt;\\delta
         axis_xy(6scale,4.5scale,xmid,ymid,scale,(2.4,3,3.6),(3,2,1),xs=("a-\\delta","a","a+\\delta"),xl=(3,1,3),ys=("L-\\varepsilon","L","L+\\varepsilon"),yl=(3,1,3))
         line(x1=4scale,y1=4scale,x2=4scale,y2=2scale,stroke_dasharray = "3",stroke="black")
         line(x1=1scale,y1=2scale,x2=4scale,y2=2scale,stroke_dasharray = "3",stroke="black")
-        plot_xy(x->0.25(x-3+sqrt(7))^2+0.25, -1:0.01:5, tuple(), xmid, ymid, scale, width=1)
+        plot_xy(x->0.25(x-3+sqrt(7))^2+0.25, -1:0.01:5, tuple(), xmid, ymid, scale)
         circle(cx=4scale, cy=2scale, r=3, fill="white", stroke="red")
         rect(x=3.4scale,y=0,width=1.2scale,height=4scale, fill="hsla(189, 100%, 50%, 10%)")
         rect(x=1scale,y=scale,width=4scale,height=2scale, fill="hsla(180, 100%, 25%, 10%)")
