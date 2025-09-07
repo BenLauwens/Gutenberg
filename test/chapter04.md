@@ -648,8 +648,8 @@ Then we have
 \begin{aligned}
 \left(f_1+f_2+\cdots+f_k+f_{k+1}\right)^\prime&=\left(\underbrace{f_1+f_2+\cdots+f_k}_{\textrm{Let this function be }f}+f_{k+1}\right)^\prime\\
 &=\left(f+f_{k+1}\right)^\prime\\
-&=f^\prime+f_{k+1}\prime\\
-&=f_1^\prime+f_2^\prime+\cdots+f_k^\prime+f_{k+1}\prime\,.
+&=f^\prime+f_{k+1}^\prime\\
+&=f_1^\prime+f_2^\prime+\cdots+f_k^\prime+f_{k+1}^\prime\,.
 \end{aligned}
 ```
 
@@ -1068,7 +1068,7 @@ Similarly, you can consider third-, fourth-, and in general ``n``th-order deriva
 ```math
 y^{(n)}=f^{(n)}\left(x\right)=\frac{\mathrm{d}^n y}{\mathrm{d} x^n}=\frac{\mathrm{d}^n\hphantom{ y}}{\mathrm{d} x^n}f\left(x\right)=\mathsf{D}_x^ny=\mathsf{D}_x^nf\left(x\right)\,,
 ```
-and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f^{\prime\prime}\prime``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
+and it is defined to be the derivative of the ``\left(n-1\right)``st derivative. For ``n=1,2,3`` primes are still normally used: ``f^{\left(3\right)}=f^{\prime\prime\prime}``. It is convenient to denote ``f^{\left(0\right)}=f``, that is, to regard a function as its own zeroth-order derivative.
 
 !!! example
 	The *velocity* of a moving object is the (instantaneous) rate of change of the position of the object with respect to time; if the object moves along the ``x``-axis and is at position ``x=f\left(t\right)`` at time ``t``, then its velocity at that time is
@@ -1081,7 +1081,7 @@ and it is defined to be the derivative of the ``\left(n-1\right)``st derivative.
 	```
 
 !!! example
-	If ``y=x^3``, then ``y^\prime=3x^2``, ``y^{\prime\prime}=6x``, ``y^{\prime\prime}\prime=6``, ``y^{\left(4\right)}=0``, and all higher derivatives are zero.
+	If ``y=x^3``, then ``y^\prime=3x^2``, ``y^{\prime\prime}=6x``, ``y^{\prime\prime\prime}=6``, ``y^{\left(4\right)}=0``, and all higher derivatives are zero.
 
 In general, if ``f\left(x\right)=x^n`` (where ``n`` is a positive integer), then
 ```math
