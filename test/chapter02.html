@@ -1,61 +1,27 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>chapter02</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
 <link rel="stylesheet" href="rma.css" />
-<script>
-MathJax = {
-    startup: {
-        pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-        }
-    },
-    tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
-        ],
-        displayMath: [
-            ['\\[', '\\]']
-        ]
-    },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter">
 <h1>Real Numbers and Functions</h1>
 <p>In this chapter, the real numbers are formally defined and some basic real functions are explored.</p>
 <section data-type="sect1">
 <h1>Natural Numbers and Extensions</h1>
-<p>The axioms of Peano define the <i>natural numbers</i>, denoted by <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
-<p>To close the set of numbers under the subtraction operation, the natural numbers are extended with the negative integers to form the set of <i>integers</i>, denoted by <span class="math-tex" data-type="tex">\(ℤ\)</span>.</p>
-<p>To close the set of numbers under the division operation, numbers that can be expressed as an irreducible fraction <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span>, where <span class="math-tex" data-type="tex">\(m\in ℤ\)</span> and <span class="math-tex" data-type="tex">\(n\in ℤ\setminus \{0, 1\}\)</span> are added to the integers to form the set of <i>rational numbers</i>, denoted by <span class="math-tex" data-type="tex">\(ℚ\)</span>.</p>
+<p>The axioms of Peano define the <i>natural numbers</i>, denoted by <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span>.</p>
+<p>To close the set of numbers under the subtraction operation, the natural numbers are extended with the negative integers to form the set of <i>integers</i>, denoted by <span class="math-tex" data-type="tex">\(\mathbb{Z}\)</span>.</p>
+<p>To close the set of numbers under the division operation, numbers that can be expressed as an irreducible fraction <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span>, where <span class="math-tex" data-type="tex">\(m\in \mathbb{Z}\)</span> and <span class="math-tex" data-type="tex">\(n\in \mathbb{Z}\setminus \{0, 1\}\)</span> are added to the integers to form the set of <i>rational numbers</i>, denoted by <span class="math-tex" data-type="tex">\(\mathbb{Q}\)</span>.</p>
 <p>This definition comes with the understanding that the two rational numbers <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span> and <span class="math-tex" data-type="tex">\(\frac{a}{b}\)</span> are equal whenever <span class="math-tex" data-type="tex">\(mb=na\)</span>.</p>
 </section>
 <section data-type="sect1">
@@ -86,7 +52,7 @@ MathJax = {
 <p>Following properties can be derived from the algebraic properties.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(a,b,c\in ℚ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(a,b,c\in \mathbb{Q}\)</span>.</p>
 <ol>
 <li>
 <p><span class="math-tex" data-type="tex">\(a+c=b+c\implies a=b\)</span></p>
@@ -107,11 +73,11 @@ MathJax = {
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof the second property.</p>
+<p>Prove the second property.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(a\in ℚ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(a\in \mathbb{Q}\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(0\)</span> is the additive identity, <span class="math-tex" data-type="tex">\(0=0+0\)</span>. Then <span class="math-tex" data-type="tex">\(a\cdot 0=a\cdot\left(0+0\right)\)</span>. By the distributive property, <span class="math-tex" data-type="tex">\(a\cdot 0=a\cdot 0+a\cdot 0\)</span>. By adding <span class="math-tex" data-type="tex">\(-a\cdot 0\)</span> to each side of this equality, one gets</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -122,33 +88,33 @@ MathJax = {
 </div>
 <div data-type="exercise">
 <h1></h1>
-<p>Proof the other properties.</p>
+<p>Prove the other properties.</p>
 </div>
-<p>The associative property allows to write in an unambiguous way <span class="math-tex" data-type="tex">\(a+b+c\)</span> and <span class="math-tex" data-type="tex">\(abc\)</span>. More generally, the sum of <span class="math-tex" data-type="tex">\(a_1,a_2,\dots,a_n\in ℚ\)</span> is unambiguously defined. To present this sum concisely, we use the <i>sigma notation</i>:</p>
+<p>The associative property allows to write in an unambiguous way <span class="math-tex" data-type="tex">\(a+b+c\)</span> and <span class="math-tex" data-type="tex">\(abc\)</span>. More generally, the sum of <span class="math-tex" data-type="tex">\(a_1,a_2,\dots,a_n\in \mathbb{Q}\)</span> is unambiguously defined. To present this sum concisely, we use the <i>sigma notation</i>:</p>
 <div class="math-tex" data-type="equation">
 \[
 \sum_{i=1}^na_i\equiv\begin{cases} 0&\textrm{if }n=0\\
-a_1+a_2+\dots+a_n&\textrm{if }n\in ℕ_0
+a_1+a_2+\dots+a_n&\textrm{if }n\in \mathbb{N}_0
 \end{cases}\,.
 \]
 </div>
 <p>We call the first case <span class="math-tex" data-type="tex">\(n=0\)</span> the <i>empty sum</i>.</p>
-<p>In a similar way we can define and represent the product of <span class="math-tex" data-type="tex">\(a_1,a_2,\dots,a_n\in ℚ\)</span>:</p>
+<p>In a similar way we can define and represent the product of <span class="math-tex" data-type="tex">\(a_1,a_2,\dots,a_n\in \mathbb{Q}\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
 \prod_{i=1}^na_i\equiv\begin{cases} 1&\textrm{if }n=0\\
-a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
+a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in \mathbb{N}_0
 \end{cases}\,.
 \]
 </div>
 <p>We call the first case <span class="math-tex" data-type="tex">\(n=0\)</span> the <i>empty product</i>.</p>
-<p>If all factors of the product have the same value <span class="math-tex" data-type="tex">\(a\in ℚ\)</span>, we use the <i>exponential notation</i>:</p>
+<p>If all factors of the product have the same value <span class="math-tex" data-type="tex">\(a\in \mathbb{Q}\)</span>, we use the <i>exponential notation</i>:</p>
 <div class="math-tex" data-type="equation">
 \[
 \Pi_{i=1}^na\equiv a^n\,.
 \]
 </div>
-<p>For <span class="math-tex" data-type="tex">\(a\in ℚ_0\)</span>, we can write</p>
+<p>For <span class="math-tex" data-type="tex">\(a\in \mathbb{Q}_0\)</span>, we can write</p>
 <div class="math-tex" data-type="equation">
 \[
 \left(\frac{1}{a}\right)^n=\left(a^{-1}\right)^n=a^{-n}=\left(a^n\right)^{-1}=\frac{1}{a^n}
@@ -157,7 +123,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>and we have the following property</p>
 <div class="math-tex" data-type="equation">
 \[
-\forall m,n\inℤ:a^{m+n}=a^ma^n\textrm{ and }\left(a^m\right)^n=a^{mn}\,.
+\forall m,n\in\mathbb{Z}:a^{m+n}=a^ma^n\textrm{ and }\left(a^m\right)^n=a^{mn}\,.
 \]
 </div>
 </section>
@@ -196,7 +162,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>Following properties can be derived from the order properties.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(a,b,c\in ℚ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(a,b,c\in \mathbb{Q}\)</span>.</p>
 <ol>
 <li>
 <p><span class="math-tex" data-type="tex">\(a\le b\implies -b\le -a\)</span></p>
@@ -223,7 +189,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 <div data-type="example">
 <h1></h1>
-<p>Proof the fifth property.</p>
+<p>Prove the fifth property.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
@@ -235,7 +201,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 <div data-type="exercise">
 <h1></h1>
-<p>Proof the other properties.</p>
+<p>Prove the other properties.</p>
 </div>
 <section data-type="sect2">
 <h2>Decimal Expansions</h2>
@@ -274,7 +240,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </div>
 <section data-type="sect1">
 <h1>Not all Numbers are Rational</h1>
-<p>Geometrically, we represent the integers as points on a horizontal line by defining a starting point (the number <span class="math-tex" data-type="tex">\(0\)</span>) and a unit distance (between two consecutive integers). The unit distance can be further subdivided to represent rational numbers such as <span class="math-tex" data-type="tex">\(\frac{1}{n}\)</span> with <span class="math-tex" data-type="tex">\(n\inℕ_0\)</span>. In this way we can uniquely represent each rational number on the <i>number line</i>.</p>
+<p>Geometrically, we represent the integers as points on a horizontal line by defining a starting point (the number <span class="math-tex" data-type="tex">\(0\)</span>) and a unit distance (between two consecutive integers). The unit distance can be further subdivided to represent rational numbers such as <span class="math-tex" data-type="tex">\(\frac{1}{n}\)</span> with <span class="math-tex" data-type="tex">\(n\in\mathbb{N}_0\)</span>. In this way we can uniquely represent each rational number on the <i>number line</i>.</p>
 <p>Although the rational numbers have a rich structure, there are limitations. Not every point on the number line corresponds to a rational number, eg., we can indicate the number <span class="math-tex" data-type="tex">\(\sqrt 2\)</span> using a simple geometric construction, based on the <i>Pythagorean theorem</i>, as a single point between the numbers <span class="math-tex" data-type="tex">\(1\)</span> and <span class="math-tex" data-type="tex">\(2\)</span> but it is not a rational number.</p>
 <figure>
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="102">
@@ -325,7 +291,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </foreignObject>
 <line x1="537.4625462767236" y1="75" x2="537.4625462767236" y2="85" stroke="black"/>
 <foreignObject x="530.4625462767236" y="55" width="14" height="18">
-\(ℯ\)
+\(\mathcal{e}\)
 </foreignObject>
 <line x1="571.3274122871835" y1="75" x2="571.3274122871835" y2="85" stroke="black"/>
 <foreignObject x="564.3274122871835" y="55" width="14" height="18">
@@ -352,18 +318,18 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <figcaption>The real line.</figcaption></figure>
 <div data-type="theorem">
 <h1></h1>
-<p><span class="math-tex" data-type="tex">\(\sqrt 2 \notin ℚ\)</span>.</p>
+<p><span class="math-tex" data-type="tex">\(\sqrt 2 \notin \mathbb{Q}\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
-<p>Suppose <span class="math-tex" data-type="tex">\(\sqrt 2\in ℚ\)</span>.</p>
+<p>Suppose <span class="math-tex" data-type="tex">\(\sqrt 2\in \mathbb{Q}\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(\sqrt 2\)</span> as a rational number can be represented by an irreducible fraction <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span>, we have <span class="math-tex" data-type="tex">\(\frac{m^2}{n^2}=\left(\sqrt 2\right)^2=2\)</span>, that is, <span class="math-tex" data-type="tex">\(m^2=2n^2\)</span>. Consequently, <span class="math-tex" data-type="tex">\(m^2\)</span> is even and so is <span class="math-tex" data-type="tex">\(m\)</span> (see previous chapter). Then <span class="math-tex" data-type="tex">\(m^2=\left(2k\right)^2=4k^2=2n^2\)</span> or <span class="math-tex" data-type="tex">\(n^2=2k^2\)</span>, that is, <span class="math-tex" data-type="tex">\(n^2\)</span> is even and so is <span class="math-tex" data-type="tex">\(n\)</span>.</p>
-<p>Both <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span> are even contradicts that <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span> is an irreducible fraction. We supposed wrongly that <span class="math-tex" data-type="tex">\(\sqrt 2\in ℚ\)</span>.</p>
-<p>Therefore, <span class="math-tex" data-type="tex">\(\sqrt 2 \notin ℚ\)</span>.</p>
+<p>Both <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span> are even contradicts that <span class="math-tex" data-type="tex">\(\frac{m}{n}\)</span> is an irreducible fraction. We supposed wrongly that <span class="math-tex" data-type="tex">\(\sqrt 2\in \mathbb{Q}\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\sqrt 2 \notin \mathbb{Q}\)</span>.</p>
 </div>
 <div data-type="exercise">
 <h1></h1>
-<p>Prove <span class="math-tex" data-type="tex">\(\sqrt 3 \notin ℚ\)</span>. What goes wrong if you try to prove <span class="math-tex" data-type="tex">\(\sqrt 4 \notin ℚ\)</span>?</p>
+<p>Prove <span class="math-tex" data-type="tex">\(\sqrt 3 \notin \mathbb{Q}\)</span>. What goes wrong if you try to prove <span class="math-tex" data-type="tex">\(\sqrt 4 \notin \mathbb{Q}\)</span>?</p>
 <p>Hint: If a prime number divides the square of an integer, it also divides the integer itself.</p>
 </div>
 <section data-type="sect1">
@@ -401,33 +367,33 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>The completeness axiom has massive consequences.</p>
 <div data-type="lemma">
 <h1></h1>
-<p>The set of natural numbers is not bounded above or <span class="math-tex" data-type="tex">\(\forall r\in ℝ,\exists n\in ℕ:r&gt;n\)</span>.</p>
+<p>The set of natural numbers is not bounded above or <span class="math-tex" data-type="tex">\(\forall r\in \mathbb{R},\exists n\in \mathbb{N}:r&gt;n\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
-<p>Suppose that there is an <span class="math-tex" data-type="tex">\(r\in ℝ\)</span> such that <span class="math-tex" data-type="tex">\(\forall n\in ℕ:r&gt;n\)</span>.</p>
-<p>Then the set <span class="math-tex" data-type="tex">\(ℕ\)</span> is a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span> with an upper bound, so by the completeness axiom, <span class="math-tex" data-type="tex">\(ℕ\)</span> has a least upper bound <span class="math-tex" data-type="tex">\(M\)</span>.</p>
-<p>Then <span class="math-tex" data-type="tex">\(M-1&lt;M\)</span>, so <span class="math-tex" data-type="tex">\(M-1\)</span> is not an upper bound for <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
-<p>Thus, there is a <span class="math-tex" data-type="tex">\(k\in ℕ\)</span> with the property that <span class="math-tex" data-type="tex">\(k &gt; M-1\)</span>.</p>
-<p>But then <span class="math-tex" data-type="tex">\(k+1\)</span> is also in <span class="math-tex" data-type="tex">\(ℕ\)</span>, yet <span class="math-tex" data-type="tex">\(k+1&gt;\left(M-1\right)+1=M\)</span> where <span class="math-tex" data-type="tex">\(M\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(ℕ\)</span>.</p>
+<p>Suppose that there is an <span class="math-tex" data-type="tex">\(r\in \mathbb{R}\)</span> such that <span class="math-tex" data-type="tex">\(\forall n\in \mathbb{N}:r&gt;n\)</span>.</p>
+<p>Then the set <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span> is a nonempty subset of <span class="math-tex" data-type="tex">\(\mathbb{R}\)</span> with an upper bound, so by the completeness axiom, <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span> has a least upper bound <span class="math-tex" data-type="tex">\(M\)</span>.</p>
+<p>Then <span class="math-tex" data-type="tex">\(M-1&lt;M\)</span>, so <span class="math-tex" data-type="tex">\(M-1\)</span> is not an upper bound for <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span>.</p>
+<p>Thus, there is a <span class="math-tex" data-type="tex">\(k\in \mathbb{N}\)</span> with the property that <span class="math-tex" data-type="tex">\(k &gt; M-1\)</span>.</p>
+<p>But then <span class="math-tex" data-type="tex">\(k+1\)</span> is also in <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span>, yet <span class="math-tex" data-type="tex">\(k+1&gt;\left(M-1\right)+1=M\)</span> where <span class="math-tex" data-type="tex">\(M\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(\mathbb{N}\)</span>.</p>
 <p>This is a contradiction since no element of a set can be greater than an upper bound for that set.</p>
-<p>Therefore, the assumption that <span class="math-tex" data-type="tex">\(r&gt;n\)</span> for every <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> must be false, and for every <span class="math-tex" data-type="tex">\(r\in ℝ\)</span> there must be at least one <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> with <span class="math-tex" data-type="tex">\(n&gt;r\)</span>.</p>
+<p>Therefore, the assumption that <span class="math-tex" data-type="tex">\(r&gt;n\)</span> for every <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span> must be false, and for every <span class="math-tex" data-type="tex">\(r\in \mathbb{R}\)</span> there must be at least one <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span> with <span class="math-tex" data-type="tex">\(n&gt;r\)</span>.</p>
 </div>
 <p>The Archimedean principle expresses geometrically that any line segment, no matter how long, may be covered by a finite number of line segments of a given positive length, no matter how small. This is a fundamental property of the real line.</p>
 <div data-type="theorem">
 <h1>&nbsp;(Archimedean Principle)</h1>
-<p><span class="math-tex" data-type="tex">\(\forall a\in ℝ^+_0,\forall b\in ℝ,\exists n\in ℕ:na&gt;b\)</span>.</p>
+<p><span class="math-tex" data-type="tex">\(\forall a\in \mathbb{R}^+_0,\forall b\in \mathbb{R},\exists n\in \mathbb{N}:na&gt;b\)</span>.</p>
 </div>
 <p>This principle is a direct consequence of the previous lemma, just replace <span class="math-tex" data-type="tex">\(r\)</span> by <span class="math-tex" data-type="tex">\(\frac{b}{a}\)</span>.</p>
 <div data-type="example">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(S=\left\{\frac{1}{2^n}\mid n\in ℕ\right\}=\left\{1, \frac{1}{2},\frac{1}{4}, \ldots\right\}\)</span>. Show that <span class="math-tex" data-type="tex">\(\inf S=0\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(S=\left\{\frac{1}{2^n}\mid n\in \mathbb{N}\right\}=\left\{1, \frac{1}{2},\frac{1}{4}, \ldots\right\}\)</span>. Show that <span class="math-tex" data-type="tex">\(\inf S=0\)</span>.</p>
 <ol>
 <li>
-<p><span class="math-tex" data-type="tex">\(0\)</span> is a lower bound of <span class="math-tex" data-type="tex">\(S\)</span>, <span class="math-tex" data-type="tex">\(\forall n\in ℕ: 0&lt;\frac{1}{2^n}\)</span> and</p>
+<p><span class="math-tex" data-type="tex">\(0\)</span> is a lower bound of <span class="math-tex" data-type="tex">\(S\)</span>, <span class="math-tex" data-type="tex">\(\forall n\in \mathbb{N}: 0&lt;\frac{1}{2^n}\)</span> and</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(\forall \varepsilon\in ℝ^+_0:0+\varepsilon\)</span> is no lower bound, <span class="math-tex" data-type="tex">\(\forall \varepsilon\in ℝ^+_0,\exists n\in ℕ:\frac{1}{2^n}\le\frac{1}{n+1}&lt;0+\varepsilon\)</span> (Archimedean principle with <span class="math-tex" data-type="tex">\(x=1\)</span> and <span class="math-tex" data-type="tex">\(y=\varepsilon\)</span>), so <span class="math-tex" data-type="tex">\(0\)</span> is the greatest lower bound.</p>
+<p><span class="math-tex" data-type="tex">\(\forall \varepsilon\in \mathbb{R}^+_0:0+\varepsilon\)</span> is no lower bound, <span class="math-tex" data-type="tex">\(\forall \varepsilon\in \mathbb{R}^+_0,\exists n\in \mathbb{N}:\frac{1}{2^n}\le\frac{1}{n+1}&lt;0+\varepsilon\)</span> (Archimedean principle with <span class="math-tex" data-type="tex">\(x=1\)</span> and <span class="math-tex" data-type="tex">\(y=\varepsilon\)</span>), so <span class="math-tex" data-type="tex">\(0\)</span> is the greatest lower bound.</p>
 </li>
 </ol>
 </div>
@@ -450,7 +416,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <p>The absolute value has the following properties.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(a, b\in ℝ\)</span></p>
+<p>Let <span class="math-tex" data-type="tex">\(a, b\in \mathbb{R}\)</span></p>
 <ul>
 <li>
 <p><span class="math-tex" data-type="tex">\(\left|-a\right|=\left|a\right|\)</span></p>
@@ -466,18 +432,18 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 <div data-type="proof">
 <h1></h1>
 <p>The first two of these properties can be checked by considering the cases where either <span class="math-tex" data-type="tex">\(a\)</span> or <span class="math-tex" data-type="tex">\(b\)</span> is either positive or negative. The third property follows from the first two.</p>
-<p>Let <span class="math-tex" data-type="tex">\(a, b\in ℝ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(a, b\in \mathbb{R}\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left|a\pm b\right|^2&=&\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
-&\le&\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
+\left|a\pm b\right|^2&=\left(a\pm b\right)^2=a^2\pm 2ab+b^2\\
+&\le\left|a\right|^2+2\left|a\right|\left|b\right|+\left|b\right|^2=\left(\left|a\right|+\left|b\right|\right)^2
 \end{aligned}
 \]
 </div>
 <p>Taking the (positive) square root of both sides, we obtain <span class="math-tex" data-type="tex">\(\left|a\pm b\right|\le\left|a\right|+\left|b\right|\)</span>.</p>
 </div>
-<p>The notion of an absolute value will be generalized by a <i>metric</i> in the setting of a <i>metric space</i><span data-type="footnote">A metric space is an ordered pair <span class="math-tex" data-type="tex">\(\left(M, d\right)\)</span> where <span class="math-tex" data-type="tex">\(M\)</span> is a set and <span class="math-tex" data-type="tex">\(d\)</span> is a metric on <span class="math-tex" data-type="tex">\(M\)</span>, i.e., a function <span class="math-tex" data-type="tex">\(d:M\times M\to ℝ\)</span> satisfying the following axioms for all points <span class="math-tex" data-type="tex">\(x,y,z\in M\)</span>:<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x, x\right)=0\)</span> and <span class="math-tex" data-type="tex">\(x\ne y\Rightarrow d\left(x, y\right) > 0\)</span> (<i>positivity</i>)<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x,y\right)=d\left(y,x\right)\)</span> (<i>symmetry</i>)<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x,z\right)\le d\left(x,y\right)+d\left(y,z\right)\)</span> (<i>triangle inequality</i>)</span>.</p>
+<p>The notion of an absolute value will be generalized by a <i>metric</i> in the setting of a <i>metric space</i><span data-type="footnote">A metric space is an ordered pair <span class="math-tex" data-type="tex">\(\left(M, d\right)\)</span> where <span class="math-tex" data-type="tex">\(M\)</span> is a set and <span class="math-tex" data-type="tex">\(d\)</span> is a metric on <span class="math-tex" data-type="tex">\(M\)</span>, i.e., a function <span class="math-tex" data-type="tex">\(d:M\times M\to \mathbb{R}\)</span> satisfying the following axioms for all points <span class="math-tex" data-type="tex">\(x,y,z\in M\)</span>:<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x, x\right)=0\)</span> and <span class="math-tex" data-type="tex">\(x\ne y\Rightarrow d\left(x, y\right) > 0\)</span> (<i>positivity</i>)<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x,y\right)=d\left(y,x\right)\)</span> (<i>symmetry</i>)<br/>       •  <span class="math-tex" data-type="tex">\(d\left(x,z\right)\le d\left(x,y\right)+d\left(y,z\right)\)</span> (<i>triangle inequality</i>)</span>.</p>
 <section data-type="sect1">
 <h1>Intervals</h1>
 <div data-type="definition">
@@ -505,13 +471,13 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in ℕ_0
 </li>
 </ol>
 <p>In a figure, hollow dots indicate endpoints of intervals that are not included in the intervals, and solid dots indicate endpoints that are included. The endpoints of an interval are also called <i>boundary points</i>.</p>
-<p>The already defined intervals are <i>finite intervals</i>, that is, each of them has finite length <span class="math-tex" data-type="tex">\(b-a\)</span>. Intervals can also have infinite length, in which case they are called <i>infinite intervals</i>. Note that the whole real line <span class="math-tex" data-type="tex">\(ℝ\)</span> is an interval, denoted by <span class="math-tex" data-type="tex">\(\left]-\infty, \infty\right[\)</span>. The symbol <span class="math-tex" data-type="tex">\(\infty\)</span> (“infinity”) does <b>not</b> denote a real number.</p>
+<p>The already defined intervals are <i>finite intervals</i>, that is, each of them has finite length <span class="math-tex" data-type="tex">\(b-a\)</span>. Intervals can also have infinite length, in which case they are called <i>infinite intervals</i>. Note that the whole real line <span class="math-tex" data-type="tex">\(\mathbb{R}\)</span> is an interval, denoted by <span class="math-tex" data-type="tex">\(\left]-\infty, \infty\right[\)</span>. The symbol <span class="math-tex" data-type="tex">\(\infty\)</span> (“infinity”) does <b>not</b> denote a real number.</p>
 <div data-type="theorem">
 <h1>&nbsp;(Theorem of Nested intervals)</h1>
-<p>If <span class="math-tex" data-type="tex">\(\forall n\in ℕ\)</span>, we have a closed interval</p>
+<p>If <span class="math-tex" data-type="tex">\(\forall n\in \mathbb{N}\)</span>, we have a closed interval</p>
 <div class="math-tex" data-type="equation">
 \[
-I_n=\left[a_n, b_n\right]=\left\{x\mid x\in ℝ\wedge a_n\le x\le b_n\right\}
+I_n=\left[a_n, b_n\right]=\left\{x\mid x\in \mathbb{R}\wedge a_n\le x\le b_n\right\}
 \]
 </div>
 <p>such that</p>
@@ -523,7 +489,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>then</p>
 <div class="math-tex" data-type="equation">
 \[
-\bigcap_{n\in ℕ}I_n\ne\emptyset
+\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset
 \]
 </div>
 <p>and if, in addition,</p>
@@ -535,7 +501,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>then</p>
 <div class="math-tex" data-type="equation">
 \[
-\bigcap_{n\in ℕ}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
+\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}\textrm{ where }x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\,.
 \]
 </div>
 </div>
@@ -544,11 +510,11 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>We split the proof in four parts.</p>
 <ul>
 <li>
-<p>We prove first that <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n\ne\emptyset\)</span>.</p>
+<p>We prove first that <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset\)</span>.</p>
 <p>Since the intervals are nested, <span class="math-tex" data-type="tex">\(a_m \le b_n\)</span> for all <span class="math-tex" data-type="tex">\(m\)</span> and <span class="math-tex" data-type="tex">\(n\)</span>. This shows that every <span class="math-tex" data-type="tex">\(b_n\)</span> is an upper bound for the set <span class="math-tex" data-type="tex">\(\left\{a_m\right\}\)</span> and every <span class="math-tex" data-type="tex">\(a_m\)</span> is a lower bound for the set <span class="math-tex" data-type="tex">\(\left\{b_n\right\}\)</span>. Let <span class="math-tex" data-type="tex">\(a = \sup\{a_n\}\)</span> and <span class="math-tex" data-type="tex">\(b = \inf\{b_n\}\)</span>.</p>
-<p>By definition, <span class="math-tex" data-type="tex">\(a_n \le a\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>, and since <span class="math-tex" data-type="tex">\(b_n\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(\left\{a_n\right\}\)</span>, we have <span class="math-tex" data-type="tex">\(a_n\le a\le b_n\)</span>, which says that <span class="math-tex" data-type="tex">\(a\in I_n\)</span> for every <span class="math-tex" data-type="tex">\(n\)</span> and so <span class="math-tex" data-type="tex">\(a\in\bigcap_{n\in ℕ}I_n\)</span>.</p>
-<p>Similarly, <span class="math-tex" data-type="tex">\(b\in\bigcap_{n\in ℕ}I_n\)</span>.</p>
-<p>Therefore, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n\ne\emptyset\)</span></p>
+<p>By definition, <span class="math-tex" data-type="tex">\(a_n \le a\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>, and since <span class="math-tex" data-type="tex">\(b_n\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(\left\{a_n\right\}\)</span>, we have <span class="math-tex" data-type="tex">\(a_n\le a\le b_n\)</span>, which says that <span class="math-tex" data-type="tex">\(a\in I_n\)</span> for every <span class="math-tex" data-type="tex">\(n\)</span> and so <span class="math-tex" data-type="tex">\(a\in\bigcap_{n\in \mathbb{N}}I_n\)</span>.</p>
+<p>Similarly, <span class="math-tex" data-type="tex">\(b\in\bigcap_{n\in \mathbb{N}}I_n\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset\)</span></p>
 </li>
 <li>
 <p>Secondly, we prove by contradiction that <span class="math-tex" data-type="tex">\(a\le b\)</span>.</p>
@@ -564,33 +530,33 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>Therefore, <span class="math-tex" data-type="tex">\(a=b\)</span>.</p>
 </li>
 <li>
-<p>Finally, we prove that <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{a\right\}\)</span>.</p>
-<p>Let <span class="math-tex" data-type="tex">\(y\in\bigcap_{n\in ℕ}I_n\)</span>. Then, <span class="math-tex" data-type="tex">\(a_n\le y\le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>.</p>
+<p>Finally, we prove that <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n=\left\{a\right\}\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(y\in\bigcap_{n\in \mathbb{N}}I_n\)</span>. Then, <span class="math-tex" data-type="tex">\(a_n\le y\le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\)</span>.</p>
 <p>The first inequality implies that <span class="math-tex" data-type="tex">\(y\)</span> is an upper bound for <span class="math-tex" data-type="tex">\(a_n\)</span>, hence <span class="math-tex" data-type="tex">\(a\le y\)</span>.</p>
 <p>The second inequality implies that <span class="math-tex" data-type="tex">\(y\)</span> is an lower bound for <span class="math-tex" data-type="tex">\(b_n\)</span>, hence <span class="math-tex" data-type="tex">\(y\le b=a\)</span>.</p>
-<p>Combining both inequalities <span class="math-tex" data-type="tex">\(a\le y\le a\)</span>, we have <span class="math-tex" data-type="tex">\(y=a\)</span>, so <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n \subset \left\{a\right\}\)</span>.</p>
-<p>We also have <span class="math-tex" data-type="tex">\(\left\{a\right\} \subset \bigcap_{n\in ℕ}I_n\)</span>.</p>
-<p>Therefore, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{a\right\}\)</span>.</p>
+<p>Combining both inequalities <span class="math-tex" data-type="tex">\(a\le y\le a\)</span>, we have <span class="math-tex" data-type="tex">\(y=a\)</span>, so <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n \subset \left\{a\right\}\)</span>.</p>
+<p>We also have <span class="math-tex" data-type="tex">\(\left\{a\right\} \subset \bigcap_{n\in \mathbb{N}}I_n\)</span>.</p>
+<p>Therefore, <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n=\left\{a\right\}\)</span>.</p>
 </li>
 </ul>
 </div>
 <p>A direct corollary of the nested intervals theorem is the uncountability of the real numbers.</p>
 <div data-type="corollary">
 <h1>&nbsp;(The real numbers are not countable)</h1>
-<p>There is no surjection <span class="math-tex" data-type="tex">\(f:ℕ\rightarrowℝ\)</span>.</p>
+<p>There is no surjection <span class="math-tex" data-type="tex">\(f:\mathbb{N}\rightarrow\mathbb{R}\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(f:ℕ\rightarrowℝ\)</span> be a function.</p>
-<p>For each <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, let <span class="math-tex" data-type="tex">\(f\left(n\right)=x_n\)</span></p>
+<p>Let <span class="math-tex" data-type="tex">\(f:\mathbb{N}\rightarrow\mathbb{R}\)</span> be a function.</p>
+<p>For each <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, let <span class="math-tex" data-type="tex">\(f\left(n\right)=x_n\)</span></p>
 <p>Choose a closed interval <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> not containing <span class="math-tex" data-type="tex">\(x_0\)</span>.</p>
 <p>Choose a closed interval <span class="math-tex" data-type="tex">\(I_1=\left[a_1, b_1\right]\subset I_0\)</span> not containing <span class="math-tex" data-type="tex">\(x_1\)</span>.</p>
 <p>Choose a closed interval <span class="math-tex" data-type="tex">\(I_2=\left[a_2, b_2\right]\subset I_1\subset I_0\)</span> not containing <span class="math-tex" data-type="tex">\(x_2\)</span>.</p>
 <p>And so on.</p>
-<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n\ne\emptyset\)</span>. But no <span class="math-tex" data-type="tex">\(x_k\)</span> can be in the intersection since <span class="math-tex" data-type="tex">\(x_k \notin I_k\)</span>, so there exists some real number <span class="math-tex" data-type="tex">\(y\in\bigcap_{n\in ℕ}I_n\)</span> such that <span class="math-tex" data-type="tex">\(y\ne f\left(n\right)\)</span> for any <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>.</p>
+<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n\ne\emptyset\)</span>. But no <span class="math-tex" data-type="tex">\(x_k\)</span> can be in the intersection since <span class="math-tex" data-type="tex">\(x_k \notin I_k\)</span>, so there exists some real number <span class="math-tex" data-type="tex">\(y\in\bigcap_{n\in \mathbb{N}}I_n\)</span> such that <span class="math-tex" data-type="tex">\(y\ne f\left(n\right)\)</span> for any <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>.</p>
 <p>Therefore, <span class="math-tex" data-type="tex">\(f\)</span> is not a surjection.</p>
 </div>
-<p>The cardinal number of the set of real numbers is called the <i>continuum</i>, denoted by <span class="math-tex" data-type="tex">\(\# ℝ=𝔠=ℵ_1=2^{ℵ_0}&gt;ℵ_0\)</span>.</p>
+<p>The cardinal number of the set of real numbers is called the <i>continuum</i>, denoted by <span class="math-tex" data-type="tex">\(\# \mathbb{R}=𝔠=ℵ_1=2^{ℵ_0}&gt;ℵ_0\)</span>.</p>
 <section data-type="sect1">
 <h1>Bisection Method</h1>
 <p>When we have to find an element in a sorted array, we apply intuitively a <i>binary search algorithm</i>, eg. looking up a name in an alphabetically ordered list.</p>
@@ -609,7 +575,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </ol>
 <p>The same methodology can be used to prove some important theorems in calculus. We call such a procedure, the <i>bisection method</i>.</p>
 <div data-type="template">
-<h1>&nbsp;(Proof by bisection)</h1>
+<h1>&nbsp;(Prove by bisection)</h1>
 <p>Begin with a closed interval <span class="math-tex" data-type="tex">\(I_0=\left[a_0,b_0\right]\)</span>.</p>
 <p>STEP 1: Bisect <span class="math-tex" data-type="tex">\(I_0\)</span> to obtain two closed intervals <span class="math-tex" data-type="tex">\(\left[a_0, \frac{a_0+b_0}{2}\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2}, b_0\right]\)</span>.</p>
 <p>STEP 2: Select one of the two subintervals above, and call it <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
@@ -618,7 +584,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>The sequence of intervals <span class="math-tex" data-type="tex">\(I_0,I_1,I_2,I_3,\ldots\)</span> satisfies both hypotheses of the nested intervals theorem:</p>
 <ol>
 <li>
-<p>Since for each <span class="math-tex" data-type="tex">\(n\)</span> we have <span class="math-tex" data-type="tex">\(a_n&lt;\frac{a_n+b_n}{2}&lt;b_n\)</span> and either <span class="math-tex" data-type="tex">\(a_{n+1}=a_n\)</span> or <span class="math-tex" data-type="tex">\(b_{n+1}=b_n\)</span>. Therefore <span class="math-tex" data-type="tex">\(a_n\le a_{n+1}\)</span> and <span class="math-tex" data-type="tex">\(b_{n+1}\le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, so that <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span>.</p>
+<p>Since for each <span class="math-tex" data-type="tex">\(n\)</span> we have <span class="math-tex" data-type="tex">\(a_n&lt;\frac{a_n+b_n}{2}&lt;b_n\)</span> and either <span class="math-tex" data-type="tex">\(a_{n+1}=a_n\)</span> or <span class="math-tex" data-type="tex">\(b_{n+1}=b_n\)</span>. Therefore <span class="math-tex" data-type="tex">\(a_n\le a_{n+1}\)</span> and <span class="math-tex" data-type="tex">\(b_{n+1}\le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, so that <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span>.</p>
 </li>
 <li>
 <p>We have that <span class="math-tex" data-type="tex">\(b_n-a_n=\frac{b_0-a_0}{2^n}\)</span>, so</p>
@@ -634,7 +600,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>We need following lemma.</p>
 <div data-type="lemma">
 <h1>&nbsp;(Capture theorem)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a nonempty subset of <span class="math-tex" data-type="tex">\(ℝ\)</span>. If <span class="math-tex" data-type="tex">\(A\)</span> is bounded above, then any open interval containing <span class="math-tex" data-type="tex">\(\sup A\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(A\)</span> be a nonempty subset of <span class="math-tex" data-type="tex">\(\mathbb{R}\)</span>. If <span class="math-tex" data-type="tex">\(A\)</span> is bounded above, then any open interval containing <span class="math-tex" data-type="tex">\(\sup A\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
 <p>Similarly, if <span class="math-tex" data-type="tex">\(A\)</span> is bounded below, than any open interval containing <span class="math-tex" data-type="tex">\(\inf A\)</span> contains an element of <span class="math-tex" data-type="tex">\(A\)</span>.</p>
 </div>
 <div data-type="proof">
@@ -649,7 +615,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </div>
 <div data-type="theorem">
 <h1>&nbsp;(The rational numbers are dense in the real numbers)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(x\in ℝ\)</span> and <span class="math-tex" data-type="tex">\(\varepsilon\in ℝ^+\)</span>. The interval <span class="math-tex" data-type="tex">\(\left]x-\delta,x+\delta\right[\)</span> contains a rational number.</p>
+<p>Let <span class="math-tex" data-type="tex">\(x\in \mathbb{R}\)</span> and <span class="math-tex" data-type="tex">\(\varepsilon\in \mathbb{R}^+\)</span>. The interval <span class="math-tex" data-type="tex">\(\left]x-\delta,x+\delta\right[\)</span> contains a rational number.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by bisection)</h1>
@@ -657,8 +623,8 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>Let <span class="math-tex" data-type="tex">\(b_0\)</span> be the smallest integer greater than <span class="math-tex" data-type="tex">\(x\)</span>, and let <span class="math-tex" data-type="tex">\(a_0=b_0-1\)</span>.</p>
 <p>Then <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints. It follows that <span class="math-tex" data-type="tex">\(x\)</span> is contained in either <span class="math-tex" data-type="tex">\(\left]a_0, \frac{a_0+b_0}{2}\right[\)</span> or <span class="math-tex" data-type="tex">\(\left]\frac{a_0+b_0}{2}, b_0\right[\)</span>. Let <span class="math-tex" data-type="tex">\(I_1\)</span> be the closed subinterval containing <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 <p>Continuing this way, we obtain a sequence of closed intervals <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span> satisfying the hypotheses of the nested intervals theorem, where each <span class="math-tex" data-type="tex">\(I_n\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints.</p>
-<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{y\right\}\)</span> where <span class="math-tex" data-type="tex">\(y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>. Since <span class="math-tex" data-type="tex">\(x\in I_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, <span class="math-tex" data-type="tex">\(y=x\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}\)</span>, by the previous lemma, the open interval <span class="math-tex" data-type="tex">\(\left]x-\delta,x+\delta\right[\)</span> contains <span class="math-tex" data-type="tex">\(a_m\in ℚ\)</span> for some <span class="math-tex" data-type="tex">\(m\in ℕ\)</span>.</p>
+<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n=\left\{y\right\}\)</span> where <span class="math-tex" data-type="tex">\(y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>. Since <span class="math-tex" data-type="tex">\(x\in I_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, <span class="math-tex" data-type="tex">\(y=x\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}\)</span>, by the previous lemma, the open interval <span class="math-tex" data-type="tex">\(\left]x-\delta,x+\delta\right[\)</span> contains <span class="math-tex" data-type="tex">\(a_m\in \mathbb{Q}\)</span> for some <span class="math-tex" data-type="tex">\(m\in \mathbb{N}\)</span>.</p>
 </div>
 <p>The practical use of this theorem is the possibility to approximate with a given tolerance a real number by a rational number, eg. in computer science <i>floating point</i> values are rational approximations of real numbers.</p>
 <p>Something stronger than the Capture theorem is actually true: for <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span> the open interval <span class="math-tex" data-type="tex">\(\left]x-\delta,x+\delta\right[\)</span> actually contains an entire interval <span class="math-tex" data-type="tex">\(I_N\)</span>, for some <span class="math-tex" data-type="tex">\(N\)</span>. To see this, note that there are tree possibilities when <span class="math-tex" data-type="tex">\(a_k\in\left]x-\delta,x+\delta\right[\)</span> and <span class="math-tex" data-type="tex">\(b_l\in\left]x-\delta,x+\delta\right[\)</span>:</p>
@@ -675,7 +641,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 </ul>
 <div data-type="theorem">
 <h1>&nbsp;(Heine-Borel Theorem)</h1>
-<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> be a closed interval and <span class="math-tex" data-type="tex">\(𝒪=\left\{\left]c_i, d_i\right[\mid i\in I\right\}\)</span> be an infinite set of open intervals. If <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{i\in I}\left]c_i, d_i\right[\)</span>, then there exists <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span> such that <span class="math-tex" data-type="tex">\(\left[a,b\right]\subset\bigcup_{k=0}^n\left]c_{i_k}, d_{i_k}\right[\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by bisection and contradiction)</h1>
@@ -684,10 +650,10 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <p>At least one of the intervals <span class="math-tex" data-type="tex">\(\left[a_0,\frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2},b_0\right]\)</span> cannot be covered by a finite subset of <span class="math-tex" data-type="tex">\(𝒪\)</span>. If both could be covered by finite subsets, their union would cover <span class="math-tex" data-type="tex">\(I_0\)</span>.</p>
 <p>Let the interval that can’t be covered by a finite subset of <span class="math-tex" data-type="tex">\(𝒪\)</span> be <span class="math-tex" data-type="tex">\(I_1=\left[a_1,b_1\right]\)</span>.</p>
 <p>Continuing this way, we obtain a sequence of closed intervals <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span> satisfying the hypotheses of the nested intervals theorem, where each <span class="math-tex" data-type="tex">\(I_n\)</span> can’t be covered by a finite subset of <span class="math-tex" data-type="tex">\(𝒪\)</span>.</p>
-<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in ℕ}I_n=\left\{x\right\}\)</span> where <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
+<p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n=\left\{x\right\}\)</span> where <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> is covered by the union of <span class="math-tex" data-type="tex">\(𝒪\)</span>, there exists an open interval <span class="math-tex" data-type="tex">\(\left]c_i, d_i\right[\)</span> such that <span class="math-tex" data-type="tex">\(x \in \left]c_i, d_i\right[\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(\left]c_i, d_i\right[\)</span> is open, there exists an <span class="math-tex" data-type="tex">\(\delta &gt;0\)</span> such that <span class="math-tex" data-type="tex">\(\left]x-\delta, x+\delta\right[\subset \left]c_i, d_i\right[\)</span>.</p>
-<p>Since <span class="math-tex" data-type="tex">\(x\in \bigcap_{n\in ℕ}I_n\)</span>, there exists <span class="math-tex" data-type="tex">\(N\in ℕ\)</span> such that <span class="math-tex" data-type="tex">\(I_N\subset\left]x-\delta, x+\delta\right[\)</span> by the extension of the Capture theorem.</p>
+<p>Since <span class="math-tex" data-type="tex">\(x\in \bigcap_{n\in \mathbb{N}}I_n\)</span>, there exists <span class="math-tex" data-type="tex">\(N\in \mathbb{N}\)</span> such that <span class="math-tex" data-type="tex">\(I_N\subset\left]x-\delta, x+\delta\right[\)</span> by the extension of the Capture theorem.</p>
 <p>This means that for <span class="math-tex" data-type="tex">\(n\ge N\)</span>, <span class="math-tex" data-type="tex">\(I_n \subset \left]c_i, d_i\right[\)</span>, contradicting our assumption that no <span class="math-tex" data-type="tex">\(I_n\)</span> can be covered by a finite subset of <span class="math-tex" data-type="tex">\(𝒪\)</span>.</p>
 <p>Therefore, our initial assumption must be false, and there must exist a finite subset of <span class="math-tex" data-type="tex">\(𝒪\)</span> that covers <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
 </div>
@@ -699,7 +665,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <h1></h1>
 <p>A function <span class="math-tex" data-type="tex">\(f\)</span> from a set <span class="math-tex" data-type="tex">\(X\)</span> to a set <span class="math-tex" data-type="tex">\(Y\)</span>, often written <span class="math-tex" data-type="tex">\(f:X\to Y\)</span>, is a rule which assigns to each <span class="math-tex" data-type="tex">\(x\in X\)</span> a unique element <span class="math-tex" data-type="tex">\(f\left(x\right)=y\in Y\)</span>.</p>
 </div>
-<p>In this course, we will only consider functions having <span class="math-tex" data-type="tex">\(X\subset ℝ\)</span> and <span class="math-tex" data-type="tex">\(Y\subset ℝ\)</span>.</p>
+<p>In this course, we will only consider functions having <span class="math-tex" data-type="tex">\(X\subset \mathbb{R}\)</span> and <span class="math-tex" data-type="tex">\(Y\subset \mathbb{R}\)</span>.</p>
 <p>There are several ways to represent a function symbolically:</p>
 <ol>
 <li>
@@ -943,10 +909,10 @@ y=\sqrt{1-x^2}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=-\sqrt{1-x^2}\,,
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\left(f+g\right)(x)&=&f(x)+g(x)\\
-\left(f-g\right)(x)&=&f(x)-g(x)\\
-\left(fg\right)(x)&=&f(x)g(x)\\
-\left(\frac{f}{g}\right)(x)&=&\frac{f(x)}{g(x)}\,,\textrm{ where } g(x)\ne0\,.
+\left(f+g\right)(x)&=f(x)+g(x)\\
+\left(f-g\right)(x)&=f(x)-g(x)\\
+\left(fg\right)(x)&=f(x)g(x)\\
+\left(\frac{f}{g}\right)(x)&=\frac{f(x)}{g(x)}\,,\textrm{ where } g(x)\ne0\,.
 \end{aligned}
 \]
 </div>
@@ -1107,7 +1073,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 <tr>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(g\)</span></td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(g\left(x\right)=x+1\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(ℝ\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\mathbb{R}\)</span></td>
 </tr>
 <tr>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(f\circ g\)</span></td>
@@ -1121,13 +1087,13 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 </tr>
 <tr>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(f\circ f\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left(f\circ g\right)\left(x\right)=x^\frac{1}{4}\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\left(f\circ g\right)\left(x\right)=x^¼\)</span></td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span></td>
 </tr>
 <tr>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(g\circ g\)</span></td>
 <td style="text-align:center"><span class="math-tex" data-type="tex">\(\left(f\circ g\right)\left(x\right)=x+2\)</span></td>
-<td style="text-align:center"><span class="math-tex" data-type="tex">\(ℝ\)</span></td>
+<td style="text-align:center"><span class="math-tex" data-type="tex">\(\mathbb{R}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1136,8 +1102,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 <p>Sometimes it is necessary to define a function by using different formulas on different parts of its domain. One example is the absolute value function</p>
 <div class="math-tex" data-type="equation">
 \[
-\newcommand{\abs}{\operatorname{abs}}
-\abs\left(x\right)=\left|x\right|=\begin{cases}
+\operatorname{abs}\left(x\right)=\left|x\right|=\begin{cases}
 \hphantom{-}x&\textrm{if }x\ge0\,,\\
 -x&\textrm{if }x<0\,.
 \end{cases}
@@ -1148,8 +1113,7 @@ y=\sqrt{x}\ \ \ \ \ \textrm{and}\ \ \ \ \ y=\sqrt{1-x}\,.
 <p>The <i>signum function</i> is defined as follows:</p>
 <div class="math-tex" data-type="equation">
 \[
-\newcommand{\sgn}{\operatorname{sgn}}
-\sgn\left(x\right)=\frac{x}{\left|x\right|}=\begin{cases}
+\operatorname{sgn}\left(x\right)=\frac{x}{\left|x\right|}=\begin{cases}
 \hphantom{-}1&\textrm{if }x>0\,,\\
 -1&\textrm{if }x<0\,,\\
 \textrm{undefined}&\textrm{if }x=0\,.
@@ -1390,7 +1354,7 @@ R\left(x\right)=\frac{P\left(x\right)}{Q\left(x\right)}
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-R\left(x\right)=\frac{2x^3-3x^2+3x+4}{x^2+1}\textrm{ with domain }ℝ\,.
+R\left(x\right)=\frac{2x^3-3x^2+3x+4}{x^2+1}\textrm{ with domain }\mathbb{R}\,.
 \]
 </div>
 <div class="math-tex" data-type="equation">
@@ -1546,7 +1510,7 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <p>Many important properties of <span class="math-tex" data-type="tex">\(\cos t\)</span> and <span class="math-tex" data-type="tex">\(\sin t\)</span> follow from the fact that they are coordinates of the point <span class="math-tex" data-type="tex">\(P_t\)</span> on the circle <span class="math-tex" data-type="tex">\(C\)</span> with equation <span class="math-tex" data-type="tex">\(x^2+y^2=1\)</span>.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(t\inℝ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(t\in\mathbb{R}\)</span>.</p>
 <ol>
 <li>
 <p><span class="math-tex" data-type="tex">\(-1\le\cos t\le 1\)</span> and <span class="math-tex" data-type="tex">\(-1\le\sin t\le 1\)</span></p>
@@ -1673,26 +1637,26 @@ A=\frac{t}{2\uppi }(\uppi  r^2)=\frac{r^2t}{2}\,.
 <p>The following formulas enable us to determine the cosine and sine of a sum or difference of two angles in terms of the cosines and sines of those angles.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(s,t\inℝ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(s,t\in\mathbb{R}\)</span>.</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\cos\left(s+t\right)&=&\cos s\,\cos t-\sin s\,\sin t\\
-\sin\left(s+t\right)&=&\sin s\,\cos t+\cos s\,\sin t\\
-\cos\left(s-t\right)&=&\cos s\,\cos t+\sin s\,\sin t\\
-\sin\left(s-t\right)&=&\sin s\,\cos t-\cos s\,\sin t\\
+\cos\left(s+t\right)&=\cos s\,\cos t-\sin s\,\sin t\\
+\sin\left(s+t\right)&=\sin s\,\cos t+\cos s\,\sin t\\
+\cos\left(s-t\right)&=\cos s\,\cos t+\sin s\,\sin t\\
+\sin\left(s-t\right)&=\sin s\,\cos t-\cos s\,\sin t\\
 \end{aligned}
 \]
 </div>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(s,t\inℝ\)</span> and consider the points</p>
+<p>Let <span class="math-tex" data-type="tex">\(s,t\in\mathbb{R}\)</span> and consider the points</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{alignedat}{3}
-P_t&=&\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=&\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
-P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
+P_t&=\left(\cos t,\sin t\right)\ \ \ \ \ &P_{s-t}&=\left(\cos\left(s-t\right),\sin\left(s-t\right)\right)\\
+P_s&=\left(\cos s,\sin s\right)\ \ \ \ \ &A&=\left(1,0\right)\,.
 \end{alignedat}
 \]
 </div>
@@ -1705,13 +1669,13 @@ P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\begin{gathered}
+\begin{split}
 \cos^2s- 2\cos s\,\cos t+\cos^2t+\sin^2s-2\sin s\,\sin t+\sin^2 t\\
-\quad\quad\quad\quad=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
-\end{gathered}
+=\cos^2\left(s-t\right)-2\cos\left(s-t\right)+1+\sin^2\left(s-t\right)\,.
+\end{split}
 \]
 </div>
-<p>Since <span class="math-tex" data-type="tex">\(\cos^2x+\sin^2x=1\)</span>, this reduces to <span class="math-tex" data-type="tex">\(\cos\left(s-t\right)=\cos s\cos t+\sin s\sin t\)</span>.</p>
+<p>Since <span class="math-tex" data-type="tex">\(\cos^2x+\sin^2x=1\)</span>, this reduces to <span class="math-tex" data-type="tex">\(\cos\left(s-t\right)=\cos s\,\cos t+\sin s\,\sin t\)</span>.</p>
 </div>
 <div data-type="exercise">
 <h1></h1>
@@ -1720,7 +1684,7 @@ P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
 <p>From the addition formulas, we obtain as special cases certain useful formulas called <i>double-angle formulas</i>.</p>
 <div data-type="corollary">
 <h1></h1>
-<p>Let <span class="math-tex" data-type="tex">\(t\inℝ\)</span>.</p>
+<p>Let <span class="math-tex" data-type="tex">\(t\in\mathbb{R}\)</span>.</p>
 <ol>
 <li>
 <p><span class="math-tex" data-type="tex">\(\sin 2t=2\sin t\,\cos t\)</span> and</p>
@@ -1742,22 +1706,22 @@ P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
 <h1></h1>
 <div class="math-tex" data-type="equation">
 \[
-\tan:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\sin x}{\cos x}\quad\textrm{(tangent)}
+\tan:\mathbb{R}\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{\sin x}{\cos x}\quad\textrm{(tangent)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\cot:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{\cos x}{\sin x}\quad\textrm{(cotangent)}
+\cot:\mathbb{R}\setminus\left\{k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{\cos x}{\sin x}\quad\textrm{(cotangent)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\sec:ℝ\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\cos x}\quad\textrm{(secans)}
+\sec:\mathbb{R}\setminus\left\{\frac{\mathrm{π}}{2}+k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{1}{\cos x}\quad\textrm{(secans)}
 \]
 </div>
 <div class="math-tex" data-type="equation">
 \[
-\csc:ℝ\setminus\left\{k\mathrm{π}\mid k\in ℤ\right\}\to ℝ:x\mapsto\frac{1}{\sin x}\quad\textrm{(cosecans)}
+\csc:\mathbb{R}\setminus\left\{k\mathrm{π}\mid k\in \mathbb{Z}\right\}\to \mathbb{R}:x\mapsto\frac{1}{\sin x}\quad\textrm{(cosecans)}
 \]
 </div>
 </div>
@@ -1900,7 +1864,6 @@ P_s&=&\left(\cos s,\sin s\right)\ \ \ \ \ &A&=&\left(1,0\right)\,.
 </section>
 </section>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

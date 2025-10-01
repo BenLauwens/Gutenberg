@@ -1,50 +1,15 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>chapter08</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
 <link rel="stylesheet" href="rma.css" />
-<script>
-MathJax = {
-    startup: {
-        pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-        }
-    },
-    tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
-        ],
-        displayMath: [
-            ['\\[', '\\]']
-        ]
-    },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
@@ -96,21 +61,21 @@ c_n &= c_{n-2} + c_{n-1}\textrm{ with }c_0 = 0\textrm{ and }c_1=1\,.
 <h1></h1>
 <ul>
 <li>
-<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>bounded below</i> by <span class="math-tex" data-type="tex">\(L\)</span>, and <span class="math-tex" data-type="tex">\(L\)</span> is a <i>lower bound</i> for <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span>, if <span class="math-tex" data-type="tex">\(a_n\ge L\)</span> for every <span class="math-tex" data-type="tex">\(\left.n\inℕ\right.\)</span>. The sequence is <i>bounded above</i> by <span class="math-tex" data-type="tex">\(M\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> is an upper bound, if <span class="math-tex" data-type="tex">\(a_n\le M\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>.</p>
-<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>bounded</i> if it is both bounded above and bounded below. In this case there is a constant <span class="math-tex" data-type="tex">\(K\)</span> such that <span class="math-tex" data-type="tex">\(\left|a_n\right|\le K\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>.</p>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>bounded below</i> by <span class="math-tex" data-type="tex">\(L\)</span>, and <span class="math-tex" data-type="tex">\(L\)</span> is a <i>lower bound</i> for <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span>, if <span class="math-tex" data-type="tex">\(a_n\ge L\)</span> for every <span class="math-tex" data-type="tex">\(\left.n\in\mathbb{N}\right.\)</span>. The sequence is <i>bounded above</i> by <span class="math-tex" data-type="tex">\(M\)</span> and <span class="math-tex" data-type="tex">\(M\)</span> is an upper bound, if <span class="math-tex" data-type="tex">\(a_n\le M\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>.</p>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>bounded</i> if it is both bounded above and bounded below. In this case there is a constant <span class="math-tex" data-type="tex">\(K\)</span> such that <span class="math-tex" data-type="tex">\(\left|a_n\right|\le K\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>.</p>
 </li>
 <li>
-<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>positive</i> if it is bounded below by zero, that is, if <span class="math-tex" data-type="tex">\(a_n\ge 0\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>; it is <i>negative</i> if <span class="math-tex" data-type="tex">\(a_n\le 0\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>.</p>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>positive</i> if it is bounded below by zero, that is, if <span class="math-tex" data-type="tex">\(a_n\ge 0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>; it is <i>negative</i> if <span class="math-tex" data-type="tex">\(a_n\le 0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>.</p>
 </li>
 <li>
-<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>increasing</i> if <span class="math-tex" data-type="tex">\(a_{n+1}\ge a_n\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>; it is <i>decreasing</i> if <span class="math-tex" data-type="tex">\(a_{n+1}\le a_n\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>. The sequence is said to be <i>monotonic</i> if it is either increasing or decreasing.</p>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>increasing</i> if <span class="math-tex" data-type="tex">\(a_{n+1}\ge a_n\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>; it is <i>decreasing</i> if <span class="math-tex" data-type="tex">\(a_{n+1}\le a_n\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>. The sequence is said to be <i>monotonic</i> if it is either increasing or decreasing.</p>
 </li>
 <li>
-<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>alternating</i> if <span class="math-tex" data-type="tex">\(a_na_{n+1}&lt;0\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>, that is, if any two consecutive terms have opposite signs. Note that this definition requires <span class="math-tex" data-type="tex">\(a_n\ne0\)</span> for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>.</p>
+<p>The sequence <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is <i>alternating</i> if <span class="math-tex" data-type="tex">\(a_na_{n+1}&lt;0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>, that is, if any two consecutive terms have opposite signs. Note that this definition requires <span class="math-tex" data-type="tex">\(a_n\ne0\)</span> for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>.</p>
 </li>
 </ul>
 </div>
-<p>When you want to show that a sequence is increasing, you can try to show that the inequality <span class="math-tex" data-type="tex">\(a_{n+1}-a_n \ge 0\)</span> holds for every <span class="math-tex" data-type="tex">\(n\inℕ\)</span>. Alternatively, if  <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span> for a differentiable function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> you can show that <span class="math-tex" data-type="tex">\(f\)</span> is a nondecreasing function on <span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span> by showing that <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\ge0\)</span> there. Similar approaches are useful for showing that a sequence is decreasing.</p>
+<p>When you want to show that a sequence is increasing, you can try to show that the inequality <span class="math-tex" data-type="tex">\(a_{n+1}-a_n \ge 0\)</span> holds for every <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>. Alternatively, if  <span class="math-tex" data-type="tex">\(a_n=f\left(n\right)\)</span> for a differentiable function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> you can show that <span class="math-tex" data-type="tex">\(f\)</span> is a nondecreasing function on <span class="math-tex" data-type="tex">\(\left[0,\infty\right[\)</span> by showing that <span class="math-tex" data-type="tex">\(f^\prime\left(x\right)\ge0\)</span> there. Similar approaches are useful for showing that a sequence is decreasing.</p>
 <p>The adverb <i>ultimately</i> is used to describe any termwise property of a sequence that the terms have from some point on, but not necessarily at the beginning of the sequence.</p>
 <p>Central to the study of sequences is the notion of convergence. The concept of the limit of a sequence is a special case of the concept of the limit of a function <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> as <span class="math-tex" data-type="tex">\(x\to\infty\)</span>.</p>
 <div data-type="definition">
@@ -167,7 +132,7 @@ c_n &= c_{n-2} + c_{n-1}\textrm{ with }c_0 = 0\textrm{ and }c_1=1\,.
 <p><span class="math-tex" data-type="tex">\(\displaystyle \lim_{n\to\infty}\frac{2n^2-n-1}{5n^2+n-3}=\lim_{n\to\infty}\frac{2-\frac{1}{n}-\frac{1}{n^2}}{5+\frac{1}{n}-\frac{3}{n^2}}=\frac{2}{5}\,.\)</span></p>
 </li>
 <li>
-<p>Since <span class="math-tex" data-type="tex">\(\left|\cos n\right|\le 1\)</span> for <span class="math-tex" data-type="tex">\(n\inℕ\)</span>, we have</p>
+<p>Since <span class="math-tex" data-type="tex">\(\left|\cos n\right|\le 1\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
 -\frac{1}{n}\le\frac{\cos n}{n}\le\frac{1}{n}\quad\textrm{for }n\ge 1\,.
@@ -195,7 +160,7 @@ c_n &= c_{n-2} + c_{n-1}\textrm{ with }c_0 = 0\textrm{ and }c_1=1\,.
 <h1></h1>
 <p>Let <span class="math-tex" data-type="tex">\(\lim_{n\to\infty}a_n=L\)</span>.</p>
 <p>For <span class="math-tex" data-type="tex">\(\varepsilon = 1\)</span> there exists a number <span class="math-tex" data-type="tex">\(N\)</span> such that if <span class="math-tex" data-type="tex">\(n&gt; N\)</span>, then <span class="math-tex" data-type="tex">\(\left|a_n-L\right|&lt1\)</span>; therefore <span class="math-tex" data-type="tex">\(\left|a_n\right|&lt;1+\left| L\right|\)</span> for such <span class="math-tex" data-type="tex">\(n\)</span>.</p>
-<p>If <span class="math-tex" data-type="tex">\(K\)</span> denotes the largest of the numbers <span class="math-tex" data-type="tex">\(\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|\)</span>, and <span class="math-tex" data-type="tex">\(1+\left| L\right|\)</span>, then <span class="math-tex" data-type="tex">\(\left|a_n\right|\le K\)</span> for every <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(K\)</span> denotes the largest of the numbers <span class="math-tex" data-type="tex">\(\left|a_0\right|,\left|a_1\right|, \dots, \left|a_N\right|\)</span>, and <span class="math-tex" data-type="tex">\(1+\left| L\right|\)</span>, then <span class="math-tex" data-type="tex">\(\left|a_n\right|\le K\)</span> for every <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>.</p>
 <p>Hence, <span class="math-tex" data-type="tex">\(\left(a_n\right)\)</span> is bounded.</p>
 </div>
 <p>The converse of this theorem is false; the sequence <span class="math-tex" data-type="tex">\(\left(\left(-1\right)^n\right)\)</span> is bounded but does not converge.</p>
@@ -267,7 +232,7 @@ s_n=\sum_{i=0}^na_i\,.
 <h2>Geometric Series</h2>
 <div data-type="definition">
 <h1></h1>
-<p>A series of the form <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots\)</span>, whose <span class="math-tex" data-type="tex">\(n\)</span>th term is <span class="math-tex" data-type="tex">\(a_n=ar^n\)</span>, is called a <i>geometric series</i>. The number <span class="math-tex" data-type="tex">\(a\)</span> is the first term. The number <span class="math-tex" data-type="tex">\(r\)</span> is called the common ratio of the series, since it is the value of the ratio of the <span class="math-tex" data-type="tex">\(\left(n+1\right)\)</span>th term to the <span class="math-tex" data-type="tex">\(n\)</span>th term for any <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>:</p>
+<p>A series of the form <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty ar^n=a+ar+ar^2+ar^3+\cdots\)</span>, whose <span class="math-tex" data-type="tex">\(n\)</span>th term is <span class="math-tex" data-type="tex">\(a_n=ar^n\)</span>, is called a <i>geometric series</i>. The number <span class="math-tex" data-type="tex">\(a\)</span> is the first term. The number <span class="math-tex" data-type="tex">\(r\)</span> is called the common ratio of the series, since it is the value of the ratio of the <span class="math-tex" data-type="tex">\(\left(n+1\right)\)</span>th term to the <span class="math-tex" data-type="tex">\(n\)</span>th term for any <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
 \frac{a_{n+1}}{a_n}=\frac{ar^{n+1}}{ar^n}=r\,.
@@ -356,7 +321,7 @@ s_n=\sum_{i=0}^n ar^i=\begin{cases}
 <p><span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty\left(a_n\pm b_n\right)\)</span> converges to <span class="math-tex" data-type="tex">\(A\pm B\)</span>;</p>
 </li>
 <li>
-<p>if <span class="math-tex" data-type="tex">\(a_n \le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in ℕ\)</span>, then <span class="math-tex" data-type="tex">\(A\le B\)</span>.</p>
+<p>if <span class="math-tex" data-type="tex">\(a_n \le b_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, then <span class="math-tex" data-type="tex">\(A\le B\)</span>.</p>
 </li>
 </ol>
 </div>
@@ -470,7 +435,7 @@ a_{N+1}&\le ra_N\\
 a_{N+2}&\le ra_{N+1}\le r^2a_N\\
 a_{N+3}&\le ra_{N+2}\le r^3a_N\\
 &\vdots\\
-a_{N+k}&\le r^ka_N\quad\textrm{for }k\in ℕ\,.
+a_{N+k}&\le r^ka_N\quad\textrm{for }k\in \mathbb{N}\,.
 \end{aligned}
 \]
 </div>
@@ -678,7 +643,7 @@ c_n=a_0b_n+a_1b_{n-1}+\cdots+a_nb_0=\sum_{i=0}^na_ib_{n-i}\,.
 \frac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{n=0}^\infty x^n
 \]
 </div>
-<p>holds for <span class="math-tex" data-type="tex">\(x\in\left]-1, 1\right[\)</span>, we can determine a power series representation for <span class="math-tex" data-type="tex">\(\frac{1}{\left(1-x\right)^2}\)</span> by taking the Cauchy product of this series with itself. Since <span class="math-tex" data-type="tex">\(a_n=b_n=1\)</span> for <span class="math-tex" data-type="tex">\(n\inℕ\)</span>, we have</p>
+<p>holds for <span class="math-tex" data-type="tex">\(x\in\left]-1, 1\right[\)</span>, we can determine a power series representation for <span class="math-tex" data-type="tex">\(\frac{1}{\left(1-x\right)^2}\)</span> by taking the Cauchy product of this series with itself. Since <span class="math-tex" data-type="tex">\(a_n=b_n=1\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>, we have</p>
 <div class="math-tex" data-type="equation">
 \[
 c_n=\sum_{i=0}^n1=n+1
@@ -777,7 +742,7 @@ f^\prime\left(x\right)=\sum_{n=1}^\infty na_nx^n=a_1x+2a_2x^2+3a_3x^3+\cdots\,,\
 <p>If the series <span class="math-tex" data-type="tex">\(\sum_{n=0}^\infty a_n\left(x-c\right)^n\)</span> converges to <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> for <span class="math-tex" data-type="tex">\(x\in\left]c-R,c+R\right[\)</span>, where <span class="math-tex" data-type="tex">\(R&gt;0\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
-a_n=\frac{f^{\left(n\right)}\left(c\right)}{n!}\quad\textrm{for }n\in ℕ\,.
+a_n=\frac{f^{\left(n\right)}\left(c\right)}{n!}\quad\textrm{for }n\in \mathbb{N}\,.
 \]
 </div>
 </div>
@@ -816,45 +781,45 @@ f^{\left(i\right)}\left(x\right)&=\sum_{n=i}^\infty n\left(n-1\right)\left(n-2\r
 <p>Most, but not all, of the elementary functions encountered in calculus are analytic wherever they have derivatives of all orders. On the other hand, whenever a power series in powers of <span class="math-tex" data-type="tex">\(x=c\)</span> converges for all <span class="math-tex" data-type="tex">\(x\)</span> in an open interval containing <span class="math-tex" data-type="tex">\(c\)</span>, then its sum <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span> is analytic at <span class="math-tex" data-type="tex">\(c\)</span>, and the given series is the Taylor series of <span class="math-tex" data-type="tex">\(f\)</span> about <span class="math-tex" data-type="tex">\(c\)</span>.</p>
 <div data-type="example">
 <h1></h1>
-<p>Find the Taylor series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span>. Where does the series converge to <span class="math-tex" data-type="tex">\(ℯ^x\)</span>? Where is <span class="math-tex" data-type="tex">\(ℯ^x\)</span> analytic? What is the Maclaurin series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span>?</p>
-<p>Since all the derivatives of <span class="math-tex" data-type="tex">\(f\left(x\right)=ℯ^x\)</span> are <span class="math-tex" data-type="tex">\(ℯ^x\)</span>, we have <span class="math-tex" data-type="tex">\(f^{\left(n\right)}\left(c\right)=ℯ^c\)</span> for <span class="math-tex" data-type="tex">\(n\inℕ\)</span>. Thus, the taylorseries for <span class="math-tex" data-type="tex">\(ℯ^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span> is</p>
+<p>Find the Taylor series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span>. Where does the series converge to <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>? Where is <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> analytic? What is the Maclaurin series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>?</p>
+<p>Since all the derivatives of <span class="math-tex" data-type="tex">\(f\left(x\right)=\mathcal{e}^x\)</span> are <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>, we have <span class="math-tex" data-type="tex">\(f^{\left(n\right)}\left(c\right)=\mathcal{e}^c\)</span> for <span class="math-tex" data-type="tex">\(n\in\mathbb{N}\)</span>. Thus, the taylorseries for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> about <span class="math-tex" data-type="tex">\(x=c\)</span> is</p>
 <div class="math-tex" data-type="equation">
 \[
-\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
+\sum_{n=0}^\infty \frac{\mathcal{e}^c}{n!}\left(x-c\right)^n\,.
 \]
 </div>
 <p>The radius of convergence <span class="math-tex" data-type="tex">\(R\)</span> of this series is given by</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{ℯ^c}{\left(n+1\right)!}}{\frac{ℯ^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
+\frac{1}{R}=\lim_{n\to\infty}\left|\frac{\frac{\mathcal{e}^c}{\left(n+1\right)!}}{\frac{\mathcal{e}^c}{n!}}\right|=\lim_{n\to\infty}\frac{n!}{\left(n+1\right)!}=\lim_{n\to\infty}\frac{1}{n+1}=0\,.
 \]
 </div>
 <p>Thus, the radius of convergence is <span class="math-tex" data-type="tex">\(R=\infty\)</span> and the series converges for all <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 <p>Suppose the sum is <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-g\left(x\right)=ℯ^c+ℯ^c\left(x-c\right)+\frac{ℯ^c}{2!}\left(x-c\right)^2+\frac{ℯ^c}{3!}\left(x-c\right)^3+\cdots\,.
+g\left(x\right)=\mathcal{e}^c+\mathcal{e}^c\left(x-c\right)+\frac{\mathcal{e}^c}{2!}\left(x-c\right)^2+\frac{\mathcal{e}^c}{3!}\left(x-c\right)^3+\cdots\,.
 \]
 </div>
 <p>By the differentiation theorem of series, we have</p>
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-g^\prime\left(x\right)&=0+ℯ^c+\frac{ℯ^c}{2!}2\left(x-c\right)+\frac{ℯ^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
-&=ℯ^c+ℯ^c\left(x-c\right)+\frac{ℯ^c}{2!}\left(x-c\right)^2+\frac{ℯ^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
+g^\prime\left(x\right)&=0+\mathcal{e}^c+\frac{\mathcal{e}^c}{2!}2\left(x-c\right)+\frac{\mathcal{e}^c}{3!}3\left(x-c\right)^2+\cdots\,.\\
+&=\mathcal{e}^c+\mathcal{e}^c\left(x-c\right)+\frac{\mathcal{e}^c}{2!}\left(x-c\right)^2+\frac{\mathcal{e}^c}{3!}\left(x-c\right)^3+\cdots=g\left(x\right)\,.
 \end{aligned}
 \]
 </div>
-<p>Also, <span class="math-tex" data-type="tex">\(g\left(c\right)=ℯ^c+0+0+\cdots=ℯ^c\)</span>. Since <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> satisfies the differential equation <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)=g\left(x\right)\)</span>, we have <span class="math-tex" data-type="tex">\(g\left(x\right)=Cℯ^x\)</span>.  Substituting <span class="math-tex" data-type="tex">\(x=c\)</span> gives <span class="math-tex" data-type="tex">\(ℯ^c=g\left(c\right)=Cℯ^c\)</span>, so <span class="math-tex" data-type="tex">\(C=1\)</span>. Thus, the Taylor series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span> in powers of <span class="math-tex" data-type="tex">\(x-c\)</span> converges to <span class="math-tex" data-type="tex">\(ℯ^x\)</span> for every real number <span class="math-tex" data-type="tex">\(x\)</span>:</p>
+<p>Also, <span class="math-tex" data-type="tex">\(g\left(c\right)=\mathcal{e}^c+0+0+\cdots=\mathcal{e}^c\)</span>. Since <span class="math-tex" data-type="tex">\(g\left(x\right)\)</span> satisfies the differential equation <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)=g\left(x\right)\)</span>, we have <span class="math-tex" data-type="tex">\(g\left(x\right)=C\mathcal{e}^x\)</span>.  Substituting <span class="math-tex" data-type="tex">\(x=c\)</span> gives <span class="math-tex" data-type="tex">\(\mathcal{e}^c=g\left(c\right)=C\mathcal{e}^c\)</span>, so <span class="math-tex" data-type="tex">\(C=1\)</span>. Thus, the Taylor series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> in powers of <span class="math-tex" data-type="tex">\(x-c\)</span> converges to <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> for every real number <span class="math-tex" data-type="tex">\(x\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-ℯ^x=\sum_{n=0}^\infty \frac{ℯ^c}{n!}\left(x-c\right)^n\,.
+\mathcal{e}^x=\sum_{n=0}^\infty \frac{\mathcal{e}^c}{n!}\left(x-c\right)^n\,.
 \]
 </div>
-<p>In particular, <span class="math-tex" data-type="tex">\(ℯ^x\)</span> is analytic on the whole real line. Setting <span class="math-tex" data-type="tex">\(c=0\)</span> we obtain the Maclaurin series for <span class="math-tex" data-type="tex">\(ℯ^x\)</span>:</p>
+<p>In particular, <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span> is analytic on the whole real line. Setting <span class="math-tex" data-type="tex">\(c=0\)</span> we obtain the Maclaurin series for <span class="math-tex" data-type="tex">\(\mathcal{e}^x\)</span>:</p>
 <div class="math-tex" data-type="equation">
 \[
-ℯ^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
+\mathcal{e}^x=\sum_{n=0}^\infty \frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\,.
 \]
 </div>
 </div>

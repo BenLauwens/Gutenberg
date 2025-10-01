@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>chapter06</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
 <link rel="stylesheet" href="rma.css" />
 <script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
+<div id="tag"></div>
 <section data-type="chapter">
 <h1>Integration</h1>
 <p>The second fundamental problem addressed by calculus is the problem of areas, that is, the problem of determining the area of a region of the plane bounded by various curves. Like the problem of tangents considered in Chapter 2, many practical problems in various disciplines require the evaluation of areas for their solution, and the solution of the problem of areas necessarily involves the notion of limits. On the surface the problem of areas appears unrelated to the problem of tangents. However, we will see that the two problems are very closely related; one is the inverse of the other. Finding an area is equivalent to finding an antiderivative or, as we prefer to say, finding an integral. The relationship between areas and antiderivatives is called the Fundamental theorem of Calculus.</p>
@@ -1018,15 +1021,15 @@ F^\prime\left(x\right)&=\mathcal{e}^{-\left(x^3\right)^2}\left(3x^2\right)-\math
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\int \mathrm{d} x=\int 1\,\mathrm{d} x=x+C&&\int x\,\mathrm{d} x=\frac{x^2}{2}+C\\
-\int x^2\,\mathrm{d} x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d} x=\frac{1}{x}+C\\
-\int \sqrt x\,\mathrm{d} x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d} x=2\sqrt x+C\\
-\int x^r\, \mathrm{d} x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d} x=\ln\left|x\right|+C\\
-\int \sin ax\,\mathrm{d} x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d} x=\frac{1}{a}\sin ax+C\\
-\int \sec^2 ax\,\mathrm{d} x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d} x=-\frac{1}{a}\cot ax+C\\
-\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d} x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d} x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
-\int \mathcal{e}^{ax}\,\mathrm{d} x=\frac{1}{a}\mathcal{e}^{ax}+C&&\int b^{ax}\,\mathrm{d} x=\frac{1}{a\ln b}b^{ax}+C\\
-\int \sinh ax\,\mathrm{d} x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d} x=\frac{1}{a}\sinh ax+C
+&\int \mathrm{d} x=\int 1\,\mathrm{d} x=x+C&&\int x\,\mathrm{d} x=\frac{x^2}{2}+C\\
+&\int x^2\,\mathrm{d} x=\frac{x^3}{3}+C&&\int\frac{1}{x^2}\, \mathrm{d} x=\frac{1}{x}+C\\
+&\int \sqrt x\,\mathrm{d} x=\frac{2}{3}x^{\frac{3}{2}}+C&&\int \frac{1}{\sqrt x}\,\mathrm{d} x=2\sqrt x+C\\
+&\int x^r\, \mathrm{d} x=\frac{x^{r+1}}{r+1}+C\quad\left(r\ne1\right)&&\int\frac{1}{x}\, \mathrm{d} x=\ln\left|x\right|+C\\
+&\int \sin ax\,\mathrm{d} x=-\frac{1}{a}\cos ax+C&&\int\cos ax\, \mathrm{d} x=\frac{1}{a}\sin ax+C\\
+&\int \sec^2 ax\,\mathrm{d} x=\frac{1}{a}\tan ax+C&&\int\csc^2 ax\, \mathrm{d} x=-\frac{1}{a}\cot ax+C\\
+&\int \frac{1}{\sqrt{a^2-x^2}}\,\mathrm{d} x=\operatorname{Arcsin}\frac{x}{a}+C\quad\left(a&gt;0\right)&&\int \frac{1}{a^2+x^2}\,\mathrm{d} x=\frac{1}{a}\operatorname{Arctan}\frac{x}{a}+C\\
+&\int \mathcal{e}^{ax}\,\mathrm{d} x=\frac{1}{a}\mathcal{e}^{ax}+C&&\int b^{ax}\,\mathrm{d} x=\frac{1}{a\ln b}b^{ax}+C\\
+&\int \sinh ax\,\mathrm{d} x=\frac{1}{a}\cosh ax+C&&\int\cosh ax\, \mathrm{d} x=\frac{1}{a}\sinh ax+C
 \end{aligned}
 \]
 </div>
@@ -1774,7 +1777,6 @@ S&=2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d} x\\
 </section>
 </section>
 </section>
-</section><div id="tag"></div>
-
+</section>
 </body>
 </html>

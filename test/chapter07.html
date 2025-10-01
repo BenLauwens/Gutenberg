@@ -1,50 +1,15 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>chapter07</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
 <link rel="stylesheet" href="rma.css" />
-<script>
-MathJax = {
-    startup: {
-        pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-        }
-    },
-    tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
-        ],
-        displayMath: [
-            ['\\[', '\\]']
-        ]
-    },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
@@ -79,7 +44,7 @@ x=f\left(t\right)\quad\textrm{and}\quad y = g\left(t\right)\quad\textrm{for }t\i
 <p>Sketch and identify the parametric curve</p>
 <div class="math-tex" data-type="equation">
 \[
-x=t^2-1\quad\textrm{and}\quad y=t+1\,,\quad t\in ℝ\,.
+x=t^2-1\quad\textrm{and}\quad y=t+1\,,\quad t\in \mathbb{R}\,.
 \]
 </div>
 <p>We could construct a table of values of <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(y\)</span> for various values of <span class="math-tex" data-type="tex">\(t\)</span>, thus getting the coordinates of a number of points on a curve. However, for this example it is easier to <i>eliminate</i> the parameter from the pair of parametric equations, thus producing a single equation in <span class="math-tex" data-type="tex">\(x\)</span> and <span class="math-tex" data-type="tex">\(y\)</span> whose graph is the desired curve:</p>
@@ -134,7 +99,7 @@ t=y - 1\,,\quad x=t^2-1=\left(y-1\right)^2-1=y^2-2y\,.
 \(t=-2\)
 </foreignObject>
 </svg>
-<figcaption>The parabola defined parameterically by <span class="math-tex" data-type="tex">\(x=t^2-1, y=t+1, t\in ℝ\,.\)</span></figcaption></figure>
+<figcaption>The parabola defined parameterically by <span class="math-tex" data-type="tex">\(x=t^2-1, y=t+1, t\in \mathbb{R}\,.\)</span></figcaption></figure>
 </div>
 <p>Although the curve in this example is more easily identified when the parameter is eliminated, there is a loss of information in going to the nonparametric form. Specifically, we lose the sense of the curve as the path of a moving point and hence also the direction of the curve.</p>
 <div data-type="example">
@@ -347,25 +312,25 @@ s=\int_{t=a}^{t=b}\mathrm{d} s=\int_a^b\sqrt{\left(\frac{\mathrm{d} x}{\mathrm{d
 <p>Find the length of the parametric curve</p>
 <div class="math-tex" data-type="equation">
 \[
-x=ℯ^t\cos t\quad\textrm{and}\quad y=ℯ^t\sin t\,,\quad t\in \left[0, 2\right]\,.
+x=\mathcal{e}^t\cos t\quad\textrm{and}\quad y=\mathcal{e}^t\sin t\,,\quad t\in \left[0, 2\right]\,.
 \]
 </div>
 <p>We have</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{\mathrm{d} x}{\mathrm{d} t}=ℯ^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} t}=ℯ^t\left(\sin t+\cos t\right)\,.
+\frac{\mathrm{d} x}{\mathrm{d} t}=\mathcal{e}^t\left(\cos t-\sin t\right)\quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} t}=\mathcal{e}^t\left(\sin t+\cos t\right)\,.
 \]
 </div>
 <p>Squaring these formulas, adding and simplifying, we get</p>
 <div class="math-tex" data-type="equation">
 \[
-\left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2=ℯ^{2t}\left(\cos t-\sin t\right)^2+ℯ^{2t}\left(\sin t+\cos t\right)^2=2ℯ^{2t}\,.
+\left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2=\mathcal{e}^{2t}\left(\cos t-\sin t\right)^2+\mathcal{e}^{2t}\left(\sin t+\cos t\right)^2=2\mathcal{e}^{2t}\,.
 \]
 </div>
 <p>The length of the curve is, therefore,</p>
 <div class="math-tex" data-type="equation">
 \[
-s=\int_0^2\sqrt{2ℯ^{2t}}\,\mathrm{d} t=\sqrt 2\int_0^2ℯ^t\,\mathrm{d} t=\sqrt 2\left(ℯ^2-1\right)\ \textrm{units.}
+s=\int_0^2\sqrt{2\mathcal{e}^{2t}}\,\mathrm{d} t=\sqrt 2\int_0^2\mathcal{e}^t\,\mathrm{d} t=\sqrt 2\left(\mathcal{e}^2-1\right)\ \textrm{units.}
 \]
 </div>
 </div>
@@ -633,9 +598,9 @@ r^2 = x^2+y^2\\
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-r^2=2ar\cos\theta\\
-x^2+y^2=2ax\\
-\left(x-a\right)^2+y^2=a^2
+r^2&=2ar\cos\theta\\
+x^2+y^2&=2ax\\
+\left(x-a\right)^2+y^2&=a^2
 \end{aligned}
 \]
 </div>

@@ -1,50 +1,15 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>preface</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
 <link rel="stylesheet" href="rma.css" />
-<script>
-MathJax = {
-    startup: {
-        pageReady() {
-            MathJax.startup.document.menu.menu.findID('Accessibility', 'AssistiveMml').disable();
-            MathJax._.mathjax.mathjax.handleRetriesFor(() => MathJax.startup.document.render());
-        }
-    },
-    tex: {
-        inlineMath: [              // start/end delimiter pairs for in-line math
-            ['\\(', '\\)']
-        ],
-        displayMath: [
-            ['\\[', '\\]']
-        ]
-    },
-    options: {
-        renderActions: {
-            assistiveMml: [],  // disable assistive mathml
-            typeset: [150,
-                (doc) => {for (math of doc.math) {MathJax.config.renderMathML(math, doc)}},
-                (math, doc) => MathJax.config.renderMathML(math, doc)
-            ]
-        },
-        menuOptions: {
-            settings: {
-                assistiveMml: false
-            }
-        }
-    },
-    renderMathML(math, doc) {
-        math.typesetRoot = document.createElement('mjx-container');
-        math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-        math.display && math.typesetRoot.setAttribute('display', 'block');
-    }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
 
 </head>
 <body data-type="article">
@@ -55,10 +20,10 @@ MathJax = {
 <h1>Who are we?</h1>
 <ul>
 <li>
-<p>Lecturer: LCL IMM Ben LAUWENS, Dr Ir / D30.19 / <a href="mailto:ben.lauwens@mil.be">ben.lauwens.be</a></p>
+<p>Lecturer: Col IMM Ben LAUWENS, PhD MScEng / D30.19 / <a href="mailto:ben.lauwens@mil.be">ben.lauwens@mil.be</a></p>
 </li>
 <li>
-<p>Assistant: Mr Indy VAN DEN BROECK, MSc</p>
+<p>Assistant: Mr Indy VAN DEN BROECK, MSc / <a href="mailto:indy.vandenbroeck@mil.be">indy.vandenbroeck@mil.be</a></p>
 </li>
 </ul>
 </section>
@@ -66,7 +31,7 @@ MathJax = {
 <h1>Course</h1>
 <ul>
 <li>
-<p>Theory: 22 Hr → 66 Hr</p>
+<p>Theory: 24 Hr → 72 Hr</p>
 </li>
 <li>
 <p>Exercises: 22 Hr 	→ 44 Hr</p>
@@ -85,6 +50,25 @@ MathJax = {
 </ul>
 </section>
 <section data-type="sect1">
+<h1>Evaluations</h1>
+<ul>
+<li>
+<p>Test: 13/11 - 2 Hr: Exercises</p>
+</li>
+<li>
+<p>Exam:</p>
+<ul>
+<li>
+<p>Theory: oral exam - 5 min access to notes, 55 min preparation without notes and 30 min presentation</p>
+</li>
+<li>
+<p>Exercises: written exam - 4 Hr without notes</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
 <h1>Schedule</h1>
 <table>
 <thead>
@@ -97,152 +81,145 @@ MathJax = {
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">08/10</td>
+<td style="text-align:center">06/10</td>
 <td style="text-align:center">1-2</td>
 <td style="text-align:center"></td>
 <td style="text-align:left">Introduction and Preliminaries</td>
 </tr>
 <tr>
-<td style="text-align:center">10/10</td>
+<td style="text-align:center">07/10</td>
 <td style="text-align:center">3-4</td>
 <td style="text-align:center"></td>
 <td style="text-align:left">Real Numbers and Functions</td>
 </tr>
 <tr>
-<td style="text-align:center">15/10</td>
+<td style="text-align:center">13/10</td>
 <td style="text-align:center">5-6</td>
 <td style="text-align:center"></td>
 <td style="text-align:left">Limits</td>
 </tr>
 <tr>
-<td style="text-align:center">17/10</td>
+<td style="text-align:center">14/10</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">1-2</td>
 <td style="text-align:left">Real Numbers and Functions</td>
 </tr>
 <tr>
-<td style="text-align:center">22/10</td>
+<td style="text-align:center">20/10</td>
 <td style="text-align:center">7-8</td>
 <td style="text-align:center"></td>
 <td style="text-align:left">Continuity</td>
 </tr>
 <tr>
-<td style="text-align:center">24/10</td>
+<td style="text-align:center">21/10</td>
+<td style="text-align:center">9-10</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Continuity and Derivatives</td>
+</tr>
+<tr>
+<td style="text-align:center">27/10</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">3-4</td>
 <td style="text-align:left">Limits</td>
 </tr>
 <tr>
-<td style="text-align:center">29/10</td>
-<td style="text-align:center">9-10</td>
-<td style="text-align:center"></td>
-<td style="text-align:left">Derivatives and Differentials</td>
-</tr>
-<tr>
-<td style="text-align:center">31/10</td>
+<td style="text-align:center">28/10</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">5-6</td>
 <td style="text-align:left">Continuity</td>
 </tr>
 <tr>
-<td style="text-align:center">05/11</td>
+<td style="text-align:center">03/11</td>
 <td style="text-align:center">11-12</td>
 <td style="text-align:center"></td>
-<td style="text-align:left">Applications of Differentiation</td>
+<td style="text-align:left">Derivatives and Differentials</td>
 </tr>
 <tr>
-<td style="text-align:center">07/11</td>
+<td style="text-align:center">04/11</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">7-8</td>
 <td style="text-align:left">Derivatives and Differentials</td>
 </tr>
 <tr>
-<td style="text-align:center">12/11</td>
+<td style="text-align:center">13/11</td>
 <td style="text-align:center">13-14</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Applications of Differentiation</td>
+</tr>
+<tr>
+<td style="text-align:center">17/11</td>
+<td style="text-align:center">15-16</td>
 <td style="text-align:center"></td>
 <td style="text-align:left">Trancendental Functions</td>
 </tr>
 <tr>
-<td style="text-align:center">14/11</td>
+<td style="text-align:center">18/11</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">9-10</td>
 <td style="text-align:left">Applications of Differentiation</td>
 </tr>
 <tr>
-<td style="text-align:center">19/11</td>
-<td style="text-align:center">15-16</td>
-<td style="text-align:center"></td>
-<td style="text-align:left">Integrals</td>
-</tr>
-<tr>
-<td style="text-align:center">21/11</td>
+<td style="text-align:center">24/11</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">11-12</td>
+<td style="text-align:left">Applications of Differentiation</td>
+</tr>
+<tr>
+<td style="text-align:center">25/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">13-14</td>
 <td style="text-align:left">Trancendental Functions</td>
 </tr>
 <tr>
-<td style="text-align:center">26/11</td>
+<td style="text-align:center">01/12</td>
 <td style="text-align:center">17-18</td>
 <td style="text-align:center"></td>
-<td style="text-align:left">Integration Techniques</td>
-</tr>
-<tr>
-<td style="text-align:center">28/11</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">13-14</td>
 <td style="text-align:left">Integrals</td>
 </tr>
 <tr>
-<td style="text-align:center">03/12</td>
-<td style="text-align:center">19-20</td>
-<td style="text-align:center"></td>
-<td style="text-align:left">Polar Coordinates and Parametric Curves</td>
-</tr>
-<tr>
-<td style="text-align:center">05/12</td>
+<td style="text-align:center">22/12</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">15-16</td>
+<td style="text-align:left">Integrals</td>
+</tr>
+<tr>
+<td style="text-align:center">08/12</td>
+<td style="text-align:center">19-20</td>
+<td style="text-align:center"></td>
 <td style="text-align:left">Integration Techniques</td>
 </tr>
 <tr>
-<td style="text-align:center">10/12</td>
-<td style="text-align:center">21-22</td>
-<td style="text-align:center"></td>
-<td style="text-align:left">Sequences, Series and Power Series</td>
-</tr>
-<tr>
-<td style="text-align:center">12/12</td>
+<td style="text-align:center">09/12</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">17-18</td>
+<td style="text-align:left">Integration Techniques</td>
+</tr>
+<tr>
+<td style="text-align:center">15/12</td>
+<td style="text-align:center">21-22</td>
+<td style="text-align:center"></td>
 <td style="text-align:left">Polar Coordinates and Parametric Curves</td>
 </tr>
 <tr>
-<td style="text-align:center">17/12</td>
+<td style="text-align:center">16/12</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">19-20</td>
-<td style="text-align:left">Sequences, Series and Power Series</td>
+<td style="text-align:left">Polar Coordinates and Parametric Curves</td>
 </tr>
 <tr>
-<td style="text-align:center">19/12</td>
+<td style="text-align:center">22/12</td>
+<td style="text-align:center">23-24</td>
+<td style="text-align:center"></td>
+<td style="text-align:left"><i>Sequences, Infinite Series and Power Series</i></td>
+</tr>
+<tr>
+<td style="text-align:center">23/12</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">21-22</td>
-<td style="text-align:left">Revision</td>
+<td style="text-align:left"><i>Sequences, Infinite Series and Power Series</i></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section data-type="sect1">
-<h1>Evaluations</h1>
-<p>Test: 21/11 - 2 Hr: Exercises</p>
-<p>Exam:</p>
-<ul>
-<li>
-<p>Theory: oral exam - 5 min access to notes, 1 Hr preparation without notes and 30 min presentation</p>
-</li>
-<li>
-<p>Exercises: written exam - 4 Hr without notes</p>
-</li>
-</ul>
 </section>
 </section>
 </body>
