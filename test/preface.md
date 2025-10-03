@@ -4,7 +4,7 @@
 ## Who are we?
 
 * Lecturer: Col IMM Ben LAUWENS, PhD MScEng / D30.19 / [ben.lauwens@mil.be](mailto:ben.lauwens@mil.be)
-* Assistant: Mr Indy VAN DEN BROECK, MSc / [indy.vandenbroeck@mil.be](mailto:indy.vandenbroeck@mil.be)
+* Assistant: Mr Indy VAN DEN BROECK, MSc / D30.17 / [indy.vandenbroeck@mil.be](mailto:indy.vandenbroeck@mil.be)
 
 ## Course
 
@@ -46,10 +46,11 @@
 |24/11||11-12|Applications of Differentiation|
 |25/11||13-14|Trancendental Functions|
 |01/12|17-18||Integrals|
-|22/12||15-16|Integrals|
-|08/12|19-20||Integration Techniques|
-|09/12||17-18|Integration Techniques|
+|02/12||15-16|Integrals - Integration Techniques|
+|08/12|19-20||Integration Techniques - Applications of Integration|
+|08/12-12/12||17|Integration Techniques
+|09/12||18-19|Integration Techniques - Applications of Integration|
 |15/12|21-22||Polar Coordinates and Parametric Curves|
-|16/12||19-20|Polar Coordinates and Parametric Curves|
+|16/12||20-21|Polar Coordinates and Parametric Curves|
 |22/12|23-24||*Sequences, Infinite Series and Power Series*|
-|23/12||21-22|*Sequences, Infinite Series and Power Series*|
+|23/12||22-23|*Sequences, Infinite Series and Power Series*|
