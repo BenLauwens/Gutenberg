@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>matlab</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
+<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
+<link rel="stylesheet" href="rma.css" />
+<script defer src='../assets/temml.min.js' onload='temml.renderMathInElement(document.body);'></script>
+
+</head>
+<body data-type="article">
+<section data-type="preface" class="pagereset" >
+<h1>Matlab</h1>
+<section data-type="sect1">
+<h1>Who are we?</h1>
+<ul>
+<li>
+<p>Lecturer: Col IMM Ben LAUWENS, PhD MScEng / D30.19 / <a href="mailto:ben.lauwens@mil.be">ben.lauwens@mil.be</a></p>
+</li>
+<li>
+<p>Assistant: Mr Jean-François DE KEMMETER, PhD MSc / <a href="mailto:jean-francois.dekemmeter@mil.be">jean-francois.dekemmeter@mil.be</a></p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Course</h1>
+<ul>
+<li>
+<p>Theory: 16 Hr → 48 Hr</p>
+</li>
+<li>
+<p>Exercises: 16 Hr 	→ 32 Hr</p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Documentation</h1>
+<ul>
+<li>
+<p>Handbook: MATLAB for Engineers - 6th edition<br/>Chapter P-9: theory and exercises</p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Evaluations</h1>
+<ul>
+<li>
+<p>Test: 04/12 - 2 Hr:</p>
+</li>
+<li>
+<p>Exam: Jan - 4 Hr: Exercises on computer without notes</p>
+</li>
+</ul>
+</section>
+<section data-type="sect1">
+<h1>Schedule</h1>
+<table>
+<thead>
+<tr>
+<td style="text-align:center">Lectures</td>
+<td style="text-align:center">Theory</td>
+<td style="text-align:center">Exercises</td>
+<td style="text-align:left">Topic</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">10/10</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">About MATLAB</td>
+</tr>
+<tr>
+<td style="text-align:center">16/10</td>
+<td style="text-align:center">2-3</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">MATLAB Environment - Build-in MATLAB functions</td>
+</tr>
+<tr>
+<td style="text-align:center">17/10</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:left">About MATLAB</td>
+</tr>
+<tr>
+<td style="text-align:center">23/10</td>
+<td style="text-align:center">4-5</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Manipulating Matlab</td>
+</tr>
+<tr>
+<td style="text-align:center">24/10</td>
+<td style="text-align:center">6-7</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Plotting</td>
+</tr>
+<tr>
+<td style="text-align:center">30/10</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2-3</td>
+<td style="text-align:left">MATLAB Environment - Build-in MATLAB functions</td>
+</tr>
+<tr>
+<td style="text-align:center">31/10</td>
+<div id="tag"></div>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:left">Manipulating Matlab</td>
+</tr>
+<tr>
+<td style="text-align:center">06/11</td>
+<td style="text-align:center">8-9</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">User Defined Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">07/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">5-6</td>
+<td style="text-align:left">Manipulating Matlab - Plotting</td>
+</tr>
+<tr>
+<td style="text-align:center">14/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">7</td>
+<td style="text-align:left">Plotting</td>
+</tr>
+<tr>
+<td style="text-align:center">20/11</td>
+<td style="text-align:center">10-11</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Logical Functions and Selection Structures - Repetition Structures</td>
+</tr>
+<tr>
+<td style="text-align:center">21/11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Matrix Algebra</td>
+</tr>
+<tr>
+<td style="text-align:center">27/11</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">8-9</td>
+<td style="text-align:left">User Defined Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">28/11</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Matrix Algebra</td>
+</tr>
+<tr>
+<td style="text-align:center">04/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">10-11</td>
+<td style="text-align:left">Logical Functions and Selection Structures</td>
+</tr>
+<tr>
+<td style="text-align:center">05/12</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Symbolic Mathematics</td>
+</tr>
+<tr>
+<td style="text-align:center">11/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">12-13</td>
+<td style="text-align:left">Repetition Structures - Matrix Algebra</td>
+</tr>
+<tr>
+<td style="text-align:center">12/12</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Symbolic Mathematics</td>
+</tr>
+<tr>
+<td style="text-align:center">18/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">14-15</td>
+<td style="text-align:left">Matrix Algebra - Symbolic Mathematics</td>
+</tr>
+<tr>
+<td style="text-align:center">19/12</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">16</td>
+<td style="text-align:left">Symbolic Mathematics</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</body>
+</html>

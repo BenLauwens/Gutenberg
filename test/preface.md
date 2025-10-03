@@ -31,7 +31,7 @@
 |Lectures|Theory|Exercises|Topic|
 |:-------:|:-----:|:--------:|:-|
 |06/10|1-2||Introduction and Preliminaries|
-|07/10|3-4||Real Numbers and Functions|
+|09/10|3-4||Real Numbers and Functions|
 |13/10|5-6||Limits|
 |14/10||1-2|Real Numbers and Functions|
 |20/10|7-8||Continuity|
