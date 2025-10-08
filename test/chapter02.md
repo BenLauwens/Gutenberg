@@ -550,7 +550,7 @@ We need following lemma.
 
     Let ``b_0`` be the smallest integer greater than ``x``, and let ``a_0=b_0-1``.
 
-    Then ``I_0=\left[a_0, b_0\right]`` contains ``x`` and has rational endpoints. It follows that ``x`` is contained in either ``\left]a_0, \frac{a_0+b_0}{2}\right[`` or ``\left]\frac{a_0+b_0}{2}, b_0\right[``. Let ``I_1`` be the closed subinterval containing ``x``.
+    Then ``I_0=\left[a_0, b_0\right]`` contains ``x`` and has rational endpoints. It follows that ``x`` is contained in either ``\left[a_0, \frac{a_0+b_0}{2}\right]`` or ``\left[\frac{a_0+b_0}{2}, b_0\right]``. Let ``I_1`` be the closed subinterval containing ``x``.
 
     Continuing this way, we obtain a sequence of closed intervals ``\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0`` satisfying the hypotheses of the nested intervals theorem, where each ``I_n`` contains ``x`` and has rational endpoints.
 
