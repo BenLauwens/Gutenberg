@@ -84,7 +84,7 @@ The set of rational number is more than a set of fractions with integers for num
 	2. ``a+\left(b+c\right)=\left(a+b\right)+c=a+b+c`` and ``a\left(bc\right)=\left(ab\right)c=abc`` (*associativity*)
 	3. ``a+0=a`` and ``a\cdot1=a`` (*identity*)
 	4. There exists ``-a\in 𝔽`` such that ``a+\left(-a\right)=0`` (*opposite*) and for ``a\ne 0`` there exists ``a^{-1}=\frac{1}{a}\in 𝔽`` such that ``a\cdot a^{-1}=1`` (*inverse*)
-	5. ``a\left(b+c\right)=ab+bc`` (*distributivity*)
+	5. ``a\left(b+c\right)=ab+ac`` (*distributivity*)
 
 Notice that the rational numbers do satisfy the field axioms.
 
