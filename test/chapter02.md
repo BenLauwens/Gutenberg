@@ -305,10 +305,10 @@ We stress that this is an axiom to be assumed without proof. It cannot be deduce
 The completeness axiom has massive consequences. 
 
 !!! lemma
-	The set of natural numbers is not bounded above or ``\forall r\in \mathbb{R},\exists n\in \mathbb{N}:r&lt;n``.
+	The set of natural numbers is not bounded above or ``\forall r\in \mathbb{R},\exists n\in \mathbb{N}:r\leq n``.
 
 !!! proof "by contradiction"
-    Suppose that there is an ``r\in \mathbb{R}`` such that ``\forall n\in \mathbb{N}:r\geq n``.
+    Suppose that there is an ``r\in \mathbb{R}`` such that ``\forall n\in \mathbb{N}:r&gt;n``.
 
     Then the set ``\mathbb{N}`` is a nonempty subset of ``\mathbb{R}`` with an upper bound, so by the completeness axiom, ``\mathbb{N}`` has a least upper bound ``M``.
 
