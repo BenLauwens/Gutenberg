@@ -377,7 +377,7 @@ Figure("", "If " * tex("x\\ne a") * " and " * tex("\\left|x-a\\right|&lt;\\delta
     Drawing(width=6scale, height=4.5scale) do
         xmid = 1scale
         ymid = 4scale
-        axis_xy(6scale,4.5scale,xmid,ymid,scale,(2.4,3,3.6),(3,2,1),xs=("a-\\delta","a","a+\\delta"),xl=(3,1,3),ys=("L-\\varepsilon","L","L+\\varepsilon"),yl=(3,1,3))
+        axis_xy(6scale,4.5scale,xmid,ymid,scale,(2.4,3,3.6),(3,2,1),xs=("a-\\delta","a","a+\\delta"),xl=(3,1,3),ys=("L+\\varepsilon","L","L-\\varepsilon"),yl=(3,1,3))
         line(x1=4scale,y1=4scale,x2=4scale,y2=2scale,stroke_dasharray = "3",stroke="black")
         line(x1=1scale,y1=2scale,x2=4scale,y2=2scale,stroke_dasharray = "3",stroke="black")
         plot_xy(x->0.25(x-3+sqrt(7))^2+0.25, -1:0.01:5, tuple(), xmid, ymid, scale)
@@ -694,8 +694,8 @@ Figure("", "The graph of " * tex("g") * " is squeezed between those of " * tex("
         plot_xy(x->2-0.1(x-3)^2, -1:0.01:5, tuple(), xmid, ymid, scale, width=1)
         circle(cx=4scale, cy=2scale, r=3, fill="white", stroke="red")
         latex("y=g\\left(x\\right)", x=scale, y=1.9scale, width=5font_x, height=font_y,color="red")
-        latex("y=f\\left(x\\right)", x=scale, y=1.2scale, width=5font_x, height=font_y,color="green")
-        latex("y=h\\left(x\\right)", x=scale, y=2.6scale, width=5font_x, height=font_y,color="RoyalBlue")
+        latex("y=h\\left(x\\right)", x=scale, y=1.2scale, width=5font_x, height=font_y,color="green")
+        latex("y=f\\left(x\\right)", x=scale, y=2.6scale, width=5font_x, height=font_y,color="RoyalBlue")
     end
 end
 ```
