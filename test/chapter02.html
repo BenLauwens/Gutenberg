@@ -44,7 +44,7 @@
 <p>There exists <span class="math-tex" data-type="tex">\(-a\in 𝔽\)</span> such that <span class="math-tex" data-type="tex">\(a+\left(-a\right)=0\)</span> (<i>opposite</i>) and for <span class="math-tex" data-type="tex">\(a\ne 0\)</span> there exists <span class="math-tex" data-type="tex">\(a^{-1}=\frac{1}{a}\in 𝔽\)</span> such that <span class="math-tex" data-type="tex">\(a\cdot a^{-1}=1\)</span> (<i>inverse</i>)</p>
 </li>
 <li>
-<p><span class="math-tex" data-type="tex">\(a\left(b+c\right)=ab+bc\)</span> (<i>distributivity</i>)</p>
+<p><span class="math-tex" data-type="tex">\(a\left(b+c\right)=ab+ac\)</span> (<i>distributivity</i>)</p>
 </li>
 </ol>
 </div>
@@ -367,7 +367,7 @@ a_1\cdot a_2\cdot\dots\cdot a_n&\textrm{if }n\in \mathbb{N}_0
 <p>The completeness axiom has massive consequences.</p>
 <div data-type="lemma">
 <h1></h1>
-<p>The set of natural numbers is not bounded above or <span class="math-tex" data-type="tex">\(\forall r\in \mathbb{R},\exists n\in \mathbb{N}:r&gt;n\)</span>.</p>
+<p>The set of natural numbers is not bounded above or <span class="math-tex" data-type="tex">\(\forall r\in \mathbb{R},\exists n\in \mathbb{N}:r\leq n\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1>&nbsp;(by contradiction)</h1>
@@ -621,7 +621,7 @@ a_n\le a_{n+1}\textrm{ and }b_{n+1}\le b_n\textrm{, so that } \cdots\subset I_n\
 <h1>&nbsp;(by bisection)</h1>
 <p>If <span class="math-tex" data-type="tex">\(x\)</span> is rational we are done, so let <span class="math-tex" data-type="tex">\(x\)</span> be irrational.</p>
 <p>Let <span class="math-tex" data-type="tex">\(b_0\)</span> be the smallest integer greater than <span class="math-tex" data-type="tex">\(x\)</span>, and let <span class="math-tex" data-type="tex">\(a_0=b_0-1\)</span>.</p>
-<p>Then <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints. It follows that <span class="math-tex" data-type="tex">\(x\)</span> is contained in either <span class="math-tex" data-type="tex">\(\left]a_0, \frac{a_0+b_0}{2}\right[\)</span> or <span class="math-tex" data-type="tex">\(\left]\frac{a_0+b_0}{2}, b_0\right[\)</span>. Let <span class="math-tex" data-type="tex">\(I_1\)</span> be the closed subinterval containing <span class="math-tex" data-type="tex">\(x\)</span>.</p>
+<p>Then <span class="math-tex" data-type="tex">\(I_0=\left[a_0, b_0\right]\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints. It follows that <span class="math-tex" data-type="tex">\(x\)</span> is contained in either <span class="math-tex" data-type="tex">\(\left[a_0, \frac{a_0+b_0}{2}\right]\)</span> or <span class="math-tex" data-type="tex">\(\left[\frac{a_0+b_0}{2}, b_0\right]\)</span>. Let <span class="math-tex" data-type="tex">\(I_1\)</span> be the closed subinterval containing <span class="math-tex" data-type="tex">\(x\)</span>.</p>
 <p>Continuing this way, we obtain a sequence of closed intervals <span class="math-tex" data-type="tex">\(\cdots\subset I_n\subset\cdots\subset I_2\subset I_1\subset I_0\)</span> satisfying the hypotheses of the nested intervals theorem, where each <span class="math-tex" data-type="tex">\(I_n\)</span> contains <span class="math-tex" data-type="tex">\(x\)</span> and has rational endpoints.</p>
 <p>By the nested intervals theorem, <span class="math-tex" data-type="tex">\(\bigcap_{n\in \mathbb{N}}I_n=\left\{y\right\}\)</span> where <span class="math-tex" data-type="tex">\(y=\sup\left\{a_n\right\}=\inf\left\{b_n\right\}\)</span>. Since <span class="math-tex" data-type="tex">\(x\in I_n\)</span> for all <span class="math-tex" data-type="tex">\(n\in \mathbb{N}\)</span>, <span class="math-tex" data-type="tex">\(y=x\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(x=\sup\left\{a_n\right\}\)</span>, by the previous lemma, the open interval <span class="math-tex" data-type="tex">\(\left]x-\delta,x+\delta\right[\)</span> contains <span class="math-tex" data-type="tex">\(a_m\in \mathbb{Q}\)</span> for some <span class="math-tex" data-type="tex">\(m\in \mathbb{N}\)</span>.</p>
