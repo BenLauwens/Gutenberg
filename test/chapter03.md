@@ -1082,9 +1082,9 @@ end
 Although a function cannot have a limit at an endpoint of its domain, it can still have a one-sided limit there. We extend the definition of continuity to provide for such situations.
 
 !!! definition
-    We say that ``f`` is *right continuous* at ``c`` if ``\displaystyle\lim_{x\to c^+}f\left(x\right)=f\left(x\right)``.
+    We say that ``f`` is *right continuous* at ``c`` if ``\displaystyle\lim_{x\to c^+}f\left(x\right)=f\left(c\right)``.
 
-    We say that ``f`` is *left continuous* at ``c`` if ``\displaystyle\lim_{x\to c^-}f\left(x\right)=f\left(x\right)``.
+    We say that ``f`` is *left continuous* at ``c`` if ``\displaystyle\lim_{x\to c^-}f\left(x\right)=f\left(c\right)``.
 
 !!! example
     The Heaviside function ``H\left(x\right)`` is continuous at every number ``x`` except ``0``. It is right continuous at ``0`` but is not left continuous or continuous there.
