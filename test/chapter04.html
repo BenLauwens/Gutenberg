@@ -13,7 +13,6 @@
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -994,7 +993,7 @@ f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)=\left(f^\prime\lef
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x\right)\right)-f\left(g\left(x+h\right)\right)}{h}\\
+\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g+h\left(x\right)\right)-f\left(g\left(x\right)\right)}{h}\\
 &=\lim_{h\to 0}\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 &=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 \end{aligned}
@@ -2568,6 +2567,7 @@ f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d} x=2x^3-x+C
 </section>
 </section>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>
