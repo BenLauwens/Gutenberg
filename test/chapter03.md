@@ -1027,7 +1027,7 @@ A polynomial ``Q\left(x\right)`` of degree ``n&gt;0`` can have at most ``n`` *ze
 
     5. ``\displaystyle\lim_{x\to 2}\frac{x- 3}{x^2-4}=\lim_{x\to 2}\frac{x- 3}{\left(x-2\right)\left(x+2\right)}`` does not exist.
 
-    6. ``\displaystyle\lim_{x\to 2}\frac{2-x}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{-\left(x-2\right)}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{1}{\left(x-2\right)^2}=-\infty``.
+    6. ``\displaystyle\lim_{x\to 2}\frac{2-x}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{-\left(x-2\right)}{\left(x-2\right)^3}=\lim_{x\to 2}\frac{-1}{\left(x-2\right)^2}=-\infty``.
 
 ## Continuity Defined
 
