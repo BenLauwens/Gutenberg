@@ -1121,7 +1121,7 @@ x^2+y^2=25
 ```
 so ``F\left(x,y\right)=x^2+y^2-25`` for that circle.
 
-Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find explicit formulas for one or more functions ``y=f\left(x\right)`` defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining yas one or more functions of ``x`` implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}`` of these implicit solutions by a technique called *implicit differentiation*. The idea is to differentiate the given equation with respect to ``x``, regarding ``y`` as a function of ``x`` having derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``, or ``y^\prime``.
+Sometimes we can solve an equation ``F\left(x,y\right)=0`` for ``y`` and so find explicit formulas for one or more functions ``y=f\left(x\right)`` defined by the equation. Usually, however, we are not able to solve the equation. However, we can still regard it as defining ``y``as one or more functions of ``x`` implicitly, even it we cannot solve for these functions explicitly. Moreover, we still find the derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}`` of these implicit solutions by a technique called *implicit differentiation*. The idea is to differentiate the given equation with respect to ``x``, regarding ``y`` as a function of ``x`` having derivative ``\frac{\mathrm{d} y}{\mathrm{d} x}``, or ``y^\prime``.
 
 !!! example
 
