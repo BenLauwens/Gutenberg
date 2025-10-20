@@ -1316,7 +1316,7 @@ The Mean-Value theorem is one of those deep results that is based on the complet
 	```math
 	\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,,\quad\textrm{so }f^\prime\left(c\right)=\lim_{x\to c^-}\frac{f\left(x\right)-f\left(c\right)}{x-c}\ge0\,.
 	```
-	Thus ``f^\prime\left(c\right)``. The proof for a minimum value at ``c`` is similar.
+	Thus ``f^\prime\left(c\right)=0``. The proof for a minimum value at ``c`` is similar.
 
 !!! theorem "Rolle's theorem"
 
