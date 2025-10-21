@@ -576,7 +576,7 @@ If ``g\left(x\right)`` is continuous on an interval ``I``, then ``g\left(x\right
 
 ## Differentiation Rules
 
-If every derivative had to be calculated directly from the definition of derivative as in the examples of the previou section, calculus would indeed be a painful subject. Fortunately, there is an easier way. We will develop several general differentiation rules that enable us to calculate the derivatives of complicated combinations of functions easily if we already know the derivatives of the elementary functions from which they are constructed.
+If every derivative had to be calculated directly from the definition of derivative as in the examples of the previous section, calculus would indeed be a painful subject. Fortunately, there is an easier way. We will develop several general differentiation rules that enable us to calculate the derivatives of complicated combinations of functions easily if we already know the derivatives of the elementary functions from which they are constructed.
 
 Before developing these differentiation rules we need to establish one obvious but very important theorem which states, roughly, that the graph of a function cannot possibly have a break at a point where it is smooth.
 
