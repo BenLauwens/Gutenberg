@@ -823,7 +823,7 @@ and taking the limit as ``\Delta x \to 0``. Such a proof is valid for most compo
 	Hence,
 	```math
 	\begin{aligned}
-	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g+h\left(x\right)\right)-f\left(g\left(x\right)\right)}{h}\\
+	\frac{\mathrm{d}\hphantom{ y}}{\mathrm{d} x}f\left(g\left(x\right)\right)&=\lim_{h\to 0}\frac{f\left(g\left(x+h\right)\right)-f\left(g\left(x\right)\right)}{h}\\
 	&=\lim_{h\to 0}\left(f^\prime\left(g\left(x\right)\right)+E\left(k\right)\right)\frac{g\left(x+h\right)-g\left(x\right)}{h}\\
 	&=\left(f^\prime\left(g\left(x\right)\right)+0\right)g^\prime\left(x\right)=f^\prime\left(g\left(x\right)\right)g^\prime\left(x\right)\,,
 	\end{aligned}
