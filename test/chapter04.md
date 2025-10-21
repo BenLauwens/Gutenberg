@@ -696,7 +696,7 @@ The Product Rule can be extended to products of any number of factors; for insta
 ```math
 \begin{aligned}
 \left(fgh\right)^\prime\left(x\right)&=f^\prime\left(x\right)\left(gh\right)\left(x\right)+f\left(x\right)\left(gh\right)^\prime\left(x\right)\\
-&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f^\left(x\right)g^\prime\left(x\right)h\left(x\right)+f^\left(x\right)g\left(x\right)h^\prime\left(x\right)\,.
+&=f^\prime\left(x\right)g\left(x\right)h\left(x\right)+f\left(x\right)g^\prime\left(x\right)h\left(x\right)+f\left(x\right)g\left(x\right)h^\prime\left(x\right)\,.
 \end{aligned}
 ```
 
