@@ -13,7 +13,6 @@
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Differentiation</h1>
 <p>The first of the fundamental problems that are considered in calculus, is the problem of slopes, that is finding the slope of (the tangent line to) a given curve at a given point on the curve. The solution of the problem of slopes is the subject of differential calculus. As we will see, it has many applications in mathematics and other disciplines.</p>
@@ -1813,7 +1812,7 @@ h\left(x\right)=\left(f\left(b\right)-f\left(a\right)\right)\left(g\left(x\right
 <p>Then</p>
 <div class="math-tex" data-type="equation">
 \[
-lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 \]
 </div>
 <p>Similar results hold if every occurrence of <span class="math-tex" data-type="tex">\(\lim_{x\to a^+}\)</span> is replaced by <span class="math-tex" data-type="tex">\(\lim_{x\to b^-}\)</span> or even <span class="math-tex" data-type="tex">\(\lim_{x\to c}\)</span> where <span class="math-tex" data-type="tex">\(a&lt;c&lt;b\)</span>. The cases <span class="math-tex" data-type="tex">\(a=-\infty\)</span> and <span class="math-tex" data-type="tex">\(b=\infty\)</span> are also allowed.</p>
@@ -1869,7 +1868,7 @@ G\left(x\right)=\begin{cases}
 <p>Suppose the functions <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are differentiable on the interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, and <span class="math-tex" data-type="tex">\(g^\prime\left(x\right)\ne0\)</span> there. Suppose also that</p>
 <ol>
 <li>
-<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty\)</span> and</p>
+<p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} f\left(x\right)=\pm\infty\)</span>, <span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty\)</span> and</p>
 </li>
 <li>
 <p><span class="math-tex" data-type="tex">\(\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L\)</span> where <span class="math-tex" data-type="tex">\(L\)</span> is finite or <span class="math-tex" data-type="tex">\(\infty\)</span> or <span class="math-tex" data-type="tex">\(-\infty\)</span>.</p>
@@ -1895,7 +1894,7 @@ G\left(x\right)=\begin{cases}
 <p>If <span class="math-tex" data-type="tex">\(f\left(x_2\right)&gt;f\left(x_1\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x_2&gt;x_1\)</span>, we say <span class="math-tex" data-type="tex">\(f\)</span> is <i>increasing</i> on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f\left(x_2\right)&lt;f\left(x_1\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x_2&lt;x_1\)</span>, we say <span class="math-tex" data-type="tex">\(f\)</span> is <i>decreasing</i> on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f\left(x_2\right)&lt;f\left(x_1\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x_2&gt;x_1\)</span>, we say <span class="math-tex" data-type="tex">\(f\)</span> is <i>decreasing</i> on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
 </li>
 <li>
 <p>If <span class="math-tex" data-type="tex">\(f\left(x_2\right)\ge f\left(x_1\right)\)</span> whenever <span class="math-tex" data-type="tex">\(x_2&gt;x_1\)</span>, we say <span class="math-tex" data-type="tex">\(f\)</span> is <i>nondecreasing</i> on <span class="math-tex" data-type="tex">\(I\)</span>.</p>
@@ -1951,7 +1950,7 @@ G\left(x\right)=\begin{cases}
 <p>If <span class="math-tex" data-type="tex">\(x\)</span> is any other point of <span class="math-tex" data-type="tex">\(I\)</span>, then the Mean-Value theorem says that there exists a point <span class="math-tex" data-type="tex">\(c\)</span> between <span class="math-tex" data-type="tex">\(x_0\)</span> and <span class="math-tex" data-type="tex">\(x\)</span> such that</p>
 <div class="math-tex" data-type="equation">
 \[
-\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f^\prime\left(x\right)\,.
+\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f^\prime\left(c\right)\,.
 \]
 </div>
 <p>The point <span class="math-tex" data-type="tex">\(c\)</span> must belong to <span class="math-tex" data-type="tex">\(I\)</span> because an interval contains all points between any two of its points, and <span class="math-tex" data-type="tex">\(c\)</span> cannot be an endpoint of <span class="math-tex" data-type="tex">\(I\)</span> since <span class="math-tex" data-type="tex">\(c\ne x_0\)</span> and <span class="math-tex" data-type="tex">\(c\ne x\)</span>.<br/>Since <span class="math-tex" data-type="tex">\(f^\prime\left(c\right)=0\)</span> for all such points <span class="math-tex" data-type="tex">\(c\)</span>, we have <span class="math-tex" data-type="tex">\(f\left(x\right)-f\left(x_0\right)=0\)</span> for all <span class="math-tex" data-type="tex">\(x\in I\)</span>, and <span class="math-tex" data-type="tex">\(f\left(x\right)=f\left(x_0\right)=C\)</span> as claimed.</p>
@@ -2008,7 +2007,7 @@ G\left(x\right)=\begin{cases}
 <p>If a function <span class="math-tex" data-type="tex">\(f\)</span> is defined on a closed interval or a union of finitely many closed intervals, the Extreme-value theorem assures us that <span class="math-tex" data-type="tex">\(f\)</span> must have an absolute maximum value and an absolute minimum value. The last theorem tells us how to find them. We need only check the values of <span class="math-tex" data-type="tex">\(f\)</span> at any critical points, singular points, and endpoints.</p>
 <div data-type="example">
 <h1></h1>
-<p>Find the maximum and the minimum values of the function <span class="math-tex" data-type="tex">\(g\left(x\right)=x^2-3x^2-9x+2\)</span> on the interval <span class="math-tex" data-type="tex">\(\left[-2, 2\right]\)</span>.</p>
+<p>Find the maximum and the minimum values of the function <span class="math-tex" data-type="tex">\(g\left(x\right)=x^3-3x^2-9x+2\)</span> on the interval <span class="math-tex" data-type="tex">\(\left[-2, 2\right]\)</span>.</p>
 <p>Since <span class="math-tex" data-type="tex">\(g\)</span> is a polynomial, it can have no singular points. For critical points, we calculate</p>
 <div class="math-tex" data-type="equation">
 \[
@@ -2063,13 +2062,13 @@ h\left(-1\right)=5\,,\quad h\left(0\right)=0\,,\quad h\left(1\right)=1\,.
 <p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local minimum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 </li>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(a\)</span>.</p>
 </li>
 </ul>
 <p>Suppose <span class="math-tex" data-type="tex">\(b\)</span> is a right endpoint of the domain of <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(f\)</span> is left continuous at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
 <ul>
 <li>
-<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&gt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local maximum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
 </li>
 <li>
 <p>If <span class="math-tex" data-type="tex">\(f^\prime\left(x_0\right)&lt;0\)</span> on some interval <span class="math-tex" data-type="tex">\(\left]a,b\right[\)</span>, then <span class="math-tex" data-type="tex">\(f\)</span> has a local mainimum value at <span class="math-tex" data-type="tex">\(b\)</span>.</p>
@@ -2312,7 +2311,7 @@ P_1\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)\\
 &=5+\frac{1}{10}\left(x-25\right)\\
 P_2\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2\\
 &=5+\frac{1}{10}\left(x-25\right)-\frac{1}{1000}\left(x-25\right)^2\\
-P_2\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2+\frac{f^{\left(3\right)}\left(25\right)}{3!}\left(x-25\right)^3\\
+P_3\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2+\frac{f^{\left(3\right)}\left(25\right)}{3!}\left(x-25\right)^3\\
 &=5+\frac{1}{10}\left(x-25\right)-\frac{1}{1000}\left(x-25\right)^2+\frac{1}{50000}\left(x-25\right)^3
 \end{aligned}
 \]
@@ -2568,6 +2567,7 @@ f\left(x\right)=\int\left(6x^2-1\right)\,\mathrm{d} x=2x^3-x+C
 </section>
 </section>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>

@@ -1401,7 +1401,7 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]`` are the most common. Yo
 
 	Then
 	```math
-	lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
+	\lim_{x\to a^+}\frac{f\left(x\right)}{g\left(x\right)}=L\,.
 	```
 
 	Similar results hold if every occurrence of ``\lim_{x\to a^+}`` is replaced by ``\lim_{x\to b^-}`` or even ``\lim_{x\to c}`` where ``a&lt;c&lt;b``. The cases ``a=-\infty`` and ``b=\infty`` are also allowed.
@@ -1453,7 +1453,7 @@ Indeterminate forms of type ``\left[\frac{0}{0}\right]`` are the most common. Yo
 !!! theorem "The second l'Hôpital Rule"
 
 	Suppose the functions ``f`` and ``g`` are differentiable on the interval ``\left]a,b\right[``, and ``g^\prime\left(x\right)\ne0`` there. Suppose also that
-	1. ``\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty`` and
+	1. ``\displaystyle\lim_{x\to a^+} f\left(x\right)=\pm\infty``, ``\displaystyle\lim_{x\to a^+} g\left(x\right)=\pm\infty`` and
 	2. ``\displaystyle\lim_{x\to a^+}\frac{f^\prime\left(x\right)}{g^\prime\left(x\right)}=L`` where ``L`` is finite or ``\infty`` or ``-\infty``.
 
 	Then
@@ -1473,7 +1473,7 @@ Intervals on which the graph of a function ``f`` has positive or negative slope 
 	
 	Suppose that the function ``f`` is defined on an interval ``I`` and that ``x_1`` and ``x_2`` are two points of ``I``.
 	- If ``f\left(x_2\right)&gt;f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *increasing* on ``I``.
-	- If ``f\left(x_2\right)&lt;f\left(x_1\right)`` whenever ``x_2&lt;x_1``, we say ``f`` is *decreasing* on ``I``.
+	- If ``f\left(x_2\right)&lt;f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *decreasing* on ``I``.
 	- If ``f\left(x_2\right)\ge f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nondecreasing* on ``I``.
 	- If ``f\left(x_2\right)\le f\left(x_1\right)`` whenever ``x_2&gt;x_1``, we say ``f`` is *nonincreasing* on ``I``.
 
@@ -1514,7 +1514,7 @@ If a function is constant on an interval, then its derivative is zero on that in
 
 	If ``x`` is any other point of ``I``, then the Mean-Value theorem says that there exists a point ``c`` between ``x_0`` and ``x`` such that
 	```math
-	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f^\prime\left(x\right)\,.
+	\frac{f\left(x\right)-f\left(x_0\right)}{x-x_0}=f^\prime\left(c\right)\,.
 	```
 	The point ``c`` must belong to ``I`` because an interval contains all points between any two of its points, and ``c`` cannot be an endpoint of ``I`` since ``c\ne x_0`` and ``c\ne x``. 
 	Since ``f^\prime\left(c\right)=0`` for all such points ``c``, we have ``f\left(x\right)-f\left(x_0\right)=0`` for all ``x\in I``, and ``f\left(x\right)=f\left(x_0\right)=C`` as claimed.
@@ -1575,7 +1575,7 @@ If a function ``f`` is defined on a closed interval or a union of finitely many 
 
 !!! example
 
-	Find the maximum and the minimum values of the function ``g\left(x\right)=x^2-3x^2-9x+2`` on the interval ``\left[-2, 2\right]``.
+	Find the maximum and the minimum values of the function ``g\left(x\right)=x^3-3x^2-9x+2`` on the interval ``\left[-2, 2\right]``.
 
 	Since ``g`` is a polynomial, it can have no singular points. For critical points, we calculate
 	```math
@@ -1626,11 +1626,11 @@ Most functions you will encounter in elementary calculus have nonzero derivative
 
 	- If ``f^\prime\left(x_0\right)&gt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local minimum value at ``a``.
 
-	- If ``f^\prime\left(x_0\right)&lt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``a``.
+	- If ``f^\prime\left(x_0\right)&lt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``a``.
 
 	Suppose ``b`` is a right endpoint of the domain of ``f`` and ``f`` is left continuous at ``b``.
 
-	- If ``f^\prime\left(x_0\right)&gt;`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``b``.
+	- If ``f^\prime\left(x_0\right)&gt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local maximum value at ``b``.
 
 	- If ``f^\prime\left(x_0\right)&lt;0`` on some interval ``\left]a,b\right[``, then ``f`` has a local mainimum value at ``b``.
 
@@ -1837,7 +1837,7 @@ matches ``f`` and its first ``n`` derivatives at ``x=a``, and so describes ``f\l
 	&=5+\frac{1}{10}\left(x-25\right)\\
 	P_2\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2\\
 	&=5+\frac{1}{10}\left(x-25\right)-\frac{1}{1000}\left(x-25\right)^2\\
-	P_2\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2+\frac{f^{\left(3\right)}\left(25\right)}{3!}\left(x-25\right)^3\\
+	P_3\left(x\right)&=f\left(25\right)+f^\prime\left(25\right)\left(x-25\right)+\frac{f^{\prime\prime}\left(25\right)}{2}\left(x-25\right)^2+\frac{f^{\left(3\right)}\left(25\right)}{3!}\left(x-25\right)^3\\
 	&=5+\frac{1}{10}\left(x-25\right)-\frac{1}{1000}\left(x-25\right)^2+\frac{1}{50000}\left(x-25\right)^3
 	\end{aligned}
 	```
