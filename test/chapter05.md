@@ -169,7 +169,7 @@ These identities can be proved for rational exponents using the definitions abov
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", "Graphs of some exponential functions" * tex("y=a^x") * "." ) do
+Figure("", "Graphs of some exponential functions " * tex("y=a^x") * "." ) do
 	scale = 50
 	Drawing(width=5scale, height=6scale) do
 		xmid = 2.5scale
@@ -216,7 +216,7 @@ Since ``a^x`` has domain ``\left]-\infty,\infty\right[``, ``\log_a x`` has range
 
 {cell=chap display=false output=false}
 ```julia
-Figure("", "Graphs of some logarithmic functions" * tex("y=\\log_a x") * "." ) do
+Figure("", "Graphs of some logarithmic functions " * tex("y=\\log_a x") * "." ) do
 	scale = 50
 	Drawing(width=6scale, height=5scale) do
 		xmid = 0.5scale
@@ -387,7 +387,7 @@ The two properties ``\displaystyle \frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\
 
 The last property shows that ``\ln\left(2^n\right)=n\ln 2\to\infty`` as ``n\to\infty``. Therefore, we also have ``\ln\left(\frac{1}{2}\right)^n=-n\ln 2\to-\infty`` as ``n\to\infty``. Since ``\frac{\mathrm{d} \hphantom{x}}{\mathrm{d} x}\ln x=\frac{1}{x}&gt;0`` for ``x&gt;0``, it follows that ``\ln x`` is increasing, so we must have
 ```math
-\lim_{x\to\infty}\ln x=\infty\quad\textrm{and}\quad \lim_{x\to-\infty}\ln x=-\infty\,.
+\lim_{x\to\infty}\ln x=\infty\quad\textrm{and}\quad \lim_{x\to0^+}\ln x=-\infty\,.
 ```
 
 !!! example
@@ -416,7 +416,7 @@ The function ``\ln x`` is bijective on its domain, the interval ``\left]0,\infty
 \forall y&gt;0:x=\ln y\implies y=\exp x\,.
 ```
 
-Since ``\ln 1=0``, we have ``\exp 0=1``. The domain of ``\exp`` is ``\left]-\infty,\infty\right[``, the range of ``\ln``. The range of ``\exp`` is ``\left]0,\infty\right[``, the domain of ``\ln``. We have cancellation identities
+Since ``\ln 1=0``, we have ``\exp 0=1``. The domain of ``\mathrm{exp}`` is ``\left]-\infty,\infty\right[``, the range of ``\mathrm{ln}``. The range of ``\mathrm{exp}`` is ``\left]0,\infty\right[``, the domain of ``\mathrm{ln}``. We have cancellation identities
 ```math
 \forall x\in \mathbb{R}:\ln\left(\exp x\right)=x\quad\textrm{and}\quad\forall x&gt;0:\exp\left(\ln x\right)=x\,.
 ```
@@ -681,7 +681,7 @@ Figure("", "The graph of " * tex("\\operatorname{Arcsin}x") * "." ) do
 end
 ```
 
-The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\operatorname{Sin}`` in the line ``y=x``. The domain of ``\operatorname{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\operatorname{Sin}``), and the range of ``\operatorname{Arcsin}`` is ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` (the domain of ``\operatorname{Sin}``).
+The graph of ``\mathrm{Arcsin}`` is the reflection of the graph of ``\mathrm{Sin}`` in the line ``y=x``. The domain of ``\mathrm{Arcsin}`` is ``\left[-1,1\right]``(the range of ``\mathrm{Sin}``), and the range of ``\mathrm{Arcsin}`` is ``\left[-\frac{\uppi}{2},\frac{\uppi}{2}\right]`` (the domain of ``\mathrm{Sin}``).
 
 !!! example
 
@@ -695,13 +695,13 @@ The graph of ``\operatorname{Arcsin}`` is the reflection of the graph of ``\oper
 
 	Because both sides of the above equation are odd functions of ``x``, the same result holds for ``0&gt; x&gt;-1``.
 
-Now let us use implicit differentiation to find the derivative of the inverse sine function. If``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``. Differentiating with respect to ``x``, we obtain
+Now let us use implicit differentiation to find the derivative of the inverse sine function. If ``y=\operatorname{Arcsin}x``, then ``x=\sin y`` and ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``. Differentiating with respect to ``x``, we obtain
 ```math
 1=\cos y\frac{\mathrm{d} y}{\mathrm{d} x}\,.
 ```
 Since ``-\frac{\uppi}{2}\le y\le\frac{\uppi}{2}``, we know that ``\cos y\ge 0``. Therefore,
 ```math
-\cos y=\sqrt{1-\sin^2 y}=1-x^2 \quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
+\cos y=\sqrt{1-\sin^2 y}=\sqrt{1-x^2} \quad\textrm{and}\quad\frac{\mathrm{d} y}{\mathrm{d} x}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}\,;
 ```
 
 Note that the inverse sine function is differentiable only on the open interval ``\left]-1,1\right[``; the slope of its graph approaches infinity as ``x\to -1^+`` or as ``x\to 1^-``.
@@ -717,7 +717,7 @@ Note that the inverse sine function is differentiable only on the open interval 
 	   ```math
 	   \begin{aligned}
 	   f^\prime\left(x\right)&=\frac{1}{\sqrt{1-\sin^2 x}}\cos x\\
-	   &=\frac{\cos x}{\sqrt{cos^2 x}}=\frac{\cos x}{\left|\cos x\right|}=\begin{cases}
+	   &=\frac{\cos x}{\sqrt{\cos^2 x}}=\frac{\cos x}{\left|\cos x\right|}=\begin{cases}
        \hphantom{-}1&\textrm{if }\cos x&gt; 0\\
 	   -1&\textrm{if }\cos x&lt; 0\,.
 	   \end{cases}
@@ -755,7 +755,7 @@ The inverse tangent function is defined in a manner similar to the inverse sine.
 	\operatorname{Tan}x=\tan x\quad\textrm{if }-\frac{\uppi}{2}\le x\le\frac{\uppi}{2}\,.
 	```
 
-The inverse of the function ``\operatorname{Tan}`` is called the inverse tangent function and is denoted ``\operatorname{Arctan}`` (or ``\operatorname{arctan}``,  ``\operatorname{atan}``, or ``\operatorname{Tan}^{-1}``). The domain of ``\operatorname{Arctan}`` is the whole real line (the range of ``\operatorname{Tan}``). Its range is the open interval ``\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[``.
+The inverse of the function ``\mathrm{Tan}`` is called the inverse tangent function and is denoted ``\mathrm{Arctan}`` (or ``\mathrm{arctan}``,  ``\mathrm{atan}``, or ``\mathrm{Tan}^{-1}``). The domain of ``\mathrm{Arctan}`` is the whole real line (the range of ``\mathrm{Tan}``). Its range is the open interval ``\left]-\frac{\uppi}{2},\frac{\uppi}{2}\right[``.
 
 !!! definition
 
@@ -768,7 +768,7 @@ The derivative of the inverse tangent function is also found by implicit differe
 1 = \sec^2y\frac{\mathrm{d} y}{\mathrm{d} x}=\left(1+\tan^2 y\right)\frac{\mathrm{d} y}{\mathrm{d} x}=\left(1+x^2\right)\frac{\mathrm{d} y}{\mathrm{d} x}\,.
 ```
 
-The function ``\cos x`` is bijective on the interval ``\left[0,\uppi\right]``, so we could define the inverse cosine function, ``\operatorname{Arccos}`` (or ``\operatorname{arccos}``,  ``\operatorname{acos}``, or ``\operatorname{Cos}^{-1}``), so that
+The function ``\cos x`` is bijective on the interval ``\left[0,\uppi\right]``, so we could define the inverse cosine function, ``\mathrm{Arccos}`` (or ``\mathrm{arccos}``,  ``\mathrm{acos}``, or ``\mathrm{Cos}^{-1}``), so that
 
 ```math
 \forall y\in\left[0,\uppi\right]:x=\cos y\implies y=\operatorname{Arccos} x\,.
@@ -864,7 +864,7 @@ Many other properties of the hyperbolic functions resemble those of the correspo
 	\end{aligned}
 	```
 
-The following addition formulas and double-angle formulas can be checked algebraically by using the definition of ``\cosh`` and ``\sinh`` and the laws of exponents:
+The following addition formulas and double-angle formulas can be checked algebraically by using the definition of ``\mathrm{cosh}`` and ``\mathrm{sinh}`` and the laws of exponents:
 ```math
 \begin{aligned}
 \cosh\left(x+y\right)&=\cosh x\cosh y+\sinh x\sinh y\,,\\
@@ -874,7 +874,7 @@ The following addition formulas and double-angle formulas can be checked algebra
 \end{aligned}
 ```
 
-By analogy with the trigonometric functions, other hyperbolic functions can be defined in terms of ``\cosh`` and ``\sinh``.
+By analogy with the trigonometric functions, other hyperbolic functions can be defined in terms of ``\mathrm{cosh}`` and ``\mathrm{sinh}``.
 
 !!! definition
 
@@ -895,13 +895,13 @@ Figure("", "The graphs of " * tex("\\tanh x") * "." ) do
 end
 ```
 
-The functions ``sinh`` and ``tanh`` are increasing and therefore bijective and invertible on the whole real line. Their inverses are denoted ``\operatorname{arcsinh}`` and ``\operatorname{arctanh}``, respectively.
+The functions ``\mathrm{sinh}`` and ``\mathrm{tanh}`` are increasing and therefore bijective and invertible on the whole real line. Their inverses are denoted ``\mathrm{arcsinh}`` and ``\mathrm{arctanh}``, respectively.
 
 Since the hyperbolic functions are defined in terms of exponentials, it is not surprising that their inverses can be expressed in terms of logarithms.
 
 !!! example
 
-	Express the functions ``\operatorname{arcsinh}`` and ``\operatorname{arctanh}`` in terms of natural logarithms.
+	Express the functions ``\mathrm{arcsinh}`` and ``\mathrm{arctanh}`` in terms of natural logarithms.
 
 	Let ``y=\operatorname{arcsinh} x``. Then
 	```math
@@ -937,7 +937,7 @@ Since the hyperbolic functions are defined in terms of exponentials, it is not s
 	\operatorname{arctanh} x=\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)\quad\textrm{for }-1&lt;x&lt;1\,.
 	```
 
-Since ``\cosh`` is not bijective, its domain must be restricted before an inverse can be defined. Let us define the principal value of ``\cosh`` to be
+Since ``\mathrm{cosh}`` is not bijective, its domain must be restricted before an inverse can be defined. Let us define the principal value of ``\mathrm{cosh}`` to be
 ```math
 \forall x\ge0:\operatorname{Cosh} x = \cosh x\,.
 ```
@@ -947,7 +947,7 @@ The inverse, ``\operatorname{Arccosh} x``, is then defined by
 \forall y\ge0:x=\cosh y=\operatorname{Cosh}y\implies y=\operatorname{Arccosh} x\,.
 ```
 
-As we did for ``\operatorname{arcsinh}``, we can obtain the formula
+As we did for ``\mathrm{arcsinh}``, we can obtain the formula
 ```math
 \operatorname{Arccosh} x=\ln\left(x+\sqrt{x^2-1}\right)
 ```
