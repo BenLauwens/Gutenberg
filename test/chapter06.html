@@ -272,14 +272,14 @@ U\left(f,P_n\right)&=\sum_{i=1}^nx_i^2\Delta x\\
 \]
 </div>
 </div>
-<p>If <span class="math-tex" data-type="tex">\(P\)</span> is any partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and we create a new partition <span class="math-tex" data-type="tex">\(P^\star\)</span> by adding new subdivision points to those of <span class="math-tex" data-type="tex">\(P\)</span>, thus subdividing the subintervals of <span class="math-tex" data-type="tex">\(P\)</span> into smaller ones, then we call <span class="math-tex" data-type="tex">\(P^\star\)</span> a <i>refinement</i> of <span class="math-tex" data-type="tex">\(P\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(P\)</span> is any partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and we create a new partition <span class="math-tex" data-type="tex">\(P^\diamond\)</span> by adding new subdivision points to those of <span class="math-tex" data-type="tex">\(P\)</span>, thus subdividing the subintervals of <span class="math-tex" data-type="tex">\(P\)</span> into smaller ones, then we call <span class="math-tex" data-type="tex">\(P^\diamond\)</span> a <i>refinement</i> of <span class="math-tex" data-type="tex">\(P\)</span>.</p>
 <div data-type="theorem">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(P^\star\)</span> is a refinement of <span class="math-tex" data-type="tex">\(P\)</span>, then <span class="math-tex" data-type="tex">\(L\left(f,P^\star\right)\ge L\left(f,P\right)\)</span> and <span class="math-tex" data-type="tex">\(U\left(f,P^\star\right)\le U\left(f,P\right)\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(P^\diamond\)</span> is a refinement of <span class="math-tex" data-type="tex">\(P\)</span>, then <span class="math-tex" data-type="tex">\(L\left(f,P^\diamond\right)\ge L\left(f,P\right)\)</span> and <span class="math-tex" data-type="tex">\(U\left(f,P^\diamond\right)\le U\left(f,P\right)\)</span>.</p>
 </div>
+<p>If <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> are sets of real numbers, and <span class="math-tex" data-type="tex">\(S\subset T\)</span>, then any lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(T\)</span> is also a lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(S\)</span>. Hence, the greatest lower bound of <span class="math-tex" data-type="tex">\(S\)</span> is at least as large as that of <span class="math-tex" data-type="tex">\(T\)</span>; and the least upper bound of <span class="math-tex" data-type="tex">\(S\)</span> is no greater than that of <span class="math-tex" data-type="tex">\(T\)</span>.</p>
 <div data-type="proof">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(S\)</span> and <span class="math-tex" data-type="tex">\(T\)</span> are sets of real numbers, and <span class="math-tex" data-type="tex">\(S\subset T\)</span>, then any lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(T\)</span> is also a lower bound (or upper bound) of <span class="math-tex" data-type="tex">\(S\)</span>. Hence, the greatest lower bound of <span class="math-tex" data-type="tex">\(S\)</span> is at least as large as that of <span class="math-tex" data-type="tex">\(T\)</span>; and the least upper bound of <span class="math-tex" data-type="tex">\(S\)</span> is no greater than that of <span class="math-tex" data-type="tex">\(T\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(P\)</span> be a given partition of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and form a new partition <span class="math-tex" data-type="tex">\(P^\prime\)</span> by adding one subdivision point to those of <span class="math-tex" data-type="tex">\(P\)</span>, say, the point <span class="math-tex" data-type="tex">\(k\)</span> dividing the <span class="math-tex" data-type="tex">\(i\)</span>th subinterval <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span> of <span class="math-tex" data-type="tex">\(P\)</span> into two subintervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span>.</p>
 <p>Let <span class="math-tex" data-type="tex">\(m_i\)</span>, <span class="math-tex" data-type="tex">\(m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i^{\prime\prime}\)</span> be the greatest lower bounds of the sets of values of <span class="math-tex" data-type="tex">\(f\left(x\right)\)</span>  on the intervals <span class="math-tex" data-type="tex">\(\left[x_{i-1},x_i\right]\)</span>, <span class="math-tex" data-type="tex">\(\left[x_{i-1},k\right]\)</span> and <span class="math-tex" data-type="tex">\(\left[k,x_i\right]\)</span>, respectively. Then <span class="math-tex" data-type="tex">\(m_i\le m_i^\prime\)</span> and <span class="math-tex" data-type="tex">\(m_i\le m_i^{\prime\prime}\)</span>.</p>
 <p>Thus,</p>
@@ -289,19 +289,19 @@ m_i\left(x_i-x_{i-1}\right)\le m_i^\prime\left(k-x_{i-1}\right)+m_i^{\prime\prim
 \]
 </div>
 <p>so <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le L\left(f,P^\prime\right)\)</span>.</p>
-<p>If <span class="math-tex" data-type="tex">\(P^\star\)</span> is a refinement of <span class="math-tex" data-type="tex">\(P\)</span>, it can be obtained by adding one point at a time to those of <span class="math-tex" data-type="tex">\(P\)</span> and thus <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le L\left(f,P^\star\right)\)</span>.</p>
-<p>We can prove that <span class="math-tex" data-type="tex">\(U\left(f,P^\star\right)\le U\left(f,P\right)\)</span> in a similar manner.</p>
+<p>If <span class="math-tex" data-type="tex">\(P^\diamond\)</span> is a refinement of <span class="math-tex" data-type="tex">\(P\)</span>, it can be obtained by adding one point at a time to those of <span class="math-tex" data-type="tex">\(P\)</span> and thus <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le L\left(f,P^\diamond\right)\)</span>.</p>
+<p>We can prove that <span class="math-tex" data-type="tex">\(U\left(f,P^\diamond\right)\le U\left(f,P\right)\)</span> in a similar manner.</p>
 </div>
 <div data-type="theorem">
 <h1></h1>
-<p>If <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span> are two partitions of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le U\left(f,P^\star\right)\)</span>.</p>
+<p>If <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span> are two partitions of <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>, then <span class="math-tex" data-type="tex">\(L\left(f,P\right)\le U\left(f,P^\prime\right)\)</span>.</p>
 </div>
 <div data-type="proof">
 <h1></h1>
-<p>Combine the subdivision points of <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span> to form a new partition <span class="math-tex" data-type="tex">\(P^\star\)</span>, which is a refinement of both <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span>. Then by the previous theorem,</p>
+<p>Combine the subdivision points of <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span> to form a new partition <span class="math-tex" data-type="tex">\(P^\diamond\)</span>, which is a refinement of both <span class="math-tex" data-type="tex">\(P\)</span> and <span class="math-tex" data-type="tex">\(P^\prime\)</span>. Then by the previous theorem,</p>
 <div class="math-tex" data-type="equation">
 \[
-L\left(f,P\right)\le L\left(f,P^\star\right)\le U\left(f,P^\star\right)\le U\left(f,P^\prime\right)\,.
+L\left(f,P\right)\le L\left(f,P^\diamond\right)\le U\left(f,P^\diamond\right)\le U\left(f,P^\prime\right)\,.
 \]
 </div>
 <p>No lower sum can exceed any upper sum.</p>
@@ -949,7 +949,7 @@ F^\prime\left(x_0\right)=f\left(x_0\right)\,.
 <div data-type="proof">
 <h1></h1>
 <p><span class="math-tex" data-type="tex">\(f\)</span> is an integrable function, so <span class="math-tex" data-type="tex">\(f\)</span> is bounded on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span> and there exists <span class="math-tex" data-type="tex">\(B\ge 0\)</span> such that <span class="math-tex" data-type="tex">\(\left|f\left(x\right)\right|\le B\)</span> for <span class="math-tex" data-type="tex">\(x\in\left[a,b\right]\)</span>.</p>
-<p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. If <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\frac{\epsilon}{B}\)</span> for <span class="math-tex" data-type="tex">\(a\le x&lt; y\le b\)</span>, then</p>
+<p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. If <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\frac{\varepsilon}{B}\)</span> for <span class="math-tex" data-type="tex">\(a\le x&lt; y\le b\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
 \left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d} t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_y^xB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.

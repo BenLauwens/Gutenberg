@@ -259,15 +259,15 @@ Note that if ``f`` is continuous on ``\left[a,b\right]``, then ``m_i`` and ``M_i
 	\end{aligned}
 	```
 
-If ``P`` is any partition of ``\left[a,b\right]`` and we create a new partition ``P^\star`` by adding new subdivision points to those of ``P``, thus subdividing the subintervals of ``P`` into smaller ones, then we call ``P^\star`` a *refinement* of ``P``.
+If ``P`` is any partition of ``\left[a,b\right]`` and we create a new partition ``P^\diamond`` by adding new subdivision points to those of ``P``, thus subdividing the subintervals of ``P`` into smaller ones, then we call ``P^\diamond`` a *refinement* of ``P``.
 
 !!! theorem
 
-	If ``P^\star`` is a refinement of ``P``, then ``L\left(f,P^\star\right)\ge L\left(f,P\right)`` and ``U\left(f,P^\star\right)\le U\left(f,P\right)``.
+	If ``P^\diamond`` is a refinement of ``P``, then ``L\left(f,P^\diamond\right)\ge L\left(f,P\right)`` and ``U\left(f,P^\diamond\right)\le U\left(f,P\right)``.
+
+If ``S`` and ``T`` are sets of real numbers, and ``S\subset T``, then any lower bound (or upper bound) of ``T`` is also a lower bound (or upper bound) of ``S``. Hence, the greatest lower bound of ``S`` is at least as large as that of ``T``; and the least upper bound of ``S`` is no greater than that of ``T``.
 
 !!! proof
-
-	If ``S`` and ``T`` are sets of real numbers, and ``S\subset T``, then any lower bound (or upper bound) of ``T`` is also a lower bound (or upper bound) of ``S``. Hence, the greatest lower bound of ``S`` is at least as large as that of ``T``; and the least upper bound of ``S`` is no greater than that of ``T``.
 
 	Let ``P`` be a given partition of ``\left[a,b\right]`` and form a new partition ``P^\prime`` by adding one subdivision point to those of ``P``, say, the point ``k`` dividing the ``i``th subinterval ``\left[x_{i-1},x_i\right]`` of ``P`` into two subintervals ``\left[x_{i-1},k\right]`` and ``\left[x_{i-1},k\right]``.
 
@@ -281,20 +281,20 @@ If ``P`` is any partition of ``\left[a,b\right]`` and we create a new partition 
 
 	so ``L\left(f,P\right)\le L\left(f,P^\prime\right)``.
 
-	If ``P^\star`` is a refinement of ``P``, it can be obtained by adding one point at a time to those of ``P`` and thus ``L\left(f,P\right)\le L\left(f,P^\star\right)``.
+	If ``P^\diamond`` is a refinement of ``P``, it can be obtained by adding one point at a time to those of ``P`` and thus ``L\left(f,P\right)\le L\left(f,P^\diamond\right)``.
 	
-	We can prove that ``U\left(f,P^\star\right)\le U\left(f,P\right)`` in a similar manner.
+	We can prove that ``U\left(f,P^\diamond\right)\le U\left(f,P\right)`` in a similar manner.
 
 !!! theorem
 
-	If ``P`` and ``P^\prime`` are two partitions of ``\left[a,b\right]``, then ``L\left(f,P\right)\le U\left(f,P^\star\right)``.
+	If ``P`` and ``P^\prime`` are two partitions of ``\left[a,b\right]``, then ``L\left(f,P\right)\le U\left(f,P^\prime\right)``.
 
 !!! proof
 
-	Combine the subdivision points of ``P`` and ``P^\prime`` to form a new partition ``P^\star``, which is a refinement of both ``P`` and ``P^\prime``. Then by the previous theorem,
+	Combine the subdivision points of ``P`` and ``P^\prime`` to form a new partition ``P^\diamond``, which is a refinement of both ``P`` and ``P^\prime``. Then by the previous theorem,
 
 	```math
-	L\left(f,P\right)\le L\left(f,P^\star\right)\le U\left(f,P^\star\right)\le U\left(f,P^\prime\right)\,.
+	L\left(f,P\right)\le L\left(f,P^\diamond\right)\le U\left(f,P^\diamond\right)\le U\left(f,P^\prime\right)\,.
 	```
 
 	No lower sum can exceed any upper sum.
@@ -888,7 +888,7 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d} x`` denotes the indefinit
 
 	``f`` is an integrable function, so ``f`` is bounded on ``\left[a,b\right]`` and there exists ``B\ge 0`` such that ``\left|f\left(x\right)\right|\le B`` for ``x\in\left[a,b\right]``.
 
-	Let ``\varepsilon &gt;0``. If ``\left|x-y\right|&lt;\frac{\epsilon}{B}`` for ``a\le x&lt; y\le b``, then
+	Let ``\varepsilon &gt;0``. If ``\left|x-y\right|&lt;\frac{\varepsilon}{B}`` for ``a\le x&lt; y\le b``, then
 
 	```math
 	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d} t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_y^xB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
