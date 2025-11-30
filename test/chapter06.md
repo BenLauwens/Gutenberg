@@ -891,7 +891,7 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d} x`` denotes the indefinit
 	Let ``\varepsilon &gt;0``. If ``\left|x-y\right|&lt;\frac{\varepsilon}{B}`` for ``a\le x&lt; y\le b``, then
 
 	```math
-	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_y^xf\left(t\right)\,\mathrm{d} t\right|\le \int_y^x\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_y^xB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
+	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
 	```
 
 	This shows that ``F`` is (uniformly) continuous on ``\left[a,b\right]``.
@@ -1056,7 +1056,7 @@ The method of substitution is often useful for evaluating trigonometric integral
 \end{aligned}
 ```
 
-All of these can, of course, be checked by differentiating the right-hand sides. They can be evaluated directly by rewriting``\tan x`` or ``\\cot x`` in terms of ``\sin x`` and ``\cos x`` and using an appropriate substitution. For example,
+All of these can, of course, be checked by differentiating the right-hand sides. They can be evaluated directly by rewriting ``\tan x`` or ``\cot x`` in terms of ``\sin x`` and ``\cos x`` and using an appropriate substitution. For example,
 
 ```math
 \begin{aligned}
@@ -1195,7 +1195,7 @@ A complicated fraction can be written as a sum of simpler fractions. This is cal
 		  \frac{A_1}{x-a}+\frac{A_2}{\left(x-a\right)^2}+\cdots+\frac{A_m}{\left(x-a\right)^m}\,;
 		  ```
 
-	   2. corresponding to each factor ``\left(x^2+bx+c\right)^m`` of ``Q\left(x\right)`` the decomposition contains a sum of fractions of the form
+	   2. corresponding to each factor ``\left(x^2+bx+c\right)^n`` of ``Q\left(x\right)`` the decomposition contains a sum of fractions of the form
 
 	   	  ```math
 		  \frac{B_1x+C_1}{x^2+bx+c^2}+\frac{B_2x+C_2}{\left(x^2+bx+c^2\right)^2}+\cdots+\frac{B_nx+C_n}{\left(x^2+bx+c^2\right)^n}\,.
@@ -1226,9 +1226,9 @@ Note that part (1) does not tell us how to find the factors of ``Q\left(x\right)
 	\begin{aligned}
 	4A + 2B \hphantom{+ 2C + D + E} = 0&\quad\left(\textrm{coefficient of }x^4\right)\\
 	\hphantom{4A + 2B +} 2C \hphantom{+ D + E} = 0&\quad\left(\textrm{coefficient of }x^3\right)\\
-	4A + 2B \hphantom{ + 2C }+ D \hphantom{+ E} = 0&\quad\left(\textrm{coefficient of }x^2\right)\\
+	4A + \hphantom{2}B \hphantom{ + 2C }+ D \hphantom{+ E} = 1&\quad\left(\textrm{coefficient of }x^2\right)\\
 	\hphantom{4A + 2B + 2}C \hphantom{+ D} + E = 0&\quad\left(\textrm{coefficient of }x^1\right)\\
-	\hphantom{4}A \hphantom{+ 2B + 2C + D + E} = 0&\quad\left(\textrm{coefficient of }x^0\right)\,.
+	\hphantom{4}A \hphantom{+ 2B + 2C + D + E} = 2&\quad\left(\textrm{coefficient of }x^0\right)\,.
 	\end{aligned}
 	```
 
@@ -1236,10 +1236,10 @@ Note that part (1) does not tell us how to find the factors of ``Q\left(x\right)
 
 	```math
 	\begin{aligned}
-	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d} x&=\,2\int\frac{1}{x}\,\mathrm{d} x-4\int\frac{x}{2x^2+1}\,\mathrm{d} x-3\int\frac{x}{\left(2x^2+1\right)^2}\\
+	\int\frac{x^2+2}{4x^5+4x^3+x}\,\mathrm{d} x&=\,2\int\frac{1}{x}\,\mathrm{d} x-4\int\frac{x}{2x^2+1}\,\mathrm{d} x-3\int\frac{x}{\left(2x^2+1\right)^2}\,\mathrm{d} x\\
 	&\quad\textrm{Let }u=2x^2+1\,\mathrm{d} x\textrm{, then }\mathrm{d} u=4x\,\mathrm{d} x\\
 	&=\,2\ln\left|x\right|-\int\frac{1}{u}\,\mathrm{d} u-\frac{3}{4}\int\frac{1}{u ^2}\,\mathrm{d} u\\
-	&=\,2\ln\left|x\right|-\ln\left|u\right|=\frac{3}{4}\frac{1}{u}+C\\
+	&=\,2\ln\left|x\right|-\ln\left|u\right|+\frac{3}{4}\frac{1}{u}+C\\
 	&=\,\ln\left(\frac{x^2}{2x^2+1}\right)+\frac{3}{4}\frac{1}{2x^2+1}+C\,.
 	\end{aligned}
 	```
@@ -1270,7 +1270,7 @@ Observe that ``\sqrt{a^2-x^2}`` makes sense only if ``-a\le x\le a``, which corr
 	\end{aligned}
 	```
 
-(2) Integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\tan\theta``.
+(2) Integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{a^2+x^2}`` (where ``a&gt;0``) can frequently be reduced to a simpler form by means of the substitution ``x=a\tan\theta``.
 
 Since ``x`` can take any real value, we have ``-\frac{\uppi}{2}&lt;\theta&lt;\frac{\uppi}{2}``, so ``\sec\theta&gt;0`` and
 
@@ -1337,7 +1337,7 @@ we cannot always drop the absolute value from the tangent.
 	\end{aligned}
 	```
 
-(5) Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{x^2+x^2}``. In this case we have ``\mathrm{d} x = a\cosh u\,\mathrm{d} u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
+(5) Similarly, the inverse hyperbolic substitution ``x=\operatorname{arcsinh} u`` can be used instead of the inverse tangent substitution ``x=a\tan\theta`` to simplify integrals involving ``\sqrt{a^2+x^2}`` or ``\frac{1}{a^2+x^2}``. In this case we have ``\mathrm{d} x = a\cosh u\,\mathrm{d} u`` and ``x^2+a^2=a^2\cosh^2 u``, and we may need the result
 
 ```math
 \operatorname{arcsinh}x=\ln\left(x+\sqrt{x^2+1}\right)
@@ -1488,7 +1488,7 @@ of integrals over intervals where ``f\left(x\right)&gt; 0``.
 
 ### Areas Between Two Curves
 
-Suppose that a plane region ``R`` is bounded by the graphs of two continuous functions, ``y=f\left(x\right)`` and ``y=g\left(x\right)``, and the vertical straight lines ``x=a`` and ``x=b``, as shown in the figure. 
+Suppose that a plane region ``R`` is bounded by the graphs of two continuous functions, ``y=f\left(x\right)`` and ``y=g\left(x\right)``, and the vertical straight lines ``x=a`` and ``x=b``. 
 
 Assume that ``a&lt;b`` and that ``f\left(x\right)\le g\left(x\right)`` on ``\left[a,b\right]``, so the graph of ``f`` lies below that of ``g``. If ``f\left(x\right)\ge 0`` on ``\left[a,b\right]`` then the area ``A`` of ``R`` is the area above the ``x``-axis and under the graph of ``g`` minus the area above the ``x``-axis and under the graph of ``f``:
 
