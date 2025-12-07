@@ -193,7 +193,7 @@ A parametric curve has a direction (indicated, say, by arrowheads), namely, the 
 			latex("t=-1", x=xmid+0.25scale, y=ymid-0.5scale, width=3font_x, height=font_y)
 			latex("t=0", x=xmid-2.15scale, y=ymid-1.2scale, width=3font_x, height=font_y)
 			latex("t=1", x=xmid+0.15scale, y=ymid-2scale, width=3font_x, height=font_y)
-			latex("t=-2", x=xmid+3scale, y=ymid-3scale, width=3font_x, height=font_y)
+			latex("t=2", x=xmid+3scale, y=ymid-3scale, width=3font_x, height=font_y)
 		end
 	end
 	```
@@ -753,7 +753,7 @@ A suitable area element in this case is a sector of angular width ``\mathrm{d} \
 
 	```math
 	\begin{aligned}
-	A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d} \theta\\
+	A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}\sin2\theta\,\mathrm{d} \theta\\
 	&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d} \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
 	&= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
 	\end{aligned}
@@ -813,8 +813,8 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 
 	```math
 	\begin{aligned}
-	s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d} \theta\\
-	&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+	s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)^2}\,\mathrm{d} \theta\\
+	&=2\int_0^\uppi\sqrt{2a^2+2a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
 	&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d} \theta\\
 	&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d} \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
 	\end{aligned}

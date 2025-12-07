@@ -891,7 +891,7 @@ where ``\displaystyle \int f\left(x\right)\,\mathrm{d} x`` denotes the indefinit
 	Let ``\varepsilon &gt;0``. If ``\left|x-y\right|&lt;\frac{\varepsilon}{B}`` for ``a\le x&lt; y\le b``, then
 
 	```math
-	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
+	\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB\,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
 	```
 
 	This shows that ``F`` is (uniformly) continuous on ``\left[a,b\right]``.
@@ -1644,7 +1644,7 @@ where ``\Delta x_i=x_i-x_{i-1}``. By the Mean-Value theorem there exists a numbe
 so we have
 
 ```math
-L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\,.
+L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\Delta x_i\,.
 ```
 
 Thus, ``L_n`` is a Riemann sum for ``\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x``. Being the limit of such Riemann sums as ``n\to\infty`` in such a way that ``\max\Delta x_i \to 0``, that integral is the length of the curve ``C``.
