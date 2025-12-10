@@ -211,7 +211,7 @@ Although the curve in this example is more easily identified when the parameter 
 	We could eliminate the parameter and obtain
 
 	```math
-	x^2=t^2\left(t^2-3\right)^2=y\left(y-2\right)^2\,,
+	x^2=t^2\left(t^2-3\right)^2=y\left(y-3\right)^2\,,
 	```
 
 	but this doesn’t help much since we do not recognize this curve from its Cartesian equation. Instead, let us calculate the coordinates of some points:
@@ -244,7 +244,7 @@ Although the curve in this example is more easily identified when the parameter 
 
 	For ``t=0`` the curve is at ``\left(0,0\right)``, but for ``t=\pm\sqrt 3`` the curve is at ``\left(0,3\right)``. The selfintersection occurs because the curve passes through the same point for two different values of the parameter.
 
-	According to the defintion, a parametric curve always involves a particular set of parametric equations; it is not just a set of points in the plane. When we are interested in considering a curve solely as a set of points (a geometric object), we need not be concerned with any particular pair of parametric equations representing that curve. In this case we call the curve simply a *plane curve*.
+According to the definition, a parametric curve always involves a particular set of parametric equations; it is not just a set of points in the plane. When we are interested in considering a curve solely as a set of points (a geometric object), we need not be concerned with any particular pair of parametric equations representing that curve. In this case we call the curve simply a *plane curve*.
 
 !!! definition
 
@@ -443,7 +443,7 @@ S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d} s=2\uppi\int_a^b\left|f\left(t\
 	Therefore, the required surface area is
 
 	```math
-	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a\ \textrm{square units.}
+	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a^2\ \textrm{square units.}
 	```
 
 Consider the parametric curve ``𝒞`` with equations
