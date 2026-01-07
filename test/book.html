@@ -9868,7 +9868,7 @@ F^\prime\left(x_0\right)=f\left(x_0\right)\,.
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. If <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\frac{\varepsilon}{B}\)</span> for <span class="math-tex" data-type="tex">\(a\le x&lt; y\le b\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
-\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
+\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB\,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
 \]
 </div>
 <p>This shows that <span class="math-tex" data-type="tex">\(F\)</span> is (uniformly) continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
@@ -10605,7 +10605,7 @@ L_n=\sum_{i=1}^n\left|P_{i-1}P_i\right|&=\sum_{i=1}^n\sqrt{\left(x_i-x_{i-1}\rig
 <p>so we have</p>
 <div class="math-tex" data-type="equation">
 \[
-L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\,.
+L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\Delta x_i\,.
 \]
 </div>
 <p>Thus, <span class="math-tex" data-type="tex">\(L_n\)</span> is a Riemann sum for <span class="math-tex" data-type="tex">\(\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x\)</span>. Being the limit of such Riemann sums as <span class="math-tex" data-type="tex">\(n\to\infty\)</span> in such a way that <span class="math-tex" data-type="tex">\(\max\Delta x_i \to 0\)</span>, that integral is the length of the curve <span class="math-tex" data-type="tex">\(C\)</span>.</p>
@@ -10776,7 +10776,7 @@ t=y - 1\,,\quad x=t^2-1=\left(y-1\right)^2-1=y^2-2y\,.
 \(t=1\)
 </foreignObject>
 <foreignObject x="200" y="60.0" width="42" height="18">
-\(t=-2\)
+\(t=2\)
 </foreignObject>
 </svg>
 <figcaption>The parabola defined parameterically by <span class="math-tex" data-type="tex">\(x=t^2-1, y=t+1, t\in \mathbb{R}\,.\)</span></figcaption></figure>
@@ -10793,7 +10793,7 @@ x=t^3-3t\quad\textrm{and}\quad y=t^2\,,\quad -2\le t\le 2\,.
 <p>We could eliminate the parameter and obtain</p>
 <div class="math-tex" data-type="equation">
 \[
-x^2=t^2\left(t^2-3\right)^2=y\left(y-2\right)^2\,,
+x^2=t^2\left(t^2-3\right)^2=y\left(y-3\right)^2\,,
 \]
 </div>
 <p>but this doesn’t help much since we do not recognize this curve from its Cartesian equation. Instead, let us calculate the coordinates of some points:</p>
@@ -10851,8 +10851,8 @@ x^2=t^2\left(t^2-3\right)^2=y\left(y-2\right)^2\,,
 \]
 </div>
 <p>For <span class="math-tex" data-type="tex">\(t=0\)</span> the curve is at <span class="math-tex" data-type="tex">\(\left(0,0\right)\)</span>, but for <span class="math-tex" data-type="tex">\(t=\pm\sqrt 3\)</span> the curve is at <span class="math-tex" data-type="tex">\(\left(0,3\right)\)</span>. The selfintersection occurs because the curve passes through the same point for two different values of the parameter.</p>
-<p>According to the defintion, a parametric curve always involves a particular set of parametric equations; it is not just a set of points in the plane. When we are interested in considering a curve solely as a set of points (a geometric object), we need not be concerned with any particular pair of parametric equations representing that curve. In this case we call the curve simply a <i>plane curve</i>.</p>
 </div>
+<p>According to the definition, a parametric curve always involves a particular set of parametric equations; it is not just a set of points in the plane. When we are interested in considering a curve solely as a set of points (a geometric object), we need not be concerned with any particular pair of parametric equations representing that curve. In this case we call the curve simply a <i>plane curve</i>.</p>
 <div data-type="definition">
 <h1></h1>
 <p>A plane curve is a set of points <span class="math-tex" data-type="tex">\(\left(x,y\right)\)</span> in the plane such that <span class="math-tex" data-type="tex">\(x=f\left(t\right)\)</span> and <span class="math-tex" data-type="tex">\(y=g\left(t\right)\)</span> for some <span class="math-tex" data-type="tex">\(t\)</span> in an interval <span class="math-tex" data-type="tex">\(I\)</span>, where <span class="math-tex" data-type="tex">\(f\)</span> and <span class="math-tex" data-type="tex">\(g\)</span> are continuous functions defined on <span class="math-tex" data-type="tex">\(I\)</span>. Any such interval <span class="math-tex" data-type="tex">\(I\)</span> and function pair <span class="math-tex" data-type="tex">\(\left(f, g\right)\)</span> that generate the points of <span class="math-tex" data-type="tex">\(𝒞\)</span> is called a <i>parametrization</i> of <span class="math-tex" data-type="tex">\(𝒞\)</span>.</p>
@@ -11098,7 +11098,7 @@ x=a\cos^3 t\quad\textrm{and}\quad y=a\sin^3 t\,,\quad\textrm{where }a&gt;0\,
 <p>Therefore, the required surface area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a\ \textrm{square units.}
+S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a^2\ \textrm{square units.}
 \]
 </div>
 </div>
@@ -11504,7 +11504,7 @@ A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\th
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d} \theta\\
+A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}\sin2\theta\,\mathrm{d} \theta\\
 &=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d} \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
 &= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
 \end{aligned}
@@ -11591,8 +11591,8 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d} \theta\\
-&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)^2}\,\mathrm{d} \theta\\
+&=2\int_0^\uppi\sqrt{2a^2+2a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
 &= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d} \theta\\
 &= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d} \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
 \end{aligned}

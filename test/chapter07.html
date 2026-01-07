@@ -96,7 +96,7 @@ t=y - 1\,,\quad x=t^2-1=\left(y-1\right)^2-1=y^2-2y\,.
 \(t=1\)
 </foreignObject>
 <foreignObject x="200" y="60.0" width="42" height="18">
-\(t=-2\)
+\(t=2\)
 </foreignObject>
 </svg>
 <figcaption>The parabola defined parameterically by <span class="math-tex" data-type="tex">\(x=t^2-1, y=t+1, t\in \mathbb{R}\,.\)</span></figcaption></figure>
@@ -113,7 +113,7 @@ x=t^3-3t\quad\textrm{and}\quad y=t^2\,,\quad -2\le t\le 2\,.
 <p>We could eliminate the parameter and obtain</p>
 <div class="math-tex" data-type="equation">
 \[
-x^2=t^2\left(t^2-3\right)^2=y\left(y-2\right)^2\,,
+x^2=t^2\left(t^2-3\right)^2=y\left(y-3\right)^2\,,
 \]
 </div>
 <p>but this doesn’t help much since we do not recognize this curve from its Cartesian equation. Instead, let us calculate the coordinates of some points:</p>
@@ -418,7 +418,7 @@ x=a\cos^3 t\quad\textrm{and}\quad y=a\sin^3 t\,,\quad\textrm{where }a&gt;0\,
 <p>Therefore, the required surface area is</p>
 <div class="math-tex" data-type="equation">
 \[
-S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a\ \textrm{square units.}
+S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a^2\ \textrm{square units.}
 \]
 </div>
 </div>
@@ -824,7 +824,7 @@ A=\frac{1}{2}\int_\alpha^\beta\left(f\left(\theta\right)\right)^2\,\mathrm{d}\th
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d} \theta\\
+A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}\sin2\theta\,\mathrm{d} \theta\\
 &=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d} \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
 &= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
 \end{aligned}
@@ -911,8 +911,8 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 <div class="math-tex" data-type="equation">
 \[
 \begin{aligned}
-s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d} \theta\\
-&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)^2}\,\mathrm{d} \theta\\
+&=2\int_0^\uppi\sqrt{2a^2+2a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
 &= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d} \theta\\
 &= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d} \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
 \end{aligned}

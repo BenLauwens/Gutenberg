@@ -193,7 +193,7 @@ A parametric curve has a direction (indicated, say, by arrowheads), namely, the 
 			latex("t=-1", x=xmid+0.25scale, y=ymid-0.5scale, width=3font_x, height=font_y)
 			latex("t=0", x=xmid-2.15scale, y=ymid-1.2scale, width=3font_x, height=font_y)
 			latex("t=1", x=xmid+0.15scale, y=ymid-2scale, width=3font_x, height=font_y)
-			latex("t=-2", x=xmid+3scale, y=ymid-3scale, width=3font_x, height=font_y)
+			latex("t=2", x=xmid+3scale, y=ymid-3scale, width=3font_x, height=font_y)
 		end
 	end
 	```
@@ -211,7 +211,7 @@ Although the curve in this example is more easily identified when the parameter 
 	We could eliminate the parameter and obtain
 
 	```math
-	x^2=t^2\left(t^2-3\right)^2=y\left(y-2\right)^2\,,
+	x^2=t^2\left(t^2-3\right)^2=y\left(y-3\right)^2\,,
 	```
 
 	but this doesn’t help much since we do not recognize this curve from its Cartesian equation. Instead, let us calculate the coordinates of some points:
@@ -244,7 +244,7 @@ Although the curve in this example is more easily identified when the parameter 
 
 	For ``t=0`` the curve is at ``\left(0,0\right)``, but for ``t=\pm\sqrt 3`` the curve is at ``\left(0,3\right)``. The selfintersection occurs because the curve passes through the same point for two different values of the parameter.
 
-	According to the defintion, a parametric curve always involves a particular set of parametric equations; it is not just a set of points in the plane. When we are interested in considering a curve solely as a set of points (a geometric object), we need not be concerned with any particular pair of parametric equations representing that curve. In this case we call the curve simply a *plane curve*.
+According to the definition, a parametric curve always involves a particular set of parametric equations; it is not just a set of points in the plane. When we are interested in considering a curve solely as a set of points (a geometric object), we need not be concerned with any particular pair of parametric equations representing that curve. In this case we call the curve simply a *plane curve*.
 
 !!! definition
 
@@ -443,7 +443,7 @@ S=2\uppi\int_{t=a}^{t=b}\left|x\right|\mathrm{d} s=2\uppi\int_a^b\left|f\left(t\
 	Therefore, the required surface area is
 
 	```math
-	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a\ \textrm{square units.}
+	S = 2 \times 2\uppi\int_0^\frac{\uppi}{2}a\sin^3 t\,3a\cos t\sin t\mathrm{d} t=\frac{12}{5}\uppi a^2\ \textrm{square units.}
 	```
 
 Consider the parametric curve ``𝒞`` with equations
@@ -753,7 +753,7 @@ A suitable area element in this case is a sector of angular width ``\mathrm{d} \
 
 	```math
 	\begin{aligned}
-	A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}2\sin2\theta\,\mathrm{d} \theta\\
+	A&=\frac{1}{2}\int_0^\frac{\uppi}{4}2\sin^2\theta\,\mathrm{d} \theta+\frac{1}{2}\int_\frac{\uppi}{4}^\frac{\uppi}{2}\sin2\theta\,\mathrm{d} \theta\\
 	&=\int_0^\frac{\uppi}{4}\frac{1-\cos2\theta}{2}\,\mathrm{d} \theta-\left.\frac{1}{4}\cos2\theta\right|_\frac{\uppi}{4}^\frac{\uppi}{2}\\
 	&= \frac{\uppi}{8}-\left.\frac{1}{4}\sin2\theta\right|_0^\frac{\uppi}{4}+\frac{1}{4}=\frac{\uppi}{8}-\frac{1}{4}+\frac{1}{4}=\frac{\uppi}{8}\ \textrm{square units.}
 	\end{aligned}
@@ -813,8 +813,8 @@ s = \int_\alpha^\beta \sqrt{\left(r^\prime\left(\theta\right)\right)^2+\left(r\l
 
 	```math
 	\begin{aligned}
-	s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)}\,\mathrm{d} \theta\\
-	&=2\int_0^\uppi\sqrt{2a^2+a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
+	s&=2\int_0^\uppi\sqrt{a^2\sin^2\theta+a^2\left(1+\cos\theta\right)^2}\,\mathrm{d} \theta\\
+	&=2\int_0^\uppi\sqrt{2a^2+2a^2\cos\theta}\,\mathrm{d} \theta\quad\textrm{but }1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right)\\
 	&= 2\sqrt 2a\int_0^\uppi\sqrt{2\cos^2\left(\frac{\theta}{2}\right)}\,\mathrm{d} \theta\\
 	&= 4a\int_0^\uppi\cos\left(\frac{\theta}{2}\right)\,\mathrm{d} \theta=\left.8a\sin\left(\frac{\theta}{2}\right)\right|_0^\uppi=8a\ \textrm{units.}
 	\end{aligned}

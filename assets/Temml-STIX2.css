@@ -6,11 +6,11 @@ The STIX2 WOFF font has been obtained from
 https://github.com/stipub/stixfonts
 */
 
-/*@font-face {
+@font-face {
   font-family: STIX2;
   src: local('STIXTwoMath'),
        url('./STIXTwoMath.woff2');
-}*/
+}
 
 math {
   font-style: normal;

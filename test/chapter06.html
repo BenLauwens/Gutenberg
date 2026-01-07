@@ -13,7 +13,6 @@
 
 </head>
 <body data-type="article">
-<div id="tag"></div>
 <section data-type="chapter">
 <h1>Integration</h1>
 <p>The second fundamental problem addressed by calculus is the problem of areas, that is, the problem of determining the area of a region of the plane bounded by various curves. Like the problem of tangents considered in Chapter 2, many practical problems in various disciplines require the evaluation of areas for their solution, and the solution of the problem of areas necessarily involves the notion of limits. On the surface the problem of areas appears unrelated to the problem of tangents. However, we will see that the two problems are very closely related; one is the inverse of the other. Finding an area is equivalent to finding an antiderivative or, as we prefer to say, finding an integral. The relationship between areas and antiderivatives is called the Fundamental theorem of Calculus.</p>
@@ -952,7 +951,7 @@ F^\prime\left(x_0\right)=f\left(x_0\right)\,.
 <p>Let <span class="math-tex" data-type="tex">\(\varepsilon &gt;0\)</span>. If <span class="math-tex" data-type="tex">\(\left|x-y\right|&lt;\frac{\varepsilon}{B}\)</span> for <span class="math-tex" data-type="tex">\(a\le x&lt; y\le b\)</span>, then</p>
 <div class="math-tex" data-type="equation">
 \[
-\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
+\left|F\left(y\right)-F\left(x\right)\right|=\left|\int_x^yf\left(t\right)\,\mathrm{d} t\right|\le \int_x^y\left|f\left(t\right)\right|\,\mathrm{d} t\le\int_x^yB\,\mathrm{d} t=B\left(y-x\right)&lt;\varepsilon\,.
 \]
 </div>
 <p>This shows that <span class="math-tex" data-type="tex">\(F\)</span> is (uniformly) continuous on <span class="math-tex" data-type="tex">\(\left[a,b\right]\)</span>.</p>
@@ -1689,7 +1688,7 @@ L_n=\sum_{i=1}^n\left|P_{i-1}P_i\right|&=\sum_{i=1}^n\sqrt{\left(x_i-x_{i-1}\rig
 <p>so we have</p>
 <div class="math-tex" data-type="equation">
 \[
-L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\,.
+L_n=\sum_{i=1}^n\sqrt{1+\left(f^\prime\left(c_i\right)\right)^2}\Delta x_i\,.
 \]
 </div>
 <p>Thus, <span class="math-tex" data-type="tex">\(L_n\)</span> is a Riemann sum for <span class="math-tex" data-type="tex">\(\int_a^b\sqrt{1+\left(f^\prime\left(x\right)\right)^2}\,\mathrm{d} x\)</span>. Being the limit of such Riemann sums as <span class="math-tex" data-type="tex">\(n\to\infty\)</span> in such a way that <span class="math-tex" data-type="tex">\(\max\Delta x_i \to 0\)</span>, that integral is the length of the curve <span class="math-tex" data-type="tex">\(C\)</span>.</p>
@@ -1777,6 +1776,7 @@ S&=2\uppi\int_0^1x\sqrt{1+4x^2}\,\mathrm{d} x\\
 </section>
 </section>
 </section>
-</section>
+</section><div id="tag"></div>
+
 </body>
 </html>
