@@ -33,7 +33,7 @@ BODY
 </html>
 """
 
-const PAGED = """<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+const PAGED = """<script src="https://cdn.jsdelivr.net/npm/pagedjs@0.4.3/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
     constructor(chunker, polisher, caller) {
