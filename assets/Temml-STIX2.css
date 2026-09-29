@@ -91,6 +91,11 @@ mover > :first-child {
   .ff-nudge-left {
     margin-left: -0.2em;
   }
+  /* Squash hidden mrows in \bordermatrix. Messes with centering, but necessary to squash. */
+  .ff-squash mtd {
+    display: block;
+    height: 0;
+  }
 }
 
 @supports (not (-moz-appearance: none)) {
@@ -288,15 +293,29 @@ menclose {
    }
 
    /* Stretch \widetilde */
-  .tml-crooked-2 {
+  .tml-tilde-2 {
     transform: scale(2.0, 1.1)
   }
-  .tml-crooked-3 {
-    transform: scale(3.0, 1.3)
+  .tml-tilde-3 {
+    transform: scale(3.0, 1.1)
   }
-  .tml-crooked-4 {
-    transform: scale(4.0, 1.4)
+  .tml-tilde-4 {
+    transform: scale(4.0, 1.1)
   }
+  /* Stretch \widehat */
+  .tml-hat-1 {
+    transform: scale(1.9, 1.0)
+  }
+  .tml-hat-2 {
+    transform: scale(3.9, 1.0)
+  }
+  .tml-hat-3 {
+    transform: scale(5.8, 1.1)
+  }
+  .tml-hat-4 {
+    transform: scale(7.8, 1.1)
+  }
+  
   /* set array cell justification */
   .tml-right {
     text-align: -webkit-right;
@@ -318,7 +337,7 @@ math > mrow {
 
 /* Default mtd top padding is 0.5ex per MathML-Core and user-agent CSS */
 /* We adjust for jot and small */
-mtable.tml-jot mtd {
+mtable.tml-jot > mtr > mtd {
   padding-top: 0.7ex;
   padding-bottom: 0.7ex;
 }
@@ -334,7 +353,7 @@ mtable.tml-small mtd {
   math > mrow { padding: 0 }
   /* Adjust Firefox spacing between array rows */
   mtd, mtable.tml-small mtd { padding-top: 0; padding-bottom: 0; }
-  mtable.tml-jot mtd { padding-top: 0.2ex; padding-bottom: 0.ex; }
+  mtable.tml-jot > mtr > mtd { padding-top: 0.2ex; padding-bottom: 0.2ex; }
 }
 
 /* AMS environment auto-numbering via CSS counter. */

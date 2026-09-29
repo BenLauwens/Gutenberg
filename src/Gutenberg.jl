@@ -19,7 +19,11 @@ const TEMPLATE = """<!DOCTYPE html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/julia.min.js"></script>
-<link rel="stylesheet" href="../assets/Temml-STIX2.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/temml@0.13.5/dist/Temml-STIX2.css" />
+<script src="https://cdn.jsdelivr.net/npm/temml@0.13.5/dist/temml.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-text@latest/400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-text@latest/700.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-math@latest/400.css" />
 <link rel="stylesheet" href="rma.css" />
 PAGED
 </head>
@@ -29,8 +33,7 @@ BODY
 </html>
 """
 
-const PAGED = """<script src="../assets/temml.min.js"></script>
-<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+const PAGED = """<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 <script>
 class handlers extends Paged.Handler {
     constructor(chunker, polisher, caller) {

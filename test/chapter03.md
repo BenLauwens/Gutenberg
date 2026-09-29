@@ -765,8 +765,8 @@ Similar statements hold for one-sided limits.
 
 We will extend the concept of limit to allow for two situations not covered by the definitions of limit and one-sided limit in the previous section:
 
-1. *limits at infinity*, where ``x`` becomes arbitrarly large, positive or negative;
-2. *infinite limits*, which are not real limits at all but provide usefull symbolism for describing the behaviour of functions whose values become arbitrarily large, positive or negative.
+1. *limits at infinity*, where ``x`` becomes arbitrarily large, positive or negative;
+2. *infinite limits*, which are not real limits at all but provide useful symbolism for describing the behaviour of functions whose values become arbitrarily large, positive or negative.
 
 !!! example
     How behaves the function
@@ -775,7 +775,7 @@ We will extend the concept of limit to allow for two situations not covered by t
     f\left(x\right)=\frac{x}{\sqrt{x^2+1}}
     ```
 
-    whose graph is shown in the next figure and for which some values are given in the following table for values of ``x`` that becomes arbitrarly large, positive and negative?
+    whose graph is shown in the next figure and for which some values are given in the following table for values of ``x`` that becomes arbitrarily large, positive and negative?
 
     {cell=chap display=false output=false}
     ```julia
@@ -998,7 +998,7 @@ A function whose values grow arbitrarily large can sometimes said to have an inf
 
     These statements do not say that the one-sided limits *exist*; they do not exist because ``\infty`` and ``-\infty`` are not numbers. Since the one-sided limits are not equal even as infinite symbols, all we can say about the two-sided ``\lim_{x\to0}f\left(x\right)`` is that it does not exist.
 
-We can now say a bit more about the limits at infinity and negative infinity of a rational function whose nuberator has higher degree than the denominator. Earlier we said that such a limit *does not exist*. This is true, but we can assign ``\infty`` or ``-\infty`` to such limits, as the following example shows.
+We can now say a bit more about the limits at infinity and negative infinity of a rational function whose numerator has higher degree than the denominator. Earlier we said that such a limit *does not exist*. This is true, but we can assign ``\infty`` or ``-\infty`` to such limits, as the following example shows.
 
 !!! example
     Evaluate 

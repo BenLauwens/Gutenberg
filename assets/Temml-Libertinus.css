@@ -1,5 +1,11 @@
 /*
-Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
+The Latin Modern fonts are released under the Open Font License, version 1.1.
+See https://github.com/alerque/libertinus/blob/master/OFL.txt.
+
+The Libertinus WOFF font has been obtained from
+https://github.com/alerque/libertinus
+
+The Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
 have been changed from ASCII to Unicode Mathematical Alphanumeric Symbols Script capitals,
 Unicode range 1D49C to 1D4B5.
 */
@@ -11,8 +17,12 @@ Unicode range 1D49C to 1D4B5.
   font-style: normal;
 }
 
+@font-face {
+  font-family: Libertinus Math;
+  src: url('./LibertinusMath-Regular.woff2');
+}
+
 math {
-  font-family: "Cambria Math", 'STIXTwoMath-Regular', 'NotoSansMath-Regular', math;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -30,6 +40,10 @@ math * {
   border-color: currentColor;
 }
 
+math {
+  font-family: Libertinus Math, math;
+}
+
 /* display: block is necessary in Firefox and Safari.
  * Not in Chromium, which recognizes display: "block math" written inline. */
  math.tml-display {
@@ -38,16 +52,11 @@ math * {
 }
 
 *.mathcal {
-  /* NotoSans */
-  font-feature-settings: 'ss01';
-}
-
-math .mathscr {
-  font-family: "Temml";
+  font-family: "Cambria Math", 'STIXTwoMath-Regular', "Times New Roman", math;
 }
 
 mo.tml-prime {
-  font-family: Temml;
+  font-feature-settings: 'ssty';
 }
 
 /* Cramped superscripts in WebKit */
@@ -298,23 +307,23 @@ menclose {
     transform: scale(2.0, 1.1)
   }
   .tml-tilde-3 {
-    transform: scale(3.0, 1.1)
+    transform: scale(3.0, 1.3)
   }
   .tml-tilde-4 {
-    transform: scale(4.0, 1.1)
+    transform: scale(4.0, 1.4)
   }
   /* Stretch \widehat */
   .tml-hat-1 {
-    transform: scale(1.9, 1.0)
+    transform: scale(2.0, 1.0)
   }
   .tml-hat-2 {
-    transform: scale(3.9, 1.0)
+    transform: scale(4.2, 1.0)
   }
   .tml-hat-3 {
-    transform: scale(5.8, 1.0)
+    transform: scale(6.2, 1.1)
   }
   .tml-hat-4 {
-    transform: scale(7.8, 1.0)
+    transform: scale(8.8, 1.1)
   }
   
   /* set array cell justification */
@@ -325,11 +334,6 @@ menclose {
     text-align: -webkit-left;
   }
 }
-
-.special-fraction {
-  font-family: 'STIX TWO', 'Times New Roman', Times, Tinos, serif;
-}
-
 /* flex-wrap for line-breaking in Chromium */
 math {
   display: inline-flex;

@@ -766,9 +766,9 @@ In calculating ``\left(f\circ g\right)\left(x\right)=f\left(g\left(x\right)\righ
 	|``f``|``f\left(x\right)=\sqrt x``|``\left[0,\infty\right[``|
 	|``g``|``g\left(x\right)=x+1``|``\mathbb{R}``|
 	|``f\circ g``|``\left(f\circ g\right)\left(x\right)=\sqrt{x+1}``|``\left[-1,\infty\right[``|
-	|``g\circ f``|``\left(f\circ g\right)\left(x\right)=\sqrt{x}+1``|``\left[0,\infty\right[``|
-	|``f\circ f``|``\left(f\circ g\right)\left(x\right)=x^¼``|``\left[0,\infty\right[``|
-	|``g\circ g``|``\left(f\circ g\right)\left(x\right)=x+2``|``\mathbb{R}``|
+	|``g\circ f``|``\left(g\circ f\right)\left(x\right)=\sqrt{x}+1``|``\left[0,\infty\right[``|
+	|``f\circ f``|``\left(f\circ f\right)\left(x\right)=x^¼``|``\left[0,\infty\right[``|
+	|``g\circ g``|``\left(g\circ g\right)\left(x\right)=x+2``|``\mathbb{R}``|
 
 	To see why, for example, the domain of ``f\circ g`` is ``\left[-1,\infty\right[``, observe that ``g\left(x\right)=x+1`` is defined for all real ``x`` but belongs to the domain of ``f`` only if ``x+1\ge 0``, that is, if ``x\ge -1``.
 

@@ -8,7 +8,7 @@
 
 ## Course
 
-* Theory: 24 Hr → 72 Hr
+* Theory: 22 Hr → 66 Hr
 * Exercises: 22 Hr 	→ 44 Hr
 
 ## Documentation
@@ -19,7 +19,7 @@
 
 ## Evaluations
 
-* Test: 13/11 - 2 Hr: Exercises
+* Test: 05/11 - 2 Hr: Exercises
 
 * Exam:
   
@@ -31,26 +31,24 @@
 |Lectures|Theory|Exercises|Topic|
 |:-------:|:-----:|:--------:|:-|
 |06/10|1-2||Introduction and Preliminaries|
-|09/10|3-4||Real Numbers and Functions|
+|08/10|3-4||Real Numbers and Functions|
 |13/10|5-6||Limits|
-|14/10||1-2|Real Numbers and Functions|
+|15/10||1-2|Real Numbers and Functions|
 |20/10|7-8||Continuity|
-|21/10|9-10||Continuity and Derivatives|
-|27/10||3-4|Limits|
-|28/10||5-6|Continuity|
-|03/11|11-12||Derivatives and Differentials|
-|04/11||7-8|Derivatives and Differentials|
-|13/11|13-14||Applications of Differentiation|
-|17/11|15-16||Trancendental Functions|
-|18/11||9-10|Applications of Differentiation|
-|24/11||11-12|Applications of Differentiation|
-|25/11||13-14|Trancendental Functions|
-|01/12|17-18||Integrals|
-|02/12||15-16|Integrals - Integration Techniques|
-|08/12|19-20||Integration Techniques - Applications of Integration|
-|08/12-12/12||17|Integration Techniques
-|09/12||18-19|Integration Techniques - Applications of Integration|
-|15/12|21-22||Polar Coordinates and Parametric Curves|
-|16/12||20-21|Polar Coordinates and Parametric Curves|
-|22/12|23-24||*Sequences, Infinite Series and Power Series*|
-|23/12||22-23|*Sequences, Infinite Series and Power Series*|
+|22/10||3-4|Limits|
+|27/10||5-6|Continuity|
+|29/10||7-8|Derivatives and Differentials|
+|03/11|9-10||Derivatives and Differentials|
+|05/11|11-12||Applications of Differentiation|
+|10/11||9-10|Applications of Differentiation|
+|12/11|13-14||Trancendental Functions|
+|17/11||11-12|Applications of Differentiation - Trancendental Functions|
+|19/11|15-16||Integrals|
+|24/11|17-18||Integration Techniques - Applications of Integration|
+|26/11||13-14|Trancendental Functions - Integrals|
+|01/12||15-16|Integration Techniques - Applications of Integration|
+|03/12|19-20||Polar Coordinates and Parametric Curves|
+|08/12|21-22||*Sequences, Infinite Series and Power Series*|
+|10/12||17-18|Integration Techniques - Applications of Integration|
+|15/12||19-20|Polar Coordinates and Parametric Curves|
+|17/12||21-22|*Sequences, Infinite Series and Power Series*|

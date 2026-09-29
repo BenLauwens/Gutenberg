@@ -386,7 +386,7 @@ end
 A function is differentiable on a set ``S`` if it is differentiable at every point ``x`` in ``S``. Typically, the functions we encounter are defined on intervals or unions of intervals. If ``f`` is defined on a closed interval ``\left[a,b\right]``, the definition does not allow for the existence of a derivative at the endpoints ``x=a`` or ``x=b``. (Why?) As we did for continuity, we extend the definition to allow for a right derivative at ``x=a`` and a left derivative at ``x=b``:
 
 ```math
-f_+^\prime\left(a\right)=\lim_{h\to 0^+}\frac{f\left(a+h\right)-f\left(x\right)}{h}\,,\quad f_-^\prime\left(b\right)=\lim_{h\to 0^-}\frac{f\left(b+h\right)-f\left(x\right)}{h}\,.
+f_+^\prime\left(a\right)=\lim_{h\to 0^+}\frac{f\left(a+h\right)-f\left(a\right)}{h}\,,\quad f_-^\prime\left(b\right)=\lim_{h\to 0^-}\frac{f\left(b+h\right)-f\left(b\right)}{h}\,.
 ```
 
 We now say that ``f`` is differentiable on ``\left[a,b\right]`` if ``f^\prime\left(x\right)`` exists for all ``x\in\left[a,b\right]`` and ``f_+^\prime\left(a\right)`` and ``f_-^\prime\left(b\right)`` both exist.
@@ -548,7 +548,7 @@ Figure("", tex(raw"\mathrm{d} y") * ", the change in height to the tangent line,
 		fx0 = f(x0)
 		x = 3.5
 		fx = f(x)
-        axis_xy(6scale,3.5scale,xmid,ymid,scale,(x0, x),tuple(), xs=("x","x+\\mathrm{d} y"))
+        axis_xy(6scale,3.5scale,xmid,ymid,scale,(x0, x),tuple(), xs=("x","x+\\mathrm{d} x"))
         plot_xy(f, -1:0.01:5, (2, 3.5), xmid, ymid, scale, width=1)
 		m = 0.2(x0+0.5)
 		plot_xy(x->m*(x-x0)+fx0, -1:0.01:5, tuple(), xmid, ymid, scale, width=1, color = "RoyalBlue")

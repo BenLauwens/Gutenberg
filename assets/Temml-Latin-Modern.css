@@ -1,5 +1,13 @@
 /*
-Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
+The Latin Modern fonts are released under the GUST font license, which is
+legally equivalent to the LaTeX Project Public License. See the files in this
+directory for details. The fonts can be obtained from several TeX distributions
+or package managers.
+
+The Latin Modern WOFF font has been obtained from
+http://www.gust.org.pl/projects/e-foundry/
+
+The Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
 have been changed from ASCII to Unicode Mathematical Alphanumeric Symbols Script capitals,
 Unicode range 1D49C to 1D4B5.
 */
@@ -11,8 +19,12 @@ Unicode range 1D49C to 1D4B5.
   font-style: normal;
 }
 
+@font-face {
+  font-family: Latin Modern Math;
+  src: url('./latinmodernmath.woff2');
+}
+
 math {
-  font-family: "Cambria Math", 'STIXTwoMath-Regular', 'NotoSansMath-Regular', math;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -30,6 +42,10 @@ math * {
   border-color: currentColor;
 }
 
+math {
+  font-family: "Latin Modern Math", math;
+}
+
 /* display: block is necessary in Firefox and Safari.
  * Not in Chromium, which recognizes display: "block math" written inline. */
  math.tml-display {
@@ -37,17 +53,8 @@ math * {
   width: 100%;
 }
 
-*.mathcal {
-  /* NotoSans */
-  font-feature-settings: 'ss01';
-}
-
-math .mathscr {
+*.mathscr {
   font-family: "Temml";
-}
-
-mo.tml-prime {
-  font-family: Temml;
 }
 
 /* Cramped superscripts in WebKit */
@@ -201,7 +208,7 @@ menclose {
     padding: 0.5ex 0ex;
   }
   
-    .tml-overline {
+  .tml-overline {
     padding: 0.1em 0 0 0;
     border-top: 0.065em solid;
   }
@@ -298,25 +305,25 @@ menclose {
     transform: scale(2.0, 1.1)
   }
   .tml-tilde-3 {
-    transform: scale(3.0, 1.1)
+    transform: scale(3.0, 1.3)
   }
   .tml-tilde-4 {
-    transform: scale(4.0, 1.1)
+    transform: scale(4.0, 1.4)
   }
   /* Stretch \widehat */
   .tml-hat-1 {
-    transform: scale(1.9, 1.0)
+    transform: scale(1.8, 1.1)
   }
   .tml-hat-2 {
-    transform: scale(3.9, 1.0)
+    transform: scale(3.5, 1.1)
   }
   .tml-hat-3 {
-    transform: scale(5.8, 1.0)
+    transform: scale(5.4, 1.3)
   }
   .tml-hat-4 {
-    transform: scale(7.8, 1.0)
+    transform: scale(7.2, 1.4)
   }
-  
+
   /* set array cell justification */
   .tml-right {
     text-align: -webkit-right;
@@ -327,7 +334,7 @@ menclose {
 }
 
 .special-fraction {
-  font-family: 'STIX TWO', 'Times New Roman', Times, Tinos, serif;
+  font-family: 'Times New Roman', Times, 'STIX TWO', Tinos, serif;
 }
 
 /* flex-wrap for line-breaking in Chromium */

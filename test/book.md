@@ -20,6 +20,6 @@ output = "book.html"
     <h1>CALCULUS</h1>
     <p data-type="academy">ROYAL<br>MILITARY ACADEMY</p>
 	<p data-type="author">Ben Lauwens, PhD MScEng<br>Colonel IMM<br>Professor</p>
-	<p data-type="year">2025</p>
+	<p data-type="year">2026</p>
 	<p data-type="course">ES111</p>
 </section>
